@@ -11,6 +11,8 @@ using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreLocalInstallerTest.Model
 {
+    using NSubstitute;
+
     using SitecoreInstaller.Framework.Diagnostics;
 
     [TestFixture]
@@ -21,17 +23,9 @@ namespace SitecoreLocalInstallerTest.Model
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
-            _sqlService = new SqlService(new Log());
+            var log = Substitute.For<ILog>();
+            _sqlService = new SqlService(log);
         }
 
-        [Test]
-        public void GetConnectionStringNames_ConnectionStringGeneration_ConnectionStringNamesAreGenerated()
-        {
-            var connectionName = new[] {"DealerInventory"};
-
-            var connectionStrings = _sqlService.GetConnectionStringNames(connectionName);
-
-            Assert.AreEqual(3, connectionStrings.Count());
-        }
     }
 }

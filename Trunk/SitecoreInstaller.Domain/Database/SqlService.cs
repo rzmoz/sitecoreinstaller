@@ -19,7 +19,7 @@ namespace SitecoreInstaller.Domain.Database
         public SqlService(ILog log)
         {
             _log = log;
-            Databases = new DatabaseRepository();
+            Databases = new DatabaseRepository(_log);
         }
 
         public void TestDatabaseSettings(SqlSettings sqlSettings)
@@ -50,11 +50,9 @@ namespace SitecoreInstaller.Domain.Database
 
         public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, DirectoryInfo databaseFolder, string projectName, IEnumerable<string> existingConnectionStrings)
         {
-            throw new NotImplementedException();
-            /*
             _log.Info("Generating connection string delta...");
-            var databaseNames =  GetPhysicalDatabaseNames(databaseFolder);
-            var connectionStringNames = GetConnectionStringNames(databaseNames);
+            var databases =  Databases.Get(databaseFolder, projectName);
+            var connectionStringNames = databases.Select(db => db.LogicalName).AsUniqueStrings();
             var connectionStringEntries = string.Empty;
             foreach (var connectionStringName in connectionStringNames)
             {
@@ -64,40 +62,13 @@ namespace SitecoreInstaller.Domain.Database
                 else
                     connectionStringEntries += connectionStringEntry.ToInsertString();
             }
-            
-            var connectionStringDelta = string.Format(_ConnectionStringDeltaFormat, connectionStringEntries);
+
+            var connectionStringDelta = string.Format(ConnectionStringFormats.ConnectionStringDotConfigDelta, connectionStringEntries);
             _log.Debug(connectionStringDelta);
             return connectionStringDelta;
-          */
+          
         }
 
         public IDatabaseRepository Databases { get; private set; }
-
-        public IEnumerable<string> GetConnectionStringNames(IEnumerable<string> databaseNames)
-        {
-            throw new NotImplementedException();
-            /*
-            if (databaseNames == null)
-                return Enumerable.Empty<string>();
-
-            var result = new List<string>();
-            foreach (var databaseName in databaseNames)
-            {
-                var logicalDatabaseName = _tSqlService.GetLogicalDatabaseName(databaseName);
-
-                if (string.IsNullOrEmpty(logicalDatabaseName))
-                    continue;
-                result.Add(logicalDatabaseName);
-            }
-            return result.AsUniqueStrings();
-             * */
-        }
-
-
-        private const string _ConnectionStringDeltaFormat = @"<?xml version=""1.0""?>
-<!-- For more information on using web.config transformation visit http://go.microsoft.com/fwlink/?LinkId=125889 -->
-<connectionStrings xmlns:xdt=""http://schemas.microsoft.com/XML-Document-Transform"">
-{0}
-</connectionStrings>";
     }
 }

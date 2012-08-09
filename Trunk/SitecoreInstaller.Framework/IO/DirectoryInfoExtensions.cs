@@ -76,10 +76,18 @@ namespace SitecoreInstaller.Framework.IO
             if (Directory.Exists(dir.FullName) == false)
                 return;
 
-            var directorySecurity = dir.GetAccessControl(AccessControlSections.Access);
-            directorySecurity.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow));
+            DirectorySecurity directorySecurity = dir.GetAccessControl();
             CanonicalizeDacl(directorySecurity);
+            
+            directorySecurity.AddAccessRule(new FileSystemAccessRule(
+                                    "Everyone",
+                                    FileSystemRights.FullControl,
+                                    InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit,
+                                    PropagationFlags.None,
+                                    AccessControlType.Allow));
+
             dir.SetAccessControl(directorySecurity);
+
         }
         static void CanonicalizeDacl(NativeObjectSecurity objectSecurity)
         {
