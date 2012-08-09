@@ -57,7 +57,6 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Database\SqlDatabaseUT.cs" />
-    <Compile Include="Database\SqlServiceUT.cs" />
     <Compile Include="Pipelines\InstallerServiceMock.cs" />
     <Compile Include="Pipelines\StepWizardUT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
