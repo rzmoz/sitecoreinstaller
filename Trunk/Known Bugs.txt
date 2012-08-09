@@ -1,0 +1,5 @@
+Post steps of packages fail to run properly and installer hangs when package installation crashes. Need better failover mechanisms
+Preconditions in pipelines are not being evaluated when not run through pipeline runner
+UI does not look good in classic mode
+Sitecore and license dropbox UI bug on clean install
+deletion of unzipped Sitecore version fails
