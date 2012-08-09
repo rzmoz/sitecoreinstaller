@@ -9,6 +9,10 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Test
 {
+    using FluentAssertions;
+
+    using NSubstitute;
+
     using SitecoreInstaller.Framework.Diagnostics;
 
     [TestFixture]
@@ -19,7 +23,8 @@ namespace SitecoreInstaller.App.Test
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
-            _installerService = new PipelineRunner<InstallPipeline>(new InstallPipeline(null),  new Log());
+            var log = Substitute.For<ILog>();
+            _installerService = new PipelineRunner<InstallPipeline>(new InstallPipeline(null),  log);
         }
 
         [Test]
@@ -27,7 +32,7 @@ namespace SitecoreInstaller.App.Test
         {
             var installationSteps = _installerService.Processor.Steps;
 
-            Assert.AreEqual(16, installationSteps.Count());
+            installationSteps.Should().HaveCount(16);
         }
     }
 }

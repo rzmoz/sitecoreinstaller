@@ -154,7 +154,6 @@
     <Compile Include="Database\SqlConstants.cs" />
     <Compile Include="Database\DatabaseExtensions.cs" />
     <Compile Include="Database\ISqlService.cs" />
-    <Compile Include="Database\SqlCommander.cs" />
     <Compile Include="Database\SqlService.cs" />
     <Compile Include="Database\SqlSettings.cs" />
     <Compile Include="Pipelines\IPipeline.cs" />
