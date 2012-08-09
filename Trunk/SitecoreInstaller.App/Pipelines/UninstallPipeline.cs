@@ -32,7 +32,9 @@ namespace SitecoreInstaller.App.Pipelines
         [Step(2)]
         public void DetachDatabases(object sender, EventArgs e)
         {
-            Services.Sql.DetachDatabases(AppSettings.DetachScriptPath, AppSettings.Sql);
+            var databases = Services.Sql.Databases.Get(AppSettings.WebsiteFolders.DatabaseFolder);
+            foreach (var sqlDatabase in databases)
+                sqlDatabase.Detach(AppSettings.Sql);
         }
         [Step(3)]
         public void DeleteIisSiteAndAppPool(object sender, EventArgs e)

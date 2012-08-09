@@ -151,42 +151,35 @@ namespace SitecoreInstaller.App.Pipelines
         }
 
         [Step(7)]
-        public void CreateSqlScripts(object sender, EventArgs e)
-        {
-            Services.Sql.CreateSqlScripts(AppSettings.Sql, AppSettings.ProjectName.Value, AppSettings.WebsiteFolders.ProjectFolder, AppSettings.WebsiteFolders.DatabaseFolder);
-        }
-        [Step(8)]
         public void AttachDatabases(object sender, EventArgs e)
         {
-            Services.Sql.AttachDatabases(AppSettings.AttachScriptPath, AppSettings.Sql);
+            var databases = Services.Sql.Databases.Get(AppSettings.WebsiteFolders.DatabaseFolder);
+            foreach (var sqlDatabase in databases)
+                sqlDatabase.Attach(AppSettings.Sql);
         }
-        [Step(9)]
-        public void MapDatabaseLogin(object sender, EventArgs e)
-        {
-            Services.Sql.MapDbLogin(AppSettings.MapLoginScriptPath, AppSettings.Sql);
-        }
-        [Step(10)]
+        
+        [Step(8)]
         public void AddSiteNameToHostFile(object sender, EventArgs e)
         {
             Services.HostFile.AddHostName(AppSettings.IisSiteName);
         }
-        [Step(11)]
+        [Step(9)]
         public void CreateIisSiteAndAppPool(object sender, EventArgs e)
         {
             Services.IisManagement.CreateApplication(AppSettings.AppPool, AppSettings.WebsiteFolders.WebSiteFolder, AppSettings.WebsiteFolders.IisLogFilesFolder);
         }
-        [Step(12)]
+        [Step(10)]
         public void InstallRuntimeServices(object sender, EventArgs e)
         {
             Services.Website.InstallRuntimeServices(AppSettings.WebsiteFolders.WebSiteFolder);
         }
-        [Step(13)]
+        [Step(11)]
         public void InstallPackages(object sender, EventArgs e)
         {
             var selectedModules = Services.BuildLibrary.Get(AppSettings.UserSelections.SelectedModules, SourceType.Module);
             Services.Website.InstallPackages(AppSettings.IisSiteName, selectedModules.OfType<BuildLibraryDirectory>());
         }
-        [Step(14)]
+        [Step(12)]
         public void ExecutePostInstallSteps(object sender, EventArgs e)
         {
             Services.Website.ExecutePostInstallSteps(AppSettings.IisSiteName);

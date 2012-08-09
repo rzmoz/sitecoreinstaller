@@ -58,10 +58,7 @@ namespace SitecoreInstaller.Domain.Website
             websiteFolders.ProjectFolder.CreateWithLog();
 
             _log.Debug("Giving Everyone user FullControl to project folder: {0}", websiteFolders.ProjectFolder.FullName);
-            DirectorySecurity dirSec = Directory.GetAccessControl(websiteFolders.ProjectFolder.FullName);
-            dirSec.AddAccessRule(new FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow));
-            Directory.SetAccessControl(websiteFolders.ProjectFolder.FullName, dirSec);
-
+            websiteFolders.ProjectFolder.GrantEveryoneFullControl();
             websiteFolders.CreateFolders();
             _log.Info("Website folders created");
         }

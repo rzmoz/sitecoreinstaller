@@ -17,7 +17,9 @@ namespace SitecoreInstaller.App.Pipelines
         [Step(1)]
         public void AttachDatabases(object sender, EventArgs e)
         {
-            Services.Sql.AttachDatabases(AppSettings.AttachScriptPath, AppSettings.Sql);
+            var databases = Services.Sql.Databases.Get(AppSettings.WebsiteFolders.DatabaseFolder);
+            foreach (var sqlDatabase in databases)
+                sqlDatabase.Attach(AppSettings.Sql);
         }
         [Step(2)]
         public void AddSiteNameToHostFile(object sender, EventArgs e)
