@@ -101,6 +101,18 @@
     <Reference Include="Ionic.Zip">
       <HintPath>..\3rdPartyAssemblies\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdPartyAssemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdPartyAssemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdPartyAssemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3rdPartyAssemblies\Microsoft.Web.Administration.dll</HintPath>
@@ -133,6 +145,7 @@
     <Compile Include="BuildLibrary\WindowsZipAndFoldersSourceEntryRepository.cs" />
     <Compile Include="Database\ConnectionStringEntry.cs" />
     <Compile Include="Database\ConnectionStringsFile.cs" />
+    <Compile Include="Database\ConnectionStringFormats.cs" />
     <Compile Include="Database\SqlDatabase.cs" />
     <Compile Include="Database\DatabaseRepository.cs" />
     <Compile Include="Database\IDatabaseRepository.cs" />
@@ -140,11 +153,6 @@
     <Compile Include="Website\WffmConfigFile.cs" />
     <Compile Include="Database\SqlConstants.cs" />
     <Compile Include="Database\DatabaseExtensions.cs" />
-    <Compile Include="Database\DatabaseResource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseResource.resx</DependentUpon>
-    </Compile>
     <Compile Include="Database\ISqlService.cs" />
     <Compile Include="Database\SqlCommander.cs" />
     <Compile Include="Database\SqlService.cs" />
@@ -188,16 +196,11 @@
     <Compile Include="Website\WebsiteService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Database\ConnectionStringsFormat.config" />
     <None Include="Website\WffmDataProviderFormat.config" />
     <None Include="Website\DataFolderFormat.config" />
     <None Include="Website\LicenseFileFormat.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Database\DatabaseResource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DatabaseResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Website\WebsiteResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WebsiteResource.Designer.cs</LastGenOutput>

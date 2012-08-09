@@ -26,7 +26,7 @@ namespace SitecoreInstaller.Domain.Database
         {
             try
             {
-                var connectionString = string.Format(_ConnectionStringTestFormat, sqlSettings.InstanceName, sqlSettings.Login, sqlSettings.Password);
+                var connectionString = sqlSettings.ConnectionString + ";Connect Timeout=5";
                 using (var sqlConnection = new SqlConnection(connectionString))
                 {
                     var command = new SqlCommand("SELECT COUNT(*) FROM sys.all_views", sqlConnection);
@@ -93,7 +93,7 @@ namespace SitecoreInstaller.Domain.Database
              * */
         }
 
-        private const string _ConnectionStringTestFormat = @"Data Source={0};Initial Catalog=Master;User Id={1};Password={2};Connect Timeout=5";
+
         private const string _ConnectionStringDeltaFormat = @"<?xml version=""1.0""?>
 <!-- For more information on using web.config transformation visit http://go.microsoft.com/fwlink/?LinkId=125889 -->
 <connectionStrings xmlns:xdt=""http://schemas.microsoft.com/XML-Document-Transform"">

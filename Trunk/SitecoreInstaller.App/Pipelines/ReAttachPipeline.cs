@@ -17,7 +17,7 @@ namespace SitecoreInstaller.App.Pipelines
         [Step(1)]
         public void AttachDatabases(object sender, EventArgs e)
         {
-            var databases = Services.Sql.Databases.Get(AppSettings.WebsiteFolders.DatabaseFolder);
+            var databases = Services.Sql.Databases.Get(AppSettings.WebsiteFolders.DatabaseFolder, AppSettings.ProjectName.Value);
             foreach (var sqlDatabase in databases)
                 sqlDatabase.Attach(AppSettings.Sql);
         }

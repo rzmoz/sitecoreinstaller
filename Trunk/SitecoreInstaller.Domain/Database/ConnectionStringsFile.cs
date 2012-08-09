@@ -67,14 +67,14 @@ namespace SitecoreInstaller.Domain.Database
         {
             if (System.IO.File.Exists(File.FullName))
                 return;
-            var emptyConnectionStrings = string.Format(DatabaseResource.ConnectionStringsFormat, String.Empty);
+            var emptyConnectionStrings = string.Format(ConnectionStringFormats.ConnectionStringDotConfig, String.Empty);
             emptyConnectionStrings.WriteToDisk(File);
         }
 
         private void LowerCaseConnectionStringNames()
         {
             var newEntryList = _entries.Values.Aggregate(string.Empty, (current, entry) => current + entry.ToString());
-            var loweredConnectionStringFile = string.Format(DatabaseResource.ConnectionStringsFormat, newEntryList);
+            var loweredConnectionStringFile = string.Format(ConnectionStringFormats.ConnectionStringDotConfig, newEntryList);
             loweredConnectionStringFile.WriteToDisk(File);
         }
 

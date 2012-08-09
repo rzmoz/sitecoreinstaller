@@ -32,12 +32,12 @@ namespace SitecoreInstaller.App.Pipelines
             }
             return true;
         }
-        
+
         [PipelinePrecondition]
         public bool CheckWritePermissionToHostFile(string taskName = "")
         {
 
-            if(Services.HostFile.HasWritePermissions()==false)
+            if (Services.HostFile.HasWritePermissions() == false)
             {
                 Services.Dialogs.Information("SitecoreInstaller needs write permission to system host file. (Solve by running SitecoreInstaller as administrator)");
                 return false;
@@ -153,11 +153,11 @@ namespace SitecoreInstaller.App.Pipelines
         [Step(7)]
         public void AttachDatabases(object sender, EventArgs e)
         {
-            var databases = Services.Sql.Databases.Get(AppSettings.WebsiteFolders.DatabaseFolder);
+            var databases = Services.Sql.Databases.Get(AppSettings.WebsiteFolders.DatabaseFolder, AppSettings.ProjectName.Value);
             foreach (var sqlDatabase in databases)
                 sqlDatabase.Attach(AppSettings.Sql);
         }
-        
+
         [Step(8)]
         public void AddSiteNameToHostFile(object sender, EventArgs e)
         {
