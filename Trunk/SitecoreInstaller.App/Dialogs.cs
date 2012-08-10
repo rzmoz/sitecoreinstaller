@@ -107,9 +107,7 @@ namespace SitecoreInstaller.App
         }
         public void OnlineHelp()
         {
-            MessageBox.Show("Get online help at http://trac.sitecore.net/SitecoreInstaller\r\nClick 'Help' button to open in browser", "Online help",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information, MessageBoxDefaultButton.Button2, MessageBoxOptions.RtlReading, "http://trac.sitecore.net/SitecoreInstaller", string.Empty);
+            System.Diagnostics.Process.Start("http://sitecoreinstaller.codeplex.com/");
         }
     }
 }
