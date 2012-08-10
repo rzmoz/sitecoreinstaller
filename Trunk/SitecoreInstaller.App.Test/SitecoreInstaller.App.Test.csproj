@@ -38,7 +38,7 @@
       <HintPath>..\packages\NSubstitute.1.4.2.0\lib\NET40\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\3rdPartyAssemblies\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
