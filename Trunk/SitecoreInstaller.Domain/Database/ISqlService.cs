@@ -9,6 +9,6 @@ namespace SitecoreInstaller.Domain.Database
 
         string GenerateConnectionStringsDelta(SqlSettings sqlSettings, DirectoryInfo databaseFolder, string projectName, IEnumerable<string> existingConnectionStrings);
 
-        IDatabaseRepository Databases { get; }
+        IEnumerable<SqlDatabase> GetDatabases(DirectoryInfo databaseFolder, string projectName);
     }
 }

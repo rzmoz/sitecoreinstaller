@@ -77,26 +77,6 @@
         public AppPoolSettings AppPool { get; set; }
         public WebsiteFolders WebsiteFolders { get; set; }
 
-        public FileInfo AttachScriptPath
-        {
-            get { return GetScriptPath(SqlConstants.AttachScriptName); }
-        }
-
-        public FileInfo MapLoginScriptPath
-        {
-            get { return GetScriptPath(SqlConstants.MapLoginScriptName); }
-        }
-
-        public FileInfo DetachScriptPath
-        {
-            get { return GetScriptPath(SqlConstants.DetachScriptName); }
-        }
-
-        private FileInfo GetScriptPath(string scriptFileName)
-        {
-            return WebsiteFolders.ProjectFolder.CombineTo<FileInfo>(ProjectName + scriptFileName);
-        }
-
         private void SetSystemPaths()
         {
             var projectfolder = new DirectoryInfo(UserSettings.Default.ProjectsFolder).CombineTo<DirectoryInfo>(ProjectName.Value);
