@@ -1,0 +1,7 @@
+# git ignore file
+*_Resharper*
+Trunk/Packages/*
+Trunk/*/bin/*
+Trunk/*/obj/*
+*.user
+*.suo
