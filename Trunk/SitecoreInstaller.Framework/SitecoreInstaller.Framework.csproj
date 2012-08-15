@@ -87,7 +87,7 @@
     <Compile Include="Diagnostics\ILog.cs" />
     <Compile Include="Diagnostics\Log.cs" />
     <Compile Include="Diagnostics\LogEntry.cs" />
-    <Compile Include="Diagnostics\MessageType.cs" />
+    <Compile Include="Diagnostics\LogType.cs" />
     <Compile Include="IO\DirCopyOptions.cs" />
     <Compile Include="IO\DirectoryInfoExtensions.cs" />
     <Compile Include="IO\FileInfoExtensions.cs" />

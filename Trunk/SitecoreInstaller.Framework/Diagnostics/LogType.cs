@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.Framework.Diagnostics
 {
-    public enum MessageType
+    public enum LogType
     {
         Debug,
         Info,
