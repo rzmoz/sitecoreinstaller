@@ -150,6 +150,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(SolutionDir)3rdPartyAssemblies\7za.exe $(TargetDir)
+copy $(SolutionDir)3rdPartyAssemblies\curl.exe $(TargetDir)
 cd $(TargetDir)
 del *.cs</PostBuildEvent>
   </PropertyGroup>
