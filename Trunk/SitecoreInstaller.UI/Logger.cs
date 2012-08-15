@@ -15,7 +15,7 @@ namespace SitecoreInstaller.UI
 
     public partial class Logger : UserControl
     {
-        private IDictionary<MessageType, Color> _colors;
+        private IDictionary<LogType, Color> _colors;
 
         public Logger()
         {
@@ -32,13 +32,13 @@ namespace SitecoreInstaller.UI
             Services.Log.EntryLogged += EntryLogged;
             Services.Log.LogCleared += ClearLog;
             Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
-            _colors = new Dictionary<MessageType, Color>
+            _colors = new Dictionary<LogType, Color>
                 {
-                    { MessageType.Debug, Color.DarkGray },
-                    { MessageType.Info, Color.Black },
-                    { MessageType.Warning, Color.Blue },
-                    { MessageType.Error, Color.Red },
-                    { MessageType.Profiling, Color.Green }
+                    { LogType.Debug, Color.DarkGray },
+                    { LogType.Info, Color.Black },
+                    { LogType.Warning, Color.Blue },
+                    { LogType.Error, Color.Red },
+                    { LogType.Profiling, Color.Green }
                 };
         }
 
@@ -87,7 +87,7 @@ namespace SitecoreInstaller.UI
             }
             else
             {
-                rteEventLog.SelectionColor = _colors[e.Arg.MessageType];
+                rteEventLog.SelectionColor = _colors[e.Arg.LogType];
 
                 if (LogEntry(e))
                 {
@@ -101,15 +101,15 @@ namespace SitecoreInstaller.UI
 
         private bool LogEntry(GenericEventArgs<LogEntry> e)
         {
-            if (e.Arg.MessageType == MessageType.Debug && UiUserSettings.Default.ShowDebug)
+            if (e.Arg.LogType == LogType.Debug && UiUserSettings.Default.ShowDebug)
                 return true;
-            if (e.Arg.MessageType == MessageType.Info && UiUserSettings.Default.ShowInfo)
+            if (e.Arg.LogType == LogType.Info && UiUserSettings.Default.ShowInfo)
                 return true;
-            if (e.Arg.MessageType == MessageType.Warning && UiUserSettings.Default.ShowWarning)
+            if (e.Arg.LogType == LogType.Warning && UiUserSettings.Default.ShowWarning)
                 return true;
-            if (e.Arg.MessageType == MessageType.Error && UiUserSettings.Default.ShowError)
+            if (e.Arg.LogType == LogType.Error && UiUserSettings.Default.ShowError)
                 return true;
-            if (e.Arg.MessageType == MessageType.Profiling && UiUserSettings.Default.ShowProfiling)
+            if (e.Arg.LogType == LogType.Profiling && UiUserSettings.Default.ShowProfiling)
                 return true;
             return false;
         }

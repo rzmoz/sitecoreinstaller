@@ -51,22 +51,22 @@ namespace SitecoreInstaller.Framework.Diagnostics
         }
         public void Debug(string message, params object[] parameters)
         {
-            LogMessage(MessageType.Debug, message, parameters);
+            LogMessage(LogType.Debug, message, parameters);
         }
 
         public void Info(string message, params object[] parameters)
         {
-            LogMessage(MessageType.Info, message, parameters);
+            LogMessage(LogType.Info, message, parameters);
         }
 
         public void Warning(string message, params object[] parameters)
         {
-            LogMessage(MessageType.Warning, message, parameters);
+            LogMessage(LogType.Warning, message, parameters);
         }
 
         public void Error(string message, params object[] parameters)
         {
-            LogMessage(MessageType.Error, message, parameters);
+            LogMessage(LogType.Error, message, parameters);
         }
 
         public void Profile(object sender, ProfilerEventArgs args)
@@ -77,14 +77,14 @@ namespace SitecoreInstaller.Framework.Diagnostics
         public void Profile(string taskName, TimeSpan timeElapsed)
         {
             var timeElapsedFormatted = string.Format("{0:0.00}", timeElapsed.TotalSeconds);
-            LogMessage(MessageType.Profiling, "{0} finished in {1} seconds", taskName, timeElapsedFormatted);
+            LogMessage(LogType.Profiling, "{0} finished in {1} seconds", taskName, timeElapsedFormatted);
         }
 
-        public void LogMessage(MessageType messageType, string message, params object[] parameters)
+        public void LogMessage(LogType logType, string message, params object[] parameters)
         {
-            LogMessage(messageType, DateTime.Now, message, parameters);
+            LogMessage(logType, DateTime.Now, message, parameters);
         }
-        public void LogMessage(MessageType messageType, DateTime timeStamp, string message, params object[] parameters)
+        public void LogMessage(LogType logType, DateTime timeStamp, string message, params object[] parameters)
         {
             if (message == null)
                 return;
@@ -93,7 +93,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
             if (parameters != null)
                 loggedMessage = string.Format(message, parameters);
 
-            var newEntry = new LogEntry(messageType, timeStamp, loggedMessage);
+            var newEntry = new LogEntry(logType, timeStamp, loggedMessage);
             _entries.Add(newEntry);
             _notifyBuffer.Enqueue(newEntry);
         }

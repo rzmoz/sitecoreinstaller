@@ -27,7 +27,7 @@ namespace SitecoreInstaller.Framework.Test.Diagnostics
             for (var i = 0; i < _LogTimes; i++)
                 _log.Info("test");
 
-            Assert.AreEqual(_LogTimes, _log.Where(message => message.MessageType == MessageType.Info).Count());
+            Assert.AreEqual(_LogTimes, _log.Where(message => message.LogType == LogType.Info).Count());
         }
         [Test]
         public void Info_Filtering_EntriesAreInLog()
@@ -36,7 +36,7 @@ namespace SitecoreInstaller.Framework.Test.Diagnostics
             for (var i = 0; i < _LogTimes; i++)
                 _log.Info("test");
 
-            Assert.AreEqual(_LogTimes, _log.Where(message => message.MessageType == MessageType.Info).Count());
+            Assert.AreEqual(_LogTimes, _log.Where(message => message.LogType == LogType.Info).Count());
         }
 
         [Test]

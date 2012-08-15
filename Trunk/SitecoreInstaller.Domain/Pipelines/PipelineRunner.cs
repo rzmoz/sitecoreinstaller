@@ -55,7 +55,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                 _log.FlushBuffer();
 
                 var results = from entry in _log.Entries
-                              where entry.MessageType == MessageType.Warning || entry.MessageType == MessageType.Error
+                              where entry.LogType == LogType.Warning || entry.LogType == LogType.Error
                               select entry;
 
                 var pipelineStatus = PipelineStatus.NoErrors;

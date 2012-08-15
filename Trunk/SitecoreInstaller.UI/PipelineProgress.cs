@@ -51,7 +51,7 @@ namespace SitecoreInstaller.UI
             }
             else
             {
-                if (e.Arg.MessageType == MessageType.Info)
+                if (e.Arg.LogType == LogType.Info)
                     tbxInfo.Text = e.Arg.Message;
             }
         }
