@@ -24,7 +24,6 @@ namespace SitecoreInstaller
     public partial class FrmMain : Form
     {
         private FrmUserSettings FrmUserSettings { get; set; }
-        private FrmPipelineResult FrmPipelineResult { get; set; }
 
         private MainFormFunc _mainFormFunc;
 
@@ -57,14 +56,16 @@ namespace SitecoreInstaller
             InitMainFormFunc();
         }
 
+        private void InitPipelineResult()
+        {
+            pipelineResult1.Dock=DockStyle.Fill;
+            pipelineResult1.Hide();
+            pipelineResult1.SendToBack();
+        }
+
         private void InitMenuItems()
         {
             useDeveloperLayoutToolStripMenuItem.Checked = UiUserSettings.Default.UseDeveloperMode;
-        }
-
-        private void InitPipelineResult()
-        {
-            FrmPipelineResult = new FrmPipelineResult();
         }
 
         private void InitUserSettings()
@@ -142,8 +143,10 @@ namespace SitecoreInstaller
             else
             {
                 Services.BuildLibrary.Update();
-                FrmPipelineResult.PipelineResult.Result(e);
-                FrmPipelineResult.ShowDialog();
+                pipelineResult1.Result(e);
+                pipelineResult1.Show();
+                pipelineResult1.BringToFront();
+                pipelineResult1.Ok.Focus();
             }
         }
 

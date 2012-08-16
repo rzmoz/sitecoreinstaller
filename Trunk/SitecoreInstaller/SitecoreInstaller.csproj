@@ -100,12 +100,6 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPipelineResult.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmPipelineResult.Designer.cs">
-      <DependentUpon>FrmPipelineResult.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmUserSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,9 +113,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmPipelineResult.resx">
-      <DependentUpon>FrmPipelineResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserSettings.resx">
       <DependentUpon>FrmUserSettings.cs</DependentUpon>

@@ -60,6 +60,7 @@
             this.pipelineStatus1 = new SitecoreInstaller.UI.PipelineProgress();
             this.mainSimple1 = new SitecoreInstaller.UI.Simple.MainSimple();
             this.logger1 = new SitecoreInstaller.UI.Logger();
+            this.pipelineResult1 = new SitecoreInstaller.UI.PipelineResult();
             this.menuStrip1.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
@@ -274,6 +275,7 @@
             // 
             this.pnlMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlMain.Controls.Add(this.pipelineResult1);
             this.pnlMain.Controls.Add(this.mainDeveloper1);
             this.pnlMain.Controls.Add(this.pipelineStatus1);
             this.pnlMain.Controls.Add(this.mainSimple1);
@@ -317,6 +319,13 @@
             this.logger1.ShowLogLevels = false;
             this.logger1.Size = new System.Drawing.Size(400, 200);
             this.logger1.TabIndex = 5;
+            // 
+            // pipelineResult1
+            // 
+            this.pipelineResult1.Location = new System.Drawing.Point(64, 30);
+            this.pipelineResult1.Name = "pipelineResult1";
+            this.pipelineResult1.Size = new System.Drawing.Size(400, 370);
+            this.pipelineResult1.TabIndex = 7;
             // 
             // FrmMain
             // 
@@ -371,5 +380,6 @@
         private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem urlPostfixToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showLogToolStripMenuItem;
+        private UI.PipelineResult pipelineResult1;
     }
 }
