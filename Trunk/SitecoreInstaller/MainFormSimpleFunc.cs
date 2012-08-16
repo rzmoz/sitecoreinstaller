@@ -18,7 +18,6 @@ namespace SitecoreInstaller
             MainForm.MainDeveloper.Hide();
             MainForm.Logger.ShowLogLevels = false;
         }
-
        
         protected override int SetContentWidth()
         {
@@ -27,7 +26,7 @@ namespace SitecoreInstaller
 
         protected override int SetContentHeight(bool showLog)
         {
-            var contentHeight = Dimensions.MainSimpleHeight;
+            const int contentHeight = Dimensions.MainSimpleHeight;
             MainForm.PanelMain.Height = contentHeight;
 
             if (showLog)

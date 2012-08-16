@@ -5,9 +5,6 @@
     <Setting Name="UseDeveloperMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="ShowLog" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="ShowDebug" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>

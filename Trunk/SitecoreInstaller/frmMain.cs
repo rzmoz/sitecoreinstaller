@@ -60,7 +60,6 @@ namespace SitecoreInstaller
         private void InitMenuItems()
         {
             useDeveloperLayoutToolStripMenuItem.Checked = UiUserSettings.Default.UseDeveloperMode;
-            showLogToolStripMenuItem.Checked = UiUserSettings.Default.ShowLog;
         }
 
         private void InitPipelineResult()
@@ -193,7 +192,7 @@ namespace SitecoreInstaller
                 _mainFormFunc = new MainFormDeveloperFunc(this);
             else
                 _mainFormFunc = new MainFormSimpleFunc(this);
-            _mainFormFunc.Resize(UiUserSettings.Default.ShowLog);
+            _mainFormFunc.Resize(showLogToolStripMenuItem.Checked);
             MainDeveloper.SelectionsDeveloper.FocusProjectcName();
         }
 
@@ -213,6 +212,7 @@ namespace SitecoreInstaller
                 return;
 
             useDeveloperLayoutToolStripMenuItem.Checked = !useDeveloperLayoutToolStripMenuItem.Checked;
+            showLogToolStripMenuItem.Visible = !useDeveloperLayoutToolStripMenuItem.Checked;
             UiUserSettings.Default.UseDeveloperMode = useDeveloperLayoutToolStripMenuItem.Checked;
             UiUserSettings.Default.Save();
             InitMainFormFunc();
@@ -243,12 +243,7 @@ namespace SitecoreInstaller
         {
             _mainFormFunc.OpenFrontend(sender, e);
         }
-
-        private void showAdvancedViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        
         private void sqlSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmUserSettings.StepWizard.Show(UserSettingsStep.Sql);
@@ -295,9 +290,7 @@ namespace SitecoreInstaller
         private void showLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showLogToolStripMenuItem.Checked = !showLogToolStripMenuItem.Checked;
-            UiUserSettings.Default.ShowLog = showLogToolStripMenuItem.Checked;
-            UiUserSettings.Default.Save();
-            _mainFormFunc.Resize(UiUserSettings.Default.ShowLog);
+            _mainFormFunc.Resize(showLogToolStripMenuItem.Checked);
         }
     }
 }

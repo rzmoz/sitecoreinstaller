@@ -32,9 +32,7 @@ namespace SitecoreInstaller
         {
             var contentHeight = Dimensions.MainDeveloperHeight;
             MainForm.PanelMain.Height = contentHeight;
-
-            if (showLog)
-                contentHeight += Dimensions.LoggerHeight;
+            contentHeight += Dimensions.LoggerHeight;
 
             return contentHeight;
         }

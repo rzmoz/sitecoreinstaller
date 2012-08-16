@@ -19,6 +19,7 @@ namespace SitecoreInstaller
         }
 
         public FrmMain MainForm { get; private set; }
+
         public void Resize(bool showLog)
         {
             MainForm.Height = SetContentHeight(showLog) + Dimensions.MenuFormOffsetHeight;
