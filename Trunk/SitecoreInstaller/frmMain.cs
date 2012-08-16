@@ -14,6 +14,7 @@ namespace SitecoreInstaller
     using SitecoreInstaller.App;
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.Pipelines;
+    using SitecoreInstaller.Framework.Diagnostics;
     using SitecoreInstaller.UI;
     using SitecoreInstaller.UI.Developer;
     using SitecoreInstaller.UI.Properties;
@@ -71,7 +72,7 @@ namespace SitecoreInstaller
         {
             FrmUserSettings = new FrmUserSettings();
             FrmUserSettings.Init();
-            Services.Log.EntryLogged += FrmUserSettings.PipelineProgress.UpdateInfo;
+            Log.It.EntryLogged += FrmUserSettings.PipelineProgress.UpdateInfo;
             Services.PipelineWorker.StepExecuting += FrmUserSettings.PipelineProgress.UpdateStatus;
             Services.PipelineWorker.AllStepsExecuting += FrmUserSettings.PipelineWorkerOnAllStepsExecuting;
             Services.PipelineWorker.AllStepsExecuted += FrmUserSettings.PipelineWorkerOnAllStepsExecuted;
@@ -183,7 +184,7 @@ namespace SitecoreInstaller
 
         private void clearLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Services.Log.Clear();
+            Log.It.Clear();
         }
 
         private void InitMainFormFunc()

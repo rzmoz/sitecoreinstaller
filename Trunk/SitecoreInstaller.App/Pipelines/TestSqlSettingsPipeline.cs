@@ -13,16 +13,12 @@ namespace SitecoreInstaller.App.Pipelines
     {
         private readonly SqlSettings _sqlSettings;
 
-        private ILog _log;
-
         public TestSqlSettingsPipeline()
         {
-            _log = new Log();
         }
 
-        public void Init(ILog log)
+        public void Init()
         {
-            _log = log ?? new Log();
         }
 
         public TestSqlSettingsPipeline(SqlSettings sqlSettings)
@@ -33,7 +29,7 @@ namespace SitecoreInstaller.App.Pipelines
         [Step(1)]
         public void TestDatabaseSettings(object sender, EventArgs e)
         {
-            _log.Info("Testing Sql settings...");
+            Log.It.Info("Testing Sql settings...");
             Services.Sql.TestDatabaseSettings(_sqlSettings);
         }
         [Step(2)]

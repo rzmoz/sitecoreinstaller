@@ -14,6 +14,7 @@ namespace SitecoreInstaller.App.Pipelines
 
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.Website;
+    using SitecoreInstaller.Framework.Diagnostics;
 
     public class InstallPipeline : SitecoreInstallerPipeline
     {
@@ -75,7 +76,7 @@ namespace SitecoreInstaller.App.Pipelines
             {
                 var errorMessage = string.Format("The selected license '{0}' has expired.\r\nPlease select another or upload a valid license.", licenseFileSourceEntry.Key);
                 Services.Dialogs.ModalDialog(MessageBoxIcon.Error, errorMessage, "License has expired");
-                Log.Error(errorMessage);
+                Log.It.Error(errorMessage);
                 return false;
             }
 
@@ -83,7 +84,7 @@ namespace SitecoreInstaller.App.Pipelines
             {
                 var warningMessage = string.Format("Please mind, that the selected license '{0}' epxires in {1} days.", licenseFileSourceEntry.Key, licenseFile.ExpiresIn);
                 Services.Dialogs.Information(warningMessage);
-                Log.Warning(warningMessage);
+                Log.It.Warning(warningMessage);
             }
 
             return true;

@@ -22,7 +22,7 @@ namespace SitecoreInstallerConsole.Runners
         {
             Args = args;
             Services.Init();
-            Services.Log.EntryLogged += LogEntryLogged;
+            Log.It.EntryLogged += LogEntryLogged;
             AppSettings = new AppSettings();
             AppSettings.Init(UserSettings.Default);
             Services.BuildLibrary.Update();

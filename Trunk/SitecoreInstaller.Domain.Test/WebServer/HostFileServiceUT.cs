@@ -20,8 +20,7 @@ namespace SitecoreInstaller.Domain.Test.WebServer
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
-            var log = Substitute.For<ILog>();
-            _hostFileService = new HostFileService(log);
+            _hostFileService = new HostFileService();
         }
 
         [TestCase("test","127.0.0.1 test")]

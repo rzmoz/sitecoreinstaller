@@ -14,12 +14,10 @@ namespace SitecoreInstaller.Domain.Database
 
     public class SqlService : ISqlService
     {
-        private readonly ILog _log;
         private readonly WebsiteFileTypes _websiteFileTypes;
 
-        public SqlService(ILog log)
+        public SqlService()
         {
-            _log = log;
             _websiteFileTypes = new WebsiteFileTypes();
         }
 
@@ -44,14 +42,14 @@ namespace SitecoreInstaller.Domain.Database
             }
             catch (Exception e)
             {
-                _log.Debug(e.ToString());
-                _log.Error(e.Message);
+                Log.It.Debug(e.ToString());
+                Log.It.Error(e.Message);
             }
         }
 
         public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, DirectoryInfo databaseFolder, string projectName, IEnumerable<string> existingConnectionStrings)
         {
-            _log.Info("Generating connection string delta...");
+            Log.It.Info("Generating connection string delta...");
             var databases =  GetDatabases(databaseFolder, projectName);
             var connectionStringNames = databases.Select(db => db.LogicalName).AsUniqueStrings();
             var connectionStringEntries = string.Empty;
@@ -65,7 +63,7 @@ namespace SitecoreInstaller.Domain.Database
             }
 
             var connectionStringDelta = string.Format(ConnectionStringFormats.ConnectionStringDotConfigDelta, connectionStringEntries);
-            _log.Debug(connectionStringDelta);
+            Log.It.Debug(connectionStringDelta);
             return connectionStringDelta;
         }
 
@@ -75,7 +73,7 @@ namespace SitecoreInstaller.Domain.Database
 
             foreach (var databaseName in databaseNames)
             {
-                yield return new SqlDatabase(databaseFolder, databaseName, projectName, _log);
+                yield return new SqlDatabase(databaseFolder, databaseName, projectName);
             }
         }
 

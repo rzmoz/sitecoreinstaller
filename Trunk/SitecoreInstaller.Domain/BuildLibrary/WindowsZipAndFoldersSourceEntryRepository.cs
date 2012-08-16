@@ -8,6 +8,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     using System.Diagnostics.Contracts;
     using System.IO;
 
+    using SitecoreInstaller.Framework.Diagnostics;
     using SitecoreInstaller.Framework.IO;
 
     public class WindowsZipAndFoldersSourceEntryRepository : WindowsSourceEntryRepository
@@ -41,7 +42,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public override void Update(string sourceName)
         {
-            Log.Debug("Updating source entry repository '{0}'", sourceName);
+            Log.It.Debug("Updating source entry repository '{0}'", sourceName);
 
             Entries.Clear();
             if (Directory.Exists(Root.FullName) == false)
@@ -49,7 +50,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             foreach (var dir in Root.GetDirectories())
             {
-                Log.Debug("Adding '{0}' from directory", dir.Name);
+                Log.It.Debug("Adding '{0}' from directory", dir.Name);
                 Entries.Add(dir.Name.ToLower(), new SourceEntry(dir.Name, sourceName));
             }
 
@@ -58,7 +59,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
                 var cleanedName = zipFile.NameWithoutExtension();
                 if (Entries.ContainsKey(cleanedName.ToLower()))
                     continue;
-                Log.Debug("Adding '{0}' from zip file", cleanedName);
+                Log.It.Debug("Adding '{0}' from zip file", cleanedName);
                 Entries.Add(cleanedName.ToLower(), new SourceEntry(cleanedName, sourceName));
             }
         }

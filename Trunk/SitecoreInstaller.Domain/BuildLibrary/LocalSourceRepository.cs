@@ -11,11 +11,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         private WindowsFileSystemSource _localBuildLibrary;
         private IDictionary<string, ISource> _sources;
 
-        private ILog _log;
-
-        public LocalSourceRepository(WindowsFileSystemSource localBuildLibrary, IEnumerable<ISource> sources, ILog log)
+        public LocalSourceRepository(WindowsFileSystemSource localBuildLibrary, IEnumerable<ISource> sources)
         {
-            _log = log;
             Init(localBuildLibrary, sources);
         }
 
@@ -70,7 +67,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public BuildLibraryResource Get(SourceEntry sourceEntry, SourceType sourceType)
         {
-            _log.Info("Getting {0}", sourceEntry.Key);
+            Log.It.Info("Getting {0}", sourceEntry.Key);
 
             BuildLibraryResource resource;
 
@@ -81,13 +78,13 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             resource.TargetDirectory = _localBuildLibrary.Getfolder(sourceType);
 
-            _log.Info("Copying '{0}'", sourceEntry.Key);
+            Log.It.Info("Copying '{0}'", sourceEntry.Key);
             resource.CopyToTargetDir(BuildLibraryMode.Local);
 
-            _log.Info("Extracting '{0}'", sourceEntry.Key);
+            Log.It.Info("Extracting '{0}'", sourceEntry.Key);
             resource = resource.Unpack();
 
-            _log.Info("Updating buildlibrary");
+            Log.It.Info("Updating buildlibrary");
             _localBuildLibrary.Update();
 
             if (resource.Mode == BuildLibraryMode.Local)

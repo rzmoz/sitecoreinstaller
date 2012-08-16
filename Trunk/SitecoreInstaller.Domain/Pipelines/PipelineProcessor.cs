@@ -11,11 +11,8 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     public class PipelineProcessor<T> : IPipelineProcessor<T> where T : IPipeline
     {
-        private readonly ILog _log;
-
-        public PipelineProcessor(T pipeline, ILog log)
+        public PipelineProcessor(T pipeline)
         {
-            _log = log;
             Pipeline = pipeline;
         }
 
@@ -48,7 +45,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                 var preconditions = GetStepPreconditions(methods, stepMethod.GetStepNumber());
                 if (preconditions.Any())
                     profiledStep.Preconditions = preconditions.Select(precondition => CreatePreconditionDelegate(installerService, precondition));
-                profiledStep.Profiler.ActionProfiled += _log.Profile;
+                profiledStep.Profiler.ActionProfiled += Log.It.Profile;
                 profiledStep.StepInvoking += ProfiledStepInvoking;
                 yield return profiledStep;
             }
@@ -59,7 +56,7 @@ namespace SitecoreInstaller.Domain.Pipelines
             if (InitOnStepInvoke == false)
                 return;
 
-            Pipeline.Init(_log);
+            Pipeline.Init();
         }
 
         private IEnumerable<MethodInfo> GetStepPreconditions(IEnumerable<MethodInfo> methods, int stepNumber)

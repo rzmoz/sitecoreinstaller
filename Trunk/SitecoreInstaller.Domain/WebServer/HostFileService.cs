@@ -13,13 +13,7 @@ namespace SitecoreInstaller.Domain.WebServer
     public class HostFileService : IHostFileService
     {
         private static readonly FileInfo _hostFile = new FileInfo(@"C:\Windows\System32\drivers\etc\hosts");
-        private readonly ILog _log;
-
-        public HostFileService(ILog log)
-        {
-            _log = log;
-        }
-
+        
         public bool HasWritePermissions()
         {
             try
@@ -44,19 +38,19 @@ namespace SitecoreInstaller.Domain.WebServer
         {
             if (string.IsNullOrEmpty(hostName))
             {
-                _log.Error("Host name is null or empty - please provide a hostname");
+                Log.It.Error("Host name is null or empty - please provide a hostname");
                 return;
             }
 
             if (!_hostFile.Exists)
             {
-                _log.Error("Host file not found at {0}:", _hostFile.FullName);
+                Log.It.Error("Host file not found at {0}:", _hostFile.FullName);
                 return;
             }
 
             var hostFileIisSiteName = hostName.ToLowerInvariant();
 
-            _log.Info("Adding hostname '{0}'", hostFileIisSiteName);
+            Log.It.Info("Adding hostname '{0}'", hostFileIisSiteName);
 
             //check if host name already exist
             Stream reader = null;
@@ -74,7 +68,7 @@ namespace SitecoreInstaller.Domain.WebServer
                                 continue;
                             if (LineIsHostFileName(hostFileIisSiteName, line) == false)
                                 continue;
-                            _log.Warning("Iis site name already exist in host file. File not updated");
+                            Log.It.Warning("Iis site name already exist in host file. File not updated");
                             fileReader.Close();
                             return;
                         }
@@ -89,7 +83,7 @@ namespace SitecoreInstaller.Domain.WebServer
                     var hostFileEntry = string.Format(_HostFileEntryFormat, hostFileIisSiteName);
                     fileWriter.WriteLine(hostFileEntry);
                     fileWriter.Close();
-                    _log.Debug("Iis site name written to host file: {0}", hostFileEntry);
+                    Log.It.Debug("Iis site name written to host file: {0}", hostFileEntry);
                 }
             }
             finally
@@ -128,7 +122,7 @@ namespace SitecoreInstaller.Domain.WebServer
                             sw.WriteLine(line);
                         else
                         {
-                            _log.Info("Entry deleted from host file: {0}", line);
+                            Log.It.Info("Entry deleted from host file: {0}", line);
                         }
                     }
                 }

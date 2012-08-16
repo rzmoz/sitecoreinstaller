@@ -11,10 +11,6 @@ namespace SitecoreInstaller.App.Test
 {
     using FluentAssertions;
 
-    using NSubstitute;
-
-    using SitecoreInstaller.Framework.Diagnostics;
-
     [TestFixture]
     public class InstallerServiceIT
     {
@@ -23,8 +19,7 @@ namespace SitecoreInstaller.App.Test
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
-            var log = Substitute.For<ILog>();
-            _installerService = new PipelineRunner<InstallPipeline>(new InstallPipeline(null),  log);
+            _installerService = new PipelineRunner<InstallPipeline>(new InstallPipeline(null));
         }
 
         [Test]

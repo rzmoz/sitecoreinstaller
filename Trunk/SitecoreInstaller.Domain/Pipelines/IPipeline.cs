@@ -5,10 +5,8 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-    using SitecoreInstaller.Framework.Diagnostics;
-    
     public interface IPipeline
     {
-        void Init(ILog log);
+        void Init();
     }
 }

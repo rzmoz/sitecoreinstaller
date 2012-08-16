@@ -8,6 +8,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     using System.IO;
     using System.Xml.Linq;
 
+    using SitecoreInstaller.Framework.Diagnostics;
+
     public class WindowsLicenseFileSourceEntryRepository : WindowsSourceEntryRepository
     {
         public WindowsLicenseFileSourceEntryRepository(DirectoryInfo root, BuildLibraryMode buildLibraryMode)
@@ -17,7 +19,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public override void Update(string sourceName)
         {
-            Log.Debug("Updating source entry repository '{0}'", sourceName);
+            Log.It.Debug("Updating source entry repository '{0}'", sourceName);
 
             Entries.Clear();
             if (Directory.Exists(Root.FullName) == false)
@@ -25,7 +27,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             foreach (var file in Root.EnumerateFiles("*.xml", SearchOption.AllDirectories))
             {
-                Log.Debug("Adding '{0}' from directory", file.Name);
+                Log.It.Debug("Adding '{0}' from directory", file.Name);
                 var licenseSourceEntry = new LicenseFileSourceEntry(file, sourceName);
                 if (Entries.ContainsKey(licenseSourceEntry.Key.ToLower()))
                     continue;

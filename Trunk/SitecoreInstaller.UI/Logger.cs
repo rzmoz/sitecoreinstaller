@@ -29,8 +29,8 @@ namespace SitecoreInstaller.UI
             chkWarning.Checked = UiUserSettings.Default.ShowWarning;
             chkError.Checked = UiUserSettings.Default.ShowError;
             chkProfiling.Checked = UiUserSettings.Default.ShowProfiling;
-            Services.Log.EntryLogged += EntryLogged;
-            Services.Log.LogCleared += ClearLog;
+            Log.It.EntryLogged += EntryLogged;
+            Log.It.LogCleared += ClearLog;
             Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
             _colors = new Dictionary<LogType, Color>
                 {

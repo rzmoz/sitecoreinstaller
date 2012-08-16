@@ -11,13 +11,6 @@ namespace SitecoreInstaller.App.Pipelines
 
     public class PipelineManager
     {
-        private readonly ILog _log;
-
-        public PipelineManager(ILog log)
-        {
-            _log = log ?? new Log();
-        }
-
         public PipelineRunner<TestSqlSettingsPipeline> GetSqlSettingsTest(SqlSettings sqlSettings)
         {
             return GetPipelineRunner(new TestSqlSettingsPipeline(sqlSettings));
@@ -45,8 +38,8 @@ namespace SitecoreInstaller.App.Pipelines
 
         private PipelineRunner<T> GetPipelineRunner<T>(T pipeline) where T : IPipeline
         {
-            pipeline.Init(_log);
-            return new PipelineRunner<T>(pipeline, _log);
+            pipeline.Init();
+            return new PipelineRunner<T>(pipeline);
         }
     }
 }

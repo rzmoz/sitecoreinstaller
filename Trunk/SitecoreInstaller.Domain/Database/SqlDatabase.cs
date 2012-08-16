@@ -17,13 +17,11 @@ namespace SitecoreInstaller.Domain.Database
 
     public class SqlDatabase
     {
-        private readonly ILog _log;
         private readonly char[] _physicalDatabaseNameDelimiter = new[] { '.', '_' };
         private readonly WebsiteFileTypes _websiteFileTypes;
 
-        public SqlDatabase(DirectoryInfo folder, string physicalDatabaseName, string projectName, ILog log)
+        public SqlDatabase(DirectoryInfo folder, string physicalDatabaseName, string projectName)
         {
-            _log = log;
             _websiteFileTypes = new WebsiteFileTypes();
 
             DatafileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + _websiteFileTypes.DatabaseDataFile.Extension;
@@ -41,12 +39,12 @@ namespace SitecoreInstaller.Domain.Database
                 var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString)));
                 var files = new StringCollection { DatafileFullPath, LogFileFullPath };
                 sqlServer.AttachDatabase(Name, files, sqlSettings.Login, AttachOptions.None);
-                _log.Info("Database {0} attached", Name);
+                Log.It.Info("Database {0} attached", Name);
             }
             catch (SqlServerManagementException ex)
             {
-                _log.Error(ex.Message);
-                _log.Debug(ex.ToString());
+                Log.It.Error(ex.Message);
+                Log.It.Debug(ex.ToString());
             }
         }
 
@@ -56,12 +54,12 @@ namespace SitecoreInstaller.Domain.Database
             {
                 var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString)));
                 sqlServer.KillDatabase(Name);
-                _log.Info("Database {0} detached", Name);
+                Log.It.Info("Database {0} detached", Name);
             }
             catch (SqlServerManagementException ex)
             {
-                _log.Error(ex.Message);
-                _log.Debug(ex.ToString());
+                Log.It.Error(ex.Message);
+                Log.It.Debug(ex.ToString());
             }
         }
 

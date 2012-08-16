@@ -8,15 +8,9 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     using System.IO;
     using System.Xml;
 
-    using SitecoreInstaller.Framework.Diagnostics;
-
     public class BuildLibraryResourceFactory
     {
         public BuildLibraryFile CreateFile(string path)
-        {
-            return CreateFile(path, null);
-        }
-        public BuildLibraryFile CreateFile(string path, ILog log)
         {
             if (File.Exists(path) == false)
                 throw new ArgumentException("Path doesn't exist. Was " + path);

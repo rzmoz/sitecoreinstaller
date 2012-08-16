@@ -8,13 +8,14 @@ namespace SitecoreInstaller
     using System.Windows.Forms;
 
     using SitecoreInstaller.App;
+    using SitecoreInstaller.Framework.Diagnostics;
 
     internal abstract class MainFormFunc
     {
         protected MainFormFunc(FrmMain mainForm)
         {
             MainForm = mainForm;
-            Services.Log.Clear();
+            Log.It.Clear();
         }
 
         public FrmMain MainForm { get; private set; }

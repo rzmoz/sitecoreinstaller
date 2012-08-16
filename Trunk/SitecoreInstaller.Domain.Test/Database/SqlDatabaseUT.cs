@@ -18,12 +18,11 @@ namespace SitecoreInstaller.Domain.Test.Database
     public class SqlDatabaseUT
     {
         private SqlDatabase _database;
-        private ILog _log;
-
+        
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
-            _log = Substitute.For<ILog>();
+            
         }
 
         [Test]
@@ -33,7 +32,7 @@ namespace SitecoreInstaller.Domain.Test.Database
             const string physicalDatbaseName = "mySqlDatabase_Core";
             const string projectName = "MyProject";
 
-            _database = new SqlDatabase(path, physicalDatbaseName, projectName, _log);
+            _database = new SqlDatabase(path, physicalDatbaseName, projectName);
 
             _database.Name.Should().BeEquivalentTo(projectName + "_Core");
             _database.PhysicalName.Should().BeEquivalentTo(physicalDatbaseName);

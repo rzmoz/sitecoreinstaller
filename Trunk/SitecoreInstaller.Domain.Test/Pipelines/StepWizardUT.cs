@@ -15,7 +15,7 @@
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
-            _pipelineRunner = new PipelineRunner<InstallerServiceMock>(new InstallerServiceMock(),  new Log());
+            _pipelineRunner = new PipelineRunner<InstallerServiceMock>(new InstallerServiceMock());
         }
 
         

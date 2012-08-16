@@ -17,7 +17,6 @@ namespace SitecoreInstaller.Domain.Pipelines
     /// <typeparam name="T"></typeparam>
     public class PipelineRunner<T> : IPipelineRunner where T : IPipeline
     {
-        private readonly ILog _log;
         private readonly Profiler _execuateAllStepsProfiler;
 
         public event EventHandler<PipelineEventArgs> AllStepsExecuting;
@@ -28,18 +27,17 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         public PipelineProcessor<T> Processor { get; private set; }
 
-        public PipelineRunner(T pipeline, ILog log, string executeAllText = "")
+        public PipelineRunner(T pipeline, string executeAllText = "")
         {
             if (pipeline == null) throw new ArgumentNullException("pipeline");
-            if (log == null) throw new ArgumentNullException("log");
-            _log = log;
-            _log.Clear();
+            
+            Log.It.Clear();
             ExecuteAllText = executeAllText;
-            Processor = new PipelineProcessor<T>(pipeline, _log);
+            Processor = new PipelineProcessor<T>(pipeline);
             Processor.Init();
             Processor.IsInUiMode = true;
             _execuateAllStepsProfiler = new Profiler("Executing all steps in " + Processor.Pipeline.GetType().GetStepText(), InnerExecuteAllSteps);
-            _execuateAllStepsProfiler.ActionProfiled += _log.Profile;
+            _execuateAllStepsProfiler.ActionProfiled += Log.It.Profile;
         }
         public string ExecuteAllText { get; private set; }
 
@@ -52,9 +50,9 @@ namespace SitecoreInstaller.Domain.Pipelines
 
                 _execuateAllStepsProfiler.Run(sender, e);
 
-                _log.FlushBuffer();
+                Log.It.FlushBuffer();
 
-                var results = from entry in _log.Entries
+                var results = from entry in Log.It.Entries
                               where entry.LogType == LogType.Warning || entry.LogType == LogType.Error
                               select entry;
 

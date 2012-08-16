@@ -85,6 +85,7 @@
     <Compile Include="Configuration\IConfigurationRepository.cs" />
     <Compile Include="Configuration\Source.cs" />
     <Compile Include="Diagnostics\ILog.cs" />
+    <Compile Include="Diagnostics\InMemoryBufferedLog.cs" />
     <Compile Include="Diagnostics\Log.cs" />
     <Compile Include="Diagnostics\LogEntry.cs" />
     <Compile Include="Diagnostics\LogType.cs" />

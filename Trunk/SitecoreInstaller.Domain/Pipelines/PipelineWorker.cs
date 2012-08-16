@@ -10,13 +10,6 @@
         private static readonly object _syncRoot = new object();
         private BackgroundWorker _worker = new BackgroundWorker();
 
-        private readonly ILog _log;
-
-        public PipelineWorker(ILog log)
-        {
-            _log = log;
-        }
-
         public bool IsBusy()
         {
             lock (_syncRoot)
@@ -56,11 +49,11 @@
         {
             if (e.Error != null)
             {
-                _log.Error("{0}", e.Error.ToString());
+                Log.It.Error("{0}", e.Error.ToString());
             }
             else if (WorkerCompleted != null)
                 WorkerCompleted(this, e);
-            _log.Debug("Pipeline completed. Result: {0}", e.Result);
+            Log.It.Debug("Pipeline completed. Result: {0}", e.Result);
         }
     }
 }

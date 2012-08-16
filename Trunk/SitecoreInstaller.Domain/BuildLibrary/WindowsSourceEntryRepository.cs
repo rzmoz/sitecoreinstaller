@@ -9,8 +9,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 {
     using System.Diagnostics.Contracts;
 
-    using SitecoreInstaller.Framework.Diagnostics;
-
     public abstract class WindowsSourceEntryRepository : IEnumerable<SourceEntry>
     {
         protected IDictionary<string, SourceEntry> Entries { get; private set; }
@@ -25,10 +23,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         }
 
         public DirectoryInfo Root { get; private set; }
-        public ILog Log { get; set; }
         public BuildLibraryMode Mode { get; private set; }
-
-
+        
         public abstract BuildLibraryResource Get(SourceEntry sourceEntry);
 
         public abstract void Update(string sourceName);
@@ -47,8 +43,5 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         {
             return Entries.ContainsKey(key.ToLower());
         }
-
-
-
     }
 }

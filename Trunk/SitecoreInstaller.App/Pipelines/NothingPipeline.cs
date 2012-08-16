@@ -13,20 +13,13 @@ namespace SitecoreInstaller.App.Pipelines
 
     public class NothingPipeline : IPipeline
     {
-        private ILog _log;
-
-        public NothingPipeline()
+        public void Init()
         {
-            _log = new Log();
-        }
-        public void Init(ILog log)
-        {
-            _log = log ?? new Log();
         }
         [Step(1, Run = Run.OnlyInUi)]
         public void DoNothing(object sender, EventArgs e)
         {
-            _log.Info("Starting doing nothing...");
+            Log.It.Info("Starting doing nothing...");
         }
         [Step(2)]
         public void DoNothingForAWhile(object sender, EventArgs e)
@@ -78,14 +71,14 @@ namespace SitecoreInstaller.App.Pipelines
             */
 
             for(var i=0;i<10;i++)
-                _log.Info("Logging...");
-            _log.Info("Pinging the world!...");
+                Log.It.Info("Logging...");
+            Log.It.Info("Pinging the world!...");
             Thread.Sleep(200);
-            _log.Debug("Debugging the world!...");
+            Log.It.Debug("Debugging the world!...");
             Thread.Sleep(200);
-            _log.Warning("Warning the world!...");
+            Log.It.Warning("Warning the world!...");
             Thread.Sleep(200);
-            _log.Error("Erroring the world!");
+            Log.It.Error("Erroring the world!");
              
             
         }

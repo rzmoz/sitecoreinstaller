@@ -21,9 +21,8 @@
 
         public void NotAInstallStep() { }
 
-        public void Init(ILog log)
+        public void Init()
         {
-
         }
     }
 }

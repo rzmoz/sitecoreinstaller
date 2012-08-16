@@ -28,19 +28,15 @@ namespace SitecoreInstaller.App
     {
         static Services()
         {
-            Log = new Log();
-            Log.Clear();
-            IoService.Log = Log;
+            Pipelines = new PipelineManager();
 
-            Pipelines = new PipelineManager(Log);
-
-            Website = new WebsiteService(Log);
+            Website = new WebsiteService();
             Dialogs = new Dialogs();
 
-            IisManagement = new IisManagementService(Log);
-            HostFile = new HostFileService(Log);
+            IisManagement = new IisManagementService();
+            HostFile = new HostFileService();
 
-            PipelineWorker = new PipelineWorker(Log);
+            PipelineWorker = new PipelineWorker();
         }
 
         public static void Init()
@@ -50,9 +46,9 @@ namespace SitecoreInstaller.App
             IConfigurationRepository sourcesRepository = new ConfigFileConfigurationRepository();
             sourcesRepository.Load(ApplicationConstants.SourcesConfigFileName);
             var sources = sourcesRepository.GetElements("source").Select(source => new Source(source.Attribute("name").Value, source.Attribute("type").Value, source.Attribute("parameters").Value));
-            var localBuildLibrary = new WindowsFileSystemSource(string.Empty) { Parameters = UserSettings.Default.LocalBuildLibrary, Log = Log };
+            var localBuildLibrary = new WindowsFileSystemSource(string.Empty) { Parameters = UserSettings.Default.LocalBuildLibrary };
             if (BuildLibrary == null)
-                BuildLibrary = new LocalSourceRepository(localBuildLibrary, sources.Select(Create), Log);
+                BuildLibrary = new LocalSourceRepository(localBuildLibrary, sources.Select(Create));
             else
                 ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, sources.Select(Create));
 
@@ -60,7 +56,7 @@ namespace SitecoreInstaller.App
 
             Projects = new ProjectsService(UserSettings.Default.ProjectsFolder);
 
-            Sql = new SqlService(Log);
+            Sql = new SqlService();
         }
 
         private static void CheckPreferencesOverride()
@@ -92,12 +88,10 @@ namespace SitecoreInstaller.App
             var sourceFactory = new SourceFactory();
             var sourceInstance = sourceFactory.Create<ISource>(source.Type, source.Name);
             sourceInstance.Parameters = source.Parameters;
-            sourceInstance.Log = Log;
             return sourceInstance;
         }
 
         public static PipelineManager Pipelines { get; private set; }
-        public static ILog Log { get; private set; }
 
         public static ISourceRepository BuildLibrary { get; set; }
         public static IProjectsService Projects { get; set; }

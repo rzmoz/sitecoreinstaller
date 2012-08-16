@@ -23,7 +23,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         {
             _repositories = new Dictionary<SourceType, WindowsSourceEntryRepository>();
             Name = name;
-            Log = new Log();
         }
 
         public event EventHandler<EventArgs> Updating;
@@ -69,25 +68,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
             _repositories.Add(SourceType.Sitecore, new WindowsZipAndFoldersSourceEntryRepository(root.CombineTo<DirectoryInfo>(_SitecoreFolderName), buildLibraryMode));
             _repositories.Add(SourceType.License, new WindowsLicenseFileSourceEntryRepository(root.CombineTo<DirectoryInfo>(_LicenseFolderName), buildLibraryMode));
             _repositories.Add(SourceType.Module, new WindowsZipAndFoldersSourceEntryRepository(root.CombineTo<DirectoryInfo>(_ModuleFolderName), buildLibraryMode));
-            SetLogOnRepositories();
-        }
-
-        private ILog _log;
-        public ILog Log
-        {
-            get { return _log; }
-            set
-            {
-                _log = value;
-
-            }
-        }
-
-        private void SetLogOnRepositories()
-        {
-            foreach (var sourceEntryRepository in _repositories.Values)
-                sourceEntryRepository.Log = _log;
-
         }
 
         public bool Contains(string name, SourceType sourceType)
@@ -107,9 +87,9 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         public BuildLibraryFile Add(string file, SourceType sourceType)
         {
             var buildLibraryResourceFactory = new BuildLibraryResourceFactory();
-            var buildLibraryFile = buildLibraryResourceFactory.CreateFile(file, Log);
+            var buildLibraryFile = buildLibraryResourceFactory.CreateFile(file);
             Add(buildLibraryFile, sourceType);
-            _log.Info("{0} was succesfully added", buildLibraryFile.ToString());
+            Log.It.Info("{0} was succesfully added", buildLibraryFile.ToString());
             return buildLibraryFile;
         }
 

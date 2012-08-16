@@ -10,7 +10,7 @@ namespace SitecoreInstaller.App.Pipelines
     public abstract class SitecoreInstallerPipeline : IPipeline
     {
         private readonly Func<AppSettings> _getAppSettings;
-        protected ILog Log { get; private set; }
+
         protected AppSettings AppSettings { get; private set; }
 
         public void GetAppSettings()
@@ -23,12 +23,10 @@ namespace SitecoreInstaller.App.Pipelines
 
             _getAppSettings = getAppSettings;
             AppSettings = getAppSettings.Invoke();
-            Log = new Log();
         }
 
-        public void Init(ILog log)
+        public void Init()
         {
-            Log = log ?? new Log();
             GetAppSettings();
         }
 
@@ -48,7 +46,7 @@ namespace SitecoreInstaller.App.Pipelines
             if (AppSettings.ProjectNameIsSet == false)
             {
                 const string message = "'{0}' not executed because project name isn't set. Please set Project name";
-                Log.Error(message, taskName);
+                Log.It.Error(message, taskName);
                 return false;
             }
             return true;
