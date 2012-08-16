@@ -14,8 +14,6 @@ namespace SitecoreInstaller
         internal const int MainSimpleHeight = 250;
         internal const int MainSimpleWidth = 300;
         internal const int MainDeveloperHeight = 342;
-        internal const int MainDeveloperWidth = 300;
-        internal const int MainDeveloperAdvancedWidth = 305;
-        internal const int MainSimpleAdvancedWidth = 100;
+        internal const int MainDeveloperWidth = 605;
     }
 }

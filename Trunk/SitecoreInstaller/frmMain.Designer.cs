@@ -48,10 +48,10 @@
             this.urlPostfixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.useDeveloperLayoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showAdvancedViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshSelectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doNothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onlineHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -195,10 +195,10 @@
             // 
             this.viewToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useDeveloperLayoutToolStripMenuItem,
-            this.showAdvancedViewToolStripMenuItem,
             this.refreshSelectionsToolStripMenuItem,
             this.clearLogToolStripMenuItem,
-            this.doNothingToolStripMenuItem});
+            this.doNothingToolStripMenuItem,
+            this.showLogToolStripMenuItem});
             this.viewToolStripMenuItem1.Name = "viewToolStripMenuItem1";
             this.viewToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem1.Text = "View";
@@ -208,24 +208,15 @@
             this.useDeveloperLayoutToolStripMenuItem.Name = "useDeveloperLayoutToolStripMenuItem";
             this.useDeveloperLayoutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.D)));
-            this.useDeveloperLayoutToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.useDeveloperLayoutToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
             this.useDeveloperLayoutToolStripMenuItem.Text = "Use Developer layout";
             this.useDeveloperLayoutToolStripMenuItem.Click += new System.EventHandler(this.useDeveloperLayoutToolStripMenuItem_Click);
-            // 
-            // showAdvancedViewToolStripMenuItem
-            // 
-            this.showAdvancedViewToolStripMenuItem.Name = "showAdvancedViewToolStripMenuItem";
-            this.showAdvancedViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.A)));
-            this.showAdvancedViewToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
-            this.showAdvancedViewToolStripMenuItem.Text = "Show Advanced view";
-            this.showAdvancedViewToolStripMenuItem.Click += new System.EventHandler(this.showAdvancedViewToolStripMenuItem_Click);
             // 
             // refreshSelectionsToolStripMenuItem
             // 
             this.refreshSelectionsToolStripMenuItem.Name = "refreshSelectionsToolStripMenuItem";
             this.refreshSelectionsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.refreshSelectionsToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.refreshSelectionsToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
             this.refreshSelectionsToolStripMenuItem.Text = "Update lists";
             this.refreshSelectionsToolStripMenuItem.Click += new System.EventHandler(this.updateSelectionsToolStripMenuItem_Click);
             // 
@@ -233,7 +224,7 @@
             // 
             this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
             this.clearLogToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
             this.clearLogToolStripMenuItem.Text = "Clear log";
             this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
             // 
@@ -242,9 +233,18 @@
             this.doNothingToolStripMenuItem.Name = "doNothingToolStripMenuItem";
             this.doNothingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.N)));
-            this.doNothingToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.doNothingToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
             this.doNothingToolStripMenuItem.Text = "Do Nothing...";
             this.doNothingToolStripMenuItem.Click += new System.EventHandler(this.doNothingToolStripMenuItem_Click_1);
+            // 
+            // showLogToolStripMenuItem
+            // 
+            this.showLogToolStripMenuItem.Name = "showLogToolStripMenuItem";
+            this.showLogToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.L)));
+            this.showLogToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.showLogToolStripMenuItem.Text = "Show Log";
+            this.showLogToolStripMenuItem.Click += new System.EventHandler(this.showLogToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -356,7 +356,6 @@
         private System.Windows.Forms.ToolStripMenuItem doNothingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openSitecoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFrontendToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem showAdvancedViewToolStripMenuItem;
         private System.Windows.Forms.Panel pnlMain;
         private MainDeveloper mainDeveloper1;
         private UI.PipelineProgress pipelineStatus1;
@@ -371,5 +370,6 @@
         private System.Windows.Forms.ToolStripMenuItem buildLibraryFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem urlPostfixToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showLogToolStripMenuItem;
     }
 }

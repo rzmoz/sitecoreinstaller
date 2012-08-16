@@ -19,24 +19,21 @@ namespace SitecoreInstaller
             MainForm.Logger.ShowLogLevels = true;
         }
 
-        protected override int SetContentWidth(bool useAdvancedView)
+        protected override int SetContentWidth()
         {
             var contentWidth = Dimensions.MainDeveloperWidth;
 
-            if (useAdvancedView)
-                contentWidth += Dimensions.MainDeveloperAdvancedWidth;
-
-            MainForm.MainDeveloper.PanelAdvanced.Visible = useAdvancedView;
+            MainForm.MainDeveloper.PanelAdvanced.Visible = true;
 
             return contentWidth;
         }
 
-        protected override int SetContentHeight(bool useAdvancedView)
+        protected override int SetContentHeight(bool showLog)
         {
             var contentHeight = Dimensions.MainDeveloperHeight;
             MainForm.PanelMain.Height = contentHeight;
 
-            if (useAdvancedView)
+            if (showLog)
                 contentHeight += Dimensions.LoggerHeight;
 
             return contentHeight;
