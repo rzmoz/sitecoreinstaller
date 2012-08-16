@@ -173,11 +173,6 @@
     <Compile Include="SelectLicense.Designer.cs">
       <DependentUpon>SelectLicense.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\UiSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>UiSettings.settings</DependentUpon>
-    </Compile>
     <Compile Include="Properties\UiUserSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -347,10 +342,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Properties\UiSettings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>UiSettings.Designer.cs</LastGenOutput>
-    </None>
     <None Include="Properties\UiUserSettings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>UiUserSettings.Designer.cs</LastGenOutput>

@@ -26,7 +26,7 @@ namespace SitecoreInstaller.UI
 
         public void Init()
         {
-            
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -37,27 +37,10 @@ namespace SitecoreInstaller.UI
 
         public void Result(PipelineEventArgs args)
         {
-            lblFinishTitle.Text =string.Format("{0} finished", args.PipelineName.TokenizeWhenCharIsUpper().ToDelimiteredString());
-            tbxDetails.Text = string.Empty;
-            foreach (var message in args.Messages)
-            {
-                tbxDetails.Text +=string.Format("<{0}> {1}\r\n", message.LogType, message.Message);
-            }
+            lblFinishTitle.Text = string.Format("{0} finished", args.PipelineName.TokenizeWhenCharIsUpper().ToDelimiteredString());
 
-            tbxDetails.Visible = args.Messages.Any();
-            btnCopyToClipboard.Visible = args.Messages.Any();
-        }
-
-        private void PipelineResult_Load(object sender, EventArgs e)
-        {
-            Height = UiSettings.Default.PipelineStatusHeightCollapsed;
-
-        }
-
-        private void btnCopyToClipboard_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(tbxDetails.Text);
-            Services.Dialogs.Information("Text copied to clipboard.");
+            lblFinishTitle.Left = (Width / 2) - (lblFinishTitle.Width / 2);
+            btnOk.Left = Width / 2 - btnOk.Width / 2;
         }
     }
 }

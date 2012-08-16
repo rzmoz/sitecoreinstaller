@@ -143,9 +143,9 @@ namespace SitecoreInstaller
             else
             {
                 Services.BuildLibrary.Update();
-                pipelineResult1.Result(e);
                 pipelineResult1.Show();
                 pipelineResult1.BringToFront();
+                pipelineResult1.Result(e);
                 pipelineResult1.Ok.Focus();
             }
         }
