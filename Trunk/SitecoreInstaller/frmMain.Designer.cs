@@ -56,11 +56,11 @@
             this.onlineHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.pipelineResult1 = new SitecoreInstaller.UI.PipelineResult();
             this.mainDeveloper1 = new SitecoreInstaller.UI.Developer.MainDeveloper();
             this.pipelineStatus1 = new SitecoreInstaller.UI.PipelineProgress();
             this.mainSimple1 = new SitecoreInstaller.UI.Simple.MainSimple();
             this.logger1 = new SitecoreInstaller.UI.Logger();
-            this.pipelineResult1 = new SitecoreInstaller.UI.PipelineResult();
             this.menuStrip1.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
@@ -284,6 +284,14 @@
             this.pnlMain.Size = new System.Drawing.Size(400, 400);
             this.pnlMain.TabIndex = 1;
             // 
+            // pipelineResult1
+            // 
+            this.pipelineResult1.BackColor = System.Drawing.Color.White;
+            this.pipelineResult1.Location = new System.Drawing.Point(64, 30);
+            this.pipelineResult1.Name = "pipelineResult1";
+            this.pipelineResult1.Size = new System.Drawing.Size(400, 120);
+            this.pipelineResult1.TabIndex = 7;
+            // 
             // mainDeveloper1
             // 
             this.mainDeveloper1.BackColor = System.Drawing.Color.White;
@@ -320,13 +328,6 @@
             this.logger1.Size = new System.Drawing.Size(400, 200);
             this.logger1.TabIndex = 5;
             // 
-            // pipelineResult1
-            // 
-            this.pipelineResult1.Location = new System.Drawing.Point(64, 30);
-            this.pipelineResult1.Name = "pipelineResult1";
-            this.pipelineResult1.Size = new System.Drawing.Size(400, 370);
-            this.pipelineResult1.TabIndex = 7;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,6 +340,7 @@
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SitecoreInstaller";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyUp);
