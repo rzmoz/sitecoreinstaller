@@ -53,7 +53,8 @@ namespace SitecoreInstaller.Domain.Database
             try
             {
                 var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString)));
-                sqlServer.KillDatabase(Name);
+                sqlServer.KillAllProcesses(Name);
+                sqlServer.DetachDatabase(Name,false);
                 Log.It.Info("Database {0} detached", Name);
             }
             catch (SqlServerManagementException ex)
