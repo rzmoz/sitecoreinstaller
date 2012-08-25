@@ -27,15 +27,13 @@ namespace SitecoreInstaller.App.Pipelines
         public override void Init()
         {
             base.Init();
-            var preconditions = new List<IPrecondition>
-                {
-                    new CheckSitecore(AppSettings),
-                    new CheckLicense(AppSettings),
-                    new CheckWritePermissionToHostFile(AppSettings),
-                    new CheckProjectExixts(AppSettings)
-                };
+            var preconditions = new List<IPrecondition>();
+            preconditions.AddRange(Preconditions);//Add first, to have project name is set evaluated first!
+            preconditions.Add(new CheckSitecore(AppSettings));
+            preconditions.Add(new CheckLicense(AppSettings));
+            preconditions.Add(new CheckWritePermissionToHostFile(AppSettings));
+            preconditions.Add(new CheckProjectExixts(AppSettings));
 
-            preconditions.AddRange(Preconditions);
             Preconditions = preconditions;
         }
 

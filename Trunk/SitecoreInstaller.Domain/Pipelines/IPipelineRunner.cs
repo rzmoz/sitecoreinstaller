@@ -5,6 +5,8 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
+    using SitecoreInstaller.Framework.System;
+
     public interface IPipelineRunner
     {
         event EventHandler<PipelineEventArgs> AllStepsExecuting;
@@ -12,6 +14,8 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         event EventHandler<PipelineStepInfoEventArgs> StepExecuting;
         event EventHandler<PipelineStepInfoEventArgs> StepExecuted;
+
+        event EventHandler<GenericEventArgs<string>> PreconditionNotMet;
 
         string ExecuteAllText { get; }
         void ExecuateAllSteps(object sender, EventArgs e);

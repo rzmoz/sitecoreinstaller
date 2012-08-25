@@ -15,6 +15,7 @@ namespace SitecoreInstaller
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
+    using SitecoreInstaller.Framework.System;
     using SitecoreInstaller.UI;
     using SitecoreInstaller.UI.Developer;
     using SitecoreInstaller.UI.Properties;
@@ -76,6 +77,7 @@ namespace SitecoreInstaller
             Services.PipelineWorker.StepExecuting += FrmUserSettings.PipelineProgress.UpdateStatus;
             Services.PipelineWorker.AllStepsExecuting += FrmUserSettings.PipelineWorkerOnAllStepsExecuting;
             Services.PipelineWorker.AllStepsExecuted += FrmUserSettings.PipelineWorkerOnAllStepsExecuted;
+            Services.PipelineWorker.PreconditionNotMet += new EventHandler<Framework.System.GenericEventArgs<string>>(PipelineWorker_PreconditionNotMet);
 
             if (UserSettings.Default.PromptForUserSettings)
             {
@@ -84,6 +86,19 @@ namespace SitecoreInstaller
             }
             else
                 FrmUserSettings.Hide();
+        }
+
+        void PipelineWorker_PreconditionNotMet(object sender, GenericEventArgs<string> e)
+        {
+            if (InvokeRequired)
+            {
+                EventHandler<GenericEventArgs<string>> inv = PipelineWorker_PreconditionNotMet;
+                Invoke(inv, new[] { sender, e });
+            }
+            else
+            {
+                Services.Dialogs.ModalDialog(MessageBoxIcon.Error, e.Arg, "");
+            }
         }
 
         private void InitLogger()

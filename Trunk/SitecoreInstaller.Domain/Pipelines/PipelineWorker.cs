@@ -4,6 +4,7 @@
     using System.ComponentModel;
 
     using SitecoreInstaller.Framework.Diagnostics;
+    using SitecoreInstaller.Framework.System;
 
     public class PipelineWorker
     {
@@ -26,6 +27,8 @@
         public event EventHandler<PipelineStepInfoEventArgs> StepExecuting;
         public event EventHandler<PipelineStepInfoEventArgs> StepExecuted;
 
+        public event EventHandler<GenericEventArgs<string>> PreconditionNotMet;
+
         public void RunPipeline(IPipelineRunner runner)
         {
             lock (_syncRoot)
@@ -40,6 +43,7 @@
                 runner.StepExecuted += StepExecuted;
                 runner.AllStepsExecuting += AllStepsExecuting;
                 runner.AllStepsExecuted += AllStepsExecuted;
+                runner.PreconditionNotMet += PreconditionNotMet;
                 _worker.RunWorkerCompleted += RunWorkerCompleted;
                 _worker.RunWorkerAsync();
             }

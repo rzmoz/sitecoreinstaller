@@ -6,19 +6,34 @@ using System.Text;
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
     using SitecoreInstaller.Domain.Pipelines;
+    using SitecoreInstaller.Framework.Diagnostics;
+    using SitecoreInstaller.Framework.System;
 
     public abstract class Precondition : IPrecondition
     {
-        protected AppSettings AppSettings { get; private set; }
+        private string _errorMessage;
+
 
         protected Precondition(AppSettings appSettings)
         {
             AppSettings = appSettings;
-            ErrorMessage = string.Empty;
+            _errorMessage = string.Empty;
         }
 
         public abstract bool Evaluate(object sender, EventArgs args);
+        protected AppSettings AppSettings { get; private set; }
 
-        public string ErrorMessage { get; protected set; }
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+
+                if (string.IsNullOrEmpty(_errorMessage))
+                    return;
+                Log.It.Error(_errorMessage);
+            }
+        }
     }
 }

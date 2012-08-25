@@ -18,7 +18,6 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
         public override bool Evaluate(object sender, EventArgs args)
         {
-         
             if (AppSettings.UserSelections.SelectedLicense == null)
             {
                 ErrorMessage = string.Format("You haven't selected a License. Please add a license in preferences pane if you have none");
@@ -33,9 +32,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
             if (licenseFile.IsExpired)
             {
-                var errorMessage = string.Format("The selected license '{0}' has expired.\r\nPlease select another or upload a valid license.", licenseFileSourceEntry.Key);
-                ErrorMessage = errorMessage;
-                Log.It.Error(errorMessage);
+                ErrorMessage = string.Format("The selected license '{0}' has expired.\r\nPlease select another or upload a valid license.", licenseFileSourceEntry.Key);
                 return false;
             }
 

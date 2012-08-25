@@ -25,6 +25,8 @@ namespace SitecoreInstaller.Domain.Pipelines
         public event EventHandler<PipelineStepInfoEventArgs> StepExecuting;
         public event EventHandler<PipelineStepInfoEventArgs> StepExecuted;
 
+        public event EventHandler<GenericEventArgs<string>> PreconditionNotMet;
+
         public PipelinePreProcessor<T> Processor { get; private set; }
 
         public PipelineRunner(T pipeline, string executeAllText = "")
@@ -76,7 +78,11 @@ namespace SitecoreInstaller.Domain.Pipelines
             foreach (var precondition in Processor.Pipeline.Preconditions)
             {
                 if (precondition.Evaluate(this, EventArgs.Empty) == false)
+                {
+                    if (Processor.IsInUiMode && PreconditionNotMet != null)
+                        PreconditionNotMet(Processor.Pipeline, new GenericEventArgs<string>(precondition.ErrorMessage));
                     return false;
+                }
             }
             return true;
         }
