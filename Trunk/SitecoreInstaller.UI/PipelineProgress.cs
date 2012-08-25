@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using SitecoreInstaller.Domain.Pipelines;
 
@@ -34,16 +28,22 @@ namespace SitecoreInstaller.UI
                 {
                     lblTitle.Text = e.PipelineName;
                     cmdOk.Visible = false;
+                    pgbStatus.Visible = true;
                 });
         }
         public void Ended(object sender, PipelineEventArgs e)
         {
             this.CrossThreadSafe(() =>
-                    {
-                        lblTitle.Text = lblTitle.Text + " finished";
-                        cmdOk.Visible = true;
-                        cmdOk.Focus();
-                    });
+                {
+                    pgbStatus.Visible = false;
+                    
+                    lblTitle.Text = lblTitle.Text + " finished";
+                    lblStatusMessage.Text = e.Status.ToString();
+                    tbxInfo.Text = string.Empty;
+                    cmdOk.Left = Width / 2 - cmdOk.Width / 2;
+                    cmdOk.Visible = true;
+                    cmdOk.Focus();
+                });
         }
 
         public void UpdateStatus(object sender, PipelineStepInfoEventArgs e)

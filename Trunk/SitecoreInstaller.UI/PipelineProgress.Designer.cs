@@ -81,9 +81,9 @@
             // 
             // cmdOk
             // 
-            this.cmdOk.Location = new System.Drawing.Point(300, 121);
+            this.cmdOk.Location = new System.Drawing.Point(25, 121);
             this.cmdOk.Name = "cmdOk";
-            this.cmdOk.Size = new System.Drawing.Size(75, 23);
+            this.cmdOk.Size = new System.Drawing.Size(75, 46);
             this.cmdOk.TabIndex = 4;
             this.cmdOk.Text = "Ok";
             this.cmdOk.UseVisualStyleBackColor = true;

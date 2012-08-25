@@ -109,12 +109,6 @@
     <Compile Include="Simple\InstallSimple.Designer.cs">
       <DependentUpon>InstallSimple.cs</DependentUpon>
     </Compile>
-    <Compile Include="PipelineResult.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PipelineResult.Designer.cs">
-      <DependentUpon>PipelineResult.cs</DependentUpon>
-    </Compile>
     <Compile Include="SelectSitecore.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -273,9 +267,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Simple\MainSimple.resx">
       <DependentUpon>MainSimple.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineResult.resx">
-      <DependentUpon>PipelineResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PipelineProgress.resx">
       <DependentUpon>PipelineProgress.cs</DependentUpon>

@@ -9,7 +9,10 @@ namespace SitecoreInstaller.Domain.Pipelines
     {
         public PipelineStepInfoEventArgs(int stepNumber, int totalStepNumber, string stepName)
         {
-            ProgressPercentage = Convert.ToInt32(100.0 / ((double)totalStepNumber / (double)stepNumber));
+            if (stepNumber < 1 || totalStepNumber < 1)
+                ProgressPercentage = 100;
+            else
+                ProgressPercentage = Convert.ToInt32(100.0 / ((double)totalStepNumber / (double)stepNumber));
             StepName = stepName ?? string.Empty;
         }
 
