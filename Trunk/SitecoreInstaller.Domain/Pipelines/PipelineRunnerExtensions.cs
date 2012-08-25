@@ -14,11 +14,6 @@ namespace SitecoreInstaller.Domain.Pipelines
             return attributes.Any();
         }
 
-        internal static int GetStepNumber(this MethodInfo methodInfo)
-        {
-            return methodInfo.GetStepAttribute().Order;
-        }
-
         internal static string GetStepText(this MemberInfo methodInfo)
         {
             return methodInfo.Name.TokenizeWhenCharIsUpper().ToDelimiteredString();
@@ -28,11 +23,6 @@ namespace SitecoreInstaller.Domain.Pipelines
         {
             var attributes = methodInfo.GetCustomAttributes(typeof(T), true);
             return ((T)attributes.First());
-        }
-
-        internal static StepAttribute GetStepAttribute(this MethodInfo methodInfo)
-        {
-            return GetAttribute<StepAttribute>(methodInfo);
         }
     }
 }

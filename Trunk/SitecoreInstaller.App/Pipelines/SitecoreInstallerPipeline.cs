@@ -40,12 +40,16 @@ namespace SitecoreInstaller.App.Pipelines
         public void AddStep(IStep step)
         {
             _steps.Add(step);
+            for (var i = 0; i < _steps.Count; i++)
+                _steps[i].Order = i + 1;
         }
 
         public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }
 
+        public bool IsInUiMode { get; set; }
+
         public string Name { get; private set; }
-        
+
         public IEnumerable<IStep> Steps { get { return _steps; } }
 
         protected readonly Func<AppSettings> GetAppSettings;

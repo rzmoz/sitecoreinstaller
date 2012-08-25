@@ -25,7 +25,7 @@ namespace SitecoreInstallerConsole.Runners
             AppSettings.ProjectName.Value = projectName;
 
             var pipeline = Services.Pipelines.GetInstaller(GetAppSettings);
-            pipeline.Processor.IsInUiMode = false;
+            pipeline.Pipeline.IsInUiMode = false;
             pipeline.ExecuateAllSteps(this, new EventArgs());
         }
     }

@@ -7,9 +7,10 @@ namespace SitecoreInstaller.Domain.Pipelines
 {
     public interface IPipeline
     {
+        void Init();
         string Name { get; }
         IEnumerable<IStep> Steps { get; }
         IEnumerable<IPrecondition> Preconditions { get; }
-        void Init();
+        bool IsInUiMode { get; set; }
     }
 }

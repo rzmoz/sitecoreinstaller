@@ -22,7 +22,7 @@
         [Test]
         public void Steps_GetInstallSteps_StepsAreFound()
         {
-            var result = _pipelineRunner.Processor.Pipeline.Steps;
+            var result = _pipelineRunner.Pipeline.Steps;
 
             Assert.AreEqual(3, result.Count());
         }

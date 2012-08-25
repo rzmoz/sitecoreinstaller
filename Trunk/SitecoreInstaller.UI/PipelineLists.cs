@@ -24,13 +24,10 @@ namespace SitecoreInstaller.UI
         {
             _getAppSettings = getAppSettings;
             var installer = Services.Pipelines.GetInstaller(getAppSettings);
-            installer.Processor.InitOnStepInvoke = true;
             pipelineStepListInstall.Init(installer);
             var unInstaller = Services.Pipelines.GetUnInstaller(getAppSettings);
-            unInstaller.Processor.InitOnStepInvoke = true;
             pipelineStepListUninstall.Init(unInstaller);
             var reAttacher = Services.Pipelines.GetReAttach(getAppSettings);
-            reAttacher.Processor.InitOnStepInvoke = true;
             pipelineStepListReAttach.Init(reAttacher);
         }
 

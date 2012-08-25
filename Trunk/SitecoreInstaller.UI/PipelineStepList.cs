@@ -38,7 +38,7 @@ namespace SitecoreInstaller.UI
 
         private void RenderSteps<T>(PipelineRunner<T> pipelineRunner) where T : class,IPipeline
         {
-            foreach (var step in pipelineRunner.Processor.Pipeline.Steps)
+            foreach (var step in pipelineRunner.Pipeline.Steps)
             {
                 var button = new Button();
                 SuspendLayout();

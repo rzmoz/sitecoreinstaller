@@ -55,7 +55,7 @@ namespace SitecoreInstallerConsole.Runners
             AppSettings.UserSelections.SelectedModules = selectedModules;
 
             var pipeline = Services.Pipelines.GetInstaller(GetAppSettings);
-            pipeline.Processor.IsInUiMode = false;
+            pipeline.Pipeline.IsInUiMode = false;
             pipeline.ExecuateAllSteps(this, new EventArgs());
         }
     }

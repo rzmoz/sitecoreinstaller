@@ -32,6 +32,8 @@ namespace SitecoreInstaller.App.Pipelines
             get { return Enumerable.Empty<IPrecondition>(); }
         }
 
+        public bool IsInUiMode { get; set; }
+
         public void Init()
         {
         }
@@ -41,13 +43,13 @@ namespace SitecoreInstaller.App.Pipelines
             _sqlSettings = sqlSettings;
         }
 
-        [Step(1)]
+        
         public void TestDatabaseSettings(object sender, EventArgs e)
         {
             Log.It.Info("Testing Sql settings...");
             Services.Sql.TestDatabaseSettings(_sqlSettings);
         }
-        [Step(2)]
+        
         public void FinishingTest(object sender, EventArgs e)
         {
         }

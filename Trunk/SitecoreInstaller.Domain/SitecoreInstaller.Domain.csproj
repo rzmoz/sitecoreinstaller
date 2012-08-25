@@ -160,17 +160,11 @@
     <Compile Include="Database\SqlService.cs" />
     <Compile Include="Database\SqlSettings.cs" />
     <Compile Include="Pipelines\IPipeline.cs" />
-    <Compile Include="Pipelines\IPipelinePreProcessor.cs" />
-    <Compile Include="Pipelines\PipelinePreProcessor.cs" />
     <Compile Include="Pipelines\PipelineStatus.cs" />
     <Compile Include="Pipelines\PipelineWorker.cs" />
     <Compile Include="Pipelines\Run.cs" />
     <Compile Include="Pipelines\IPipelineRunner.cs" />
     <Compile Include="Pipelines\PipelineEventArgs.cs" />
-    <Compile Include="Pipelines\PreconditionAttribute.cs" />
-    <Compile Include="Pipelines\StepAttribute.cs" />
-    <Compile Include="Pipelines\StepComparer.cs" />
-    <Compile Include="Pipelines\StepPreconditionAttribute.cs" />
     <Compile Include="Pipelines\PipelineRunner.cs" />
     <Compile Include="Pipelines\PipelineStepInfoEventArgs.cs" />
     <Compile Include="Pipelines\PipelineRunnerExtensions.cs" />

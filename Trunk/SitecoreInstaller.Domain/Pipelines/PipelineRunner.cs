@@ -27,7 +27,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         public event EventHandler<GenericEventArgs<string>> PreconditionNotMet;
 
-        public PipelinePreProcessor<T> Processor { get; private set; }
+        public T Pipeline { get; private set; }
 
         public PipelineRunner(T pipeline, string executeAllText = "")
         {
@@ -35,9 +35,9 @@ namespace SitecoreInstaller.Domain.Pipelines
 
             Log.It.Clear();
             ExecuteAllText = executeAllText;
-            Processor = new PipelinePreProcessor<T>(pipeline);
-            Processor.IsInUiMode = true;
-            _execuateAllStepsProfiler = new Profiler("Executing all steps in " + Processor.Pipeline.GetType().GetStepText(), InnerExecuteAllSteps);
+            Pipeline = pipeline;
+            pipeline.IsInUiMode = true;
+            _execuateAllStepsProfiler = new Profiler("Executing all steps in " + Pipeline.GetType().GetStepText(), InnerExecuteAllSteps);
             _execuateAllStepsProfiler.ActionProfiled += Log.It.Profile;
         }
         public string ExecuteAllText { get; private set; }
@@ -47,7 +47,7 @@ namespace SitecoreInstaller.Domain.Pipelines
             if (AllStepsPreconditionsAreMet())
             {
                 if (AllStepsExecuting != null)
-                    AllStepsExecuting(sender, new PipelineEventArgs(Processor.Pipeline.Name, PipelineStatus.NoErrors));
+                    AllStepsExecuting(sender, new PipelineEventArgs(Pipeline.Name, PipelineStatus.NoErrors));
 
                 _execuateAllStepsProfiler.Run(sender, e);
 
@@ -62,7 +62,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                     pipelineStatus = PipelineStatus.SoftErrors;
 
                 if (AllStepsExecuted != null)
-                    AllStepsExecuted(sender, new PipelineEventArgs(Processor.Pipeline.Name, pipelineStatus, results.ToArray()));
+                    AllStepsExecuted(sender, new PipelineEventArgs(Pipeline.Name, pipelineStatus, results.ToArray()));
             }
 
             //we clear listeners here since we don't want old listeners to hang around
@@ -74,9 +74,9 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         private bool AllStepsPreconditionsAreMet()
         {
-            Log.It.Info("Evaluating pipeline preconditions for {0}", Processor.Pipeline.Name);
+            Log.It.Info("Evaluating pipeline preconditions for {0}", Pipeline.Name);
 
-            foreach (var precondition in Processor.Pipeline.Preconditions)
+            foreach (var precondition in Pipeline.Preconditions)
             {
                 if (precondition.Evaluate(this, EventArgs.Empty))
                 {
@@ -84,8 +84,8 @@ namespace SitecoreInstaller.Domain.Pipelines
                 }
                 else
                 {
-                    if (Processor.IsInUiMode && PreconditionNotMet != null)
-                        PreconditionNotMet(Processor.Pipeline, new GenericEventArgs<string>(precondition.ErrorMessage));
+                    if (Pipeline.IsInUiMode && PreconditionNotMet != null)
+                        PreconditionNotMet(Pipeline, new GenericEventArgs<string>(precondition.ErrorMessage));
                     return false;
                 }
             }
@@ -95,8 +95,8 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         private void InnerExecuteAllSteps(object sender, EventArgs e)
         {
-            var totalCount = Processor.Pipeline.Steps.Count();
-            foreach (var step in Processor.Pipeline.Steps)
+            var totalCount = Pipeline.Steps.Count();
+            foreach (var step in Pipeline.Steps)
             {
                 var args = new PipelineStepInfoEventArgs(step.Order, totalCount, step.GetType().Name);
                 if (StepExecuting != null)

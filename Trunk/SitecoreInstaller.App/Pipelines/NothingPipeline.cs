@@ -30,17 +30,19 @@ namespace SitecoreInstaller.App.Pipelines
             get { return Enumerable.Empty<IPrecondition>(); }
         }
 
+        public bool IsInUiMode { get; set; }
+
         public void Init()
         {
             throw new NotImplementedException();
         }
 
-        [Step(1, Run = Run.OnlyInUi)]
+        
         public void DoNothing(object sender, EventArgs e)
         {
             Log.It.Info("Starting doing nothing...");
         }
-        [Step(2)]
+        
         public void DoNothingForAWhile(object sender, EventArgs e)
         {
             for (var i = 0; i < 10; i++)

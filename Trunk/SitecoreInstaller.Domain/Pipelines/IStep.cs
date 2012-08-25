@@ -10,7 +10,7 @@ namespace SitecoreInstaller.Domain.Pipelines
         event EventHandler<EventArgs> StepInvoking;
         event EventHandler<EventArgs> StepInvoked;
 
-        int Order { get; }
+        int Order { get; set; }
         IEnumerable<IPrecondition> Preconditions { get; }
         void Invoke(object sender, EventArgs e);
     }
