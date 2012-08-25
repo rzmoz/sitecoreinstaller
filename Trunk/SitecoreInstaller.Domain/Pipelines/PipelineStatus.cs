@@ -7,8 +7,8 @@ namespace SitecoreInstaller.Domain.Pipelines
 {
     public enum PipelineStatus
     {
-        NoErrors,
-        SoftErrors,
-        HardErrors
+        NoProblems,
+        Warnings,
+        Errors
     }
 }

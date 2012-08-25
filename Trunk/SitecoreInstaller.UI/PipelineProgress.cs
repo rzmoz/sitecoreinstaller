@@ -27,8 +27,8 @@ namespace SitecoreInstaller.UI
             this.CrossThreadSafe(() =>
                 {
                     lblTitle.Text = e.PipelineName;
-                    cmdOk.Visible = false;
                     pgbStatus.Visible = true;
+                    cmdOk.Visible = false;
                 });
         }
         public void Ended(object sender, PipelineEventArgs e)
@@ -36,12 +36,12 @@ namespace SitecoreInstaller.UI
             this.CrossThreadSafe(() =>
                 {
                     pgbStatus.Visible = false;
-                    
-                    lblTitle.Text = lblTitle.Text + " finished";
-                    lblStatusMessage.Text = e.Status.ToString();
-                    tbxInfo.Text = string.Empty;
-                    cmdOk.Left = Width / 2 - cmdOk.Width / 2;
                     cmdOk.Visible = true;
+                    lblTitle.Text += " finished";
+
+                    lblStatusMessage.Text = "Finished with "
+                                            + e.Status.ToString().TokenizeWhenCharIsUpper().ToDelimiteredString();
+                    tbxInfo.Text = string.Empty;
                     cmdOk.Focus();
                 });
         }
@@ -51,7 +51,7 @@ namespace SitecoreInstaller.UI
             this.CrossThreadSafe(() =>
                     {
                         pgbStatus.Value = e.ProgressPercentage;
-                        lblStatusMessage.Text = e.StepName;
+                        lblStatusMessage.Text = e.StepName.TokenizeWhenCharIsUpper().ToDelimiteredString();
                     });
         }
 

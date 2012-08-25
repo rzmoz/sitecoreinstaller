@@ -47,19 +47,27 @@ namespace SitecoreInstaller.Domain.Pipelines
             if (AllStepsPreconditionsAreMet())
             {
                 if (AllStepsExecuting != null)
-                    AllStepsExecuting(sender, new PipelineEventArgs(Pipeline.Name, PipelineStatus.NoErrors));
+                    AllStepsExecuting(sender, new PipelineEventArgs(Pipeline.Name, PipelineStatus.NoProblems));
 
                 _execuateAllStepsProfiler.Run(sender, e);
 
                 Log.It.FlushBuffer();
 
-                var results = from entry in Log.It.Entries
-                              where entry.LogType == LogType.Warning || entry.LogType == LogType.Error
+                var warnings = from entry in Log.It.Entries
+                              where entry.LogType == LogType.Warning
                               select entry;
 
-                var pipelineStatus = PipelineStatus.NoErrors;
-                if (results.Any())
-                    pipelineStatus = PipelineStatus.SoftErrors;
+                var errors = from entry in Log.It.Entries
+                               where entry.LogType == LogType.Error
+                               select entry;
+
+                var pipelineStatus = PipelineStatus.NoProblems;
+                if (warnings.Any())
+                    pipelineStatus = PipelineStatus.Warnings;
+                if(errors.Any())
+                    pipelineStatus = PipelineStatus.Errors;
+
+                var results = warnings.Concat(errors);
 
                 if (AllStepsExecuted != null)
                     AllStepsExecuted(sender, new PipelineEventArgs(Pipeline.Name, pipelineStatus, results.ToArray()));
