@@ -44,15 +44,7 @@ namespace SitecoreInstaller.UI
 
         void PipelineWorker_AllStepsExecuting(object sender, PipelineEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                EventHandler<PipelineEventArgs> inv = PipelineWorker_AllStepsExecuting;
-                Invoke(inv, new[] { sender, e });
-            }
-            else
-            {
-                ClearLog(sender, e);
-            }
+            this.CrossThreadSafe(() => ClearLog(sender, e));
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -80,23 +72,18 @@ namespace SitecoreInstaller.UI
 
         private void EntryLogged(object sender, GenericEventArgs<LogEntry> e)
         {
-            if (InvokeRequired)
-            {
-                EventHandler<GenericEventArgs<LogEntry>> inv = EntryLogged;
-                Invoke(inv, new[] { sender, e });
-            }
-            else
-            {
-                rteEventLog.SelectionColor = _colors[e.Arg.LogType];
+            this.CrossThreadSafe(() =>
+                    {
+                        rteEventLog.SelectionColor = _colors[e.Arg.LogType];
 
-                if (LogEntry(e))
-                {
-                    rteEventLog.AppendText(e.Arg + "\r\n");
+                        if (LogEntry(e))
+                        {
+                            rteEventLog.AppendText(e.Arg + "\r\n");
 
-                    if (chkFollowLogTrail.Checked)
-                        chkFollowLogTrail_CheckedChanged(this, new EventArgs());
-                }
-            }
+                            if (chkFollowLogTrail.Checked)
+                                chkFollowLogTrail_CheckedChanged(this, new EventArgs());
+                        }
+                    });
         }
 
         private bool LogEntry(GenericEventArgs<LogEntry> e)
@@ -117,16 +104,9 @@ namespace SitecoreInstaller.UI
 
         private void ClearLog(object sender, EventArgs e)
         {
-            if (InvokeRequired)
-            {
-                EventHandler inv = ClearLog;
-                Invoke(inv, new[] { sender, e });
-            }
-            else
-            {
-                rteEventLog.Text = string.Empty;
-            }
+            this.CrossThreadSafe(() => rteEventLog.Text = string.Empty);
         }
+
         private void chkFollowLogTrail_CheckedChanged(object sender, EventArgs e)
         {
             if (!chkFollowLogTrail.Checked)

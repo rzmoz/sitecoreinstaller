@@ -10,6 +10,7 @@ using System.Windows.Forms;
 namespace SitecoreInstaller
 {
     using SitecoreInstaller.Domain.Pipelines;
+    using SitecoreInstaller.Framework.System;
     using SitecoreInstaller.UI;
     using SitecoreInstaller.UI.UserSettingsDialogs;
 
@@ -40,32 +41,19 @@ namespace SitecoreInstaller
 
         public void PipelineWorkerOnAllStepsExecuting(object sender, PipelineEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                EventHandler<PipelineEventArgs> inv = PipelineWorkerOnAllStepsExecuting;
-                Invoke(inv, new[] { sender, e });
-            }
-            else
-            {
-                pipelineProgress1.BringToFront();
-                pipelineProgress1.Top = 0;
-                pipelineProgress1.Left = 100;
-                pipelineProgress1.Width = 300;
-                pipelineProgress1.Height = Height;
-                pipelineProgress1.Show();
-            }
+            this.CrossThreadSafe(() =>
+                    {
+                        pipelineProgress1.BringToFront();
+                        pipelineProgress1.Top = 0;
+                        pipelineProgress1.Left = 100;
+                        pipelineProgress1.Width = 300;
+                        pipelineProgress1.Height = Height;
+                        pipelineProgress1.Show();
+                    });
         }
         public void PipelineWorkerOnAllStepsExecuted(object sender, PipelineEventArgs eventArgs)
         {
-            if (InvokeRequired)
-            {
-                EventHandler<PipelineEventArgs> inv = PipelineWorkerOnAllStepsExecuted;
-                Invoke(inv, new[] { sender, eventArgs });
-            }
-            else
-            {
-                pipelineProgress1.Hide();
-            }
+            this.CrossThreadSafe(() => pipelineProgress1.Hide());
         }
     }
 }

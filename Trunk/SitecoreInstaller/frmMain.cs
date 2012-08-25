@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SitecoreInstaller
 {
-    using System.Threading;
-
     using SitecoreInstaller.App;
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.Pipelines;
@@ -44,7 +36,7 @@ namespace SitecoreInstaller
         private void frmMain_Load(object sender, EventArgs e)
         {
             InitMenuItems();
-        
+
             InitPipelineWorker();
             InitPipelineStatus();
             InitUserSettings();//must be initialized before logger
@@ -69,6 +61,7 @@ namespace SitecoreInstaller
             Services.PipelineWorker.StepExecuting += FrmUserSettings.PipelineProgress.UpdateStatus;
             Services.PipelineWorker.AllStepsExecuting += FrmUserSettings.PipelineWorkerOnAllStepsExecuting;
             Services.PipelineWorker.AllStepsExecuted += FrmUserSettings.PipelineWorkerOnAllStepsExecuted;
+            Services.PipelineWorker.AllStepsExecuted += pipelineStatus1.Ended;
             Services.PipelineWorker.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
 
             if (UserSettings.Default.PromptForUserSettings)
@@ -82,15 +75,7 @@ namespace SitecoreInstaller
 
         void PipelineWorker_PreconditionNotMet(object sender, GenericEventArgs<string> e)
         {
-            if (InvokeRequired)
-            {
-                EventHandler<GenericEventArgs<string>> inv = PipelineWorker_PreconditionNotMet;
-                Invoke(inv, new[] { sender, e });
-            }
-            else
-            {
-                Services.Dialogs.ModalDialog(MessageBoxIcon.Error, e.Arg, "");
-            }
+            this.CrossThreadSafe(() => Services.Dialogs.ModalDialog(MessageBoxIcon.Error, e.Arg, string.Empty));
         }
 
         private void InitLogger()
@@ -128,17 +113,11 @@ namespace SitecoreInstaller
 
         private void PipelineWorkerOnAllStepsExecuting(object sender, PipelineEventArgs e)
         {
-            if (InvokeRequired)
-            {
-                EventHandler<PipelineEventArgs> inv = PipelineWorkerOnAllStepsExecuting;
-                Invoke(inv, new[] { sender, e });
-            }
-            else
+            this.CrossThreadSafe(() =>
             {
                 pipelineStatus1.BringToFront();
                 pipelineStatus1.Show();
-
-            }
+            });
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -223,7 +202,7 @@ namespace SitecoreInstaller
         {
             _mainFormFunc.OpenFrontend(sender, e);
         }
-        
+
         private void sqlSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmUserSettings.StepWizard.Show(UserSettingsStep.Sql);

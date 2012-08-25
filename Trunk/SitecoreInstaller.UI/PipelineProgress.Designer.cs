@@ -32,6 +32,7 @@
             this.lblStatusMessage = new System.Windows.Forms.Label();
             this.tbxInfo = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.cmdOk = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pgbStatus
@@ -78,10 +79,21 @@
             this.lblTitle.TabIndex = 3;
             this.lblTitle.Text = "Something finished";
             // 
+            // cmdOk
+            // 
+            this.cmdOk.Location = new System.Drawing.Point(300, 121);
+            this.cmdOk.Name = "cmdOk";
+            this.cmdOk.Size = new System.Drawing.Size(75, 23);
+            this.cmdOk.TabIndex = 4;
+            this.cmdOk.Text = "Ok";
+            this.cmdOk.UseVisualStyleBackColor = true;
+            this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
+            // 
             // PipelineProgress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmdOk);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tbxInfo);
             this.Controls.Add(this.lblStatusMessage);
@@ -99,5 +111,6 @@
         private System.Windows.Forms.Label lblStatusMessage;
         private System.Windows.Forms.TextBox tbxInfo;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Button cmdOk;
     }
 }
