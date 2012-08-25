@@ -40,16 +40,19 @@ namespace SitecoreInstaller.UI
                     pgbStatus.Visible = false;
                     cmdOk.Visible = true;
                     tbxInfo.Visible = false;
-                    tbxMessages.Visible = true;
 
+                    if(e.Status != PipelineStatus.NoProblems)
+                    {
+                        tbxMessages.Visible = true;
+                        tbxMessages.Text = "";
+                        foreach (var logEntry in e.Messages)
+                            tbxMessages.Text += string.Format("{0}\r\n", logEntry.Message);
+                    
+                    }
+                    
                     lblStatusMessage.Text = "Finished with "
                                             + e.Status.ToString().TokenizeWhenCharIsUpper().ToDelimiteredString();
 
-                    tbxMessages.Text = "";
-
-                    foreach (var logEntry in e.Messages)
-                        tbxMessages.Text += string.Format("{0}\r\n", logEntry.Message);
-                    
                     cmdOk.Focus();
                 });
         }

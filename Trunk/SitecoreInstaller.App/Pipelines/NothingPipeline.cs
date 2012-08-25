@@ -12,7 +12,7 @@ namespace SitecoreInstaller.App.Pipelines
         public NothingPipeline()
         {
             AddStep(new DoNothing());
-            AddStep(new DoNothingForAWhile());
+            //AddStep(new DoNothingForAWhile());
         }
     }
 }
