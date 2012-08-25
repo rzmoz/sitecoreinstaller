@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
     public class DetachDatabases : Step
     {
-        public DetachDatabases(AppSettings appSettings)
-            : base(appSettings)
+        public DetachDatabases(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

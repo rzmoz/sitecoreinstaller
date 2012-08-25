@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class ExecutePostInstallSteps : Step
     {
-        public ExecutePostInstallSteps(AppSettings appSettings)
-            : base(appSettings)
+        public ExecutePostInstallSteps(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

@@ -152,6 +152,7 @@
     <Compile Include="Database\SqlDatabase.cs" />
     <Compile Include="Pipelines\IPrecondition.cs" />
     <Compile Include="Pipelines\IStep.cs" />
+    <Compile Include="Pipelines\Pipeline.cs" />
     <Compile Include="Pipelines\PipelineStepEventArgs.cs" />
     <Compile Include="Website\DataProviderType.cs" />
     <Compile Include="Website\WffmConfigFile.cs" />

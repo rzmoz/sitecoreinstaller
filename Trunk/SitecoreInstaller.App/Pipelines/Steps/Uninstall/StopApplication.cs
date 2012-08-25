@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
     public class StopApplication : Step
     {
-        public StopApplication(AppSettings appSettings)
-            : base(appSettings)
+        public StopApplication(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class AddSitenameToHostFile : Step
     {
-        public AddSitenameToHostFile(AppSettings appSettings)
-            : base(appSettings)
+        public AddSitenameToHostFile(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

@@ -38,7 +38,6 @@ namespace SitecoreInstaller.App.Pipelines
 
         private PipelineRunner<T> GetPipelineRunner<T>(T pipeline) where T : class,IPipeline
         {
-            pipeline.Init();
             return new PipelineRunner<T>(pipeline);
         }
     }

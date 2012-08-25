@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
     public class DeleteRuntimeServices : Step
     {
-        public DeleteRuntimeServices(AppSettings appSettings)
-            : base(appSettings)
+        public DeleteRuntimeServices(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

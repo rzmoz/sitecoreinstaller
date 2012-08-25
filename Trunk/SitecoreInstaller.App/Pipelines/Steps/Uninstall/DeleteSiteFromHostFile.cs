@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
     public class DeleteSiteFromHostFile : Step
     {
-        public DeleteSiteFromHostFile(AppSettings appSettings)
-            : base(appSettings)
+        public DeleteSiteFromHostFile(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

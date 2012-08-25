@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class CreateIisSiteAndAppPool : Step
     {
-        public CreateIisSiteAndAppPool(AppSettings appSettings)
-            : base(appSettings)
+        public CreateIisSiteAndAppPool(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

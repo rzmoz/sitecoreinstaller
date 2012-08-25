@@ -15,30 +15,25 @@ namespace SitecoreInstaller.App.Pipelines
         public InstallPipeline(Func<AppSettings> getAppSettings)
             : base(getAppSettings)
         {
-        }
+            //Init preconditions
+            AddPrecondition(new CheckSitecore(getAppSettings));
+            AddPrecondition(new CheckLicense(getAppSettings));
+            AddPrecondition(new CheckWritePermissionToHostFile(getAppSettings));
+            AddPrecondition(new CheckProjectDoesNotExixts(getAppSettings));
 
-        protected override void InitPreconditions()
-        {
-            AddPrecondition(new CheckSitecore(AppSettings));
-            AddPrecondition(new CheckLicense(AppSettings));
-            AddPrecondition(new CheckWritePermissionToHostFile(AppSettings));
-            AddPrecondition(new CheckProjectDoesNotExixts(AppSettings));
-        }
-
-        protected override void InitSteps()
-        {
-            AddStep(new CreateProjectFolder(AppSettings));
-            AddStep(new CopySitecore(AppSettings));
-            AddStep(new CopyLicensefile(AppSettings));
-            AddStep(new SetDataFolder(AppSettings));
-            AddStep(new CopyModuleFiles(AppSettings));
-            AddStep(new SetConnectionStrings(AppSettings));
-            AddStep(new AttachDatabases(AppSettings));
-            AddStep(new AddSitenameToHostFile(AppSettings));
-            AddStep(new CreateIisSiteAndAppPool(AppSettings));
-            AddStep(new InstallRuntimeServices(AppSettings));
-            AddStep(new InstallPackages(AppSettings));
-            AddStep(new ExecutePostInstallSteps(AppSettings));
+            //Init steps
+            AddStep(new CreateProjectFolder(getAppSettings));
+            AddStep(new CopySitecore(getAppSettings));
+            AddStep(new CopyLicensefile(getAppSettings));
+            AddStep(new SetDataFolder(getAppSettings));
+            AddStep(new CopyModuleFiles(getAppSettings));
+            AddStep(new SetConnectionStrings(getAppSettings));
+            AddStep(new AttachDatabases(getAppSettings));
+            AddStep(new AddSitenameToHostFile(getAppSettings));
+            AddStep(new CreateIisSiteAndAppPool(getAppSettings));
+            AddStep(new InstallRuntimeServices(getAppSettings));
+            AddStep(new InstallPackages(getAppSettings));
+            AddStep(new ExecutePostInstallSteps(getAppSettings));
         }
     }
 }

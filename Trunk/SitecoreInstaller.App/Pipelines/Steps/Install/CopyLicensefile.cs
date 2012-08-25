@@ -11,8 +11,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class CopyLicensefile : Step
     {
-        public CopyLicensefile(AppSettings appSettings)
-            : base(appSettings)
+        public CopyLicensefile(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

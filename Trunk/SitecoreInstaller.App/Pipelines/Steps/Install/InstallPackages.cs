@@ -9,8 +9,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class InstallPackages : Step
     {
-        public InstallPackages(AppSettings appSettings)
-            : base(appSettings)
+        public InstallPackages(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

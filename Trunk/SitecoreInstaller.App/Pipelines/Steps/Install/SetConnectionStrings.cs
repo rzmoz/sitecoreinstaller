@@ -13,8 +13,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class SetConnectionStrings : Step
     {
-        public SetConnectionStrings(AppSettings appSettings)
-            : base(appSettings)
+        public SetConnectionStrings(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

@@ -4,14 +4,14 @@
 
     public class CheckProjectNameIsSet : Precondition
     {
-        public CheckProjectNameIsSet(AppSettings appSettings)
-            : base(appSettings)
+        public CheckProjectNameIsSet(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 
         public override bool Evaluate(object sender, EventArgs args)
         {
-            if (AppSettings.ProjectNameIsSet)
+            if (GetAppSettings().ProjectNameIsSet)
                 return true;
             ErrorMessage = "Project name not set. Please enter project name";
             return false;

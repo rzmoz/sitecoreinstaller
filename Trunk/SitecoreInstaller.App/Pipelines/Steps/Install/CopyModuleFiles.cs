@@ -9,8 +9,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class CopyModuleFiles : Step
     {
-        public CopyModuleFiles(AppSettings appSettings)
-            : base(appSettings)
+        public CopyModuleFiles(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

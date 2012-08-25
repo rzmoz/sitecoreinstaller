@@ -66,8 +66,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public override BuildLibraryResource Get(SourceEntry sourceEntry)
         {
-            Contract.Requires<ArgumentNullException>(sourceEntry != null);
-
             Root.CreateIfNotExists();
 
             foreach (var getSourceEntryFunc in _getSourceEntryFuncs)

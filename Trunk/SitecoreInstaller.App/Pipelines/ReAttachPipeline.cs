@@ -14,18 +14,13 @@ namespace SitecoreInstaller.App.Pipelines
         public ReAttachPipeline(Func<AppSettings> getAppSettings)
             : base(getAppSettings)
         {
-        }
+            //Init preconditions
+            AddPrecondition(new CheckWritePermissionToHostFile(getAppSettings));
 
-        protected override void InitPreconditions()
-        {
-            AddPrecondition(new CheckWritePermissionToHostFile(AppSettings));
-        }
-
-        protected override void InitSteps()
-        {
-            AddStep(new AttachDatabases(AppSettings));
-            AddStep(new AddSitenameToHostFile(AppSettings));
-            AddStep(new CreateIisSiteAndAppPool(AppSettings));
+            //Init steps
+            AddStep(new AttachDatabases(getAppSettings));
+            AddStep(new AddSitenameToHostFile(getAppSettings));
+            AddStep(new CreateIisSiteAndAppPool(getAppSettings));
         }
     }
 }

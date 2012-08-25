@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
     public class DeleteIisSiteAndAppPool : Step
     {
-        public DeleteIisSiteAndAppPool(AppSettings appSettings)
-            : base(appSettings)
+        public DeleteIisSiteAndAppPool(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

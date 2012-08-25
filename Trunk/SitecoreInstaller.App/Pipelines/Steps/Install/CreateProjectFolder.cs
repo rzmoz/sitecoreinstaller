@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class CreateProjectFolder : Step
     {
-        public CreateProjectFolder(AppSettings appSettings)
-            : base(appSettings)
+        public CreateProjectFolder(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

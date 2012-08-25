@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class AttachDatabases : Step
     {
-        public AttachDatabases(AppSettings appSettings)
-            : base(appSettings)
+        public AttachDatabases(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

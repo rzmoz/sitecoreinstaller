@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class InstallRuntimeServices : Step
     {
-        public InstallRuntimeServices(AppSettings appSettings)
-            : base(appSettings)
+        public InstallRuntimeServices(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

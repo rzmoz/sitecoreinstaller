@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
     public class CheckWritePermissionToHostFile : Precondition
     {
-        public CheckWritePermissionToHostFile(AppSettings appSettings)
-            : base(appSettings)
+        public CheckWritePermissionToHostFile(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

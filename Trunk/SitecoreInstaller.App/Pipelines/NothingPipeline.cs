@@ -13,31 +13,8 @@ namespace SitecoreInstaller.App.Pipelines
 
     using SitecoreInstaller.Framework.Diagnostics;
 
-    public class NothingPipeline : IPipeline
+    public class NothingPipeline : Pipeline
     {
-        public string Name
-        {
-            get { return GetType().Name; }
-        }
-
-        public IEnumerable<IStep> Steps
-        {
-            get { return Enumerable.Empty<IStep>(); }
-        }
-
-        public IEnumerable<IPrecondition> Preconditions
-        {
-            get { return Enumerable.Empty<IPrecondition>(); }
-        }
-
-        public bool IsInUiMode { get; set; }
-
-        public void Init()
-        {
-            throw new NotImplementedException();
-        }
-
-        
         public void DoNothing(object sender, EventArgs e)
         {
             Log.It.Info("Starting doing nothing...");

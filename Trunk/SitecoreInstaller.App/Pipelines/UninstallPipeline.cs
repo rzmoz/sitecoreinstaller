@@ -13,21 +13,16 @@ namespace SitecoreInstaller.App.Pipelines
         public UninstallPipeline(Func<AppSettings> getAppSettings)
             : base(getAppSettings)
         {
-        }
+            //Init preconditions
+            AddPrecondition(new CheckWritePermissionToHostFile(getAppSettings));
 
-        protected override void InitPreconditions()
-        {
-            AddPrecondition(new CheckWritePermissionToHostFile(AppSettings));
-        }
-
-        protected override void InitSteps()
-        {
-            AddStep(new StopApplication(AppSettings));
-            AddStep(new DetachDatabases(AppSettings));
-            AddStep(new DeleteIisSiteAndAppPool(AppSettings));
-            AddStep(new DeleteSiteFromHostFile(AppSettings));
-            AddStep(new DeleteRuntimeServices(AppSettings));
-            AddStep(new DeleteProject(AppSettings));
+            //Init steps
+            AddStep(new StopApplication(getAppSettings));
+            AddStep(new DetachDatabases(getAppSettings));
+            AddStep(new DeleteIisSiteAndAppPool(getAppSettings));
+            AddStep(new DeleteSiteFromHostFile(getAppSettings));
+            AddStep(new DeleteRuntimeServices(getAppSettings));
+            AddStep(new DeleteProject(getAppSettings));
         }
     }
 }

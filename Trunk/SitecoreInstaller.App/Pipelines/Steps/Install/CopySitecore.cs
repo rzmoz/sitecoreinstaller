@@ -10,8 +10,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class CopySitecore:Step
     {
-        public CopySitecore(AppSettings appSettings)
-            : base(appSettings)
+        public CopySitecore(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

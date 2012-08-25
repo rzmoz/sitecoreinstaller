@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
     public class DeleteProject : Step
     {
-        public DeleteProject(AppSettings appSettings)
-            : base(appSettings)
+        public DeleteProject(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 

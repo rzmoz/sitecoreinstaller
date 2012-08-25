@@ -7,8 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class SetDataFolder : Step
     {
-        public SetDataFolder(AppSettings appSettings)
-            : base(appSettings)
+        public SetDataFolder(Func<AppSettings> getAppSettings)
+            : base(getAppSettings)
         {
         }
 
