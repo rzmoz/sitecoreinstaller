@@ -7,18 +7,15 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
     using System.IO;
 
-    using SitecoreInstaller.Domain.Pipelines;
-
-    public class CheckProjectExixts : Precondition
+    public class CheckProjectDoesNotExixts : Precondition
     {
-        public CheckProjectExixts(AppSettings appSettings)
+        public CheckProjectDoesNotExixts(AppSettings appSettings)
             : base(appSettings)
         {
         }
 
         public override bool Evaluate(object sender, EventArgs args)
         {
-            
             if (Directory.Exists(AppSettings.WebsiteFolders.ProjectFolder.FullName) == false)
                 return true;
 

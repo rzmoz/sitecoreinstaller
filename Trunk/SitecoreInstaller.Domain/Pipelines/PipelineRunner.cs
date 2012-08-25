@@ -75,15 +75,22 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         private bool AllStepsPreconditionsAreMet()
         {
+            Log.It.Info("Evaluating pipeline preconditions for {0}", Processor.PipelineName);
+
             foreach (var precondition in Processor.Pipeline.Preconditions)
             {
-                if (precondition.Evaluate(this, EventArgs.Empty) == false)
+                if (precondition.Evaluate(this, EventArgs.Empty))
+                {
+                    Log.It.Info("Precondition met: {0}", precondition.GetType().Name);
+                }
+                else
                 {
                     if (Processor.IsInUiMode && PreconditionNotMet != null)
                         PreconditionNotMet(Processor.Pipeline, new GenericEventArgs<string>(precondition.ErrorMessage));
                     return false;
                 }
             }
+
             return true;
         }
 

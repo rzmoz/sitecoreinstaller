@@ -44,7 +44,7 @@ namespace SitecoreInstaller.Framework.IO
             else
             {
                 folder.Create();
-                Log.It.Info("Folder created: '{0}'", folder.FullName);
+                Log.It.Debug("Folder created: '{0}'", folder.FullName);
             }
         }
         public static void DeleteWithLog(this DirectoryInfo folder)

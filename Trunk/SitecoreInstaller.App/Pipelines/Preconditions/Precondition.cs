@@ -13,7 +13,6 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
     {
         private string _errorMessage;
 
-
         protected Precondition(AppSettings appSettings)
         {
             AppSettings = appSettings;

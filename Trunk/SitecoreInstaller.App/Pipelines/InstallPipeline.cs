@@ -32,7 +32,7 @@ namespace SitecoreInstaller.App.Pipelines
             preconditions.Add(new CheckSitecore(AppSettings));
             preconditions.Add(new CheckLicense(AppSettings));
             preconditions.Add(new CheckWritePermissionToHostFile(AppSettings));
-            preconditions.Add(new CheckProjectExixts(AppSettings));
+            preconditions.Add(new CheckProjectDoesNotExixts(AppSettings));
 
             Preconditions = preconditions;
         }
