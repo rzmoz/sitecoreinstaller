@@ -34,6 +34,8 @@
             this.lblStatusMessage = new System.Windows.Forms.Label();
             this.pgbStatus = new System.Windows.Forms.ProgressBar();
             this.tbxMessages = new System.Windows.Forms.TextBox();
+            this.picStatus = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdOk
@@ -105,10 +107,22 @@
             this.tbxMessages.TabIndex = 17;
             this.tbxMessages.TabStop = false;
             // 
+            // picStatus
+            // 
+            this.picStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picStatus.Image = global::SitecoreInstaller.UI.Properties.Resources.error;
+            this.picStatus.Location = new System.Drawing.Point(327, 22);
+            this.picStatus.Name = "picStatus";
+            this.picStatus.Size = new System.Drawing.Size(50, 50);
+            this.picStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picStatus.TabIndex = 18;
+            this.picStatus.TabStop = false;
+            // 
             // PipelineProgress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.picStatus);
             this.Controls.Add(this.cmdOk);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tbxInfo);
@@ -117,6 +131,7 @@
             this.Controls.Add(this.tbxMessages);
             this.Name = "PipelineProgress";
             this.Size = new System.Drawing.Size(400, 300);
+            ((System.ComponentModel.ISupportInitialize)(this.picStatus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,6 +145,7 @@
         private System.Windows.Forms.Label lblStatusMessage;
         private System.Windows.Forms.ProgressBar pgbStatus;
         private System.Windows.Forms.TextBox tbxMessages;
+        private System.Windows.Forms.PictureBox picStatus;
 
 
     }

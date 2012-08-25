@@ -5,9 +5,12 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.UI
 {
+    using System.Drawing;
+
     using SitecoreInstaller.App;
     using SitecoreInstaller.Framework.Diagnostics;
     using SitecoreInstaller.Framework.System;
+    using SitecoreInstaller.UI.Properties;
 
     public partial class PipelineProgress : UserControl
     {
@@ -31,6 +34,7 @@ namespace SitecoreInstaller.UI
                     cmdOk.Visible = false;
                     tbxInfo.Visible = true;
                     tbxMessages.Visible = false;
+                    picStatus.Visible = false;
                 });
         }
         public void Ended(object sender, PipelineEventArgs e)
@@ -41,6 +45,20 @@ namespace SitecoreInstaller.UI
                     cmdOk.Visible = true;
                     tbxInfo.Visible = false;
 
+                    picStatus.Visible = true;
+                    switch (e.Status)
+                    {
+                        case PipelineStatus.NoProblems:
+                            picStatus.Image = Resources.ok;
+                            break;
+                        case PipelineStatus.Warnings:
+                            picStatus.Image = Resources.warning;
+                            break;
+                        case PipelineStatus.Errors:
+                            picStatus.Image = Resources.error;
+                            break;
+                    }
+
                     if(e.Status != PipelineStatus.NoProblems)
                     {
                         tbxMessages.Visible = true;
@@ -49,6 +67,7 @@ namespace SitecoreInstaller.UI
                             tbxMessages.Text += string.Format("{0}\r\n", logEntry.Message);
                     
                     }
+                    
                     
                     lblStatusMessage.Text = "Finished with "
                                             + e.Status.ToString().TokenizeWhenCharIsUpper().ToDelimiteredString();
