@@ -29,14 +29,12 @@ namespace SitecoreInstaller.App
         static Services()
         {
             Pipelines = new PipelineManager();
-
             Website = new WebsiteService();
             Dialogs = new Dialogs();
-
             IisManagement = new IisManagementService();
             HostFile = new HostFileService();
-
             PipelineWorker = new PipelineWorker();
+            AppSettings = new AppSettings();
         }
 
         public static void Init()
@@ -91,6 +89,7 @@ namespace SitecoreInstaller.App
             return sourceInstance;
         }
 
+        public static AppSettings AppSettings { get; set; }
         public static PipelineManager Pipelines { get; private set; }
         public static ISourceRepository BuildLibrary { get; set; }
         public static IProjectsService Projects { get; set; }

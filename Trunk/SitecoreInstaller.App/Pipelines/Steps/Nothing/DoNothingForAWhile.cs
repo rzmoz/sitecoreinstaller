@@ -11,11 +11,6 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 
     public class DoNothingForAWhile : Step
     {
-        public DoNothingForAWhile(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
             for (var i = 0; i < 10; i++)

@@ -39,12 +39,14 @@ namespace SitecoreInstaller
 
         public override void Install(object sender, EventArgs e)
         {
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetInstaller(MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings));
+            Services.AppSettings = MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings();
+            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetInstaller());
         }
 
         public override void Uninstall(object sender, EventArgs e)
         {
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetUnInstaller(MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings));
+            Services.AppSettings = MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings();
+            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetUnInstaller());
         }
 
         public override void KeyUp(object sender, KeyEventArgs e)

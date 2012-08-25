@@ -23,27 +23,30 @@ namespace SitecoreInstaller.UI
         public void Init(Func<AppSettings> getAppSettings)
         {
             _getAppSettings = getAppSettings;
-            var installer = Services.Pipelines.GetInstaller(getAppSettings);
+            var installer = Services.Pipelines.GetInstaller();
             pipelineStepListInstall.Init(installer);
-            var unInstaller = Services.Pipelines.GetUnInstaller(getAppSettings);
+            var unInstaller = Services.Pipelines.GetUnInstaller();
             pipelineStepListUninstall.Init(unInstaller);
-            var reAttacher = Services.Pipelines.GetReAttach(getAppSettings);
+            var reAttacher = Services.Pipelines.GetReAttach();
             pipelineStepListReAttach.Init(reAttacher);
         }
 
         private void btnInstall_Click(object sender, EventArgs e)
         {
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetInstaller(_getAppSettings));
+            Services.AppSettings = _getAppSettings();
+            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetInstaller());
         }
 
         private void btnUninstall_Click(object sender, EventArgs e)
         {
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetUnInstaller(_getAppSettings));
+            Services.AppSettings = _getAppSettings();
+            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetUnInstaller());
         }
 
         private void btnReAttach_Click(object sender, EventArgs e)
         {
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetReAttach(_getAppSettings));
+            Services.AppSettings = _getAppSettings();
+            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetReAttach());
         }
     }
 }

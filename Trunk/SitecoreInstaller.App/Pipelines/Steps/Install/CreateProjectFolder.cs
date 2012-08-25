@@ -7,14 +7,9 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class CreateProjectFolder : Step
     {
-        public CreateProjectFolder(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.Website.CreateTargetFolders(AppSettings.WebsiteFolders);
+            Services.Website.CreateTargetFolders(Services.AppSettings.WebsiteFolders);
         }
     }
 }

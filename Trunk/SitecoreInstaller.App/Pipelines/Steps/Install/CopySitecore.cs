@@ -10,17 +10,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class CopySitecore:Step
     {
-        public CopySitecore(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            var selectedSitecore = Services.BuildLibrary.Get(AppSettings.UserSelections.SelectedSitecore, SourceType.Sitecore);
+            var selectedSitecore = Services.BuildLibrary.Get(Services.AppSettings.UserSelections.SelectedSitecore, SourceType.Sitecore);
             if (selectedSitecore is BuildLibraryDirectory == false)
                 throw new DirectoryNotFoundException("selected Sitecore was not of type BuildLibraryDirectory. Was:" + selectedSitecore.GetType());
-            Services.Website.CopySitecoreToProjectfolder(AppSettings.WebsiteFolders, selectedSitecore as BuildLibraryDirectory);
+            Services.Website.CopySitecoreToProjectfolder(Services.AppSettings.WebsiteFolders, selectedSitecore as BuildLibraryDirectory);
         }
     }
 }

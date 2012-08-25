@@ -44,8 +44,7 @@ namespace SitecoreInstaller
         private void frmMain_Load(object sender, EventArgs e)
         {
             InitMenuItems();
-            InitPipelineResult();
-
+        
             InitPipelineWorker();
             InitPipelineStatus();
             InitUserSettings();//must be initialized before logger
@@ -55,13 +54,6 @@ namespace SitecoreInstaller
             InitMainSimple();
 
             InitMainFormFunc();
-        }
-
-        private void InitPipelineResult()
-        {
-            pipelineResult1.Dock=DockStyle.Fill;
-            pipelineResult1.Hide();
-            pipelineResult1.SendToBack();
         }
 
         private void InitMenuItems()
@@ -77,7 +69,7 @@ namespace SitecoreInstaller
             Services.PipelineWorker.StepExecuting += FrmUserSettings.PipelineProgress.UpdateStatus;
             Services.PipelineWorker.AllStepsExecuting += FrmUserSettings.PipelineWorkerOnAllStepsExecuting;
             Services.PipelineWorker.AllStepsExecuted += FrmUserSettings.PipelineWorkerOnAllStepsExecuted;
-            Services.PipelineWorker.PreconditionNotMet += new EventHandler<Framework.System.GenericEventArgs<string>>(PipelineWorker_PreconditionNotMet);
+            Services.PipelineWorker.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
 
             if (UserSettings.Default.PromptForUserSettings)
             {
@@ -131,38 +123,7 @@ namespace SitecoreInstaller
         private void InitPipelineWorker()
         {
             Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
-            Services.PipelineWorker.AllStepsExecuted += PipelineWorkerOnAllStepsExecuted;
-            Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
-        }
-
-        void PipelineWorker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                EventHandler<PipelineEventArgs> inv = PipelineWorkerOnAllStepsExecuted;
-                Invoke(inv, new[] { sender, e });
-            }
-            else
-            {
-                pipelineStatus1.Hide();
-            }
-        }
-
-        private void PipelineWorkerOnAllStepsExecuted(object sender, PipelineEventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                EventHandler<PipelineEventArgs> inv = PipelineWorkerOnAllStepsExecuted;
-                Invoke(inv, new[] { sender, e });
-            }
-            else
-            {
-                Services.BuildLibrary.Update();
-                pipelineResult1.Show();
-                pipelineResult1.BringToFront();
-                pipelineResult1.Result(e);
-                pipelineResult1.Ok.Focus();
-            }
+            Services.PipelineWorker.AllStepsExecuting += pipelineStatus1.Starting;
         }
 
         private void PipelineWorkerOnAllStepsExecuting(object sender, PipelineEventArgs e)
@@ -176,6 +137,7 @@ namespace SitecoreInstaller
             {
                 pipelineStatus1.BringToFront();
                 pipelineStatus1.Show();
+
             }
         }
 

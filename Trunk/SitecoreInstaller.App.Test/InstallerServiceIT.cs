@@ -19,7 +19,7 @@ namespace SitecoreInstaller.App.Test
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
-            _installerService = new PipelineRunner<InstallPipeline>(new InstallPipeline(null));
+            _installerService = new PipelineRunner<InstallPipeline>(new InstallPipeline());
         }
 
         [Test]

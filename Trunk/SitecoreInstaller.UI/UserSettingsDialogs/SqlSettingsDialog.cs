@@ -52,7 +52,8 @@ namespace SitecoreInstaller.UI.UserSettingsDialogs
         public void btnTestSql_Click(object sender, EventArgs e)
         {
             BtnSaveClick();
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetSqlSettingsTest(GetAppSettings));
+            Services.AppSettings = GetAppSettings();
+            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetSqlSettingsTest());
         }
     }
 }

@@ -7,14 +7,9 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class ExecutePostInstallSteps : Step
     {
-        public ExecutePostInstallSteps(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.Website.ExecutePostInstallSteps(AppSettings.IisSiteName);
+            Services.Website.ExecutePostInstallSteps(Services.AppSettings.IisSiteName);
         }
     }
 }

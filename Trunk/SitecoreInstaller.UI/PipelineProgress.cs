@@ -28,6 +28,19 @@ namespace SitecoreInstaller.UI
             Services.PipelineWorker.StepExecuting += UpdateStatus;
         }
 
+        public void Starting(object sender, PipelineEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                EventHandler<PipelineEventArgs> inv = Starting;
+                Invoke(inv, new[] { sender, e });
+            }
+            else
+            {
+                lblTitle.Text = e.PipelineName;
+            }
+        }
+
         public void UpdateStatus(object sender, PipelineStepInfoEventArgs e)
         {
             if (InvokeRequired)

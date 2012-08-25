@@ -9,19 +9,18 @@ namespace SitecoreInstaller.App.Pipelines
     using SitecoreInstaller.App.Pipelines.Steps.Install;
     using SitecoreInstaller.Domain.Pipelines;
 
-    public class ReAttachPipeline : SitecoreInstallerPipeline
+    public class ReAttachPipeline : Pipeline
     {
-        public ReAttachPipeline(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
+        public ReAttachPipeline()
         {
             //Init preconditions
-            AddPrecondition(new CheckProjectNameIsSet(getAppSettings));
-            AddPrecondition(new CheckWritePermissionToHostFile(getAppSettings));
+            AddPrecondition(new CheckProjectNameIsSet());
+            AddPrecondition(new CheckWritePermissionToHostFile());
 
             //Init steps
-            AddStep(new AttachDatabases(getAppSettings));
-            AddStep(new AddSitenameToHostFile(getAppSettings));
-            AddStep(new CreateIisSiteAndAppPool(getAppSettings));
+            AddStep(new AttachDatabases());
+            AddStep(new AddSitenameToHostFile());
+            AddStep(new CreateIisSiteAndAppPool());
         }
     }
 }

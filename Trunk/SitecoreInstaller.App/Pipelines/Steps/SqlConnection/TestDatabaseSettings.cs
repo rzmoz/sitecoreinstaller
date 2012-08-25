@@ -9,15 +9,10 @@ namespace SitecoreInstaller.App.Pipelines.Steps.SqlConnection
 
     public class TestDatabaseSettings : Step
     {
-        public TestDatabaseSettings(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
             Log.It.Info("Testing Sql settings...");
-            Services.Sql.TestDatabaseSettings(AppSettings.Sql);
+            Services.Sql.TestDatabaseSettings(Services.AppSettings.Sql);
         }
     }
 }

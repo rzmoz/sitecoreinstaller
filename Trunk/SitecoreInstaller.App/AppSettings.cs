@@ -46,7 +46,7 @@
 
         public bool ProjectNameIsSet { get { return !string.IsNullOrEmpty(ProjectName.Value); } }
 
-        public Observable<string> ProjectName { get; set; }
+        public Observable<string> ProjectName { get; private set; }
 
         private void ResolveDependentPaths()
         {

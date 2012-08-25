@@ -9,18 +9,12 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
     public class CheckProjectDoesNotExixts : Precondition
     {
-        public CheckProjectDoesNotExixts(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         public override bool Evaluate(object sender, EventArgs args)
         {
-            var appSettings = GetAppSettings();
-            if (Directory.Exists(appSettings.WebsiteFolders.ProjectFolder.FullName) == false)
+            if (Directory.Exists(Services.AppSettings.WebsiteFolders.ProjectFolder.FullName) == false)
                 return true;
 
-            ErrorMessage = string.Format("Project '{0}' already exists.\r\nPlease delete first or choose anohter project name for this installation.\r\n\r\nLocation: {1}", appSettings.ProjectName, appSettings.WebsiteFolders.ProjectFolder);
+            ErrorMessage = string.Format("Project '{0}' already exists.\r\nPlease delete first or choose anohter project name for this installation.\r\n\r\nLocation: {1}", Services.AppSettings.ProjectName, Services.AppSettings.WebsiteFolders.ProjectFolder);
             return false;
         }
     }

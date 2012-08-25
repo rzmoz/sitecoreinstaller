@@ -40,7 +40,10 @@
             if (tbxProjectName.Text.Length == 0)
                 Services.Dialogs.Information("Please enter project name");
             else
-                Services.PipelineWorker.RunPipeline(Services.Pipelines.GetInstaller(GetAppSettings));
+            {
+                Services.AppSettings = GetAppSettings();
+                Services.PipelineWorker.RunPipeline(Services.Pipelines.GetInstaller());
+            }
         }
     }
 }

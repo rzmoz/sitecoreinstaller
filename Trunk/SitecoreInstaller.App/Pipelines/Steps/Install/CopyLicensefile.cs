@@ -11,17 +11,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class CopyLicensefile : Step
     {
-        public CopyLicensefile(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            var license = Services.BuildLibrary.Get(AppSettings.UserSelections.SelectedLicense, SourceType.License);
+            var license = Services.BuildLibrary.Get(Services.AppSettings.UserSelections.SelectedLicense, SourceType.License);
             if (license is BuildLibraryFile == false)
                 throw new DirectoryNotFoundException("license was not of type BuildLibraryFile. Was:" + license.GetType());
-            Services.Website.CopyLicenseFileToDataFolder(license as BuildLibraryFile, AppSettings.WebsiteFolders.DataFolder, AppSettings.LicenseConfigFile);
+            Services.Website.CopyLicenseFileToDataFolder(license as BuildLibraryFile, Services.AppSettings.WebsiteFolders.DataFolder, Services.AppSettings.LicenseConfigFile);
         }
     }
 }

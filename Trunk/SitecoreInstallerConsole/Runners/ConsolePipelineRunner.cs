@@ -12,19 +12,13 @@ namespace SitecoreInstallerConsole.Runners
 
     public abstract class ConsolePipelineRunner : IConsoleRunner
     {
-        protected AppSettings AppSettings { get; private set; }
-        protected AppSettings GetAppSettings()
-        {
-            return AppSettings;
-        }
-
         protected ConsolePipelineRunner(string[] args)
         {
             Args = args;
             Services.Init();
             Log.It.EntryLogged += LogEntryLogged;
-            AppSettings = new AppSettings();
-            AppSettings.Init(UserSettings.Default);
+            Services.AppSettings = new AppSettings();
+            Services.AppSettings.Init(UserSettings.Default);
             Services.BuildLibrary.Update();
         }
 

@@ -11,22 +11,15 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
     public class CheckLicense : Precondition
     {
-        public CheckLicense(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         public override bool Evaluate(object sender, EventArgs args)
         {
-            var appSettings = GetAppSettings();
-
-            if (appSettings.UserSelections.SelectedLicense == null)
+            if (Services.AppSettings.UserSelections.SelectedLicense == null)
             {
                 ErrorMessage = string.Format("You haven't selected a License. Please add a license in preferences pane if you have none");
                 return false;
             }
 
-            var licenseFileSourceEntry = appSettings.UserSelections.SelectedLicense as LicenseFileSourceEntry;
+            var licenseFileSourceEntry = Services.AppSettings.UserSelections.SelectedLicense as LicenseFileSourceEntry;
             if (licenseFileSourceEntry == null)
                 throw new TypeLoadException("Selected license was not of expected type. Something is completely wrong with program. Get your money back! :-)");
 

@@ -7,14 +7,9 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class CreateIisSiteAndAppPool : Step
     {
-        public CreateIisSiteAndAppPool(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.IisManagement.CreateApplication(AppSettings.AppPool, AppSettings.WebsiteFolders.WebSiteFolder, AppSettings.WebsiteFolders.IisLogFilesFolder);
+            Services.IisManagement.CreateApplication(Services.AppSettings.AppPool, Services.AppSettings.WebsiteFolders.WebSiteFolder, Services.AppSettings.WebsiteFolders.IisLogFilesFolder);
         }
     }
 }

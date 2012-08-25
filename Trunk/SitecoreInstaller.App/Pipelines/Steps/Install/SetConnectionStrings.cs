@@ -13,18 +13,13 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class SetConnectionStrings : Step
     {
-        public SetConnectionStrings(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            var connectionStrings = new ConnectionStringsFile(AppSettings.ConnectionStringsConfigFile);
+            var connectionStrings = new ConnectionStringsFile(Services.AppSettings.ConnectionStringsConfigFile);
 
             connectionStrings.Init();
             var existingConnectionStringNames = connectionStrings.Select(entry => entry.Name);
-            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(AppSettings.Sql, AppSettings.WebsiteFolders.DatabaseFolder, AppSettings.ProjectName.Value, existingConnectionStringNames);
+            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.AppSettings.Sql, Services.AppSettings.WebsiteFolders.DatabaseFolder, Services.AppSettings.ProjectName.Value, existingConnectionStringNames);
             var transform = new XmlTransform(connectionStrings.File, connectionStringsDelta);
             transform.Run();
 
@@ -36,12 +31,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             if (webFormsConnectionString == null)
                 return;
 
-            if (File.Exists(AppSettings.WffmConfigFile.FullName) == false)
+            if (File.Exists(Services.AppSettings.WffmConfigFile.FullName) == false)
                 return;
 
-            var formsConfigFile = new WffmConfigFile(AppSettings.WffmConfigFile);
+            var formsConfigFile = new WffmConfigFile(Services.AppSettings.WffmConfigFile);
             if (formsConfigFile.DataProviderType == DataProviderType.Sql)
-                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString, AppSettings.WffmSqlDataproviderConfigFile);
+                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString, Services.AppSettings.WffmSqlDataproviderConfigFile);
         }
     }
 }

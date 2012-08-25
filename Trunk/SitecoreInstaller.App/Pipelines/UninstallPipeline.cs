@@ -8,22 +8,21 @@ namespace SitecoreInstaller.App.Pipelines
     using SitecoreInstaller.App.Pipelines.Preconditions;
     using SitecoreInstaller.App.Pipelines.Steps.Uninstall;
 
-    public class UninstallPipeline : SitecoreInstallerPipeline
+    public class UninstallPipeline : Pipeline
     {
-        public UninstallPipeline(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
+        public UninstallPipeline()
         {
             //Init preconditions
-            AddPrecondition(new CheckProjectNameIsSet(getAppSettings));
-            AddPrecondition(new CheckWritePermissionToHostFile(getAppSettings));
+            AddPrecondition(new CheckProjectNameIsSet());
+            AddPrecondition(new CheckWritePermissionToHostFile());
 
             //Init steps
-            AddStep(new StopApplication(getAppSettings));
-            AddStep(new DetachDatabases(getAppSettings));
-            AddStep(new DeleteIisSiteAndAppPool(getAppSettings));
-            AddStep(new DeleteSiteFromHostFile(getAppSettings));
-            AddStep(new DeleteRuntimeServices(getAppSettings));
-            AddStep(new DeleteProject(getAppSettings));
+            AddStep(new StopApplication());
+            AddStep(new DetachDatabases());
+            AddStep(new DeleteIisSiteAndAppPool());
+            AddStep(new DeleteSiteFromHostFile());
+            AddStep(new DeleteRuntimeServices());
+            AddStep(new DeleteProject());
         }
     }
 }

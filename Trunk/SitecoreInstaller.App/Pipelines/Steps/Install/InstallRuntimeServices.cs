@@ -7,14 +7,9 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class InstallRuntimeServices : Step
     {
-        public InstallRuntimeServices(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.Website.InstallRuntimeServices(AppSettings.WebsiteFolders.WebSiteFolder);
+            Services.Website.InstallRuntimeServices(Services.AppSettings.WebsiteFolders.WebSiteFolder);
         }
     }
 }

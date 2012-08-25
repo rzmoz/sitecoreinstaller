@@ -14,7 +14,6 @@
 
         public void Init()
         {
-            
             _selectAppPoolSettings1.Init();
             _selectionsDeveloper1.Init(_selectAppPoolSettings1.GetAppPoolSettings);
             _pipelineLists1.Init(_selectionsDeveloper1.GetAppSettings);

@@ -13,14 +13,12 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
     {
         private string _errorMessage;
 
-        protected Precondition(Func<AppSettings> getAppSettings)
+        protected Precondition()
         {
-            GetAppSettings = getAppSettings;
             _errorMessage = string.Empty;
         }
 
         public abstract bool Evaluate(object sender, EventArgs args);
-        protected Func<AppSettings> GetAppSettings{ get; private set; }
 
         public string ErrorMessage
         {

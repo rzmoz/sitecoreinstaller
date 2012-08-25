@@ -40,21 +40,21 @@ namespace SitecoreInstallerConsole.Runners
 
         private void Install(string license, IEnumerable<SourceEntry> selectedModules, string projectName, string sitecore)
         {
-            AppSettings.ProjectName.Value = projectName;
-            AppSettings.AppPool = new AppPoolSettings() { Name = AppSettings.IisSiteName };
-            AppSettings.UserSelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
-            AppSettings.UserSelections.SelectedLicense = new SourceEntry(license, string.Empty);
+            Services.AppSettings.ProjectName.Value = projectName;
+            Services.AppSettings.AppPool = new AppPoolSettings() { Name = Services.AppSettings.IisSiteName };
+            Services.AppSettings.UserSelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
+            Services.AppSettings.UserSelections.SelectedLicense = new SourceEntry(license, string.Empty);
             if (sitecore == ArgSwitches.Latest)
-                AppSettings.UserSelections.SelectedSitecore = Services.BuildLibrary.List(SourceType.Sitecore).Last();
+                Services.AppSettings.UserSelections.SelectedSitecore = Services.BuildLibrary.List(SourceType.Sitecore).Last();
             else
-                AppSettings.UserSelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
+                Services.AppSettings.UserSelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
             if (license == ArgSwitches.Latest)
-                AppSettings.UserSelections.SelectedLicense = Services.BuildLibrary.List(SourceType.License).Last();
+                Services.AppSettings.UserSelections.SelectedLicense = Services.BuildLibrary.List(SourceType.License).Last();
             else
-                AppSettings.UserSelections.SelectedLicense = new SourceEntry(license, string.Empty);
-            AppSettings.UserSelections.SelectedModules = selectedModules;
+                Services.AppSettings.UserSelections.SelectedLicense = new SourceEntry(license, string.Empty);
+            Services.AppSettings.UserSelections.SelectedModules = selectedModules;
 
-            var pipeline = Services.Pipelines.GetInstaller(GetAppSettings);
+            var pipeline = Services.Pipelines.GetInstaller();
             pipeline.Pipeline.IsInUiMode = false;
             pipeline.ExecuateAllSteps(this, new EventArgs());
         }

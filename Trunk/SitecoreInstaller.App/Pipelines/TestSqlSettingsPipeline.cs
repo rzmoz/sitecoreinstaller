@@ -10,13 +10,12 @@ namespace SitecoreInstaller.App.Pipelines
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
 
-    public class TestSqlSettingsPipeline : SitecoreInstallerPipeline
+    public class TestSqlSettingsPipeline : Pipeline
     {
-        public TestSqlSettingsPipeline(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
+        public TestSqlSettingsPipeline()
         {
             //Init steps
-            AddStep(new TestDatabaseSettings(getAppSettings));
+            AddStep(new TestDatabaseSettings());
         }
     }
 }

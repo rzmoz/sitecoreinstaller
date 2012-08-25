@@ -40,7 +40,11 @@
             if (selectProjectName1.ProjectName.Length == 0)
                 Services.Dialogs.Information("Please choose a project");
             else
-                Services.PipelineWorker.RunPipeline(Services.Pipelines.GetUnInstaller(GetAppSettings));
+            {
+                Services.AppSettings = GetAppSettings();
+                Services.PipelineWorker.RunPipeline(Services.Pipelines.GetUnInstaller());
+            }
+                
         }
     }
 }

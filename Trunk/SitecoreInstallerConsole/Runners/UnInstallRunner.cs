@@ -22,9 +22,8 @@ namespace SitecoreInstallerConsole.Runners
                 throw new ArgumentException(string.Format("Wrong # of arguments. Expected 2. Was {0}", Args.Length));
 
             var projectName = Args[1];
-            AppSettings.ProjectName.Value = projectName;
-
-            var pipeline = Services.Pipelines.GetInstaller(GetAppSettings);
+            Services.AppSettings.ProjectName.Value = projectName;
+            var pipeline = Services.Pipelines.GetInstaller();
             pipeline.Pipeline.IsInUiMode = false;
             pipeline.ExecuateAllSteps(this, new EventArgs());
         }

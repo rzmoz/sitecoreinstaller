@@ -6,6 +6,7 @@
     using SitecoreInstaller.App;
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.WebServer;
+    using SitecoreInstaller.Framework.System;
 
     public partial class SelectionsDeveloper : UserControl
     {

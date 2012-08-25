@@ -7,14 +7,9 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
     public class DeleteRuntimeServices : Step
     {
-        public DeleteRuntimeServices(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.Website.DeleteRuntimeServices(AppSettings.WebsiteFolders.WebSiteFolder);
+            Services.Website.DeleteRuntimeServices(Services.AppSettings.WebsiteFolders.WebSiteFolder);
         }
     }
 }

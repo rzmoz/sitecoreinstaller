@@ -15,22 +15,15 @@ namespace SitecoreInstaller.App.Pipelines.Steps
         public event EventHandler<EventArgs> StepInvoking;
         public event EventHandler<EventArgs> StepInvoked;
 
-        protected Step(Func<AppSettings> getAppSettings)
+        protected Step()
         {
             ProtectedPreconditions = new List<IPrecondition>();
-            GetAppSettings = getAppSettings;
         }
 
         public int Order { get; set; }
 
-        protected Func<AppSettings> GetAppSettings { get; private set; }
-        protected AppSettings AppSettings { get; private set; }
-
         public void Invoke(object sender, EventArgs args)
         {
-            if (GetAppSettings != null)
-                AppSettings = GetAppSettings();
-
             if (StepInvoking != null)
                 StepInvoking(this, EventArgs.Empty);
 

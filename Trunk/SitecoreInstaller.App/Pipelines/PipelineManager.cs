@@ -11,24 +11,24 @@ namespace SitecoreInstaller.App.Pipelines
 
     public class PipelineManager
     {
-        public PipelineRunner<TestSqlSettingsPipeline> GetSqlSettingsTest(Func<AppSettings> getAppSettings)
+        public PipelineRunner<TestSqlSettingsPipeline> GetSqlSettingsTest()
         {
-            return GetPipelineRunner(new TestSqlSettingsPipeline(getAppSettings));
+            return GetPipelineRunner(new TestSqlSettingsPipeline());
         }
 
-        public PipelineRunner<InstallPipeline> GetInstaller(Func<AppSettings> getAppSettings)
+        public PipelineRunner<InstallPipeline> GetInstaller()
         {
-            return GetPipelineRunner(new InstallPipeline(getAppSettings));
+            return GetPipelineRunner(new InstallPipeline());
         }
 
-        public PipelineRunner<UninstallPipeline> GetUnInstaller(Func<AppSettings> getAppSettings)
+        public PipelineRunner<UninstallPipeline> GetUnInstaller()
         {
-            return GetPipelineRunner(new UninstallPipeline(getAppSettings));
+            return GetPipelineRunner(new UninstallPipeline());
         }
 
-        public PipelineRunner<ReAttachPipeline> GetReAttach(Func<AppSettings> getAppSettings)
+        public PipelineRunner<ReAttachPipeline> GetReAttach()
         {
-            return GetPipelineRunner(new ReAttachPipeline(getAppSettings));
+            return GetPipelineRunner(new ReAttachPipeline());
         }
 
         public PipelineRunner<NothingPipeline> GetNoting()

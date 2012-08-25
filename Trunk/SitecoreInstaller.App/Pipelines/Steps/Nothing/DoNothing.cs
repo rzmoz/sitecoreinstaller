@@ -9,11 +9,6 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 
     public class DoNothing : Step
     {
-        public DoNothing(Func<AppSettings> getAppSettings)
-            : base(getAppSettings)
-        {
-        }
-
         protected override void InnerInvoke(object sender, EventArgs args)
         {
             Log.It.Info("Starting doing nothing...");

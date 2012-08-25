@@ -31,6 +31,7 @@
             this.pgbStatus = new System.Windows.Forms.ProgressBar();
             this.lblStatusMessage = new System.Windows.Forms.Label();
             this.tbxInfo = new System.Windows.Forms.TextBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pgbStatus
@@ -66,10 +67,22 @@
             this.tbxInfo.Size = new System.Drawing.Size(350, 20);
             this.tbxInfo.TabIndex = 2;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(217)))));
+            this.lblTitle.Location = new System.Drawing.Point(24, 14);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(189, 24);
+            this.lblTitle.TabIndex = 3;
+            this.lblTitle.Text = "Something finished";
+            // 
             // PipelineProgress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tbxInfo);
             this.Controls.Add(this.lblStatusMessage);
             this.Controls.Add(this.pgbStatus);
@@ -85,5 +98,6 @@
         private System.Windows.Forms.ProgressBar pgbStatus;
         private System.Windows.Forms.Label lblStatusMessage;
         private System.Windows.Forms.TextBox tbxInfo;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
