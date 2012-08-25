@@ -5,14 +5,28 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines
 {
+    using SitecoreInstaller.App.Pipelines.Preconditions;
     using SitecoreInstaller.Domain.Pipelines;
 
-    public class ReAttachPipeline:SitecoreInstallerPipeline
+    public class ReAttachPipeline : SitecoreInstallerPipeline
     {
         public ReAttachPipeline(Func<AppSettings> getAppSettings)
             : base(getAppSettings)
         {
         }
+
+        public override void Init()
+        {
+            base.Init();
+            var preconditions = new List<IPrecondition>
+                {
+                    new CheckWritePermissionToHostFile(AppSettings),
+                };
+
+            preconditions.AddRange(Preconditions);
+            Preconditions = preconditions;
+        }
+
 
         [Step(1)]
         public void AttachDatabases(object sender, EventArgs e)

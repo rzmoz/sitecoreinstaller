@@ -7,13 +7,11 @@ namespace SitecoreInstaller.Domain.Pipelines
 {
     public class PipelineStepEventArgs : EventArgs
     {
-        public PipelineStepEventArgs(int stepNumber, int totalStepNumber, string stepName)
+        public PipelineStepEventArgs(Action getAppSettings)
         {
-            ProgressPercentage = Convert.ToInt32(100.0 / ((double)totalStepNumber / (double)stepNumber));
-            StepName = stepName ?? string.Empty;
+            GetAppSettings = getAppSettings;
         }
 
-        public int ProgressPercentage { get; private set; }
-        public string StepName { get; private set; }
+        public Action GetAppSettings;
     }
 }

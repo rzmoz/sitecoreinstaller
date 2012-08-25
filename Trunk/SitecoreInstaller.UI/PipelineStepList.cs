@@ -31,12 +31,12 @@ namespace SitecoreInstaller.UI
             return verticalPosition;
         }
 
-        public void Init<T>(PipelineRunner<T> pipelineRunner) where T : IPipeline
+        public void Init<T>(PipelineRunner<T> pipelineRunner) where T : class,IPipeline
         {
             RenderSteps(pipelineRunner);
         }
 
-        private void RenderSteps<T>(PipelineRunner<T> pipelineRunner) where T : IPipeline
+        private void RenderSteps<T>(PipelineRunner<T> pipelineRunner) where T : class,IPipeline
         {
             foreach (var installStep in pipelineRunner.Processor.Steps)
             {

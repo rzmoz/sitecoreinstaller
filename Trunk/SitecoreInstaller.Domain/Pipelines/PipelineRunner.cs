@@ -15,25 +15,25 @@ namespace SitecoreInstaller.Domain.Pipelines
     /// Use as decorator for classes that have methods with StepAttributes
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class PipelineRunner<T> : IPipelineRunner where T : IPipeline
+    public class PipelineRunner<T> : IPipelineRunner where T : class,IPipeline
     {
         private readonly Profiler _execuateAllStepsProfiler;
 
         public event EventHandler<PipelineEventArgs> AllStepsExecuting;
         public event EventHandler<PipelineEventArgs> AllStepsExecuted;
 
-        public event EventHandler<PipelineStepEventArgs> StepExecuting;
-        public event EventHandler<PipelineStepEventArgs> StepExecuted;
+        public event EventHandler<PipelineStepInfoEventArgs> StepExecuting;
+        public event EventHandler<PipelineStepInfoEventArgs> StepExecuted;
 
-        public PipelineProcessor<T> Processor { get; private set; }
+        public PipelinePreProcessor<T> Processor { get; private set; }
 
         public PipelineRunner(T pipeline, string executeAllText = "")
         {
             if (pipeline == null) throw new ArgumentNullException("pipeline");
-            
+
             Log.It.Clear();
             ExecuteAllText = executeAllText;
-            Processor = new PipelineProcessor<T>(pipeline);
+            Processor = new PipelinePreProcessor<T>(pipeline);
             Processor.Init();
             Processor.IsInUiMode = true;
             _execuateAllStepsProfiler = new Profiler("Executing all steps in " + Processor.Pipeline.GetType().GetStepText(), InnerExecuteAllSteps);
@@ -73,7 +73,12 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         private bool AllStepsPreconditionsAreMet()
         {
-            return Processor.Preconditions.All(precondition => precondition(Processor.PipelineName));
+            foreach (var precondition in Processor.Pipeline.Preconditions)
+            {
+                if (precondition.Evaluate(this, EventArgs.Empty) == false)
+                    return false;
+            }
+            return true;
         }
 
         private void InnerExecuteAllSteps(object sender, EventArgs e)
@@ -81,7 +86,7 @@ namespace SitecoreInstaller.Domain.Pipelines
             var totalCount = Processor.Steps.Count();
             foreach (var installStep in Processor.Steps)
             {
-                var args = new PipelineStepEventArgs(installStep.Order, totalCount, installStep.Text);
+                var args = new PipelineStepInfoEventArgs(installStep.Order, totalCount, installStep.Text);
                 if (StepExecuting != null)
                     StepExecuting(installStep, args);
                 installStep.Invoke(sender, e);

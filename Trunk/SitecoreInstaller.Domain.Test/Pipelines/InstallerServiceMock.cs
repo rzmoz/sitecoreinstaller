@@ -1,6 +1,7 @@
 ﻿namespace SitecoreInstaller.Domain.Test.Pipelines
 {
     using System;
+    using System.Collections.Generic;
 
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
@@ -20,6 +21,11 @@
         //public void InvalidStepWithWrongParameters() { }
 
         public void NotAInstallStep() { }
+
+        public IEnumerable<IPrecondition> Preconditions
+        {
+            get { throw new NotImplementedException(); }
+        }
 
         public void Init()
         {

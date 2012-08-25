@@ -23,8 +23,8 @@
         public event EventHandler<PipelineEventArgs> AllStepsExecuting;
         public event EventHandler<PipelineEventArgs> AllStepsExecuted;
 
-        public event EventHandler<PipelineStepEventArgs> StepExecuting;
-        public event EventHandler<PipelineStepEventArgs> StepExecuted;
+        public event EventHandler<PipelineStepInfoEventArgs> StepExecuting;
+        public event EventHandler<PipelineStepInfoEventArgs> StepExecuted;
 
         public void RunPipeline(IPipelineRunner runner)
         {

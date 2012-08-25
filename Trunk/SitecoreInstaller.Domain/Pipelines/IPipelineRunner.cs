@@ -10,8 +10,8 @@ namespace SitecoreInstaller.Domain.Pipelines
         event EventHandler<PipelineEventArgs> AllStepsExecuting;
         event EventHandler<PipelineEventArgs> AllStepsExecuted;
 
-        event EventHandler<PipelineStepEventArgs> StepExecuting;
-        event EventHandler<PipelineStepEventArgs> StepExecuted;
+        event EventHandler<PipelineStepInfoEventArgs> StepExecuting;
+        event EventHandler<PipelineStepInfoEventArgs> StepExecuted;
 
         string ExecuteAllText { get; }
         void ExecuateAllSteps(object sender, EventArgs e);

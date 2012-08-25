@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-    public interface IPipelineProcessor<out T> where T : IPipeline
+    public interface IPipelinePreProcessor<out T> where T : IPipeline
     {
         T Pipeline { get; }
         bool IsInUiMode { get; set; }

@@ -12,6 +12,7 @@ namespace SitecoreInstaller.App.Pipelines
     using System.Windows.Forms;
     using System.Xml.Linq;
 
+    using SitecoreInstaller.App.Pipelines.Preconditions;
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.Website;
     using SitecoreInstaller.Framework.Diagnostics;
@@ -23,71 +24,19 @@ namespace SitecoreInstaller.App.Pipelines
         {
         }
 
-        [PipelinePrecondition]
-        public bool CheckProjectAlreadyExixts(string taskName = "")
+        public override void Init()
         {
-            if (Directory.Exists(AppSettings.WebsiteFolders.ProjectFolder.FullName))
-            {
-                Services.Dialogs.Information("Project '{0}' already exists.\r\nPlease delete first or choose anohter project name for this installation.\r\n\r\nLocation: {1}", AppSettings.ProjectName, AppSettings.WebsiteFolders.ProjectFolder);
-                return false;
-            }
-            return true;
-        }
+            base.Init();
+            var preconditions = new List<IPrecondition>
+                {
+                    new CheckSitecore(AppSettings),
+                    new CheckLicense(AppSettings),
+                    new CheckWritePermissionToHostFile(AppSettings),
+                    new CheckProjectExixts(AppSettings)
+                };
 
-        [PipelinePrecondition]
-        public bool CheckWritePermissionToHostFile(string taskName = "")
-        {
-
-            if (Services.HostFile.HasWritePermissions() == false)
-            {
-                Services.Dialogs.Information("SitecoreInstaller needs write permission to system host file. (Solve by running SitecoreInstaller as administrator)");
-                return false;
-            }
-            return true;
-        }
-
-        [PipelinePrecondition(Run = Run.OnlyInUi)]
-        public bool CheckSitecore(string taskName = "")
-        {
-            if (AppSettings.UserSelections.SelectedSitecore == null)
-            {
-                Services.Dialogs.Information("You haven't selected a Sitecore. Please add a Sitecore in preferences pane if you have none");
-                return false;
-            }
-            return true;
-        }
-
-        [PipelinePrecondition(Run = Run.OnlyInUi)]
-        public bool CheckLicense(string taskName = "")
-        {
-            if (AppSettings.UserSelections.SelectedLicense == null)
-            {
-                Services.Dialogs.Information("You haven't selected a License. Please add a license in preferences pane if you have none");
-                return false;
-            }
-
-            var licenseFileSourceEntry = AppSettings.UserSelections.SelectedLicense as LicenseFileSourceEntry;
-            if (licenseFileSourceEntry == null)
-                throw new TypeLoadException("Selected license was not of expected type. Something is completely wrong with program. Get your money back! :-)");
-
-            var licenseFile = licenseFileSourceEntry.LicenseFile;
-
-            if (licenseFile.IsExpired)
-            {
-                var errorMessage = string.Format("The selected license '{0}' has expired.\r\nPlease select another or upload a valid license.", licenseFileSourceEntry.Key);
-                Services.Dialogs.ModalDialog(MessageBoxIcon.Error, errorMessage, "License has expired");
-                Log.It.Error(errorMessage);
-                return false;
-            }
-
-            if (licenseFile.ExpiresWithin(UserSettings.Default.LicenseExpirationPeriodInDays))
-            {
-                var warningMessage = string.Format("Please mind, that the selected license '{0}' epxires in {1} days.", licenseFileSourceEntry.Key, licenseFile.ExpiresIn);
-                Services.Dialogs.Information(warningMessage);
-                Log.It.Warning(warningMessage);
-            }
-
-            return true;
+            preconditions.AddRange(Preconditions);
+            Preconditions = preconditions;
         }
 
         [Step(1)]
@@ -101,7 +50,7 @@ namespace SitecoreInstaller.App.Pipelines
         {
             var selectedSitecore = Services.BuildLibrary.Get(AppSettings.UserSelections.SelectedSitecore, SourceType.Sitecore);
             if (selectedSitecore is BuildLibraryDirectory == false)
-                throw new DirectoryNotFoundException("selectedSitecore was not of type BuildLibraryDirectory. Was:" + selectedSitecore.GetType());
+                throw new DirectoryNotFoundException("selected Sitecore was not of type BuildLibraryDirectory. Was:" + selectedSitecore.GetType());
             Services.Website.CopySitecoreToProjectfolder(AppSettings.WebsiteFolders, selectedSitecore as BuildLibraryDirectory);
         }
         [Step(3)]

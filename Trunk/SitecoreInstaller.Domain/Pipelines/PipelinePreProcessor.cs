@@ -9,9 +9,9 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     using SitecoreInstaller.Framework.Diagnostics;
 
-    public class PipelineProcessor<T> : IPipelineProcessor<T> where T : IPipeline
+    public class PipelinePreProcessor<T> : IPipelinePreProcessor<T> where T : IPipeline
     {
-        public PipelineProcessor(T pipeline)
+        public PipelinePreProcessor(T pipeline)
         {
             Pipeline = pipeline;
         }
@@ -19,15 +19,12 @@ namespace SitecoreInstaller.Domain.Pipelines
         public void Init()
         {
             Steps = GetSteps(Pipeline);
-            var preConditionMethodInfos = GetPreconditions<PipelinePreconditionAttribute>(Pipeline.GetType().GetMethods());
-            Preconditions = preConditionMethodInfos.Select(precondition => CreatePreconditionDelegate(Pipeline, precondition));
             PipelineName = Pipeline.GetType().Name;
         }
 
         public string PipelineName { get; private set; }
         public T Pipeline { get; private set; }
         public IEnumerable<ProfiledStep> Steps { get; private set; }
-        public IEnumerable<Func<string, bool>> Preconditions { get; private set; }
         public bool IsInUiMode { get; set; }
         public bool InitOnStepInvoke { get; set; }
 

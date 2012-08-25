@@ -3,53 +3,31 @@
 namespace SitecoreInstaller.App.Pipelines
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
-    using SitecoreInstaller.Framework.Diagnostics;
+    using SitecoreInstaller.App.Pipelines.Preconditions;
 
     public abstract class SitecoreInstallerPipeline : IPipeline
     {
-        private readonly Func<AppSettings> _getAppSettings;
+        public IEnumerable<IPrecondition> Preconditions { get; protected set; }
 
-        protected AppSettings AppSettings { get; private set; }
+        protected readonly Func<AppSettings> GetAppSettings;
 
-        public void GetAppSettings()
-        {
-            AppSettings = _getAppSettings();
-        }
+        public AppSettings AppSettings { get;private set; }
+
         protected SitecoreInstallerPipeline(Func<AppSettings> getAppSettings)
         {
             Contract.Requires<ArgumentNullException>(getAppSettings != null);
 
-            _getAppSettings = getAppSettings;
-            AppSettings = getAppSettings.Invoke();
+            GetAppSettings = getAppSettings;
         }
 
-        public void Init()
+        public virtual void Init()
         {
-            GetAppSettings();
-        }
-
-        [PipelinePrecondition(Run = Run.OnlyInUi)]
-        public bool CheckProjectNameIsSetUi(string taskName = "")
-        {
-            if (AppSettings.ProjectNameIsSet == false)
-            {
-                Services.Dialogs.Information("Please enter project name");
-                return false;
-            }
-            return true;
-        }
-        [PipelinePrecondition]
-        public bool CheckProjectNameIsSet(string taskName = "")
-        {
-            if (AppSettings.ProjectNameIsSet == false)
-            {
-                const string message = "'{0}' not executed because project name isn't set. Please set Project name";
-                Log.It.Error(message, taskName);
-                return false;
-            }
-            return true;
+            AppSettings = GetAppSettings();
+            var preconditions = new List<IPrecondition> { new CheckProjectNameIsSet(AppSettings) };
+            Preconditions = preconditions;
         }
     }
 }

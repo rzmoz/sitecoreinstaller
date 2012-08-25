@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-    public interface IPipeline
+    public interface IPrecondition
     {
-        IEnumerable<IPrecondition> Preconditions { get; }
-        void Init();
+        bool Evaluate(object sender, EventArgs args);
+        string ErrorMessage { get; }
     }
 }

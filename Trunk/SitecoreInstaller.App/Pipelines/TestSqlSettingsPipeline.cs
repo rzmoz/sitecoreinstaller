@@ -17,6 +17,11 @@ namespace SitecoreInstaller.App.Pipelines
         {
         }
 
+        public IEnumerable<IPrecondition> Preconditions
+        {
+            get { throw new NotImplementedException(); }
+        }
+
         public void Init()
         {
         }

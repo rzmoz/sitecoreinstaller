@@ -3,6 +3,10 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
+    using System.Collections.Generic;
+
+    using SitecoreInstaller.App.Pipelines.Preconditions;
+
     public class UninstallPipeline : SitecoreInstallerPipeline
     {
         public UninstallPipeline(Func<AppSettings> getAppSettings)
@@ -10,18 +14,17 @@ namespace SitecoreInstaller.App.Pipelines
         {
         }
 
-        public event EventHandler DeletedProjectFolder;
-
-        [PipelinePrecondition]
-        public bool CheckWritePermissionToHostFile(string taskName = "")
+        public override void Init()
         {
+            //Must Init base first to get appsettings!
+            base.Init();
+            var preconditions = new List<IPrecondition>
+                {
+                    new CheckWritePermissionToHostFile(AppSettings),
+                };
 
-            if (Services.HostFile.HasWritePermissions() == false)
-            {
-                Services.Dialogs.Information("SitecoreInstaller needs write permission to system host file. (Solve by running SitecoreInstaller as administrator)");
-                return false;
-            }
-            return true;
+            preconditions.AddRange(Preconditions);
+            Preconditions = preconditions;
         }
 
         [Step(1)]
@@ -61,8 +64,7 @@ namespace SitecoreInstaller.App.Pipelines
         public void DeleteProject(object sender, EventArgs e)
         {
             Services.Website.DeleteProjectFolder(AppSettings.WebsiteFolders.ProjectFolder);
-            if (DeletedProjectFolder != null)
-                DeletedProjectFolder(this, new EventArgs());
+            
         }
     }
 }
