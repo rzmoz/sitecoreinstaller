@@ -42,15 +42,17 @@ namespace SitecoreInstaller.UI.UserSettingsDialogs
             UserSettings.Default.Save();
         }
 
+        public AppSettings GetAppSettings()
+        {
+            var appSettings = new AppSettings();
+            appSettings.Init(UserSettings.Default);
+            return appSettings;
+        }
+
         public void btnTestSql_Click(object sender, EventArgs e)
         {
-            var sqlSettings = new SqlSettings
-            {
-                InstanceName = tbxSqlInstanceName.Text,
-                Login = tbxSqlUserId.Text,
-                Password = tbxSqlPassword.Text
-            };
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetSqlSettingsTest(sqlSettings));
+            BtnSaveClick();
+            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetSqlSettingsTest(GetAppSettings));
         }
     }
 }

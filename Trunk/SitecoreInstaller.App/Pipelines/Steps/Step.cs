@@ -17,9 +17,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps
 
         protected Step(Func<AppSettings> getAppSettings)
         {
-            if (getAppSettings == null) throw new ArgumentNullException("getAppSettings");
-            GetAppSettings = getAppSettings;
             ProtectedPreconditions = new List<IPrecondition>();
+            GetAppSettings = getAppSettings;
         }
 
         public int Order { get; set; }
@@ -29,7 +28,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps
 
         public void Invoke(object sender, EventArgs args)
         {
-            AppSettings = GetAppSettings();
+            if (GetAppSettings != null)
+                AppSettings = GetAppSettings();
 
             if (StepInvoking != null)
                 StepInvoking(this, EventArgs.Empty);

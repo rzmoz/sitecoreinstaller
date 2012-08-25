@@ -16,9 +16,6 @@ namespace SitecoreInstaller.App.Pipelines
             
             GetAppSettings = getAppSettings;
             AppSettings = GetAppSettings();
-
-            //Init Preconditions
-            AddPrecondition(new CheckProjectNameIsSet(getAppSettings));
         }
 
         protected readonly Func<AppSettings> GetAppSettings;

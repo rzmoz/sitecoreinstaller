@@ -102,6 +102,9 @@
     <Compile Include="Pipelines\Steps\Install\InstallRuntimeServices.cs" />
     <Compile Include="Pipelines\Steps\Install\SetConnectionStrings.cs" />
     <Compile Include="Pipelines\Steps\Install\SetDataFolder.cs" />
+    <Compile Include="Pipelines\Steps\Nothing\DoNothing.cs" />
+    <Compile Include="Pipelines\Steps\Nothing\DoNothingForAWhile.cs" />
+    <Compile Include="Pipelines\Steps\SqlConnection\TestDatabaseSettings.cs" />
     <Compile Include="Pipelines\Steps\Step.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\DeleteIisSiteAndAppPool.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\DeleteProject.cs" />

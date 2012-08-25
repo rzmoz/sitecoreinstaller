@@ -5,32 +5,14 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Net;
-    using System.Web;
-
-    using SitecoreInstaller.Framework.Diagnostics;
+    using SitecoreInstaller.App.Pipelines.Steps.Nothing;
 
     public class NothingPipeline : Pipeline
     {
-        public void DoNothing(object sender, EventArgs e)
+        public NothingPipeline()
         {
-            Log.It.Info("Starting doing nothing...");
-        }
-        
-        public void DoNothingForAWhile(object sender, EventArgs e)
-        {
-            for (var i = 0; i < 10; i++)
-                Log.It.Info("Logging...");
-            Log.It.Info("Pinging the world!...");
-            Thread.Sleep(200);
-            Log.It.Debug("Debugging the world!...");
-            Thread.Sleep(200);
-            Log.It.Warning("Warning the world!...");
-            Thread.Sleep(200);
-            Log.It.Error("Erroring the world!");
+            AddStep(new DoNothing(null));
+            AddStep(new DoNothingForAWhile(null));
         }
     }
 }

@@ -11,9 +11,9 @@ namespace SitecoreInstaller.App.Pipelines
 
     public class PipelineManager
     {
-        public PipelineRunner<TestSqlSettingsPipeline> GetSqlSettingsTest(SqlSettings sqlSettings)
+        public PipelineRunner<TestSqlSettingsPipeline> GetSqlSettingsTest(Func<AppSettings> getAppSettings)
         {
-            return GetPipelineRunner(new TestSqlSettingsPipeline(sqlSettings));
+            return GetPipelineRunner(new TestSqlSettingsPipeline(getAppSettings));
         }
 
         public PipelineRunner<InstallPipeline> GetInstaller(Func<AppSettings> getAppSettings)

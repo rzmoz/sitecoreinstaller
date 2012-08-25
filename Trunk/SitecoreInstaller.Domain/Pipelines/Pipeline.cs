@@ -19,10 +19,14 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         public void AddPrecondition(IPrecondition precondition)
         {
+            if (precondition == null)
+                return;
             _preconditions.Add(precondition);
         }
         public void AddStep(IStep step)
         {
+            if (step == null)
+                return;
             _steps.Add(step);
             step.Order = _steps.Count;
         }
