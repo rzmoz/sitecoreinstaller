@@ -5,6 +5,7 @@
 
     public class Profiler
     {
+
         private readonly Stopwatch _stopwatch;
         private readonly Action<object, EventArgs> _innerAction;
 

@@ -10,24 +10,45 @@ namespace SitecoreInstaller.App.Pipelines
 
     public abstract class SitecoreInstallerPipeline : IPipeline
     {
-        public IEnumerable<IPrecondition> Preconditions { get; protected set; }
-
-        protected readonly Func<AppSettings> GetAppSettings;
-
-        public AppSettings AppSettings { get;private set; }
+        private readonly IList<IPrecondition> _preconditions;
+        private readonly IList<IStep> _steps;
 
         protected SitecoreInstallerPipeline(Func<AppSettings> getAppSettings)
         {
             Contract.Requires<ArgumentNullException>(getAppSettings != null);
-
+            Name = GetType().Name;
+            _preconditions = new List<IPrecondition>();
+            _steps = new List<IStep>();
             GetAppSettings = getAppSettings;
         }
 
-        public virtual void Init()
+        public void Init()
         {
             AppSettings = GetAppSettings();
-            var preconditions = new List<IPrecondition> { new CheckProjectNameIsSet(AppSettings) };
-            Preconditions = preconditions;
+            _preconditions.Add(new CheckProjectNameIsSet(AppSettings));
+            InitPreconditions();
+            InitSteps();
         }
+
+        protected abstract void InitPreconditions();
+        protected abstract void InitSteps();
+
+        public void AddPrecondition(IPrecondition precondition)
+        {
+            _preconditions.Add(precondition);
+        }
+        public void AddStep(IStep step)
+        {
+            _steps.Add(step);
+        }
+
+        public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }
+
+        public string Name { get; private set; }
+        
+        public IEnumerable<IStep> Steps { get { return _steps; } }
+
+        protected readonly Func<AppSettings> GetAppSettings;
+        public AppSettings AppSettings { get; private set; }
     }
 }

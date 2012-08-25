@@ -6,6 +6,7 @@ using System.Text;
 namespace SitecoreInstaller.App.Pipelines
 {
     using SitecoreInstaller.App.Pipelines.Preconditions;
+    using SitecoreInstaller.App.Pipelines.Steps.Install;
     using SitecoreInstaller.Domain.Pipelines;
 
     public class ReAttachPipeline : SitecoreInstallerPipeline
@@ -15,34 +16,16 @@ namespace SitecoreInstaller.App.Pipelines
         {
         }
 
-        public override void Init()
+        protected override void InitPreconditions()
         {
-            base.Init();
-
-
-            var preconditions = new List<IPrecondition>();
-            preconditions.AddRange(Preconditions);//Add first, to have project name is set evaluated first!
-            preconditions.Add(new CheckWritePermissionToHostFile(AppSettings));
-            Preconditions = preconditions;
+            AddPrecondition(new CheckWritePermissionToHostFile(AppSettings));
         }
 
-
-        [Step(1)]
-        public void AttachDatabases(object sender, EventArgs e)
+        protected override void InitSteps()
         {
-            var databases = Services.Sql.GetDatabases(AppSettings.WebsiteFolders.DatabaseFolder, AppSettings.ProjectName.Value);
-            foreach (var sqlDatabase in databases)
-                sqlDatabase.Attach(AppSettings.Sql);
-        }
-        [Step(2)]
-        public void AddSiteNameToHostFile(object sender, EventArgs e)
-        {
-            Services.HostFile.AddHostName(AppSettings.IisSiteName);
-        }
-        [Step(3)]
-        public void CreateIisSiteAndAppPool(object sender, EventArgs e)
-        {
-            Services.IisManagement.CreateApplication(AppSettings.AppPool, AppSettings.WebsiteFolders.WebSiteFolder, AppSettings.WebsiteFolders.IisLogFilesFolder);
+            AddStep(new AttachDatabases(AppSettings));
+            AddStep(new AddSitenameToHostFile(AppSettings));
+            AddStep(new CreateIisSiteAndAppPool(AppSettings));
         }
     }
 }

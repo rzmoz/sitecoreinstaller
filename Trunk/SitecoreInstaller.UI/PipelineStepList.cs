@@ -21,7 +21,7 @@ namespace SitecoreInstaller.UI
             InitializeComponent();
         }
 
-        private int VerticalPosition(Step step)
+        private int VerticalPosition(IStep step)
         {
             var verticalPosition = 0;
             if (step.Order == 1)
@@ -38,19 +38,19 @@ namespace SitecoreInstaller.UI
 
         private void RenderSteps<T>(PipelineRunner<T> pipelineRunner) where T : class,IPipeline
         {
-            foreach (var installStep in pipelineRunner.Processor.Steps)
+            foreach (var step in pipelineRunner.Processor.Pipeline.Steps)
             {
                 var button = new Button();
                 SuspendLayout();
 
-                button.Location = new Point(0, VerticalPosition(installStep));
-                button.Name = string.Format("btn{0}", installStep.ActionName);
+                button.Location = new Point(0, VerticalPosition(step));
+                button.Name = string.Format("btn{0}", step.GetType().Name);
                 button.Size = new Size(_ButtonWidth, _ButtonHeight);
                 button.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                button.TabIndex = installStep.Order;
-                button.Text = string.Format("{0}.{1}", installStep.Order, installStep.Text);
+                button.TabIndex = step.Order;
+                button.Text = string.Format("{0}.{1}", step.Order, step.GetType().Name);
                 button.UseVisualStyleBackColor = true;
-                button.Click += installStep.Invoke;
+                button.Click += step.Invoke;
                 Controls.Add(button);
             }
         }

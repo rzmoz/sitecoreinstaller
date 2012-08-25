@@ -151,6 +151,7 @@
     <Compile Include="Database\ConnectionStringFormats.cs" />
     <Compile Include="Database\SqlDatabase.cs" />
     <Compile Include="Pipelines\IPrecondition.cs" />
+    <Compile Include="Pipelines\IStep.cs" />
     <Compile Include="Pipelines\PipelineStepEventArgs.cs" />
     <Compile Include="Website\DataProviderType.cs" />
     <Compile Include="Website\WffmConfigFile.cs" />
@@ -167,8 +168,6 @@
     <Compile Include="Pipelines\IPipelineRunner.cs" />
     <Compile Include="Pipelines\PipelineEventArgs.cs" />
     <Compile Include="Pipelines\PreconditionAttribute.cs" />
-    <Compile Include="Pipelines\ProfiledStep.cs" />
-    <Compile Include="Pipelines\Step.cs" />
     <Compile Include="Pipelines\StepAttribute.cs" />
     <Compile Include="Pipelines\StepComparer.cs" />
     <Compile Include="Pipelines\StepPreconditionAttribute.cs" />

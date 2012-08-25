@@ -15,6 +15,16 @@ namespace SitecoreInstaller.App.Pipelines
 
     public class NothingPipeline : IPipeline
     {
+        public string Name
+        {
+            get { return GetType().Name; }
+        }
+
+        public IEnumerable<IStep> Steps
+        {
+            get { return Enumerable.Empty<IStep>(); }
+        }
+
         public IEnumerable<IPrecondition> Preconditions
         {
             get { return Enumerable.Empty<IPrecondition>(); }
@@ -22,7 +32,9 @@ namespace SitecoreInstaller.App.Pipelines
 
         public void Init()
         {
+            throw new NotImplementedException();
         }
+
         [Step(1, Run = Run.OnlyInUi)]
         public void DoNothing(object sender, EventArgs e)
         {

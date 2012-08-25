@@ -36,7 +36,6 @@ namespace SitecoreInstaller.Domain.Pipelines
             Log.It.Clear();
             ExecuteAllText = executeAllText;
             Processor = new PipelinePreProcessor<T>(pipeline);
-            Processor.Init();
             Processor.IsInUiMode = true;
             _execuateAllStepsProfiler = new Profiler("Executing all steps in " + Processor.Pipeline.GetType().GetStepText(), InnerExecuteAllSteps);
             _execuateAllStepsProfiler.ActionProfiled += Log.It.Profile;
@@ -48,7 +47,7 @@ namespace SitecoreInstaller.Domain.Pipelines
             if (AllStepsPreconditionsAreMet())
             {
                 if (AllStepsExecuting != null)
-                    AllStepsExecuting(sender, new PipelineEventArgs(Processor.PipelineName, PipelineStatus.NoErrors));
+                    AllStepsExecuting(sender, new PipelineEventArgs(Processor.Pipeline.Name, PipelineStatus.NoErrors));
 
                 _execuateAllStepsProfiler.Run(sender, e);
 
@@ -63,7 +62,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                     pipelineStatus = PipelineStatus.SoftErrors;
 
                 if (AllStepsExecuted != null)
-                    AllStepsExecuted(sender, new PipelineEventArgs(Processor.PipelineName, pipelineStatus, results.ToArray()));
+                    AllStepsExecuted(sender, new PipelineEventArgs(Processor.Pipeline.Name, pipelineStatus, results.ToArray()));
             }
 
             //we clear listeners here since we don't want old listeners to hang around
@@ -75,7 +74,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         private bool AllStepsPreconditionsAreMet()
         {
-            Log.It.Info("Evaluating pipeline preconditions for {0}", Processor.PipelineName);
+            Log.It.Info("Evaluating pipeline preconditions for {0}", Processor.Pipeline.Name);
 
             foreach (var precondition in Processor.Pipeline.Preconditions)
             {
@@ -96,15 +95,15 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         private void InnerExecuteAllSteps(object sender, EventArgs e)
         {
-            var totalCount = Processor.Steps.Count();
-            foreach (var installStep in Processor.Steps)
+            var totalCount = Processor.Pipeline.Steps.Count();
+            foreach (var step in Processor.Pipeline.Steps)
             {
-                var args = new PipelineStepInfoEventArgs(installStep.Order, totalCount, installStep.Text);
+                var args = new PipelineStepInfoEventArgs(step.Order, totalCount, step.GetType().Name);
                 if (StepExecuting != null)
-                    StepExecuting(installStep, args);
-                installStep.Invoke(sender, e);
+                    StepExecuting(step, args);
+                step.Invoke(sender, e);
                 if (StepExecuted != null)
-                    StepExecuted(installStep, args);
+                    StepExecuted(step, args);
             }
 
             //we clear listeners here since we don't want old listeners to hang around

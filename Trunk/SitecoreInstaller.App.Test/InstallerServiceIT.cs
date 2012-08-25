@@ -25,7 +25,7 @@ namespace SitecoreInstaller.App.Test
         [Test]
         public void Ctor_InitInstallSteps_InstallStepsAreFound()
         {
-            var installationSteps = _installerService.Processor.Steps;
+            var installationSteps = _installerService.Processor.Pipeline.Steps;
 
             installationSteps.Should().HaveCount(16);
         }

@@ -10,6 +10,5 @@ namespace SitecoreInstaller.Domain.Pipelines
         T Pipeline { get; }
         bool IsInUiMode { get; set; }
         bool InitOnStepInvoke { get; set; }
-        IEnumerable<ProfiledStep> Steps { get; }
     }
 }

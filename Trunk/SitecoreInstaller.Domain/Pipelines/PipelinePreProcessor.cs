@@ -16,20 +16,14 @@ namespace SitecoreInstaller.Domain.Pipelines
             Pipeline = pipeline;
         }
 
-        public void Init()
-        {
-            Steps = GetSteps(Pipeline);
-            PipelineName = Pipeline.GetType().Name;
-        }
-
-        public string PipelineName { get; private set; }
+        
         public T Pipeline { get; private set; }
-        public IEnumerable<ProfiledStep> Steps { get; private set; }
         public bool IsInUiMode { get; set; }
         public bool InitOnStepInvoke { get; set; }
-
-        private IEnumerable<ProfiledStep> GetSteps(object installerService)
+        /*
+        private IEnumerable<ProfiledStep> GetSteps(T installerService)
         {
+
             var methods = installerService.GetType().GetMethods();
 
             var stepMethods = methods.Where(method => method.HasAttribute<StepAttribute>() && (ShouldApplyPrecondition(method.GetAttribute<StepAttribute>().Run) || method.GetAttribute<StepAttribute>().Run == Run.Always)).ToList();
@@ -47,7 +41,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                 yield return profiledStep;
             }
         }
-
+        */
         void ProfiledStepInvoking(object sender, EventArgs e)
         {
             if (InitOnStepInvoke == false)
