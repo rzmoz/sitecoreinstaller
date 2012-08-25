@@ -33,14 +33,15 @@
             this.tbxInfo = new System.Windows.Forms.TextBox();
             this.lblStatusMessage = new System.Windows.Forms.Label();
             this.pgbStatus = new System.Windows.Forms.ProgressBar();
+            this.tbxMessages = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cmdOk
             // 
             this.cmdOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdOk.Location = new System.Drawing.Point(225, 225);
+            this.cmdOk.Location = new System.Drawing.Point(287, 224);
             this.cmdOk.Name = "cmdOk";
-            this.cmdOk.Size = new System.Drawing.Size(150, 50);
+            this.cmdOk.Size = new System.Drawing.Size(90, 50);
             this.cmdOk.TabIndex = 16;
             this.cmdOk.Text = "Ok";
             this.cmdOk.UseVisualStyleBackColor = true;
@@ -67,6 +68,7 @@
             this.tbxInfo.ReadOnly = true;
             this.tbxInfo.Size = new System.Drawing.Size(350, 20);
             this.tbxInfo.TabIndex = 14;
+            this.tbxInfo.TabStop = false;
             // 
             // lblStatusMessage
             // 
@@ -90,6 +92,19 @@
             this.pgbStatus.Size = new System.Drawing.Size(350, 20);
             this.pgbStatus.TabIndex = 12;
             // 
+            // tbxMessages
+            // 
+            this.tbxMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxMessages.Location = new System.Drawing.Point(29, 78);
+            this.tbxMessages.Multiline = true;
+            this.tbxMessages.Name = "tbxMessages";
+            this.tbxMessages.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbxMessages.Size = new System.Drawing.Size(348, 140);
+            this.tbxMessages.TabIndex = 17;
+            this.tbxMessages.TabStop = false;
+            // 
             // PipelineProgress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -99,6 +114,7 @@
             this.Controls.Add(this.tbxInfo);
             this.Controls.Add(this.lblStatusMessage);
             this.Controls.Add(this.pgbStatus);
+            this.Controls.Add(this.tbxMessages);
             this.Name = "PipelineProgress";
             this.Size = new System.Drawing.Size(400, 300);
             this.ResumeLayout(false);
@@ -113,6 +129,7 @@
         private System.Windows.Forms.TextBox tbxInfo;
         private System.Windows.Forms.Label lblStatusMessage;
         private System.Windows.Forms.ProgressBar pgbStatus;
+        private System.Windows.Forms.TextBox tbxMessages;
 
 
     }

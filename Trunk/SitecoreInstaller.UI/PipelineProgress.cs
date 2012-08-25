@@ -29,6 +29,8 @@ namespace SitecoreInstaller.UI
                     lblTitle.Text = e.PipelineName;
                     pgbStatus.Visible = true;
                     cmdOk.Visible = false;
+                    tbxInfo.Visible = true;
+                    tbxMessages.Visible = false;
                 });
         }
         public void Ended(object sender, PipelineEventArgs e)
@@ -37,11 +39,17 @@ namespace SitecoreInstaller.UI
                 {
                     pgbStatus.Visible = false;
                     cmdOk.Visible = true;
-                    lblTitle.Text += " finished";
+                    tbxInfo.Visible = false;
+                    tbxMessages.Visible = true;
 
                     lblStatusMessage.Text = "Finished with "
                                             + e.Status.ToString().TokenizeWhenCharIsUpper().ToDelimiteredString();
-                    tbxInfo.Text = string.Empty;
+
+                    tbxMessages.Text = "";
+
+                    foreach (var logEntry in e.Messages)
+                        tbxMessages.Text += string.Format("{0}\r\n", logEntry.Message);
+                    
                     cmdOk.Focus();
                 });
         }
