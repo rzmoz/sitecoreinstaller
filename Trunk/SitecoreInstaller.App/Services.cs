@@ -1,8 +1,5 @@
 ﻿using System.IO;
 using System.Linq;
-using System.Xml.Linq;
-
-
 
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Domain.Database;
@@ -10,8 +7,6 @@ using SitecoreInstaller.Domain.Projects;
 using SitecoreInstaller.Domain.WebServer;
 using SitecoreInstaller.Domain.Website;
 using SitecoreInstaller.Framework.Configuration;
-using SitecoreInstaller.Framework.IO;
-
 using SitecoreInstaller.Framework.System;
 
 namespace SitecoreInstaller.App
@@ -21,7 +16,6 @@ namespace SitecoreInstaller.App
     using SitecoreInstaller.App.Pipelines;
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.Pipelines;
-    using SitecoreInstaller.Framework.Diagnostics;
 
     //TODO: replace with Unity some day maybe?
     public static class Services

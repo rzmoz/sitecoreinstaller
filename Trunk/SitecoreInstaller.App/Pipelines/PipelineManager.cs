@@ -1,44 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SitecoreInstaller.Domain.Pipelines;
+﻿using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-    using SitecoreInstaller.Domain.Database;
-    using SitecoreInstaller.Framework.Diagnostics;
-
     public class PipelineManager
     {
-        public PipelineRunner<TestSqlSettingsPipeline> GetSqlSettingsTest()
+        public void Run<T>() where T : class,IPipeline, new()
         {
-            return GetPipelineRunner(new TestSqlSettingsPipeline());
+            Services.PipelineWorker.RunPipeline(Get<T>());
         }
 
-        public PipelineRunner<InstallPipeline> GetInstaller()
+        public PipelineRunner<T> Get<T>() where T : class,IPipeline, new()
         {
-            return GetPipelineRunner(new InstallPipeline());
-        }
-
-        public PipelineRunner<UninstallPipeline> GetUnInstaller()
-        {
-            return GetPipelineRunner(new UninstallPipeline());
-        }
-
-        public PipelineRunner<ReAttachPipeline> GetReAttach()
-        {
-            return GetPipelineRunner(new ReAttachPipeline());
-        }
-
-        public PipelineRunner<NothingPipeline> GetNoting()
-        {
-            return GetPipelineRunner(new NothingPipeline());
-        }
-
-        private PipelineRunner<T> GetPipelineRunner<T>(T pipeline) where T : class,IPipeline
-        {
-            return new PipelineRunner<T>(pipeline);
+            return new PipelineRunner<T>(new T());
         }
     }
 }

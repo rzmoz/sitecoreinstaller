@@ -5,6 +5,7 @@
     using System.Windows.Forms;
 
     using SitecoreInstaller.App;
+    using SitecoreInstaller.App.Pipelines;
     using SitecoreInstaller.App.Properties;
 
     public partial class UninstallSimple : UserControl
@@ -42,7 +43,7 @@
             else
             {
                 Services.AppSettings = GetAppSettings();
-                Services.PipelineWorker.RunPipeline(Services.Pipelines.GetUnInstaller());
+                Services.Pipelines.Run<UninstallPipeline>();
             }
                 
         }

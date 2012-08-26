@@ -10,6 +10,7 @@ using System.Windows.Forms;
 namespace SitecoreInstaller.UI.UserSettingsDialogs
 {
     using SitecoreInstaller.App;
+    using SitecoreInstaller.App.Pipelines;
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.Database;
 
@@ -53,7 +54,7 @@ namespace SitecoreInstaller.UI.UserSettingsDialogs
         {
             BtnSaveClick();
             Services.AppSettings = GetAppSettings();
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetSqlSettingsTest());
+            Services.Pipelines.Run<TestSqlSettingsPipeline>();
         }
     }
 }

@@ -4,6 +4,7 @@ using SitecoreInstaller.App;
 
 namespace SitecoreInstallerConsole.Runners
 {
+    using SitecoreInstaller.App.Pipelines;
     using SitecoreInstaller.Domain.Pipelines;
 
     public class UnInstallRunner : ConsolePipelineRunner
@@ -23,7 +24,7 @@ namespace SitecoreInstallerConsole.Runners
 
             var projectName = Args[1];
             Services.AppSettings.ProjectName.Value = projectName;
-            var pipeline = Services.Pipelines.GetInstaller();
+            var pipeline = Services.Pipelines.Get<InstallPipeline>();
             pipeline.Pipeline.IsInUiMode = false;
             pipeline.ExecuateAllSteps(this, new EventArgs());
         }

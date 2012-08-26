@@ -4,6 +4,7 @@ using System.Windows.Forms;
 namespace SitecoreInstaller
 {
     using SitecoreInstaller.App;
+    using SitecoreInstaller.App.Pipelines;
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
@@ -187,7 +188,7 @@ namespace SitecoreInstaller
 
         private void doNothingToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetNoting());
+            Services.Pipelines.Run<NothingPipeline>();
         }
 
         private void openSitecoreToolStripMenuItem_Click(object sender, EventArgs e)

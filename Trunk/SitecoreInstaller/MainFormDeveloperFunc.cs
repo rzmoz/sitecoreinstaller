@@ -8,6 +8,7 @@ namespace SitecoreInstaller
     using System.Windows.Forms;
 
     using SitecoreInstaller.App;
+    using SitecoreInstaller.App.Pipelines;
 
     internal class MainFormDeveloperFunc : MainFormFunc
     {
@@ -40,13 +41,13 @@ namespace SitecoreInstaller
         public override void Install(object sender, EventArgs e)
         {
             Services.AppSettings = MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings();
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetInstaller());
+            Services.Pipelines.Run<InstallPipeline>();
         }
 
         public override void Uninstall(object sender, EventArgs e)
         {
             Services.AppSettings = MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings();
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetUnInstaller());
+            Services.Pipelines.Run<UninstallPipeline>();
         }
 
         public override void KeyUp(object sender, KeyEventArgs e)

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 namespace SitecoreInstaller.UI
 {
     using SitecoreInstaller.App;
+    using SitecoreInstaller.App.Pipelines;
 
     public partial class PipelineLists : UserControl
     {
@@ -23,30 +24,30 @@ namespace SitecoreInstaller.UI
         public void Init(Func<AppSettings> getAppSettings)
         {
             _getAppSettings = getAppSettings;
-            var installer = Services.Pipelines.GetInstaller();
+            var installer = Services.Pipelines.Get<InstallPipeline>();
             pipelineStepListInstall.Init(installer);
-            var unInstaller = Services.Pipelines.GetUnInstaller();
+            var unInstaller = Services.Pipelines.Get<UninstallPipeline>();
             pipelineStepListUninstall.Init(unInstaller);
-            var reAttacher = Services.Pipelines.GetReAttach();
+            var reAttacher = Services.Pipelines.Get<ReAttachPipeline>();
             pipelineStepListReAttach.Init(reAttacher);
         }
 
         private void btnInstall_Click(object sender, EventArgs e)
         {
             Services.AppSettings = _getAppSettings();
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetInstaller());
+            Services.Pipelines.Run<InstallPipeline>();
         }
 
         private void btnUninstall_Click(object sender, EventArgs e)
         {
             Services.AppSettings = _getAppSettings();
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetUnInstaller());
+            Services.Pipelines.Run<UninstallPipeline>();
         }
 
         private void btnReAttach_Click(object sender, EventArgs e)
         {
             Services.AppSettings = _getAppSettings();
-            Services.PipelineWorker.RunPipeline(Services.Pipelines.GetReAttach());
+            Services.Pipelines.Run<ReAttachPipeline>();
         }
     }
 }

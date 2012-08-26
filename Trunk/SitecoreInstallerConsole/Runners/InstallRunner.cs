@@ -9,6 +9,7 @@ using SitecoreInstaller.Domain.WebServer;
 
 namespace SitecoreInstallerConsole.Runners
 {
+    using SitecoreInstaller.App.Pipelines;
     using SitecoreInstaller.Domain.Pipelines;
 
     public class InstallRunner : ConsolePipelineRunner
@@ -54,7 +55,7 @@ namespace SitecoreInstallerConsole.Runners
                 Services.AppSettings.UserSelections.SelectedLicense = new SourceEntry(license, string.Empty);
             Services.AppSettings.UserSelections.SelectedModules = selectedModules;
 
-            var pipeline = Services.Pipelines.GetInstaller();
+            var pipeline = Services.Pipelines.Get<InstallPipeline>();
             pipeline.Pipeline.IsInUiMode = false;
             pipeline.ExecuateAllSteps(this, new EventArgs());
         }
