@@ -1,13 +1,13 @@
-﻿namespace SitecoreInstaller
+﻿namespace SitecoreInstaller.UI.UserSettingsDialogs
 {
-    partial class FrmUserSettings
+    partial class StepWizardDialog
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,38 +20,41 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUserSettings));
+            this.lblMarker = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // FrmUserSettings
+            // lblMarker
+            // 
+            this.lblMarker.AutoSize = true;
+            this.lblMarker.Location = new System.Drawing.Point(24, 23);
+            this.lblMarker.Name = "lblMarker";
+            this.lblMarker.Size = new System.Drawing.Size(127, 13);
+            this.lblMarker.TabIndex = 0;
+            this.lblMarker.Text = "StepWizardDialog marker";
+            // 
+            // StepWizardDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(401, 300);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FrmUserSettings";
-            this.Text = "User Settings";
+            this.Controls.Add(this.lblMarker);
+            this.Name = "StepWizardDialog";
+            this.Size = new System.Drawing.Size(400, 300);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-
-
-
+        private System.Windows.Forms.Label lblMarker;
     }
 }

@@ -57,8 +57,9 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.mainDeveloper1 = new SitecoreInstaller.UI.Developer.MainDeveloper();
-            this.pipelineStatus1 = new SitecoreInstaller.UI.PipelineProgress();
+            this.pipelineProgress1 = new SitecoreInstaller.UI.PipelineProgress();
             this.mainSimple1 = new SitecoreInstaller.UI.Simple.MainSimple();
+            this.stepWizardDialog1 = new SitecoreInstaller.UI.UserSettingsDialogs.StepWizardDialog();
             this.logger1 = new SitecoreInstaller.UI.Logger();
             this.menuStrip1.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -275,8 +276,9 @@
             this.pnlMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMain.Controls.Add(this.mainDeveloper1);
-            this.pnlMain.Controls.Add(this.pipelineStatus1);
+            this.pnlMain.Controls.Add(this.pipelineProgress1);
             this.pnlMain.Controls.Add(this.mainSimple1);
+            this.pnlMain.Controls.Add(this.stepWizardDialog1);
             this.pnlMain.Location = new System.Drawing.Point(0, 24);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(400, 400);
@@ -285,26 +287,33 @@
             // mainDeveloper1
             // 
             this.mainDeveloper1.BackColor = System.Drawing.Color.White;
-            this.mainDeveloper1.Location = new System.Drawing.Point(172, 333);
+            this.mainDeveloper1.Location = new System.Drawing.Point(12, 222);
             this.mainDeveloper1.Name = "mainDeveloper1";
-            this.mainDeveloper1.Size = new System.Drawing.Size(400, 364);
+            this.mainDeveloper1.Size = new System.Drawing.Size(288, 154);
             this.mainDeveloper1.TabIndex = 6;
             // 
-            // pipelineStatus1
+            // pipelineProgress1
             // 
-            this.pipelineStatus1.BackColor = System.Drawing.Color.White;
-            this.pipelineStatus1.Location = new System.Drawing.Point(-1, 157);
-            this.pipelineStatus1.Name = "pipelineStatus1";
-            this.pipelineStatus1.Size = new System.Drawing.Size(400, 170);
-            this.pipelineStatus1.TabIndex = 5;
+            this.pipelineProgress1.BackColor = System.Drawing.Color.White;
+            this.pipelineProgress1.Location = new System.Drawing.Point(37, 18);
+            this.pipelineProgress1.Name = "pipelineProgress1";
+            this.pipelineProgress1.Size = new System.Drawing.Size(284, 164);
+            this.pipelineProgress1.TabIndex = 5;
             // 
             // mainSimple1
             // 
             this.mainSimple1.BackColor = System.Drawing.Color.White;
-            this.mainSimple1.Location = new System.Drawing.Point(235, 57);
+            this.mainSimple1.Location = new System.Drawing.Point(203, 36);
             this.mainSimple1.Name = "mainSimple1";
-            this.mainSimple1.Size = new System.Drawing.Size(400, 190);
+            this.mainSimple1.Size = new System.Drawing.Size(197, 146);
             this.mainSimple1.TabIndex = 3;
+            // 
+            // stepWizardDialog1
+            // 
+            this.stepWizardDialog1.Location = new System.Drawing.Point(28, 53);
+            this.stepWizardDialog1.Name = "stepWizardDialog1";
+            this.stepWizardDialog1.Size = new System.Drawing.Size(400, 300);
+            this.stepWizardDialog1.TabIndex = 7;
             // 
             // logger1
             // 
@@ -359,7 +368,7 @@
         private System.Windows.Forms.ToolStripMenuItem openFrontendToolStripMenuItem;
         private System.Windows.Forms.Panel pnlMain;
         private MainDeveloper mainDeveloper1;
-        private UI.PipelineProgress pipelineStatus1;
+        private UI.PipelineProgress pipelineProgress1;
         private MainSimple mainSimple1;
         private UI.Logger logger1;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
@@ -372,5 +381,6 @@
         private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem urlPostfixToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showLogToolStripMenuItem;
+        private UI.UserSettingsDialogs.StepWizardDialog stepWizardDialog1;
     }
 }

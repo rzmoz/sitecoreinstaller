@@ -16,10 +16,7 @@ namespace SitecoreInstaller
 
     public partial class FrmMain : Form
     {
-        private FrmUserSettings FrmUserSettings { get; set; }
-
         private MainFormFunc _mainFormFunc;
-
         internal Panel PanelMain { get { return pnlMain; } }
         internal Logger Logger { get { return logger1; } }
         internal MainDeveloper MainDeveloper { get { return mainDeveloper1; } }
@@ -38,8 +35,8 @@ namespace SitecoreInstaller
             InitMenuItems();
 
             InitPipelineWorker();
-            InitPipelineStatus();
-            InitUserSettings();//must be initialized before logger
+            InitPipelineProgress();
+            InitStepWizard();
             InitLogger();
 
             InitMainDeveloper();
@@ -53,19 +50,18 @@ namespace SitecoreInstaller
             useDeveloperLayoutToolStripMenuItem.Checked = UiUserSettings.Default.UseDeveloperMode;
         }
 
-        private void InitUserSettings()
+        private void InitStepWizard()
         {
-            FrmUserSettings = new FrmUserSettings();
-            FrmUserSettings.Init();
+            stepWizardDialog1.Dock = DockStyle.Fill;
+            stepWizardDialog1.Init();
+            stepWizardDialog1.Hide();
 
             if (UserSettings.Default.PromptForUserSettings)
             {
-                FrmUserSettings.StepWizard.Start();
-                FrmUserSettings.ShowDialog();
+                stepWizardDialog1.Start();
             }
-            else
-                FrmUserSettings.Hide();
         }
+
 
         void PipelineWorker_WorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
@@ -97,19 +93,18 @@ namespace SitecoreInstaller
             mainDeveloper1.Hide();
         }
 
-        private void InitPipelineStatus()
+        private void InitPipelineProgress()
         {
-            pipelineStatus1.Dock = DockStyle.Fill;
-            pipelineStatus1.BringToFront();
-            pipelineStatus1.Hide();
-            pipelineStatus1.Init();
+            pipelineProgress1.Dock = DockStyle.Fill;
+            pipelineProgress1.Hide();
+            pipelineProgress1.Init();
         }
 
         private void InitPipelineWorker()
         {
             Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
-            Services.PipelineWorker.AllStepsExecuting += pipelineStatus1.Starting;
-            Services.PipelineWorker.AllStepsExecuted += pipelineStatus1.Ended;
+            Services.PipelineWorker.AllStepsExecuting += pipelineProgress1.Starting;
+            Services.PipelineWorker.AllStepsExecuted += pipelineProgress1.Ended;
             Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
             Services.PipelineWorker.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
         }
@@ -118,8 +113,8 @@ namespace SitecoreInstaller
         {
             this.CrossThreadSafe(() =>
             {
-                pipelineStatus1.BringToFront();
-                pipelineStatus1.Show();
+                pipelineProgress1.BringToFront();
+                pipelineProgress1.Show();
             });
         }
 
@@ -208,45 +203,38 @@ namespace SitecoreInstaller
 
         private void sqlSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmUserSettings.StepWizard.Show(UserSettingsStep.Sql);
-            FrmUserSettings.ShowDialog();
+            stepWizardDialog1.Show(UserSettingsStep.Sql);
         }
 
         private void projectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmUserSettings.StepWizard.Show(UserSettingsStep.ProjectFolder);
-            FrmUserSettings.ShowDialog();
+            stepWizardDialog1.Show(UserSettingsStep.ProjectFolder);
         }
 
         private void sitecoreStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmUserSettings.StepWizard.Show(UserSettingsStep.Sitecore);
-            FrmUserSettings.ShowDialog();
+            stepWizardDialog1.Show(UserSettingsStep.Sitecore);
         }
 
 
         private void licenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmUserSettings.StepWizard.Show(UserSettingsStep.License);
-            FrmUserSettings.ShowDialog();
+            stepWizardDialog1.Show(UserSettingsStep.License);
         }
 
         private void settingsWizardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmUserSettings.StepWizard.Start();
-            FrmUserSettings.ShowDialog();
+            stepWizardDialog1.Start();
         }
 
         private void buildLibraryFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmUserSettings.StepWizard.Show(UserSettingsStep.BuildLibraryFolder);
-            FrmUserSettings.ShowDialog();
+            stepWizardDialog1.Show(UserSettingsStep.BuildLibraryFolder);
         }
 
         private void urlPostfixToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmUserSettings.StepWizard.Show(UserSettingsStep.UrlPostfix);
-            FrmUserSettings.ShowDialog();
+            stepWizardDialog1.Show(UserSettingsStep.UrlPostfix);
         }
 
         private void showLogToolStripMenuItem_Click(object sender, EventArgs e)

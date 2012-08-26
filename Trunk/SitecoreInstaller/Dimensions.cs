@@ -11,8 +11,8 @@ namespace SitecoreInstaller
         internal const int MenuFormOffsetHeight = 62;
         internal const int MenuFormOffsetWidth = 11;
         internal const int DialogOffsetHeight = 25;
-        internal const int MainSimpleHeight = 250;
-        internal const int MainSimpleWidth = 300;
+        internal const int MainSimpleHeight = 300;
+        internal const int MainSimpleWidth = 400;
         internal const int MainDeveloperHeight = 342;
         internal const int MainDeveloperWidth = 605;
     }

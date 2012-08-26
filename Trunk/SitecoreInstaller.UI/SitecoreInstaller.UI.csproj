@@ -226,6 +226,12 @@
       <DependentUpon>SqlSettingsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UserSettingsDialogs\StepWizard.cs" />
+    <Compile Include="UserSettingsDialogs\StepWizardDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserSettingsDialogs\StepWizardDialog.Designer.cs">
+      <DependentUpon>StepWizardDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserSettingsDialogs\UrlPostfixDialog.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -315,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserSettingsDialogs\SqlSettingsDialog.resx">
       <DependentUpon>SqlSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserSettingsDialogs\StepWizardDialog.resx">
+      <DependentUpon>StepWizardDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserSettingsDialogs\UrlPostfixDialog.resx">
       <DependentUpon>UrlPostfixDialog.cs</DependentUpon>

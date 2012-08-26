@@ -53,9 +53,10 @@ namespace SitecoreInstaller.UI.UserSettingsDialogs
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            if (ParentForm == null)
+            if (Parent == null)
                 return;
-            ParentForm.Close();
+            Parent.SendToBack();
+            Parent.Hide();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
