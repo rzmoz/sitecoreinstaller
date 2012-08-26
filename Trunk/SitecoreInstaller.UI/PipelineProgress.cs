@@ -21,7 +21,7 @@ namespace SitecoreInstaller.UI
 
         public void Init()
         {
-            Log.It.EntryLogged += UpdateInfo;
+            Log.ItAs.EntryLogged += UpdateInfo;
             Services.PipelineWorker.StepExecuting += UpdateStatus;
         }
 

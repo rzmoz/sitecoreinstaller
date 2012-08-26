@@ -42,14 +42,14 @@ namespace SitecoreInstaller.Domain.Database
             }
             catch (Exception e)
             {
-                Log.It.Debug(e.ToString());
-                Log.It.Error(e.Message);
+                Log.ItAs.Debug(e.ToString());
+                Log.ItAs.Error(e.Message);
             }
         }
 
         public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, DirectoryInfo databaseFolder, string projectName, IEnumerable<string> existingConnectionStrings)
         {
-            Log.It.Info("Generating connection string delta...");
+            Log.ItAs.Info("Generating connection string delta...");
             var databases =  GetDatabases(databaseFolder, projectName);
             var connectionStringNames = databases.Select(db => db.LogicalName).AsUniqueStrings();
             var connectionStringEntries = string.Empty;
@@ -63,7 +63,7 @@ namespace SitecoreInstaller.Domain.Database
             }
 
             var connectionStringDelta = string.Format(ConnectionStringFormats.ConnectionStringDotConfigDelta, connectionStringEntries);
-            Log.It.Debug(connectionStringDelta);
+            Log.ItAs.Debug(connectionStringDelta);
             return connectionStringDelta;
         }
 

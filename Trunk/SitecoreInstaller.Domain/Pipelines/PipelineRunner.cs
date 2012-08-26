@@ -17,8 +17,6 @@ namespace SitecoreInstaller.Domain.Pipelines
     /// <typeparam name="T"></typeparam>
     public class PipelineRunner<T> : IPipelineRunner where T : class,IPipeline
     {
-        private readonly Profiler _execuateAllStepsProfiler;
-
         public event EventHandler<PipelineEventArgs> AllStepsExecuting;
         public event EventHandler<PipelineEventArgs> AllStepsExecuted;
 
@@ -33,12 +31,10 @@ namespace SitecoreInstaller.Domain.Pipelines
         {
             if (pipeline == null) throw new ArgumentNullException("pipeline");
 
-            Log.It.Clear();
+            Log.ItAs.Clear();
             ExecuteAllText = executeAllText;
             Pipeline = pipeline;
             pipeline.IsInUiMode = true;
-            _execuateAllStepsProfiler = new Profiler("Executing all steps in " + Pipeline.GetType().GetStepText(), InnerExecuteAllSteps);
-            _execuateAllStepsProfiler.ActionProfiled += Log.It.Profile;
         }
         public string ExecuteAllText { get; private set; }
 
@@ -49,22 +45,23 @@ namespace SitecoreInstaller.Domain.Pipelines
                 if (AllStepsExecuting != null)
                     AllStepsExecuting(sender, new PipelineEventArgs(Pipeline.Name, PipelineStatus.NoProblems));
 
-                _execuateAllStepsProfiler.Run(sender, e);
+                var elapsed = Profiler.This(InnerExecuteAllSteps, sender, e);
+                Log.ItAs.Profile(Pipeline.GetType().Name, elapsed);
 
-                Log.It.FlushBuffer();
+                Log.ItAs.FlushBuffer();
 
-                var warnings = from entry in Log.It.Entries
-                              where entry.LogType == LogType.Warning
-                              select entry;
-
-                var errors = from entry in Log.It.Entries
-                               where entry.LogType == LogType.Error
+                var warnings = from entry in Log.ItAs.Entries
+                               where entry.LogType == LogType.Warning
                                select entry;
+
+                var errors = from entry in Log.ItAs.Entries
+                             where entry.LogType == LogType.Error
+                             select entry;
 
                 var pipelineStatus = PipelineStatus.NoProblems;
                 if (warnings.Any())
                     pipelineStatus = PipelineStatus.Warnings;
-                if(errors.Any())
+                if (errors.Any())
                     pipelineStatus = PipelineStatus.Errors;
 
                 var results = warnings.Concat(errors);
@@ -82,13 +79,13 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         private bool AllStepsPreconditionsAreMet()
         {
-            Log.It.Info("Evaluating pipeline preconditions for {0}", Pipeline.Name);
+            Log.ItAs.Info("Evaluating pipeline preconditions for {0}", Pipeline.Name);
 
             foreach (var precondition in Pipeline.Preconditions)
             {
                 if (precondition.Evaluate(this, EventArgs.Empty))
                 {
-                    Log.It.Info("Precondition met: {0}", precondition.GetType().Name);
+                    Log.ItAs.Info("Precondition met: {0}", precondition.GetType().Name);
                 }
                 else
                 {
@@ -109,7 +106,9 @@ namespace SitecoreInstaller.Domain.Pipelines
                 var args = new PipelineStepInfoEventArgs(step.Order, totalCount, step.GetType().Name);
                 if (StepExecuting != null)
                     StepExecuting(step, args);
-                step.Invoke(sender, e);
+
+                var elapsed = Profiler.This(step.Invoke, sender, e);
+                Log.ItAs.Profile(step.GetType().Name, elapsed);
                 if (StepExecuted != null)
                     StepExecuted(step, args);
             }

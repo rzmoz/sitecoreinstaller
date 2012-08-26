@@ -14,14 +14,14 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
         protected override void InnerInvoke(object sender, EventArgs args)
         {
             for (var i = 0; i < 10; i++)
-                Log.It.Info("Logging...");
-            Log.It.Info("Pinging the world!...");
+                Log.ItAs.Info("Logging...");
+            Log.ItAs.Info("Pinging the world!...");
             Thread.Sleep(200);
-            Log.It.Debug("Debugging the world!...");
+            Log.ItAs.Debug("Debugging the world!...");
             Thread.Sleep(200);
-            Log.It.Warning("Warning the world!...");
+            Log.ItAs.Warning("Warning the world!...");
             Thread.Sleep(200);
-            Log.It.Error("Erroring the world!");
+            Log.ItAs.Error("Erroring the world!");
         }
     }
 }

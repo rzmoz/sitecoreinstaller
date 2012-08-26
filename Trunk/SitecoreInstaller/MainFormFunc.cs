@@ -15,7 +15,7 @@ namespace SitecoreInstaller
         protected MainFormFunc(FrmMain mainForm)
         {
             MainForm = mainForm;
-            Log.It.Clear();
+            Log.ItAs.Clear();
         }
 
         public FrmMain MainForm { get; private set; }

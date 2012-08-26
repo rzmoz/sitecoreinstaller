@@ -19,7 +19,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public override void Update(string sourceName)
         {
-            Log.It.Debug("Updating source entry repository '{0}'", sourceName);
+            Log.ItAs.Debug("Updating source entry repository '{0}'", sourceName);
 
             Entries.Clear();
             if (Directory.Exists(Root.FullName) == false)
@@ -27,7 +27,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             foreach (var file in Root.EnumerateFiles("*.xml", SearchOption.AllDirectories))
             {
-                Log.It.Debug("Adding '{0}' from directory", file.Name);
+                Log.ItAs.Debug("Adding '{0}' from directory", file.Name);
                 var licenseSourceEntry = new LicenseFileSourceEntry(file, sourceName);
                 if (Entries.ContainsKey(licenseSourceEntry.Key.ToLower()))
                     continue;

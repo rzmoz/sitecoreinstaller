@@ -79,7 +79,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
         public void Profile(string taskName, TimeSpan timeElapsed)
         {
             var timeElapsedFormatted = string.Format("{0:0.00}", timeElapsed.TotalSeconds);
-            LogMessage(LogType.Profiling, "{0} finished in {1} seconds", taskName, timeElapsedFormatted);
+            LogMessage(LogType.Profiling, "{0} finished in {1} seconds", taskName.ToSpaceDelimiteredString(), timeElapsedFormatted);
         }
 
         public void LogMessage(LogType logType, string message, params object[] parameters)

@@ -38,19 +38,19 @@ namespace SitecoreInstaller.Domain.WebServer
         {
             if (string.IsNullOrEmpty(hostName))
             {
-                Log.It.Error("Host name is null or empty - please provide a hostname");
+                Log.ItAs.Error("Host name is null or empty - please provide a hostname");
                 return;
             }
 
             if (!_hostFile.Exists)
             {
-                Log.It.Error("Host file not found at {0}:", _hostFile.FullName);
+                Log.ItAs.Error("Host file not found at {0}:", _hostFile.FullName);
                 return;
             }
 
             var hostFileIisSiteName = hostName.ToLowerInvariant();
 
-            Log.It.Info("Adding hostname '{0}'", hostFileIisSiteName);
+            Log.ItAs.Info("Adding hostname '{0}'", hostFileIisSiteName);
 
             //check if host name already exist
             Stream reader = null;
@@ -68,7 +68,7 @@ namespace SitecoreInstaller.Domain.WebServer
                                 continue;
                             if (LineIsHostFileName(hostFileIisSiteName, line) == false)
                                 continue;
-                            Log.It.Warning("Iis site name already exist in host file. File not updated");
+                            Log.ItAs.Warning("Iis site name already exist in host file. File not updated");
                             fileReader.Close();
                             return;
                         }
@@ -83,7 +83,7 @@ namespace SitecoreInstaller.Domain.WebServer
                     var hostFileEntry = string.Format(_HostFileEntryFormat, hostFileIisSiteName);
                     fileWriter.WriteLine(hostFileEntry);
                     fileWriter.Close();
-                    Log.It.Debug("Iis site name written to host file: {0}", hostFileEntry);
+                    Log.ItAs.Debug("Iis site name written to host file: {0}", hostFileEntry);
                 }
             }
             finally
@@ -122,7 +122,7 @@ namespace SitecoreInstaller.Domain.WebServer
                             sw.WriteLine(line);
                         else
                         {
-                            Log.It.Info("Entry deleted from host file: {0}", line);
+                            Log.ItAs.Info("Entry deleted from host file: {0}", line);
                         }
                     }
                 }

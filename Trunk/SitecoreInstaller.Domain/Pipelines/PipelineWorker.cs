@@ -53,11 +53,11 @@
         {
             if (e.Error != null)
             {
-                Log.It.Error("{0}", e.Error.ToString());
+                Log.ItAs.Error("{0}", e.Error.ToString());
             }
             else if (WorkerCompleted != null)
                 WorkerCompleted(this, e);
-            Log.It.Debug("Pipeline completed. Result: {0}", e.Result);
+            Log.ItAs.Debug("Pipeline completed. Result: {0}", e.Result);
         }
     }
 }

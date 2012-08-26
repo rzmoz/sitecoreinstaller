@@ -11,7 +11,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Log.It.Info("Starting doing nothing...");
+            Log.ItAs.Info("Starting doing nothing...");
         }
     }
 }
