@@ -11,7 +11,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.SqlConnection
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Log.ItAs.Info("Testing Sql settings...");
+            Log.As.Info("Testing Sql settings...");
             Services.Sql.TestDatabaseSettings(Services.AppSettings.Sql);
         }
     }

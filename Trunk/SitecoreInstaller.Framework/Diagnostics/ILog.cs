@@ -20,7 +20,6 @@ namespace SitecoreInstaller.Framework.Diagnostics
         void Info(string message, params object[] parameters);
         void Warning(string message, params object[] parameters);
         void Error(string message, params object[] parameters);
-        void Profile(object sender, ProfilerEventArgs args);
         void Profile(string taskName, TimeSpan timeElapsed);
     }
 }

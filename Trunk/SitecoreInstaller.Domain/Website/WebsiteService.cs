@@ -46,24 +46,24 @@ namespace SitecoreInstaller.Domain.Website
         {
             var configFile = string.Format(WebsiteResource.DataFolderFormat, dataFolder);
             configFile.WriteToDisk(dataFolderConfigFile);
-            Log.ItAs.Info("Data folder set to '{0}'", dataFolder.FullName);
+            Log.As.Info("Data folder set to '{0}'", dataFolder.FullName);
         }
 
         public void CreateTargetFolders(WebsiteFolders websiteFolders)
         {
-            Log.ItAs.Info("Creating website folders...");
+            Log.As.Info("Creating website folders...");
 
             websiteFolders.ProjectFolder.CreateWithLog();
 
-            Log.ItAs.Debug("Giving Everyone user FullControl to project folder: {0}", websiteFolders.ProjectFolder.FullName);
+            Log.As.Debug("Giving Everyone user FullControl to project folder: {0}", websiteFolders.ProjectFolder.FullName);
             websiteFolders.ProjectFolder.GrantEveryoneFullControl();
             websiteFolders.CreateFolders();
-            Log.ItAs.Info("Website folders created");
+            Log.As.Info("Website folders created");
         }
 
         public void CopySitecoreToProjectfolder(WebsiteFolders websiteFolders, BuildLibraryDirectory sitecore)
         {
-            Log.ItAs.Info("Copying '{0}'...", sitecore.Directory.Name);
+            Log.As.Info("Copying '{0}'...", sitecore.Directory.Name);
 
             //Copy web site folder
             var sitecoreWebsiteFolder = sitecore.Directory.CombineTo<DirectoryInfo>(websiteFolders.WebSiteFolder.Name);
@@ -81,7 +81,7 @@ namespace SitecoreInstaller.Domain.Website
             foreach (var file in sitecore.Directory.GetFiles())
                 file.CopyTo(websiteFolders.ProjectFolder, true);
 
-            Log.ItAs.Info("Sitecore copied");
+            Log.As.Info("Sitecore copied");
         }
 
         private void CopyDatabaseFolder(string sourceDbName, DirectoryInfo sitecore, WebsiteFolders websiteFolders)
@@ -96,7 +96,7 @@ namespace SitecoreInstaller.Domain.Website
 
         public void CopyModulesToWebsite(DirectoryInfo projectFolder, WebsiteFolders websiteFolders, IEnumerable<BuildLibraryDirectory> modules)
         {
-            Log.ItAs.Info("Copying modules to website...");
+            Log.As.Info("Copying modules to website...");
 
             foreach (var module in modules)
             {
@@ -104,21 +104,21 @@ namespace SitecoreInstaller.Domain.Website
                 foreach (var databaseFile in new[] { _websiteFileTypes.DatabaseDataFile.GetAllSearchPattern, _websiteFileTypes.DatabaseLogFile.GetAllSearchPattern }.SelectMany(fileExtensions => module.Directory.GetFiles(fileExtensions)))
                 {
                     databaseFile.CopyTo(websiteFolders.DatabaseFolder, true);
-                    Log.ItAs.Debug("Module database file '{0}' copied to {1}", databaseFile.FullName, websiteFolders.DataFolder.FullName);
+                    Log.As.Debug("Module database file '{0}' copied to {1}", databaseFile.FullName, websiteFolders.DataFolder.FullName);
                 }
 
                 //copy config files to App_Config/Include folder
                 foreach (var configFile in _websiteFileTypes.SitecoreConfigFile.GetFiles(module.Directory))
                 {
                     configFile.CopyTo(websiteFolders.ConfigIncludeFolder, true);
-                    Log.ItAs.Debug("Module config file '{0}' copied to {1}", configFile.FullName, websiteFolders.ConfigIncludeFolder.FullName);
+                    Log.As.Debug("Module config file '{0}' copied to {1}", configFile.FullName, websiteFolders.ConfigIncludeFolder.FullName);
                 }
 
                 //copy Sitecore packages to package folder (zip files)
                 foreach (var packageFile in _websiteFileTypes.SitecorePackage.GetFiles(module.Directory))
                 {
                     packageFile.CopyTo(websiteFolders.PackagesFolder, true);
-                    Log.ItAs.Debug("Module Sitecore package file '{0}' copied to {1}", packageFile.FullName, websiteFolders.PackagesFolder.FullName);
+                    Log.As.Debug("Module Sitecore package file '{0}' copied to {1}", packageFile.FullName, websiteFolders.PackagesFolder.FullName);
                 }
 
                 //Copy directories to project folder
@@ -126,27 +126,27 @@ namespace SitecoreInstaller.Domain.Website
                 {
                     var targetFolder = projectFolder.Combine(moduleFolder);
                     moduleFolder.CopyTo(targetFolder, DirCopyOptions.IncludeSubDirectories);
-                    Log.ItAs.Debug("Modules folder '{0}' copied to {1}", projectFolder.FullName, targetFolder.FullName);
+                    Log.As.Debug("Modules folder '{0}' copied to {1}", projectFolder.FullName, targetFolder.FullName);
                 }
 
                 //Copy rest of files
                 foreach (var notSitecoreSpecificFileType in Array.FindAll(module.Directory.GetFiles(), _websiteFileTypes.IsNotRegisteredFileType))
                 {
                     notSitecoreSpecificFileType.CopyTo(projectFolder, true);
-                    Log.ItAs.Debug("NotSitecoreSpecificFile '{0}' copied to {1}", notSitecoreSpecificFileType.FullName, projectFolder.CombineTo<FileInfo>(notSitecoreSpecificFileType.Name).FullName);
+                    Log.As.Debug("NotSitecoreSpecificFile '{0}' copied to {1}", notSitecoreSpecificFileType.FullName, projectFolder.CombineTo<FileInfo>(notSitecoreSpecificFileType.Name).FullName);
                 }
             }
 
-            Log.ItAs.Info("Modules copied to website");
+            Log.As.Info("Modules copied to website");
         }
 
         public void CopyLicenseFileToDataFolder(BuildLibraryFile license, DirectoryInfo dataFolder, FileInfo licenseConfigFile)
         {
-            Log.ItAs.Info("Copying license file '{0}'...", license.File.Name);
+            Log.As.Info("Copying license file '{0}'...", license.File.Name);
             license.File.CopyTo(dataFolder, true);
             var licenseConfig = string.Format(WebsiteResource.LicenseFileFormat, license.File.Name);
             licenseConfig.WriteToDisk(licenseConfigFile);
-            Log.ItAs.Info("License file copied");
+            Log.As.Info("License file copied");
         }
 
         public void CreateProjectFolder(DirectoryInfo projectFolder)
@@ -156,11 +156,11 @@ namespace SitecoreInstaller.Domain.Website
 
         public void OpenSitecore(string baseUrl, DirectoryInfo websiteFolder)
         {
-            Log.ItAs.Info("Starting up Sitecore...");
+            Log.As.Info("Starting up Sitecore...");
 
             if (string.IsNullOrEmpty(baseUrl))
             {
-                Log.ItAs.Error("baseUrl is null or empty");
+                Log.As.Error("baseUrl is null or empty");
                 return;
             }
 
@@ -173,11 +173,11 @@ namespace SitecoreInstaller.Domain.Website
 
         public void OpenFrontend(string baseUrl)
         {
-            Log.ItAs.Info("Accessing site...");
+            Log.As.Info("Accessing site...");
 
             if (string.IsNullOrEmpty(baseUrl))
             {
-                Log.ItAs.Error("baseUrl is null or empty");
+                Log.As.Error("baseUrl is null or empty");
                 return;
             }
 
@@ -186,16 +186,16 @@ namespace SitecoreInstaller.Domain.Website
 
         public void DeleteProjectFolder(DirectoryInfo projectFolder)
         {
-            Log.ItAs.Info("Deleting project folder '{0}'", projectFolder.Name);
+            Log.As.Info("Deleting project folder '{0}'", projectFolder.Name);
 
             projectFolder.DeleteWithLog();
 
-            Log.ItAs.Info("Project folder deleted");
+            Log.As.Info("Project folder deleted");
         }
 
         public void InstallRuntimeServices(DirectoryInfo websiteFolder)
         {
-            Log.ItAs.Info("Installing runtime services...");
+            Log.As.Info("Installing runtime services...");
 
             var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
             if (Directory.Exists(runtimeServicesFolder.FullName))
@@ -213,7 +213,7 @@ namespace SitecoreInstaller.Domain.Website
             var runtimeServicesAssembly = new FileInfo(_InstallerRunTimeServicesAssembly);
             runtimeServicesAssembly.CopyTo(websiteFolder.CombineTo<DirectoryInfo>(_TargetAssemblyPath), true);
 
-            Log.ItAs.Info("Runtime services installed");
+            Log.As.Info("Runtime services installed");
         }
 
         public void DeleteRuntimeServices(DirectoryInfo websiteFolder)
@@ -223,7 +223,7 @@ namespace SitecoreInstaller.Domain.Website
 
             if (Directory.Exists(runtimeServicesFolder.FullName) == false)
             {
-                Log.ItAs.Debug("Runtime services not found. Aborting...");
+                Log.As.Debug("Runtime services not found. Aborting...");
                 return;
             }
 
@@ -247,14 +247,14 @@ namespace SitecoreInstaller.Domain.Website
 
             //warm up site to make sure run time service is up and running
             WakeUpSite(baseUrl);
-            Log.ItAs.Info("Installing packages...");
+            Log.As.Info("Installing packages...");
 
             foreach (var module in modules)
             {
                 foreach (var package in _websiteFileTypes.SitecorePackage.GetFiles(module.Directory))
                 {
                     var packageName = HttpUtility.UrlEncode(package.Name);
-                    Log.ItAs.Info("Installing '{0}'", HttpUtility.UrlDecode(packageName));
+                    Log.As.Info("Installing '{0}'", HttpUtility.UrlDecode(packageName));
                     var invoke = "Install=" + packageName;
                     var callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + invoke);
                     CallUrl(callingUri);
@@ -266,7 +266,7 @@ namespace SitecoreInstaller.Domain.Website
         {
             //warm up site to make sure run time service is up and running
             WakeUpSite(baseUrl);
-            Log.ItAs.Info("Executing post install steps...");
+            Log.As.Info("Executing post install steps...");
             var callingUri = baseUrl.ToUri(_InstallerPath, _PostInstallServiceName);
             CallUrl(callingUri);
         }
@@ -274,13 +274,13 @@ namespace SitecoreInstaller.Domain.Website
 
         public void WakeUpSite(string siteBaseUrl)
         {
-            Log.ItAs.Info("Waking up site...");
+            Log.As.Info("Waking up site...");
             CallUrl(siteBaseUrl.ToUri(_KeepAlivePingPath));
         }
 
         public void WarmUpSite(string siteBaseUrl)
         {
-            Log.ItAs.Info("Warming up site...");
+            Log.As.Info("Warming up site...");
             CallUrl(siteBaseUrl.ToUri(_SitecorePingPath));
             CallUrl(siteBaseUrl.ToUri(_SiteRootPingPath));
         }
@@ -306,17 +306,17 @@ namespace SitecoreInstaller.Domain.Website
 
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
-                        Log.ItAs.Debug("'{0}' responded: '{1}'", url.ToString(), response.StatusDescription);
+                        Log.As.Debug("'{0}' responded: '{1}'", url.ToString(), response.StatusDescription);
                         return;
                     }
                 }
                 catch (WebException we)
                 {
-                    /*Log.ItAs.Error(we.Message);
-                    Log.ItAs.Info("IIS not ready. Retry #{0}...", tryCount);*/
+                    /*Log.As.Error(we.Message);
+                    Log.As.Info("IIS not ready. Retry #{0}...", tryCount);*/
                 }
             }
-            Log.ItAs.Error("'{0}' never responded OK.", url.ToString());
+            Log.As.Error("'{0}' never responded OK.", url.ToString());
         }
 
         public void OpenInBrowser(Uri url)

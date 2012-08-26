@@ -7,8 +7,8 @@ namespace SitecoreInstaller.Framework.Diagnostics
     {
         static Log()
         {
-            ItAs = new InMemoryBufferedLog();
+            As = new InMemoryBufferedLog();
         }
-        public static ILog ItAs { get; private set; }
+        public static ILog As { get; private set; }
     }
 }

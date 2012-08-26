@@ -17,7 +17,7 @@ namespace SitecoreInstaller.Framework.IO
         public static void WriteToDisk(this string content, FileInfo targetFile)
         {
             File.WriteAllText(targetFile.FullName, content);
-            Log.ItAs.Debug("{0} saved to disk at: {1}", content, targetFile.FullName);
+            Log.As.Debug("{0} saved to disk at: {1}", content, targetFile.FullName);
         }
 
         public static IEnumerable<string> GetUniqueFileNames(this DirectoryInfo folder)
@@ -40,11 +40,11 @@ namespace SitecoreInstaller.Framework.IO
         public static void CreateWithLog(this DirectoryInfo folder)
         {
             if (Directory.Exists(folder.FullName))
-                Log.ItAs.Debug("Folder already exist: '{0}'", folder.FullName);
+                Log.As.Debug("Folder already exist: '{0}'", folder.FullName);
             else
             {
                 folder.Create();
-                Log.ItAs.Debug("Folder created: '{0}'", folder.FullName);
+                Log.As.Debug("Folder created: '{0}'", folder.FullName);
             }
         }
         public static void DeleteWithLog(this DirectoryInfo folder)
@@ -60,7 +60,7 @@ namespace SitecoreInstaller.Framework.IO
                         try
                         {
                             folder.Delete(true);
-                            Log.ItAs.Debug("Folder deleted: '{0}'", folder.FullName);
+                            Log.As.Debug("Folder deleted: '{0}'", folder.FullName);
                         }
                         catch (DirectoryNotFoundException)
                         {
@@ -69,28 +69,28 @@ namespace SitecoreInstaller.Framework.IO
                         }
                         catch (IOException)
                         {
-                            Log.ItAs.Debug("Waiting for iis to release file handles...");
+                            Log.As.Debug("Waiting for iis to release file handles...");
                             Thread.Sleep(500);
                         }
                     }
                     else
                     {
                         //sometimes happens when folder is deleted between retries which can happen when folder handles are released after a while when deleting a site
-                        Log.ItAs.Debug("Folder doesn't exist: '{0}'", folder.FullName);
+                        Log.As.Debug("Folder doesn't exist: '{0}'", folder.FullName);
                         break;
                     }
                 }
 
                 if (Directory.Exists(folder.FullName))
-                    Log.ItAs.Warning("Gave up waiting. Please delete project folder manually: '{0}'", folder.FullName);
+                    Log.As.Warning("Gave up waiting. Please delete project folder manually: '{0}'", folder.FullName);
             }
             catch (UnauthorizedAccessException e)
             {
-                Log.ItAs.Error("Unable to delete project folder.\r\n{0}", e.ToString());
+                Log.As.Error("Unable to delete project folder.\r\n{0}", e.ToString());
             }
             catch (SecurityException e)
             {
-                Log.ItAs.Error("Unable to delete project folder.\r\n{0}", e.ToString());
+                Log.As.Error("Unable to delete project folder.\r\n{0}", e.ToString());
             }
         }
 
@@ -106,7 +106,7 @@ namespace SitecoreInstaller.Framework.IO
 
             if (rootFolder.TryGetIdenticallyNamedSubDir(out identicalSubFolder))
             {
-                Log.ItAs.Debug("'{0}' contains identical named subfolder. Consolidating...", identicalSubFolder.FullName);
+                Log.As.Debug("'{0}' contains identical named subfolder. Consolidating...", identicalSubFolder.FullName);
                 ConsolidateIdenticalSubfolders(identicalSubFolder);
             }
 
@@ -119,11 +119,11 @@ namespace SitecoreInstaller.Framework.IO
 
         public static bool TryBackup(this FileInfo file)
         {
-            Log.ItAs.Debug("Trying to backup file: {0}", file.FullName);
+            Log.As.Debug("Trying to backup file: {0}", file.FullName);
 
             if (!File.Exists(file.FullName))
             {
-                Log.ItAs.Debug("File not found for backup: {0}", file.FullName);
+                Log.As.Debug("File not found for backup: {0}", file.FullName);
                 return false;
             }
 
@@ -135,7 +135,7 @@ namespace SitecoreInstaller.Framework.IO
             while (File.Exists(backupFileName));
 
             file.CopyTo(backupFileName);
-            Log.ItAs.Debug("Existing file was backed up to :" + backupFileName);
+            Log.As.Debug("Existing file was backed up to :" + backupFileName);
             return true;
         }
         private static string GetBackupFileName(FileInfo file)
@@ -151,16 +151,16 @@ namespace SitecoreInstaller.Framework.IO
             if (rootFolder == null)
                 yield break;
 
-            Log.ItAs.Debug("Getting {0}s", subfoldersDescription);
+            Log.As.Debug("Getting {0}s", subfoldersDescription);
             if (!rootFolder.Exists)
             {
-                Log.ItAs.Error(subfoldersDescription + " folder not found: {0}", rootFolder.FullName);
+                Log.As.Error(subfoldersDescription + " folder not found: {0}", rootFolder.FullName);
                 yield break;
             }
 
             foreach (var dir in rootFolder.GetDirectories(".", SearchOption.TopDirectoryOnly))
             {
-                Log.ItAs.Debug(subfoldersDescription + "s found: {0}", dir.Name);
+                Log.As.Debug(subfoldersDescription + "s found: {0}", dir.Name);
                 yield return dir;
             }
         }
@@ -169,13 +169,13 @@ namespace SitecoreInstaller.Framework.IO
         {
             if (Directory.Exists(source.FullName) == false)
             {
-                Log.ItAs.Debug("Source '{0}' not found. Aborting", source.FullName);
+                Log.As.Debug("Source '{0}' not found. Aborting", source.FullName);
                 return;
             }
 
             if (source.FullName.Equals(target.FullName, StringComparison.OrdinalIgnoreCase))
             {
-                Log.ItAs.Debug("Source and Target are the same '{0}'. Aborting", source.FullName);
+                Log.As.Debug("Source and Target are the same '{0}'. Aborting", source.FullName);
                 return;
             }
             var robocopy = new Robocopy();
@@ -184,10 +184,10 @@ namespace SitecoreInstaller.Framework.IO
 
         public static void CopyFlattenedTo(this DirectoryInfo source, DirectoryInfo target, string searchPattern = "*")
         {
-            Log.ItAs.Debug("Flattening '{0}' files in '{1}'...", searchPattern, target.FullName);
+            Log.As.Debug("Flattening '{0}' files in '{1}'...", searchPattern, target.FullName);
             if (Directory.Exists(source.FullName) == false)
             {
-                Log.ItAs.Debug("Source '{0}' not found. Aborting", source.FullName, target.FullName);
+                Log.As.Debug("Source '{0}' not found. Aborting", source.FullName, target.FullName);
                 return;
             }
 

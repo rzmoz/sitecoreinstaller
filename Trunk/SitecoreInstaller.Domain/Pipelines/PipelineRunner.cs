@@ -31,7 +31,7 @@ namespace SitecoreInstaller.Domain.Pipelines
         {
             if (pipeline == null) throw new ArgumentNullException("pipeline");
 
-            Log.ItAs.Clear();
+            Log.As.Clear();
             ExecuteAllText = executeAllText;
             Pipeline = pipeline;
             pipeline.IsInUiMode = true;
@@ -46,15 +46,15 @@ namespace SitecoreInstaller.Domain.Pipelines
                     AllStepsExecuting(sender, new PipelineEventArgs(Pipeline.Name, PipelineStatus.NoProblems));
 
                 var elapsed = Profiler.This(InnerExecuteAllSteps, sender, e);
-                Log.ItAs.Profile(Pipeline.GetType().Name, elapsed);
+                Log.As.Profile(Pipeline.GetType().Name, elapsed);
 
-                Log.ItAs.FlushBuffer();
+                Log.As.FlushBuffer();
 
-                var warnings = from entry in Log.ItAs.Entries
+                var warnings = from entry in Log.As.Entries
                                where entry.LogType == LogType.Warning
                                select entry;
 
-                var errors = from entry in Log.ItAs.Entries
+                var errors = from entry in Log.As.Entries
                              where entry.LogType == LogType.Error
                              select entry;
 
@@ -79,13 +79,13 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         private bool AllStepsPreconditionsAreMet()
         {
-            Log.ItAs.Info("Evaluating pipeline preconditions for {0}", Pipeline.Name);
+            Log.As.Info("Evaluating pipeline preconditions for {0}", Pipeline.Name);
 
             foreach (var precondition in Pipeline.Preconditions)
             {
                 if (precondition.Evaluate(this, EventArgs.Empty))
                 {
-                    Log.ItAs.Info("Precondition met: {0}", precondition.GetType().Name);
+                    Log.As.Info("Precondition met: {0}", precondition.GetType().Name);
                 }
                 else
                 {
@@ -108,7 +108,8 @@ namespace SitecoreInstaller.Domain.Pipelines
                     StepExecuting(step, args);
 
                 var elapsed = Profiler.This(step.Invoke, sender, e);
-                Log.ItAs.Profile(step.GetType().Name, elapsed);
+                Log.As.Profile(step.GetType().Name, elapsed);
+                
                 if (StepExecuted != null)
                     StepExecuted(step, args);
             }

@@ -140,7 +140,7 @@ namespace SitecoreInstaller
 
         private void clearLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Log.ItAs.Clear();
+            Log.As.Clear();
         }
 
         private void InitMainFormFunc()

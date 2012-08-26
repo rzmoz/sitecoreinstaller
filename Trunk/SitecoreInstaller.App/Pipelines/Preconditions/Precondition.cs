@@ -29,7 +29,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
                 if (string.IsNullOrEmpty(_errorMessage))
                     return;
-                Log.ItAs.Error(_errorMessage);
+                Log.As.Error(_errorMessage);
             }
         }
     }
