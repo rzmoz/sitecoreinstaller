@@ -10,11 +10,15 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.UI
 {
+    using SitecoreInstaller.App;
+
     public partial class PipelineStepList : UserControl
     {
         private const int _ButtonHeight = 21;
         private const int _ButtonWidth = 190;
         private const int _ButtonSpacing = 1;
+
+        private Func<AppSettings> _getAppSettings;
 
         public PipelineStepList()
         {
@@ -31,14 +35,11 @@ namespace SitecoreInstaller.UI
             return verticalPosition;
         }
 
-        public void Init<T>(PipelineRunner<T> pipelineRunner) where T : class,IPipeline
+        public void Init(IPipeline pipeline, Func<AppSettings> getAppSettings)
         {
-            RenderSteps(pipelineRunner);
-        }
+            _getAppSettings = getAppSettings;
 
-        private void RenderSteps<T>(PipelineRunner<T> pipelineRunner) where T : class,IPipeline
-        {
-            foreach (var step in pipelineRunner.Pipeline.Steps)
+            foreach (var step in pipeline.Steps)
             {
                 var button = new Button();
                 SuspendLayout();
@@ -50,7 +51,12 @@ namespace SitecoreInstaller.UI
                 button.TabIndex = step.Order;
                 button.Text = string.Format("{0}.{1}", step.Order, step.GetType().Name);
                 button.UseVisualStyleBackColor = true;
-                button.Click += step.Invoke;
+                var stepAsLocal = step;
+                button.Click += delegate
+                    {
+                        Services.AppSettings = _getAppSettings();
+                        stepAsLocal.Invoke(this, EventArgs.Empty);
+                    };
                 Controls.Add(button);
             }
         }
