@@ -29,7 +29,7 @@ namespace SitecoreInstaller.UI
         {
             this.CrossThreadSafe(() =>
                 {
-                    lblTitle.Text = e.PipelineName;
+                    lblTitle.Text = e.PipelineName.ToSpaceDelimiteredString();
                     pgbStatus.Visible = true;
                     cmdOk.Visible = false;
                     tbxInfo.Visible = true;
@@ -70,7 +70,7 @@ namespace SitecoreInstaller.UI
                     
                     
                     lblStatusMessage.Text = "Finished with "
-                                            + e.Status.ToString().TokenizeWhenCharIsUpper().ToDelimiteredString();
+                                            + e.Status.ToString().ToSpaceDelimiteredString();
 
                     cmdOk.Focus();
                 });
@@ -81,7 +81,7 @@ namespace SitecoreInstaller.UI
             this.CrossThreadSafe(() =>
                     {
                         pgbStatus.Value = e.ProgressPercentage;
-                        lblStatusMessage.Text = e.StepName.TokenizeWhenCharIsUpper().ToDelimiteredString();
+                        lblStatusMessage.Text = e.StepName.ToSpaceDelimiteredString();
                     });
         }
 

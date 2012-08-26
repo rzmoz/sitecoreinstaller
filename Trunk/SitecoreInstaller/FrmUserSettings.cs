@@ -33,27 +33,7 @@ namespace SitecoreInstaller
 
         public void Init()
         {
-            pipelineProgress1.Hide();
             StepWizard.Init();
-        }
-
-        public PipelineProgress PipelineProgress { get { return pipelineProgress1; } }
-
-        public void PipelineWorkerOnAllStepsExecuting(object sender, PipelineEventArgs e)
-        {
-            this.CrossThreadSafe(() =>
-                    {
-                        pipelineProgress1.BringToFront();
-                        pipelineProgress1.Top = 0;
-                        pipelineProgress1.Left = 100;
-                        pipelineProgress1.Width = 300;
-                        pipelineProgress1.Height = Height;
-                        pipelineProgress1.Show();
-                    });
-        }
-        public void PipelineWorkerOnAllStepsExecuted(object sender, PipelineEventArgs eventArgs)
-        {
-            this.CrossThreadSafe(() => pipelineProgress1.Hide());
         }
     }
 }

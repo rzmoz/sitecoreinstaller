@@ -16,7 +16,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         internal static string GetStepText(this MemberInfo methodInfo)
         {
-            return methodInfo.Name.TokenizeWhenCharIsUpper().ToDelimiteredString();
+            return methodInfo.Name.ToSpaceDelimiteredString();
         }
 
         internal static T GetAttribute<T>(this MethodInfo methodInfo) where T : Attribute

@@ -57,13 +57,6 @@ namespace SitecoreInstaller
         {
             FrmUserSettings = new FrmUserSettings();
             FrmUserSettings.Init();
-            Log.It.EntryLogged += FrmUserSettings.PipelineProgress.UpdateInfo;
-            Services.PipelineWorker.StepExecuting += FrmUserSettings.PipelineProgress.UpdateStatus;
-            Services.PipelineWorker.AllStepsExecuting += FrmUserSettings.PipelineWorkerOnAllStepsExecuting;
-            Services.PipelineWorker.AllStepsExecuted += FrmUserSettings.PipelineWorkerOnAllStepsExecuted;
-            Services.PipelineWorker.AllStepsExecuted += pipelineStatus1.Ended;
-            Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
-            Services.PipelineWorker.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
 
             if (UserSettings.Default.PromptForUserSettings)
             {
@@ -116,6 +109,9 @@ namespace SitecoreInstaller
         {
             Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
             Services.PipelineWorker.AllStepsExecuting += pipelineStatus1.Starting;
+            Services.PipelineWorker.AllStepsExecuted += pipelineStatus1.Ended;
+            Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
+            Services.PipelineWorker.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
         }
 
         private void PipelineWorkerOnAllStepsExecuting(object sender, PipelineEventArgs e)
