@@ -38,8 +38,10 @@
             // 
             this._selectProjectName1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this._selectProjectName1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
             this._selectProjectName1.Location = new System.Drawing.Point(25, 0);
             this._selectProjectName1.Name = "_selectProjectName1";
+            this._selectProjectName1.ProjectName = "";
             this._selectProjectName1.Size = new System.Drawing.Size(250, 50);
             this._selectProjectName1.TabIndex = 0;
             // 
@@ -50,7 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.selectModules1.Location = new System.Drawing.Point(25, 150);
             this.selectModules1.Name = "selectModules1";
-            this.selectModules1.Size = new System.Drawing.Size(250, 225);
+            this.selectModules1.Size = new System.Drawing.Size(250, 222);
             this.selectModules1.TabIndex = 3;
             // 
             // selectSitecore1

@@ -131,7 +131,6 @@
             this.Controls.Add(this.pnlStepWizard);
             this.Name = "UserSettingsDialog";
             this.Size = new System.Drawing.Size(400, 300);
-            this.Load += new System.EventHandler(this.UserSettingsDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picBackground)).EndInit();
             this.pnlSingleOptions.ResumeLayout(false);
             this.pnlStepWizard.ResumeLayout(false);

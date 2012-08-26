@@ -39,7 +39,7 @@ namespace SitecoreInstaller.UI.UserSettingsDialogs
                         pnlSingleOptions.Hide();
                         pnlStepWizard.Show();
                         pnlStepWizard.BringToFront();
-                        btnBack.Visible = Previous != null;
+                        btnBack.Text = Previous == null ? "Cancel" : "Previous";
                         btnNext.Text = Next == null ? "Ok" : "Next";
                         break;
                 }
@@ -71,7 +71,10 @@ namespace SitecoreInstaller.UI.UserSettingsDialogs
         {
             BtnSaveClick();
             Hide();
-            Previous.Show();
+            if (Previous == null)
+                btnCancel_Click(this, EventArgs.Empty);
+            else
+                Previous.Show();
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -82,19 +85,6 @@ namespace SitecoreInstaller.UI.UserSettingsDialogs
                 btnCancel_Click(this, EventArgs.Empty);
             else
                 Next.Show();
-        }
-
-        private void UserSettingsDialog_Load(object sender, EventArgs e)
-        {
-            switch (UserSettingsMode)
-            {
-                case UserSettingsMode.Single:
-                    btnSave.Focus();
-                    break;
-                case UserSettingsMode.StepWizard:
-                    btnNext.Focus();
-                    break;
-            }
         }
     }
 }

@@ -287,9 +287,9 @@
             // mainDeveloper1
             // 
             this.mainDeveloper1.BackColor = System.Drawing.Color.White;
-            this.mainDeveloper1.Location = new System.Drawing.Point(12, 222);
+            this.mainDeveloper1.Location = new System.Drawing.Point(12, 53);
             this.mainDeveloper1.Name = "mainDeveloper1";
-            this.mainDeveloper1.Size = new System.Drawing.Size(288, 154);
+            this.mainDeveloper1.Size = new System.Drawing.Size(288, 323);
             this.mainDeveloper1.TabIndex = 6;
             // 
             // pipelineProgress1
@@ -310,6 +310,7 @@
             // 
             // stepWizardDialog1
             // 
+            this.stepWizardDialog1.BackColor = System.Drawing.Color.White;
             this.stepWizardDialog1.Location = new System.Drawing.Point(28, 53);
             this.stepWizardDialog1.Name = "stepWizardDialog1";
             this.stepWizardDialog1.Size = new System.Drawing.Size(400, 300);
