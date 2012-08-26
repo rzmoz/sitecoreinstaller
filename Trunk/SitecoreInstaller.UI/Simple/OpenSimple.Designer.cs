@@ -38,7 +38,7 @@
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
-            this.btnCancel.Location = new System.Drawing.Point(25, 185);
+            this.btnCancel.Location = new System.Drawing.Point(25, 200);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 30);
             this.btnCancel.TabIndex = 5;
@@ -51,7 +51,7 @@
             this.btnUninstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUninstall.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUninstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
-            this.btnUninstall.Location = new System.Drawing.Point(175, 185);
+            this.btnUninstall.Location = new System.Drawing.Point(275, 200);
             this.btnUninstall.Name = "btnUninstall";
             this.btnUninstall.Size = new System.Drawing.Size(100, 30);
             this.btnUninstall.TabIndex = 6;
@@ -75,9 +75,10 @@
             this.selectProjectName1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.selectProjectName1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.selectProjectName1.Location = new System.Drawing.Point(25, 81);
+            this.selectProjectName1.Location = new System.Drawing.Point(25, 90);
             this.selectProjectName1.Name = "selectProjectName1";
-            this.selectProjectName1.Size = new System.Drawing.Size(250, 50);
+            this.selectProjectName1.ProjectName = "";
+            this.selectProjectName1.Size = new System.Drawing.Size(350, 50);
             this.selectProjectName1.TabIndex = 4;
             // 
             // OpenSimple
@@ -89,7 +90,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.selectProjectName1);
             this.Name = "OpenSimple";
-            this.Size = new System.Drawing.Size(300, 250);
+            this.Size = new System.Drawing.Size(400, 300);
             this.ResumeLayout(false);
             this.PerformLayout();
 

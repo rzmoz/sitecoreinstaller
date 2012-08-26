@@ -53,14 +53,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxProjectName.Location = new System.Drawing.Point(25, 60);
             this.tbxProjectName.Name = "tbxProjectName";
-            this.tbxProjectName.Size = new System.Drawing.Size(250, 20);
+            this.tbxProjectName.Size = new System.Drawing.Size(350, 20);
             this.tbxProjectName.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
-            this.btnCancel.Location = new System.Drawing.Point(25, 185);
+            this.btnCancel.Location = new System.Drawing.Point(25, 200);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 30);
             this.btnCancel.TabIndex = 2;
@@ -73,7 +73,7 @@
             this.btnInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInstall.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
-            this.btnInstall.Location = new System.Drawing.Point(175, 185);
+            this.btnInstall.Location = new System.Drawing.Point(275, 200);
             this.btnInstall.Name = "btnInstall";
             this.btnInstall.Size = new System.Drawing.Size(100, 30);
             this.btnInstall.TabIndex = 3;
@@ -87,7 +87,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.selectLicense1.Location = new System.Drawing.Point(25, 128);
             this.selectLicense1.Name = "selectLicense1";
-            this.selectLicense1.Size = new System.Drawing.Size(250, 50);
+            this.selectLicense1.Size = new System.Drawing.Size(350, 50);
             this.selectLicense1.TabIndex = 4;
             this.selectLicense1.TabStop = false;
             // 
@@ -97,7 +97,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.selectSitecore1.Location = new System.Drawing.Point(25, 81);
             this.selectSitecore1.Name = "selectSitecore1";
-            this.selectSitecore1.Size = new System.Drawing.Size(250, 50);
+            this.selectSitecore1.Size = new System.Drawing.Size(350, 50);
             this.selectSitecore1.TabIndex = 1;
             // 
             // InstallSimple
@@ -111,7 +111,7 @@
             this.Controls.Add(this.selectLicense1);
             this.Controls.Add(this.selectSitecore1);
             this.Name = "InstallSimple";
-            this.Size = new System.Drawing.Size(300, 250);
+            this.Size = new System.Drawing.Size(400, 300);
             this.ResumeLayout(false);
             this.PerformLayout();
 

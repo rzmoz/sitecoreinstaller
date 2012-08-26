@@ -46,7 +46,7 @@
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(300, 250);
+            this.pnlMain.Size = new System.Drawing.Size(400, 300);
             this.pnlMain.TabIndex = 0;
             // 
             // btnOpen
@@ -57,9 +57,9 @@
             this.btnOpen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
             this.btnOpen.Image = ((System.Drawing.Image)(resources.GetObject("btnOpen.Image")));
             this.btnOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpen.Location = new System.Drawing.Point(25, 171);
+            this.btnOpen.Location = new System.Drawing.Point(25, 210);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(250, 50);
+            this.btnOpen.Size = new System.Drawing.Size(350, 60);
             this.btnOpen.TabIndex = 6;
             this.btnOpen.Text = "            Open site";
             this.btnOpen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -85,9 +85,9 @@
             this.btnUninstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
             this.btnUninstall.Image = ((System.Drawing.Image)(resources.GetObject("btnUninstall.Image")));
             this.btnUninstall.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUninstall.Location = new System.Drawing.Point(25, 115);
+            this.btnUninstall.Location = new System.Drawing.Point(25, 140);
             this.btnUninstall.Name = "btnUninstall";
-            this.btnUninstall.Size = new System.Drawing.Size(250, 50);
+            this.btnUninstall.Size = new System.Drawing.Size(350, 60);
             this.btnUninstall.TabIndex = 4;
             this.btnUninstall.Text = "            Uninstall";
             this.btnUninstall.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,9 +102,9 @@
             this.btnInstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
             this.btnInstall.Image = ((System.Drawing.Image)(resources.GetObject("btnInstall.Image")));
             this.btnInstall.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInstall.Location = new System.Drawing.Point(25, 59);
+            this.btnInstall.Location = new System.Drawing.Point(25, 70);
             this.btnInstall.Name = "btnInstall";
-            this.btnInstall.Size = new System.Drawing.Size(250, 50);
+            this.btnInstall.Size = new System.Drawing.Size(350, 60);
             this.btnInstall.TabIndex = 3;
             this.btnInstall.Text = "            Install";
             this.btnInstall.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -117,7 +117,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlMain);
             this.Name = "MainSimple";
-            this.Size = new System.Drawing.Size(300, 250);
+            this.Size = new System.Drawing.Size(400, 300);
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();
             this.ResumeLayout(false);
