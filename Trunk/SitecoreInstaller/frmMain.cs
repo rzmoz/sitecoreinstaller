@@ -62,6 +62,7 @@ namespace SitecoreInstaller
             Services.PipelineWorker.AllStepsExecuting += FrmUserSettings.PipelineWorkerOnAllStepsExecuting;
             Services.PipelineWorker.AllStepsExecuted += FrmUserSettings.PipelineWorkerOnAllStepsExecuted;
             Services.PipelineWorker.AllStepsExecuted += pipelineStatus1.Ended;
+            Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
             Services.PipelineWorker.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
 
             if (UserSettings.Default.PromptForUserSettings)
@@ -71,6 +72,12 @@ namespace SitecoreInstaller
             }
             else
                 FrmUserSettings.Hide();
+        }
+
+        void PipelineWorker_WorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            FlashWindow.Flash(this, 3);
+
         }
 
         void PipelineWorker_PreconditionNotMet(object sender, GenericEventArgs<string> e)

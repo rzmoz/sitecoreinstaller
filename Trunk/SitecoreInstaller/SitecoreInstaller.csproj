@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dimensions.cs" />
+    <Compile Include="FormFlash.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
