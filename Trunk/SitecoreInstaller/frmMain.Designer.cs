@@ -57,7 +57,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.mainDeveloper1 = new SitecoreInstaller.UI.Developer.MainDeveloper();
-            this.pipelineProgress1 = new SitecoreInstaller.UI.PipelineProgress();
+            this.pipelineStatus1 = new SitecoreInstaller.UI.PipelineStatus();
             this.mainSimple1 = new SitecoreInstaller.UI.Simple.MainSimple();
             this.stepWizardDialog1 = new SitecoreInstaller.UI.UserSettingsDialogs.StepWizardDialog();
             this.logger1 = new SitecoreInstaller.UI.Logger();
@@ -276,7 +276,7 @@
             this.pnlMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMain.Controls.Add(this.mainDeveloper1);
-            this.pnlMain.Controls.Add(this.pipelineProgress1);
+            this.pnlMain.Controls.Add(this.pipelineStatus1);
             this.pnlMain.Controls.Add(this.mainSimple1);
             this.pnlMain.Controls.Add(this.stepWizardDialog1);
             this.pnlMain.Location = new System.Drawing.Point(0, 24);
@@ -292,13 +292,13 @@
             this.mainDeveloper1.Size = new System.Drawing.Size(288, 323);
             this.mainDeveloper1.TabIndex = 6;
             // 
-            // pipelineProgress1
+            // pipelineStatus1
             // 
-            this.pipelineProgress1.BackColor = System.Drawing.Color.White;
-            this.pipelineProgress1.Location = new System.Drawing.Point(37, 18);
-            this.pipelineProgress1.Name = "pipelineProgress1";
-            this.pipelineProgress1.Size = new System.Drawing.Size(284, 164);
-            this.pipelineProgress1.TabIndex = 5;
+            this.pipelineStatus1.BackColor = System.Drawing.Color.White;
+            this.pipelineStatus1.Location = new System.Drawing.Point(37, 18);
+            this.pipelineStatus1.Name = "pipelineStatus1";
+            this.pipelineStatus1.Size = new System.Drawing.Size(284, 164);
+            this.pipelineStatus1.TabIndex = 5;
             // 
             // mainSimple1
             // 
@@ -369,7 +369,7 @@
         private System.Windows.Forms.ToolStripMenuItem openFrontendToolStripMenuItem;
         private System.Windows.Forms.Panel pnlMain;
         private MainDeveloper mainDeveloper1;
-        private UI.PipelineProgress pipelineProgress1;
+        private UI.PipelineStatus pipelineStatus1;
         private MainSimple mainSimple1;
         private UI.Logger logger1;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;

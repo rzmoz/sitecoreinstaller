@@ -35,7 +35,7 @@ namespace SitecoreInstaller
             InitMenuItems();
 
             InitPipelineWorker();
-            InitPipelineProgress();
+            InitPipelineStatus();
             InitStepWizard();
             InitLogger();
 
@@ -66,7 +66,6 @@ namespace SitecoreInstaller
         void PipelineWorker_WorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             FlashWindow.Flash(this, 3);
-
         }
 
         void PipelineWorker_PreconditionNotMet(object sender, GenericEventArgs<string> e)
@@ -93,18 +92,18 @@ namespace SitecoreInstaller
             mainDeveloper1.Hide();
         }
 
-        private void InitPipelineProgress()
+        private void InitPipelineStatus()
         {
-            pipelineProgress1.Dock = DockStyle.Fill;
-            pipelineProgress1.Hide();
-            pipelineProgress1.Init();
+            pipelineStatus1.Dock = DockStyle.Fill;
+            pipelineStatus1.Hide();
+            pipelineStatus1.Init();
         }
 
         private void InitPipelineWorker()
         {
             Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
-            Services.PipelineWorker.AllStepsExecuting += pipelineProgress1.Starting;
-            Services.PipelineWorker.AllStepsExecuted += pipelineProgress1.Ended;
+            Services.PipelineWorker.AllStepsExecuting += pipelineStatus1.Starting;
+            Services.PipelineWorker.AllStepsExecuted += pipelineStatus1.Ended;
             Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
             Services.PipelineWorker.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
         }
@@ -113,8 +112,8 @@ namespace SitecoreInstaller
         {
             this.CrossThreadSafe(() =>
             {
-                pipelineProgress1.BringToFront();
-                pipelineProgress1.Show();
+                pipelineStatus1.BringToFront();
+                pipelineStatus1.Show();
             });
         }
 

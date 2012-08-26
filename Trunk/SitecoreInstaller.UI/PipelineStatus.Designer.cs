@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.UI
 {
-    partial class PipelineProgress
+    partial class PipelineStatus
     {
         /// <summary> 
         /// Required designer variable.
@@ -118,7 +118,7 @@
             this.picStatus.TabIndex = 18;
             this.picStatus.TabStop = false;
             // 
-            // PipelineProgress
+            // PipelineStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -129,7 +129,7 @@
             this.Controls.Add(this.lblStatusMessage);
             this.Controls.Add(this.pgbStatus);
             this.Controls.Add(this.tbxMessages);
-            this.Name = "PipelineProgress";
+            this.Name = "PipelineStatus";
             this.Size = new System.Drawing.Size(400, 300);
             ((System.ComponentModel.ISupportInitialize)(this.picStatus)).EndInit();
             this.ResumeLayout(false);

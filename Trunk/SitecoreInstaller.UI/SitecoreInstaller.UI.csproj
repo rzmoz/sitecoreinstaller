@@ -159,11 +159,11 @@
     <Compile Include="Simple\MainSimple.Designer.cs">
       <DependentUpon>MainSimple.cs</DependentUpon>
     </Compile>
-    <Compile Include="PipelineProgress.cs">
+    <Compile Include="PipelineStatus.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PipelineProgress.Designer.cs">
-      <DependentUpon>PipelineProgress.cs</DependentUpon>
+    <Compile Include="PipelineStatus.Designer.cs">
+      <DependentUpon>PipelineStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectLicense.cs">
@@ -283,8 +283,8 @@
     <EmbeddedResource Include="Simple\MainSimple.resx">
       <DependentUpon>MainSimple.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PipelineProgress.resx">
-      <DependentUpon>PipelineProgress.cs</DependentUpon>
+    <EmbeddedResource Include="PipelineStatus.resx">
+      <DependentUpon>PipelineStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectSitecore.resx">
       <DependentUpon>SelectSitecore.cs</DependentUpon>

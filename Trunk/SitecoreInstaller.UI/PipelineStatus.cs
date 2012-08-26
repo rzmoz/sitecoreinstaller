@@ -12,9 +12,9 @@ namespace SitecoreInstaller.UI
     using SitecoreInstaller.Framework.System;
     using SitecoreInstaller.UI.Properties;
 
-    public partial class PipelineProgress : UserControl
+    public partial class PipelineStatus : UserControl
     {
-        public PipelineProgress()
+        public PipelineStatus()
         {
             InitializeComponent();
         }
@@ -48,18 +48,18 @@ namespace SitecoreInstaller.UI
                     picStatus.Visible = true;
                     switch (e.Status)
                     {
-                        case PipelineStatus.NoProblems:
+                        case Domain.Pipelines.PipelineStatus.NoProblems:
                             picStatus.Image = Resources.ok;
                             break;
-                        case PipelineStatus.Warnings:
+                        case Domain.Pipelines.PipelineStatus.Warnings:
                             picStatus.Image = Resources.warning;
                             break;
-                        case PipelineStatus.Errors:
+                        case Domain.Pipelines.PipelineStatus.Errors:
                             picStatus.Image = Resources.error;
                             break;
                     }
 
-                    if(e.Status != PipelineStatus.NoProblems)
+                    if(e.Status != Domain.Pipelines.PipelineStatus.NoProblems)
                     {
                         tbxMessages.Visible = true;
                         tbxMessages.Text = "";
