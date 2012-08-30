@@ -38,7 +38,11 @@ namespace SitecoreInstaller.Domain.Database
             {
                 var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString)));
                 var files = new StringCollection { DatafileFullPath, LogFileFullPath };
-                sqlServer.AttachDatabase(Name, files, sqlSettings.Login, AttachOptions.None);
+                
+                sqlServer.AttachDatabase(Name,files);
+               
+                sqlServer.Databases[Name].SetOwner(sqlSettings.Login,true);
+                
                 Log.As.Info("Database {0} attached", Name);
             }
             catch (SqlServerManagementException ex)
