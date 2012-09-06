@@ -27,7 +27,7 @@ namespace SitecoreInstaller.App.Test
         {
             var installationSteps = _installerService.Pipeline.Steps;
 
-            installationSteps.Should().HaveCount(16);
+            installationSteps.Should().HaveCount(12);
         }
     }
 }
