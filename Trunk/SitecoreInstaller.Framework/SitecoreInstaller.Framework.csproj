@@ -84,7 +84,8 @@
     <Compile Include="Archiving\SevenZipFile.cs" />
     <Compile Include="Configuration\ConfigFileConfigurationRepository.cs" />
     <Compile Include="Configuration\IConfigurationRepository.cs" />
-    <Compile Include="Configuration\Source.cs" />
+    <Compile Include="Configuration\SourceManifest.cs" />
+    <Compile Include="Configuration\SourceManifestRepository.cs" />
     <Compile Include="Diagnostics\ILog.cs" />
     <Compile Include="Diagnostics\InMemoryBufferedLog.cs" />
     <Compile Include="Diagnostics\Log.cs" />

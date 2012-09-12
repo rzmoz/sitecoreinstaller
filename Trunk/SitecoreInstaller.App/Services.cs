@@ -29,20 +29,18 @@ namespace SitecoreInstaller.App
             HostFile = new HostFileService();
             PipelineWorker = new PipelineWorker();
             AppSettings = new AppSettings();
+            SourceManifests = new SourceManifestRepository(ApplicationConstants.SourcesConfigFileName);
         }
 
         public static void Init()
         {
             CheckPreferencesOverride();
 
-            IConfigurationRepository sourcesRepository = new ConfigFileConfigurationRepository();
-            sourcesRepository.Load(ApplicationConstants.SourcesConfigFileName);
-            var sources = sourcesRepository.GetElements("source").Select(source => new Source(source.Attribute("name").Value, source.Attribute("type").Value, source.Attribute("parameters").Value));
             var localBuildLibrary = new WindowsFileSystemSource(string.Empty) { Parameters = UserSettings.Default.LocalBuildLibrary };
             if (BuildLibrary == null)
-                BuildLibrary = new LocalSourceRepository(localBuildLibrary, sources.Select(Create));
+                BuildLibrary = new LocalSourceRepository(localBuildLibrary, SourceManifests.All().Select(Create));
             else
-                ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, sources.Select(Create));
+                ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, SourceManifests.All().Select(Create));
 
             BuildLibrary.Update();
 
@@ -75,14 +73,15 @@ namespace SitecoreInstaller.App
                 UserSettings.Default.LicenseExpirationPeriodInDays = Convert.ToInt32(configuration["LicenseExpirationPeriodInDays"]);
         }
 
-        private static ISource Create(Source source)
+        private static ISource Create(SourceManifest sourceManifest)
         {
             var sourceFactory = new SourceFactory();
-            var sourceInstance = sourceFactory.Create<ISource>(source.Type, source.Name);
-            sourceInstance.Parameters = source.Parameters;
+            var sourceInstance = sourceFactory.Create<ISource>(sourceManifest.Type, sourceManifest.Name);
+            sourceInstance.Parameters = sourceManifest.Parameters;
             return sourceInstance;
         }
 
+        private static SourceManifestRepository SourceManifests { get; set; }
         public static AppSettings AppSettings { get; set; }
         public static PipelineManager Pipelines { get; private set; }
         public static ISourceRepository BuildLibrary { get; set; }
