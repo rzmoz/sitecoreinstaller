@@ -15,25 +15,25 @@ namespace SitecoreInstaller.App.Pipelines
         public InstallPipeline()
         {
             //Init preconditions
-            AddPrecondition(new CheckProjectNameIsSet());
-            AddPrecondition(new CheckSitecore());
-            AddPrecondition(new CheckLicense());
-            AddPrecondition(new CheckWritePermissionToHostFile());
-            AddPrecondition(new CheckProjectDoesNotExixts());
+            AddPrecondition<CheckProjectNameIsSet>();
+            AddPrecondition<CheckSitecore>();
+            AddPrecondition<CheckLicense>();
+            AddPrecondition<CheckWritePermissionToHostFile>();
+            AddPrecondition<CheckProjectDoesNotExixts>();
 
             //Init steps
-            AddStep(new CreateProjectFolder());
-            AddStep(new CopySitecore());
-            AddStep(new CopyLicensefile());
-            AddStep(new SetDataFolder());
-            AddStep(new CopyModuleFiles());
-            AddStep(new SetConnectionStrings());
-            AddStep(new AttachDatabases());
-            AddStep(new AddSitenameToHostFile());
-            AddStep(new CreateIisSiteAndAppPool());
-            AddStep(new InstallRuntimeServices());
-            AddStep(new InstallPackages());
-            AddStep(new ExecutePostInstallSteps());
+            AddStep<CreateProjectFolder>();
+            AddStep<CopySitecore>();
+            AddStep<CopyLicensefile>();
+            AddStep<SetDataFolder>();
+            AddStep<CopyModuleFiles>();
+            AddStep<SetConnectionStrings>();
+            AddStep<AttachDatabases>();
+            AddStep<AddSitenameToHostFile>();
+            AddStep<CreateIisSiteAndAppPool>();
+            AddStep<InstallRuntimeServices>();
+            AddStep<InstallPackages>();
+            AddStep<ExecutePostInstallSteps>();
         }
     }
 }

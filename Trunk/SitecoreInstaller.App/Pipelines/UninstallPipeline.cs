@@ -13,16 +13,16 @@ namespace SitecoreInstaller.App.Pipelines
         public UninstallPipeline()
         {
             //Init preconditions
-            AddPrecondition(new CheckProjectNameIsSet());
-            AddPrecondition(new CheckWritePermissionToHostFile());
+            AddPrecondition<CheckProjectNameIsSet>();
+            AddPrecondition<CheckWritePermissionToHostFile>();
 
             //Init steps
-            AddStep(new StopApplication());
-            AddStep(new DetachDatabases());
-            AddStep(new DeleteIisSiteAndAppPool());
-            AddStep(new DeleteSiteFromHostFile());
-            AddStep(new DeleteRuntimeServices());
-            AddStep(new DeleteProject());
+            AddStep<StopApplication>();
+            AddStep<DetachDatabases>();
+            AddStep<DeleteIisSiteAndAppPool>();
+            AddStep<DeleteSiteFromHostFile>();
+            AddStep<DeleteRuntimeServices>();
+            AddStep<DeleteProject>();
         }
     }
 }

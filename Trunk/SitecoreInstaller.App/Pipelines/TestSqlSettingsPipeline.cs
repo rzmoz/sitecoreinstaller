@@ -15,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines
         public TestSqlSettingsPipeline()
         {
             //Init steps
-            AddStep(new TestDatabaseSettings());
+            AddStep<TestDatabaseSettings>();
         }
     }
 }

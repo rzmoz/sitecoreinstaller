@@ -14,13 +14,13 @@ namespace SitecoreInstaller.App.Pipelines
         public ReAttachPipeline()
         {
             //Init preconditions
-            AddPrecondition(new CheckProjectNameIsSet());
-            AddPrecondition(new CheckWritePermissionToHostFile());
+            AddPrecondition<CheckProjectNameIsSet>();
+            AddPrecondition<CheckWritePermissionToHostFile>();
 
             //Init steps
-            AddStep(new AttachDatabases());
-            AddStep(new AddSitenameToHostFile());
-            AddStep(new CreateIisSiteAndAppPool());
+            AddStep<AttachDatabases>();
+            AddStep<AddSitenameToHostFile>();
+            AddStep<CreateIisSiteAndAppPool>();
         }
     }
 }
