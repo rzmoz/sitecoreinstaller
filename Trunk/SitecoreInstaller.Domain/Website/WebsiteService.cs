@@ -33,8 +33,6 @@ namespace SitecoreInstaller.Domain.Website
         private const string _InstallPackageServiceName = "InstallPackageService.aspx";
         private const string _PostInstallServiceName = "PostInstallService.aspx";
 
-        private const string _InstallerRunTimeServicesAssembly = "SitecoreInstaller.Runtime.dll";
-
         private readonly WebsiteFileTypes _websiteFileTypes;
 
         public WebsiteService()
@@ -209,10 +207,6 @@ namespace SitecoreInstaller.Domain.Website
             var postInstallService = new FileInfo(_PostInstallServiceName);
             postInstallService.CopyTo(runtimeServicesFolder, true);
 
-            //copy package assembly
-            var runtimeServicesAssembly = new FileInfo(_InstallerRunTimeServicesAssembly);
-            runtimeServicesAssembly.CopyTo(websiteFolder.CombineTo<DirectoryInfo>(_TargetAssemblyPath), true);
-
             Log.As.Info("Runtime services installed");
         }
 
@@ -221,21 +215,13 @@ namespace SitecoreInstaller.Domain.Website
             //delete runtime services
             var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
 
-            if (Directory.Exists(runtimeServicesFolder.FullName) == false)
+            if (runtimeServicesFolder.Exists == false)
             {
                 Log.As.Debug("Runtime services not found. Aborting...");
                 return;
             }
 
-            foreach (var file in runtimeServicesFolder.GetFiles())
-                file.Delete();
-
-            //delete runtime services assembly
-            var runtimeServicesAssembly = websiteFolder.CombineTo<FileInfo>(_TargetAssemblyPath, _InstallerRunTimeServicesAssembly);
-            if (runtimeServicesAssembly.Exists == false)
-                return;
-
-            runtimeServicesAssembly.Delete();
+            runtimeServicesFolder.DeleteWithLog();
         }
 
         public void InstallPackages(string baseUrl, IEnumerable<BuildLibraryDirectory> modules)

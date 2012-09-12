@@ -55,7 +55,8 @@ namespace SitecoreInstaller.Framework.IO
             {
                 for (var tryCount = 1; tryCount <= retries; tryCount++)
                 {
-                    if (Directory.Exists(folder.FullName))
+                    folder.Refresh();
+                    if (folder.Exists)
                     {
                         try
                         {
