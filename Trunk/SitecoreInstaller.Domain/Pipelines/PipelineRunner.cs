@@ -48,7 +48,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                 var elapsed = Profiler.This(InnerExecuteAllSteps, sender, e);
                 Log.As.Profile(Pipeline.GetType().Name, elapsed);
 
-                Log.As.FlushBuffer();
+                Log.As.Flush();
 
                 var warnings = from entry in Log.As.Entries
                                where entry.LogType == LogType.Warning
@@ -109,7 +109,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
                 var elapsed = Profiler.This(step.Invoke, sender, e);
                 Log.As.Profile(step.GetType().Name, elapsed);
-                
+
                 if (StepExecuted != null)
                     StepExecuted(step, args);
             }

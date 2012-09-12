@@ -11,7 +11,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
     {
         event EventHandler<GenericEventArgs<LogEntry>> EntryLogged;
         event EventHandler LogCleared;
-        void FlushBuffer();
+        void Flush();
         void Clear();
 
         IEnumerable<LogEntry> Entries { get; }

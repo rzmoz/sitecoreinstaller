@@ -27,7 +27,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
             _notifyBuffer = new Queue<LogEntry>(_FlushInterval * 10);//initial size of log should be proportional to how often it is flushed
         }
 
-        public void FlushBuffer()
+        public void Flush()
         {
             FlushLogBuffer(null);
         }
