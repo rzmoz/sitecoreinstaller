@@ -155,7 +155,6 @@
     <Compile Include="Pipelines\Pipeline.cs" />
     <Compile Include="Website\DataProviderType.cs" />
     <Compile Include="Website\WffmConfigFile.cs" />
-    <Compile Include="Database\DatabaseExtensions.cs" />
     <Compile Include="Database\ISqlService.cs" />
     <Compile Include="Database\SqlService.cs" />
     <Compile Include="Database\SqlSettings.cs" />

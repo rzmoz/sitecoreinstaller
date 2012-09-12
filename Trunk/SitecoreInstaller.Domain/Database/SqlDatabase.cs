@@ -31,7 +31,6 @@ namespace SitecoreInstaller.Domain.Database
             Name = projectName.Trim() + "_" + LogicalName;
         }
 
-
         public void Attach(SqlSettings sqlSettings)
         {
             try

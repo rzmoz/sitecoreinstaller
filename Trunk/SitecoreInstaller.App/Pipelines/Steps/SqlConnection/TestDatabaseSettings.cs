@@ -12,7 +12,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.SqlConnection
         protected override void InnerInvoke(object sender, EventArgs args)
         {
             Log.As.Info("Testing Sql settings...");
-            Services.Sql.TestDatabaseSettings(Services.AppSettings.Sql);
+            Services.AppSettings.Sql.TestConnection();
         }
     }
 }

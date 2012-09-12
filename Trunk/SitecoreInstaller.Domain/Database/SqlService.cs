@@ -21,32 +21,6 @@ namespace SitecoreInstaller.Domain.Database
             _websiteFileTypes = new WebsiteFileTypes();
         }
 
-        public void TestDatabaseSettings(SqlSettings sqlSettings)
-        {
-            try
-            {
-                var connectionString = sqlSettings.ConnectionString + ";Connect Timeout=5";
-                using (var sqlConnection = new SqlConnection(connectionString))
-                {
-                    var command = new SqlCommand("SELECT COUNT(*) FROM sys.all_views", sqlConnection);
-                    try
-                    {
-                        command.Connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    finally
-                    {
-                        sqlConnection.Close();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Log.As.Debug(e.ToString());
-                Log.As.Error(e.Message);
-            }
-        }
-
         public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, DirectoryInfo databaseFolder, string projectName, IEnumerable<string> existingConnectionStrings)
         {
             Log.As.Info("Generating connection string delta...");
