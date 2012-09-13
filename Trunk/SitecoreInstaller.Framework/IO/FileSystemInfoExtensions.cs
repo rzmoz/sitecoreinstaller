@@ -45,5 +45,11 @@ namespace SitecoreInstaller.Framework.IO
                 return false;
             return File.Exists(Path.Combine(dir.FullName, fileSystemInfo.Name));
         }
+        public static bool Exists(this FileSystemInfo fileSystemInfo )
+        {
+            if (fileSystemInfo == null)
+                return false;
+            return Directory.Exists(fileSystemInfo.FullName);
+        }
     }
 }

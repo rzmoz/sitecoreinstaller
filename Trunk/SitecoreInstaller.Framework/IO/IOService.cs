@@ -55,8 +55,7 @@ namespace SitecoreInstaller.Framework.IO
             {
                 for (var tryCount = 1; tryCount <= retries; tryCount++)
                 {
-                    folder.Refresh();
-                    if (folder.Exists)
+                    if (folder.Exists())
                     {
                         try
                         {
@@ -77,7 +76,6 @@ namespace SitecoreInstaller.Framework.IO
                     else
                     {
                         //sometimes happens when folder is deleted between retries which can happen when folder handles are released after a while when deleting a site
-                        Log.As.Debug("Folder doesn't exist: '{0}'", folder.FullName);
                         break;
                     }
                 }

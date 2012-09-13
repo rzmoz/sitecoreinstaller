@@ -108,7 +108,6 @@
     <Compile Include="Pipelines\Steps\Step.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\DeleteIisSiteAndAppPool.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\DeleteProject.cs" />
-    <Compile Include="Pipelines\Steps\Uninstall\DeleteRuntimeServices.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\DeleteSiteFromHostFile.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\DetachDatabases.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\StopApplication.cs" />
