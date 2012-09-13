@@ -1,9 +1,7 @@
 Features:
-Better handling of updating slow sources - put in background thread
+Better handling of updating slow sources - put in background thread?
 SDN source!
 Detection / logging of installed items (Sitecore, license, modules etc.) for better uninstall and reinstall
-Pipelining of pipelines to allow preconditions to be a separate pipeline (look into Contracts namespace?)
-Better detection whether machine meets pre-requisites
 Installation of Sitecore Counters
 Option for cancelling pipeline
 Optional rollback pipeline (if something goes wrong)
@@ -16,7 +14,6 @@ UI:
 More detailed UI for pipeline progress
 Pipeline single steps shold use background worker when executing to use progress bar and not locking ui
 Better visualization of sources (are selections local or external etc)
-Only one single progress bar should ever be shown (Sql Test initiates two)
 
 Distribution:
 Make distribution smaller(ILMerge)
