@@ -80,7 +80,7 @@ namespace SitecoreInstaller.Framework.IO
                     }
                 }
 
-                if (Directory.Exists(folder.FullName))
+                if (folder.Exists())
                     Log.As.Warning("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
             }
             catch (UnauthorizedAccessException e)
@@ -97,7 +97,7 @@ namespace SitecoreInstaller.Framework.IO
         {
             if (rootFolder == null)
                 return;
-            if (Directory.Exists(rootFolder.FullName) == false)
+            if (rootFolder.Exists() == false)
                 return;
 
             //if folder has a sub folder with identical name, we move it up one level

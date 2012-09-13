@@ -188,7 +188,8 @@ namespace SitecoreInstaller.Domain.Website
 
             projectFolder.DeleteWithLog();
 
-            Log.As.Info("Project folder deleted");
+            if (projectFolder.Exists() == false)
+                Log.As.Info("Project folder deleted");
         }
 
         public void InstallRuntimeServices(DirectoryInfo websiteFolder)
@@ -220,7 +221,7 @@ namespace SitecoreInstaller.Domain.Website
                 Log.As.Debug("Runtime services not found. Aborting...");
                 return;
             }
-            
+
             runtimeServicesFolder.DeleteWithLog();
         }
 
