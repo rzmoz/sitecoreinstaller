@@ -38,7 +38,7 @@
         private void Reset()
         {
             ProjectName.Reset();
-            AppPool = new AppPoolSettings();
+            Iis = new IisSettings();
             WebsiteFolders = new WebsiteFolders();
             UserSelections = new UserSelections();
             Sql = new SqlSettings();
@@ -53,16 +53,9 @@
             if (ProjectNameIsSet)
                 SetSystemPaths();
             else
-                IisSiteName = string.Empty;
+                Iis.Url = string.Empty;
 
-            AppPool.Name = IisSiteName;
-        }
-
-        private string _iisSiteName;
-        public string IisSiteName
-        {
-            get { return _iisSiteName; }
-            set { _iisSiteName = value.ToLowerInvariant(); }
+            Iis.Name = ProjectName.Value;
         }
 
         public FileInfo ConnectionStringsConfigFile { get; set; }
@@ -74,14 +67,14 @@
 
         public UserSelections UserSelections { get; set; }
         public SqlSettings Sql { get; set; }
-        public AppPoolSettings AppPool { get; set; }
+        public IisSettings Iis { get; set; }
         public WebsiteFolders WebsiteFolders { get; set; }
 
         private void SetSystemPaths()
         {
             var projectfolder = new DirectoryInfo(UserSettings.Default.ProjectsFolder).CombineTo<DirectoryInfo>(ProjectName.Value);
             WebsiteFolders = new WebsiteFolders(projectfolder, DataFolderMode.DataOutside);
-            IisSiteName = ProjectName + UserSettings.Default.IisSitePostfix;
+            Iis.Url = ProjectName + UserSettings.Default.IisSitePostfix;
             ConnectionStringsConfigFile = WebsiteFolders.ConfigFolder.CombineTo<FileInfo>(ApplicationConstants.ConnectionStringsConfigFileName);
             DataFolderConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(ApplicationConstants.DataFolderConfigFileName);
             LicenseConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(ApplicationConstants.LicenseConfigFileName);

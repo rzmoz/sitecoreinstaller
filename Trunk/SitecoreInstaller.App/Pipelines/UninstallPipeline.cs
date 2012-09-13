@@ -21,7 +21,7 @@ namespace SitecoreInstaller.App.Pipelines
             AddStep<DetachDatabases>();
             AddStep<DeleteIisSiteAndAppPool>();
             AddStep<DeleteSiteFromHostFile>();
-            AddStep<DeleteRuntimeServices>();
+           // AddStep<DeleteRuntimeServices>();
             AddStep<DeleteProject>();
         }
     }

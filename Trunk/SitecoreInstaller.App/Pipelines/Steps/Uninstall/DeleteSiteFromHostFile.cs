@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.HostFile.RemoveHostName(Services.AppSettings.IisSiteName);
+            Services.HostFile.RemoveHostName(Services.AppSettings.Iis.Url);
         }
     }
 }

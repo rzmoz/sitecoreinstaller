@@ -220,7 +220,7 @@ namespace SitecoreInstaller.Domain.Website
                 Log.As.Debug("Runtime services not found. Aborting...");
                 return;
             }
-
+            
             runtimeServicesFolder.DeleteWithLog();
         }
 

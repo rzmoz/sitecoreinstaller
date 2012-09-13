@@ -57,12 +57,12 @@ namespace SitecoreInstaller
         public override void OpenSitecore(object sender, EventArgs e)
         {
             var appsettings = MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings();
-            Services.Website.OpenSitecore(appsettings.IisSiteName, appsettings.WebsiteFolders.WebSiteFolder);
+            Services.Website.OpenSitecore(appsettings.Iis.Url, appsettings.WebsiteFolders.WebSiteFolder);
         }
 
         public override void OpenFrontend(object sender, EventArgs e)
         {
-            Services.Website.OpenFrontend(MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings().IisSiteName);
+            Services.Website.OpenFrontend(MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings().Iis.Url);
         }
     }
 }

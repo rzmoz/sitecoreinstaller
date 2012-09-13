@@ -42,7 +42,7 @@ namespace SitecoreInstallerConsole.Runners
         private void Install(string license, IEnumerable<SourceEntry> selectedModules, string projectName, string sitecore)
         {
             Services.AppSettings.ProjectName.Value = projectName;
-            Services.AppSettings.AppPool = new AppPoolSettings() { Name = Services.AppSettings.IisSiteName };
+            Services.AppSettings.Iis = new IisSettings { Name = Services.AppSettings.ProjectName.Value };
             Services.AppSettings.UserSelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
             Services.AppSettings.UserSelections.SelectedLicense = new SourceEntry(license, string.Empty);
             if (sitecore == ArgSwitches.Latest)

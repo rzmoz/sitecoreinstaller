@@ -50,7 +50,7 @@ namespace SitecoreInstaller.UI.Simple
             else
             {
                 var appsettings = GetAppSettings();
-                Services.Website.OpenFrontend(appsettings.IisSiteName);
+                Services.Website.OpenFrontend(appsettings.Iis.Url);
             }
         }
     }

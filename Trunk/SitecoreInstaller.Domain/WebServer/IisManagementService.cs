@@ -15,25 +15,25 @@ namespace SitecoreInstaller.Domain.WebServer
             _iisManager = new ServerManager();
         }
 
-        public void CreateApplication(AppPoolSettings appPoolSettings, DirectoryInfo siteDirectory, DirectoryInfo iisLogFilesDirectory)
+        public void CreateApplication(IisSettings iisSettings, DirectoryInfo siteDirectory, DirectoryInfo iisLogFilesDirectory)
         {
-            Log.As.Debug("Creating application in iis: {0}", appPoolSettings.Name);
+            Log.As.Debug("Creating application in iis: {0}", iisSettings.Name);
 
-            if (_iisManager.ApplicationPools[appPoolSettings.Name] != null)
+            if (_iisManager.ApplicationPools[iisSettings.Name] != null)
             {
-                Log.As.Error("Application pool already exist in iis: {0}", appPoolSettings.Name);
+                Log.As.Error("Application pool already exist in iis: {0}", iisSettings.Name);
                 return;
             }
 
-            if (_iisManager.Sites[appPoolSettings.Name] != null)
+            if (_iisManager.Sites[iisSettings.Name] != null)
             {
-                Log.As.Error("Site already exist in iis: {0}", appPoolSettings.Name);
+                Log.As.Error("Site already exist in iis: {0}", iisSettings.Name);
                 return;
             }
 
-            CreateAppPool(appPoolSettings);
+            CreateAppPool(iisSettings);
 
-            CreateSite(appPoolSettings.Name, siteDirectory, iisLogFilesDirectory);
+            CreateSite(iisSettings, siteDirectory, iisLogFilesDirectory);
         }
 
         public void DeleteApplication(string applicationName)
@@ -126,16 +126,16 @@ namespace SitecoreInstaller.Domain.WebServer
             }
         }
 
-        private void CreateAppPool(AppPoolSettings appPoolSettings)
+        private void CreateAppPool(IisSettings iisSettings)
         {
-            Log.As.Info("Creating application pool '{0}'", appPoolSettings.Name);
+            Log.As.Info("Creating application pool '{0}'", iisSettings.Name);
 
-            var appPool = _iisManager.ApplicationPools.Add(appPoolSettings.Name);
-            appPool.ManagedRuntimeVersion = appPoolSettings.ManagedRuntimeVersion.ToString();
-            appPool.ManagedPipelineMode = appPoolSettings.ManagedPipelineMode;
-            appPool.Enable32BitAppOnWin64 = appPoolSettings.Enable32BitAppOnWin64;
-            appPool.ProcessModel.PingingEnabled = appPoolSettings.PingingEnabled;
-            appPool.ProcessModel.IdentityType = appPoolSettings.ProcessModelIdentityType;
+            var appPool = _iisManager.ApplicationPools.Add(iisSettings.Name);
+            appPool.ManagedRuntimeVersion = iisSettings.ManagedRuntimeVersion.ToString();
+            appPool.ManagedPipelineMode = iisSettings.ManagedPipelineMode;
+            appPool.Enable32BitAppOnWin64 = iisSettings.Enable32BitAppOnWin64;
+            appPool.ProcessModel.PingingEnabled = iisSettings.PingingEnabled;
+            appPool.ProcessModel.IdentityType = iisSettings.ProcessModelIdentityType;
             _iisManager.CommitChanges();
 
             Log.As.Debug("App pool runtime version set to {0}", appPool.ManagedRuntimeVersion);
@@ -145,13 +145,13 @@ namespace SitecoreInstaller.Domain.WebServer
             Log.As.Info("Application pool created");
         }
 
-        private void CreateSite(string applicationName, DirectoryInfo siteDirectory, DirectoryInfo iisLogFilesDirectory)
+        private void CreateSite(IisSettings iisSettings, DirectoryInfo siteDirectory, DirectoryInfo iisLogFilesDirectory)
         {
-            Log.As.Info("Creating site in iis '{0}'", applicationName);
+            Log.As.Info("Creating site in iis '{0}'", iisSettings.Name);
             Log.As.Debug("Site home directory set to '{0}'", siteDirectory.FullName);
-            var bindingInformation = string.Format(_BindingInformationFormat, applicationName);
-            var site = _iisManager.Sites.Add(applicationName, "http", bindingInformation, siteDirectory.FullName);
-            site.ApplicationDefaults.ApplicationPoolName = applicationName;
+            var bindingInformation = string.Format(_BindingInformationFormat, iisSettings.Url);
+            var site = _iisManager.Sites.Add(iisSettings.Name, "http", bindingInformation, siteDirectory.FullName);
+            site.ApplicationDefaults.ApplicationPoolName = iisSettings.Name;
             site.LogFile.Directory = iisLogFilesDirectory.FullName;
             _iisManager.CommitChanges();
 

@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.IisManagement.CreateApplication(Services.AppSettings.AppPool, Services.AppSettings.WebsiteFolders.WebSiteFolder, Services.AppSettings.WebsiteFolders.IisLogFilesFolder);
+            Services.IisManagement.CreateApplication(Services.AppSettings.Iis, Services.AppSettings.WebsiteFolders.WebSiteFolder, Services.AppSettings.WebsiteFolders.IisLogFilesFolder);
         }
     }
 }

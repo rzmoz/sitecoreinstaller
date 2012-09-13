@@ -10,14 +10,14 @@
 
     public partial class SelectionsDeveloper : UserControl
     {
-        private Func<AppPoolSettings> _getAppPoolSettings;
+        private Func<IisSettings> _getAppPoolSettings;
 
         public SelectionsDeveloper()
         {
             InitializeComponent();
         }
 
-        public void Init(Func<AppPoolSettings> getAppPoolSettings)
+        public void Init(Func<IisSettings> getAppPoolSettings)
         {
             _getAppPoolSettings = getAppPoolSettings;
             _selectProjectName1.Init();
@@ -30,7 +30,7 @@
         {
             var appSettings = new AppSettings();
             appSettings.Init(UserSettings.Default);
-            appSettings.AppPool = _getAppPoolSettings();//Get app pool settings before project name is set!
+            appSettings.Iis = _getAppPoolSettings();//Get app pool settings before project name is set!
             appSettings.ProjectName.Value = _selectProjectName1.ProjectName;
             appSettings.UserSelections.SelectedSitecore = selectSitecore1.SelectedItem;
             appSettings.UserSelections.SelectedLicense = selectLicense1.SelectedItem;

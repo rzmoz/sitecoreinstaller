@@ -14,9 +14,9 @@
         {
             InitializeComponent();
         }
-        public AppPoolSettings GetAppPoolSettings()
+        public IisSettings GetAppPoolSettings()
         {
-            var appPoolSettings = new AppPoolSettings
+            var appPoolSettings = new IisSettings
                 {
                     ManagedRuntimeVersion = (ClrVersion)cbxClrVersion.SelectedItem,
                     Enable32BitAppOnWin64 = chk32BitEnabled.Checked,

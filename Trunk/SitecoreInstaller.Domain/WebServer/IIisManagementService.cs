@@ -11,7 +11,7 @@ namespace SitecoreInstaller.Domain.WebServer
         /// <summary>
         /// Creates iis website and app pool
         /// </summary>
-        void CreateApplication(AppPoolSettings appPoolSettings, DirectoryInfo siteDirectory, DirectoryInfo iisLogFilesDirectory);
+        void CreateApplication(IisSettings iisSettings, DirectoryInfo siteDirectory, DirectoryInfo iisLogFilesDirectory);
         /// <summary>
         /// Deletes iis website and app pool
         /// </summary>

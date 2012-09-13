@@ -69,28 +69,28 @@ namespace SitecoreInstaller
             if (MainForm.MainSimple.Install.Visible)
             {
                 var appsettings = MainForm.MainSimple.Install.GetAppSettings();
-                Services.Website.OpenSitecore(appsettings.IisSiteName, appsettings.WebsiteFolders.WebSiteFolder);
+                Services.Website.OpenSitecore(appsettings.Iis.Url, appsettings.WebsiteFolders.WebSiteFolder);
             }
             else if (MainForm.MainSimple.Uninstall.Visible)
             {
                 var appsettings = MainForm.MainSimple.Uninstall.GetAppSettings();
-                Services.Website.OpenSitecore(appsettings.IisSiteName, appsettings.WebsiteFolders.WebSiteFolder);
+                Services.Website.OpenSitecore(appsettings.Iis.Url, appsettings.WebsiteFolders.WebSiteFolder);
             }
             else if (MainForm.MainSimple.Open.Visible)
             {
                 var appsettings = MainForm.MainSimple.Open.GetAppSettings();
-                Services.Website.OpenSitecore(appsettings.IisSiteName, appsettings.WebsiteFolders.WebSiteFolder);
+                Services.Website.OpenSitecore(appsettings.Iis.Url, appsettings.WebsiteFolders.WebSiteFolder);
             }
         }
 
         public override void OpenFrontend(object sender, EventArgs e)
         {
             if (MainForm.MainSimple.Install.Visible)
-                Services.Website.OpenFrontend(MainForm.MainSimple.Install.GetAppSettings().IisSiteName);
+                Services.Website.OpenFrontend(MainForm.MainSimple.Install.GetAppSettings().Iis.Url);
             else if (MainForm.MainSimple.Uninstall.Visible)
-                Services.Website.OpenFrontend(MainForm.MainSimple.Uninstall.GetAppSettings().IisSiteName);
+                Services.Website.OpenFrontend(MainForm.MainSimple.Uninstall.GetAppSettings().Iis.Url);
             else if (MainForm.MainSimple.Open.Visible)
-                Services.Website.OpenFrontend(MainForm.MainSimple.Open.GetAppSettings().IisSiteName);
+                Services.Website.OpenFrontend(MainForm.MainSimple.Open.GetAppSettings().Iis.Url);
             else
                 MainForm.MainSimple.btnOpen_Click(sender, e);
         }

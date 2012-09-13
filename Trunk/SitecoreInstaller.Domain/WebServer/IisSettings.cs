@@ -6,11 +6,12 @@ using Microsoft.Web.Administration;
 
 namespace SitecoreInstaller.Domain.WebServer
 {
-    public class AppPoolSettings
+    public class IisSettings
     {
-        public AppPoolSettings()
+        public IisSettings()
         {
             Name = string.Empty;
+            Url = string.Empty; 
             ManagedRuntimeVersion = ClrVersion.V40;
             ManagedPipelineMode = ManagedPipelineMode.Integrated;
             Enable32BitAppOnWin64 = false;
@@ -18,8 +19,8 @@ namespace SitecoreInstaller.Domain.WebServer
             ProcessModelIdentityType = ProcessModelIdentityType.NetworkService;
         }
 
-
         public string Name { get; set; }
+        public string Url { get; set; }
         public ClrVersion ManagedRuntimeVersion { get; set; }
         public ManagedPipelineMode ManagedPipelineMode { get; set; }
         public bool Enable32BitAppOnWin64 { get; set; }

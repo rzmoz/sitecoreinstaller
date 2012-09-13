@@ -83,15 +83,15 @@ namespace SitecoreInstaller.Framework.IO
                 }
 
                 if (Directory.Exists(folder.FullName))
-                    Log.As.Warning("Gave up waiting. Please delete project folder manually: '{0}'", folder.FullName);
+                    Log.As.Warning("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
             }
             catch (UnauthorizedAccessException e)
             {
-                Log.As.Error("Unable to delete project folder.\r\n{0}", e.ToString());
+                Log.As.Error("Unable to delete folder.\r\n{0}", e.ToString());
             }
             catch (SecurityException e)
             {
-                Log.As.Error("Unable to delete project folder.\r\n{0}", e.ToString());
+                Log.As.Error("Unable to delete folder.\r\n{0}", e.ToString());
             }
         }
 
