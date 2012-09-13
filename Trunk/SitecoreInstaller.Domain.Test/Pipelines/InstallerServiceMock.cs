@@ -8,9 +8,9 @@
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
 
-    internal class InstallerServiceMock : Pipeline
+    public class InstallerServiceMock : Pipeline
     {
-        public class EmptyStep:IStep
+        public class EmptyStep : IStep
         {
             public event EventHandler<EventArgs> StepInvoking;
             public event EventHandler<EventArgs> StepInvoked;
