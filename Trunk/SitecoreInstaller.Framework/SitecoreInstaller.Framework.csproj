@@ -84,9 +84,6 @@
   <ItemGroup>
     <Compile Include="Archiving\SevenZipFile.cs" />
     <Compile Include="Configuration\ConfigFile.cs" />
-    <Compile Include="Configuration\ConfigFileConfiguration.cs" />
-    <Compile Include="Configuration\ConfigurationRepository.cs" />
-    <Compile Include="Configuration\IConfiguration.cs" />
     <Compile Include="Configuration\SourceManifest.cs" />
     <Compile Include="Configuration\SourceManifestRepository.cs" />
     <Compile Include="Diagnostics\ILog.cs" />
