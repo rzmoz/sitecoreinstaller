@@ -27,11 +27,19 @@ namespace SitecoreInstaller.Framework.Test.Configuration
         }
 
         [Test]
+        public void GetMember_ReadDefaultValue_DefaultValueIsReadWhenValueIsEmpty()
+        {
+            var result = _configFile.WithDefaultValue;
+
+            Assert.AreEqual("this is the default value", result);
+        }
+
+        [Test]
         public void GetMember_ReadProperty_PropertyIsReadSuccesfully()
         {
             var result = _configFile.Greeting;
 
-            Assert.AreEqual(result, "Hello World!");
+            Assert.AreEqual("Hello World!", result);
         }
         [Test]
         public void GetMember_ReadProperty_PropertyNotFound()

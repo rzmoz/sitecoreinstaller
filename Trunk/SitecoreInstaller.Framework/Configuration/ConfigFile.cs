@@ -72,6 +72,10 @@ namespace SitecoreInstaller.Framework.Configuration
                 result = null;
             else
                 result = element.Value;
+
+            if (element.Value.Length == 0 && element.Attribute("defaultValue") != null)
+                result = element.Attribute("defaultValue").Value;
+
             return true;
         }
 
