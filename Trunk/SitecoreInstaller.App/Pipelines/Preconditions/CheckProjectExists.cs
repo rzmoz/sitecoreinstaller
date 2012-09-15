@@ -5,16 +5,18 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
+    using System.IO;
+
     using SitecoreInstaller.Domain.Pipelines;
 
-    public class CheckWritePermissionToHostFile : Precondition
+    public class CheckProjectExists : Precondition
     {
         public override bool Evaluate(object sender, PreconditionEventArgs args)
         {
-            if (Services.HostFile.HasWritePermissions())
+            if (Directory.Exists(Services.AppSettings.WebsiteFolders.ProjectFolder.FullName))
                 return true;
 
-            ErrorMessage = string.Format("SitecoreInstaller needs write permission to system host file. Run SitecoreInstaller as administrator");
+            ErrorMessage = string.Format("Project '{0}' doesn't exist.\r\n\r\nLocation: {1}", Services.AppSettings.ProjectName, Services.AppSettings.WebsiteFolders.ProjectFolder);
             return false;
         }
     }

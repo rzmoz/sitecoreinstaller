@@ -40,7 +40,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         public void ExecuateAllSteps(object sender, EventArgs e)
         {
-            if (AllStepsPreconditionsAreMet())
+            if (AllStepsPreconditionsAreMet(Pipeline.Preconditions))
             {
                 if (AllStepsExecuting != null)
                     AllStepsExecuting(sender, new PipelineEventArgs(Pipeline.Name, PipelineStatus.NoProblems));
@@ -77,13 +77,13 @@ namespace SitecoreInstaller.Domain.Pipelines
             AllStepsExecuted = null;
         }
 
-        private bool AllStepsPreconditionsAreMet()
+        private bool AllStepsPreconditionsAreMet(IEnumerable<IPrecondition> preconditions)
         {
             Log.As.Info("Evaluating pipeline preconditions for {0}", Pipeline.Name);
 
-            foreach (var precondition in Pipeline.Preconditions)
+            foreach (var precondition in preconditions)
             {
-                if (precondition.Evaluate(this, EventArgs.Empty))
+                if (precondition.Evaluate(this, new PreconditionEventArgs()))
                 {
                     Log.As.Info("Precondition met: {0}", precondition.GetType().Name);
                 }
@@ -107,8 +107,14 @@ namespace SitecoreInstaller.Domain.Pipelines
                 if (StepExecuting != null)
                     StepExecuting(step, args);
 
-                var elapsed = Profiler.This(step.Invoke, sender, e);
-                Log.As.Profile(step.GetType().Name, elapsed);
+                
+                if (AllStepsPreconditionsAreMet(step.Preconditions))
+                {
+                    var elapsed = Profiler.This(step.Invoke, sender, e);
+                    Log.As.Profile(step.GetType().Name, elapsed);    
+                }
+                else
+                    break;
 
                 if (StepExecuted != null)
                     StepExecuted(step, args);

@@ -2,9 +2,11 @@
 {
     using System;
 
+    using SitecoreInstaller.Domain.Pipelines;
+
     public class CheckProjectNameIsSet : Precondition
     {
-        public override bool Evaluate(object sender, EventArgs args)
+        public override bool Evaluate(object sender, PreconditionEventArgs args)
         {
             if (Services.AppSettings.ProjectNameIsSet)
                 return true;

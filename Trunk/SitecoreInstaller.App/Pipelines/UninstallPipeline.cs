@@ -15,6 +15,7 @@ namespace SitecoreInstaller.App.Pipelines
             //Init preconditions
             AddPrecondition<CheckProjectNameIsSet>();
             AddPrecondition<CheckWritePermissionToHostFile>();
+            AddPrecondition<CheckProjectExists>();
 
             //Init steps
             AddStep<StopApplication>();

@@ -21,6 +21,12 @@ namespace SitecoreInstaller.Domain.Pipelines
         {
             _preconditions.Add(new T());
         }
+
+        public void AddPreconditions(IEnumerable<IPrecondition> preconditions)
+        {
+            foreach (var precondition in preconditions)
+                _preconditions.Add(precondition);
+        }
         public void AddStep<T>() where T : IStep, new()
         {
             var step = new T();

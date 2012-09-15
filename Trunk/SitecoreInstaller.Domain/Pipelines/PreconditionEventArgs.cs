@@ -5,9 +5,8 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-    public interface IPrecondition
+    public class PreconditionEventArgs : EventArgs
     {
-        bool Evaluate(object sender, PreconditionEventArgs args);
-        string ErrorMessage { get; }
+        public bool KillDialogs { get; set; }
     }
 }

@@ -9,25 +9,30 @@ namespace SitecoreInstaller.App.Pipelines.Steps
 
     public abstract class Step : IStep
     {
-        protected IList<IPrecondition> ProtectedPreconditions { get; private set; }
-        public IEnumerable<IPrecondition> Preconditions { get { return ProtectedPreconditions; } }
+        private readonly IList<IPrecondition> _preconditions;
+        public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }
 
         public event EventHandler<EventArgs> StepInvoking;
         public event EventHandler<EventArgs> StepInvoked;
 
         protected Step()
         {
-            ProtectedPreconditions = new List<IPrecondition>();
+            _preconditions = new List<IPrecondition>();
         }
 
         public int Order { get; set; }
+
+        public void AddPrecondition<T>() where T : IPrecondition, new()
+        {
+            _preconditions.Add(new T());
+        }
 
         public void Invoke(object sender, EventArgs args)
         {
             if (StepInvoking != null)
                 StepInvoking(this, EventArgs.Empty);
 
-            if (Preconditions.Any(precondition => precondition.Evaluate(sender, args) == false))
+            if (Preconditions.Any(precondition => precondition.Evaluate(sender, new PreconditionEventArgs()) == false))
                 return;
 
             InnerInvoke(sender, args);

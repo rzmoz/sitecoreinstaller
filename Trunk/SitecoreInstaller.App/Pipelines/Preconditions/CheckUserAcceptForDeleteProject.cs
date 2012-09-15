@@ -7,15 +7,13 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
     using SitecoreInstaller.Domain.Pipelines;
 
-    public class CheckSitecore : Precondition
+    public class CheckUserAcceptForDeleteProject:Precondition
     {
         public override bool Evaluate(object sender, PreconditionEventArgs args)
         {
-            if (Services.AppSettings.UserSelections.SelectedSitecore != null)
-                return true;
-
-            ErrorMessage = "You haven't selected a Sitecore. Please add a Sitecore in preferences pane if you have none";
-            return false;
+            return !Services.Dialogs.UserAccept(
+                    "Do you want to keep '{0}'? (Saying no will delete it forever!)",
+                    Services.AppSettings.ProjectName.Value);
         }
     }
 }

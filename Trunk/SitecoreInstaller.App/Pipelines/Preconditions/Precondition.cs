@@ -18,7 +18,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
             _errorMessage = string.Empty;
         }
 
-        public abstract bool Evaluate(object sender, EventArgs args);
+        public abstract bool Evaluate(object sender, PreconditionEventArgs args);
 
         public string ErrorMessage
         {

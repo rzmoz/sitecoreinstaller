@@ -7,11 +7,12 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.BuildLibrary;
+    using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
 
     public class CheckLicense : Precondition
     {
-        public override bool Evaluate(object sender, EventArgs args)
+        public override bool Evaluate(object sender, PreconditionEventArgs args)
         {
             if (Services.AppSettings.UserSelections.SelectedLicense == null)
             {

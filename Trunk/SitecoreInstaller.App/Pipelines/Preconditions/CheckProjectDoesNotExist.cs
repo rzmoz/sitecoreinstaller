@@ -7,14 +7,14 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
     using SitecoreInstaller.Domain.Pipelines;
 
-    public class CheckWritePermissionToHostFile : Precondition
+    public class CheckProjectDoesNotExist : CheckProjectExists
     {
         public override bool Evaluate(object sender, PreconditionEventArgs args)
         {
-            if (Services.HostFile.HasWritePermissions())
+            if (base.Evaluate(sender, args) == false)
                 return true;
 
-            ErrorMessage = string.Format("SitecoreInstaller needs write permission to system host file. Run SitecoreInstaller as administrator");
+            ErrorMessage = string.Format("Project '{0}' already exists.\r\nPlease delete first or choose another project name for this installation.\r\n\r\nLocation: {1}", Services.AppSettings.ProjectName, Services.AppSettings.WebsiteFolders.ProjectFolder);
             return false;
         }
     }

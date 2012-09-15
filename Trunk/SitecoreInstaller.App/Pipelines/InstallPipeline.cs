@@ -19,11 +19,10 @@ namespace SitecoreInstaller.App.Pipelines
             AddPrecondition<CheckSitecore>();
             AddPrecondition<CheckLicense>();
             AddPrecondition<CheckWritePermissionToHostFile>();
-            AddPrecondition<CheckProjectDoesNotExixts>();
 
             //Init steps
             AddStep<CreateProjectFolder>();
-            AddStep<SaveAppSettings>();
+            AddStep<UpdateAppSettings>();
             AddStep<CopySitecore>();
             AddStep<CopyLicensefile>();
             AddStep<SetDataFolder>();
