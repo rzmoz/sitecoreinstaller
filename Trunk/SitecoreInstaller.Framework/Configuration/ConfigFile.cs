@@ -16,7 +16,8 @@ namespace SitecoreInstaller.Framework.Configuration
         private XElement _rootElement;
 
 
-        public ConfigFile(string path):this(new FileInfo(path))
+        public ConfigFile(string path)
+            : this(new FileInfo(path))
         {
         }
 
@@ -85,10 +86,18 @@ namespace SitecoreInstaller.Framework.Configuration
         public override bool TrySetMember(
             SetMemberBinder binder, object value)
         {
-            throw new NotImplementedException();
+            Init();
 
-            // You can always add a value to a dictionary, 
-            // so this method always returns true. 
+            var element = _rootElement.Element(binder.Name);
+            if (element == null)
+            {
+                _rootElement.Add(new XElement(binder.Name, value));
+            }
+            else
+            {
+                element.Value = value.ToString();
+            }
+            _document.Save(Path.FullName);
             return true;
         }
         public void Load(string path)
