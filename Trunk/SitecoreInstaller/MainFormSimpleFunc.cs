@@ -60,6 +60,8 @@ namespace SitecoreInstaller
                 MainForm.MainSimple.Install.btnCancel_Click(sender, e);
             else if (MainForm.MainSimple.Uninstall.Visible)
                 MainForm.MainSimple.Uninstall.btnCancel_Click(sender, e);
+            else if (MainForm.MainSimple.Reinstall.Visible)
+                MainForm.MainSimple.Reinstall.btnCancel_Click(sender, e);
             else if (MainForm.MainSimple.Open.Visible)
                 MainForm.MainSimple.Open.btnCancel_Click(sender, e);
         }

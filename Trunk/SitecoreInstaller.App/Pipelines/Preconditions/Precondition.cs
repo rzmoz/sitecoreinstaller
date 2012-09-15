@@ -11,26 +11,13 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
     public abstract class Precondition : IPrecondition
     {
-        private string _errorMessage;
-
         protected Precondition()
         {
-            _errorMessage = string.Empty;
+            ErrorMessage = string.Empty;
         }
 
         public abstract bool Evaluate(object sender, PreconditionEventArgs args);
 
-        public string ErrorMessage
-        {
-            get { return _errorMessage; }
-            set
-            {
-                _errorMessage = value;
-
-                if (string.IsNullOrEmpty(_errorMessage))
-                    return;
-                Log.As.Error(_errorMessage);
-            }
-        }
+        public string ErrorMessage { get; set; }
     }
 }

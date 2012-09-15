@@ -49,5 +49,12 @@ namespace SitecoreInstaller.UI
             Services.AppSettings = _getAppSettings();
             Services.Pipelines.Run<ReAttachPipeline>();
         }
+
+        private void btnReinstall_Click(object sender, EventArgs e)
+        {
+            Services.AppSettings = _getAppSettings();
+            Services.Pipelines.Run<ReinstallPipeline>();
+        }
+
     }
 }

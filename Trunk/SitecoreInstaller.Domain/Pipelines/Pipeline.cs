@@ -34,6 +34,15 @@ namespace SitecoreInstaller.Domain.Pipelines
             step.Order = _steps.Count;
         }
 
+        public void AddSteps(IEnumerable<IStep> steps)
+        {
+            foreach (var step in steps)
+            {
+                step.Order = _steps.Count;
+                _steps.Add(step);
+            }
+        }
+
         public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }
 
         public bool IsInUiMode { get; set; }

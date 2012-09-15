@@ -183,6 +183,12 @@
     <Compile Include="Simple\OpenSimple.Designer.cs">
       <DependentUpon>OpenSimple.cs</DependentUpon>
     </Compile>
+    <Compile Include="Simple\ReinstallSimple.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Simple\ReinstallSimple.Designer.cs">
+      <DependentUpon>ReinstallSimple.cs</DependentUpon>
+    </Compile>
     <Compile Include="Simple\UninstallSimple.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -300,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Simple\OpenSimple.resx">
       <DependentUpon>OpenSimple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Simple\ReinstallSimple.resx">
+      <DependentUpon>ReinstallSimple.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Simple\UninstallSimple.resx">
       <DependentUpon>UninstallSimple.cs</DependentUpon>

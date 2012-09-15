@@ -30,6 +30,8 @@
         {
             this.tabPipelineLists = new System.Windows.Forms.TabControl();
             this.pipelineStepListAll = new System.Windows.Forms.TabPage();
+            this.btnReinstall = new System.Windows.Forms.Button();
+            this.btnReAttach = new System.Windows.Forms.Button();
             this.btnUninstall = new System.Windows.Forms.Button();
             this.btnInstall = new System.Windows.Forms.Button();
             this.tabInstall = new System.Windows.Forms.TabPage();
@@ -38,7 +40,6 @@
             this.pipelineStepListUninstall = new SitecoreInstaller.UI.PipelineStepList();
             this.tabReAttach = new System.Windows.Forms.TabPage();
             this.pipelineStepListReAttach = new SitecoreInstaller.UI.PipelineStepList();
-            this.btnReAttach = new System.Windows.Forms.Button();
             this.tabPipelineLists.SuspendLayout();
             this.pipelineStepListAll.SuspendLayout();
             this.tabInstall.SuspendLayout();
@@ -61,6 +62,7 @@
             // 
             // pipelineStepListAll
             // 
+            this.pipelineStepListAll.Controls.Add(this.btnReinstall);
             this.pipelineStepListAll.Controls.Add(this.btnReAttach);
             this.pipelineStepListAll.Controls.Add(this.btnUninstall);
             this.pipelineStepListAll.Controls.Add(this.btnInstall);
@@ -72,13 +74,41 @@
             this.pipelineStepListAll.Text = "All";
             this.pipelineStepListAll.UseVisualStyleBackColor = true;
             // 
+            // btnReinstall
+            // 
+            this.btnReinstall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReinstall.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReinstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
+            this.btnReinstall.Location = new System.Drawing.Point(6, 42);
+            this.btnReinstall.Name = "btnReinstall";
+            this.btnReinstall.Size = new System.Drawing.Size(280, 30);
+            this.btnReinstall.TabIndex = 3;
+            this.btnReinstall.Text = "Reinstall";
+            this.btnReinstall.UseVisualStyleBackColor = false;
+            this.btnReinstall.Click += new System.EventHandler(this.btnReinstall_Click);
+            // 
+            // btnReAttach
+            // 
+            this.btnReAttach.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReAttach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReAttach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
+            this.btnReAttach.Location = new System.Drawing.Point(6, 114);
+            this.btnReAttach.Name = "btnReAttach";
+            this.btnReAttach.Size = new System.Drawing.Size(280, 30);
+            this.btnReAttach.TabIndex = 2;
+            this.btnReAttach.Text = "Reattach";
+            this.btnReAttach.UseVisualStyleBackColor = false;
+            this.btnReAttach.Click += new System.EventHandler(this.btnReAttach_Click);
+            // 
             // btnUninstall
             // 
             this.btnUninstall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUninstall.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUninstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
-            this.btnUninstall.Location = new System.Drawing.Point(6, 42);
+            this.btnUninstall.Location = new System.Drawing.Point(6, 78);
             this.btnUninstall.Name = "btnUninstall";
             this.btnUninstall.Size = new System.Drawing.Size(280, 30);
             this.btnUninstall.TabIndex = 1;
@@ -143,7 +173,7 @@
             this.tabReAttach.Name = "tabReAttach";
             this.tabReAttach.Size = new System.Drawing.Size(292, 344);
             this.tabReAttach.TabIndex = 3;
-            this.tabReAttach.Text = "Re-Attach";
+            this.tabReAttach.Text = "Reattach";
             this.tabReAttach.UseVisualStyleBackColor = true;
             // 
             // pipelineStepListReAttach
@@ -153,20 +183,6 @@
             this.pipelineStepListReAttach.Name = "pipelineStepListReAttach";
             this.pipelineStepListReAttach.Size = new System.Drawing.Size(292, 344);
             this.pipelineStepListReAttach.TabIndex = 0;
-            // 
-            // btnReAttach
-            // 
-            this.btnReAttach.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReAttach.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReAttach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
-            this.btnReAttach.Location = new System.Drawing.Point(6, 78);
-            this.btnReAttach.Name = "btnReAttach";
-            this.btnReAttach.Size = new System.Drawing.Size(280, 30);
-            this.btnReAttach.TabIndex = 2;
-            this.btnReAttach.Text = "Re-Attach";
-            this.btnReAttach.UseVisualStyleBackColor = false;
-            this.btnReAttach.Click += new System.EventHandler(this.btnReAttach_Click);
             // 
             // PipelineLists
             // 
@@ -197,6 +213,7 @@
         private System.Windows.Forms.TabPage tabReAttach;
         private PipelineStepList pipelineStepListReAttach;
         private System.Windows.Forms.Button btnReAttach;
+        private System.Windows.Forms.Button btnReinstall;
 
 
     }

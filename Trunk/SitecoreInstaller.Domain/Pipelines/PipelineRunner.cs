@@ -89,6 +89,8 @@ namespace SitecoreInstaller.Domain.Pipelines
                 }
                 else
                 {
+                    if (string.IsNullOrEmpty(precondition.ErrorMessage) == false)
+                        Log.As.Error(precondition.ErrorMessage);
                     if (Pipeline.IsInUiMode && PreconditionNotMet != null)
                         PreconditionNotMet(Pipeline, new GenericEventArgs<string>(precondition.ErrorMessage));
                     return false;
