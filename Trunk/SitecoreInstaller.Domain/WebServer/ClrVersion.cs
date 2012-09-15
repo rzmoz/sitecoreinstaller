@@ -5,8 +5,11 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.WebServer
 {
+    using System.Runtime.Serialization;
+
     using SitecoreInstaller.Framework.System;
 
+    [DataContract]
     public class ClrVersion : EnumClass
     {
         public static readonly ClrVersion V20 = new ClrVersion("v2.0");

@@ -29,12 +29,15 @@ namespace SitecoreInstaller.App
             HostFile = new HostFileService();
             PipelineWorker = new PipelineWorker();
             AppSettings = new AppSettings();
-            SourceManifests = new SourceManifestRepository(ApplicationConstants.SourcesConfigFileName);
+            SourceManifests = new SourceManifestRepository(AppConstants.SourcesConfigFileName);
         }
 
         public static void Init()
         {
             CheckPreferencesOverride();
+
+
+
 
             var localBuildLibrary = new WindowsFileSystemSource(string.Empty) { Parameters = UserSettings.Default.LocalBuildLibrary };
             if (BuildLibrary == null)
@@ -44,6 +47,7 @@ namespace SitecoreInstaller.App
 
             BuildLibrary.Update();
 
+
             Projects = new ProjectsService(UserSettings.Default.ProjectsFolder);
 
             Sql = new SqlService();
@@ -51,26 +55,19 @@ namespace SitecoreInstaller.App
 
         private static void CheckPreferencesOverride()
         {
-            if (File.Exists(ApplicationConstants.PreferencesOverrideConfigFileName) == false)
+            if (File.Exists(AppConstants.PreferencesOverrideConfigFileName) == false)
                 return;
-            var configuration = new ConfigFileConfigurationRepository();
-            configuration.Load(ApplicationConstants.PreferencesOverrideConfigFileName);
-            if (string.IsNullOrEmpty(configuration["ProjectsFolder"]) == false)
-                UserSettings.Default.ProjectsFolder = configuration["ProjectsFolder"];
-            if (string.IsNullOrEmpty(configuration["LocalBuildLibrary"]) == false)
-                UserSettings.Default.LocalBuildLibrary = configuration["LocalBuildLibrary"];
-            if (string.IsNullOrEmpty(configuration["IisSitePostfix"]) == false)
-                UserSettings.Default.IisSitePostfix = configuration["IisSitePostfix"];
-            if (string.IsNullOrEmpty(configuration["SqlInstanceName"]) == false)
-                UserSettings.Default.SqlInstanceName = configuration["SqlInstanceName"];
-            if (string.IsNullOrEmpty(configuration["SqlLogin"]) == false)
-                UserSettings.Default.SqlLogin = configuration["SqlLogin"];
-            if (string.IsNullOrEmpty(configuration["SqlPassword"]) == false)
-                UserSettings.Default.SqlPassword = configuration["SqlPassword"];
-            if (string.IsNullOrEmpty(configuration["PromptForUserSettings"]) == false)
-                UserSettings.Default.PromptForUserSettings = Convert.ToBoolean(configuration["PromptForUserSettings"]);
-            if (string.IsNullOrEmpty(configuration["LicenseExpirationPeriodInDays"]) == false)
-                UserSettings.Default.LicenseExpirationPeriodInDays = Convert.ToInt32(configuration["LicenseExpirationPeriodInDays"]);
+
+            dynamic preferencesOverrideConfigFile = new ConfigFile(AppConstants.PreferencesOverrideConfigFileName);
+
+            UserSettings.Default.ProjectsFolder = UserSettings.Default.ProjectsFolder.TrySet((string)preferencesOverrideConfigFile.ProjectsFolder);
+            UserSettings.Default.LocalBuildLibrary = UserSettings.Default.LocalBuildLibrary.TrySet((string)preferencesOverrideConfigFile.LocalBuildLibrary);
+            UserSettings.Default.IisSitePostfix = UserSettings.Default.IisSitePostfix.TrySet((string)preferencesOverrideConfigFile.IisSitePostfix);
+            UserSettings.Default.SqlInstanceName = UserSettings.Default.SqlInstanceName.TrySet((string)preferencesOverrideConfigFile.SqlInstanceName);
+            UserSettings.Default.SqlLogin = UserSettings.Default.SqlLogin.TrySet((string)preferencesOverrideConfigFile.SqlLogin);
+            UserSettings.Default.SqlPassword = UserSettings.Default.SqlPassword.TrySet((string)preferencesOverrideConfigFile.SqlPassword);
+            UserSettings.Default.PromptForUserSettings = UserSettings.Default.PromptForUserSettings.TrySet((string)preferencesOverrideConfigFile.PromptForUserSettings);
+            UserSettings.Default.LicenseExpirationPeriodInDays = UserSettings.Default.LicenseExpirationPeriodInDays.TrySet((string)preferencesOverrideConfigFile.LicenseExpirationPeriodInDays);
         }
 
         private static ISource Create(SourceManifest sourceManifest)
@@ -82,6 +79,7 @@ namespace SitecoreInstaller.App
         }
 
         private static SourceManifestRepository SourceManifests { get; set; }
+
         public static AppSettings AppSettings { get; set; }
         public static PipelineManager Pipelines { get; private set; }
         public static ISourceRepository BuildLibrary { get; set; }

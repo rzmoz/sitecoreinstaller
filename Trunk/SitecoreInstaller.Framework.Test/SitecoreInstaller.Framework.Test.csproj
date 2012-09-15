@@ -51,11 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ConfigFileUT.cs" />
     <Compile Include="Diagnostics\LogUT.cs" />
     <Compile Include="IO\DirectoryInfoExtenstionsUT.cs" />
     <Compile Include="IO\FileSystemInfoExtensionsUT.cs" />
     <Compile Include="IO\StringExtensionsUT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\ObjectExtensionsUT.cs" />
     <Compile Include="System\StringExtensionsUT.cs" />
     <Compile Include="System\TypeExtensionsUT.cs" />
   </ItemGroup>
@@ -74,6 +76,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Configuration\ConfigFileTest.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

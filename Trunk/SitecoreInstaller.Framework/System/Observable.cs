@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SitecoreInstaller.Framework.System
 {
+    using global::System.Runtime.Serialization;
+
+    [DataContract]
     public class Observable<T>
     {
         private T _value;

@@ -5,11 +5,12 @@ using System.Text;
 
 namespace SitecoreInstaller.App
 {
-    internal static class ApplicationConstants
+    internal static class AppConstants
     {
         internal const string ConnectionStringsConfigFileName = "ConnectionStrings.config";
-        
         internal const string WffmConfigFileName = "forms.config";
+
+        internal const string AppSettingsConfigFileName = "AppSettings.config";
         internal const string PreferencesOverrideConfigFileName = "PreferencesOverride.config";
         internal const string SourcesConfigFileName = "Sources.config";
 

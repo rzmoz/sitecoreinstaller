@@ -1,5 +1,8 @@
 ﻿namespace SitecoreInstaller.Framework.System
 {
+    using global::System.Runtime.Serialization;
+
+    [DataContract]
     public abstract class EnumClass
     {
         private readonly string _value;

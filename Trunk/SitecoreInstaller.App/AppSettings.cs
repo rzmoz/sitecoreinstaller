@@ -1,6 +1,7 @@
 ﻿namespace SitecoreInstaller.App
 {
     using System.IO;
+    using System.Runtime.Serialization;
 
     using SitecoreInstaller.Domain.Database;
     using SitecoreInstaller.Domain.WebServer;
@@ -13,6 +14,7 @@
     /// <summary>
     /// Not thread safe!
     /// </summary>
+    [DataContract]
     public class AppSettings
     {
         public AppSettings()
@@ -75,11 +77,11 @@
             var projectfolder = new DirectoryInfo(UserSettings.Default.ProjectsFolder).CombineTo<DirectoryInfo>(ProjectName.Value);
             WebsiteFolders = new WebsiteFolders(projectfolder, DataFolderMode.DataOutside);
             Iis.Url = ProjectName + UserSettings.Default.IisSitePostfix;
-            ConnectionStringsConfigFile = WebsiteFolders.ConfigFolder.CombineTo<FileInfo>(ApplicationConstants.ConnectionStringsConfigFileName);
-            DataFolderConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(ApplicationConstants.DataFolderConfigFileName);
-            LicenseConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(ApplicationConstants.LicenseConfigFileName);
-            WffmConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(ApplicationConstants.WffmConfigFileName);
-            WffmSqlDataproviderConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(ApplicationConstants.WffmSqlDataproviderConfigFileName);
+            ConnectionStringsConfigFile = WebsiteFolders.ConfigFolder.CombineTo<FileInfo>(AppConstants.ConnectionStringsConfigFileName);
+            DataFolderConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.DataFolderConfigFileName);
+            LicenseConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.LicenseConfigFileName);
+            WffmConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.WffmConfigFileName);
+            WffmSqlDataproviderConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.WffmSqlDataproviderConfigFileName);
         }
     }
 }

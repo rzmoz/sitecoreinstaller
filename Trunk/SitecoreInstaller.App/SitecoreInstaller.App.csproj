@@ -100,6 +100,7 @@
     <Compile Include="Pipelines\Steps\Install\ExecutePostInstallSteps.cs" />
     <Compile Include="Pipelines\Steps\Install\InstallPackages.cs" />
     <Compile Include="Pipelines\Steps\Install\InstallRuntimeServices.cs" />
+    <Compile Include="Pipelines\Steps\Install\SaveAppSettings.cs" />
     <Compile Include="Pipelines\Steps\Install\SetConnectionStrings.cs" />
     <Compile Include="Pipelines\Steps\Install\SetDataFolder.cs" />
     <Compile Include="Pipelines\Steps\Nothing\DoNothing.cs" />
@@ -116,7 +117,7 @@
     <Compile Include="Services.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="Pipelines\UninstallPipeline.cs" />
-    <Compile Include="ApplicationConstants.cs" />
+    <Compile Include="AppConstants.cs" />
     <Compile Include="UserSelections.cs" />
     <Compile Include="Properties\UserSettings.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -5,7 +5,7 @@ namespace SitecoreInstaller.Framework.Configuration
 {
     using global::System.IO;
 
-    public class ConfigFileConfigurationRepository : IConfigurationRepository
+    public class ConfigFileConfiguration : IConfiguration
     {
         private XDocument _document;
         private XElement _rootElement;
@@ -23,17 +23,6 @@ namespace SitecoreInstaller.Framework.Configuration
         {
             var elements = _rootElement.Elements(elementName);
             return elements;
-        }
-
-        public string this[string key]
-        {
-            get
-            {
-                var element = _rootElement.Element(key);
-                if (element == null)
-                    return null;
-                return element.Value;
-            }
         }
     }
 
