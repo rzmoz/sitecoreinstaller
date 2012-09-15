@@ -36,9 +36,6 @@ namespace SitecoreInstaller.App
         {
             CheckPreferencesOverride();
 
-
-
-
             var localBuildLibrary = new WindowsFileSystemSource(string.Empty) { Parameters = UserSettings.Default.LocalBuildLibrary };
             if (BuildLibrary == null)
                 BuildLibrary = new LocalSourceRepository(localBuildLibrary, SourceManifests.All().Select(Create));

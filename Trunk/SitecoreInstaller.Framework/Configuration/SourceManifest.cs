@@ -4,6 +4,10 @@ namespace SitecoreInstaller.Framework.Configuration
 {
     public class SourceManifest
     {
+        public SourceManifest()
+        {
+        }
+
         public SourceManifest(string name, string type, string parameters)
         {
             Name = name ?? string.Empty;

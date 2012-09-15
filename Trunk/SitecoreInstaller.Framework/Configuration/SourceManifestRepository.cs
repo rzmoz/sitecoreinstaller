@@ -17,9 +17,9 @@ namespace SitecoreInstaller.Framework.Configuration
 
         public void Init()
         {
-            IConfiguration sourcesConfig = new ConfigFileConfiguration();
+            var sourcesConfig = new ConfigFile(SourceFileName);
             sourcesConfig.Load(SourceFileName);
-            var sources = sourcesConfig.GetElements("source").Select(source => new SourceManifest(source.Attribute("name").Value, source.Attribute("type").Value, source.Attribute("parameters").Value));
+            var sources = sourcesConfig.GetElements<SourceManifest>("source");
             foreach (var source in sources)
                 _sources.Add(source.Name, source);
         }
