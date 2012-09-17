@@ -80,9 +80,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dialogs.cs" />
+    <Compile Include="Pipelines\ClientInstallPipeline.cs" />
     <Compile Include="Pipelines\InstallPipeline.cs" />
     <Compile Include="Pipelines\NothingPipeline.cs" />
     <Compile Include="Pipelines\PipelineManager.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckConnectionstringsManuallyUpdated.cs" />
     <Compile Include="Pipelines\Preconditions\CheckLicense.cs" />
     <Compile Include="Pipelines\Preconditions\CheckProjectExists.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSitecore.cs" />

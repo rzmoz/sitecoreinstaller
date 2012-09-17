@@ -4,9 +4,11 @@ namespace SitecoreInstaller.App.Pipelines
 {
     public class PipelineManager
     {
-        public void Run<T>() where T : class,IPipeline, new()
+        public void Run<T>(bool killDialogs = false) where T : class,IPipeline, new()
         {
-            Services.PipelineWorker.RunPipeline(Get<T>());
+            var runner = Get<T>();
+            runner.Pipeline.IsInUiMode = !killDialogs;
+            Services.PipelineWorker.RunPipeline(runner);
         }
 
         public PipelineRunner<T> Get<T>() where T : class,IPipeline, new()

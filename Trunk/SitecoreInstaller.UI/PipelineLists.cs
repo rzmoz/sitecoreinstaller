@@ -56,5 +56,10 @@ namespace SitecoreInstaller.UI
             Services.Pipelines.Run<ReinstallPipeline>();
         }
 
+        private void bntClientInstall_Click(object sender, EventArgs e)
+        {
+            Services.AppSettings = _getAppSettings();
+            Services.Pipelines.Run<ClientInstallPipeline>();
+        }
     }
 }

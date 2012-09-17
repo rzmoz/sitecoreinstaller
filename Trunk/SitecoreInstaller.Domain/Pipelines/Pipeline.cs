@@ -29,7 +29,10 @@ namespace SitecoreInstaller.Domain.Pipelines
         }
         public void AddStep<T>() where T : IStep, new()
         {
-            var step = new T();
+            AddStep(new T());
+        }
+        public void AddStep(IStep step)
+        {
             _steps.Add(step);
             step.Order = _steps.Count;
         }
