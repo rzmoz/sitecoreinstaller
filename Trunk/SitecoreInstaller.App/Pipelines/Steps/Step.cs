@@ -32,9 +32,6 @@ namespace SitecoreInstaller.App.Pipelines.Steps
             if (StepInvoking != null)
                 StepInvoking(this, EventArgs.Empty);
 
-            if (Preconditions.Any(precondition => precondition.Evaluate(sender, new PreconditionEventArgs()) == false))
-                return;
-
             InnerInvoke(sender, args);
 
             if (StepInvoked != null)

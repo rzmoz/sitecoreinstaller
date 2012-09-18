@@ -24,7 +24,7 @@ namespace SitecoreInstaller.App
         {
             Pipelines = new PipelineManager();
             Website = new WebsiteService();
-            Dialogs = new Dialogs();
+            Dialogs = new UiDialogs();
             IisManagement = new IisManagementService();
             HostFile = new HostFileService();
             PipelineWorker = new PipelineWorker();
@@ -85,7 +85,7 @@ namespace SitecoreInstaller.App
         public static IHostFileService HostFile { get; set; }
         public static IIisManagementService IisManagement { get; set; }
         public static ISqlService Sql { get; set; }
-        public static Dialogs Dialogs { get; set; }
+        public static UiDialogs Dialogs { get; set; }
         public static PipelineWorker PipelineWorker { get; set; }
     }
 }

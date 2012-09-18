@@ -11,6 +11,7 @@ namespace SitecoreInstaller.UI
 {
     using SitecoreInstaller.App;
     using SitecoreInstaller.App.Pipelines;
+    using SitecoreInstaller.Domain.Pipelines;
 
     public partial class PipelineLists : UserControl
     {
@@ -53,7 +54,7 @@ namespace SitecoreInstaller.UI
         private void btnReinstall_Click(object sender, EventArgs e)
         {
             Services.AppSettings = _getAppSettings();
-            Services.Pipelines.Run<ReinstallPipeline>();
+            Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
         }
 
         private void bntClientInstall_Click(object sender, EventArgs e)

@@ -10,6 +10,6 @@ namespace SitecoreInstaller.Domain.Pipelines
         string Name { get; }
         IEnumerable<IStep> Steps { get; }
         IEnumerable<IPrecondition> Preconditions { get; }
-        bool IsInUiMode { get; set; }
+        Dialogs Dialogs { get; set; }
     }
 }

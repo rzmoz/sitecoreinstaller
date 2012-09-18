@@ -12,6 +12,7 @@ namespace SitecoreInstaller.UI.Simple
     using SitecoreInstaller.App;
     using SitecoreInstaller.App.Pipelines;
     using SitecoreInstaller.App.Properties;
+    using SitecoreInstaller.Domain.Pipelines;
 
     public partial class ReinstallSimple : UserControl
     {
@@ -51,7 +52,7 @@ namespace SitecoreInstaller.UI.Simple
             else
             {
                 Services.AppSettings = GetAppSettings();
-                Services.Pipelines.Run<ReinstallPipeline>();
+                Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
             }
         }
     }

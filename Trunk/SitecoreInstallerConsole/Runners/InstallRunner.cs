@@ -55,9 +55,7 @@ namespace SitecoreInstallerConsole.Runners
                 Services.AppSettings.UserSelections.SelectedLicense = new SourceEntry(license, string.Empty);
             Services.AppSettings.UserSelections.SelectedModules = selectedModules;
 
-            var pipeline = Services.Pipelines.Get<InstallPipeline>();
-            pipeline.Pipeline.IsInUiMode = false;
-            pipeline.ExecuateAllSteps(this, new EventArgs());
+            Services.Pipelines.Run<InstallPipeline>(Dialogs.Off);
         }
     }
 }

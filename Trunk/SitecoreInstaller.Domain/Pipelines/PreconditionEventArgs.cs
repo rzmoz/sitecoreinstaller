@@ -7,6 +7,11 @@ namespace SitecoreInstaller.Domain.Pipelines
 {
     public class PreconditionEventArgs : EventArgs
     {
-        public bool KillDialogs { get; set; }
+        public PreconditionEventArgs()
+        {
+            Dialogs = Dialogs.On;
+        }
+
+        public Dialogs Dialogs { get; set; }
     }
 }

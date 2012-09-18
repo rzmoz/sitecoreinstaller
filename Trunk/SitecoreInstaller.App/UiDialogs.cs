@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App
 
     using SitecoreInstaller.Domain.BuildLibrary;
 
-    public class Dialogs
+    public class UiDialogs
     {
         public bool ChooseFolder(out string selectedFolder, string startPath = "")
         {

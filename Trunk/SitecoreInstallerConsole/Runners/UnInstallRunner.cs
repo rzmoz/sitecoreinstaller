@@ -24,9 +24,7 @@ namespace SitecoreInstallerConsole.Runners
 
             var projectName = Args[1];
             Services.AppSettings.ProjectName.Value = projectName;
-            var pipeline = Services.Pipelines.Get<InstallPipeline>();
-            pipeline.Pipeline.IsInUiMode = false;
-            pipeline.ExecuateAllSteps(this, new EventArgs());
+            Services.Pipelines.Run<InstallPipeline>(Dialogs.Off);
         }
     }
 }

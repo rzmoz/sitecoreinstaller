@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-    public enum Run
+    public enum Dialogs
     {
-        Always = 0,
-        OnlyInUi
+        On,
+        Off
     }
 }

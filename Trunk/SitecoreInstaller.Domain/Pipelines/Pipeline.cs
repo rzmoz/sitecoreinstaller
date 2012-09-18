@@ -47,8 +47,8 @@ namespace SitecoreInstaller.Domain.Pipelines
         }
 
         public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }
-
-        public bool IsInUiMode { get; set; }
+        
+        public Dialogs Dialogs { get; set; }
 
         public string Name { get; private set; }
 

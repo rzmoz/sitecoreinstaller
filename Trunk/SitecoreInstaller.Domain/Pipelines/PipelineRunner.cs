@@ -34,8 +34,9 @@ namespace SitecoreInstaller.Domain.Pipelines
             Log.As.Clear();
             ExecuteAllText = executeAllText;
             Pipeline = pipeline;
-            pipeline.IsInUiMode = true;
+            pipeline.Dialogs = Dialogs.On;
         }
+
         public string ExecuteAllText { get; private set; }
 
         public void ExecuateAllSteps(object sender, EventArgs e)
@@ -81,9 +82,11 @@ namespace SitecoreInstaller.Domain.Pipelines
         {
             Log.As.Info("Evaluating pipeline preconditions for {0}", Pipeline.Name);
 
+            var preConditionArgs = new PreconditionEventArgs { Dialogs = Pipeline.Dialogs };
+
             foreach (var precondition in preconditions)
             {
-                if (precondition.Evaluate(this, new PreconditionEventArgs()))
+                if (precondition.Evaluate(this, preConditionArgs))
                 {
                     Log.As.Info("Precondition met: {0}", precondition.GetType().Name);
                 }
@@ -91,7 +94,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                 {
                     if (string.IsNullOrEmpty(precondition.ErrorMessage) == false)
                         Log.As.Error(precondition.ErrorMessage);
-                    if (Pipeline.IsInUiMode && PreconditionNotMet != null)
+                    if (PreconditionNotMet != null)
                         PreconditionNotMet(Pipeline, new GenericEventArgs<string>(precondition.ErrorMessage));
                     return false;
                 }
@@ -109,11 +112,11 @@ namespace SitecoreInstaller.Domain.Pipelines
                 if (StepExecuting != null)
                     StepExecuting(step, args);
 
-                
+
                 if (AllStepsPreconditionsAreMet(step.Preconditions))
                 {
                     var elapsed = Profiler.This(step.Invoke, sender, e);
-                    Log.As.Profile(step.GetType().Name, elapsed);    
+                    Log.As.Profile(step.GetType().Name, elapsed);
                 }
                 else
                     break;
