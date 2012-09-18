@@ -15,6 +15,9 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
+            if (Services.AppSettings.InstallType == InstallType.Client)
+                return;
+
             var connectionStrings = Services.AppSettings.ConnectionStringsConfigFile;
 
             connectionStrings.InitFromFile();

@@ -79,8 +79,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InstallType.cs" />
     <Compile Include="UiDialogs.cs" />
-    <Compile Include="Pipelines\ClientInstallPipeline.cs" />
     <Compile Include="Pipelines\InstallPipeline.cs" />
     <Compile Include="Pipelines\NothingPipeline.cs" />
     <Compile Include="Pipelines\PipelineManager.cs" />

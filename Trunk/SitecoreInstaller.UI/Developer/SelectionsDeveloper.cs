@@ -10,16 +10,17 @@
 
     public partial class SelectionsDeveloper : UserControl
     {
-        private Func<IisSettings> _getAppPoolSettings;
-
+        private Func<IisSettings> _getIisSettings;
+        private Func<InstallType> _getInstallType; 
         public SelectionsDeveloper()
         {
             InitializeComponent();
         }
 
-        public void Init(Func<IisSettings> getAppPoolSettings)
+        public void Init(Func<IisSettings> getIisSettings, Func<InstallType> getInstallType)
         {
-            _getAppPoolSettings = getAppPoolSettings;
+            _getIisSettings = getIisSettings;
+            _getInstallType = getInstallType;
             _selectProjectName1.Init();
             selectSitecore1.Init();
             selectLicense1.Init();
@@ -30,7 +31,8 @@
         {
             var appSettings = new AppSettings();
             appSettings.Init(UserSettings.Default);
-            appSettings.Iis = _getAppPoolSettings();//Get app pool settings before project name is set!
+            appSettings.Iis = _getIisSettings();//Get iis settings before project name is set!
+            appSettings.InstallType = _getInstallType();
             appSettings.ProjectName.Value = _selectProjectName1.ProjectName;
             appSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
             appSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;

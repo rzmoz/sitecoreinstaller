@@ -45,7 +45,7 @@
 
         public ConnectionStringsFile ConnectionStringsConfigFile { get; set; }
 
-
+        public InstallType InstallType { get; set; }
 
         public FileInfo DataFolderConfigFile { get; private set; }
         public FileInfo LicenseConfigFile { get; private set; }
@@ -60,6 +60,7 @@
         private void Reset()
         {
             ProjectName.Reset();
+            InstallType = InstallType.Full;
             Iis = new IisSettings();
             WebsiteFolders = new WebsiteFolders();
             BuildLibrarySelections = new BuildLibrarySelections();

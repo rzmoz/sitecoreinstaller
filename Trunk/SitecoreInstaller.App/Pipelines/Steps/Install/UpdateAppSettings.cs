@@ -15,7 +15,6 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-
             var appSettingsFileName = Services.AppSettings.WebsiteFolders.ProjectFolder.Combine(new FileInfo(AppConstants.AppSettingsConfigFileName));
             dynamic appConfig = new ConfigFile(appSettingsFileName);
             if (appSettingsFileName.Exists)

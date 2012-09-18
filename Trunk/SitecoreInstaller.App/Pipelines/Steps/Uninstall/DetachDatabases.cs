@@ -9,6 +9,9 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
+            if (Services.AppSettings.InstallType == InstallType.Client)
+                return;
+
             var databases = Services.Sql.GetDatabases(Services.AppSettings.WebsiteFolders.DatabaseFolder, Services.AppSettings.ProjectName.Value);
             foreach (var sqlDatabase in databases)
                 sqlDatabase.Detach(Services.AppSettings.Sql);
