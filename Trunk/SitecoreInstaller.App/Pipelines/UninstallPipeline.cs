@@ -6,6 +6,7 @@ namespace SitecoreInstaller.App.Pipelines
     using System.Collections.Generic;
 
     using SitecoreInstaller.App.Pipelines.Preconditions;
+    using SitecoreInstaller.App.Pipelines.Steps.Install;
     using SitecoreInstaller.App.Pipelines.Steps.Uninstall;
 
     public class UninstallPipeline : Pipeline
@@ -18,6 +19,7 @@ namespace SitecoreInstaller.App.Pipelines
             AddPrecondition<CheckProjectExists>();
 
             //Init steps
+            AddStep<UpdateAppSettings>();
             AddStep<StopApplication>();
             AddStep<DetachDatabases>();
             AddStep<DeleteIisSiteAndAppPool>();

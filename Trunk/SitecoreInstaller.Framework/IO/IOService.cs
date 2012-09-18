@@ -85,7 +85,7 @@ namespace SitecoreInstaller.Framework.IO
             }
             catch (UnauthorizedAccessException e)
             {
-                Log.As.Error("Unable to delete folder.\r\n{0}", e.ToString());
+                Log.As.Debug("Unable to delete folder.\r\n{0}", e.ToString());
             }
             catch (SecurityException e)
             {

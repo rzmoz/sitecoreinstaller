@@ -53,20 +53,12 @@ namespace SitecoreInstaller.Domain.BuildLibrary
             return string.Format("{0}", Key);
         }
 
-        public string ToSettingsString()
-        {
-            return string.Format("{0}|{1}", Key, SourceName);
-        }
-        public static SourceEntry ParseSettingsString(string settingsString)
+        public static SourceEntry ParseString(string settingsString)
         {
             if (string.IsNullOrEmpty(settingsString))
                 throw new ArgumentException("settingsString is null or empty");
 
-            var tokens = settingsString.Split('|');
-            if (tokens.Length != 2)
-                throw new ArgumentOutOfRangeException("Expected string in format <key>|<sourcename>");
-
-            return new SourceEntry(tokens[0], tokens[1]);
+            return new SourceEntry(settingsString, string.Empty);
         }
     }
 }
