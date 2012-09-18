@@ -10,26 +10,26 @@ namespace SitecoreInstaller.Domain.Database
     using System.Collections;
     using System.Diagnostics.Contracts;
 
-    using SitecoreInstaller.Framework.System;
-
     public class ConnectionStringsFile : IEnumerable<ConnectionStringEntry>
     {
         private readonly IDictionary<string, ConnectionStringEntry> _entries;
 
-        public FileInfo File { get; private set; }
-
+        public ConnectionStringsFile()
+        {
+            _entries = new Dictionary<string, ConnectionStringEntry>();
+        }
         public ConnectionStringsFile(FileInfo file)
+            : this()
         {
             Contract.Requires<ArgumentNullException>(file != null);
             File = file;
-            _entries = new Dictionary<string, ConnectionStringEntry>();
         }
 
         public ConnectionStringEntry this[string name]
         {
             get
             {
-                if (string.IsNullOrEmpty(name))
+                if (string.IsNullOrEmpty(name.ToLower()))
                     return null;
 
                 var key = name.ToLower();
@@ -40,14 +40,43 @@ namespace SitecoreInstaller.Domain.Database
             }
         }
 
-        public void Init()
+        public void Clear()
+        {
+            _entries.Clear();
+        }
+
+        public void Upsert(ConnectionStringEntry entry)
+        {
+            if (entry == null)
+                return;
+            var key = entry.Name.ToLower();
+
+            if (_entries.ContainsKey(key))
+                _entries[key] = entry;
+            else
+                _entries.Add(key, entry);
+        }
+
+        public void Remove(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return;
+
+            var key = name.ToLower();
+            if (_entries.ContainsKey(key))
+                _entries.Remove(key);
+        }
+
+        public void InitFromFile()
         {
             File.TryBackup();
             InitConnectionStringEntries();
             LowerCaseConnectionStringNames();
             CreateIfNotExists();
         }
-        
+
+        public FileInfo File { get; private set; }
+
         private void InitConnectionStringEntries()
         {
             if (System.IO.File.Exists(File.FullName) == false)

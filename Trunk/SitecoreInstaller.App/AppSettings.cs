@@ -36,31 +36,13 @@
         {
             ResolveDependentPaths();
         }
-
-        private void Reset()
-        {
-            ProjectName.Reset();
-            Iis = new IisSettings();
-            WebsiteFolders = new WebsiteFolders();
-            UserSelections = new UserSelections();
-            Sql = new SqlSettings();
-        }
+        
 
         public bool ProjectNameIsSet { get { return !string.IsNullOrEmpty(ProjectName.Value); } }
 
         public Observable<string> ProjectName { get; private set; }
 
-        private void ResolveDependentPaths()
-        {
-            if (ProjectNameIsSet)
-                SetSystemPaths();
-            else
-                Iis.Url = string.Empty;
-
-            Iis.Name = ProjectName.Value;
-        }
-
-        public FileInfo ConnectionStringsConfigFile { get; set; }
+        public ConnectionStringsFile ConnectionStringsConfigFile { get; set; }
 
         public FileInfo DataFolderConfigFile { get; private set; }
         public FileInfo LicenseConfigFile { get; private set; }
@@ -72,12 +54,31 @@
         public IisSettings Iis { get; set; }
         public WebsiteFolders WebsiteFolders { get; set; }
 
+        private void Reset()
+        {
+            ProjectName.Reset();
+            Iis = new IisSettings();
+            WebsiteFolders = new WebsiteFolders();
+            UserSelections = new UserSelections();
+            Sql = new SqlSettings();
+        }
+
+        private void ResolveDependentPaths()
+        {
+            if (ProjectNameIsSet)
+                SetSystemPaths();
+            else
+                Iis.Url = string.Empty;
+
+            Iis.Name = ProjectName.Value;
+        }
+
         private void SetSystemPaths()
         {
             var projectfolder = new DirectoryInfo(UserSettings.Default.ProjectsFolder).CombineTo<DirectoryInfo>(ProjectName.Value);
             WebsiteFolders = new WebsiteFolders(projectfolder, DataFolderMode.DataOutside);
             Iis.Url = ProjectName + UserSettings.Default.IisSitePostfix;
-            ConnectionStringsConfigFile = WebsiteFolders.ConfigFolder.CombineTo<FileInfo>(AppConstants.ConnectionStringsConfigFileName);
+            ConnectionStringsConfigFile =new ConnectionStringsFile(WebsiteFolders.ConfigFolder.CombineTo<FileInfo>(AppConstants.ConnectionStringsConfigFileName));
             DataFolderConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.DataFolderConfigFileName);
             LicenseConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.LicenseConfigFileName);
             WffmConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.WffmConfigFileName);

@@ -15,16 +15,16 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            var connectionStrings = new ConnectionStringsFile(Services.AppSettings.ConnectionStringsConfigFile);
+            var connectionStrings = Services.AppSettings.ConnectionStringsConfigFile;
 
-            connectionStrings.Init();
+            connectionStrings.InitFromFile();
             var existingConnectionStringNames = connectionStrings.Select(entry => entry.Name);
             var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.AppSettings.Sql, Services.AppSettings.WebsiteFolders.DatabaseFolder, Services.AppSettings.ProjectName.Value, existingConnectionStringNames);
             var transform = new XmlTransform(connectionStrings.File, connectionStringsDelta);
             transform.Run();
 
             //WFFM Sql-Dataprovider connection string set
-            connectionStrings.Init();
+            connectionStrings.InitFromFile();
 
             var webFormsConnectionString = connectionStrings["webforms"];
 
