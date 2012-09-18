@@ -3,6 +3,7 @@
     using System.IO;
     using System.Runtime.Serialization;
 
+    using SitecoreInstaller.Domain.BuildLibrary;
     using SitecoreInstaller.Domain.Database;
     using SitecoreInstaller.Domain.WebServer;
     using SitecoreInstaller.Domain.Website;
@@ -36,7 +37,7 @@
         {
             ResolveDependentPaths();
         }
-        
+
 
         public bool ProjectNameIsSet { get { return !string.IsNullOrEmpty(ProjectName.Value); } }
 
@@ -44,12 +45,14 @@
 
         public ConnectionStringsFile ConnectionStringsConfigFile { get; set; }
 
+
+
         public FileInfo DataFolderConfigFile { get; private set; }
         public FileInfo LicenseConfigFile { get; private set; }
         public FileInfo WffmConfigFile { get; private set; }
         public FileInfo WffmSqlDataproviderConfigFile { get; private set; }
 
-        public UserSelections UserSelections { get; set; }
+        public BuildLibrarySelections BuildLibrarySelections { get; set; }
         public SqlSettings Sql { get; set; }
         public IisSettings Iis { get; set; }
         public WebsiteFolders WebsiteFolders { get; set; }
@@ -59,7 +62,7 @@
             ProjectName.Reset();
             Iis = new IisSettings();
             WebsiteFolders = new WebsiteFolders();
-            UserSelections = new UserSelections();
+            BuildLibrarySelections = new BuildLibrarySelections();
             Sql = new SqlSettings();
         }
 
@@ -78,7 +81,7 @@
             var projectfolder = new DirectoryInfo(UserSettings.Default.ProjectsFolder).CombineTo<DirectoryInfo>(ProjectName.Value);
             WebsiteFolders = new WebsiteFolders(projectfolder, DataFolderMode.DataOutside);
             Iis.Url = ProjectName + UserSettings.Default.IisSitePostfix;
-            ConnectionStringsConfigFile =new ConnectionStringsFile(WebsiteFolders.ConfigFolder.CombineTo<FileInfo>(AppConstants.ConnectionStringsConfigFileName));
+            ConnectionStringsConfigFile = new ConnectionStringsFile(WebsiteFolders.ConfigFolder.CombineTo<FileInfo>(AppConstants.ConnectionStringsConfigFileName));
             DataFolderConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.DataFolderConfigFileName);
             LicenseConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.LicenseConfigFileName);
             WffmConfigFile = WebsiteFolders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.WffmConfigFileName);

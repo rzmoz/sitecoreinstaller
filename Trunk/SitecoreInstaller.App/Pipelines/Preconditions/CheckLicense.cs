@@ -14,13 +14,13 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
     {
         public override bool Evaluate(object sender, PreconditionEventArgs args)
         {
-            if (Services.AppSettings.UserSelections.SelectedLicense == null)
+            if (Services.AppSettings.BuildLibrarySelections.SelectedLicense == null)
             {
                 ErrorMessage = string.Format("You haven't selected a License. Please add a license in preferences pane if you have none");
                 return false;
             }
 
-            var licenseFileSourceEntry = Services.AppSettings.UserSelections.SelectedLicense as LicenseFileSourceEntry;
+            var licenseFileSourceEntry = Services.AppSettings.BuildLibrarySelections.SelectedLicense as LicenseFileSourceEntry;
             if (licenseFileSourceEntry == null)
                 throw new TypeLoadException("Selected license was not of expected type. Something is completely wrong with program. Get your money back! :-)");
 

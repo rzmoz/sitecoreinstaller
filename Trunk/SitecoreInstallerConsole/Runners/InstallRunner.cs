@@ -43,17 +43,17 @@ namespace SitecoreInstallerConsole.Runners
         {
             Services.AppSettings.ProjectName.Value = projectName;
             Services.AppSettings.Iis = new IisSettings { Name = Services.AppSettings.ProjectName.Value };
-            Services.AppSettings.UserSelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
-            Services.AppSettings.UserSelections.SelectedLicense = new SourceEntry(license, string.Empty);
+            Services.AppSettings.BuildLibrarySelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
+            Services.AppSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license, string.Empty);
             if (sitecore == ArgSwitches.Latest)
-                Services.AppSettings.UserSelections.SelectedSitecore = Services.BuildLibrary.List(SourceType.Sitecore).Last();
+                Services.AppSettings.BuildLibrarySelections.SelectedSitecore = Services.BuildLibrary.List(SourceType.Sitecore).Last();
             else
-                Services.AppSettings.UserSelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
+                Services.AppSettings.BuildLibrarySelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
             if (license == ArgSwitches.Latest)
-                Services.AppSettings.UserSelections.SelectedLicense = Services.BuildLibrary.List(SourceType.License).Last();
+                Services.AppSettings.BuildLibrarySelections.SelectedLicense = Services.BuildLibrary.List(SourceType.License).Last();
             else
-                Services.AppSettings.UserSelections.SelectedLicense = new SourceEntry(license, string.Empty);
-            Services.AppSettings.UserSelections.SelectedModules = selectedModules;
+                Services.AppSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license, string.Empty);
+            Services.AppSettings.BuildLibrarySelections.SelectedModules = selectedModules;
 
             Services.Pipelines.Run<InstallPipeline>(Dialogs.Off);
         }

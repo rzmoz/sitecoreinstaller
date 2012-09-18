@@ -133,6 +133,7 @@
   <ItemGroup>
     <Compile Include="BuildLibrary\BuildLibraryDirectory.cs" />
     <Compile Include="BuildLibrary\BuildLibraryFile.cs" />
+    <Compile Include="BuildLibrary\BuildLibrarySelections.cs" />
     <Compile Include="BuildLibrary\LicenseFile.cs" />
     <Compile Include="BuildLibrary\BuildLibraryResource.cs" />
     <Compile Include="BuildLibrary\BuildLibraryResourceFactory.cs" />

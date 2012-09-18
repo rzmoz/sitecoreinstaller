@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using SitecoreInstaller.Domain.BuildLibrary;
-
-namespace SitecoreInstaller.App
+﻿namespace SitecoreInstaller.Domain.BuildLibrary
 {
-    public class UserSelections
+    using System.Collections.Generic;
+    using System.Linq;
+
+    public class BuildLibrarySelections
     {
-        public UserSelections()
+        public BuildLibrarySelections()
         {
             SelectedSitecore = new SourceEntry(string.Empty,string.Empty);
             SelectedLicense = new SourceEntry(string.Empty, string.Empty);

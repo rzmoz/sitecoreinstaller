@@ -12,10 +12,13 @@ namespace SitecoreInstaller.Framework.System
     {
         private T _value;
 
+        private readonly bool _isPrimitive;
+
         public Observable()
         {
             var type = typeof(T);
-            if (type.IsPrimitive)
+            _isPrimitive = type.IsPrimitive;
+            if (_isPrimitive)
                 _setValue = ValueTypeSetter;
             else
                 _setValue = ReferenceTypeSetter;

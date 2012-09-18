@@ -18,8 +18,8 @@
             var appSettings = new AppSettings();
             appSettings.Init(UserSettings.Default);
             appSettings.ProjectName.Value = tbxProjectName.Text;
-            appSettings.UserSelections.SelectedSitecore = selectSitecore1.SelectedItem;
-            appSettings.UserSelections.SelectedLicense = selectLicense1.SelectedItem;
+            appSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
+            appSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
             return appSettings;
         }
 

@@ -20,12 +20,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             dynamic appConfig = new ConfigFile(appSettingsFileName);
             if (appSettingsFileName.Exists)
             {
-                Services.AppSettings.UserSelections.SelectedSitecore = SourceEntry.ParseSettingsString(appConfig.Sitecore);
+                Services.AppSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseSettingsString(appConfig.Sitecore);
             }
             else
             {
                 Resources.EmptyConfigFile.WriteToDisk(appSettingsFileName);
-                appConfig.Sitecore = Services.AppSettings.UserSelections.SelectedSitecore.ToSettingsString();
+                appConfig.Sitecore = Services.AppSettings.BuildLibrarySelections.SelectedSitecore.ToSettingsString();
             }
         }
     }

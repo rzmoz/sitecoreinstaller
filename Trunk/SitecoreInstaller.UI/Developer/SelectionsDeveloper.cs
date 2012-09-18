@@ -32,9 +32,9 @@
             appSettings.Init(UserSettings.Default);
             appSettings.Iis = _getAppPoolSettings();//Get app pool settings before project name is set!
             appSettings.ProjectName.Value = _selectProjectName1.ProjectName;
-            appSettings.UserSelections.SelectedSitecore = selectSitecore1.SelectedItem;
-            appSettings.UserSelections.SelectedLicense = selectLicense1.SelectedItem;
-            appSettings.UserSelections.SelectedModules = selectModules1.SelectedModules;
+            appSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
+            appSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
+            appSettings.BuildLibrarySelections.SelectedModules = selectModules1.SelectedModules;
             return appSettings;
         }
 

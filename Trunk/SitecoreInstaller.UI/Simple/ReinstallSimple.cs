@@ -34,7 +34,7 @@ namespace SitecoreInstaller.UI.Simple
             var appSettings = new AppSettings();
             appSettings.Init(UserSettings.Default);
             appSettings.ProjectName.Value = selectProjectName1.ProjectName;
-            appSettings.UserSelections.SelectedLicense = selectLicense1.SelectedItem;
+            appSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
             return appSettings;
         }
 
