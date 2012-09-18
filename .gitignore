@@ -3,6 +3,6 @@
 Trunk/Packages/*
 Trunk/*/bin/*
 Trunk/*/obj/*
-Trunk/Build
+Trunk/Build/
 *.user
 *.suo
