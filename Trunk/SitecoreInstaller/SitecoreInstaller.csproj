@@ -142,9 +142,11 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Sources.Release.Delta">
-      <DependentUpon>Sources.Delta</DependentUpon>
+    <ConfigTransformDelta Include="Preferences.Delta" />
+    <None Include="Preferences.Debug.Delta">
+      <DependentUpon>Preferences.Delta</DependentUpon>
     </None>
+    <None Include="Preferences.Source" />
     <None Include="Sources.Debug.Delta">
       <DependentUpon>Sources.Delta</DependentUpon>
     </None>

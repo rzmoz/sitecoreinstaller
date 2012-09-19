@@ -11,7 +11,7 @@ namespace SitecoreInstaller.App
         internal const string WffmConfigFileName = "forms.config";
 
         internal const string AppSettingsConfigFileName = "AppSettings.config";
-        internal const string PreferencesOverrideConfigFileName = "PreferencesOverride.config";
+        internal const string PreferencesOverrideConfigFileName = "Preferences.config";
         internal const string SourcesConfigFileName = "Sources.config";
 
         //prefix with z to make sure they are evaluated last
