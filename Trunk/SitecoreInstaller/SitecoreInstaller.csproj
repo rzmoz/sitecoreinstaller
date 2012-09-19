@@ -146,10 +146,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SitecoreInstaller.Runtime\SitecoreInstaller.Runtime.csproj">
-      <Project>{DFAFC122-4D1C-4210-AADC-3110ECA31478}</Project>
-      <Name>SitecoreInstaller.Runtime</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SitecoreInstaller.UI\SitecoreInstaller.UI.csproj">
       <Project>{7938E4D7-0388-4CAD-AC67-1C084DE97652}</Project>
       <Name>SitecoreInstaller.UI</Name>

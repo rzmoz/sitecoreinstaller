@@ -92,10 +92,6 @@
       <Project>{4DDD98BC-4F89-4C94-847E-7215486CE358}</Project>
       <Name>SitecoreInstaller.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SitecoreInstaller.Runtime\SitecoreInstaller.Runtime.csproj">
-      <Project>{DFAFC122-4D1C-4210-AADC-3110ECA31478}</Project>
-      <Name>SitecoreInstaller.Runtime</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

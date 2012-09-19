@@ -61,6 +61,29 @@ namespace SitecoreInstaller.Domain.Website {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;%@ Page Language=&quot;C#&quot; %&gt;
+        ///
+        ///&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+        ///&lt;script language=&quot;CS&quot; runat=&quot;server&quot;&gt;
+        ///
+        ///    void Page_Load(object sender, System.EventArgs e)
+        ///    {
+        ///        Sitecore.Security.Authentication.AuthenticationManager.Login(@&quot;sitecore\admin&quot;, &quot;b&quot;);
+        ///        HttpContext.Current.Response.Redirect(&quot;/sitecore&quot;);
+        ///    }
+        ///
+        ///&lt;/script&gt;
+        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///&lt;head runat=&quot;server&quot;&gt;
+        ///    &lt;title&gt;Ad [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AdminLogin {
+            get {
+                return ResourceManager.GetString("AdminLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;configuration xmlns:patch=&quot;http://www.sitecore.net/xmlconfig/&quot;&gt;
         ///    &lt;sitecore&gt;
         ///        &lt;sc.variable name=&quot;dataFolder&quot;&gt;
@@ -72,6 +95,28 @@ namespace SitecoreInstaller.Domain.Website {
         internal static string DataFolderFormat {
             get {
                 return ResourceManager.GetString("DataFolderFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;%@ Page Language=&quot;C#&quot; %&gt;
+        ///&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+        ///&lt;script language=&quot;CS&quot; runat=&quot;server&quot;&gt;
+        ///
+        ///    protected void Page_Load(object sender, System.EventArgs e)
+        ///    {
+        ///        var packageName = System.Web.HttpContext.Current.Request.QueryString[&quot;Install&quot;];
+        ///
+        ///        if (packageName == null)
+        ///            return;
+        ///
+        ///        packageName = System.Web.HttpUtility.UrlDecode(packageName);
+        ///
+        ///        var filename = Syste [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string InstallPackageService {
+            get {
+                return ResourceManager.GetString("InstallPackageService", resourceCulture);
             }
         }
         
@@ -89,6 +134,29 @@ namespace SitecoreInstaller.Domain.Website {
         internal static string LicenseFileFormat {
             get {
                 return ResourceManager.GetString("LicenseFileFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;%@ Page Language=&quot;C#&quot; %&gt;
+        ///
+        ///&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+        ///&lt;script language=&quot;CS&quot; runat=&quot;server&quot;&gt;
+        ///
+        ///    void Page_Load(object sender, System.EventArgs e)
+        ///    {
+        ///        var admin = Sitecore.Security.Accounts.User.FromName(@&quot;sitecore\admin&quot;, true);
+        ///        var profile = admin.Profile;
+        ///        profile[&quot;WallPaper&quot;] = string.Empty;
+        ///        profile.Save();
+        ///    }
+        ///
+        ///&lt;/script&gt;
+        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtm [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PostInstallService {
+            get {
+                return ResourceManager.GetString("PostInstallService", resourceCulture);
             }
         }
         

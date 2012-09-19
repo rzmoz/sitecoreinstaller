@@ -27,7 +27,6 @@ namespace SitecoreInstaller.Domain.Website
         private const string _KeepAlivePingPath = "/sitecore/service/keepalive.aspx";
         private const string _SitecorePingPath = "/sitecore/login/";
         private const string _SiteRootPingPath = "/";
-        private const string _TargetAssemblyPath = "bin";
 
         private const string _AdminLoginName = "AdminLogin.aspx";
         private const string _InstallPackageServiceName = "InstallPackageService.aspx";
@@ -197,16 +196,14 @@ namespace SitecoreInstaller.Domain.Website
             Log.As.Info("Installing runtime services...");
 
             var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
-            if (Directory.Exists(runtimeServicesFolder.FullName))
-                runtimeServicesFolder.Create();
+
+            runtimeServicesFolder.CreateIfNotExists();
 
             //copy install package service
-            var installPackagesService = new FileInfo(_InstallPackageServiceName);
-            installPackagesService.CopyTo(runtimeServicesFolder, true);
-
+            WebsiteResource.InstallPackageService.WriteToDir(runtimeServicesFolder, _InstallPackageServiceName);
+            
             //copy post install service
-            var postInstallService = new FileInfo(_PostInstallServiceName);
-            postInstallService.CopyTo(runtimeServicesFolder, true);
+            WebsiteResource.PostInstallService.WriteToDir(runtimeServicesFolder, _PostInstallServiceName);
 
             Log.As.Info("Runtime services installed");
         }

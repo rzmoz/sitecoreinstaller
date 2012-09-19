@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.App", "Si
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.App.Test", "SitecoreInstaller.App.Test\SitecoreInstaller.App.Test.csproj", "{2CC148AC-09B2-493D-BE5C-40368EF8FC2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Runtime", "SitecoreInstaller.Runtime\SitecoreInstaller.Runtime.csproj", "{DFAFC122-4D1C-4210-AADC-3110ECA31478}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstallerConsole", "SitecoreInstallerConsole\SitecoreInstallerConsole.csproj", "{A6ED8B1E-8AFB-4501-90FB-3B2670AA10EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Domain", "SitecoreInstaller.Domain\SitecoreInstaller.Domain.csproj", "{32B57FF0-1EF1-46C7-979E-F6144E6D4387}"
@@ -73,16 +71,6 @@ Global
 		{2CC148AC-09B2-493D-BE5C-40368EF8FC2A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2CC148AC-09B2-493D-BE5C-40368EF8FC2A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2CC148AC-09B2-493D-BE5C-40368EF8FC2A}.Release|x86.ActiveCfg = Release|Any CPU
-		{DFAFC122-4D1C-4210-AADC-3110ECA31478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFAFC122-4D1C-4210-AADC-3110ECA31478}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFAFC122-4D1C-4210-AADC-3110ECA31478}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{DFAFC122-4D1C-4210-AADC-3110ECA31478}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{DFAFC122-4D1C-4210-AADC-3110ECA31478}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{DFAFC122-4D1C-4210-AADC-3110ECA31478}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFAFC122-4D1C-4210-AADC-3110ECA31478}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFAFC122-4D1C-4210-AADC-3110ECA31478}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{DFAFC122-4D1C-4210-AADC-3110ECA31478}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{DFAFC122-4D1C-4210-AADC-3110ECA31478}.Release|x86.ActiveCfg = Release|Any CPU
 		{A6ED8B1E-8AFB-4501-90FB-3B2670AA10EC}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{A6ED8B1E-8AFB-4501-90FB-3B2670AA10EC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{A6ED8B1E-8AFB-4501-90FB-3B2670AA10EC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU

@@ -118,11 +118,20 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AdminLogin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Runtime\AdminLogin.aspx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="DataFolderFormat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>DataFolderFormat.config;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="InstallPackageService" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Runtime\InstallPackageService.aspx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="LicenseFileFormat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>LicenseFileFormat.config;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="PostInstallService" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Runtime\PostInstallService.aspx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="WffmDataProviderFormat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>WffmDataProviderFormat.config;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

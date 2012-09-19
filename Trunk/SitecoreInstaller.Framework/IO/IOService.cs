@@ -16,8 +16,18 @@ namespace SitecoreInstaller.Framework.IO
     {
         public static void WriteToDisk(this string content, FileInfo targetFile)
         {
+            if (targetFile == null)
+                return;
+
+            targetFile.Directory.CreateIfNotExists();
+
             File.WriteAllText(targetFile.FullName, content);
-            Log.As.Debug("{0} saved to disk at: {1}", content, targetFile.FullName);
+            Log.As.Debug("Saved string to disk at: {0}", targetFile.FullName);
+        }
+        public static void WriteToDir(this string content, DirectoryInfo dir, string filename)
+        {
+            var file = new FileInfo(Path.Combine(dir.FullName, filename));
+            WriteToDisk(content, file);
         }
 
         public static IEnumerable<string> GetUniqueFileNames(this DirectoryInfo folder)
