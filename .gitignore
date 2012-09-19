@@ -1,6 +1,9 @@
 # git ignore file
 *_Resharper*
-Trunk/Packages/*
+Trunk/packages/repositories.config
+Trunk/packages/NUnit*
+Trunk/packages/Fluent*
+Trunk/packages/NSubstitute*
 Trunk/*/bin/*
 Trunk/*/obj/*
 Trunk/Build/

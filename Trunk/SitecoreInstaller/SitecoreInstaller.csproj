@@ -15,6 +15,8 @@
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -140,10 +142,15 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Sources.config">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="Sources.Release.Delta">
+      <DependentUpon>Sources.Delta</DependentUpon>
     </None>
+    <None Include="Sources.Debug.Delta">
+      <DependentUpon>Sources.Delta</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <ConfigTransformDelta Include="Sources.Delta" />
+    <None Include="Sources.Source" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SitecoreInstaller.UI\SitecoreInstaller.UI.csproj">
@@ -159,6 +166,12 @@
     <PostBuildEvent>copy $(SolutionDir)3rdPartyAssemblies\7za.exe $(TargetDir)
 copy $(SolutionDir)3rdPartyAssemblies\curl.exe $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="..\packages\ConfigTransform.2.0.2\tools\ConfigTransform.targets" />
+  <Target Name="AfterBuildTransformConfig" AfterTargets="AfterBuild">
+    <TransformConfig ProjectDir="$(ProjectDir)" WorkDir="C:\Projects\SitecoreInstaller\Trunk\packages\ConfigTransform.2.0.2\tools" ConfigTransformDeltaList="@(ConfigTransformDelta)" Configuration="$(Configuration)" />
+    <CopyConfigFilesToTargetDir ConfigTransformDeltaList="@(ConfigTransformDelta)" TargetDir="$(TargetDir)" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
