@@ -5,6 +5,9 @@ using Microsoft.Web.Administration;
 
 namespace SitecoreInstaller.Domain.WebServer
 {
+    using System.Diagnostics;
+    using System.Linq;
+
     using SitecoreInstaller.Framework.Diagnostics;
 
     public class IisManagementService : IIisManagementService
@@ -56,6 +59,16 @@ namespace SitecoreInstaller.Domain.WebServer
 
         private void DeleteAppPool(string applicationName)
         {
+            if (_iisManager.ApplicationPools[applicationName] == null)
+            {
+                Log.As.Warning("Application pool not found: {0}", applicationName);
+                return;
+            }
+            foreach (var workerProcess in _iisManager.ApplicationPools[applicationName].WorkerProcesses)
+            {
+                Process.GetProcessById(workerProcess.ProcessId).Kill();
+            }
+
             _iisManager.ApplicationPools[applicationName].Delete();
             _iisManager.CommitChanges();
             Log.As.Info("Application pool deleted from iis: {0}", applicationName);
@@ -112,20 +125,22 @@ namespace SitecoreInstaller.Domain.WebServer
                     Log.As.Warning("Application pool already stopped: " + applicationName);
             }
 
-            if (_iisManager.Sites[applicationName] == null)
+            var site = _iisManager.Sites[applicationName];
+
+            if (site == null)
                 Log.As.Error("Site not found: " + applicationName);
             else
             {
-                if (_iisManager.Sites[applicationName].State == ObjectState.Started)
+                if (site.State == ObjectState.Started)
                 {
-                    _iisManager.Sites[applicationName].Stop();
+                    site.Stop();
                     Log.As.Info("Site stopped: " + applicationName);
                 }
                 else
                     Log.As.Warning("Site already stopped: " + applicationName);
             }
         }
-
+        
         private void CreateAppPool(IisSettings iisSettings)
         {
             Log.As.Info("Creating application pool '{0}'", iisSettings.Name);

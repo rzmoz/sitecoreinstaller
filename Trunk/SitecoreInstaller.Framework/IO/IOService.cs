@@ -51,32 +51,27 @@ namespace SitecoreInstaller.Framework.IO
         {
             const int retries = 10;
 
+            if (folder.Exists() == false)
+                return;
+
             try
             {
                 for (var tryCount = 1; tryCount <= retries; tryCount++)
                 {
-                    if (folder.Exists())
+                    try
                     {
-                        try
-                        {
-                            folder.Delete(true);
-                            Log.As.Debug("Folder deleted: '{0}'", folder.FullName);
-                        }
-                        catch (DirectoryNotFoundException)
-                        {
-                            //happens when the files are released and deleted between retries
-                            break;
-                        }
-                        catch (IOException)
-                        {
-                            Log.As.Debug("Waiting for iis to release file handles...");
-                            Thread.Sleep(500);
-                        }
+                        folder.Delete(true);
+                        Log.As.Debug("Folder deleted: '{0}'", folder.FullName);
                     }
-                    else
+                    catch (DirectoryNotFoundException)
                     {
-                        //sometimes happens when folder is deleted between retries which can happen when folder handles are released after a while when deleting a site
+                        //happens when the files are released and deleted between retries
                         break;
+                    }
+                    catch (IOException)
+                    {
+                        Log.As.Debug("Waiting for iis to release file handles...");
+                        Thread.Sleep(500);
                     }
                 }
 
