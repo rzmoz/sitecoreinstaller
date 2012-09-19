@@ -21,6 +21,7 @@ namespace SitecoreInstaller.Domain.WebServer
                 using (var writer = _hostFile.OpenWrite())
                 {
                     writer.Close();
+                    return true;
                 }
             }
             catch (UnauthorizedAccessException)
@@ -31,7 +32,6 @@ namespace SitecoreInstaller.Domain.WebServer
             {
                 return false;
             }
-            return true;
         }
 
         public void AddHostName(string hostName)

@@ -69,7 +69,6 @@ namespace SitecoreInstaller.Domain.Database
 
         public void InitFromFile()
         {
-            File.TryBackup();
             InitConnectionStringEntries();
             LowerCaseConnectionStringNames();
             CreateIfNotExists();
