@@ -157,10 +157,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(SolutionDir)3rdPartyAssemblies\7za.exe $(TargetDir)
-copy $(SolutionDir)3rdPartyAssemblies\curl.exe $(TargetDir)
-cmd /x /c mkdir "$(SolutionDir)Build"
-del $(SolutionDir)Build\*.*
-copy $(TargetDir)*.* $(SolutionDir)Build</PostBuildEvent>
+copy $(SolutionDir)3rdPartyAssemblies\curl.exe $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
