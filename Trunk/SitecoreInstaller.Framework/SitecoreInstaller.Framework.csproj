@@ -89,8 +89,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Configuration\SourceManifest.cs" />
-    <Compile Include="Configuration\SourceManifestRepository.cs" />
     <Compile Include="Diagnostics\ILog.cs" />
     <Compile Include="Diagnostics\InMemoryBufferedLog.cs" />
     <Compile Include="Diagnostics\Log.cs" />

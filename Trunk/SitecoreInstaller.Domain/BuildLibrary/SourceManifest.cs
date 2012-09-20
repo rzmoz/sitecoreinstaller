@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace SitecoreInstaller.Framework.Configuration
+﻿namespace SitecoreInstaller.Domain.BuildLibrary
 {
     public class SourceManifest
     {

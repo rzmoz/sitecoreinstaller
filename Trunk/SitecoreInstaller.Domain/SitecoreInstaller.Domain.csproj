@@ -143,6 +143,8 @@
     <Compile Include="BuildLibrary\LocalSourceRepository.cs" />
     <Compile Include="BuildLibrary\BuildLibraryMode.cs" />
     <Compile Include="BuildLibrary\SourceEntry.cs" />
+    <Compile Include="BuildLibrary\SourceManifest.cs" />
+    <Compile Include="BuildLibrary\SourceManifestRepository.cs" />
     <Compile Include="BuildLibrary\SourceType.cs" />
     <Compile Include="BuildLibrary\WindowsLicenseFileSourceEntryRepository.cs" />
     <Compile Include="BuildLibrary\WindowsSourceEntryRepository.cs" />
