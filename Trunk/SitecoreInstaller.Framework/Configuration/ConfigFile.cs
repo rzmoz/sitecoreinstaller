@@ -32,21 +32,25 @@ namespace SitecoreInstaller.Framework.Configuration
         public IEnumerable<T> GetElements<T>(string sourceName = "") where T : new()
         {
             Init();
+            var elements = new List<T>();
+
             var type = typeof(T);
             if (string.IsNullOrEmpty(sourceName))
                 sourceName = type.Name;
-            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Static);
-            var xElements = GetElements(sourceName);
+            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance);
+            var xElements =_rootElement.ElementsIgnoreCase(sourceName);
             foreach (var xElement in xElements)
             {
                 var t = new T();
-                foreach (var propertyInfo in properties)
+                foreach (var propertyInfo in properties.Where(p => p.PropertyType.Equals(typeof(string))))
                 {
-                    if (propertyInfo.PropertyType.Equals(typeof(string)))
-                        SetPropertyValue(t, propertyInfo.Name, xElement.Attribute(propertyInfo.Name).Value);
+                    var attribute = xElement.AttributeIgnoreCase(propertyInfo.Name);
+                    if (attribute != null)
+                        SetPropertyValue(t, propertyInfo.Name, attribute.Value);
                 }
-                yield return t;
+                elements.Add(t);
             }
+            return elements;
         }
 
         private static void SetPropertyValue<T>(object obj, string propName, T val)
@@ -55,12 +59,6 @@ namespace SitecoreInstaller.Framework.Configuration
             if (t.GetProperty(propName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance) == null)
                 throw new ArgumentOutOfRangeException("propName", string.Format("Property {0} was not found in Type {1}", propName, obj.GetType().FullName));
             t.InvokeMember(propName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.SetProperty | BindingFlags.Instance, null, obj, new object[] { val });
-        }
-
-        private IEnumerable<XElement> GetElements(string elementName)
-        {
-            var elements = _rootElement.Elements(elementName);
-            return elements;
         }
 
         private void Init()

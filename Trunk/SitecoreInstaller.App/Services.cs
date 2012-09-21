@@ -36,6 +36,9 @@ namespace SitecoreInstaller.App
         {
             CheckPreferencesOverride();
 
+            //init before initializing build library
+            SourceManifests.Init();
+
             var localBuildLibrary = new WindowsFileSystemSource(string.Empty) { Parameters = UserSettings.Default.LocalBuildLibrary };
             if (BuildLibrary == null)
                 BuildLibrary = new LocalSourceRepository(localBuildLibrary, SourceManifests.All().Select(Create));
@@ -43,8 +46,6 @@ namespace SitecoreInstaller.App
                 ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, SourceManifests.All().Select(Create));
 
             BuildLibrary.Update();
-
-            SourceManifests.Init();
 
             Projects = new ProjectsService(UserSettings.Default.ProjectsFolder);
 

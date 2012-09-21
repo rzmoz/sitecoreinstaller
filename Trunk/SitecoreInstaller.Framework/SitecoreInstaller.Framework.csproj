@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="Archiving\SevenZipFile.cs" />
     <Compile Include="Configuration\ConfigFile.cs" />
+    <Compile Include="Configuration\ConfigurationExtensions.cs" />
     <Compile Include="Configuration\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,7 +120,6 @@
     <Compile Include="System\SourceFactory.cs" />
     <Compile Include="System\StringExtensions.cs" />
     <Compile Include="System\TypeExtensions.cs" />
-    <Compile Include="System\XDocumentExtensions.cs" />
     <Compile Include="Xml\XmlTransform.cs" />
   </ItemGroup>
   <ItemGroup>
