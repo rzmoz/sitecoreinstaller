@@ -44,6 +44,7 @@ namespace SitecoreInstaller.App
 
             BuildLibrary.Update();
 
+            SourceManifests.Init();
 
             Projects = new ProjectsService(UserSettings.Default.ProjectsFolder);
 

@@ -29,11 +29,14 @@ namespace SitecoreInstaller.Framework.Configuration
         public FileInfo Path { get; private set; }
 
 
-        public IEnumerable<T> GetElements<T>(string elementName) where T : new()
+        public IEnumerable<T> GetElements<T>(string sourceName = "") where T : new()
         {
             Init();
-            var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Static);
-            var xElements = GetElements(elementName);
+            var type = typeof(T);
+            if (string.IsNullOrEmpty(sourceName))
+                sourceName = type.Name;
+            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Static);
+            var xElements = GetElements(sourceName);
             foreach (var xElement in xElements)
             {
                 var t = new T();
@@ -60,6 +63,12 @@ namespace SitecoreInstaller.Framework.Configuration
             return elements;
         }
 
+        private void Init()
+        {
+            if (_document == null)
+                LoadContent(Path.FullName);
+        }
+
         // If you try to get a value of a property  
         // not defined in the class, this method is called. 
         public override bool TryGetMember(
@@ -77,12 +86,6 @@ namespace SitecoreInstaller.Framework.Configuration
                 result = element.Attribute("defaultValue").Value;
 
             return true;
-        }
-
-        private void Init()
-        {
-            if (_document == null)
-                Load(Path.FullName);
         }
 
         // If you try to set a value of a property that is 
@@ -104,7 +107,14 @@ namespace SitecoreInstaller.Framework.Configuration
             _document.Save(Path.FullName);
             return true;
         }
-        public void Load(string path)
+        public static ConfigFile Load(string path)
+        {
+            var configFile = new ConfigFile(path);
+            configFile.LoadContent(path);
+            return new ConfigFile(path);
+        }
+
+        private void LoadContent(string path)
         {
             if (File.Exists(path) == false)
                 throw new IOException("path doesnt exist:" + path);

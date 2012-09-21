@@ -7,12 +7,14 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 {
     using System.Threading;
 
+    using SitecoreInstaller.Domain.BuildLibrary;
     using SitecoreInstaller.Framework.Diagnostics;
 
     public class DoNothingForAWhile : Step
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
+            Log.As.Info(typeof(SourceManifest).Name);
             for (var i = 0; i < 10; i++)
                 Log.As.Info("Logging...");
             Log.As.Info("Pinging the world!...");
