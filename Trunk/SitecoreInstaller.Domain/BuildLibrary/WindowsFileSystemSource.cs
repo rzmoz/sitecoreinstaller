@@ -13,10 +13,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public class WindowsFileSystemSource : ISource
     {
-        private const string _SitecoreFolderName = "Sitecore";
-        private const string _LicenseFolderName = "Licenses";
-        private const string _ModuleFolderName = "Modules";
-
         private readonly IDictionary<SourceType, WindowsSourceEntryRepository> _repositories;
 
         public WindowsFileSystemSource(string name)
@@ -63,11 +59,11 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         private void UpdateLocalRepositories(BuildLibraryMode buildLibraryMode)
         {
-            var root = new DirectoryInfo(Parameters);
+            var buildLibraryFolders = new BuildLibraryFolders(Parameters);
             _repositories.Clear();
-            _repositories.Add(SourceType.Sitecore, new WindowsZipAndFoldersSourceEntryRepository(root.CombineTo<DirectoryInfo>(_SitecoreFolderName), buildLibraryMode));
-            _repositories.Add(SourceType.License, new WindowsLicenseFileSourceEntryRepository(root.CombineTo<DirectoryInfo>(_LicenseFolderName), buildLibraryMode));
-            _repositories.Add(SourceType.Module, new WindowsZipAndFoldersSourceEntryRepository(root.CombineTo<DirectoryInfo>(_ModuleFolderName), buildLibraryMode));
+            _repositories.Add(SourceType.Sitecore, new WindowsZipAndFoldersSourceEntryRepository(buildLibraryFolders.Sitecore, buildLibraryMode));
+            _repositories.Add(SourceType.License, new WindowsLicenseFileSourceEntryRepository(buildLibraryFolders.Licenses, buildLibraryMode));
+            _repositories.Add(SourceType.Module, new WindowsZipAndFoldersSourceEntryRepository(buildLibraryFolders.Modules, buildLibraryMode));
         }
 
         public bool Contains(string name, SourceType sourceType)
