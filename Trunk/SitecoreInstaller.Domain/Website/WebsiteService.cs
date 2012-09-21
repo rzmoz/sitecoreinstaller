@@ -158,8 +158,8 @@ namespace SitecoreInstaller.Domain.Website
             }
 
             //copy admin login
-            var adminLogin = new FileInfo(_AdminLoginName);
-            adminLogin.CopyTo(websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath), true);
+            var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
+            WebsiteResource.AdminLogin.WriteToDir(runtimeServicesFolder, _AdminLoginName);
 
             OpenInBrowser(baseUrl.ToUri(_InstallerPath, _AdminLoginName));
         }
@@ -197,7 +197,7 @@ namespace SitecoreInstaller.Domain.Website
 
             //copy install package service
             WebsiteResource.InstallPackageService.WriteToDir(runtimeServicesFolder, _InstallPackageServiceName);
-            
+
             //copy post install service
             WebsiteResource.PostInstallService.WriteToDir(runtimeServicesFolder, _PostInstallServiceName);
 
