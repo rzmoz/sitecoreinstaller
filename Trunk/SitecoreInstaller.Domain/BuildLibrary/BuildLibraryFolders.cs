@@ -7,6 +7,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 {
     using System.IO;
 
+    using SitecoreInstaller.Framework.Diagnostics;
     using SitecoreInstaller.Framework.IO;
 
     public class BuildLibraryFolders
@@ -16,8 +17,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         private const string _ModuleFolderName = "Modules";
 
         public BuildLibraryFolders(string rootPath)
-            :this(new DirectoryInfo(rootPath))
-        {}
+            : this(new DirectoryInfo(rootPath))
+        { }
 
         public BuildLibraryFolders(DirectoryInfo root)
         {
@@ -35,6 +36,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
             Modules.CreateIfNotExists();
             Licenses.CreateIfNotExists();
             Sitecore.CreateIfNotExists();
+            Log.As.Info("Build library folders created at: {0}", Root.FullName);
         }
 
         public DirectoryInfo Root { get; private set; }

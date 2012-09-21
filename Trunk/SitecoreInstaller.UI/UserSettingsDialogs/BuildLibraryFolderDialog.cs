@@ -13,6 +13,7 @@ namespace SitecoreInstaller.UI.UserSettingsDialogs
 
     using SitecoreInstaller.App;
     using SitecoreInstaller.App.Properties;
+    using SitecoreInstaller.Domain.BuildLibrary;
     using SitecoreInstaller.Framework.IO;
 
     public partial class BuildLibraryFolderDialog : UserSettingsDialog
@@ -52,7 +53,9 @@ namespace SitecoreInstaller.UI.UserSettingsDialogs
         {
             if (Directory.Exists(tbxBuildLibraryFolder.Text))
                 return;
-            Directory.CreateDirectory(tbxBuildLibraryFolder.Text);
+
+            var buildLibraryFolders=new BuildLibraryFolders(tbxBuildLibraryFolder.Text);
+            buildLibraryFolders.Create();
             tbxBuildLibraryFolder_TextChanged(this, EventArgs.Empty);
             Services.Dialogs.Information("'{0}' was created.", tbxBuildLibraryFolder.Text);
         }
