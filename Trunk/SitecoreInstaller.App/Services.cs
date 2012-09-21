@@ -67,6 +67,10 @@ namespace SitecoreInstaller.App
             UserSettings.Default.SqlPassword = UserSettings.Default.SqlPassword.TrySet((string)preferencesOverrideConfigFile.SqlPassword);
             UserSettings.Default.PromptForUserSettings = UserSettings.Default.PromptForUserSettings.TrySet((string)preferencesOverrideConfigFile.PromptForUserSettings);
             UserSettings.Default.LicenseExpirationPeriodInDays = UserSettings.Default.LicenseExpirationPeriodInDays.TrySet((string)preferencesOverrideConfigFile.LicenseExpirationPeriodInDays);
+
+            var createBuildLibraryIfNotExixst = false.TrySet((string)preferencesOverrideConfigFile.CreateLocalBuildLibraryIfNotExists);
+            if (createBuildLibraryIfNotExixst)
+                new BuildLibraryFolders(UserSettings.Default.LocalBuildLibrary).Create();
         }
 
         private static ISource Create(SourceManifest sourceManifest)
