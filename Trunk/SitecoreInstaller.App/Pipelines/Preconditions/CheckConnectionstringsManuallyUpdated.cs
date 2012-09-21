@@ -11,7 +11,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
     {
         public bool Evaluate(object sender, PreconditionEventArgs args)
         {
-            if(Services.AppSettings.InstallType == InstallType.Full)
+            if(Services.ProjectSettings.InstallType == InstallType.Full)
                 return true;
             Services.Dialogs.Information("Please update connectionstrings.config and press ok to continue");
             return true;

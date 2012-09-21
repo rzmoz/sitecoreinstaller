@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.Website.SetDataFolder(Services.AppSettings.WebsiteFolders.DataFolder, Services.AppSettings.DataFolderConfigFile);
+            Services.Website.SetDataFolder(Services.ProjectSettings.WebsiteFolders.DataFolder, Services.ProjectSettings.DataFolderConfigFile);
         }
     }
 }

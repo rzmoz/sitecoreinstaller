@@ -18,7 +18,7 @@ namespace SitecoreInstaller.UI
         private const int _ButtonWidth = 190;
         private const int _ButtonSpacing = 1;
 
-        private Func<AppSettings> _getAppSettings;
+        private Func<ProjectSettings> _getProjectSettings;
 
         public PipelineStepList()
         {
@@ -35,9 +35,9 @@ namespace SitecoreInstaller.UI
             return verticalPosition;
         }
 
-        public void Init(IPipeline pipeline, Func<AppSettings> getAppSettings)
+        public void Init(IPipeline pipeline, Func<ProjectSettings> getProjectSettings)
         {
-            _getAppSettings = getAppSettings;
+            _getProjectSettings = getProjectSettings;
 
             foreach (var step in pipeline.Steps)
             {
@@ -54,7 +54,7 @@ namespace SitecoreInstaller.UI
                 var stepAsLocal = step;
                 button.Click += delegate
                     {
-                        Services.AppSettings = _getAppSettings();
+                        Services.ProjectSettings = _getProjectSettings();
                         stepAsLocal.Invoke(this, EventArgs.Empty);
                     };
                 Controls.Add(button);

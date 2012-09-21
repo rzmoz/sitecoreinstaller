@@ -95,7 +95,7 @@
         public void btnOpen_Click(object sender, EventArgs e)
         {
             _openSimple.Show();
-            _openSimple.Init(Install.GetAppSettings().ProjectName.Value);
+            _openSimple.Init(Install.GetProjectSettings().ProjectName.Value);
             _openSimple.BringToFront();
             pnlMain.Hide();
         }

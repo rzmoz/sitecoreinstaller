@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.HostFile.AddHostName(Services.AppSettings.Iis.Url);
+            Services.HostFile.AddHostName(Services.ProjectSettings.Iis.Url);
         }
     }
 }

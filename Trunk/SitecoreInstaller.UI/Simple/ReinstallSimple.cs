@@ -29,13 +29,13 @@ namespace SitecoreInstaller.UI.Simple
             selectProjectName1.Focus();
         }
 
-        public AppSettings GetAppSettings()
+        public ProjectSettings GetProjectSettings()
         {
-            var appSettings = new AppSettings();
-            appSettings.Init(UserSettings.Default);
-            appSettings.ProjectName.Value = selectProjectName1.ProjectName;
-            appSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
-            return appSettings;
+            var projectSettings = new ProjectSettings();
+            projectSettings.Init(UserSettings.Default);
+            projectSettings.ProjectName.Value = selectProjectName1.ProjectName;
+            projectSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
+            return projectSettings;
         }
 
         public event EventHandler<EventArgs> Cancelled;
@@ -51,7 +51,7 @@ namespace SitecoreInstaller.UI.Simple
                 Services.Dialogs.Information("Please choose a project");
             else
             {
-                Services.AppSettings = GetAppSettings();
+                Services.ProjectSettings = GetProjectSettings();
                 Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
             }
         }

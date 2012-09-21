@@ -16,9 +16,9 @@
     /// Not thread safe!
     /// </summary>
     [DataContract]
-    public class AppSettings
+    public class ProjectSettings
     {
-        public AppSettings()
+        public ProjectSettings()
         {
             ProjectName = new Observable<string>();
             ProjectName.PropertyUpdated += ProjectNamePropertyUpdated;

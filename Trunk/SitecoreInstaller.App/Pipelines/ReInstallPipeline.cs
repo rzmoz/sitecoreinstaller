@@ -16,7 +16,7 @@ namespace SitecoreInstaller.App.Pipelines
             var uninstallPipeline = new UninstallPipeline();
 
             AddPreconditions(installPipeline.Preconditions);
-            AddStep<UpdateAppSettings>();
+            AddStep<UpdateProjectSettings>();
             AddSteps(uninstallPipeline.Steps);
             AddSteps(installPipeline.Steps);
         }

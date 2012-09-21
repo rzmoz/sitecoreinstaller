@@ -40,13 +40,13 @@ namespace SitecoreInstaller
 
         public override void Install(object sender, EventArgs e)
         {
-            Services.AppSettings = MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings();
+            Services.ProjectSettings = MainForm.MainDeveloper.SelectionsDeveloper.GetProjectSettings();
             Services.Pipelines.Run<InstallPipeline>();
         }
 
         public override void Uninstall(object sender, EventArgs e)
         {
-            Services.AppSettings = MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings();
+            Services.ProjectSettings = MainForm.MainDeveloper.SelectionsDeveloper.GetProjectSettings();
             Services.Pipelines.Run<UninstallPipeline>();
         }
 
@@ -56,13 +56,13 @@ namespace SitecoreInstaller
 
         public override void OpenSitecore(object sender, EventArgs e)
         {
-            var appsettings = MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings();
-            Services.Website.OpenSitecore(appsettings.Iis.Url, appsettings.WebsiteFolders.WebSiteFolder);
+            var projectSettings = MainForm.MainDeveloper.SelectionsDeveloper.GetProjectSettings();
+            Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.WebsiteFolders.WebSiteFolder);
         }
 
         public override void OpenFrontend(object sender, EventArgs e)
         {
-            Services.Website.OpenFrontend(MainForm.MainDeveloper.SelectionsDeveloper.GetAppSettings().Iis.Url);
+            Services.Website.OpenFrontend(MainForm.MainDeveloper.SelectionsDeveloper.GetProjectSettings().Iis.Url);
         }
     }
 }

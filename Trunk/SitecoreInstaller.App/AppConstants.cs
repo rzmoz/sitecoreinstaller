@@ -10,7 +10,7 @@ namespace SitecoreInstaller.App
         internal const string ConnectionStringsConfigFileName = "ConnectionStrings.config";
         internal const string WffmConfigFileName = "forms.config";
 
-        internal const string AppSettingsConfigFileName = "AppSettings.config";
+        internal const string ProjectSettingsConfigFileName = "ProjectSettings.config";
         internal const string PreferencesOverrideConfigFileName = "Preferences.config";
         internal const string SourcesConfigFileName = "Sources.config";
 

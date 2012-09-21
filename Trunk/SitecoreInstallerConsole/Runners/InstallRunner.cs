@@ -41,19 +41,19 @@ namespace SitecoreInstallerConsole.Runners
 
         private void Install(string license, IEnumerable<SourceEntry> selectedModules, string projectName, string sitecore)
         {
-            Services.AppSettings.ProjectName.Value = projectName;
-            Services.AppSettings.Iis = new IisSettings { Name = Services.AppSettings.ProjectName.Value };
-            Services.AppSettings.BuildLibrarySelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
-            Services.AppSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license, string.Empty);
+            Services.ProjectSettings.ProjectName.Value = projectName;
+            Services.ProjectSettings.Iis = new IisSettings { Name = Services.ProjectSettings.ProjectName.Value };
+            Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
+            Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license, string.Empty);
             if (sitecore == ArgSwitches.Latest)
-                Services.AppSettings.BuildLibrarySelections.SelectedSitecore = Services.BuildLibrary.List(SourceType.Sitecore).Last();
+                Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = Services.BuildLibrary.List(SourceType.Sitecore).Last();
             else
-                Services.AppSettings.BuildLibrarySelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
+                Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
             if (license == ArgSwitches.Latest)
-                Services.AppSettings.BuildLibrarySelections.SelectedLicense = Services.BuildLibrary.List(SourceType.License).Last();
+                Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = Services.BuildLibrary.List(SourceType.License).Last();
             else
-                Services.AppSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license, string.Empty);
-            Services.AppSettings.BuildLibrarySelections.SelectedModules = selectedModules;
+                Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license, string.Empty);
+            Services.ProjectSettings.BuildLibrarySelections.SelectedModules = selectedModules;
 
             Services.Pipelines.Run<InstallPipeline>(Dialogs.Off);
         }

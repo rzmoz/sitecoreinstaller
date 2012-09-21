@@ -17,8 +17,8 @@ namespace SitecoreInstallerConsole.Runners
             Args = args;
             Services.Init();
             Log.As.EntryLogged += LogEntryLogged;
-            Services.AppSettings = new AppSettings();
-            Services.AppSettings.Init(UserSettings.Default);
+            Services.ProjectSettings = new ProjectSettings();
+            Services.ProjectSettings.Init(UserSettings.Default);
             Services.BuildLibrary.Update();
         }
 

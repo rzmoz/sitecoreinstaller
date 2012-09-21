@@ -22,12 +22,12 @@
             selectProjectName1.Focus();
         }
 
-        public AppSettings GetAppSettings()
+        public ProjectSettings GetProjectSettings()
         {
-            var appSettings = new AppSettings();
-            appSettings.Init(UserSettings.Default);
-            appSettings.ProjectName.Value = selectProjectName1.ProjectName;
-            return appSettings;
+            var projectSettings = new ProjectSettings();
+            projectSettings.Init(UserSettings.Default);
+            projectSettings.ProjectName.Value = selectProjectName1.ProjectName;
+            return projectSettings;
         }
 
         public event EventHandler<EventArgs> Cancelled;
@@ -43,7 +43,7 @@
                 Services.Dialogs.Information("Please choose a project");
             else
             {
-                Services.AppSettings = GetAppSettings();
+                Services.ProjectSettings = GetProjectSettings();
                 Services.Pipelines.Run<UninstallPipeline>(Dialogs.Off);
             }
         }

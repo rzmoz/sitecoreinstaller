@@ -14,7 +14,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
             if (base.Evaluate(sender, args) == false)
                 return true;
 
-            ErrorMessage = string.Format("Project '{0}' already exists.\r\nPlease delete first or choose another project name for this installation.\r\n\r\nLocation: {1}", Services.AppSettings.ProjectName, Services.AppSettings.WebsiteFolders.ProjectFolder);
+            ErrorMessage = string.Format("Project '{0}' already exists.\r\nPlease delete first or choose another project name for this installation.\r\n\r\nLocation: {1}", Services.ProjectSettings.ProjectName, Services.ProjectSettings.WebsiteFolders.ProjectFolder);
             return false;
         }
     }

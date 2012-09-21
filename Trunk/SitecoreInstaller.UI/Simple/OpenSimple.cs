@@ -28,12 +28,12 @@ namespace SitecoreInstaller.UI.Simple
             selectProjectName1.Focus();
         }
 
-        public AppSettings GetAppSettings()
+        public ProjectSettings GetProjectSettings()
         {
-            var appSettings = new AppSettings();
-            appSettings.Init(UserSettings.Default);
-            appSettings.ProjectName.Value = selectProjectName1.ProjectName;
-            return appSettings;
+            var projectSettings = new ProjectSettings();
+            projectSettings.Init(UserSettings.Default);
+            projectSettings.ProjectName.Value = selectProjectName1.ProjectName;
+            return projectSettings;
         }
 
         public event EventHandler<EventArgs> Cancelled;
@@ -49,8 +49,8 @@ namespace SitecoreInstaller.UI.Simple
                 Services.Dialogs.Information("Please choose a project");
             else
             {
-                var appsettings = GetAppSettings();
-                Services.Website.OpenFrontend(appsettings.Iis.Url);
+                var projectSettings = GetProjectSettings();
+                Services.Website.OpenFrontend(projectSettings.Iis.Url);
             }
         }
     }

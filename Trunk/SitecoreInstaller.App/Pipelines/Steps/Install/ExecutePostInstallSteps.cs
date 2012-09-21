@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.Website.ExecutePostInstallSteps(Services.AppSettings.Iis.Url);
+            Services.Website.ExecutePostInstallSteps(Services.ProjectSettings.Iis.Url);
         }
     }
 }

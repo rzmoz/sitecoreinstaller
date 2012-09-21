@@ -71,17 +71,17 @@ namespace SitecoreInstaller.Framework.IO
             directoryInfo.Create();
         }
 
-        public static void GrantEveryoneFullControl(this DirectoryInfo dir)
+        public static void GrantReadAndWritePermissions(this DirectoryInfo dir, string username)
         {
             if (Directory.Exists(dir.FullName) == false)
                 return;
 
             DirectorySecurity directorySecurity = dir.GetAccessControl();
             CanonicalizeDacl(directorySecurity);
-            
+
             directorySecurity.AddAccessRule(new FileSystemAccessRule(
-                                    "Everyone",
-                                    FileSystemRights.FullControl,
+                                    username,
+                                    FileSystemRights.Modify | FileSystemRights.ReadAndExecute | FileSystemRights.ListDirectory | FileSystemRights.Read | FileSystemRights.Write,
                                     InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit,
                                     PropagationFlags.None,
                                     AccessControlType.Allow));

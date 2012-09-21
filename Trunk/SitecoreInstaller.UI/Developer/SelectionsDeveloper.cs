@@ -27,17 +27,17 @@
             selectModules1.Init();
         }
 
-        public AppSettings GetAppSettings()
+        public ProjectSettings GetProjectSettings()
         {
-            var appSettings = new AppSettings();
-            appSettings.Init(UserSettings.Default);
-            appSettings.Iis = _getIisSettings();//Get iis settings before project name is set!
-            appSettings.InstallType = _getInstallType();
-            appSettings.ProjectName.Value = _selectProjectName1.ProjectName;
-            appSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
-            appSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
-            appSettings.BuildLibrarySelections.SelectedModules = selectModules1.SelectedModules;
-            return appSettings;
+            var projectSettings = new ProjectSettings();
+            projectSettings.Init(UserSettings.Default);
+            projectSettings.Iis = _getIisSettings();//Get iis settings before project name is set!
+            projectSettings.InstallType = _getInstallType();
+            projectSettings.ProjectName.Value = _selectProjectName1.ProjectName;
+            projectSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
+            projectSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
+            projectSettings.BuildLibrarySelections.SelectedModules = selectModules1.SelectedModules;
+            return projectSettings;
         }
 
         public void FocusProjectcName()

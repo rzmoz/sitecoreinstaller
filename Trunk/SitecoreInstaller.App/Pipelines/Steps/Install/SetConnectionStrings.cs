@@ -15,14 +15,14 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            if (Services.AppSettings.InstallType == InstallType.Client)
+            if (Services.ProjectSettings.InstallType == InstallType.Client)
                 return;
 
-            var connectionStrings = Services.AppSettings.ConnectionStringsConfigFile;
+            var connectionStrings = Services.ProjectSettings.ConnectionStringsConfigFile;
 
             connectionStrings.InitFromFile();
             var existingConnectionStringNames = connectionStrings.Select(entry => entry.Name);
-            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.AppSettings.Sql, Services.AppSettings.WebsiteFolders.DatabaseFolder, Services.AppSettings.ProjectName.Value, existingConnectionStringNames);
+            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.ProjectSettings.Sql, Services.ProjectSettings.WebsiteFolders.DatabaseFolder, Services.ProjectSettings.ProjectName.Value, existingConnectionStringNames);
             var transform = new XmlTransform(connectionStrings.File, connectionStringsDelta);
             transform.Run();
 
@@ -34,12 +34,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             if (webFormsConnectionString == null)
                 return;
 
-            if (File.Exists(Services.AppSettings.WffmConfigFile.FullName) == false)
+            if (File.Exists(Services.ProjectSettings.WffmConfigFile.FullName) == false)
                 return;
 
-            var formsConfigFile = new WffmConfigFile(Services.AppSettings.WffmConfigFile);
+            var formsConfigFile = new WffmConfigFile(Services.ProjectSettings.WffmConfigFile);
             if (formsConfigFile.DataProviderType == DataProviderType.Sql)
-                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString, Services.AppSettings.WffmSqlDataproviderConfigFile);
+                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString, Services.ProjectSettings.WffmSqlDataproviderConfigFile);
         }
     }
 }

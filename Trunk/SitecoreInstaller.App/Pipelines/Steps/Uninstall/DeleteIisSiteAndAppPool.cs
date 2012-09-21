@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.IisManagement.DeleteApplication(Services.AppSettings.Iis.Name);
+            Services.IisManagement.DeleteApplication(Services.ProjectSettings.Iis.Name);
         }
     }
 }

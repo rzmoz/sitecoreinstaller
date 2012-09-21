@@ -13,14 +13,14 @@
         {
             InitializeComponent();
         }
-        public AppSettings GetAppSettings()
+        public ProjectSettings GetProjectSettings()
         {
-            var appSettings = new AppSettings();
-            appSettings.Init(UserSettings.Default);
-            appSettings.ProjectName.Value = tbxProjectName.Text;
-            appSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
-            appSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
-            return appSettings;
+            var projectSettings = new ProjectSettings();
+            projectSettings.Init(UserSettings.Default);
+            projectSettings.ProjectName.Value = tbxProjectName.Text;
+            projectSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
+            projectSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
+            return projectSettings;
         }
 
         public void Init()
@@ -42,7 +42,7 @@
                 Services.Dialogs.Information("Please enter project name");
             else
             {
-                Services.AppSettings = GetAppSettings();
+                Services.ProjectSettings = GetProjectSettings();
                 Services.Pipelines.Run<InstallPipeline>();
             }
         }

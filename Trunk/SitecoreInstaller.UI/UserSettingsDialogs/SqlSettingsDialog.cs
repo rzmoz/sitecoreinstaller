@@ -43,17 +43,17 @@ namespace SitecoreInstaller.UI.UserSettingsDialogs
             UserSettings.Default.Save();
         }
 
-        public AppSettings GetAppSettings()
+        public ProjectSettings GetProjectSettings()
         {
-            var appSettings = new AppSettings();
-            appSettings.Init(UserSettings.Default);
-            return appSettings;
+            var projectSettings = new ProjectSettings();
+            projectSettings.Init(UserSettings.Default);
+            return projectSettings;
         }
 
         public void btnTestSql_Click(object sender, EventArgs e)
         {
             BtnSaveClick();
-            Services.AppSettings = GetAppSettings();
+            Services.ProjectSettings = GetProjectSettings();
             Services.Pipelines.Run<TestSqlSettingsPipeline>();
         }
     }

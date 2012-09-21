@@ -11,7 +11,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
     {
         public override bool Evaluate(object sender, PreconditionEventArgs args)
         {
-            if (Services.AppSettings.BuildLibrarySelections.SelectedSitecore != null)
+            if (Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore != null)
                 return true;
 
             ErrorMessage = "You haven't selected a Sitecore. Please add a Sitecore in preferences pane if you have none";

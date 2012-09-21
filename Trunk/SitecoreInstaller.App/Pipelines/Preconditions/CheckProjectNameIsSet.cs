@@ -8,7 +8,7 @@
     {
         public override bool Evaluate(object sender, PreconditionEventArgs args)
         {
-            if (Services.AppSettings.ProjectNameIsSet)
+            if (Services.ProjectSettings.ProjectNameIsSet)
                 return true;
             ErrorMessage = "Project name not set. Please enter project name";
             return false;

@@ -49,11 +49,7 @@ namespace SitecoreInstaller.Domain.Website
         public void CreateTargetFolders(WebsiteFolders websiteFolders)
         {
             Log.As.Info("Creating website folders...");
-
             websiteFolders.ProjectFolder.CreateWithLog();
-
-            Log.As.Debug("Giving Everyone user FullControl to project folder: {0}", websiteFolders.ProjectFolder.FullName);
-            websiteFolders.ProjectFolder.GrantEveryoneFullControl();
             websiteFolders.CreateFolders();
             Log.As.Info("Website folders created");
         }

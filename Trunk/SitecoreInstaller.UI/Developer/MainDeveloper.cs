@@ -16,7 +16,7 @@
         {
             advancedSettings1.Init();
             _selectionsDeveloper1.Init(advancedSettings1.GetIisSettings, advancedSettings1.GetInstallType);
-            _pipelineLists1.Init(_selectionsDeveloper1.GetAppSettings);
+            _pipelineLists1.Init(_selectionsDeveloper1.GetProjectSettings);
         }
     }
 }

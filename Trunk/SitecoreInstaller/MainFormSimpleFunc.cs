@@ -70,29 +70,29 @@ namespace SitecoreInstaller
         {
             if (MainForm.MainSimple.Install.Visible)
             {
-                var appsettings = MainForm.MainSimple.Install.GetAppSettings();
-                Services.Website.OpenSitecore(appsettings.Iis.Url, appsettings.WebsiteFolders.WebSiteFolder);
+                var projectSettings = MainForm.MainSimple.Install.GetProjectSettings();
+                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.WebsiteFolders.WebSiteFolder);
             }
             else if (MainForm.MainSimple.Uninstall.Visible)
             {
-                var appsettings = MainForm.MainSimple.Uninstall.GetAppSettings();
-                Services.Website.OpenSitecore(appsettings.Iis.Url, appsettings.WebsiteFolders.WebSiteFolder);
+                var projectSettings = MainForm.MainSimple.Uninstall.GetProjectSettings();
+                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.WebsiteFolders.WebSiteFolder);
             }
             else if (MainForm.MainSimple.Open.Visible)
             {
-                var appsettings = MainForm.MainSimple.Open.GetAppSettings();
-                Services.Website.OpenSitecore(appsettings.Iis.Url, appsettings.WebsiteFolders.WebSiteFolder);
+                var projectSettings = MainForm.MainSimple.Open.GetProjectSettings();
+                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.WebsiteFolders.WebSiteFolder);
             }
         }
 
         public override void OpenFrontend(object sender, EventArgs e)
         {
             if (MainForm.MainSimple.Install.Visible)
-                Services.Website.OpenFrontend(MainForm.MainSimple.Install.GetAppSettings().Iis.Url);
+                Services.Website.OpenFrontend(MainForm.MainSimple.Install.GetProjectSettings().Iis.Url);
             else if (MainForm.MainSimple.Uninstall.Visible)
-                Services.Website.OpenFrontend(MainForm.MainSimple.Uninstall.GetAppSettings().Iis.Url);
+                Services.Website.OpenFrontend(MainForm.MainSimple.Uninstall.GetProjectSettings().Iis.Url);
             else if (MainForm.MainSimple.Open.Visible)
-                Services.Website.OpenFrontend(MainForm.MainSimple.Open.GetAppSettings().Iis.Url);
+                Services.Website.OpenFrontend(MainForm.MainSimple.Open.GetProjectSettings().Iis.Url);
             else
                 MainForm.MainSimple.btnOpen_Click(sender, e);
         }

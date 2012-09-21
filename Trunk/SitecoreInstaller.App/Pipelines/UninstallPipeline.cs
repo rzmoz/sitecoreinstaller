@@ -19,7 +19,7 @@ namespace SitecoreInstaller.App.Pipelines
             AddPrecondition<CheckProjectExists>();
 
             //Init steps
-            AddStep<UpdateAppSettings>();
+            AddStep<UpdateProjectSettings>();
             AddStep<StopApplication>();
             AddStep<DetachDatabases>();
             AddStep<DeleteIisSiteAndAppPool>();
