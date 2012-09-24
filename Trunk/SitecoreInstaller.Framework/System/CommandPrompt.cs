@@ -20,14 +20,6 @@
 
             using (var console = new Process { StartInfo = si })
             {
-                //console.OutputDataReceived += OutputDataReceived;
-                //console.ErrorDataReceived += ErrorDataReceived;
-
-                console.Start();
-
-                //console.BeginErrorReadLine();
-                //console.BeginOutputReadLine();
-                //console.WaitForExit();
                 Diagnostics.Log.As.Debug(console.StandardOutput.ReadToEnd());
                 var error = console.StandardError.ReadToEnd();
                 if (error.Length > 0)
@@ -36,13 +28,5 @@
             }
         }
 
-        private void ErrorDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            Diagnostics.Log.As.Error(e.Data);
-        }
-        private void OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            Diagnostics.Log.As.Debug(e.Data);
-        }
     }
 }

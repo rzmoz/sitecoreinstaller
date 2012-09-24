@@ -50,7 +50,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             foreach (var dir in Root.GetDirectories())
             {
-                Log.As.Debug("Adding '{0}' from directory", dir.Name);
+                Log.As.Debug("Adding '{0}' from directory", dir.FullName);
                 Entries.Add(dir.Name.ToLower(), new SourceEntry(dir.Name, sourceName));
             }
 

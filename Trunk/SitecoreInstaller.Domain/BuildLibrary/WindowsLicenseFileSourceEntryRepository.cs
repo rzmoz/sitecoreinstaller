@@ -27,7 +27,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             foreach (var file in Root.EnumerateFiles("*.xml", SearchOption.AllDirectories))
             {
-                Log.As.Debug("Adding '{0}' from directory", file.Name);
+                Log.As.Debug("Adding '{0}' from directory", file.FullName);
                 var licenseSourceEntry = new LicenseFileSourceEntry(file, sourceName);
                 if (Entries.ContainsKey(licenseSourceEntry.Key.ToLower()))
                     continue;
