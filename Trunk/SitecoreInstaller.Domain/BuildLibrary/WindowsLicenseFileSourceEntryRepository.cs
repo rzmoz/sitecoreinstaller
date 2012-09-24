@@ -13,13 +13,13 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     public class WindowsLicenseFileSourceEntryRepository : WindowsSourceEntryRepository
     {
         public WindowsLicenseFileSourceEntryRepository(DirectoryInfo root, BuildLibraryMode buildLibraryMode)
-            : base(root, buildLibraryMode)
+            : base(root, buildLibraryMode, SourceType.License)
         {
         }
 
         public override void Update(string sourceName)
         {
-            Log.As.Debug("Updating source entry repository '{0}'", sourceName);
+            Log.As.Debug("Updating Licenses in '{0}'", sourceName);
 
             Entries.Clear();
             if (Directory.Exists(Root.FullName) == false)

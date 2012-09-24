@@ -13,18 +13,20 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     {
         protected IDictionary<string, SourceEntry> Entries { get; private set; }
 
-        protected WindowsSourceEntryRepository(DirectoryInfo root, BuildLibraryMode buildLibraryMode)
+        protected WindowsSourceEntryRepository(DirectoryInfo root, BuildLibraryMode buildLibraryMode, SourceType sourceType)
         {
             Contract.Requires<ArgumentNullException>(root != null);
 
             Root = root;
             Mode = buildLibraryMode;
+            SourceType = sourceType;
             Entries = new Dictionary<string, SourceEntry>();
         }
 
         public DirectoryInfo Root { get; private set; }
         public BuildLibraryMode Mode { get; private set; }
-        
+        public SourceType SourceType { get; private set; }
+
         public abstract BuildLibraryResource Get(SourceEntry sourceEntry);
 
         public abstract void Update(string sourceName);

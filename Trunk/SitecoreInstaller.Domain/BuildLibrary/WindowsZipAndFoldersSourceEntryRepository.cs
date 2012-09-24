@@ -15,8 +15,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     {
         private readonly IList<Func<string, BuildLibraryResource>> _getSourceEntryFuncs;
 
-        public WindowsZipAndFoldersSourceEntryRepository(DirectoryInfo root, BuildLibraryMode buildLibraryMode)
-            : base(root, buildLibraryMode)
+        public WindowsZipAndFoldersSourceEntryRepository(DirectoryInfo root, BuildLibraryMode buildLibraryMode, SourceType sourceType)
+            : base(root, buildLibraryMode, sourceType)
         {
             _getSourceEntryFuncs = new List<Func<string, BuildLibraryResource>>(2);
             SetGetSourceEntry();
@@ -42,7 +42,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public override void Update(string sourceName)
         {
-            Log.As.Debug("Updating source entry repository '{0}'", sourceName);
+            Log.As.Debug("Updating '{0}'s in {1}", SourceType, sourceName);
 
             Entries.Clear();
             if (Directory.Exists(Root.FullName) == false)

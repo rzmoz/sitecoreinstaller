@@ -103,7 +103,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
             if (Updating != null)
                 Updating(this, new EventArgs());
 
-            _localBuildLibrary.Update();
             foreach (var source in _sources)
                 source.Value.Update();
 

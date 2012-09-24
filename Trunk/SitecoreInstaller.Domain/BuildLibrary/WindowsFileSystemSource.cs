@@ -61,9 +61,9 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         {
             var buildLibraryFolders = new BuildLibraryFolders(Parameters);
             _repositories.Clear();
-            _repositories.Add(SourceType.Sitecore, new WindowsZipAndFoldersSourceEntryRepository(buildLibraryFolders.Sitecore, buildLibraryMode));
+            _repositories.Add(SourceType.Sitecore, new WindowsZipAndFoldersSourceEntryRepository(buildLibraryFolders.Sitecore, buildLibraryMode, SourceType.Sitecore));
             _repositories.Add(SourceType.License, new WindowsLicenseFileSourceEntryRepository(buildLibraryFolders.Licenses, buildLibraryMode));
-            _repositories.Add(SourceType.Module, new WindowsZipAndFoldersSourceEntryRepository(buildLibraryFolders.Modules, buildLibraryMode));
+            _repositories.Add(SourceType.Module, new WindowsZipAndFoldersSourceEntryRepository(buildLibraryFolders.Modules, buildLibraryMode, SourceType.Module));
         }
 
         public bool Contains(string name, SourceType sourceType)
