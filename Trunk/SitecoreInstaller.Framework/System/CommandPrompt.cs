@@ -9,6 +9,8 @@
 
         public void Run(string commandString)
         {
+            Diagnostics.Log.As.Debug("Command prompt called: {0}", commandString);
+
             var si = new ProcessStartInfo("cmd.exe", "/c " + commandString)
             {
                 RedirectStandardInput = true,
