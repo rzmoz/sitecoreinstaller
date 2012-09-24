@@ -19,7 +19,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public override void Update(string sourceName)
         {
-            Log.As.Debug("Updating Licenses in '{0}'", sourceName);
+            Log.As.Debug("Updating Licenses from '{0}'", sourceName);
 
             Entries.Clear();
             if (Directory.Exists(Root.FullName) == false)

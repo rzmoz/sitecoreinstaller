@@ -42,7 +42,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public override void Update(string sourceName)
         {
-            Log.As.Debug("Updating '{0}'s in {1}", SourceType, sourceName);
+            Log.As.Debug("Updating '{0}'s from {1}", SourceType, sourceName);
 
             Entries.Clear();
             if (Directory.Exists(Root.FullName) == false)
