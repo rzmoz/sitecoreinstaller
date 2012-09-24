@@ -20,10 +20,13 @@
 
             using (var console = new Process { StartInfo = si })
             {
+                console.Start();
+
                 Diagnostics.Log.As.Debug(console.StandardOutput.ReadToEnd());
                 var error = console.StandardError.ReadToEnd();
                 if (error.Length > 0)
                     Diagnostics.Log.As.Error(error);
+
                 console.Close();
             }
         }
