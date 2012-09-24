@@ -7,7 +7,10 @@
             Leave value empty to use normal settings
         -->
     <ProjectsFolder></ProjectsFolder>
-    
+
+    <!-- Valid values are: True, False -->
+    <CreateProjectsFolderIfNotExists></CreateProjectsFolderIfNotExists>
+
     <LocalBuildLibrary></LocalBuildLibrary>
     
     <!-- Valid values are: True, False -->

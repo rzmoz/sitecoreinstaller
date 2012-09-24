@@ -71,6 +71,10 @@ namespace SitecoreInstaller.App
             var createBuildLibraryIfNotExixst = false.TrySet((string)preferencesOverrideConfigFile.CreateLocalBuildLibraryIfNotExists);
             if (createBuildLibraryIfNotExixst)
                 new BuildLibraryFolders(UserSettings.Default.LocalBuildLibrary).Create();
+
+            var createProjectsFolderIfNotExists = false.TrySet((string)preferencesOverrideConfigFile.CreateProjectsFolderIfNotExists);
+            if (createProjectsFolderIfNotExists)
+                new DirectoryInfo(UserSettings.Default.ProjectsFolder).Create();
         }
 
         private static ISource Create(SourceManifest sourceManifest)
