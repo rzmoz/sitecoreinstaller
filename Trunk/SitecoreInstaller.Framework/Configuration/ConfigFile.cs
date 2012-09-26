@@ -38,7 +38,7 @@ namespace SitecoreInstaller.Framework.Configuration
             if (string.IsNullOrEmpty(sourceName))
                 sourceName = type.Name;
             var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance);
-            var xElements =_rootElement.ElementsIgnoreCase(sourceName);
+            var xElements = _rootElement.ElementsIgnoreCase(sourceName);
             foreach (var xElement in xElements)
             {
                 var t = new T();
@@ -80,7 +80,9 @@ namespace SitecoreInstaller.Framework.Configuration
             else
                 result = element.Value;
 
-            if (element.Value.Length == 0 && element.Attribute("defaultValue") != null)
+            if (element.Value.Length == 0 &&
+                element.Attribute("defaultValue") != null &&
+                element.Attribute("defaultValue").Value.Length > 0)
                 result = element.Attribute("defaultValue").Value;
 
             return true;
