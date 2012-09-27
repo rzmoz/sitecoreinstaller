@@ -57,7 +57,7 @@ namespace SitecoreInstaller.App
             if (File.Exists(AppConstants.PreferencesOverrideConfigFileName) == false)
                 return;
 
-            dynamic preferencesOverrideConfigFile = new ConfigFile(AppConstants.PreferencesOverrideConfigFileName);
+            dynamic preferencesOverrideConfigFile = new DynamicConfigFile(AppConstants.PreferencesOverrideConfigFileName);
 
             UserSettings.Default.ProjectsFolder = UserSettings.Default.ProjectsFolder.TrySet((string)preferencesOverrideConfigFile.ProjectsFolder);
             UserSettings.Default.LocalBuildLibrary = UserSettings.Default.LocalBuildLibrary.TrySet((string)preferencesOverrideConfigFile.LocalBuildLibrary);

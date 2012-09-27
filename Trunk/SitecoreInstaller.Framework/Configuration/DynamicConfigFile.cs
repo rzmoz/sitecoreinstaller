@@ -12,24 +12,22 @@ namespace SitecoreInstaller.Framework.Configuration
     using global::System.Reflection;
     using global::System.Xml.Linq;
 
-    public class ConfigFile : DynamicObject
+    public class DynamicConfigFile : DynamicObject
     {
         private XDocument _document;
         private XElement _rootElement;
 
-
-        public ConfigFile(string path)
+        public DynamicConfigFile(string path)
             : this(new FileInfo(path))
         {
         }
 
-        public ConfigFile(FileInfo path)
+        public DynamicConfigFile(FileInfo path)
         {
             Path = path;
         }
 
         public FileInfo Path { get; private set; }
-
 
         public IEnumerable<T> GetElements<T>(string sourceName = "") where T : new()
         {
@@ -101,17 +99,17 @@ namespace SitecoreInstaller.Framework.Configuration
             _document.Save(Path.FullName);
             return true;
         }
-        public static ConfigFile Load(string path)
+        public static DynamicConfigFile Load(string path)
         {
-            var configFile = new ConfigFile(path);
+            var configFile = new DynamicConfigFile(path);
             configFile.LoadContent(path);
-            return new ConfigFile(path);
+            return new DynamicConfigFile(path);
         }
 
         private void LoadContent(string path)
         {
             if (File.Exists(path) == false)
-                throw new IOException("path doesnt exist:" + path);
+                throw new IOException("path doesn't exist:" + path);
 
             _document = XDocument.Load(path);
             _rootElement = _document.Elements().FirstOrDefault();

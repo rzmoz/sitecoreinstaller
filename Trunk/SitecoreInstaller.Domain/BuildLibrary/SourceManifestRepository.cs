@@ -18,7 +18,7 @@
 
         public void Init()
         {
-            var sourcesConfig = ConfigFile.Load(SourceFileName);
+            var sourcesConfig = DynamicConfigFile.Load(SourceFileName);
             var sources = sourcesConfig.GetElements<SourceManifest>("source");
             foreach (var source in sources)
                 _sources.Add(source.Name, source);

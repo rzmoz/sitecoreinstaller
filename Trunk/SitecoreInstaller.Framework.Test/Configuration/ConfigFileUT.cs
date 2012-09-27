@@ -23,7 +23,7 @@ namespace SitecoreInstaller.Framework.Test.Configuration
         }
         private void ReloadConfigFile()
         {
-            _configFile = new ConfigFile(new FileInfo("Configuration/ConfigFileTest.config"));
+            _configFile = new DynamicConfigFile(new FileInfo("Configuration/ConfigFileTest.config"));
         }
 
         [Test]
