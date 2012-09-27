@@ -67,6 +67,7 @@ namespace SitecoreInstaller
         void PipelineWorker_WorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             FlashWindow.Flash(this, 3);
+            Services.BuildLibrary.Update();
         }
 
         void PipelineWorker_PreconditionNotMet(object sender, GenericEventArgs<string> e)
