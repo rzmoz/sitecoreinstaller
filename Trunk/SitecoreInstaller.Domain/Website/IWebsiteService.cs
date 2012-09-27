@@ -9,7 +9,7 @@ namespace SitecoreInstaller.Domain.Website
     {
         void SetDataFolder(DirectoryInfo dataFolder, FileInfo dataFolderConfigFile);
         void CopySitecoreToProjectfolder(WebsiteFolders websiteWebsiteFolders, BuildLibraryDirectory sitecore);
-        void CopyModulesToWebsite(DirectoryInfo projectFolder, WebsiteFolders websiteWebsiteFolders, IEnumerable<BuildLibraryDirectory> modules);
+        void CopyModulesToWebsite(WebsiteFolders folders, IEnumerable<BuildLibraryDirectory> modules);
         void CopyLicenseFileToDataFolder(BuildLibraryFile license, DirectoryInfo dataFolder, FileInfo licenseConfigFile);
         void OpenSitecore(string baseUrl, DirectoryInfo websiteFolder);
         void OpenFrontend(string baseUrl);
