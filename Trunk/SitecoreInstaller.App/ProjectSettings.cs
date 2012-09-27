@@ -27,7 +27,7 @@
 
         public void Init(UserSettings userSettings)
         {
-            Folders = new WebsiteFolders(new DirectoryInfo(userSettings.ProjectsFolder), DataFolderMode.DataOutside);
+            ProjectFolder = new ProjectFolder(new DirectoryInfo(userSettings.ProjectsFolder), DataFolderMode.DataOutside);
             Sql.InstanceName = userSettings.SqlInstanceName;
             Sql.Login = userSettings.SqlLogin;
             Sql.Password = userSettings.SqlPassword;
@@ -55,14 +55,14 @@
         public BuildLibrarySelections BuildLibrarySelections { get; set; }
         public SqlSettings Sql { get; set; }
         public IisSettings Iis { get; set; }
-        public WebsiteFolders Folders { get; set; }
+        public ProjectFolder ProjectFolder { get; set; }
 
         private void Reset()
         {
             ProjectName.Reset();
             InstallType = InstallType.Full;
             Iis = new IisSettings();
-            Folders = new WebsiteFolders();
+            ProjectFolder = new ProjectFolder(new DirectoryInfo(@"c:\"), DataFolderMode.DataOutside);
             BuildLibrarySelections = new BuildLibrarySelections();
             Sql = new SqlSettings();
         }
@@ -80,13 +80,13 @@
         private void SetSystemPaths()
         {
             var projectfolder = new DirectoryInfo(UserSettings.Default.ProjectsFolder).CombineTo<DirectoryInfo>(ProjectName.Value);
-            Folders = new WebsiteFolders(projectfolder, DataFolderMode.DataOutside);
+            ProjectFolder = new ProjectFolder(projectfolder, DataFolderMode.DataOutside);
             Iis.Url = ProjectName + UserSettings.Default.IisSitePostfix;
-            ConnectionStringsConfigFile = new ConnectionStringsFile(Folders.ConfigFolder.CombineTo<FileInfo>(AppConstants.ConnectionStringsConfigFileName));
-            DataFolderConfigFile = Folders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.DataFolderConfigFileName);
-            LicenseConfigFile = Folders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.LicenseConfigFileName);
-            WffmConfigFile = Folders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.WffmConfigFileName);
-            WffmSqlDataproviderConfigFile = Folders.ConfigIncludeFolder.CombineTo<FileInfo>(AppConstants.WffmSqlDataproviderConfigFileName);
+            ConnectionStringsConfigFile = new ConnectionStringsFile(ProjectFolder.Website.AppConfig.CombineTo<FileInfo>(AppConstants.ConnectionStringsConfigFileName));
+            DataFolderConfigFile = ProjectFolder.Website.AppConfig.Include.CombineTo<FileInfo>(AppConstants.DataFolderConfigFileName);
+            LicenseConfigFile = ProjectFolder.Website.AppConfig.Include.CombineTo<FileInfo>(AppConstants.LicenseConfigFileName);
+            WffmConfigFile = ProjectFolder.Website.AppConfig.Include.CombineTo<FileInfo>(AppConstants.WffmConfigFileName);
+            WffmSqlDataproviderConfigFile = ProjectFolder.Website.AppConfig.Include.CombineTo<FileInfo>(AppConstants.WffmSqlDataproviderConfigFileName);
         }
     }
 }

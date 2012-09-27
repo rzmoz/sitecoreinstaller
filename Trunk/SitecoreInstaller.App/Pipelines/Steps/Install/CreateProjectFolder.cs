@@ -16,7 +16,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.Projects.CreateProject(Services.ProjectSettings.Folders.ProjectFolder);
+            Services.Projects.CreateProject(Services.ProjectSettings.ProjectFolder.Directory);
         }
     }
 }

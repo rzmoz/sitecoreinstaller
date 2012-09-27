@@ -16,7 +16,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.Projects.DeleteProject(Services.ProjectSettings.Folders.ProjectFolder);
+            Services.Projects.DeleteProject(Services.ProjectSettings.ProjectFolder.Directory);
         }
     }
 }

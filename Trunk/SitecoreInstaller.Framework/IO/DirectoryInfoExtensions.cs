@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace SitecoreInstaller.Framework.IO
 {
+    using SitecoreInstaller.Framework.Diagnostics;
+
     using global::System;
     using global::System.Security.AccessControl;
 
@@ -16,10 +18,18 @@ namespace SitecoreInstaller.Framework.IO
             _fileSystemInfoFactory = new FileSystemInfoFactory();
         }
 
+        public static T Combine<T>(this Folder folder, params T[] paths) where T : FileSystemInfo
+        {
+            return folder.Directory.Combine(paths);
+        }
         public static T Combine<T>(this DirectoryInfo directoryInfo, params T[] paths) where T : FileSystemInfo
         {
             var combinedString = CombineToString(directoryInfo, paths);
             return _fileSystemInfoFactory.Create<T>(combinedString);
+        }
+        public static T CombineTo<T>(this Folder folder, params string[] paths) where T : FileSystemInfo
+        {
+            return folder.Directory.CombineTo<T>(paths);
         }
         public static T CombineTo<T>(this DirectoryInfo directoryInfo, params string[] paths) where T : FileSystemInfo
         {
@@ -71,10 +81,15 @@ namespace SitecoreInstaller.Framework.IO
             directoryInfo.Create();
         }
 
+        public static void GrantReadAndWritePermissions(this Folder folder, string username)
+        {
+            folder.Directory.GrantReadAndWritePermissions(username);
+        }
         public static void GrantReadAndWritePermissions(this DirectoryInfo dir, string username)
         {
             if (Directory.Exists(dir.FullName) == false)
                 return;
+            Log.As.Debug("Giving Network Service user write access to: {0}", dir.FullName);
 
             DirectorySecurity directorySecurity = dir.GetAccessControl();
             CanonicalizeDacl(directorySecurity);

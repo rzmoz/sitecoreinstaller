@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Services.Website.InstallRuntimeServices(Services.ProjectSettings.Folders.WebSiteFolder);
+            Services.Website.InstallRuntimeServices(Services.ProjectSettings.ProjectFolder.Website);
         }
     }
 }

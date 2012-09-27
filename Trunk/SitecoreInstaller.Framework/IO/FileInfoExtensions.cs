@@ -46,7 +46,10 @@ namespace SitecoreInstaller.Framework.IO
                 targetFile.Delete();
             source.MoveTo(targetFile.FullName);
         }
-
+        public static void CopyTo(this FileInfo source, Folder target, bool overwrite)
+        {
+            source.CopyTo(target.Directory, overwrite);
+        }
         public static void CopyTo(this FileInfo source, DirectoryInfo target, bool overwrite)
         {
             if (File.Exists(source.FullName) == false)

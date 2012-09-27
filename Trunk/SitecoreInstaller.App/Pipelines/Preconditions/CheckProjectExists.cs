@@ -13,10 +13,10 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
     {
         public override bool Evaluate(object sender, PreconditionEventArgs args)
         {
-            if (Directory.Exists(Services.ProjectSettings.Folders.ProjectFolder.FullName))
+            if (Directory.Exists(Services.ProjectSettings.ProjectFolder.FullName))
                 return true;
 
-            ErrorMessage = string.Format("Project '{0}' doesn't exist.\r\n\r\nLocation: {1}", Services.ProjectSettings.ProjectName, Services.ProjectSettings.Folders.ProjectFolder);
+            ErrorMessage = string.Format("Project '{0}' doesn't exist.\r\n\r\nLocation: {1}", Services.ProjectSettings.ProjectName, Services.ProjectSettings.ProjectFolder);
             return false;
         }
     }

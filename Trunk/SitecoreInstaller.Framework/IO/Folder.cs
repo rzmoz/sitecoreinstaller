@@ -10,10 +10,6 @@ namespace SitecoreInstaller.Framework.IO
 
     public class Folder
     {
-        public Folder()
-        {
-        }
-
         public Folder(DirectoryInfo directory)
         {
             Contract.Requires<ArgumentNullException>(directory != null);
@@ -21,6 +17,11 @@ namespace SitecoreInstaller.Framework.IO
         }
         public string FullName { get { return Directory.FullName; } }
         public string Name { get { return Directory.Name; } }
-        public DirectoryInfo Directory { get; protected set; }
+        public DirectoryInfo Directory { get; private set; }
+
+        public override string ToString()
+        {
+            return Directory.ToString();
+        }
     }
 }

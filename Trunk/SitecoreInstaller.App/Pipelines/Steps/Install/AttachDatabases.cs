@@ -20,7 +20,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             if (Services.ProjectSettings.InstallType == InstallType.Client)
                 return;
 
-            var databases = Services.Sql.GetDatabases(Services.ProjectSettings.Folders.DatabaseFolder, Services.ProjectSettings.ProjectName.Value);
+            var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName.Value);
             foreach (var sqlDatabase in databases)
                 sqlDatabase.Attach(Services.ProjectSettings.Sql);
         }

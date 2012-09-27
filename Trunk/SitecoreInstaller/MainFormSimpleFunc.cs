@@ -18,7 +18,7 @@ namespace SitecoreInstaller
             MainForm.MainDeveloper.Hide();
             MainForm.Logger.ShowLogLevels = false;
         }
-       
+
         protected override int SetContentWidth()
         {
             return Dimensions.MainSimpleWidth;
@@ -68,21 +68,22 @@ namespace SitecoreInstaller
 
         public override void OpenSitecore(object sender, EventArgs e)
         {
+            ProjectSettings projectSettings = null;
             if (MainForm.MainSimple.Install.Visible)
             {
-                var projectSettings = MainForm.MainSimple.Install.GetProjectSettings();
-                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.Folders.WebSiteFolder);
+                projectSettings = MainForm.MainSimple.Install.GetProjectSettings();
             }
             else if (MainForm.MainSimple.Uninstall.Visible)
             {
-                var projectSettings = MainForm.MainSimple.Uninstall.GetProjectSettings();
-                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.Folders.WebSiteFolder);
+                projectSettings = MainForm.MainSimple.Uninstall.GetProjectSettings();
             }
             else if (MainForm.MainSimple.Open.Visible)
             {
-                var projectSettings = MainForm.MainSimple.Open.GetProjectSettings();
-                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.Folders.WebSiteFolder);
+                projectSettings = MainForm.MainSimple.Open.GetProjectSettings();
             }
+            if (projectSettings == null)
+                return;
+            Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.ProjectFolder.Website.Directory);
         }
 
         public override void OpenFrontend(object sender, EventArgs e)
