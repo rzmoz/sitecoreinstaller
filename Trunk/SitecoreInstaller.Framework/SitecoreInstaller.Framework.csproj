@@ -104,7 +104,7 @@
     <Compile Include="IO\IOService.cs" />
     <Compile Include="IO\FileNameExtensions.cs" />
     <Compile Include="IO\Robocopy.cs" />
-    <Compile Include="IO\WebsiteFileTypes.cs" />
+    <Compile Include="IO\ScFileTypes.cs" />
     <Compile Include="Diagnostics\Profiler.cs" />
     <Compile Include="Diagnostics\ProfilerEventArgs.cs" />
     <Compile Include="Network\Curl.cs" />
