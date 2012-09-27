@@ -116,6 +116,5 @@ namespace SitecoreInstaller.Framework.Configuration
             _document = XDocument.Load(path);
             _rootElement = _document.Elements().FirstOrDefault();
         }
-
     }
 }
