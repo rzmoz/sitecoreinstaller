@@ -46,12 +46,11 @@ namespace SitecoreInstaller.Domain.Website
             Log.As.Info("Data folder set to '{0}'", dataFolder.FullName);
         }
 
-        public void CreateTargetFolders(WebsiteFolders websiteFolders)
+        public void CreateProjectFolder(WebsiteFolders websiteFolders)
         {
-            Log.As.Info("Creating website folders...");
+            Log.As.Info("Creating project folder...");
             websiteFolders.ProjectFolder.CreateWithLog();
-            websiteFolders.CreateFolders();
-            Log.As.Info("Website folders created");
+            Log.As.Info("Project folder created");
         }
 
         public void CopySitecoreToProjectfolder(WebsiteFolders websiteFolders, BuildLibraryDirectory sitecore)

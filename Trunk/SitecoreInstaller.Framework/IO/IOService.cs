@@ -64,38 +64,37 @@ namespace SitecoreInstaller.Framework.IO
             if (folder.Exists() == false)
                 return;
 
-            try
+            for (var tryCount = 1; tryCount <= retries; tryCount++)
             {
-                for (var tryCount = 1; tryCount <= retries; tryCount++)
+                try
                 {
-                    try
-                    {
-                        folder.Delete(true);
-                        Log.As.Debug("Folder deleted: '{0}'", folder.FullName);
-                    }
-                    catch (DirectoryNotFoundException)
-                    {
-                        //happens when the files are released and deleted between retries
-                        break;
-                    }
-                    catch (IOException)
-                    {
-                        Log.As.Debug("Waiting for iis to release file handles...");
-                        Thread.Sleep(500);
-                    }
+                    folder.Delete(true);
+                    Log.As.Debug("Folder deleted: '{0}'", folder.FullName);
                 }
+                catch (DirectoryNotFoundException)
+                {
+                    //happens when the files are released and deleted between retries
+                    break;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    Log.As.Debug("Waiting for iis to release file handles...");
+                    Thread.Sleep(500);
+                }
+                catch (IOException)
+                {
+                    Log.As.Debug("Waiting for iis to release file handles...");
+                    Thread.Sleep(500);
+                }
+                catch (SecurityException e)
+                {
+                    Log.As.Debug("Waiting for iis to release file handles...");
+                    Thread.Sleep(500);
+                }
+            }
 
-                if (folder.Exists())
-                    Log.As.Warning("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
-            }
-            catch (UnauthorizedAccessException e)
-            {
-                Log.As.Debug("Unable to delete folder.\r\n{0}", e.ToString());
-            }
-            catch (SecurityException e)
-            {
-                Log.As.Error("Unable to delete folder.\r\n{0}", e.ToString());
-            }
+            if (folder.Exists())
+                Log.As.Warning("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
         }
 
         public static void ConsolidateIdenticalSubfolders(this DirectoryInfo rootFolder)

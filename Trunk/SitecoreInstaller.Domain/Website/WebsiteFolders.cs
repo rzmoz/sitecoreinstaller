@@ -12,8 +12,6 @@ namespace SitecoreInstaller.Domain.Website
 
     public class WebsiteFolders
     {
-        private readonly IList<DirectoryInfo> _folders;
-
         internal const string AppDataFolderName = "App_Data";
         internal const string DatabasesFolderName = "Databases";
         internal const string DataFolderName = "Data";
@@ -26,7 +24,6 @@ namespace SitecoreInstaller.Domain.Website
 
         public WebsiteFolders()
         {
-            _folders = new List<DirectoryInfo>();
         }
 
         public WebsiteFolders(DirectoryInfo projectFolder, DataFolderMode dataFolderMode)
@@ -37,11 +34,6 @@ namespace SitecoreInstaller.Domain.Website
             ProjectFolder = projectFolder;
             DataFolderMode = dataFolderMode;
             ResolvePaths();
-        }
-
-        public void CreateFolders()
-        {
-            Parallel.ForEach(_folders, dir => dir.CreateWithLog());
         }
 
         public DirectoryInfo ProjectFolder { get; private set; }
