@@ -5,6 +5,8 @@ using System.Text;
 
 namespace SitecoreInstaller.Framework.Configuration
 {
+    using SitecoreInstaller.Framework.System;
+
     using global::System.Dynamic;
     using global::System.IO;
     using global::System.Reflection;
@@ -46,19 +48,11 @@ namespace SitecoreInstaller.Framework.Configuration
                 {
                     var attribute = xElement.AttributeIgnoreCase(propertyInfo.Name);
                     if (attribute != null)
-                        SetPropertyValue(t, propertyInfo.Name, attribute.Value);
+                        t.SetPropertyValue(propertyInfo.Name, attribute.Value);
                 }
                 elements.Add(t);
             }
             return elements;
-        }
-
-        private static void SetPropertyValue<T>(object obj, string propName, T val)
-        {
-            Type t = obj.GetType();
-            if (t.GetProperty(propName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance) == null)
-                throw new ArgumentOutOfRangeException("propName", string.Format("Property {0} was not found in Type {1}", propName, obj.GetType().FullName));
-            t.InvokeMember(propName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.SetProperty | BindingFlags.Instance, null, obj, new object[] { val });
         }
 
         private void Init()
