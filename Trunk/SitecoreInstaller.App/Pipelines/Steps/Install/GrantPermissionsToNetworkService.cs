@@ -16,8 +16,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            Log.As.Debug("Giving Network Service user FullControl to project folder: {0}", Services.ProjectSettings.WebsiteFolders.ProjectFolder.FullName);
-            Services.ProjectSettings.WebsiteFolders.ProjectFolder.GrantReadAndWritePermissions(ProcessModelIdentityType.NetworkService.ToString());
+            Log.As.Debug("Giving Network Service user FullControl to project folder: {0}", Services.ProjectSettings.Folders.ProjectFolder.FullName);
+            Services.ProjectSettings.Folders.ProjectFolder.GrantReadAndWritePermissions(ProcessModelIdentityType.NetworkService.ToString());
             new DirectoryInfo(@"c:\windows\temp").GrantReadAndWritePermissions(ProcessModelIdentityType.NetworkService.ToString());
         }
     }

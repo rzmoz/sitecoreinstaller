@@ -9,5 +9,8 @@ namespace SitecoreInstaller.Domain.Projects
     public interface IProjectsService
     {
         IEnumerable<DirectoryInfo> GetExistingProjects();
+
+        void DeleteProject(DirectoryInfo projectFolder);
+        void CreateProject(DirectoryInfo projectFolder);
     }
 }

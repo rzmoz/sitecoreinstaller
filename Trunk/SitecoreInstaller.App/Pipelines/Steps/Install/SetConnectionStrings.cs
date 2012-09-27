@@ -22,7 +22,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
             connectionStrings.InitFromFile();
             var existingConnectionStringNames = connectionStrings.Select(entry => entry.Name);
-            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.ProjectSettings.Sql, Services.ProjectSettings.WebsiteFolders.DatabaseFolder, Services.ProjectSettings.ProjectName.Value, existingConnectionStringNames);
+            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.ProjectSettings.Sql, Services.ProjectSettings.Folders.DatabaseFolder, Services.ProjectSettings.ProjectName.Value, existingConnectionStringNames);
             var transform = new XmlTransform(connectionStrings.File, connectionStringsDelta);
             transform.Run();
 

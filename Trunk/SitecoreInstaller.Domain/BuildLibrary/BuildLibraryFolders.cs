@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
+    using System.Diagnostics.Contracts;
     using System.IO;
 
     using SitecoreInstaller.Framework.Diagnostics;
@@ -22,7 +23,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public BuildLibraryFolders(DirectoryInfo root)
         {
-            if (root == null) throw new ArgumentNullException("root");
+            Contract.Requires<ArgumentNullException>(root != null);
             Root = root;
 
             Modules = Root.CombineTo<DirectoryInfo>(_ModuleFolderName);

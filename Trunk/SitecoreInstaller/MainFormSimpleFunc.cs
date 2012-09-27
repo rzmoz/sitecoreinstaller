@@ -71,17 +71,17 @@ namespace SitecoreInstaller
             if (MainForm.MainSimple.Install.Visible)
             {
                 var projectSettings = MainForm.MainSimple.Install.GetProjectSettings();
-                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.WebsiteFolders.WebSiteFolder);
+                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.Folders.WebSiteFolder);
             }
             else if (MainForm.MainSimple.Uninstall.Visible)
             {
                 var projectSettings = MainForm.MainSimple.Uninstall.GetProjectSettings();
-                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.WebsiteFolders.WebSiteFolder);
+                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.Folders.WebSiteFolder);
             }
             else if (MainForm.MainSimple.Open.Visible)
             {
                 var projectSettings = MainForm.MainSimple.Open.GetProjectSettings();
-                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.WebsiteFolders.WebSiteFolder);
+                Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.Folders.WebSiteFolder);
             }
         }
 

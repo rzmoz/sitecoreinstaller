@@ -22,7 +22,7 @@
             {
                 console.Start();
 
-                Diagnostics.Log.As.Debug(console.StandardOutput.ReadToEnd());
+                console.StandardOutput.ReadToEnd();
                 var error = console.StandardError.ReadToEnd();
                 if (error.Length > 0)
                     Diagnostics.Log.As.Error(error);

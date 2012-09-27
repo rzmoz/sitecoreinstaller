@@ -13,7 +13,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
         {
             var selectedModules = from module in Services.ProjectSettings.BuildLibrarySelections.SelectedModules
                                   select Services.BuildLibrary.Get(module, SourceType.Module);
-            Services.Website.CopyModulesToWebsite(Services.ProjectSettings.WebsiteFolders.ProjectFolder, Services.ProjectSettings.WebsiteFolders, selectedModules.OfType<BuildLibraryDirectory>());
+            Services.Website.CopyModulesToWebsite(Services.ProjectSettings.Folders.ProjectFolder, Services.ProjectSettings.Folders, selectedModules.OfType<BuildLibraryDirectory>());
         }
     }
 }

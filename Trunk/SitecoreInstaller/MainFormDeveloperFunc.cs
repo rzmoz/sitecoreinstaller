@@ -57,7 +57,7 @@ namespace SitecoreInstaller
         public override void OpenSitecore(object sender, EventArgs e)
         {
             var projectSettings = MainForm.MainDeveloper.SelectionsDeveloper.GetProjectSettings();
-            Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.WebsiteFolders.WebSiteFolder);
+            Services.Website.OpenSitecore(projectSettings.Iis.Url, projectSettings.Folders.WebSiteFolder);
         }
 
         public override void OpenFrontend(object sender, EventArgs e)

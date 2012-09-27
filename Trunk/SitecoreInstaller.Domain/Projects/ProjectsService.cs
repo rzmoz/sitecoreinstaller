@@ -8,7 +8,11 @@ using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.Domain.Projects
 {
-    public class ProjectsService : IProjectsService 
+    using System.Diagnostics.Contracts;
+
+    using SitecoreInstaller.Framework.Diagnostics;
+
+    public class ProjectsService : IProjectsService
     {
         private readonly DirectoryInfo _projectsFolder;
 
@@ -19,6 +23,22 @@ namespace SitecoreInstaller.Domain.Projects
         public IEnumerable<DirectoryInfo> GetExistingProjects()
         {
             return _projectsFolder.GetSubFolders("Existing project");
+        }
+
+        public void DeleteProject(DirectoryInfo projectFolder)
+        {
+            Log.As.Info("Deleting project '{0}'", projectFolder.Name);
+
+            projectFolder.DeleteWithLog();
+
+            if (projectFolder.Exists() == false)
+                Log.As.Info("Project deleted");
+        }
+
+        public void CreateProject(DirectoryInfo projectFolder)
+        {
+            Contract.Requires<ArgumentNullException>(projectFolder != null);
+            projectFolder.CreateWithLog();
         }
     }
 }
