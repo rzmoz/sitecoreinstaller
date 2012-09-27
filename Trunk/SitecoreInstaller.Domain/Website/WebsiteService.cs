@@ -55,10 +55,12 @@ namespace SitecoreInstaller.Domain.Website
             sitecoreWebsiteFolder.CopyTo(projectFolder.Website, DirCopyOptions.IncludeSubDirectories);
 
             //Copy database folder
+            //TODO: Move database folder name to central location
             CopyDatabaseFolder("Database", sitecore.Directory, projectFolder);
             CopyDatabaseFolder(projectFolder.Databases.Name, sitecore.Directory, projectFolder);
 
             //Copy data folder
+            //TODO: Move data folder name to central location
             var sitecoreDataFolder = sitecore.Directory.CombineTo<DirectoryInfo>("data");
             sitecoreDataFolder.CopyTo(projectFolder.Data, DirCopyOptions.IncludeSubDirectories);
 
