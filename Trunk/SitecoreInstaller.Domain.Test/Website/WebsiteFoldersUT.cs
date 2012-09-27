@@ -74,7 +74,7 @@ namespace SitecoreInstaller.Domain.Test.Website
         {
             var websiteFolders = new WebsiteFolders(new DirectoryInfo(_ProjectFolder), DataFolderMode.DataOutside);
 
-            Assert.AreEqual(_ProjectFolder + @"\Data", websiteFolders.DataFolder.FullName);
+            Assert.AreEqual(_ProjectFolder + @"\Data", websiteFolders.Data.FullName);
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace SitecoreInstaller.Domain.Test.Website
         {
             var websiteFolders = new WebsiteFolders(new DirectoryInfo(_ProjectFolder), DataFolderMode.AppDataInside);
 
-            Assert.AreEqual(_ProjectFolder + @"\Website\App_Data", websiteFolders.DataFolder.FullName);
+            Assert.AreEqual(_ProjectFolder + @"\Website\App_Data", websiteFolders.Data.FullName);
         }
 
         [Test]
@@ -90,14 +90,14 @@ namespace SitecoreInstaller.Domain.Test.Website
         {
             var websiteFolders = new WebsiteFolders(new DirectoryInfo(_ProjectFolder), DataFolderMode.DataOutside);
 
-            Assert.AreEqual(_ProjectFolder + @"\Data\Packages", websiteFolders.PackagesFolder.FullName);
+            Assert.AreEqual(_ProjectFolder + @"\Data\Packages", websiteFolders.Data.Packages.FullName);
         }
         [Test]
         public void ctor_ResolvePaths_PackagesFolderIsInsideSet()
         {
             var websiteFolders = new WebsiteFolders(new DirectoryInfo(_ProjectFolder), DataFolderMode.AppDataInside);
 
-            Assert.AreEqual(_ProjectFolder + @"\Website\App_Data\Packages", websiteFolders.PackagesFolder.FullName);
+            Assert.AreEqual(_ProjectFolder + @"\Website\App_Data\Packages", websiteFolders.Data.Packages.FullName);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             var license = Services.BuildLibrary.Get(Services.ProjectSettings.BuildLibrarySelections.SelectedLicense, SourceType.License);
             if (license is BuildLibraryFile == false)
                 throw new DirectoryNotFoundException("license was not of type BuildLibraryFile. Was:" + license.GetType());
-            Services.Website.CopyLicenseFileToDataFolder(license as BuildLibraryFile, Services.ProjectSettings.Folders.DataFolder, Services.ProjectSettings.LicenseConfigFile);
+            Services.Website.CopyLicenseFileToDataFolder(license as BuildLibraryFile, Services.ProjectSettings.Folders.Data.Directory, Services.ProjectSettings.LicenseConfigFile);
         }
     }
 }

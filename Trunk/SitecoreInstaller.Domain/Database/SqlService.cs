@@ -14,11 +14,11 @@ namespace SitecoreInstaller.Domain.Database
 
     public class SqlService : ISqlService
     {
-        private readonly ScFileTypes _scFileTypes;
+        private readonly FileTypes _fileTypes;
 
         public SqlService()
         {
-            _scFileTypes = new ScFileTypes();
+            _fileTypes = new FileTypes();
         }
 
         public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, DirectoryInfo databaseFolder, string projectName, IEnumerable<string> existingConnectionStrings)
@@ -56,7 +56,7 @@ namespace SitecoreInstaller.Domain.Database
             if (Directory.Exists(databaseFolder.FullName) == false)
                 return Enumerable.Empty<string>();
 
-            var databaseNames = from databaseName in _scFileTypes.DatabaseDataFile.GetFiles(databaseFolder, SearchOption.AllDirectories)
+            var databaseNames = from databaseName in _fileTypes.DatabaseDataFile.GetFiles(databaseFolder, SearchOption.AllDirectories)
                                 select databaseName.NameWithoutExtension();
             return databaseNames.AsUniqueStrings();
         }

@@ -3,11 +3,11 @@
     using global::System.Collections.Generic;
     using global::System.IO;
 
-    public class ScFileTypes
+    public class FileTypes
     {
         private readonly HashSet<string> _knownFileTypes;
 
-        public ScFileTypes()
+        public FileTypes()
         {
             _knownFileTypes = new HashSet<string>();
             DatabaseDataFile = new FileType("DatabaseDataFile", ".mdf");

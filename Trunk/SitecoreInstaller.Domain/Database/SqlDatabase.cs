@@ -18,14 +18,14 @@ namespace SitecoreInstaller.Domain.Database
     public class SqlDatabase
     {
         private readonly char[] _physicalDatabaseNameDelimiter = new[] { '.', '_' };
-        private readonly ScFileTypes _scFileTypes;
+        private readonly FileTypes _fileTypes;
 
         public SqlDatabase(DirectoryInfo folder, string physicalDatabaseName, string projectName)
         {
-            _scFileTypes = new ScFileTypes();
+            _fileTypes = new FileTypes();
 
-            DatafileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + _scFileTypes.DatabaseDataFile.Extension;
-            LogFileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + _scFileTypes.DatabaseLogFile.Extension;
+            DatafileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + _fileTypes.DatabaseDataFile.Extension;
+            LogFileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + _fileTypes.DatabaseLogFile.Extension;
             PhysicalName = physicalDatabaseName;
             LogicalName = GetLogicalDatabaseName(physicalDatabaseName);
             Name = projectName.Trim() + "_" + LogicalName;

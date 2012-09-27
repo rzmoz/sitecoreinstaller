@@ -12,13 +12,13 @@ namespace SitecoreInstaller.Domain.Website
 
     public class WebsiteFolders
     {
-        internal const string AppDataFolderName = "App_Data";
+
         internal const string DatabasesFolderName = "Databases";
-        internal const string DataFolderName = "Data";
+
         internal const string WebsiteFolderName = "Website";
         internal const string ConfigFolderName = "App_Config";
         internal const string ConfigIncludeFolderName = "Include";
-        internal const string PackagesFolderName = "Packages";
+
         internal const string IisLogFilesFolderName = "IisLogFiles";
 
         public WebsiteFolders()
@@ -37,8 +37,7 @@ namespace SitecoreInstaller.Domain.Website
 
         public DirectoryInfo ProjectFolder { get; private set; }
         public DirectoryInfo IisLogFilesFolder { get; private set; }
-        public DirectoryInfo DataFolder { get; private set; }
-        public DirectoryInfo PackagesFolder { get; private set; }
+        public DataFolder Data { get; private set; }
         public DirectoryInfo DatabaseFolder { get; private set; }
         public DirectoryInfo WebSiteFolder { get; private set; }
         public DirectoryInfo ConfigFolder { get; private set; }
@@ -56,14 +55,13 @@ namespace SitecoreInstaller.Domain.Website
             switch (DataFolderMode)
             {
                 case DataFolderMode.AppDataInside:
-                    DataFolder = ProjectFolder.CombineTo<DirectoryInfo>(WebsiteFolderName, AppDataFolderName);
+                    Data = new DataFolder(DataFolderMode, WebSiteFolder);
                     break;
                 case DataFolderMode.DataOutside:
                 default:
-                    DataFolder = ProjectFolder.CombineTo<DirectoryInfo>(DataFolderName);
+                    Data = new DataFolder(DataFolderMode, ProjectFolder);
                     break;
             }
-            PackagesFolder = DataFolder.CombineTo<DirectoryInfo>(PackagesFolderName);
         }
     }
 }
