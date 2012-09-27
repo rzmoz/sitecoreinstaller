@@ -16,7 +16,6 @@ namespace SitecoreInstaller.Domain.Website
         internal const string DatabasesFolderName = "Databases";
         internal const string DataFolderName = "Data";
         internal const string WebsiteFolderName = "Website";
-        internal const string WebsiteTempFolderName = "Temp";
         internal const string ConfigFolderName = "App_Config";
         internal const string ConfigIncludeFolderName = "Include";
         internal const string PackagesFolderName = "Packages";
@@ -42,7 +41,6 @@ namespace SitecoreInstaller.Domain.Website
         public DirectoryInfo PackagesFolder { get; private set; }
         public DirectoryInfo DatabaseFolder { get; private set; }
         public DirectoryInfo WebSiteFolder { get; private set; }
-        public DirectoryInfo WebSiteTempFolder { get; private set; }
         public DirectoryInfo ConfigFolder { get; private set; }
         public DirectoryInfo ConfigIncludeFolder { get; private set; }
 
@@ -51,7 +49,6 @@ namespace SitecoreInstaller.Domain.Website
         private void ResolvePaths()
         {
             WebSiteFolder = ProjectFolder.CombineTo<DirectoryInfo>(WebsiteFolderName);
-            WebSiteTempFolder = WebSiteFolder.CombineTo<DirectoryInfo>(WebsiteTempFolderName);
             DatabaseFolder = ProjectFolder.CombineTo<DirectoryInfo>(DatabasesFolderName);
             IisLogFilesFolder = ProjectFolder.CombineTo<DirectoryInfo>(IisLogFilesFolderName);
             ConfigFolder = ProjectFolder.CombineTo<DirectoryInfo>(WebsiteFolderName, ConfigFolderName);
