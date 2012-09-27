@@ -7,8 +7,6 @@ namespace SitecoreInstaller.App
 {
     internal static class AppConstants
     {
-        internal const string ConnectionStringsConfigFileName = "ConnectionStrings.config";
-
         internal const string PreferencesOverrideConfigFileName = "Preferences.config";
         internal const string SourcesConfigFileName = "Sources.config";
     }

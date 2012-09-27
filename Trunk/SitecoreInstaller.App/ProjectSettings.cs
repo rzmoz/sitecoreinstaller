@@ -43,8 +43,6 @@
 
         public Observable<string> ProjectName { get; private set; }
 
-        public ConnectionStringsFile ConnectionStringsConfigFile { get; set; }
-
         public InstallType InstallType { get; set; }
 
         public BuildLibrarySelections BuildLibrarySelections { get; set; }
@@ -77,7 +75,6 @@
             var projectfolder = new DirectoryInfo(UserSettings.Default.ProjectsFolder).CombineTo<DirectoryInfo>(ProjectName.Value);
             ProjectFolder = new ProjectFolder(projectfolder, DataFolderMode.DataOutside);
             Iis.Url = ProjectName + UserSettings.Default.IisSitePostfix;
-            ConnectionStringsConfigFile = new ConnectionStringsFile(ProjectFolder.Website.AppConfig.CombineTo<FileInfo>(AppConstants.ConnectionStringsConfigFileName));
         }
     }
 }

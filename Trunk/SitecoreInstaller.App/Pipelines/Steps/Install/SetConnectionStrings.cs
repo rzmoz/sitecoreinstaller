@@ -18,7 +18,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             if (Services.ProjectSettings.InstallType == InstallType.Client)
                 return;
 
-            var connectionStrings = Services.ProjectSettings.ConnectionStringsConfigFile;
+            var connectionStrings = Services.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
 
             connectionStrings.InitFromFile();
             var existingConnectionStringNames = connectionStrings.Select(entry => entry.Name);
