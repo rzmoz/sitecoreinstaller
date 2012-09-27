@@ -97,10 +97,16 @@ namespace SitecoreInstaller.Domain.WebServer
         {
             if (line == null)
                 return true;
-            if (line.Length <= 10)
-                return true;
+            line=line.Trim();
+            if (line.Length == 0)
+                return false;
+            if (line.StartsWith(_LocalHostIpAddress) == false)
+                return false;
+
+            if (line.Length <= _LocalHostIpAddress.Length)
+                return false;
             //assumes line format is IP-address, space and host name
-            line = line.Remove(0, 10);
+            line = line.Remove(0, _LocalHostIpAddress.Length);
             line = line.Trim();
             return line.Equals(hostFileIisSiteName.Trim());
         }
@@ -132,6 +138,7 @@ namespace SitecoreInstaller.Domain.WebServer
             File.Delete(tempFile);
         }
 
-        private const string _HostFileEntryFormat = @"127.0.0.1 {0}";
+        private const string _HostFileEntryFormat = _LocalHostIpAddress + " {0}";
+        private const string _LocalHostIpAddress = "127.0.0.1";
     }
 }
