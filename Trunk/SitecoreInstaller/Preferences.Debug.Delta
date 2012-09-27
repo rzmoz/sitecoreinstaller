@@ -4,7 +4,7 @@
 
 <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
 
-    <ProjectsFolder xdt:Transform="Replace">C:\inetpub\wwwroot</ProjectsFolder>
+    <ProjectsFolder xdt:Transform="Replace">C:\inetpub\wwwrootDebug</ProjectsFolder>
 
     <CreateProjectsFolderIfNotExists xdt:Transform="Replace">True</CreateProjectsFolderIfNotExists>
 
