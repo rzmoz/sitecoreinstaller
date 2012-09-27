@@ -13,7 +13,7 @@ namespace SitecoreInstaller.Domain.WebServer
     public class HostFileService : IHostFileService
     {
         private static readonly FileInfo _hostFile = new FileInfo(@"C:\Windows\System32\drivers\etc\hosts");
-        
+
         public bool HasWritePermissions()
         {
             try
@@ -97,7 +97,7 @@ namespace SitecoreInstaller.Domain.WebServer
         {
             if (line == null)
                 return true;
-            line=line.Trim();
+            line = line.Trim();
             if (line.Length == 0)
                 return false;
             if (line.StartsWith(_LocalHostIpAddress) == false)
