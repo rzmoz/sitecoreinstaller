@@ -39,9 +39,9 @@ namespace SitecoreInstaller.Domain.Website
             _fileTypes = new FileTypes();
         }
 
-        public void SetDataFolder(DirectoryInfo dataFolder, FileInfo dataFolderConfigFile)
+        public void SetDataFolder(DataFolder dataFolder, FileInfo dataFolderConfigFile)
         {
-            var configFile = string.Format(WebsiteResource.DataFolderFormat, dataFolder);
+            var configFile = string.Format(WebsiteResource.DataFolderFormat, dataFolder.Directory);
             configFile.WriteToDisk(dataFolderConfigFile);
             Log.As.Info("Data folder set to '{0}'", dataFolder.FullName);
         }
@@ -60,7 +60,7 @@ namespace SitecoreInstaller.Domain.Website
 
             //Copy data folder
             var sitecoreDataFolder = sitecore.Directory.CombineTo<DirectoryInfo>("data");
-            sitecoreDataFolder.CopyTo(folders.Data.Directory, DirCopyOptions.IncludeSubDirectories);
+            sitecoreDataFolder.CopyTo(folders.Data, DirCopyOptions.IncludeSubDirectories);
 
             //Copy rest of files as is
             foreach (var file in sitecore.Directory.GetFiles())
@@ -125,10 +125,10 @@ namespace SitecoreInstaller.Domain.Website
             Log.As.Info("Modules copied to website");
         }
 
-        public void CopyLicenseFileToDataFolder(BuildLibraryFile license, DirectoryInfo dataFolder, FileInfo licenseConfigFile)
+        public void CopyLicenseFileToDataFolder(BuildLibraryFile license, DataFolder dataFolder, FileInfo licenseConfigFile)
         {
             Log.As.Info("Copying license file '{0}'...", license.File.Name);
-            license.File.CopyTo(dataFolder, true);
+            license.File.CopyTo(dataFolder.Directory, true);
             var licenseConfig = string.Format(WebsiteResource.LicenseFileFormat, license.File.Name);
             licenseConfig.WriteToDisk(licenseConfigFile);
             Log.As.Info("License file copied");

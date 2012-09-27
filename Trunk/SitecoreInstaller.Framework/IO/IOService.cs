@@ -167,7 +167,10 @@ namespace SitecoreInstaller.Framework.IO
                 yield return dir;
             }
         }
-
+        public static void CopyTo(this DirectoryInfo source, Folder target, DirCopyOptions dirCopyOptions)
+        {
+            source.CopyTo(target.Directory, dirCopyOptions);
+        }
         public static void CopyTo(this DirectoryInfo source, DirectoryInfo target, DirCopyOptions dirCopyOptions)
         {
             if (Directory.Exists(source.FullName) == false)
