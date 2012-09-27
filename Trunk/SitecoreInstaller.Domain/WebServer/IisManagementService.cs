@@ -140,7 +140,23 @@ namespace SitecoreInstaller.Domain.WebServer
                     Log.As.Warning("Site already stopped: " + applicationName);
             }
         }
-        
+
+        public bool BindingExists(string bindingCandidate)
+        {
+            if (bindingCandidate == null) throw new ArgumentNullException("bindingCandidate");
+            if (bindingCandidate.Length == 0)
+                return false;
+            foreach (var site in _iisManager.Sites)
+            {
+                foreach (var binding in site.Bindings)
+                {
+                    if (binding.Host.Equals(bindingCandidate, StringComparison.InvariantCultureIgnoreCase))
+                        return true;
+                }   
+            }
+            return false;
+        }
+
         private void CreateAppPool(IisSettings iisSettings)
         {
             Log.As.Info("Creating application pool '{0}'", iisSettings.Name);

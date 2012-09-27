@@ -19,5 +19,7 @@ namespace SitecoreInstaller.Domain.WebServer
 
         void StartApplication(string applicationName);
         void StopApplication(string applicationName);
+
+        bool BindingExists(string binding);
     }
 }
