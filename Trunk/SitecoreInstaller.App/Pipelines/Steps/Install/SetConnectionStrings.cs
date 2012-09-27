@@ -34,12 +34,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             if (webFormsConnectionString == null)
                 return;
 
-            if (File.Exists(Services.ProjectSettings.WffmConfigFile.FullName) == false)
+            if (File.Exists(Services.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile.FullName) == false)
                 return;
 
-            var formsConfigFile = new WffmConfigFile(Services.ProjectSettings.WffmConfigFile);
+            var formsConfigFile = new WffmConfigFile(Services.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile);
             if (formsConfigFile.DataProviderType == DataProviderType.Sql)
-                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString, Services.ProjectSettings.WffmSqlDataproviderConfigFile);
+                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString, Services.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmSqlDataproviderConfigFile);
         }
     }
 }

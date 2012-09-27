@@ -47,11 +47,6 @@
 
         public InstallType InstallType { get; set; }
 
-        public FileInfo DataFolderConfigFile { get; private set; }
-        public FileInfo LicenseConfigFile { get; private set; }
-        public FileInfo WffmConfigFile { get; private set; }
-        public FileInfo WffmSqlDataproviderConfigFile { get; private set; }
-
         public BuildLibrarySelections BuildLibrarySelections { get; set; }
         public SqlSettings Sql { get; set; }
         public IisSettings Iis { get; set; }
@@ -83,10 +78,6 @@
             ProjectFolder = new ProjectFolder(projectfolder, DataFolderMode.DataOutside);
             Iis.Url = ProjectName + UserSettings.Default.IisSitePostfix;
             ConnectionStringsConfigFile = new ConnectionStringsFile(ProjectFolder.Website.AppConfig.CombineTo<FileInfo>(AppConstants.ConnectionStringsConfigFileName));
-            DataFolderConfigFile = ProjectFolder.Website.AppConfig.Include.CombineTo<FileInfo>(AppConstants.DataFolderConfigFileName);
-            LicenseConfigFile = ProjectFolder.Website.AppConfig.Include.CombineTo<FileInfo>(AppConstants.LicenseConfigFileName);
-            WffmConfigFile = ProjectFolder.Website.AppConfig.Include.CombineTo<FileInfo>(AppConstants.WffmConfigFileName);
-            WffmSqlDataproviderConfigFile = ProjectFolder.Website.AppConfig.Include.CombineTo<FileInfo>(AppConstants.WffmSqlDataproviderConfigFileName);
         }
     }
 }

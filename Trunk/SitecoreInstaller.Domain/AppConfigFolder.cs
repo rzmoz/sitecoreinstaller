@@ -15,9 +15,9 @@ namespace SitecoreInstaller.Domain
         public AppConfigFolder(DirectoryInfo directory)
             : base(directory)
         {
-            Include = Directory.CombineTo<DirectoryInfo>(_IncludeFolderName);
+            Include = new IncludeFolder(Directory.CombineTo<DirectoryInfo>(_IncludeFolderName));
         }
 
-        public DirectoryInfo Include { get; private set; }
+        public IncludeFolder Include { get; private set; }
     }
 }

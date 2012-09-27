@@ -157,6 +157,7 @@
     <Compile Include="Database\ConnectionStringFormats.cs" />
     <Compile Include="Database\SqlDatabase.cs" />
     <Compile Include="DataFolder.cs" />
+    <Compile Include="IncludeFolder.cs" />
     <Compile Include="Pipelines\Dialogs.cs" />
     <Compile Include="Pipelines\IPrecondition.cs" />
     <Compile Include="Pipelines\IStep.cs" />
