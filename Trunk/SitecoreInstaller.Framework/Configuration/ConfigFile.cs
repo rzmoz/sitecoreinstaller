@@ -29,6 +29,8 @@ namespace SitecoreInstaller.Framework.Configuration
 
         public FileInfo Path { get; private set; }
 
+        public bool Exists { get { return File.Exists(Path.FullName); } }
+
         public IEnumerable<T> GetElements<T>(string sourceName = "") where T : new()
         {
             Init();

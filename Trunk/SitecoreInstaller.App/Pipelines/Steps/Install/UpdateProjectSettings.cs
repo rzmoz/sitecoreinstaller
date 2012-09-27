@@ -13,16 +13,15 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, EventArgs args)
         {
-            var projectSettingsFileName = Services.ProjectSettings.ProjectFolder.CombineTo<FileInfo>(AppConstants.ProjectSettingsConfigFileName);
-            dynamic projectConfig = new ConfigFile(projectSettingsFileName);
-            if (projectSettingsFileName.Exists)
+            dynamic projectConfig = Services.ProjectSettings.ProjectFolder.ProjectSettingsconfigFile;
+            if (Services.ProjectSettings.ProjectFolder.ProjectSettingsconfigFile.Exists)
             {
                 Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseString(projectConfig.Sitecore);
                 Services.ProjectSettings.InstallType = ((string)projectConfig.InstallType).ParseToEnumValue<InstallType>();
             }
             else
             {
-                Resources.EmptyConfigFile.WriteToDisk(projectSettingsFileName);
+                Resources.EmptyConfigFile.WriteToDisk(Services.ProjectSettings.ProjectFolder.ProjectSettingsconfigFile.Path);
                 projectConfig.Sitecore = Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore.ToString();
                 projectConfig.InstallType = Services.ProjectSettings.InstallType.ToString();
             }
