@@ -18,6 +18,7 @@ namespace SitecoreInstaller.Domain.Website
         internal const string WebsiteFolderName = "Website";
         internal const string ConfigFolderName = "App_Config";
         internal const string ConfigIncludeFolderName = "Include";
+        internal const string PackagesFolderName = "Packages";
         internal const string IisLogFilesFolderName = "IisLogFiles";
 
         public WebsiteFolders()
