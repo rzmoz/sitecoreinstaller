@@ -83,7 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archiving\SevenZipFile.cs" />
-    <Compile Include="Configuration\DynamicConfigFile.cs" />
+    <Compile Include="Configuration\ConfigFile.cs" />
     <Compile Include="Configuration\ConfigurationExtensions.cs" />
     <Compile Include="Configuration\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

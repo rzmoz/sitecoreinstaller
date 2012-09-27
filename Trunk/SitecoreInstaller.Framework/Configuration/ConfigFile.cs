@@ -12,17 +12,17 @@ namespace SitecoreInstaller.Framework.Configuration
     using global::System.Reflection;
     using global::System.Xml.Linq;
 
-    public class DynamicConfigFile : DynamicObject
+    public class ConfigFile : DynamicObject
     {
         private XDocument _document;
         private XElement _rootElement;
 
-        public DynamicConfigFile(string path)
+        public ConfigFile(string path)
             : this(new FileInfo(path))
         {
         }
 
-        public DynamicConfigFile(FileInfo path)
+        public ConfigFile(FileInfo path)
         {
             Path = path;
         }
@@ -99,11 +99,11 @@ namespace SitecoreInstaller.Framework.Configuration
             _document.Save(Path.FullName);
             return true;
         }
-        public static DynamicConfigFile Load(string path)
+        public static ConfigFile Load(string path)
         {
-            var configFile = new DynamicConfigFile(path);
+            var configFile = new ConfigFile(path);
             configFile.LoadContent(path);
-            return new DynamicConfigFile(path);
+            return new ConfigFile(path);
         }
 
         private void LoadContent(string path)
