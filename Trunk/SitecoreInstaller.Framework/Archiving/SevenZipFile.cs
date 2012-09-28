@@ -20,38 +20,38 @@ namespace SitecoreInstaller.Framework.Archiving
 
         private const string _RunFormat = @" ";
 
-        private readonly FileInfo _file;
+        public FileInfo File { get; private set; }
 
         public SevenZipFile(FileInfo zipFile)
         {
             Contract.Requires<ArgumentNullException>(zipFile != null);
 
-            _file = zipFile;
+            File = zipFile;
         }
 
         public void ExtractAll(DirectoryInfo target)
         {
             Contract.Requires<ArgumentNullException>(target != null);
-            if (File.Exists(_file.FullName) == false)
+            if (global::System.IO.File.Exists(File.FullName) == false)
             {
-                Log.As.Error("File not found for extrating: {0}", _file.FullName);
+                Log.As.Error("File not found for extrating: {0}", File.FullName);
                 return;
             }
 
             target.CreateIfNotExists();
 
-            var command = string.Format(_FileName + _ExtractSwitch + _RunFormat, _file.FullName, target.FullName);
+            var command = string.Format(_FileName + _ExtractSwitch + _RunFormat, File.FullName, target.FullName);
             Run(command);
         }
 
         public void ZipContent(DirectoryInfo folder)
         {
-            var fileName = _file.Name;
+            var fileName = File.Name;
             if (fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) == false)
                 fileName += ".zip";
 
             var target = folder.CombineTo<DirectoryInfo>(fileName);
-            var command = string.Format(_FileName + _ArchiveSwitch + _RunFormat, _file.FullName, folder.FullName);
+            var command = string.Format(_FileName + _ArchiveSwitch + _RunFormat, target.FullName, folder.FullName);
             Run(command);
         }
     }

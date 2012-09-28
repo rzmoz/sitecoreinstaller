@@ -19,9 +19,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
             Log.As.Info("Zipping project...");
             var zipFileInfo =
                 Services.ProjectSettings.ProjectFolder.CombineTo<FileInfo>(
-                    Services.ProjectSettings.ProjectName + DateTime.Now.ToString("yyyyMMddhhmmssSSS") + ".zip");
+                    Services.ProjectSettings.ProjectName + "_rev." + DateTime.Now.ToString("yyyyMMddhhmmss") + ".zip");
             var zipFile = new SevenZipFile(zipFileInfo);
             zipFile.ZipContent(Services.ProjectSettings.ProjectFolder.Directory);
+
+            Log.As.Info("Moving archive to archive folder...");
+            zipFile.File.MoveTo(new DirectoryInfo(UserSettings.Default.ArchiveFolder), true);
         }
     }
 }

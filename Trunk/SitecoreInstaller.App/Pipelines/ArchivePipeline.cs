@@ -18,6 +18,7 @@
             RemoveStep<DeleteProject>();
             AddStep<CleanProjectForArchiving>();
             AddStep<ZipAndMoveProjectToArchiveFolder>();
+            AddStep<DeleteProject>();
         }
     }
 }
