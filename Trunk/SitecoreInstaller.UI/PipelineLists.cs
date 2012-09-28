@@ -56,5 +56,11 @@ namespace SitecoreInstaller.UI
             Services.ProjectSettings = _getProjectSettings();
             Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
         }
+
+        private void btnArchive_Click(object sender, EventArgs e)
+        {
+            Services.ProjectSettings = _getProjectSettings();
+            Services.Pipelines.Run<ArchivePipeline>();
+        }
     }
 }

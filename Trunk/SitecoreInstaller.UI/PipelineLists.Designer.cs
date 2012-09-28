@@ -40,6 +40,7 @@
             this.pipelineStepListUninstall = new SitecoreInstaller.UI.PipelineStepList();
             this.tabReAttach = new System.Windows.Forms.TabPage();
             this.pipelineStepListReAttach = new SitecoreInstaller.UI.PipelineStepList();
+            this.btnArchive = new System.Windows.Forms.Button();
             this.tabPipelineLists.SuspendLayout();
             this.pipelineStepListAll.SuspendLayout();
             this.tabInstall.SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             // pipelineStepListAll
             // 
+            this.pipelineStepListAll.Controls.Add(this.btnArchive);
             this.pipelineStepListAll.Controls.Add(this.btnReinstall);
             this.pipelineStepListAll.Controls.Add(this.btnReAttach);
             this.pipelineStepListAll.Controls.Add(this.btnUninstall);
@@ -184,6 +186,20 @@
             this.pipelineStepListReAttach.Size = new System.Drawing.Size(292, 344);
             this.pipelineStepListReAttach.TabIndex = 0;
             // 
+            // btnArchive
+            // 
+            this.btnArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArchive.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(27)))), ((int)(((byte)(82)))));
+            this.btnArchive.Location = new System.Drawing.Point(6, 157);
+            this.btnArchive.Name = "btnArchive";
+            this.btnArchive.Size = new System.Drawing.Size(280, 30);
+            this.btnArchive.TabIndex = 4;
+            this.btnArchive.Text = "Archive";
+            this.btnArchive.UseVisualStyleBackColor = false;
+            this.btnArchive.Click += new System.EventHandler(this.btnArchive_Click);
+            // 
             // PipelineLists
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,6 +230,7 @@
         private PipelineStepList pipelineStepListReAttach;
         private System.Windows.Forms.Button btnReAttach;
         private System.Windows.Forms.Button btnReinstall;
+        private System.Windows.Forms.Button btnArchive;
 
 
     }

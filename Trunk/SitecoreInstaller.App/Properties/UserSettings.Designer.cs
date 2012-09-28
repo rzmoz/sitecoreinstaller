@@ -118,5 +118,17 @@ namespace SitecoreInstaller.App.Properties {
                 this["LicenseExpirationPeriodInDays"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\BuildLibrary\\Sitecore")]
+        public string ArchiveFolder {
+            get {
+                return ((string)(this["ArchiveFolder"]));
+            }
+            set {
+                this["ArchiveFolder"] = value;
+            }
+        }
     }
 }

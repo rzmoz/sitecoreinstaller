@@ -26,5 +26,8 @@
     <Setting Name="LicenseExpirationPeriodInDays" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">7</Value>
     </Setting>
+    <Setting Name="ArchiveFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\BuildLibrary\Sitecore</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

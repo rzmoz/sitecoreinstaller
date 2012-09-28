@@ -5,19 +5,15 @@
 <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
 
     <ProjectsFolder xdt:Transform="Replace">C:\inetpub\wwwrootDebug</ProjectsFolder>
-
     <CreateProjectsFolderIfNotExists xdt:Transform="Replace">True</CreateProjectsFolderIfNotExists>
 
     <LocalBuildLibrary xdt:Transform="Replace">c:\BuildLibrary</LocalBuildLibrary>
-
     <CreateLocalBuildLibraryIfNotExists xdt:Transform="Replace">True</CreateLocalBuildLibraryIfNotExists>
 
     <IisSitePostfix xdt:Transform="Replace">.sc.rar</IisSitePostfix>
 
     <SqlInstanceName xdt:Transform="Replace">(local)</SqlInstanceName>
-
     <SqlLogin xdt:Transform="Replace">sc</SqlLogin>
-
     <SqlPassword xdt:Transform="Replace">1234</SqlPassword>
 
     <PromptForUserSettings xdt:Transform="Replace">False</PromptForUserSettings>

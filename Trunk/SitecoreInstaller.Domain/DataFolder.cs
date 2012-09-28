@@ -26,7 +26,7 @@ namespace SitecoreInstaller.Domain
             Audit = Directory.CombineTo<DirectoryInfo>(_AuditFolderName);
             Logs = Directory.CombineTo<DirectoryInfo>(_LogsFolderName);
             Viewstate = Directory.CombineTo<DirectoryInfo>(_ViewstateFolderName);
-            LicenseFile = new FileInfo(_LicenseFileName);
+            LicenseFile = Directory.CombineTo<FileInfo>(_LicenseFileName);
         }
 
         public FileInfo LicenseFile { get; private set; }

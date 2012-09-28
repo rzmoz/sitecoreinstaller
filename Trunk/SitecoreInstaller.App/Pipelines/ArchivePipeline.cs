@@ -15,10 +15,9 @@
 
             //Init steps
             AddSteps(uninstallPipeline.Steps);
-            AddStep<CleanProjectForArchiving>();
-            AddStep<ZipProjectForArchiving>();
-            AddStep<MoveZipToArchiveFolder>();
             RemoveStep<DeleteProject>();
+            AddStep<CleanProjectForArchiving>();
+            AddStep<ZipAndMoveProjectToArchiveFolder>();
         }
     }
 }
