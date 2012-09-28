@@ -24,7 +24,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
             zipFile.ZipContent(Services.ProjectSettings.ProjectFolder.Directory);
 
             Log.As.Info("Moving archive to archive folder...");
-            zipFile.File.MoveTo(new DirectoryInfo(UserSettings.Default.ArchiveFolder), true);
+            var robocopy = new Robocopy();
+            robocopy.Move(zipFile.File, new DirectoryInfo(UserSettings.Default.ArchiveFolder));
         }
     }
 }
