@@ -8,11 +8,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
     using System.Threading;
 
     using SitecoreInstaller.Domain.BuildLibrary;
+    using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
 
     public class DoNothingForAWhile : Step
     {
-        protected override void InnerInvoke(object sender, EventArgs args)
+        protected override void InnerInvoke(object sender, StepEventArgs args)
         {
             Log.As.Info(typeof(SourceManifest).Name);
             for (var i = 0; i < 10; i++)

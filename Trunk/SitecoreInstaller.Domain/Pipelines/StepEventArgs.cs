@@ -9,9 +9,9 @@ namespace SitecoreInstaller.Domain.Pipelines
     {
         public StepEventArgs()
         {
-            PreconditionEventArgs = new PreconditionEventArgs();
+            Dialogs = Dialogs.On;
         }
 
-        public PreconditionEventArgs PreconditionEventArgs { get; private set; }
+        public Dialogs Dialogs { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     using SitecoreInstaller.App.Pipelines.Preconditions;
+    using SitecoreInstaller.Domain.Pipelines;
 
     public class CreateProjectFolder : Step
     {
@@ -14,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             AddPrecondition<CheckProjectDoesNotExist>();
         }
 
-        protected override void InnerInvoke(object sender, EventArgs args)
+        protected override void InnerInvoke(object sender, StepEventArgs args)
         {
             Services.Projects.CreateProject(Services.ProjectSettings.ProjectFolder.Directory);
         }

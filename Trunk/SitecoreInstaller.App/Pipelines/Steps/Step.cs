@@ -32,12 +32,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps
             if (StepInvoking != null)
                 StepInvoking(this, EventArgs.Empty);
 
-            InnerInvoke(sender, args);
+            InnerInvoke(sender, new StepEventArgs());;
 
             if (StepInvoked != null)
                 StepInvoked(this, EventArgs.Empty);
         }
 
-        protected abstract void InnerInvoke(object sender, EventArgs args);
+        protected abstract void InnerInvoke(object sender, StepEventArgs args);
     }
 }

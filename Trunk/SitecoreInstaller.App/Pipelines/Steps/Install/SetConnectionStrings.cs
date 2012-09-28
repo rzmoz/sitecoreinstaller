@@ -8,12 +8,13 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     using System.IO;
 
     using SitecoreInstaller.Domain.Database;
+    using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Domain.Website;
     using SitecoreInstaller.Framework.Xml;
 
     public class SetConnectionStrings : Step
     {
-        protected override void InnerInvoke(object sender, EventArgs args)
+        protected override void InnerInvoke(object sender, StepEventArgs args)
         {
             if (Services.ProjectSettings.InstallType == InstallType.Client)
                 return;

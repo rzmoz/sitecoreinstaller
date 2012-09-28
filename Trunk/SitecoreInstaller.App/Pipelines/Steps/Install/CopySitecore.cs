@@ -7,10 +7,11 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     using System.IO;
     using SitecoreInstaller.Domain.BuildLibrary;
+    using SitecoreInstaller.Domain.Pipelines;
 
-    public class CopySitecore:Step
+    public class CopySitecore : Step
     {
-        protected override void InnerInvoke(object sender, EventArgs args)
+        protected override void InnerInvoke(object sender, StepEventArgs args)
         {
             var selectedSitecore = Services.BuildLibrary.Get(Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore, SourceType.Sitecore);
             if (selectedSitecore is BuildLibraryDirectory == false)

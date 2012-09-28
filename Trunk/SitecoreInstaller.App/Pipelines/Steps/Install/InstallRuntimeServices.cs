@@ -5,9 +5,11 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
+    using SitecoreInstaller.Domain.Pipelines;
+
     public class InstallRuntimeServices : Step
     {
-        protected override void InnerInvoke(object sender, EventArgs args)
+        protected override void InnerInvoke(object sender, StepEventArgs args)
         {
             Services.Website.InstallRuntimeServices(Services.ProjectSettings.ProjectFolder.Website);
         }

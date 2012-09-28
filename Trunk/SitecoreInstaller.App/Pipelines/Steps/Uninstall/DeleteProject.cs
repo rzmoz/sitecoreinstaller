@@ -6,6 +6,7 @@ using System.Text;
 namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
     using SitecoreInstaller.App.Pipelines.Preconditions;
+    using SitecoreInstaller.Domain.Pipelines;
 
     public class DeleteProject : Step
     {
@@ -14,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
             AddPrecondition<CheckUserAcceptForDeleteProject>();
         }
 
-        protected override void InnerInvoke(object sender, EventArgs args)
+        protected override void InnerInvoke(object sender, StepEventArgs args)
         {
             Services.Projects.DeleteProject(Services.ProjectSettings.ProjectFolder.Directory);
         }

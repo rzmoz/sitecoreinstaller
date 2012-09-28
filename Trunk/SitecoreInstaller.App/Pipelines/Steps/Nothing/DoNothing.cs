@@ -5,11 +5,12 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 {
+    using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
 
     public class DoNothing : Step
     {
-        protected override void InnerInvoke(object sender, EventArgs args)
+        protected override void InnerInvoke(object sender, StepEventArgs args)
         {
             Log.As.Info("Starting doing nothing...");
         }

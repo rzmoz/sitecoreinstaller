@@ -8,18 +8,22 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
     using System.IO;
 
     using SitecoreInstaller.App.Properties;
+    using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Archiving;
     using SitecoreInstaller.Framework.Diagnostics;
     using SitecoreInstaller.Framework.IO;
 
     public class ZipAndMoveProjectToArchiveFolder : Step
     {
-        protected override void InnerInvoke(object sender, EventArgs args)
+        protected override void InnerInvoke(object sender, StepEventArgs  args)
         {
             Log.As.Info("Zipping project...");
-            var zipFileInfo =
-                Services.ProjectSettings.ProjectFolder.CombineTo<FileInfo>(
-                    Services.ProjectSettings.ProjectName + "_rev." + DateTime.Now.ToString("yyyyMMddhhmmss") + ".zip");
+
+            var archiveName = Services.ProjectSettings.ProjectName + "_rev." + DateTime.Now.ToString("yyyyMMdd") + ".zip";
+
+            //if (args.Dialogs == Dialogs.On)
+
+            var zipFileInfo = Services.ProjectSettings.ProjectFolder.CombineTo<FileInfo>(archiveName);
             var zipFile = new SevenZipFile(zipFileInfo);
             zipFile.ZipContent(Services.ProjectSettings.ProjectFolder.Directory);
 

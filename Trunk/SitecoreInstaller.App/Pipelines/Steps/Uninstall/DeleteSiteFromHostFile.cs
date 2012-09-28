@@ -5,9 +5,11 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
+    using SitecoreInstaller.Domain.Pipelines;
+
     public class DeleteSiteFromHostFile : Step
     {
-        protected override void InnerInvoke(object sender, EventArgs args)
+        protected override void InnerInvoke(object sender, StepEventArgs args)
         {
             Services.HostFile.RemoveHostName(Services.ProjectSettings.Iis.Url);
         }
