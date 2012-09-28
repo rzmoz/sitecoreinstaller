@@ -81,8 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InstallType.cs" />
+    <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />
+    <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
+    <Compile Include="Pipelines\Steps\Archiving\MoveZipToArchiveFolder.cs" />
+    <Compile Include="Pipelines\Steps\Archiving\ZipProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Install\GrantPermissionsToNetworkService.cs" />
     <Compile Include="UiDialogs.cs" />
     <Compile Include="Pipelines\InstallPipeline.cs" />

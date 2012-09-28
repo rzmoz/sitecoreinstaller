@@ -10,6 +10,8 @@ namespace SitecoreInstaller.Domain.Projects
     {
         IEnumerable<DirectoryInfo> GetExistingProjects();
 
+        void CleanProjectForArchiving(ProjectFolder projectFolder);
+
         void DeleteProject(DirectoryInfo projectFolder);
         void CreateProject(DirectoryInfo projectFolder);
     }

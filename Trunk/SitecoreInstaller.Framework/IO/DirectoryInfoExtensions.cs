@@ -18,6 +18,12 @@ namespace SitecoreInstaller.Framework.IO
             _fileSystemInfoFactory = new FileSystemInfoFactory();
         }
 
+        public static void Clean(this DirectoryInfo dir)
+        {
+            dir.DeleteWithLog();
+            dir.CreateIfNotExists();
+        }
+
         public static T Combine<T>(this Folder folder, params T[] paths) where T : FileSystemInfo
         {
             return folder.Directory.Combine(paths);
