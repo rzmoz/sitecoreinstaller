@@ -27,6 +27,8 @@ namespace SitecoreInstaller.Framework.Archiving
             Contract.Requires<ArgumentNullException>(zipFile != null);
 
             File = zipFile;
+            if (File.Name.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) == false)
+                File = new FileInfo(File.FullName + ".zip");
         }
 
         public void ExtractAll(DirectoryInfo target)
@@ -47,8 +49,7 @@ namespace SitecoreInstaller.Framework.Archiving
         public void ZipContent(DirectoryInfo folder)
         {
             var fileName = File.Name;
-            if (fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) == false)
-                fileName += ".zip";
+
 
             var target = folder.CombineTo<DirectoryInfo>(fileName);
             var command = string.Format(_FileName + _ArchiveSwitch + _RunFormat, target.FullName, folder.FullName);
