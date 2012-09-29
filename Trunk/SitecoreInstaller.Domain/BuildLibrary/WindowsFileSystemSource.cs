@@ -114,7 +114,10 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             var entry = Get(sourceEntry, sourceType);
 
-            entry.FileSystemInfo.Delete();
+            if (entry.FileSystemInfo is DirectoryInfo)
+                (entry.FileSystemInfo as DirectoryInfo).DeleteWithLog();
+            else
+                entry.FileSystemInfo.Delete();
 
             var directoryMatches = rootFolder.GetDirectories(entry.FileSystemInfo.Name);
             if (directoryMatches.Any())
