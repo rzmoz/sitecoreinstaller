@@ -118,16 +118,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
                 (entry.FileSystemInfo as DirectoryInfo).DeleteWithLog();
             else
                 entry.FileSystemInfo.Delete();
-
-            var directoryMatches = rootFolder.GetDirectories(entry.FileSystemInfo.Name);
-            if (directoryMatches.Any())
-                foreach (var directoryMatch in directoryMatches)
-                    directoryMatch.Delete(true);
-
-            var fileMatches = rootFolder.GetFiles(entry.FileSystemInfo.Name + ".*");
-            if (fileMatches.Any())
-                foreach (var fileMatch in fileMatches)
-                    fileMatch.Delete();
         }
 
         public void Delete(IEnumerable<SourceEntry> sourceEntries, SourceType sourceType)
