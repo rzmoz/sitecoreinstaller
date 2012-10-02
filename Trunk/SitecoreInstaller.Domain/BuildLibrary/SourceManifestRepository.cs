@@ -20,6 +20,7 @@
         {
             var sourcesConfig = ConfigFile.Load(SourceFileName);
             var sources = sourcesConfig.GetElements<SourceManifest>("source");
+            _sources.Clear();
             foreach (var source in sources)
                 _sources.Add(source.Name, source);
         }
