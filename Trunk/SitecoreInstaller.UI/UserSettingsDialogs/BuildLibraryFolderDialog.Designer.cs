@@ -49,8 +49,7 @@
             this.tbxDescription.Size = new System.Drawing.Size(270, 40);
             this.tbxDescription.TabIndex = 35;
             this.tbxDescription.TabStop = false;
-            this.tbxDescription.Text = "This folder is used as local cache for faster re-installation.\r\n(The build librar" +
-    "y looks in three subfolders called Sitecore, Licenses and Modules)";
+            this.tbxDescription.Text = "This folder is used as local cache for faster re-installation.";
             // 
             // lnkCreateProjectFolder
             // 

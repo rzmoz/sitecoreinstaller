@@ -87,8 +87,7 @@
             this.tbxDescription.Size = new System.Drawing.Size(270, 43);
             this.tbxDescription.TabIndex = 36;
             this.tbxDescription.TabStop = false;
-            this.tbxDescription.Text = "The project folder contains your installatons. \r\n(SitecoreInstaller and Network S" +
-    "ervice users need \'Write\' permissions to this folder)";
+            this.tbxDescription.Text = "The project folder contains your installatons.";
             // 
             // lnkCreateProjectFolder
             // 
