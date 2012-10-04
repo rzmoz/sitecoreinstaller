@@ -13,12 +13,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     using SitecoreInstaller.Framework.Diagnostics;
     using SitecoreInstaller.Framework.IO;
 
-    public class GrantPermissionsToNetworkService : Step
+    public class GrantPermissions : Step
     {
         protected override void InnerInvoke(object sender, StepEventArgs  args)
         {
-            Services.ProjectSettings.ProjectFolder.GrantReadAndWritePermissions(ProcessModelIdentityType.NetworkService.ToString());
-            new DirectoryInfo(@"c:\windows\temp").GrantReadAndWritePermissions(ProcessModelIdentityType.NetworkService.ToString());
+            Services.ProjectSettings.ProjectFolder.GrantFullControl("everyone");
+            new DirectoryInfo(@"c:\windows\temp").GrantFullControl(ProcessModelIdentityType.NetworkService.ToString());
         }
     }
 }

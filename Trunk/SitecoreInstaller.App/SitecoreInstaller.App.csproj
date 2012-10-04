@@ -87,7 +87,7 @@
     <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />
     <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveProjectToArchiveFolder.cs" />
-    <Compile Include="Pipelines\Steps\Install\GrantPermissionsToNetworkService.cs" />
+    <Compile Include="Pipelines\Steps\Install\GrantPermissions.cs" />
     <Compile Include="UiDialogs.cs" />
     <Compile Include="Pipelines\InstallPipeline.cs" />
     <Compile Include="Pipelines\NothingPipeline.cs" />
