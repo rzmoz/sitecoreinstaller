@@ -70,14 +70,19 @@ namespace SitecoreInstaller.Framework.Configuration
 
             var element = _rootElement.Element(binder.Name);
             if (element == null)
-                result = null;
+            {
+                result = string.Empty;
+
+            }
             else
+            {
                 result = element.Value;
 
-            if (element.Value.Length == 0 &&
-                element.Attribute("defaultValue") != null &&
-                element.Attribute("defaultValue").Value.Length > 0)
-                result = element.Attribute("defaultValue").Value;
+                if (element.Value.Length == 0 &&
+                    element.Attribute("defaultValue") != null &&
+                    element.Attribute("defaultValue").Value.Length > 0)
+                    result = element.Attribute("defaultValue").Value;
+            }
 
             return true;
         }
