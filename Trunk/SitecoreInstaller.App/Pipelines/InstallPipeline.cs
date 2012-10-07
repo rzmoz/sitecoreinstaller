@@ -25,7 +25,7 @@ namespace SitecoreInstaller.App.Pipelines
 
             //Init steps
             AddStep<CreateProjectFolder>();
-            AddStep<GrantPermissionsToNetworkService>();
+            AddStep<GrantPermissions>();
             AddStep<UpdateProjectSettings>();
             AddStep<CopySitecore>();
             AddStep<CopyLicensefile>();

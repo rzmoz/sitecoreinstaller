@@ -87,11 +87,11 @@ namespace SitecoreInstaller.Framework.IO
             directoryInfo.Create();
         }
 
-        public static void GrantReadAndWritePermissions(this Folder folder, string username)
+        public static void GrantFullControl(this Folder folder, string username)
         {
-            folder.Directory.GrantReadAndWritePermissions(username);
+            folder.Directory.GrantFullControl(username);
         }
-        public static void GrantReadAndWritePermissions(this DirectoryInfo dir, string username)
+        public static void GrantFullControl(this DirectoryInfo dir, string username)
         {
             if (Directory.Exists(dir.FullName) == false)
                 return;
@@ -102,7 +102,7 @@ namespace SitecoreInstaller.Framework.IO
 
             directorySecurity.AddAccessRule(new FileSystemAccessRule(
                                     username,
-                                    FileSystemRights.Modify | FileSystemRights.ReadAndExecute | FileSystemRights.ListDirectory | FileSystemRights.Read | FileSystemRights.Write,
+                                    FileSystemRights.FullControl,
                                     InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit,
                                     PropagationFlags.None,
                                     AccessControlType.Allow));
