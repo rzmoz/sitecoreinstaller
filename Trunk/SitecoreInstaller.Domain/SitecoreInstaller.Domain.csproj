@@ -221,9 +221,11 @@
     </Content>
     <Content Include="Website\Runtime\InstallPackageService.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Website\Runtime\PostInstallService.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
