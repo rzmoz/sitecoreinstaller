@@ -10,6 +10,9 @@ namespace SitecoreInstaller.Domain.Database
 {
     using System.Data.SqlClient;
 
+    using Microsoft.SqlServer.Management.Common;
+    using Microsoft.SqlServer.Management.Smo;
+
     using SitecoreInstaller.Framework.Diagnostics;
 
     public class SqlService : ISqlService
@@ -21,11 +24,10 @@ namespace SitecoreInstaller.Domain.Database
             _fileTypes = new FileTypes();
         }
 
-        public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, DirectoryInfo databaseFolder, string projectName, IEnumerable<string> existingConnectionStrings)
+        public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, string projectName,IEnumerable<string> connectionStringNames, IEnumerable<string> existingConnectionStrings)
         {
             Log.As.Info("Generating connection string delta...");
-            var databases =  GetDatabases(databaseFolder, projectName);
-            var connectionStringNames = databases.Select(db => db.LogicalName).AsUniqueStrings();
+            
             var connectionStringEntries = string.Empty;
             foreach (var connectionStringName in connectionStringNames)
             {
@@ -48,6 +50,15 @@ namespace SitecoreInstaller.Domain.Database
             foreach (var databaseName in databaseNames)
             {
                 yield return new SqlDatabase(databaseFolder, databaseName, projectName);
+            }
+        }
+
+        public IEnumerable<string> GetExistingDatabaseNames(SqlSettings sqlSettings)
+        {
+            var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString)));
+            foreach (Database database in sqlServer.Databases)
+            {
+                yield return database.Name;
             }
         }
 

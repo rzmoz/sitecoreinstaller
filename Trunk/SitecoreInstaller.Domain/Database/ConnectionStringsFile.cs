@@ -73,6 +73,10 @@ namespace SitecoreInstaller.Domain.Database
             LowerCaseConnectionStringNames();
             CreateIfNotExists();
         }
+        public void InitFromExistingDatabases(IEnumerable<string> databaseNames)
+        {
+            throw new NotImplementedException();
+        }
 
         public FileInfo File { get; private set; }
 
