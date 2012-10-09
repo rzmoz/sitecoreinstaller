@@ -49,7 +49,7 @@ namespace SitecoreInstaller.Domain.Database
         {
             if (entry == null)
                 return;
-            var key = entry.Name.ToLower();
+            var key = entry.Name.DatabasePart.ToLower();
 
             if (_entries.ContainsKey(key))
                 _entries[key] = entry;
@@ -72,10 +72,6 @@ namespace SitecoreInstaller.Domain.Database
             InitConnectionStringEntries();
             LowerCaseConnectionStringNames();
             CreateIfNotExists();
-        }
-        public void InitFromExistingDatabases(IEnumerable<string> databaseNames)
-        {
-            throw new NotImplementedException();
         }
 
         public FileInfo File { get; private set; }

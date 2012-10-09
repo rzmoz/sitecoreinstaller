@@ -1,6 +1,8 @@
 ﻿namespace SitecoreInstaller.App
 {
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Runtime.Serialization;
 
     using SitecoreInstaller.Domain.BuildLibrary;
@@ -50,9 +52,12 @@
         public IisSettings Iis { get; set; }
         public ProjectFolder ProjectFolder { get; set; }
 
+        public IEnumerable<ConnectionStringName> DatabaseNames { get; set; }
+
         private void Reset()
         {
             ProjectName.Reset();
+            DatabaseNames = Enumerable.Empty<ConnectionStringName>();
             InstallType = InstallType.Full;
             Iis = new IisSettings();
             ProjectFolder = new ProjectFolder(new DirectoryInfo(@"c:\"), DataFolderMode.DataOutside);

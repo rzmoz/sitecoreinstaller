@@ -11,11 +11,6 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class AttachDatabases : Step
     {
-        public AttachDatabases()
-        {
-            AddPrecondition<CheckConnectionstringsManuallyUpdated>();
-        }
-
         protected override void InnerInvoke(object sender, StepEventArgs  args)
         {
             if (Services.ProjectSettings.InstallType == InstallType.Client)

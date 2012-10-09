@@ -15,8 +15,8 @@ namespace SitecoreInstaller.App.Pipelines
         public InstallPipeline()
         {
             //Init preconditions
-            AddPrecondition<CheckProjectDoesNotExist>();
             AddPrecondition<CheckProjectNameIsSet>();
+            AddPrecondition<CheckProjectDoesNotExist>();
             AddPrecondition<CheckSitecore>();
             AddPrecondition<CheckBinding>();
             AddPrecondition<CheckSqlConnection>();

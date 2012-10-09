@@ -17,7 +17,7 @@ namespace SitecoreInstaller.Framework.System
 
             needle = needle.ToLowerInvariant();
 
-            return hayStack.Any(straw => straw.ToLowerInvariant().Equals(needle));
+            return hayStack.Any(straw => straw.Equals(needle, StringComparison.OrdinalIgnoreCase));
         }
 
         public static IEnumerable<string> AsUniqueStrings(this IEnumerable<string> enumerable, bool excludeEmpty = true)

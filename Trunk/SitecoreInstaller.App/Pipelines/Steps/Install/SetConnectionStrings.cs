@@ -7,6 +7,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     using System.IO;
 
+    using SitecoreInstaller.App.Pipelines.Preconditions;
     using SitecoreInstaller.Domain.Database;
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Domain.Website;
@@ -15,6 +16,11 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class SetConnectionStrings : Step
     {
+        public SetConnectionStrings()
+        {
+            AddPrecondition<CheckConnectionstringsAreSet>();
+        }
+
         protected override void InnerInvoke(object sender, StepEventArgs args)
         {
             var connectionStrings = Services.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
@@ -23,10 +29,13 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
             var existingConnectionStringNames = connectionStrings.Select(entry => entry.Name);
 
-            var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName.Value);
-            var connectionStringNames = databases.Select(db => db.LogicalName).AsUniqueStrings();
+            if (Services.ProjectSettings.InstallType == InstallType.Full)
+            {
+                var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName.Value);
+                Services.ProjectSettings.DatabaseNames = databases.Select(db => db.LogicalName).AsUniqueStrings().Select(name => new ConnectionStringName(Services.ProjectSettings.ProjectName.Value, name));
+            }
 
-            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.ProjectSettings.Sql, Services.ProjectSettings.ProjectName.Value, connectionStringNames, existingConnectionStringNames);
+            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.ProjectSettings.Sql, Services.ProjectSettings.DatabaseNames, existingConnectionStringNames);
             var transform = new XmlTransform(connectionStrings.File, connectionStringsDelta);
             transform.Run();
 

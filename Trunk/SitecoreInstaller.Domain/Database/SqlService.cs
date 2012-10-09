@@ -24,15 +24,16 @@ namespace SitecoreInstaller.Domain.Database
             _fileTypes = new FileTypes();
         }
 
-        public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, string projectName,IEnumerable<string> connectionStringNames, IEnumerable<string> existingConnectionStrings)
+        public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, IEnumerable<ConnectionStringName> connectionStringNames, IEnumerable<ConnectionStringName> existingConnectionStrings)
         {
             Log.As.Info("Generating connection string delta...");
-            
+
             var connectionStringEntries = string.Empty;
             foreach (var connectionStringName in connectionStringNames)
             {
-                var connectionStringEntry = new ConnectionStringEntry(sqlSettings, connectionStringName, projectName);
-                if (existingConnectionStrings.ContainsCaseInsensitive(connectionStringName))
+                var connectionStringEntry = new ConnectionStringEntry(sqlSettings, connectionStringName);
+
+                if (existingConnectionStrings.Select(name => name.DatabasePart).ContainsCaseInsensitive(connectionStringName.DatabasePart))
                     connectionStringEntries += connectionStringEntry.ToReplaceString();
                 else
                     connectionStringEntries += connectionStringEntry.ToInsertString();
