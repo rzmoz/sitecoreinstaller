@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller
 {
+    using System.IO;
     using System.Windows.Forms;
 
     using SitecoreInstaller.App;
@@ -63,6 +64,13 @@ namespace SitecoreInstaller
         public override void OpenFrontend(object sender, EventArgs e)
         {
             Services.Website.OpenFrontend(MainForm.MainDeveloper.SelectionsDeveloper.GetProjectSettings().Iis.Url);
+        }
+
+        public override void OpenProjectFolder(object sender, EventArgs e)
+        {
+            var projectFolder = MainForm.MainDeveloper.SelectionsDeveloper.GetProjectSettings().ProjectFolder;
+            if (Directory.Exists(projectFolder.FullName))
+                System.Diagnostics.Process.Start(projectFolder.FullName);
         }
     }
 }

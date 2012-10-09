@@ -243,5 +243,10 @@ namespace SitecoreInstaller
             showLogToolStripMenuItem.Checked = !showLogToolStripMenuItem.Checked;
             _mainFormFunc.Resize(showLogToolStripMenuItem.Checked);
         }
+
+        private void openProjectFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainFormFunc.OpenProjectFolder(sender, e);
+        }
     }
 }

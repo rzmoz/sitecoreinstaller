@@ -37,5 +37,6 @@ namespace SitecoreInstaller
 
         public abstract void OpenSitecore(object sender, EventArgs e);
         public abstract void OpenFrontend(object sender, EventArgs e);
+        public abstract void OpenProjectFolder(object sender, EventArgs e);
     }
 }
