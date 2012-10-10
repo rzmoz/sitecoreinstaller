@@ -104,11 +104,11 @@ namespace SitecoreInstaller
         {
             ProjectFolder projectFolder = null;
             if (MainForm.MainSimple.Install.Visible)
-                projectFolder=MainForm.MainSimple.Install.GetProjectSettings().ProjectFolder;
+                projectFolder = MainForm.MainSimple.Install.GetProjectSettings().ProjectFolder;
             else if (MainForm.MainSimple.Uninstall.Visible)
-                projectFolder= MainForm.MainSimple.Uninstall.GetProjectSettings().ProjectFolder;
+                projectFolder = MainForm.MainSimple.Uninstall.GetProjectSettings().ProjectFolder;
             else if (MainForm.MainSimple.Open.Visible)
-                projectFolder= MainForm.MainSimple.Open.GetProjectSettings().ProjectFolder
+                projectFolder = MainForm.MainSimple.Open.GetProjectSettings().ProjectFolder;
             if(projectFolder==null)
                 return;
             if (Directory.Exists(projectFolder.FullName))
