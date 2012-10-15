@@ -49,6 +49,7 @@ namespace SitecoreInstaller.Domain.WebServer
             }
 
             var hostFileIisSiteName = hostName.ToLowerInvariant();
+            var addNewline = false;
 
             Log.As.Info("Adding hostname '{0}'", hostFileIisSiteName);
 
@@ -78,12 +79,20 @@ namespace SitecoreInstaller.Domain.WebServer
                         fileReader.Close();
                     }
                 }
-                using (var fileWriter = _hostFile.AppendText())
+
+                reader = _hostFile.OpenRead();
+                using (var fileReader = new StreamReader(reader))
                 {
-                    var hostFileEntry = string.Format(_HostFileEntryFormat, hostFileIisSiteName);
-                    fileWriter.WriteLine(hostFileEntry);
-                    fileWriter.Close();
-                    Log.As.Debug("Iis site name written to host file: {0}", hostFileEntry);
+                    try
+                    {
+                        var content = fileReader.ReadToEnd();
+                        addNewline = !content.EndsWith("\r\n");
+                            
+                    }
+                    finally
+                    {
+                        fileReader.Close();
+                    }
                 }
             }
             finally
@@ -91,9 +100,27 @@ namespace SitecoreInstaller.Domain.WebServer
                 if (reader != null)
                     reader.Close();
             }
+
+            //we add newline, if file doesn't end to make sure new entry is on it's own line
+            if(addNewline)
+                WriteLineToHostfile("");
+
+            var hostFileEntry = string.Format(_HostFileEntryFormat, hostFileIisSiteName);
+            WriteLineToHostfile(hostFileEntry);
         }
 
-        internal bool LineIsHostFileName(string hostFileIisSiteName, string line)
+        private void WriteLineToHostfile(string line)
+        {
+            using (var fileWriter = _hostFile.AppendText())
+            {
+                
+                fileWriter.WriteLine(line);
+                fileWriter.Close();
+                Log.As.Debug("'{0}' written to host file", line);
+            }
+        }
+
+        public bool LineIsHostFileName(string hostFileIisSiteName, string line)
         {
             if (line == null)
                 return true;
