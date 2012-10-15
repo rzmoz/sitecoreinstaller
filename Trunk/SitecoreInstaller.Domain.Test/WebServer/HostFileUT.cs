@@ -9,7 +9,7 @@
     using SitecoreInstaller.Domain.WebServer;
 
     [TestFixture]
-    public class HostFileServiceUT
+    public class HostFileUT
     {
         private HostFile _hostFile;
 

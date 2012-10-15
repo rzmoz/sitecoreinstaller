@@ -16,6 +16,7 @@ namespace SitecoreInstaller.Domain.WebServer
         public IisManagementService()
         {
             _iisManager = new ServerManager();
+            HostFile = new HostFile();
         }
 
         public void CreateApplication(IisSettings iisSettings, DirectoryInfo siteDirectory, DirectoryInfo iisLogFilesDirectory)
@@ -152,10 +153,12 @@ namespace SitecoreInstaller.Domain.WebServer
                 {
                     if (binding.Host.Equals(bindingCandidate, StringComparison.InvariantCultureIgnoreCase))
                         return true;
-                }   
+                }
             }
             return false;
         }
+
+        public HostFile HostFile { get; private set; }
 
         private void CreateAppPool(IisSettings iisSettings)
         {

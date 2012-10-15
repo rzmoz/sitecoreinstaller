@@ -10,7 +10,7 @@ namespace SitecoreInstaller.Domain.WebServer
 
     using SitecoreInstaller.Framework.Diagnostics;
 
-    public class HostFileService : IHostFileService
+    public class HostFile
     {
         private static readonly FileInfo _hostFile = new FileInfo(@"C:\Windows\System32\drivers\etc\hosts");
 
