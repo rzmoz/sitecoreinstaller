@@ -86,7 +86,7 @@ namespace SitecoreInstaller.Domain.WebServer
                     try
                     {
                         var content = fileReader.ReadToEnd();
-                        addNewline = !content.EndsWith("\r\n");
+                        addNewline = !content.EndsWith(Environment.NewLine);
                             
                     }
                     finally
@@ -101,7 +101,7 @@ namespace SitecoreInstaller.Domain.WebServer
                     reader.Close();
             }
 
-            //we add newline, if file doesn't end to make sure new entry is on it's own line
+            //we add newline, if file doesn't end with newline to make sure new entry is on it's own line
             if(addNewline)
                 WriteLineToHostfile("");
 

@@ -59,16 +59,16 @@ namespace SitecoreInstaller.UI
                             break;
                     }
 
-                    if(e.Status != Domain.Pipelines.PipelineStatus.NoProblems)
+                    if (e.Status != Domain.Pipelines.PipelineStatus.NoProblems)
                     {
                         tbxMessages.Visible = true;
                         tbxMessages.Text = "";
                         foreach (var logEntry in e.Messages)
-                            tbxMessages.Text += string.Format("{0}\r\n", logEntry.Message);
-                    
+                            tbxMessages.Text += string.Format("{0}{1}", logEntry.Message, Environment.NewLine);
+
                     }
-                    
-                    
+
+
                     lblStatusMessage.Text = "Finished with "
                                             + e.Status.ToString().ToSpaceDelimiteredString();
 

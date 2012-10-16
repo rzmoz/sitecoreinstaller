@@ -78,7 +78,7 @@ namespace SitecoreInstaller.UI
 
                         if (LogEntry(e))
                         {
-                            rteEventLog.AppendText(e.Arg + "\r\n");
+                            rteEventLog.AppendText(e.Arg + Environment.NewLine);
 
                             if (chkFollowLogTrail.Checked)
                                 chkFollowLogTrail_CheckedChanged(this, new EventArgs());

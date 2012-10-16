@@ -49,7 +49,7 @@ Do you want to continue?";
             var databases = string.Empty;
             foreach (var database in clbDatabases.CheckedItems)
             {
-                databases += database + "\r\n";
+                databases += database + Environment.NewLine;
             }
 
             if (!Services.Dialogs.UserAccept(string.Format(_SelectFormat, databases)))
