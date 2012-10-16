@@ -14,6 +14,7 @@ namespace SitecoreInstaller.UI
 
     using SitecoreInstaller.App;
     using SitecoreInstaller.Domain.Database;
+    using SitecoreInstaller.Framework.System;
 
     public partial class SelectDatabases : Form
     {
@@ -49,7 +50,7 @@ Do you want to continue?";
             var databases = string.Empty;
             foreach (var database in clbDatabases.CheckedItems)
             {
-                databases += database + Environment.NewLine;
+                databases += database + Consts.Newline;
             }
 
             if (!Services.Dialogs.UserAccept(string.Format(_SelectFormat, databases)))

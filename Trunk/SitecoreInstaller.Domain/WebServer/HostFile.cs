@@ -9,6 +9,7 @@ namespace SitecoreInstaller.Domain.WebServer
     using System.Security;
 
     using SitecoreInstaller.Framework.Diagnostics;
+    using SitecoreInstaller.Framework.System;
 
     public class HostFile
     {
@@ -86,7 +87,7 @@ namespace SitecoreInstaller.Domain.WebServer
                     try
                     {
                         var content = fileReader.ReadToEnd();
-                        addNewline = !content.EndsWith(Environment.NewLine);
+                        addNewline = !content.EndsWith(Consts.Newline);
                             
                     }
                     finally
