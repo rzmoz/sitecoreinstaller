@@ -64,7 +64,7 @@ namespace SitecoreInstaller.UI
                         tbxMessages.Visible = true;
                         tbxMessages.Text = "";
                         foreach (var logEntry in e.Messages)
-                            tbxMessages.Text += string.Format("{0}{1}", logEntry.Message, Environment.NewLine);
+                            tbxMessages.Text += string.Format("{0}{1}", logEntry.Message, Consts.Newline);
 
                     }
 

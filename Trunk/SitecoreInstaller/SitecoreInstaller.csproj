@@ -104,6 +104,9 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="SitecoreInstaller.App">
       <HintPath>..\SitecoreInstaller.App\bin\Debug\SitecoreInstaller.App.dll</HintPath>
@@ -143,6 +146,7 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <ConfigTransformDelta Include="Preferences.Delta" />
+    <None Include="app.manifest" />
     <None Include="Preferences.Debug.Delta">
       <DependentUpon>Preferences.Delta</DependentUpon>
     </None>
