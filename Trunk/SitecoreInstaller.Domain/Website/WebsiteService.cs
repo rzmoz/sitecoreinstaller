@@ -87,18 +87,26 @@ namespace SitecoreInstaller.Domain.Website
 
             foreach (var module in modules)
             {
-                //copy database files to database folder
-                foreach (var databaseFile in new[] { _fileTypes.DatabaseDataFile.GetAllSearchPattern, _fileTypes.DatabaseLogFile.GetAllSearchPattern }.SelectMany(fileExtensions => module.Directory.GetFiles(fileExtensions)))
+                try
                 {
-                    databaseFile.CopyTo(projectFolder.Databases, true);
-                    Log.As.Debug("Module database file '{0}' copied to {1}", databaseFile.FullName, projectFolder.Data.FullName);
+                    //copy database files to database folder
+                    foreach (var databaseFile in new[] { _fileTypes.DatabaseDataFile.GetAllSearchPattern, _fileTypes.DatabaseLogFile.GetAllSearchPattern }.SelectMany(fileExtensions => module.Directory.GetFiles(fileExtensions)))
+                    {
+                        databaseFile.CopyTo(projectFolder.Databases, true);
+                        Log.As.Debug("Module database file '{0}' copied to {1}", databaseFile.FullName, projectFolder.Data.FullName);
+                    }
+                }
+                catch (IOException e)
+                {
+                    Log.As.Warning(e.ToString());
                 }
 
                 //copy config files to App_Config/Include folder
                 foreach (var configFile in _fileTypes.SitecoreConfigFile.GetFiles(module.Directory))
                 {
-                    configFile.CopyTo(projectFolder.Website.AppConfig, true);
-                    Log.As.Debug("Module config file '{0}' copied to {1}", configFile.FullName, projectFolder.Website.AppConfig.FullName);
+                    var targetFolder = projectFolder.Website.AppConfig.Include;
+                    configFile.CopyTo(targetFolder, true);
+                    Log.As.Debug("Module config file '{0}' copied to {1}", configFile.FullName, targetFolder);
                 }
 
                 //copy Sitecore packages to package folder (zip files)
