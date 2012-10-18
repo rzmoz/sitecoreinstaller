@@ -81,7 +81,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InstallType.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />

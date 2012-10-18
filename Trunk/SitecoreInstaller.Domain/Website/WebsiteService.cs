@@ -46,7 +46,7 @@ namespace SitecoreInstaller.Domain.Website
             Log.As.Info("Data folder set to '{0}'", dataFolder.FullName);
         }
 
-        public void CopySitecoreToProjectfolder(ProjectFolder projectFolder, BuildLibraryDirectory sitecore)
+        public void CopySitecoreToProjectfolder(ProjectFolder projectFolder, BuildLibraryDirectory sitecore, InstallType installType)
         {
             Log.As.Info("Copying '{0}'...", sitecore.Directory.Name);
 
@@ -55,9 +55,12 @@ namespace SitecoreInstaller.Domain.Website
             sitecoreWebsiteFolder.CopyTo(projectFolder.Website, DirCopyOptions.IncludeSubDirectories);
 
             //Copy database folder
-            //TODO: Move database folder name to central location
-            CopyDatabaseFolder("Database", sitecore.Directory, projectFolder);
-            CopyDatabaseFolder(projectFolder.Databases.Name, sitecore.Directory, projectFolder);
+            if(installType == InstallType.Full)
+            {
+                //TODO: Move database folder name to central location
+                CopyDatabaseFolder("Database", sitecore.Directory, projectFolder);
+                CopyDatabaseFolder(projectFolder.Databases.Name, sitecore.Directory, projectFolder);    
+            }
 
             //Copy data folder
             //TODO: Move data folder name to central location
@@ -81,11 +84,11 @@ namespace SitecoreInstaller.Domain.Website
             sitecoreDatabaseFolder.CopyFlattenedTo(projectfolder.Databases, _fileTypes.DatabaseDataFile.GetAllSearchPattern);
         }
 
-        public void CopyModulesToWebsite(ProjectFolder projectFolder, IEnumerable<BuildLibraryDirectory> modules)
+        public void CopyModulesToWebsite(ProjectFolder projectFolder, BuildLibraryDirectory module, InstallType installType)
         {
-            Log.As.Info("Copying modules to website...");
+            Log.As.Info("Copying module to website...");
 
-            foreach (var module in modules)
+            if (installType == InstallType.Full)
             {
                 try
                 {
@@ -100,39 +103,40 @@ namespace SitecoreInstaller.Domain.Website
                 {
                     Log.As.Warning(e.ToString());
                 }
-
-                //copy config files to App_Config/Include folder
-                foreach (var configFile in _fileTypes.SitecoreConfigFile.GetFiles(module.Directory))
-                {
-                    var targetFolder = projectFolder.Website.AppConfig.Include;
-                    configFile.CopyTo(targetFolder, true);
-                    Log.As.Debug("Module config file '{0}' copied to {1}", configFile.FullName, targetFolder);
-                }
-
-                //copy Sitecore packages to package folder (zip files)
-                foreach (var packageFile in _fileTypes.SitecorePackage.GetFiles(module.Directory))
-                {
-                    packageFile.CopyTo(projectFolder.Data.Packages, true);
-                    Log.As.Debug("Module Sitecore package file '{0}' copied to {1}", packageFile.FullName, projectFolder.Data.Packages.FullName);
-                }
-
-                //Copy directories to project folder
-                foreach (var moduleFolder in module.Directory.GetDirectories())
-                {
-                    var targetFolder = projectFolder.Combine(moduleFolder);
-                    moduleFolder.CopyTo(targetFolder, DirCopyOptions.IncludeSubDirectories);
-                    Log.As.Debug("Modules folder '{0}' copied to {1}", projectFolder.FullName, targetFolder.FullName);
-                }
-
-                //Copy rest of files
-                foreach (var notSitecoreSpecificFileType in Array.FindAll(module.Directory.GetFiles(), _fileTypes.IsNotRegisteredFileType))
-                {
-                    notSitecoreSpecificFileType.CopyTo(projectFolder, true);
-                    Log.As.Debug("NotSitecoreSpecificFile '{0}' copied to {1}", notSitecoreSpecificFileType.FullName, projectFolder.CombineTo<FileInfo>(notSitecoreSpecificFileType.Name).FullName);
-                }
             }
 
-            Log.As.Info("Modules copied to website");
+            //copy config files to App_Config/Include folder
+            foreach (var configFile in _fileTypes.SitecoreConfigFile.GetFiles(module.Directory))
+            {
+                var targetFolder = projectFolder.Website.AppConfig.Include;
+                configFile.CopyTo(targetFolder, true);
+                Log.As.Debug("Module config file '{0}' copied to {1}", configFile.FullName, targetFolder);
+            }
+
+            //copy Sitecore packages to package folder (zip files)
+            foreach (var packageFile in _fileTypes.SitecorePackage.GetFiles(module.Directory))
+            {
+                packageFile.CopyTo(projectFolder.Data.Packages, true);
+                Log.As.Debug("Module Sitecore package file '{0}' copied to {1}", packageFile.FullName, projectFolder.Data.Packages.FullName);
+            }
+
+            //Copy directories to project folder
+            foreach (var moduleFolder in module.Directory.GetDirectories())
+            {
+                var targetFolder = projectFolder.Combine(moduleFolder);
+                moduleFolder.CopyTo(targetFolder, DirCopyOptions.IncludeSubDirectories);
+                Log.As.Debug("Modules folder '{0}' copied to {1}", projectFolder.FullName, targetFolder.FullName);
+            }
+
+            //Copy rest of files
+            foreach (var notSitecoreSpecificFileType in Array.FindAll(module.Directory.GetFiles(), _fileTypes.IsNotRegisteredFileType))
+            {
+                notSitecoreSpecificFileType.CopyTo(projectFolder, true);
+                Log.As.Debug("NotSitecoreSpecificFile '{0}' copied to {1}", notSitecoreSpecificFileType.FullName, projectFolder.CombineTo<FileInfo>(notSitecoreSpecificFileType.Name).FullName);
+            }
+
+
+            Log.As.Info("Module copied to website");
         }
 
         public void CopyLicenseFileToDataFolder(BuildLibraryFile license, DataFolder dataFolder, FileInfo licenseConfigFile)

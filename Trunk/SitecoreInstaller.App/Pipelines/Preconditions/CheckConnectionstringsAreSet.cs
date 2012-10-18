@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
+    using SitecoreInstaller.Domain;
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.UI;
 

@@ -16,7 +16,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             var selectedSitecore = Services.BuildLibrary.Get(Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore, SourceType.Sitecore);
             if (selectedSitecore is BuildLibraryDirectory == false)
                 throw new DirectoryNotFoundException("selected Sitecore was not of type BuildLibraryDirectory. Was:" + selectedSitecore.GetType());
-            Services.Website.CopySitecoreToProjectfolder(Services.ProjectSettings.ProjectFolder, selectedSitecore as BuildLibraryDirectory);
+            Services.Website.CopySitecoreToProjectfolder(Services.ProjectSettings.ProjectFolder, selectedSitecore as BuildLibraryDirectory, Services.ProjectSettings.InstallType);
         }
     }
 }

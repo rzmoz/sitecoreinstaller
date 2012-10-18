@@ -8,6 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     using System.IO;
 
     using SitecoreInstaller.App.Pipelines.Preconditions;
+    using SitecoreInstaller.Domain;
     using SitecoreInstaller.Domain.Database;
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Domain.Website;

@@ -12,6 +12,7 @@ namespace SitecoreInstaller.UI.Developer
     using Microsoft.Web.Administration;
 
     using SitecoreInstaller.App;
+    using SitecoreInstaller.Domain;
     using SitecoreInstaller.Domain.WebServer;
     using SitecoreInstaller.Framework.System;
 

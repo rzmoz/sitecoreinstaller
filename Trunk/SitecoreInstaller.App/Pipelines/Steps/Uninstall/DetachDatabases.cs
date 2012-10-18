@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
+    using SitecoreInstaller.Domain;
     using SitecoreInstaller.Domain.Pipelines;
 
     public class DetachDatabases : Step
