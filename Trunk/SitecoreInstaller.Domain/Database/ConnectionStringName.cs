@@ -19,12 +19,13 @@ namespace SitecoreInstaller.Domain.Database
         {
             if (databaseName == null)
                 throw new ArgumentNullException("databaseName");
-            var parts = databaseName.Split(_Delimiter);
-            if (parts.Length != 2)
-                throw new ArgumentException("database name should be in the format <projectPart>_<databasePart>");
 
-            ProjectPart = parts[0];
-            DatabasePart = parts[1];
+            var delimiterIndex = databaseName.LastIndexOf(_Delimiter);
+            if (delimiterIndex < 0)
+                throw new ArgumentException(string.Format("database name should have {0} as delimiter", _Delimiter));
+
+            ProjectPart = databaseName.Substring(0, delimiterIndex);
+            DatabasePart = databaseName.Substring(delimiterIndex + 1);
         }
 
         public ConnectionStringName(string projectPart, string databasePart)
