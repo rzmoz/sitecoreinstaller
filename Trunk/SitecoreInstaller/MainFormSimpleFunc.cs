@@ -5,9 +5,11 @@ using System.Text;
 
 namespace SitecoreInstaller
 {
+    using System.IO;
     using System.Windows.Forms;
 
     using SitecoreInstaller.App;
+    using SitecoreInstaller.Domain;
 
     internal class MainFormSimpleFunc : MainFormFunc
     {
@@ -96,6 +98,21 @@ namespace SitecoreInstaller
                 Services.Website.OpenFrontend(MainForm.MainSimple.Open.GetProjectSettings().Iis.Url);
             else
                 MainForm.MainSimple.btnOpen_Click(sender, e);
+        }
+
+        public override void OpenProjectFolder(object sender, EventArgs e)
+        {
+            ProjectFolder projectFolder = null;
+            if (MainForm.MainSimple.Install.Visible)
+                projectFolder = MainForm.MainSimple.Install.GetProjectSettings().ProjectFolder;
+            else if (MainForm.MainSimple.Uninstall.Visible)
+                projectFolder = MainForm.MainSimple.Uninstall.GetProjectSettings().ProjectFolder;
+            else if (MainForm.MainSimple.Open.Visible)
+                projectFolder = MainForm.MainSimple.Open.GetProjectSettings().ProjectFolder;
+            if(projectFolder==null)
+                return;
+            if (Directory.Exists(projectFolder.FullName))
+                System.Diagnostics.Process.Start(projectFolder.FullName);
         }
     }
 }

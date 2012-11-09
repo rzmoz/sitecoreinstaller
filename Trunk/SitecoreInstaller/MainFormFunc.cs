@@ -7,7 +7,6 @@ namespace SitecoreInstaller
 {
     using System.Windows.Forms;
 
-    using SitecoreInstaller.App;
     using SitecoreInstaller.Framework.Diagnostics;
 
     internal abstract class MainFormFunc
@@ -37,5 +36,6 @@ namespace SitecoreInstaller
 
         public abstract void OpenSitecore(object sender, EventArgs e);
         public abstract void OpenFrontend(object sender, EventArgs e);
+        public abstract void OpenProjectFolder(object sender, EventArgs e);
     }
 }

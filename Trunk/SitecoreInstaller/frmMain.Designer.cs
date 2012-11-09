@@ -61,6 +61,7 @@
             this.mainSimple1 = new SitecoreInstaller.UI.Simple.MainSimple();
             this.stepWizardDialog1 = new SitecoreInstaller.UI.UserSettingsDialogs.StepWizardDialog();
             this.logger1 = new SitecoreInstaller.UI.Logger();
+            this.openProjectFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
@@ -85,7 +86,8 @@
             this.installSitecoreToolStripMenuItem,
             this.uninstallSitecoreToolStripMenuItem,
             this.openSitecoreToolStripMenuItem,
-            this.openFrontendToolStripMenuItem});
+            this.openFrontendToolStripMenuItem,
+            this.openProjectFolderToolStripMenuItem});
             this.sitecoreToolStripMenuItem.Name = "sitecoreToolStripMenuItem";
             this.sitecoreToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.U)));
@@ -97,7 +99,7 @@
             this.installSitecoreToolStripMenuItem.Name = "installSitecoreToolStripMenuItem";
             this.installSitecoreToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.B)));
-            this.installSitecoreToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.installSitecoreToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.installSitecoreToolStripMenuItem.Text = "Install Sitecore!";
             this.installSitecoreToolStripMenuItem.Click += new System.EventHandler(this.installSitecoreToolStripMenuItem_Click);
             // 
@@ -106,7 +108,7 @@
             this.uninstallSitecoreToolStripMenuItem.Name = "uninstallSitecoreToolStripMenuItem";
             this.uninstallSitecoreToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.U)));
-            this.uninstallSitecoreToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.uninstallSitecoreToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.uninstallSitecoreToolStripMenuItem.Text = "Uninstall Sitecore";
             this.uninstallSitecoreToolStripMenuItem.Click += new System.EventHandler(this.uninstallSitecoreToolStripMenuItem_Click);
             // 
@@ -115,7 +117,7 @@
             this.openSitecoreToolStripMenuItem.Name = "openSitecoreToolStripMenuItem";
             this.openSitecoreToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.O)));
-            this.openSitecoreToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.openSitecoreToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.openSitecoreToolStripMenuItem.Text = "Open Sitecore";
             this.openSitecoreToolStripMenuItem.Click += new System.EventHandler(this.openSitecoreToolStripMenuItem_Click);
             // 
@@ -123,7 +125,7 @@
             // 
             this.openFrontendToolStripMenuItem.Name = "openFrontendToolStripMenuItem";
             this.openFrontendToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openFrontendToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.openFrontendToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.openFrontendToolStripMenuItem.Text = "Open Frontend";
             this.openFrontendToolStripMenuItem.Click += new System.EventHandler(this.openFrontendToolStripMenuItem_Click);
             // 
@@ -328,6 +330,16 @@
             this.logger1.Size = new System.Drawing.Size(400, 200);
             this.logger1.TabIndex = 5;
             // 
+            // openProjectFolderToolStripMenuItem
+            // 
+            this.openProjectFolderToolStripMenuItem.Name = "openProjectFolderToolStripMenuItem";
+            this.openProjectFolderToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.O)));
+            this.openProjectFolderToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.openProjectFolderToolStripMenuItem.Text = "Open project folder";
+            this.openProjectFolderToolStripMenuItem.Click += new System.EventHandler(this.openProjectFolderToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,5 +395,6 @@
         private System.Windows.Forms.ToolStripMenuItem urlPostfixToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showLogToolStripMenuItem;
         private UI.UserSettingsDialogs.StepWizardDialog stepWizardDialog1;
+        private System.Windows.Forms.ToolStripMenuItem openProjectFolderToolStripMenuItem;
     }
 }

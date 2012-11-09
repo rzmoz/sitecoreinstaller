@@ -11,7 +11,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
     {
         public override bool Evaluate(object sender, PreconditionEventArgs args)
         {
-            if (Services.HostFile.HasWritePermissions())
+            if (Services.IisManagement.HostFile.HasWritePermissions())
                 return true;
 
             ErrorMessage = string.Format("SitecoreInstaller needs write permission to system host file. Run SitecoreInstaller as administrator");

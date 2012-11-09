@@ -4,6 +4,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     using System.IO;
 
+    using SitecoreInstaller.Domain;
     using SitecoreInstaller.Domain.BuildLibrary;
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Configuration;

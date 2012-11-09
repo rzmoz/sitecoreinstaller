@@ -14,29 +14,31 @@ namespace SitecoreInstaller.Domain.Database
 
         public ConnectionStringEntry(string entryName, string connectionString)
         {
-            Name = entryName ?? string.Empty;
+            Name = new ConnectionStringName();
+            if (entryName != null)
+                Name = new ConnectionStringName(" _" + entryName);
             ConnectionString = connectionString ?? string.Empty;
         }
 
-        public ConnectionStringEntry(SqlSettings parameters, string databaseName, string projectName)
+        public ConnectionStringEntry(SqlSettings parameters, ConnectionStringName connectionStringName)
         {
-            ConnectionString = string.Format(_ConnectionStringFormat, parameters.Login, parameters.Password, parameters.InstanceName, projectName, databaseName);
-            Name = databaseName;
+            Name = connectionStringName;
+            ConnectionString = string.Format(_ConnectionStringFormat, parameters.Login, parameters.Password, parameters.InstanceName, connectionStringName);
         }
-        public string Name { get; set; }
+        public ConnectionStringName Name { get; set; }
         public string ConnectionString { get; set; }
 
         public override string ToString()
         {
-            return string.Format(_ConnectionStringEntryFormat, Name.ToLowerInvariant(), ConnectionString);
+            return string.Format(_ConnectionStringEntryFormat, Name.DatabasePart.ToLowerInvariant(), ConnectionString);
         }
         public string ToInsertString()
         {
-            return string.Format(_ConnectionStringInsertEntryFormat, Name.ToLowerInvariant(), ConnectionString);
+            return string.Format(_ConnectionStringInsertEntryFormat, Name.DatabasePart.ToLowerInvariant(), ConnectionString);
         }
         public string ToReplaceString()
         {
-            return string.Format(_ConnectionStringReplaceEntryFormat, Name.ToLowerInvariant(), ConnectionString);
+            return string.Format(_ConnectionStringReplaceEntryFormat, Name.DatabasePart.ToLowerInvariant(), ConnectionString);
         }
 
         private const string _ConnectionStringEntryFormat = @"<add name=""{0}"" connectionString=""{1}"" />
@@ -45,6 +47,6 @@ namespace SitecoreInstaller.Domain.Database
 ";
         private const string _ConnectionStringReplaceEntryFormat = @"<add name=""{0}"" connectionString=""{1}"" xdt:Transform=""Replace"" xdt:Locator=""Match(name)""/>
 ";
-        private const string _ConnectionStringFormat = "user id={0};password={1};Data Source={2};Database={3}_{4}";
+        private const string _ConnectionStringFormat = "user id={0};password={1};Data Source={2};Database={3}";
     }
 }

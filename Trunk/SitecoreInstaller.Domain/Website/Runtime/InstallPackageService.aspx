@@ -32,13 +32,6 @@
                     context.AddAspect(events1);
                     var inst = new Sitecore.Install.Installer();
                     inst.InstallPackage(Sitecore.MainUtil.MapPath(filename), context);
-                    Sitecore.Install.Framework.ISource<Sitecore.Install.Framework.PackageEntry> source = new Sitecore.Install.Zip.PackageReader(Sitecore.MainUtil.MapPath(filename));
-                    var previewContext = Sitecore.Install.Installer.CreatePreviewContext();
-                    var view = new Sitecore.Install.Metadata.MetadataView(previewContext);
-                    var sink = new Sitecore.Install.Metadata.MetadataSink(view);
-                    sink.Initialize(previewContext);
-                    source.Populate(sink);
-                    inst.ExecutePostStep(view.PostStep, previewContext);
                 }
             }
         }

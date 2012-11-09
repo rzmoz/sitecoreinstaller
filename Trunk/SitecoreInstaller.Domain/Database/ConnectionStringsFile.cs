@@ -49,7 +49,7 @@ namespace SitecoreInstaller.Domain.Database
         {
             if (entry == null)
                 return;
-            var key = entry.Name.ToLower();
+            var key = entry.Name.DatabasePart.ToLower();
 
             if (_entries.ContainsKey(key))
                 _entries[key] = entry;

@@ -35,7 +35,7 @@ namespace SitecoreInstaller.App
                 return false;
 
             var keysString = sourceEntries.ToDelimiteredString(';');
-            keysString = "\r\n" + keysString.Replace(";", "\r\n");
+            keysString = "\r\n" + keysString.Replace(";", Consts.Newline);
 
             return UserAccept("Do you want to remove {0}", keysString);
         }

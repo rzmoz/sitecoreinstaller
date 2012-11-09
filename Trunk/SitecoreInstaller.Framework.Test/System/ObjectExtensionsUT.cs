@@ -19,7 +19,7 @@ namespace SitecoreInstaller.Framework.Test.System
         {
             string property = null;
             const string value = "MyValue";
-            property.TrySet(value);
+            property = property.TrySet(value);
 
             property.Should().Be(value);
         }
@@ -29,7 +29,7 @@ namespace SitecoreInstaller.Framework.Test.System
         {
             int property = 0;
             const string value = "100";
-            property.TrySet(value);
+            property = property.TrySet(value);
 
             property.Should().Be(Int32.Parse(value));
         }
@@ -38,18 +38,30 @@ namespace SitecoreInstaller.Framework.Test.System
         {
             bool property = false;
             const string value = "true";
-            property.TrySet(value);
+            property = property.TrySet(value);
 
             property.Should().Be(Boolean.Parse(value));
         }
         [Test]
-        public void TrySet_SetEmpty_ValueIsNotSet()
+        public void TrySet_SetEmpty_ValueIsSet()
         {
             string property = null;
             const string value = "";
-            property.TrySet(value);
+            property = property.TrySet(value, true);
 
-            property.Should().BeNull();
+            property.Should().BeEmpty();
+        }
+
+        [Test]
+        public void TrySet_DoNotSet_ValueIsNotSet()
+        {
+            string initialValue = "not null";
+
+            string property = initialValue;
+            const string value = "";
+            property = property.TrySet(value);
+
+            property.Should().Be(initialValue);
         }
     }
 }

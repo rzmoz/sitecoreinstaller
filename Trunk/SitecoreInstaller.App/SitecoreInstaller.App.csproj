@@ -81,18 +81,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InstallType.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />
     <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveProjectToArchiveFolder.cs" />
     <Compile Include="Pipelines\Steps\Install\GrantPermissions.cs" />
+    <Compile Include="SelectDatabases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectDatabases.Designer.cs">
+      <DependentUpon>SelectDatabases.cs</DependentUpon>
+    </Compile>
     <Compile Include="UiDialogs.cs" />
     <Compile Include="Pipelines\InstallPipeline.cs" />
     <Compile Include="Pipelines\NothingPipeline.cs" />
     <Compile Include="Pipelines\PipelineManager.cs" />
-    <Compile Include="Pipelines\Preconditions\CheckConnectionstringsManuallyUpdated.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckConnectionstringsAreSet.cs" />
     <Compile Include="Pipelines\Preconditions\CheckLicense.cs" />
     <Compile Include="Pipelines\Preconditions\CheckProjectExists.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSitecore.cs" />
@@ -153,7 +158,11 @@
       <LastGenOutput>UserSettings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="SelectDatabases.resx">
+      <DependentUpon>SelectDatabases.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -9,3 +9,4 @@ Trunk/*/obj/*
 Trunk/Build/
 *.user
 *.suo
+Trunk/SitecoreInstaller/*.config

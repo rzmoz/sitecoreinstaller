@@ -8,8 +8,8 @@ namespace SitecoreInstaller.Domain.Website
     public interface IWebsiteService
     {
         void SetDataFolder(DataFolder dataFolder, FileInfo dataFolderConfigFile);
-        void CopySitecoreToProjectfolder(ProjectFolder projectFolder, BuildLibraryDirectory sitecore);
-        void CopyModulesToWebsite(ProjectFolder projectFolder, IEnumerable<BuildLibraryDirectory> modules);
+        void CopySitecoreToProjectfolder(ProjectFolder projectFolder, BuildLibraryDirectory sitecore, InstallType installType);
+        void CopyModulesToWebsite(ProjectFolder projectFolder, BuildLibraryDirectory module, InstallType installType);
         void CopyLicenseFileToDataFolder(BuildLibraryFile license, DataFolder dataFolder, FileInfo licenseConfigFile);
         void OpenSitecore(string baseUrl, DirectoryInfo websiteFolder);
         void OpenFrontend(string baseUrl);

@@ -26,7 +26,6 @@ namespace SitecoreInstaller.App
             Website = new WebsiteService();
             Dialogs = new UiDialogs();
             IisManagement = new IisManagementService();
-            HostFile = new HostFileService();
             PipelineWorker = new PipelineWorker();
             ProjectSettings = new ProjectSettings();
             SourceManifests = new SourceManifestRepository(AppConstants.SourcesConfigFileName);
@@ -97,7 +96,6 @@ namespace SitecoreInstaller.App
         public static ISourceRepository BuildLibrary { get; set; }
         public static IProjectsService Projects { get; set; }
         public static IWebsiteService Website { get; set; }
-        public static IHostFileService HostFile { get; set; }
         public static IIisManagementService IisManagement { get; set; }
         public static ISqlService Sql { get; set; }
         public static UiDialogs Dialogs { get; set; }

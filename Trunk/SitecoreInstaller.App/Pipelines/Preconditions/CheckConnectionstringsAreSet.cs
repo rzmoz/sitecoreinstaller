@@ -5,15 +5,24 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
+    using SitecoreInstaller.Domain;
     using SitecoreInstaller.Domain.Pipelines;
+    using SitecoreInstaller.UI;
 
-    public class CheckConnectionstringsManuallyUpdated : IPrecondition
+    public class CheckConnectionstringsAreSet : IPrecondition
     {
         public bool Evaluate(object sender, PreconditionEventArgs args)
         {
             if(Services.ProjectSettings.InstallType == InstallType.Full)
                 return true;
-            Services.Dialogs.Information("Please update connectionstrings.config and press ok to continue");
+
+            if (Services.ProjectSettings.InstallType == InstallType.Client)
+            {
+                using (var selectDatabases = new SelectDatabases())
+                {
+                    var result = selectDatabases.ShowDialog();
+                }
+            }
             return true;
         }
 

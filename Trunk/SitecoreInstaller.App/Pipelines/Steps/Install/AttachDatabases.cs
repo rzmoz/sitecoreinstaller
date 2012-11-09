@@ -6,16 +6,12 @@ using System.Text;
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     using SitecoreInstaller.App.Pipelines.Preconditions;
+    using SitecoreInstaller.Domain;
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
 
     public class AttachDatabases : Step
     {
-        public AttachDatabases()
-        {
-            AddPrecondition<CheckConnectionstringsManuallyUpdated>();
-        }
-
         protected override void InnerInvoke(object sender, StepEventArgs  args)
         {
             if (Services.ProjectSettings.InstallType == InstallType.Client)

@@ -58,6 +58,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Database\ConnectionStringNameUT.cs" />
     <Compile Include="Database\SqlDatabaseUT.cs" />
     <Compile Include="Pipelines\InstallerServiceMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

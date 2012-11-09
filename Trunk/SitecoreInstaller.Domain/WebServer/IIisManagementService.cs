@@ -21,5 +21,7 @@ namespace SitecoreInstaller.Domain.WebServer
         void StopApplication(string applicationName);
 
         bool BindingExists(string binding);
+
+        HostFile HostFile { get; }
     }
 }

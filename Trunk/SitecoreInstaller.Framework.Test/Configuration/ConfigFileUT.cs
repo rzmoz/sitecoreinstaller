@@ -46,7 +46,7 @@ namespace SitecoreInstaller.Framework.Test.Configuration
         {
             var result = _configFile.ThisPropertyDoesNotExist;
 
-            Assert.AreEqual(null, result);
+            Assert.AreEqual(string.Empty, result);
         }
 
         [Test]
