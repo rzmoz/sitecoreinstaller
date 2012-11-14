@@ -6,6 +6,6 @@
     <source name="RAR" parameters="C:\BuildLibraryExternalMock" type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
     <!--
     <source name="SA" parameters="\\fil1dk1.dk.sitecore.net\DATA2\Sitecore\SolutionArchitects\BuildLibrary" type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
-    <source name="Sales" parameters="\\fil1dk1.dk.sitecore.net\DATA2\Sitecore\SolutionArchitects\BuildLibrarySales" type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
+    <source name="Sales" parameters="\\fil1dk1.dk.sitecore.net\data2\Sitecore\SitecoreInstallerBuildLibrary\Common" type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
 -->
 </configuration>

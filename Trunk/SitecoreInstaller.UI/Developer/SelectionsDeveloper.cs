@@ -34,7 +34,7 @@
             projectSettings.Init(UserSettings.Default);
             projectSettings.Iis = _getIisSettings();//Get iis settings before project name is set!
             projectSettings.InstallType = _getInstallType();
-            projectSettings.ProjectName.Value = _selectProjectName1.ProjectName;
+            projectSettings.ProjectName = _selectProjectName1.ProjectName;
             projectSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
             projectSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
             projectSettings.BuildLibrarySelections.SelectedModules = selectModules1.SelectedModules;

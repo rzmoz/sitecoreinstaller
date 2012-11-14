@@ -15,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
                 return true;
             return !Services.Dialogs.UserAccept(
                     "Do you want to keep '{0}'? (Saying no will delete it forever!)",
-                    Services.ProjectSettings.ProjectName.Value);
+                    Services.ProjectSettings.ProjectName);
         }
     }
 }

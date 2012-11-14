@@ -32,8 +32,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
             if (Services.ProjectSettings.InstallType == InstallType.Full)
             {
-                var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName.Value);
-                Services.ProjectSettings.DatabaseNames = databases.Select(db => db.LogicalName).AsUniqueStrings().Select(name => new ConnectionStringName(Services.ProjectSettings.ProjectName.Value, name));
+                var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName);
+                Services.ProjectSettings.DatabaseNames = databases.Select(db => db.LogicalName).AsUniqueStrings().Select(name => new ConnectionStringName(Services.ProjectSettings.ProjectName, name));
             }
 
             var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.ProjectSettings.Sql, Services.ProjectSettings.DatabaseNames, existingConnectionStringNames);

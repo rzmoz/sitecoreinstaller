@@ -32,7 +32,7 @@ namespace SitecoreInstaller.UI
             for (int i = 0; i < clbDatabases.Items.Count; i++)
             {
                 var entry = clbDatabases.Items[i].ToString();
-                if (entry.StartsWith(Services.ProjectSettings.ProjectName.Value + "_"))
+                if (entry.StartsWith(Services.ProjectSettings.ProjectName + "_"))
                 {
                     clbDatabases.SetItemChecked(i, true);
                     clbDatabases.SelectedIndex = i;

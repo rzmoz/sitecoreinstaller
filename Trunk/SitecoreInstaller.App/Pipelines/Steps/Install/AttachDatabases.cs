@@ -18,7 +18,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
                 return;
 
             Log.As.Info("Attaching databases...");
-            var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName.Value);
+            var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName);
             foreach (var sqlDatabase in databases)
                 sqlDatabase.Attach(Services.ProjectSettings.Sql);
         }

@@ -41,8 +41,8 @@ namespace SitecoreInstallerConsole.Runners
 
         private void Install(string license, IEnumerable<SourceEntry> selectedModules, string projectName, string sitecore)
         {
-            Services.ProjectSettings.ProjectName.Value = projectName;
-            Services.ProjectSettings.Iis = new IisSettings { Name = Services.ProjectSettings.ProjectName.Value };
+            Services.ProjectSettings.ProjectName = projectName;
+            Services.ProjectSettings.Iis = new IisSettings { Name = Services.ProjectSettings.ProjectName };
             Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
             Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license, string.Empty);
             if (sitecore == ArgSwitches.Latest)

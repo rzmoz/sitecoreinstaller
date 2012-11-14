@@ -33,7 +33,7 @@ namespace SitecoreInstaller.UI.Simple
         {
             var projectSettings = new ProjectSettings();
             projectSettings.Init(UserSettings.Default);
-            projectSettings.ProjectName.Value = selectProjectName1.ProjectName;
+            projectSettings.ProjectName = selectProjectName1.ProjectName;
             projectSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
             return projectSettings;
         }

@@ -26,7 +26,7 @@
         {
             var projectSettings = new ProjectSettings();
             projectSettings.Init(UserSettings.Default);
-            projectSettings.ProjectName.Value = selectProjectName1.ProjectName;
+            projectSettings.ProjectName = selectProjectName1.ProjectName;
             return projectSettings;
         }
 

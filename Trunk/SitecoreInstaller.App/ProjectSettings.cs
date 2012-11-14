@@ -20,10 +20,12 @@
     [DataContract]
     public class ProjectSettings
     {
+        private Observable<string> _projectName;
+
         public ProjectSettings()
         {
-            ProjectName = new Observable<string>();
-            ProjectName.PropertyUpdated += ProjectNamePropertyUpdated;
+            _projectName = new Observable<string>();
+            _projectName.PropertyUpdated += ProjectNamePropertyUpdated;
             Reset();
         }
 
@@ -41,9 +43,13 @@
         }
 
 
-        public bool ProjectNameIsSet { get { return !string.IsNullOrEmpty(ProjectName.Value); } }
+        public bool ProjectNameIsSet { get { return !string.IsNullOrEmpty(ProjectName); } }
 
-        public Observable<string> ProjectName { get; private set; }
+        public string ProjectName
+        {
+            get { return _projectName.Value; }
+            set { _projectName.Value = value; }
+        }
 
         public InstallType InstallType { get; set; }
 
@@ -56,7 +62,7 @@
 
         private void Reset()
         {
-            ProjectName.Reset();
+            _projectName.Reset();
             DatabaseNames = Enumerable.Empty<ConnectionStringName>();
             InstallType = InstallType.Full;
             Iis = new IisSettings();
@@ -72,12 +78,12 @@
             else
                 Iis.Url = string.Empty;
 
-            Iis.Name = ProjectName.Value;
+            Iis.Name = ProjectName;
         }
 
         private void SetSystemPaths()
         {
-            var projectfolder = new DirectoryInfo(UserSettings.Default.ProjectsFolder).CombineTo<DirectoryInfo>(ProjectName.Value);
+            var projectfolder = new DirectoryInfo(UserSettings.Default.ProjectsFolder).CombineTo<DirectoryInfo>(ProjectName);
             ProjectFolder = new ProjectFolder(projectfolder, DataFolderMode.DataOutside);
             Iis.Url = ProjectName + UserSettings.Default.IisSitePostfix;
         }

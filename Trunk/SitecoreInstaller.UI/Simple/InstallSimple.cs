@@ -17,7 +17,7 @@
         {
             var projectSettings = new ProjectSettings();
             projectSettings.Init(UserSettings.Default);
-            projectSettings.ProjectName.Value = tbxProjectName.Text;
+            projectSettings.ProjectName = tbxProjectName.Text;
             projectSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
             projectSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
             return projectSettings;

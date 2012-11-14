@@ -15,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
             if (Services.ProjectSettings.InstallType == InstallType.Client)
                 return;
 
-            var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName.Value);
+            var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName);
             foreach (var sqlDatabase in databases)
                 sqlDatabase.Detach(Services.ProjectSettings.Sql);
         }
