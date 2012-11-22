@@ -1,11 +1,12 @@
 Features:
 Better handling of updating slow sources - put in background thread?
 SDN source!
-Detection / logging of installed items (Sitecore, license, modules etc.) for better uninstall and reinstall
 Installation of Sitecore Counters
-Option for cancelling pipeline
-Optional rollback pipeline (if something goes wrong)
+Option for cancelling pipeline (cancel button)
+Optional rollback pipeline (if something goes wrong or user cancels)
 Elaborate on the module concept by enabling PowerShell scripts, Nuget packages and MSBuild scripts.
+
+Performance:
 
 UI:
 More detailed UI for pipeline progress
