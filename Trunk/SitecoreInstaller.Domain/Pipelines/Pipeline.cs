@@ -43,8 +43,12 @@ namespace SitecoreInstaller.Domain.Pipelines
         }
         public void AddStep(IStep step)
         {
-            _steps.Add(step.GetType().FullName, step);
+            var key = step.GetType().FullName;
+
+            if (_steps.ContainsKey(key))
+                return;
             step.Order = _steps.Count;
+            _steps.Add(key, step);
         }
 
         public void AddSteps(IEnumerable<IStep> steps)
