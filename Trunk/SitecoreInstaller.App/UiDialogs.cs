@@ -5,8 +5,10 @@ namespace SitecoreInstaller.App
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Drawing;
+    using System.Reflection;
 
     using SitecoreInstaller.Domain.BuildLibrary;
 
@@ -102,13 +104,17 @@ namespace SitecoreInstaller.App
 
         public void About()
         {
-            MessageBox.Show("SitecoreInstaller was created by Rasmus Rasmussen", "About SitecoreInstaller",
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fvi.ProductVersion;
+
+            MessageBox.Show("You are running SitecoreInstaller v" + version, "About SitecoreInstaller",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
         }
         public void OnlineHelp()
         {
-            System.Diagnostics.Process.Start("http://sitecoreinstaller.codeplex.com/");
+            Process.Start("http://sitecoreinstaller.codeplex.com/");
         }
 
         public DialogResult InputBox(string title, string promptText, ref string value)
