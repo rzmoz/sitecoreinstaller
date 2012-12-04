@@ -30,7 +30,7 @@ namespace SitecoreInstaller.Domain
             Website = new WebsiteFolder(Directory.CombineTo<DirectoryInfo>(_WebsiteFolderName));
             Databases = Directory.CombineTo<DirectoryInfo>(_DatabasesFolderName);
             IisLogFiles = Directory.CombineTo<DirectoryInfo>(_IisLogFilesFolderName);
-            ProjectSettingsconfigFile = new ConfigFile(Directory.CombineTo<FileInfo>(_ProjectSettingsConfigFileName));
+            ProjectSettingsConfigFile = new ConfigFile(Directory.CombineTo<FileInfo>(_ProjectSettingsConfigFileName));
             switch (DataFolderMode)
             {
                 case DataFolderMode.AppDataInside:
@@ -48,6 +48,6 @@ namespace SitecoreInstaller.Domain
         public DirectoryInfo Databases { get; private set; }
         public WebsiteFolder Website { get; private set; }
         public DirectoryInfo IisLogFiles { get; private set; }
-        public ConfigFile ProjectSettingsconfigFile { get; private set; }
+        public ConfigFile ProjectSettingsConfigFile { get; private set; }
     }
 }

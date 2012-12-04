@@ -34,7 +34,7 @@ namespace SitecoreInstaller.Domain.Projects
             projectFolder.Data.Audit.Clean();
             projectFolder.Data.Packages.Clean();
             projectFolder.Website.Temp.Clean();
-            projectFolder.ProjectSettingsconfigFile.Path.Delete();
+            projectFolder.ProjectSettingsConfigFile.Path.Delete();
             projectFolder.Data.LicenseFile.Delete();
         }
 
