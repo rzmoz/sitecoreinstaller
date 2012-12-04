@@ -1,22 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Security.Policy;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
-using System.Xml.Linq;
+
 using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.Domain.Website
 {
-    using System.Security.AccessControl;
-    using System.Text;
-
     using SitecoreInstaller.Domain.BuildLibrary;
     using SitecoreInstaller.Framework.Diagnostics;
     using SitecoreInstaller.Framework.System;
@@ -178,8 +170,6 @@ namespace SitecoreInstaller.Domain.Website
             OpenInBrowser(baseUrl.ToUri());
         }
 
-
-
         public void InstallRuntimeServices(WebsiteFolder websiteFolder)
         {
             Log.As.Info("Installing runtime services...");
@@ -294,9 +284,25 @@ namespace SitecoreInstaller.Domain.Website
 
         public void OpenInBrowser(Uri url)
         {
-            var command = "start " + url;
+            const string openBrowserFormat = @"""{0}"" {1}";
+            var browser = GetBrowser();
+            var command = string.Format(openBrowserFormat, browser, url);
             var cmd = new CommandPrompt();
             cmd.Run(command);
+        }
+
+        private string GetBrowser()
+        {
+            //ie 1 in program files (x86)
+            var ie = new FileInfo(@"C:\Program Files (x86)\Internet Explorer\iexplore.exe");
+            if (ie.Exists)
+                return ie.FullName;
+            //ie 1 in program files
+            ie = new FileInfo(@"C:\Program Files\Internet Explorer\iexplore.exe");
+            if (ie.Exists)
+                return ie.FullName;
+
+            return "start";
         }
     }
 }
