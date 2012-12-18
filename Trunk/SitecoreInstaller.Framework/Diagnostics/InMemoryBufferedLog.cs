@@ -9,7 +9,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
 
     using global::System.Threading;
 
-    public class InMemoryBufferedLog : ILog, IDisposable
+    public class InMemoryBufferedLog : ILog
     {
         private readonly IList<LogEntry> _entries;
         private readonly Queue<LogEntry> _notifyBuffer;
@@ -109,10 +109,6 @@ namespace SitecoreInstaller.Framework.Diagnostics
                 var logMessage = _notifyBuffer.Dequeue();
                 EntryLogged(this, new GenericEventArgs<LogEntry>(logMessage));
             }
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

@@ -5,6 +5,8 @@ using System.Text;
 using SitecoreInstaller.Framework.IO;
 namespace SitecoreInstaller.App.Test.IO
 {
+    using FluentAssertions;
+
     using NUnit.Framework;
 
     using SitecoreInstaller.Framework.System;
@@ -32,9 +34,10 @@ namespace SitecoreInstaller.App.Test.IO
         public void Combine_CombineToDirectoryInfo_ReturnTypeIsDirectoryInfo()
         {
             var returnType = _rootDir.Combine(_testDir);
-            Assert.IsNotNull(returnType);
-            Assert.IsTrue(returnType is DirectoryInfo);
+            returnType.Should().NotBeNull();
+            (returnType is DirectoryInfo).Should().BeTrue();
         }
+
         [Test]
         public void Combine_CombineToFileInfo_ReturnTypeIsFileInfo()
         {
@@ -48,6 +51,14 @@ namespace SitecoreInstaller.App.Test.IO
             var actual = _rootDir.Combine(_testFile).FullName;
             var expected = Path.Combine(_rootDir.FullName, _testFile.Name);
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void CombineTo_CombineWithMultiFolderString_ReturnTypeIsDirectoryInfo()
+        {
+            var combinedDir = _rootDir.CombineTo<DirectoryInfo>("test1/test2");
+            combinedDir.Should().NotBeNull();
+            combinedDir.FullName.Should().Be(@"c:\rootDir\test1\test2");
         }
 
         [Test]

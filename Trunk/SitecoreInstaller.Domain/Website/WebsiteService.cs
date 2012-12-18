@@ -15,7 +15,7 @@ namespace SitecoreInstaller.Domain.Website
 
     public class WebsiteService : IWebsiteService
     {
-        private const string _InstallerPath = "DeleteMe";
+        private const string _InstallerPath = "temp/SitecoreInstaller";
         private const string _KeepAlivePingPath = "/sitecore/service/keepalive.aspx";
         private const string _SitecorePingPath = "/sitecore/login/";
         private const string _SiteRootPingPath = "/";

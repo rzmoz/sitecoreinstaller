@@ -1,5 +1,7 @@
 ﻿namespace SitecoreInstaller.Domain.Test.Website
 {
+    using FluentAssertions;
+
     using SitecoreInstaller.Domain.Website;
 
     using NUnit.Framework;
@@ -23,7 +25,18 @@
 
             var result = baseUrl.ToUri(paths);
 
-            Assert.AreEqual("http://" + baseUrl + "/folder1/folder2" + queryString, result.ToString());
+            result.ToString().Should().Be("http://" + baseUrl + "/folder1/folder2" + queryString);
+        }
+
+        [Test]
+        public void ToUri_WithSubDirs_PathIsResolved()
+        {
+            const string baseUrl = "base.url";
+            const string path = "temp/SitecoreInstaller";
+
+            var uri = baseUrl.ToUri(path);
+
+            uri.ToString().Should().Be("http://" + baseUrl + "/" + path);
         }
     }
 }

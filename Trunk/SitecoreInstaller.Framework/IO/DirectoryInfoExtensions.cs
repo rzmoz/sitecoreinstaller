@@ -39,7 +39,17 @@ namespace SitecoreInstaller.Framework.IO
         }
         public static T CombineTo<T>(this DirectoryInfo directoryInfo, params string[] paths) where T : FileSystemInfo
         {
-            var combinedString = CombineToString(directoryInfo, paths.Select(path => new FileInfo(path)).ToArray());
+            var tempPathTokens = new List<FileSystemInfo>();
+
+            foreach (var path in paths)
+            {
+                var tempPath = path.Replace("/", @"\");
+                tempPathTokens.AddRange(tempPath.Split('\\').Select(token => new FileInfo(token)));
+            }
+
+            var pathTokens = tempPathTokens.Select(x => x).ToArray();
+
+            var combinedString = CombineToString(directoryInfo, pathTokens);
             return _fileSystemInfoFactory.Create<T>(combinedString);
         }
 
