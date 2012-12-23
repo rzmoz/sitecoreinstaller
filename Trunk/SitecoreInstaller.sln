@@ -18,7 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FBE4BB5D-3B32-49C1-AA6A-059D6D6B8BEE}"
 	ProjectSection(SolutionItems) = preProject
 		Feature Requests.txt = Feature Requests.txt
-		README.txt = README.txt
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Framework.Test", "SitecoreInstaller.Framework.Test\SitecoreInstaller.Framework.Test.csproj", "{6731B733-039F-4CCE-BB91-864E6876955B}"
