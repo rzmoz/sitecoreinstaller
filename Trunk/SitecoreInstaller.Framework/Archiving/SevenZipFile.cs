@@ -16,7 +16,7 @@ namespace SitecoreInstaller.Framework.Archiving
     {
         private const string _FileName = @"7za.exe";
         private const string _ExtractSwitch = @" x ""{0}"" ""-o{1}"" -y -r -mmt";
-        private const string _ArchiveSwitch = @" a -tzip ""{0}"" ""{1}\*.*"" -y -r -mmt";
+        private const string _ArchiveSwitch = @" a -tzip ""{0}"" ""{1}\*"" -y -r -mmt";
 
         private const string _RunFormat = @" ";
 
