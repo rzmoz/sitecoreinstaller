@@ -273,7 +273,7 @@ namespace SitecoreInstaller.Domain.Website
                         return;
                     }
                 }
-                catch (WebException we)
+                catch (WebException)
                 {
                     /*Log.As.Error(we.Message);
                     Log.As.Info("IIS not ready. Retry #{0}...", tryCount);*/

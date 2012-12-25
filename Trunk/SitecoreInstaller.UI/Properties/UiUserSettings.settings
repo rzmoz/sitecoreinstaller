@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SitecoreInstaller.UI.Properties" GeneratedClassName="UiUserSettings">
   <Profiles />
   <Settings>
-    <Setting Name="UseDeveloperMode" Type="System.Boolean" Scope="User">
+    <Setting Name="ShowAdvancedSettings" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ShowDebug" Type="System.Boolean" Scope="User">
@@ -19,6 +19,9 @@
     </Setting>
     <Setting Name="ShowProfiling" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShowStartScreen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

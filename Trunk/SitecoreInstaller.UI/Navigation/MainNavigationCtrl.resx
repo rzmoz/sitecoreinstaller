@@ -117,17 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="InstallNewSitecore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\InstallNewSitecore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="settings_active" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settings_active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ExistingInstallations" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ExistingInstallations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnInstallNewSitecore.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAABuSURBVFhH7dXBDQAhCABB+m9arYAQFz5k/XpwOGCMcCmggAIKYIGTLJy8I4EFUkUFFaQCNN4Z
+        zAQzna491MGuIsbGwAKfgC2mY7BbsHK6sRta+XnlGwusKP2+NjR3S7wtpowKrhekBzReAQU2C1zgfa+J
+        IYsaBQAAAABJRU5ErkJggg==
+</value>
   </data>
 </root>
