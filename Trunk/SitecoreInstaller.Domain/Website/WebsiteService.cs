@@ -47,11 +47,11 @@ namespace SitecoreInstaller.Domain.Website
             sitecoreWebsiteFolder.CopyTo(projectFolder.Website, DirCopyOptions.IncludeSubDirectories);
 
             //Copy database folder
-            if(installType == InstallType.Full)
+            if (installType == InstallType.Full)
             {
                 //TODO: Move database folder name to central location
                 CopyDatabaseFolder("Database", sitecore.Directory, projectFolder);
-                CopyDatabaseFolder(projectFolder.Databases.Name, sitecore.Directory, projectFolder);    
+                CopyDatabaseFolder(projectFolder.Databases.Name, sitecore.Directory, projectFolder);
             }
 
             //Copy data folder
@@ -134,10 +134,13 @@ namespace SitecoreInstaller.Domain.Website
         public void CopyLicenseFileToDataFolder(BuildLibraryFile license, DataFolder dataFolder, FileInfo licenseConfigFile)
         {
             Log.As.Info("Copying license file '{0}'...", license.File.Name);
-            license.File.CopyTo(dataFolder.Directory, true);
-            var licenseConfig = string.Format(WebsiteResource.LicenseFileFormat, license.File.Name);
+
+            var targetLicenseFileName = dataFolder.Directory.CombineTo<FileInfo>("license.xml");
+
+            File.Copy(license.File.FullName, targetLicenseFileName.FullName, true);
+            var licenseConfig = string.Format(WebsiteResource.LicenseFileFormat, targetLicenseFileName.Name);
             licenseConfig.WriteToDisk(licenseConfigFile);
-            Log.As.Info("License file copied");
+            Log.As.Info("License file copied to '{0}'", targetLicenseFileName.FullName);
         }
 
         public void OpenSitecore(string baseUrl, DirectoryInfo websiteFolder)
