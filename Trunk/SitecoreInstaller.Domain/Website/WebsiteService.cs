@@ -287,25 +287,10 @@ namespace SitecoreInstaller.Domain.Website
 
         public void OpenInBrowser(Uri url)
         {
-            const string openBrowserFormat = @"""{0}"" {1}";
-            var browser = GetBrowser();
-            var command = string.Format(openBrowserFormat, browser, url);
+            const string openBrowserFormat = @"""start"" {0}";
+            var command = string.Format(openBrowserFormat, url);
             var cmd = new CommandPrompt();
             cmd.Run(command);
-        }
-
-        private string GetBrowser()
-        {
-            //ie 1 in program files (x86)
-            var ie = new FileInfo(@"C:\Program Files (x86)\Internet Explorer\iexplore.exe");
-            if (ie.Exists)
-                return ie.FullName;
-            //ie 1 in program files
-            ie = new FileInfo(@"C:\Program Files\Internet Explorer\iexplore.exe");
-            if (ie.Exists)
-                return ie.FullName;
-
-            return "start";
         }
     }
 }
