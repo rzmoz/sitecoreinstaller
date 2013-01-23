@@ -88,6 +88,7 @@
     <Compile Include="Navigation\MainNavigationCtrl.Designer.cs">
       <DependentUpon>MainNavigationCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Navigation\CtrlList.cs" />
     <Compile Include="Navigation\NavigationElement.cs">
       <SubType>UserControl</SubType>
     </Compile>

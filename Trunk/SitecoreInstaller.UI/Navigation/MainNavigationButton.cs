@@ -31,8 +31,8 @@ namespace SitecoreInstaller.UI.Navigation
             TextAlign = ContentAlignment.MiddleLeft;
             FlatStyle = FlatStyle.Flat;
             FlatAppearance.BorderSize = 0;
-            FlatAppearance.MouseOverBackColor = Styles.Navigation.Main.BackColor_MouseOver;
-            FlatAppearance.MouseDownBackColor = Styles.Navigation.Main.BackColor_Click;
+            FlatAppearance.MouseOverBackColor = Styles.Navigation.Main.BackColorMouseOver;
+            FlatAppearance.MouseDownBackColor = Styles.Navigation.Main.BackColorClick;
             Click += MainNavigationButton_Click;
             this.ResumeLayout(false);
         }

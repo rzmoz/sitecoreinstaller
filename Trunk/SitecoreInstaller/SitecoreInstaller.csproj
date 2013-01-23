@@ -163,7 +163,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dimensions.cs" />
     <Compile Include="FormFlash.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>

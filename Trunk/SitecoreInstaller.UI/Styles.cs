@@ -20,8 +20,9 @@ namespace SitecoreInstaller.UI
                 public static readonly Size Size = new Size(200, 50);
                 public static readonly Color ForeColor = Color.White;
                 public static readonly Color BackColor = Color.FromArgb(113, 177, 209);
-                public static readonly Color BackColor_MouseOver = Color.FromArgb(124, 193, 222);
-                public static readonly Color BackColor_Click = Color.FromArgb(81, 155, 189);
+                public static readonly Color BackColorMouseOver = Color.FromArgb(124, 193, 222);
+                public static readonly Color BackColorClick = Color.FromArgb(81, 155, 189);
+                public static readonly Color BackColorActive = BackColorMouseOver;
             }
         }
     }

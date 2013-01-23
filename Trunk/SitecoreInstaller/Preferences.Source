@@ -10,6 +10,7 @@
 
     <LocalBuildLibrary></LocalBuildLibrary>
     
+    <!-- defaults to <LocalBuildLibrary>/Sitecore so it shows up as possible to install locally for test -->
     <ArchiveFolder></ArchiveFolder>
     
     <!-- Should start with dot but not a requirement-->

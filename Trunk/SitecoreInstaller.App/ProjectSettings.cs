@@ -20,7 +20,7 @@
     [DataContract]
     public class ProjectSettings
     {
-        private Observable<string> _projectName;
+        private readonly Observable<string> _projectName;
 
         public ProjectSettings()
         {
@@ -41,8 +41,7 @@
         {
             ResolveDependentPaths();
         }
-
-
+        
         public bool ProjectNameIsSet { get { return !string.IsNullOrEmpty(ProjectName); } }
 
         public string ProjectName
