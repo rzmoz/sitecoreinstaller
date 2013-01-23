@@ -39,7 +39,7 @@ namespace SitecoreInstaller.UI.Navigation
 
         void MainNavigationButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
         }
     }
 }
