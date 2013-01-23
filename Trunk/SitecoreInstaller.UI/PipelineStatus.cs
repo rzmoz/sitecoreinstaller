@@ -68,7 +68,6 @@ namespace SitecoreInstaller.UI
 
                     }
 
-
                     lblStatusMessage.Text = "Finished with "
                                             + e.Status.ToString().ToSpaceDelimiteredString();
 
@@ -88,10 +87,14 @@ namespace SitecoreInstaller.UI
         public void UpdateInfo(object sender, GenericEventArgs<LogEntry> e)
         {
             this.CrossThreadSafe(() =>
-                    {
-                        if (e.Arg.LogType == LogType.Info)
-                            tbxInfo.Text = e.Arg.Message;
-                    });
+                {
+                    if (e == null)
+                        return;
+                    if (e.Arg == null)
+                        return;
+                    if (e.Arg.LogType == LogType.Info)
+                        tbxInfo.Text = e.Arg.Message;
+                });
         }
 
         private void cmdOk_Click(object sender, EventArgs e)
