@@ -10,7 +10,7 @@ namespace SitecoreInstaller.UI.Navigation
     {
         private readonly IList<T> _controls;
 
-        public event EventHandler ButtonClicked;
+        public event EventHandler Click;
 
         public CtrlList()
         {
@@ -28,8 +28,8 @@ namespace SitecoreInstaller.UI.Navigation
 
         void control_Click(object sender, EventArgs e)
         {
-            if (ButtonClicked != null)
-                ButtonClicked(sender, EventArgs.Empty);
+            if (Click != null)
+                Click(sender, EventArgs.Empty);
 
             //must be after we broadcast event, so ActiveControl can be accessed
             ActiveControl = (T)sender;

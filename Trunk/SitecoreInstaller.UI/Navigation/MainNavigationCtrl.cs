@@ -15,10 +15,10 @@ namespace SitecoreInstaller.UI.Navigation
         {
             InitializeComponent();
             Buttons = new CtrlList<MainNavigationButton>();
-            Buttons.ButtonClicked += Buttons_ButtonClicked;
+            Buttons.Click += ButtonsClick;
         }
 
-        void Buttons_ButtonClicked(object sender, EventArgs e)
+        void ButtonsClick(object sender, EventArgs e)
         {
             var button = sender as MainNavigationButton;
             if (button == null)
@@ -28,6 +28,7 @@ namespace SitecoreInstaller.UI.Navigation
                 Buttons.ActiveControl.BackColor = button.BackColor;
             button.BackColor = button.FlatAppearance.MouseOverBackColor;
         }
+
         protected override void InitLayout()
         {
             base.InitLayout();

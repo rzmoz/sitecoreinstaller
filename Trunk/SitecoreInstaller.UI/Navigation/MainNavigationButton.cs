@@ -17,12 +17,10 @@ namespace SitecoreInstaller.UI.Navigation
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // MainNavigationButton
-            // 
-            this.Name = "MainNavigationButton";
-            this.Size = Styles.Navigation.Main.Size;
+            SuspendLayout();
+            
+            Name = "MainNavigationButton";
+            Size = Styles.Navigation.Main.Size;
             Font = Styles.Navigation.Main.Font;
             BackColor = Styles.Navigation.Main.BackColor;
             ForeColor = Styles.Navigation.Main.ForeColor;
@@ -33,13 +31,7 @@ namespace SitecoreInstaller.UI.Navigation
             FlatAppearance.BorderSize = 0;
             FlatAppearance.MouseOverBackColor = Styles.Navigation.Main.BackColorMouseOver;
             FlatAppearance.MouseDownBackColor = Styles.Navigation.Main.BackColorClick;
-            Click += MainNavigationButton_Click;
-            this.ResumeLayout(false);
-        }
-
-        void MainNavigationButton_Click(object sender, EventArgs e)
-        {
-
+            ResumeLayout(false);
         }
     }
 }
