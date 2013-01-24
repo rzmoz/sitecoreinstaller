@@ -6,13 +6,11 @@ namespace SitecoreInstaller.UI.Navigation
     using System.Collections;
     using System.Windows.Forms;
 
-    public class CtrlList<T> : IEnumerable<T> where T : Control
+    public class NavigationCtrlList<T> : IEnumerable<T> where T : Button
     {
         private readonly IList<T> _controls;
 
-        public event EventHandler Click;
-
-        public CtrlList()
+        public NavigationCtrlList()
         {
             _controls = new List<T>();
         }
@@ -28,11 +26,16 @@ namespace SitecoreInstaller.UI.Navigation
 
         void control_Click(object sender, EventArgs e)
         {
-            if (Click != null)
-                Click(sender, EventArgs.Empty);
+            var button = sender as T;
+            if (button == null)
+                return;
+
+            if (ActiveControl != null)
+                ActiveControl.BackColor = button.BackColor;
+            button.BackColor = button.FlatAppearance.MouseOverBackColor;
 
             //must be after we broadcast event, so ActiveControl can be accessed
-            ActiveControl = (T)sender;
+            ActiveControl = button;
         }
 
         public void RemoveAt(int index)
