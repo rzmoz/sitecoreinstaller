@@ -22,9 +22,9 @@ namespace SitecoreInstaller.UI.Navigation
             base.InitLayout();
             SuspendLayout();
 
-            Buttons.Add(new MainNavigationButton { Image = Properties.Resources.ExistingInstallations, Text = "My Sitecores" }, null);
-            Buttons.Add(new MainNavigationButton { Image = Properties.Resources.InstallNewSitecore, Text = "Install New Sitecore" }, null);
-            Buttons.Add(new MainNavigationButton { Image = Properties.Resources.settings, Text = "Settings", Dock = DockStyle.Bottom }, null);
+            Buttons.Add(new MainNavigationButton { Text = "My Sitecores", Image = Properties.Resources.MySitecores, ImageSelected = Properties.Resources.MySitecores_Active }, null);
+            Buttons.Add(new MainNavigationButton { Text = "Install New Sitecore", Image = Properties.Resources.InstallNewSitecore, ImageSelected = Properties.Resources.InstallNewSitecore_Active }, null);
+            Buttons.Add(new MainNavigationButton { Text = "Settings", Image = Properties.Resources.Settings, ImageSelected = Properties.Resources.Settings_Active, Dock = DockStyle.Bottom }, null);
 
             Controls.AddRange(Buttons.ToArray());
 

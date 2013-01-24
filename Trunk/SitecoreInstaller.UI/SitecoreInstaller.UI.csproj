@@ -103,6 +103,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>UiUserSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SiButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Styles.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
@@ -140,16 +143,25 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\settings_active.png" />
+    <None Include="Resources\ExistingInstallations_Active.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\InstallNewSitecore.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ExistingInstallations.png" />
+    <None Include="Resources\InstallNewSitecore_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MySitecores.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MySitecores_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings_Active.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

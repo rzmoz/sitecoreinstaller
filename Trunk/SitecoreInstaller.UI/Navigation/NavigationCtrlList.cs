@@ -6,13 +6,13 @@ namespace SitecoreInstaller.UI.Navigation
     using System.Collections;
     using System.Windows.Forms;
 
-    public class NavigationCtrlList<T> : IEnumerable<T> where T : Button
+    public class NavigationCtrlList<T> : IEnumerable<T> where T : SIButton
     {
-        private readonly IList<T> _controls;
+        private readonly IList<T> _buttons;
 
         public NavigationCtrlList()
         {
-            _controls = new List<T>();
+            _buttons = new List<T>();
         }
 
         public void Add(T control, EventHandler onClick)
@@ -20,8 +20,8 @@ namespace SitecoreInstaller.UI.Navigation
             control.Click += control_Click;
             if (onClick != null)
                 control.Click += onClick;
-            _controls.Add(control);
-            Update();
+            _buttons.Add(control);
+            Init();
         }
 
         void control_Click(object sender, EventArgs e)
@@ -30,25 +30,28 @@ namespace SitecoreInstaller.UI.Navigation
             if (button == null)
                 return;
 
-            if (ActiveControl != null)
-                ActiveControl.BackColor = button.BackColor;
-            button.BackColor = button.FlatAppearance.MouseOverBackColor;
 
-            //must be after we broadcast event, so ActiveControl can be accessed
+            foreach (var button1 in _buttons)
+            {
+                button1.DeActivate();
+            }
+
+            Init();//do before activating, since since resets (deactiveate all buttons)
+            button.Activate();
             ActiveControl = button;
         }
 
         public void RemoveAt(int index)
         {
-            _controls.RemoveAt(index);
-            Update();
+            _buttons.RemoveAt(index);
+            Init();
         }
 
         public T ActiveControl { get; private set; }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return _controls.GetEnumerator();
+            return _buttons.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -56,14 +59,14 @@ namespace SitecoreInstaller.UI.Navigation
             return GetEnumerator();
         }
 
-        private void Update()
+        private void Init()
         {
             var index = 0;
-            foreach (var control in _controls)
+            foreach (var buttons in _buttons)
             {
-                control.Top = index * control.Height;
-                control.TabIndex = index;
-                control.Name = "btn" + control.Text.Replace(" ", string.Empty);
+                buttons.Top = index * buttons.Height;
+                buttons.TabIndex = index;
+                buttons.Name = "btn" + buttons.Text.Replace(" ", string.Empty);
                 index++;
             }
         }
