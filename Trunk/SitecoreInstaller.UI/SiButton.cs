@@ -38,9 +38,13 @@ namespace SitecoreInstaller.UI
         public void Activate()
         {
             if (BackColorNotSelected.Equals(InitColor))
+            {
                 BackColorNotSelected = BackColor;
+                MouseOverNotSelectedColor = BackColorNotSelected;
+            }
 
             BackColor = BackColorSelected;
+            FlatAppearance.MouseOverBackColor = BackColor;
 
             if (ForeColorNotSelected.Equals(InitColor))
                 ForeColorNotSelected = ForeColor;
@@ -56,8 +60,12 @@ namespace SitecoreInstaller.UI
         public void DeActivate()
         {
             if (BackColorNotSelected.Equals(InitColor))
+            {
                 BackColorNotSelected = BackColor;
+                MouseOverNotSelectedColor = FlatAppearance.MouseOverBackColor;
+            }
 
+            FlatAppearance.MouseOverBackColor = MouseOverNotSelectedColor;
             BackColor = BackColorNotSelected;
 
             if (ForeColorNotSelected.Equals(InitColor))
@@ -74,6 +82,9 @@ namespace SitecoreInstaller.UI
 
 
         }
+
+        private Color MouseOverSelectedColor { get; set; }
+        private Color MouseOverNotSelectedColor { get; set; }
 
         public Color ForeColorSelected { get; set; }
         private Color ForeColorNotSelected { get; set; }
