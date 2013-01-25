@@ -29,14 +29,11 @@ namespace SitecoreInstaller.UI.Navigation
             var button = sender as T;
             if (button == null)
                 return;
-
-
+            
             foreach (var button1 in _buttons)
             {
                 button1.DeActivate();
             }
-
-            Init();//do before activating, since since resets (deactiveate all buttons)
             button.Activate();
             ActiveControl = button;
         }
