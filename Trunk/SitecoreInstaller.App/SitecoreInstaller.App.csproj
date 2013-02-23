@@ -89,6 +89,7 @@
     <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />
     <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveProjectToArchiveFolder.cs" />
+    <Compile Include="Pipelines\Steps\Install\ExecutePostInstallSteps.cs" />
     <Compile Include="Pipelines\Steps\Install\GrantPermissions.cs" />
     <Compile Include="SelectDatabases.cs">
       <SubType>Form</SubType>
@@ -118,7 +119,6 @@
     <Compile Include="Pipelines\Steps\Install\CopySitecore.cs" />
     <Compile Include="Pipelines\Steps\Install\CreateIisSiteAndAppPool.cs" />
     <Compile Include="Pipelines\Steps\Install\CreateProjectFolder.cs" />
-    <Compile Include="Pipelines\Steps\Install\ExecutePostInstallSteps.cs" />
     <Compile Include="Pipelines\Steps\Install\InstallPackages.cs" />
     <Compile Include="Pipelines\Steps\Install\InstallRuntimeServices.cs" />
     <Compile Include="Pipelines\Steps\Install\UpdateProjectSettings.cs" />
