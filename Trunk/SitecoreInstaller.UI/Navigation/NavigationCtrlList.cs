@@ -28,9 +28,7 @@ namespace SitecoreInstaller.UI.Navigation
       if (string.IsNullOrEmpty(path)) { throw new ArgumentException("provided path is null or empty"); }
 
       var button = parent as SIButton;
-      if (button == null)
-        return null;
-      if (button.Path == path.ToLower())
+      if (button != null && button.Path == path.ToLower())
         return button;
 
       foreach (Control control in parent.Controls)

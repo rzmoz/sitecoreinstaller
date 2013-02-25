@@ -14,9 +14,15 @@ namespace SitecoreInstaller.UI
 
     private string GetPath(SIButton button)
     {
-      var myPath = "/" + button.Text.ToLower().Replace(" ", string.Empty);
+      if (button == null)
+        return string.Empty;
 
-      return button.GetPath((SIButton)button.Parent) + myPath;
+      var myPath = "/" + button.Text.ToLower().Replace(" ", string.Empty);
+      
+      if (button.IsRoot)
+        return myPath;
+
+      return button.GetPath(button.ParentButton) + myPath;
     }
 
     public IEnumerable<SIButton> GetAllDescendants()
