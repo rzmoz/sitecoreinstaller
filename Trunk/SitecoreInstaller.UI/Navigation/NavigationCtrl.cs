@@ -14,7 +14,7 @@ namespace SitecoreInstaller.UI.Navigation
     public NavigationCtrl()
     {
       InitializeComponent();
-      Buttons = new NavigationCtrlList();
+      Buttons = new NavigationCtrlList(this);
     }
 
     protected override void InitLayout()
@@ -25,6 +25,8 @@ namespace SitecoreInstaller.UI.Navigation
       Buttons.Add(new MainNavigationButton { Text = "My Sitecores", Image = Properties.Resources.MySitecores, ImageSelected = Properties.Resources.MySitecores_Active });
       Buttons.Add(new MainNavigationButton { Text = "Install New Sitecore", Image = Properties.Resources.InstallNewSitecore, ImageSelected = Properties.Resources.InstallNewSitecore_Active });
       Buttons.Add(new MainNavigationButton { Text = "Settings", Image = Properties.Resources.Settings, ImageSelected = Properties.Resources.Settings_Active, Dock = DockStyle.Bottom });
+
+      var mySitecores = Buttons["/mysitecores"];
 
       Controls.AddRange(Buttons.ToArray());
 

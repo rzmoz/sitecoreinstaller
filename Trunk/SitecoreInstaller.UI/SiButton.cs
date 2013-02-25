@@ -20,7 +20,7 @@ namespace SitecoreInstaller.UI
 
     public event EventHandler<GenericEventArgs<SIButton>> Activated;
     public event EventHandler<GenericEventArgs<SIButton>> DeActivated;
-    
+
     private void InitializeComponent()
     {
       SuspendLayout();
