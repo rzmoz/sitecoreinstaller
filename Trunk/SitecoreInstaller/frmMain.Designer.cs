@@ -33,7 +33,7 @@
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.conMainContent = new System.Windows.Forms.SplitContainer();
             this.pnlMainNavigation = new System.Windows.Forms.Panel();
-            this.mainNavigationCtrl1 = new SitecoreInstaller.UI.Navigation.MainNavigationCtrl();
+            this.navigationCtrl1 = new SitecoreInstaller.UI.Navigation.NavigationCtrl();
             ((System.ComponentModel.ISupportInitialize)(this.conMainContent)).BeginInit();
             this.conMainContent.SuspendLayout();
             this.pnlMainNavigation.SuspendLayout();
@@ -71,21 +71,21 @@
             // pnlMainNavigation
             // 
             this.pnlMainNavigation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
-            this.pnlMainNavigation.Controls.Add(this.mainNavigationCtrl1);
+            this.pnlMainNavigation.Controls.Add(this.navigationCtrl1);
             this.pnlMainNavigation.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMainNavigation.Location = new System.Drawing.Point(0, 30);
             this.pnlMainNavigation.Name = "pnlMainNavigation";
             this.pnlMainNavigation.Size = new System.Drawing.Size(200, 285);
             this.pnlMainNavigation.TabIndex = 2;
             // 
-            // mainNavigationCtrl1
+            // navigationCtrl1
             // 
-            this.mainNavigationCtrl1.BackColor = System.Drawing.Color.Transparent;
-            this.mainNavigationCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainNavigationCtrl1.Location = new System.Drawing.Point(0, 0);
-            this.mainNavigationCtrl1.Name = "mainNavigationCtrl1";
-            this.mainNavigationCtrl1.Size = new System.Drawing.Size(200, 285);
-            this.mainNavigationCtrl1.TabIndex = 0;
+            this.navigationCtrl1.BackColor = System.Drawing.Color.Transparent;
+            this.navigationCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigationCtrl1.Location = new System.Drawing.Point(0, 0);
+            this.navigationCtrl1.Name = "navigationCtrl1";
+            this.navigationCtrl1.Size = new System.Drawing.Size(200, 285);
+            this.navigationCtrl1.TabIndex = 0;
             // 
             // FrmMain
             // 
@@ -112,6 +112,6 @@
         private System.Windows.Forms.Panel pnlFooter;
         private System.Windows.Forms.SplitContainer conMainContent;
         private System.Windows.Forms.Panel pnlMainNavigation;
-        private UI.Navigation.MainNavigationCtrl mainNavigationCtrl1;
+        private UI.Navigation.NavigationCtrl navigationCtrl1;
     }
 }
