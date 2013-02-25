@@ -11,7 +11,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, StepEventArgs args)
         {
-            Services.Website.ExecutePostInstallSteps(Services.ProjectSettings.Iis.Url);
+            Services.Website.ExecutePostInstallSteps(Services.ProjectSettings.Iis.Url, Services.ProjectSettings.ProjectFolder.Website.Directory);
         }
     }
 }
