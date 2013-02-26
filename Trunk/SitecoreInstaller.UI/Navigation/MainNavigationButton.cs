@@ -5,13 +5,16 @@ using System.Text;
 
 namespace SitecoreInstaller.UI.Navigation
 {
+  using System.Windows.Forms;
+
   public class MainNavigationButton : SIButton
   {
-    public MainNavigationButton()
+    public MainNavigationButton(Control targetControl)
+      : base(targetControl)
     {
-      InitializeComponent();
+      this.InitializeComponent();
     }
-
+    
     private void InitializeComponent()
     {
       SuspendLayout();

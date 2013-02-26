@@ -79,6 +79,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainCtrl.Designer.cs">
+      <DependentUpon>MainCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Navigation\MainNavigationButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -101,9 +107,6 @@
       <DependentUpon>UiUserSettings.settings</DependentUpon>
     </Compile>
     <Compile Include="SiButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="SIButton.TreeMethods.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Styles.cs" />
@@ -131,6 +134,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MainCtrl.resx">
+      <DependentUpon>MainCtrl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Navigation\MainNavigationButton.resx">
       <DependentUpon>MainNavigationButton.cs</DependentUpon>
     </EmbeddedResource>
