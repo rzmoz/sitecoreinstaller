@@ -70,8 +70,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ProgressODoom">
+      <HintPath>..\3rdPartyAssemblies\ProgressODoom.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,8 +85,17 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Advanced.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Advanced.Designer.cs">
+      <DependentUpon>Advanced.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +112,22 @@
       <DependentUpon>NavigationCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Navigation\NavigationCtrlList.cs" />
+    <Compile Include="Navigation\NavigationResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NavigationResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Processing\ProcessingResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProcessingResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Processing\ProgressCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\ProgressCtrl.Designer.cs">
+      <DependentUpon>ProgressCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -110,6 +141,12 @@
     </Compile>
     <Compile Include="SiButton.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Simple.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Simple.Designer.cs">
+      <DependentUpon>Simple.cs</DependentUpon>
     </Compile>
     <Compile Include="Styles.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
@@ -136,6 +173,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Advanced.resx">
+      <DependentUpon>Advanced.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl.resx">
       <DependentUpon>MainCtrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -145,31 +185,48 @@
     <EmbeddedResource Include="Navigation\NavigationCtrl.resx">
       <DependentUpon>NavigationCtrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Navigation\NavigationResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NavigationResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\ProcessingResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProcessingResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\ProgressCtrl.resx">
+      <DependentUpon>ProgressCtrl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Simple.resx">
+      <DependentUpon>Simple.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ExistingInstallations_Active.png" />
+    <None Include="Navigation\Images\ExistingInstallations_Active.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\InstallNewSitecore.png" />
+    <None Include="Navigation\Images\InstallNewSitecore.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\InstallNewSitecore_Active.png" />
+    <None Include="Navigation\Images\InstallNewSitecore_Active.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MySitecores.png" />
+    <None Include="Navigation\Images\MySitecores.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MySitecores_Active.png" />
+    <None Include="Navigation\Images\MySitecores_Active.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Settings.png" />
+    <None Include="Navigation\Images\Settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Settings_Active.png" />
+    <None Include="Navigation\Images\Settings_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Processing\Images\Spinner.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

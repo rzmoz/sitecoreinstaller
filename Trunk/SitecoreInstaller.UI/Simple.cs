@@ -5,15 +5,14 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI
 {
-  using SitecoreInstaller.UI.Navigation;
-
-  public partial class MainCtrl : UserControl
+  public partial class Simple : UserControl
   {
-    public MainCtrl()
+    public Simple()
     {
       InitializeComponent();
     }

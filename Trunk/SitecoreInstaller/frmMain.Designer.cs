@@ -37,7 +37,7 @@
       this.mainCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.mainCtrl1.Location = new System.Drawing.Point(0, 0);
       this.mainCtrl1.Name = "mainCtrl1";
-      this.mainCtrl1.Size = new System.Drawing.Size(698, 365);
+      this.mainCtrl1.Size = new System.Drawing.Size(584, 412);
       this.mainCtrl1.TabIndex = 0;
       // 
       // FrmMain
@@ -45,7 +45,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.White;
-      this.ClientSize = new System.Drawing.Size(698, 365);
+      this.ClientSize = new System.Drawing.Size(584, 412);
       this.Controls.Add(this.mainCtrl1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "FrmMain";

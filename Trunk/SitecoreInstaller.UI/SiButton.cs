@@ -16,17 +16,6 @@ namespace SitecoreInstaller.UI
     {
       if (targetControl == null) { throw new ArgumentNullException("targetControl"); }
       this.TargetControl = targetControl;
-      InitializeComponent();
-    }
-
-    public event EventHandler<GenericEventArgs<SIButton>> Activated;
-    public event EventHandler<GenericEventArgs<SIButton>> DeActivated;
-
-    public Control TargetControl { get; private set; }
-
-    private void InitializeComponent()
-    {
-      SuspendLayout();
 
       TextImageRelation = TextImageRelation.ImageBeforeText;
       ImageAlign = ContentAlignment.MiddleLeft;
@@ -36,9 +25,13 @@ namespace SitecoreInstaller.UI
 
       ForeColorNotSelected = InitColor;
       BackColorNotSelected = InitColor;
-
-      ResumeLayout(false);
     }
+
+    public event EventHandler<GenericEventArgs<SIButton>> Activated;
+    public event EventHandler<GenericEventArgs<SIButton>> DeActivated;
+
+    public Control TargetControl { get; private set; }
+
 
     public void Activate()
     {
