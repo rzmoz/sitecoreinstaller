@@ -5,14 +5,32 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 {
-    using SitecoreInstaller.Domain.Pipelines;
-    using SitecoreInstaller.Framework.Diagnostics;
+  using System.Threading;
+  using System.Threading.Tasks;
+  using SitecoreInstaller.Domain.Pipelines;
+  using SitecoreInstaller.Framework.Diagnostics;
 
-    public class DoNothing : Step
+  public class DoNothing : Step
+  {
+    protected override void InnerInvoke(object sender, StepEventArgs args)
     {
-        protected override void InnerInvoke(object sender, StepEventArgs args)
-        {
-            Log.As.Info("Starting doing nothing...");
-        }
+      Log.As.Info("Starting doing nothing...");
+
+      Parallel.For(0, 10, async i => Log.As.Info("Async finished with {0}", await this.GetWait(i)));
     }
+
+    public Task<int> GetWait(int number)
+    {
+      Log.As.Info("Starting async task {0}", number);
+
+      var tcs = new TaskCompletionSource<int>();
+      
+      Thread.Sleep(1000);
+
+      tcs.SetResult(number);
+
+      Log.As.Info("Finishing async task {0}", number);
+      return tcs.Task;
+    }
+  }
 }

@@ -103,12 +103,12 @@ namespace SitecoreInstaller.Domain.Website {
         ///&lt;%@ Import Namespace=&quot;Sitecore.Data.Engines&quot; %&gt;
         ///&lt;%@ Import Namespace=&quot;Sitecore.Data.Proxies&quot; %&gt;
         ///&lt;%@ Import Namespace=&quot;Sitecore.Install&quot; %&gt;
-        ///&lt;%@ Import Namespace=&quot;Sitecore.Install.Files&quot; %&gt;
-        ///&lt;%@ Import Namespace=&quot;Sitecore.Install.Framework&quot; %&gt;
-        ///&lt;%@ Import Namespace=&quot;Sitecore.Install.Items&quot; %&gt;
-        ///&lt;%@ Import Namespace=&quot;Sitecore.Install.Utils&quot; %&gt;
         ///&lt;%@ Import Namespace=&quot;Sitecore.SecurityModel&quot; %&gt;
-        ///&lt;%@ Import Namespace=&quot;Sitecore.Install.Metadata&quot; %&gt;        /// [rest of string was truncated]&quot;;.
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Install.Metadata&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Install.Zip&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Update&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Update.Installer.Exceptions&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Update.Installer. [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string InstallPackageService {
             get {
