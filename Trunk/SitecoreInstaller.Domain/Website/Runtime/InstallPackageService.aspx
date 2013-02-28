@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" %>
+
 <%@ Import Namespace="System.IO" %>
 <%@ Import Namespace="Sitecore.Data.Engines" %>
 <%@ Import Namespace="Sitecore.Data.Proxies" %>
@@ -10,6 +11,13 @@
 <%@ Import Namespace="Sitecore.SecurityModel" %>
 <%@ Import Namespace="Sitecore.Install.Metadata" %>
 <%@ Import Namespace="Sitecore.Install.Zip" %>
+<%@ Import Namespace="Sitecore.Update" %>
+<%@ Import Namespace="Sitecore.Update.Installer" %>
+<%@ Import Namespace="Sitecore.Update.Installer.Exceptions" %>
+<%@ Import Namespace="Sitecore.Update.Installer.Installer.Utils" %>
+<%@ Import Namespace="Sitecore.Update.Installer.Utils" %>
+<%@ Import Namespace="Sitecore.Update.Utils" %>
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -62,24 +70,43 @@
 
   private static void Install(string package)
   {
-    SimpleProcessingContext context = new SimpleProcessingContext();
-    DefaultItemInstallerEvents events = new DefaultItemInstallerEvents(new BehaviourOptions(InstallMode.Overwrite, MergeMode.Undefined));
-    context.AddAspect(events);
-    DefaultFileInstallerEvents events1 = new DefaultFileInstallerEvents(true);
-    context.AddAspect(events1);
-    new Installer().InstallPackage(package, context);
-    new Installer().InstallSecurity(package, context);
+    var log = log4net.LogManager.GetLogger("LogFileAppender");
+    using (new ShutdownGuard())
+    {
+      var installationInfo = new PackageInstallationInfo
+      {
+        Action = UpgradeAction.Upgrade,
+        Mode = Sitecore.Update.Utils.InstallMode.Install,
+        Path = package
+      };
+
+      try
+      {
+        string text;
+        UpdateHelper.Install(installationInfo, log, out text);
+      }
+      catch (PostStepInstallerException)
+      {
+      }
+    }
   }
 
   private static void PostInstall(string package)
   {
-    IProcessingContext context2 = Installer.CreatePreviewContext();
-    ISource<PackageEntry> source = new PackageReader(package);
-    MetadataView view = new MetadataView(context2);
-    MetadataSink sink = new MetadataSink(view);
-    sink.Initialize(context2);
-    source.Populate(sink);
-    new Installer().ExecutePostStep(view.PostStep, context2);
+    try
+    {
+      var context2 = Installer.CreatePreviewContext();
+      var source = new PackageReader(package);
+      var view = new MetadataView(context2);
+      var sink = new MetadataSink(view);
+      sink.Initialize(context2);
+      source.Populate(sink);
+      new Installer().ExecutePostStep(view.PostStep, context2);
+    }
+    catch (Sitecore.Jobs.AsyncUI.InvalidContextException)
+    {
+    }
+
   }
 
 
@@ -88,7 +115,7 @@
     get { return HttpContext.Current.Server.MapPath(_packageStatusPath); }
   }
 
-  public static System.IO.DirectoryInfo PackageFolder
+  public static DirectoryInfo PackageFolder
   {
     get
     {
@@ -98,9 +125,9 @@
       if (packagePath.StartsWith("/"))
       {
         packagePath = packagePath.TrimStart('/');//remove leading slash for full path resolving
-        packagePath = System.IO.Path.Combine(System.Web.HttpContext.Current.Server.MapPath("/"), packagePath);
+        packagePath = Path.Combine(HttpContext.Current.Server.MapPath("/"), packagePath);
       }
-      return new System.IO.DirectoryInfo(packagePath);
+      return new DirectoryInfo(packagePath);
     }
   }
 
