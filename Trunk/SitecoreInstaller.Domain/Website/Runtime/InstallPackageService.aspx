@@ -1,25 +1,15 @@
 ﻿<%@ Page Language="C#" %>
-
 <%@ Import Namespace="System.IO" %>
 <%@ Import Namespace="Sitecore.Data.Engines" %>
 <%@ Import Namespace="Sitecore.Data.Proxies" %>
 <%@ Import Namespace="Sitecore.Install" %>
-<%@ Import Namespace="Sitecore.Install.Files" %>
-<%@ Import Namespace="Sitecore.Install.Framework" %>
-<%@ Import Namespace="Sitecore.Install.Items" %>
-<%@ Import Namespace="Sitecore.Install.Utils" %>
 <%@ Import Namespace="Sitecore.SecurityModel" %>
 <%@ Import Namespace="Sitecore.Install.Metadata" %>
 <%@ Import Namespace="Sitecore.Install.Zip" %>
 <%@ Import Namespace="Sitecore.Update" %>
-<%@ Import Namespace="Sitecore.Update.Installer" %>
 <%@ Import Namespace="Sitecore.Update.Installer.Exceptions" %>
 <%@ Import Namespace="Sitecore.Update.Installer.Installer.Utils" %>
 <%@ Import Namespace="Sitecore.Update.Installer.Utils" %>
-<%@ Import Namespace="Sitecore.Update.Utils" %>
-
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <script runat="server">
   

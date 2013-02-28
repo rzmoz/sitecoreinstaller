@@ -7,13 +7,10 @@ namespace SitecoreInstaller.Domain.Test.Database
 {
     using System.IO;
 
-    using NSubstitute;
-
     using NUnit.Framework;
 
     using SitecoreInstaller.Domain.Database;
-    using SitecoreInstaller.Framework.Diagnostics;
-
+  
     [TestFixture]
     public class SqlDatabaseUT
     {

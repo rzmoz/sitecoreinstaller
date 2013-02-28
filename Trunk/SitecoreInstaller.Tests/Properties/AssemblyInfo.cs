@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SitecoreInstaller.Test")]
+[assembly: AssemblyTitle("SitecoreInstaller.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SitecoreInstaller.Test")]
-[assembly: AssemblyCopyright("Rasmus Rasmussen 2012")]
+[assembly: AssemblyProduct("SitecoreInstaller.Tests")]
+[assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("36c209cd-cbfc-48b4-8cdf-15dd6b1bf429")]
+[assembly: Guid("c4d830a0-db4a-4593-aa2c-be3b69204ce7")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1C27FA5A-2DAA-4265-9B20-ADE7AC913875}</ProjectGuid>
+    <ProjectGuid>{E97E5E96-1BDC-45DD-83C3-636C9BE46086}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SitecoreInstaller.Domain.Test</RootNamespace>
-    <AssemblyName>SitecoreInstaller.Domain.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>SitecoreInstaller.Tests</RootNamespace>
+    <AssemblyName>SitecoreInstaller.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -34,14 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssertions">
-      <HintPath>..\packages\FluentAssertions.1.7.1.1\Lib\net40\FluentAssertions.dll</HintPath>
+      <HintPath>..\packages\FluentAssertions.2.0.0.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
-    <Reference Include="NSubstitute, Version=1.4.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <HintPath>..\packages\NSubstitute.1.4.2.0\lib\NET40\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.1.12217, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,58 +47,76 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildLibrary\LicenseFileUT.cs" />
-    <Compile Include="BuildLibrary\Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
+    <Compile Include="Domain\BuildLibrary\LicenseFileUT.cs" />
+    <Compile Include="Domain\BuildLibrary\Resource.Designer.cs">
       <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Database\ConnectionStringNameUT.cs" />
-    <Compile Include="Database\SqlDatabaseUT.cs" />
-    <Compile Include="Pipelines\InstallerServiceMock.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebServer\HostFileServiceUT.cs" />
-    <Compile Include="Website\WebsiteExtensionsUT.cs" />
-    <Compile Include="ProjectFolderUT.cs" />
-    <Compile Include="Website\WebsiteTestResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WebsiteTestResource.resx</DependentUpon>
     </Compile>
-    <Compile Include="Website\WffmConfigFileUT.cs" />
+    <Compile Include="Domain\Database\ConnectionStringNameUT.cs" />
+    <Compile Include="Domain\Database\SqlDatabaseUT.cs" />
+    <Compile Include="Domain\Pipelines\InstallerServiceMock.cs" />
+    <Compile Include="Domain\ProjectFolderUT.cs" />
+    <Compile Include="Domain\WebServer\HostFileServiceUT.cs" />
+    <Compile Include="Domain\Website\WebsiteExtensionsUT.cs" />
+    <Compile Include="Domain\Website\WebsiteTestResource.Designer.cs">
+      <DependentUpon>WebsiteTestResource.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Domain\Website\WffmConfigFileUT.cs" />
+    <Compile Include="Framework\Configuration\ConfigFileUT.cs" />
+    <Compile Include="Framework\Diagnostics\LogUT.cs" />
+    <Compile Include="Framework\IO\DirectoryInfoExtenstionsUT.cs" />
+    <Compile Include="Framework\IO\FileSystemInfoExtensionsUT.cs" />
+    <Compile Include="Framework\IO\StringExtensionsUT.cs" />
+    <Compile Include="Framework\System\ObjectExtensionsUT.cs" />
+    <Compile Include="Framework\System\StringExtensionsUT.cs" />
+    <Compile Include="Framework\System\TypeExtensionsUT.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Domain\Website\formsOracle.config" />
+    <None Include="Domain\Website\formsSQL.config" />
+    <None Include="Domain\Website\formsSQLite.config" />
+    <None Include="Framework\Configuration\ConfigFileTest.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SitecoreInstaller.App\SitecoreInstaller.App.csproj">
-      <Project>{687BAB97-4F30-4A9C-BF18-197C6A241EF4}</Project>
+      <Project>{687bab97-4f30-4a9c-bf18-197c6a241ef4}</Project>
       <Name>SitecoreInstaller.App</Name>
     </ProjectReference>
     <ProjectReference Include="..\SitecoreInstaller.Domain\SitecoreInstaller.Domain.csproj">
-      <Project>{32B57FF0-1EF1-46C7-979E-F6144E6D4387}</Project>
+      <Project>{32b57ff0-1ef1-46c7-979e-f6144e6d4387}</Project>
       <Name>SitecoreInstaller.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\SitecoreInstaller.Framework\SitecoreInstaller.Framework.csproj">
-      <Project>{4DDD98BC-4F89-4C94-847E-7215486CE358}</Project>
+      <Project>{4ddd98bc-4f89-4c94-847e-7215486ce358}</Project>
       <Name>SitecoreInstaller.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SitecoreInstaller.UI\SitecoreInstaller.UI.csproj">
+      <Project>{7938e4d7-0388-4cad-ac67-1c084de97652}</Project>
+      <Name>SitecoreInstaller.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BuildLibrary\Resource.resx">
+    <EmbeddedResource Include="Domain\BuildLibrary\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Website\WebsiteTestResource.resx">
+    <EmbeddedResource Include="Domain\Website\WebsiteTestResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WebsiteTestResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BuildLibrary\TestLicense.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Website\formsSQL.config" />
-    <None Include="Website\formsSQLite.config" />
-    <None Include="Website\formsOracle.config" />
+    <Content Include="Domain\BuildLibrary\TestLicense.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

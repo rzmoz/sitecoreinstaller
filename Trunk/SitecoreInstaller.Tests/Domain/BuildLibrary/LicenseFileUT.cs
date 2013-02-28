@@ -8,8 +8,9 @@ namespace SitecoreInstaller.Domain.Test.BuildLibrary
     using NUnit.Framework;
 
     using SitecoreInstaller.Domain.BuildLibrary;
+    using SitecoreInstaller.Tests.Domain.BuildLibrary;
 
-    [TestFixture]
+  [TestFixture]
     public class LicenseFileUT
     {
         private LicenseFile _licenseFile;

@@ -10,8 +10,9 @@ namespace SitecoreInstaller.Domain.Test.Website
     using NUnit.Framework;
 
     using SitecoreInstaller.Domain.Website;
+    using SitecoreInstaller.Tests.Domain.Website;
 
-    [TestFixture]
+  [TestFixture]
     public class WffmConfigFileUT
     {
         [TestFixtureSetUp]

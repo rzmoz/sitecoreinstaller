@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SitecoreInstaller.Framework.System
 {
-    using global::System.Text.RegularExpressions;
-
     public static class StringExtensions
     {
         private const string _Slash = "/";
