@@ -79,270 +79,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Developer\AdvancedSettings.cs">
+    <Compile Include="MainCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Developer\AdvancedSettings.Designer.cs">
-      <DependentUpon>AdvancedSettings.cs</DependentUpon>
+    <Compile Include="MainCtrl.Designer.cs">
+      <DependentUpon>MainCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PipelineStepList.cs">
+    <Compile Include="Navigation\MainNavigationButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Navigation\NavigationCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PipelineStepList.Designer.cs">
-      <DependentUpon>PipelineStepList.cs</DependentUpon>
+    <Compile Include="Navigation\NavigationCtrl.Designer.cs">
+      <DependentUpon>NavigationCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PipelineLists.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PipelineLists.Designer.cs">
-      <DependentUpon>PipelineLists.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Navigation\NavigationCtrlList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="SelectProjectName.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SelectProjectName.Designer.cs">
-      <DependentUpon>SelectProjectName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Simple\InstallSimple.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Simple\InstallSimple.Designer.cs">
-      <DependentUpon>InstallSimple.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SelectSitecore.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SelectSitecore.Designer.cs">
-      <DependentUpon>SelectSitecore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Developer\SelectionsDeveloper.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Developer\SelectionsDeveloper.Designer.cs">
-      <DependentUpon>SelectionsDeveloper.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SelectModules.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SelectModules.Designer.cs">
-      <DependentUpon>SelectModules.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ListBoxes\SourceEntryCheckedListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBoxes\SourceEntryComboBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBoxes\SourceEntryListControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Logger.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Logger.Designer.cs">
-      <DependentUpon>Logger.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Developer\MainDeveloper.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Developer\MainDeveloper.Designer.cs">
-      <DependentUpon>MainDeveloper.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Simple\MainSimple.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Simple\MainSimple.Designer.cs">
-      <DependentUpon>MainSimple.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PipelineStatus.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PipelineStatus.Designer.cs">
-      <DependentUpon>PipelineStatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelectLicense.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SelectLicense.Designer.cs">
-      <DependentUpon>SelectLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\UiUserSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>UiUserSettings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Simple\OpenSimple.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="SiButton.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Simple\OpenSimple.Designer.cs">
-      <DependentUpon>OpenSimple.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Simple\ReinstallSimple.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Simple\ReinstallSimple.Designer.cs">
-      <DependentUpon>ReinstallSimple.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Simple\UninstallSimple.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Simple\UninstallSimple.Designer.cs">
-      <DependentUpon>UninstallSimple.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\BuildLibraryFolderDialog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\BuildLibraryFolderDialog.Designer.cs">
-      <DependentUpon>BuildLibraryFolderDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\FirstRunFinish.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\FirstRunFinish.Designer.cs">
-      <DependentUpon>FirstRunFinish.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\FirstRunWelcome.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\FirstRunWelcome.Designer.cs">
-      <DependentUpon>FirstRunWelcome.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\LicenseFileDialog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\LicenseFileDialog.Designer.cs">
-      <DependentUpon>LicenseFileDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\ProjectFolderDialog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\ProjectFolderDialog.Designer.cs">
-      <DependentUpon>ProjectFolderDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\SqlSettingsDialog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\SqlSettingsDialog.Designer.cs">
-      <DependentUpon>SqlSettingsDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\StepWizard.cs" />
-    <Compile Include="UserSettingsDialogs\StepWizardDialog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\StepWizardDialog.Designer.cs">
-      <DependentUpon>StepWizardDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\UrlPostfixDialog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\UrlPostfixDialog.Designer.cs">
-      <DependentUpon>UrlPostfixDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\UserSettingsDialog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\UserSettingsDialog.Designer.cs">
-      <DependentUpon>UserSettingsDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\UserSettingsMode.cs" />
-    <Compile Include="UserSettingsDialogs\UserSettingsStep.cs" />
-    <Compile Include="UserSettingsDialogs\SitecoreDialog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserSettingsDialogs\SitecoreDialog.Designer.cs">
-      <DependentUpon>SitecoreDialog.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Styles.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Developer\AdvancedSettings.resx">
-      <DependentUpon>AdvancedSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineStepList.resx">
-      <DependentUpon>PipelineStepList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineLists.resx">
-      <DependentUpon>PipelineLists.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectProjectName.resx">
-      <DependentUpon>SelectProjectName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Simple\InstallSimple.resx">
-      <DependentUpon>InstallSimple.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Logger.resx">
-      <DependentUpon>Logger.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Developer\MainDeveloper.resx">
-      <DependentUpon>MainDeveloper.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Simple\MainSimple.resx">
-      <DependentUpon>MainSimple.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineStatus.resx">
-      <DependentUpon>PipelineStatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectSitecore.resx">
-      <DependentUpon>SelectSitecore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Developer\SelectionsDeveloper.resx">
-      <DependentUpon>SelectionsDeveloper.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectLicense.resx">
-      <DependentUpon>SelectLicense.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectModules.resx">
-      <DependentUpon>SelectModules.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Simple\OpenSimple.resx">
-      <DependentUpon>OpenSimple.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Simple\ReinstallSimple.resx">
-      <DependentUpon>ReinstallSimple.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Simple\UninstallSimple.resx">
-      <DependentUpon>UninstallSimple.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsDialogs\BuildLibraryFolderDialog.resx">
-      <DependentUpon>BuildLibraryFolderDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsDialogs\FirstRunFinish.resx">
-      <DependentUpon>FirstRunFinish.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsDialogs\FirstRunWelcome.resx">
-      <DependentUpon>FirstRunWelcome.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsDialogs\LicenseFileDialog.resx">
-      <DependentUpon>LicenseFileDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsDialogs\ProjectFolderDialog.resx">
-      <DependentUpon>ProjectFolderDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsDialogs\SqlSettingsDialog.resx">
-      <DependentUpon>SqlSettingsDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsDialogs\StepWizardDialog.resx">
-      <DependentUpon>StepWizardDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsDialogs\UrlPostfixDialog.resx">
-      <DependentUpon>UrlPostfixDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsDialogs\UserSettingsDialog.resx">
-      <DependentUpon>UserSettingsDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsDialogs\SitecoreDialog.resx">
-      <DependentUpon>SitecoreDialog.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SitecoreInstaller.App\SitecoreInstaller.App.csproj">
@@ -366,13 +134,40 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\error.png" />
+    <EmbeddedResource Include="MainCtrl.resx">
+      <DependentUpon>MainCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Navigation\MainNavigationButton.resx">
+      <DependentUpon>MainNavigationButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Navigation\NavigationCtrl.resx">
+      <DependentUpon>NavigationCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ok.png" />
+    <None Include="Resources\ExistingInstallations_Active.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\warning.png" />
+    <None Include="Resources\InstallNewSitecore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\InstallNewSitecore_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MySitecores.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MySitecores_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings_Active.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

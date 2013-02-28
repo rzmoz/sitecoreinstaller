@@ -100,7 +100,7 @@
     <Compile Include="UiDialogs.cs" />
     <Compile Include="Pipelines\InstallPipeline.cs" />
     <Compile Include="Pipelines\NothingPipeline.cs" />
-    <Compile Include="Pipelines\PipelineManager.cs" />
+    <Compile Include="Pipelines\PipelineService.cs" />
     <Compile Include="Pipelines\Preconditions\CheckConnectionstringsAreSet.cs" />
     <Compile Include="Pipelines\Preconditions\CheckLicense.cs" />
     <Compile Include="Pipelines\Preconditions\CheckProjectExists.cs" />
@@ -155,6 +155,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Properties\UserSettings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>UserSettings.Designer.cs</LastGenOutput>

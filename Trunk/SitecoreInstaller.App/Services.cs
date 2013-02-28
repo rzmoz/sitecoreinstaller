@@ -11,8 +11,6 @@ using SitecoreInstaller.Framework.System;
 
 namespace SitecoreInstaller.App
 {
-    using System;
-
     using SitecoreInstaller.App.Pipelines;
     using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.Pipelines;
@@ -22,7 +20,7 @@ namespace SitecoreInstaller.App
     {
         static Services()
         {
-            Pipelines = new PipelineManager();
+            Pipelines = new PipelineService();
             Website = new WebsiteService();
             Dialogs = new UiDialogs();
             IisManagement = new IisManagementService();
@@ -92,7 +90,7 @@ namespace SitecoreInstaller.App
         private static SourceManifestRepository SourceManifests { get; set; }
 
         public static ProjectSettings ProjectSettings { get; set; }
-        public static PipelineManager Pipelines { get; private set; }
+        public static PipelineService Pipelines { get; private set; }
         public static ISourceRepository BuildLibrary { get; set; }
         public static IProjectsService Projects { get; set; }
         public static IWebsiteService Website { get; set; }
