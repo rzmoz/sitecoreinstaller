@@ -35,14 +35,20 @@ namespace SitecoreInstallerConsole.Runners
       var license = CmdLine[SitecoreInstallerParameters.License.Name];
       if (string.IsNullOrEmpty(license.Value))
         license = SitecoreInstallerParameters.Latest;
+      
+
+      var modules = CmdLine[SitecoreInstallerParameters.Modules.Name];
+
+      Console.WriteLine("Project name: " + projectName);
+      Console.WriteLine("Sitecore: " + sitecore.Value);
+      Console.WriteLine("License: " + license.Value);
+      Console.WriteLine("Modules: " + modules.Value);
 
       var selectedModules = new List<SourceEntry>();
 
-      //TODO: implement params parameters
-      /*
-      for (var i = 4; i < Args.Length; i++)
-        selectedModules.Add(new SourceEntry(Args[i], string.Empty));
-      */
+      foreach (var module in modules.Value.Split('|'))
+        selectedModules.Add(new SourceEntry(module, string.Empty)); 
+
       Install(projectName, sitecore.Value, license.Value, selectedModules);
     }
 

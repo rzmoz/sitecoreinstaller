@@ -41,13 +41,13 @@ namespace SitecoreInstallerConsole.CmdArgs
       _parameters.Clear();
     }
 
-    public string[] Parse(string[] args)
+    public void Parse(string[] args)
     {
       string[] ret = null;
       string error = string.Empty;
       try
       {
-        ret = ParseArgs(args);
+        ParseArgs(args);
       }
       catch (CmdLineException ex)
       {
@@ -60,58 +60,71 @@ namespace SitecoreInstallerConsole.CmdArgs
         Console.WriteLine(this.HelpScreen());
         Environment.Exit(1);
       }
-      return ret;
     }
 
-    private string[] ParseArgs(string[] args)
+    private void ParseArgs(string[] args)
     {
-      int i = 0;
+      int argsPointer = 0;
 
-      var newArgs = new List<string>();
 
-      while (i < args.Length)
+
+
+      while (argsPointer < args.Length)
       {
-        if (args[i].Length > 1 && args[i][0] == '-')
+        var arg = args[argsPointer];
+
+        if (IsParameter(arg))
         {
-          // The current string is a parameter name
-          string key = args[i].Substring(1, args[i].Length - 1).ToLower();
+          string key = arg.TrimStart('-').ToLower();
           string value = string.Empty;
-          i++;
-          if (i < args.Length)
+          argsPointer++;
+
+          bool nextIsValue = true;
+
+          while (nextIsValue && argsPointer < args.Length)
           {
-            if (args[i].Length > 0 && args[i][0] == '-')
+            arg = args[argsPointer];
+            if (IsParameter(arg))
             {
-              // The next string is a new parameter, do not nothing
+              nextIsValue = false;
             }
             else
             {
               // The next string is a value, read the value and move forward
-              value = args[i];
-              i++;
+              value += "|" + arg;
+              argsPointer++;
             }
           }
           if (!_parameters.ContainsKey(key))
             throw new CmdLineException(key, "Parameter is not allowed.");
 
           if (_parameters[key].Exists)
-            throw new CmdLineException(key, "Parameter is specified more than once.");
+            throw new CmdLineException(key, "Parameter is   specified more than once.");
 
-          _parameters[key].SetValue(value);
+          _parameters[key].SetValue(value.Trim('|'));
         }
         else
         {
-          newArgs.Add(args[i]);
-          i++;
+          argsPointer++;
         }
       }
-
 
       // Check that required parameters are present in the command line. 
       foreach (string key in _parameters.Keys)
         if (_parameters[key].Required && !_parameters[key].Exists)
           throw new CmdLineException(key, "Required parameter is not found.");
 
-      return newArgs.ToArray();
+      //check that parameters have values
+      foreach (var cmdLineParameter in _parameters.Values)
+      {
+        if(string.IsNullOrEmpty(cmdLineParameter.Value))
+          throw new CmdLineException(cmdLineParameter.Name, "Value is empty.");
+      }
+    }
+
+    private bool IsParameter(string s)
+    {
+      return s.Length > 0 && s[0] == '-';
     }
 
     public string HelpScreen()
