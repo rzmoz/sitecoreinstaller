@@ -5,17 +5,27 @@ using SitecoreInstaller.Framework.System;
 
 namespace SitecoreInstaller.Domain.Website
 {
-    using System.Diagnostics.Contracts;
+  using System.Diagnostics.Contracts;
+  using SitecoreInstaller.Framework.Diagnostics;
 
-    internal static class WebsiteExtensions
+  internal static class WebsiteExtensions
+  {
+    public static Uri ToUri(this string baseUrl, params string[] subPaths)
     {
-        public static Uri ToUri(this string baseUrl, params string[] subPaths)
-        {
-            Contract.Requires<ArgumentNullException>(baseUrl != null);
-            Contract.Requires<ArgumentNullException>(subPaths != null);
+      Contract.Requires<ArgumentNullException>(baseUrl != null);
+      Contract.Requires<ArgumentNullException>(subPaths != null);
 
-            var url = baseUrl.UrlCombine(subPaths);
-            return new Uri("http://" + url);
-        }
+      var url = baseUrl.UrlCombine(subPaths);
+      try
+      {
+
+        return new Uri("http://" + url);
+      }
+      catch (UriFormatException)
+      {
+        Log.As.Error("Invalid Uri format. Couldn't parse this: '{0}'", url);
+        throw;
+      }
     }
+  }
 }

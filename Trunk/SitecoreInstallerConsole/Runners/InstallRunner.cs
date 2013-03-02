@@ -27,8 +27,14 @@ namespace SitecoreInstallerConsole.Runners
     public override void Run()
     {
       var projectName = CmdLine[SitecoreInstallerParameters.Install.Name].Value;
-      var sitecore = CmdLine[SitecoreInstallerParameters.Sitecore.Name] ?? SitecoreInstallerParameters.Latest;
-      var license = CmdLine[SitecoreInstallerParameters.License.Name] ?? SitecoreInstallerParameters.Latest;
+      var sitecore = CmdLine[SitecoreInstallerParameters.Sitecore.Name];
+
+      if (string.IsNullOrEmpty(sitecore.Value))
+        sitecore = SitecoreInstallerParameters.Latest;
+
+      var license = CmdLine[SitecoreInstallerParameters.License.Name];
+      if (string.IsNullOrEmpty(license.Value))
+        license = SitecoreInstallerParameters.Latest;
 
       var selectedModules = new List<SourceEntry>();
 
@@ -37,10 +43,10 @@ namespace SitecoreInstallerConsole.Runners
       for (var i = 4; i < Args.Length; i++)
         selectedModules.Add(new SourceEntry(Args[i], string.Empty));
       */
-      Install(license.Value, selectedModules, projectName, sitecore.Value);
+      Install(projectName, sitecore.Value, license.Value, selectedModules);
     }
 
-    private void Install(string license, IEnumerable<SourceEntry> selectedModules, string projectName, string sitecore)
+    private void Install(string projectName, string sitecore, string license, IEnumerable<SourceEntry> selectedModules)
     {
       Services.ProjectSettings.ProjectName = projectName;
       Services.ProjectSettings.Iis = new IisSettings { Name = Services.ProjectSettings.ProjectName };

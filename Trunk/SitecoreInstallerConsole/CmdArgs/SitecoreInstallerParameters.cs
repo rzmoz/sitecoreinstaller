@@ -11,8 +11,9 @@ namespace SitecoreInstallerConsole.CmdArgs
     public static CmdLineParameter List { get { return new CmdLineParameter("list", "Lists available Sitecores, Licenses and modules"); } }
     public static CmdLineParameter Projects { get { return new CmdLineParameter("projects", "Lists existing projects"); } }
     public static CmdLineParameter Install { get { return new CmdLineParameter("install", "Install a new Sitecore project. Value is project name"); } }
-    public static CmdLineParameter ReInstall { get { return new CmdLineParameter("uninstall", "Un-Install an existing Sitecore project. Value is project name"); } }
-    public static CmdLineParameter UnInstall { get { return new CmdLineParameter("reinstall", "Re-Install an existing Sitecore project. Value is project name"); } }
+    public static CmdLineParameter UnInstall { get { return new CmdLineParameter("uninstall", "Un-Install an existing Sitecore project. Value is project name"); } }
+    public static CmdLineParameter ReInstall { get { return new CmdLineParameter("reinstall", "Re-Install an existing Sitecore project. Value is project name"); } }
+    
 
     public static CmdLineParameter Latest
     {

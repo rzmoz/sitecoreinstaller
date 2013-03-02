@@ -12,7 +12,7 @@ namespace SitecoreInstallerConsole.Runners
   {
     public UnInstallRunner()
     {
-      CmdLine.RegisterParameter(SitecoreInstallerParameters.Install);
+      CmdLine.RegisterParameter(SitecoreInstallerParameters.UnInstall);
       CmdLine[SitecoreInstallerParameters.UnInstall.Name].Required = true;
     }
 

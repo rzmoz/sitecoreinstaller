@@ -14,8 +14,8 @@ namespace SitecoreInstallerConsole.Runners
   {
     public ReInstallRunner()
     {
-      CmdLine.RegisterParameter(SitecoreInstallerParameters.Install);
-      CmdLine[SitecoreInstallerParameters.UnInstall.Name].Required = true;
+      CmdLine.RegisterParameter(SitecoreInstallerParameters.ReInstall);
+      CmdLine[SitecoreInstallerParameters.ReInstall.Name].Required = true;
     }
 
     public override void Run()
