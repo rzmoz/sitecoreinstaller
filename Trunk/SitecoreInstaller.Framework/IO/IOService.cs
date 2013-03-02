@@ -79,17 +79,17 @@ namespace SitecoreInstaller.Framework.IO
                 catch (UnauthorizedAccessException)
                 {
                     Log.As.Debug("Waiting for iis to release file handles...");
-                    Thread.Sleep(500);
+                    Task.Delay(500);
                 }
                 catch (IOException)
                 {
                     Log.As.Debug("Waiting for iis to release file handles...");
-                    Thread.Sleep(500);
+                    Task.Delay(500);
                 }
                 catch (SecurityException e)
                 {
                     Log.As.Debug("Waiting for iis to release file handles...");
-                    Thread.Sleep(500);
+                    Task.Delay(500);
                 }
             }
 

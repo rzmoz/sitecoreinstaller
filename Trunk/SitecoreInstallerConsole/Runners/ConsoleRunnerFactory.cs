@@ -20,8 +20,8 @@ namespace SitecoreInstallerConsole.Runners
         return new InstallRunner();
       if (mainSwitch == SitecoreInstallerParameters.UnInstall.Name)
         return new UnInstallRunner();
-      if (mainSwitch == SitecoreInstallerParameters.ReInstall.Name)
-        return new ReInstallRunner();
+      if (mainSwitch == SitecoreInstallerParameters.Open.Name)
+        return new OpenFrontendRunner();
       return null;
 
     }

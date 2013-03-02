@@ -83,7 +83,7 @@
     <Compile Include="Runners\InstallRunner.cs" />
     <Compile Include="Runners\ListRunner.cs" />
     <Compile Include="Runners\ConsolePipelineRunner.cs" />
-    <Compile Include="Runners\ReInstallRunner.cs" />
+    <Compile Include="Runners\OpenFrontendRunner.cs" />
     <Compile Include="Runners\UnInstallRunner.cs" />
   </ItemGroup>
   <ItemGroup>

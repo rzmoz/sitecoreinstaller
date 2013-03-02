@@ -4,15 +4,13 @@ using SitecoreInstallerConsole.Runners;
 namespace SitecoreInstallerConsole
 {
   using System.Threading;
+  using System.Threading.Tasks;
   using SitecoreInstaller.App;
 
   class Program
   {
     static void Main(string[] args)
     {
-      Console.WriteLine("Press key to start...");
-      Console.Read();
-
       var consoleRunnerFactory = new ConsoleRunnerFactory();
       var runner = consoleRunnerFactory.Create(args) ?? new HelpRunner(args);
       runner.CmdLine.Parse(args);
@@ -20,7 +18,7 @@ namespace SitecoreInstallerConsole
 
       while (Services.PipelineWorker.IsBusy())
       {
-        Thread.Sleep(1000);
+        Task.Delay(1000);
       }
     }
   }

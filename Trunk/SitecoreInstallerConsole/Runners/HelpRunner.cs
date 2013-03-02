@@ -21,9 +21,9 @@ namespace SitecoreInstallerConsole.Runners
     {
       _cmdLine.RegisterParameter(SitecoreInstallerParameters.List,
                       SitecoreInstallerParameters.Projects,
+                      SitecoreInstallerParameters.Open,
                       SitecoreInstallerParameters.Install,
-                      SitecoreInstallerParameters.UnInstall,
-                      SitecoreInstallerParameters.ReInstall);
+                      SitecoreInstallerParameters.UnInstall);
       _cmdLine.Parse(_args);
       Console.WriteLine(_cmdLine.HelpScreen());
     }
