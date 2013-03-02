@@ -90,7 +90,7 @@ namespace SitecoreInstallerConsole.CmdArgs
             }
           }
           if (!_parameters.ContainsKey(key))
-            throw new CmdLineException(key, "Parameter is not allowed.");
+            throw new CmdLineException(key, "Parameter is not recognized.");
 
           if (_parameters[key].Exists)
             throw new CmdLineException(key, "Parameter is   specified more than once.");
@@ -111,6 +111,8 @@ namespace SitecoreInstallerConsole.CmdArgs
     {
       foreach (var cmdLineParameter in this._parameters.Values)
       {
+        if(cmdLineParameter.AllowEmptyValue || !cmdLineParameter.Exists)
+          continue;
         if (string.IsNullOrEmpty(cmdLineParameter.Value))
           throw new CmdLineException(cmdLineParameter.Name, "Value is empty.");
       }
@@ -138,12 +140,14 @@ namespace SitecoreInstallerConsole.CmdArgs
         len = Math.Max(len, key.Length);
 
       string help = "\nParameters:\r\n\r\n";
-      foreach (string key in _parameters.Keys)
+      foreach (var parameter in _parameters.Values)
       {
-        string s = "-" + _parameters[key].Name;
+        string s = "-" + parameter.Name;
         while (s.Length < len + 3)
           s += " ";
-        s += _parameters[key].Help + "\r\n";
+        if(parameter.Required)
+          s += "<Required> ";
+        s += parameter.Help + "\r\n";
         help += s;
       }
       return help;
