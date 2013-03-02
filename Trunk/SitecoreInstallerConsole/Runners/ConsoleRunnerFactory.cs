@@ -2,27 +2,28 @@
 
 namespace SitecoreInstallerConsole.Runners
 {
-    public class ConsoleRunnerFactory
-    {
-        public IConsoleRunner Create(string[] args)
-        {
-            if (args == null || args.Length == 0)
-                return new HelpRunner();
-            var mainSwitch = args[0];
+  using SitecoreInstallerConsole.CmdArgs;
 
-            switch (mainSwitch)
-            {
-                case ArgSwitches.List:
-                    return new ListRunner(args);
-                case ArgSwitches.Install:
-                    return new InstallRunner(args);
-                case ArgSwitches.UnInstall:
-                    return new UnInstallRunner(args);
-                case ArgSwitches.ReAttach:
-                    return new ReAttachRunner(args);
-                default:
-                    return new HelpRunner();
-            }
-        }
+  public class ConsoleRunnerFactory
+  {
+    public ConsolePipelineRunner Create(string[] args)
+    {
+      if (args == null || args.Length == 0)
+        return null;
+      var mainSwitch = args[0].Trim('-');
+
+      if (mainSwitch == SitecoreInstallerParameters.List.Name)
+        return new ListRunner();
+      if (mainSwitch == SitecoreInstallerParameters.Projects.Name)
+        return new ExistingProjectsRunner();
+      if (mainSwitch == SitecoreInstallerParameters.Install.Name)
+        return new InstallRunner();
+      if (mainSwitch == SitecoreInstallerParameters.UnInstall.Name)
+        return new UnInstallRunner();
+      if (mainSwitch == SitecoreInstallerParameters.ReInstall.Name)
+        return new ReInstallRunner();
+      return null;
+
     }
+  }
 }

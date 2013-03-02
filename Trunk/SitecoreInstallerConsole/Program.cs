@@ -1,15 +1,19 @@
-﻿using SitecoreInstallerConsole.Runners;
-
+﻿using System;
+using SitecoreInstallerConsole.Runners;
 
 namespace SitecoreInstallerConsole
 {
-    class Program
+  class Program
+  {
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            var consoleRunnerFactory = new ConsoleRunnerFactory();
-            var runner = consoleRunnerFactory.Create(args);
-            runner.Run();
-        }
+      Console.WriteLine("SitecoreInstaller starting...");
+      Console.Read();
+
+      var consoleRunnerFactory = new ConsoleRunnerFactory();
+      var runner = consoleRunnerFactory.Create(args) ?? new HelpRunner(args);
+      runner.CmdLine.Parse(args);
+      runner.Run();
     }
+  }
 }

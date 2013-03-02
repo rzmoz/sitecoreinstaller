@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using SitecoreInstaller.Domain.BuildLibrary;
-using SitecoreInstaller.Domain.Database;
-using SitecoreInstaller.Domain.Pipelines;
-using SitecoreInstaller.Framework.Xml;
+﻿using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {

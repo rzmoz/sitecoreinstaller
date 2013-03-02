@@ -6,29 +6,30 @@ using SitecoreInstaller.App;
 
 namespace SitecoreInstallerConsole.Runners
 {
-    using SitecoreInstaller.App.Properties;
-    using SitecoreInstaller.Framework.Diagnostics;
-    using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.App.Properties;
+  using SitecoreInstaller.Framework.Diagnostics;
+  using SitecoreInstaller.Framework.System;
+  using SitecoreInstallerConsole.CmdArgs;
 
-    public abstract class ConsolePipelineRunner : IConsoleRunner
+  public abstract class ConsolePipelineRunner
+  {
+    public CmdLine CmdLine { get; private set; }
+
+    protected ConsolePipelineRunner()
     {
-        protected ConsolePipelineRunner(string[] args)
-        {
-            Args = args;
-            Services.Init();
-            Log.As.EntryLogged += LogEntryLogged;
-            Services.ProjectSettings = new ProjectSettings();
-            Services.ProjectSettings.Init(UserSettings.Default);
-            Services.BuildLibrary.Update();
-        }
-
-        protected void LogEntryLogged(object sender, GenericEventArgs<LogEntry> e)
-        {
-            Console.WriteLine(e.Arg.Message);
-        }
-
-        public abstract void Run();
-
-        protected string[] Args { get; set; }
+      this.CmdLine = new CmdLine();
+      Services.Init();
+      Log.As.EntryLogged += LogEntryLogged;
+      Services.ProjectSettings = new ProjectSettings();
+      Services.ProjectSettings.Init(UserSettings.Default);
+      Services.BuildLibrary.Update();
     }
+
+    protected void LogEntryLogged(object sender, GenericEventArgs<LogEntry> e)
+    {
+      Console.WriteLine(e.Arg.Message);
+    }
+
+    public abstract void Run();
+  }
 }

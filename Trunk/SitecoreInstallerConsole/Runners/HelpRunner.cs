@@ -5,19 +5,27 @@ using System.Text;
 
 namespace SitecoreInstallerConsole.Runners
 {
-    public class HelpRunner : IConsoleRunner
+  using SitecoreInstallerConsole.CmdArgs;
+
+  public class HelpRunner : ConsolePipelineRunner
+  {
+    private readonly CmdLine _cmdLine;
+    private readonly string[] _args;
+    public HelpRunner(string[] args)
     {
-        public void Run()
-        {
-            Console.WriteLine("SitecoreInstaller console application help");
-            Console.WriteLine("------------------------------------------");
-            Console.WriteLine("Main switches - there can be only one. Main switches can have sub parameters");
-            Console.WriteLine(string.Empty);
-            Console.WriteLine("{0}:\t\tprint this help", ArgSwitches.Help);
-            Console.WriteLine("{0}:\t\tlist Sitecore's and modules", ArgSwitches.List);
-            Console.WriteLine("{0}:\tinstall clean project", ArgSwitches.Install);
-            Console.WriteLine("{0}:\tuninstall project", ArgSwitches.UnInstall);
-            Console.WriteLine("{0}:\treinstall project", ArgSwitches.ReAttach);
-        }
+      _args = args;
+      this._cmdLine = new CmdLine();
     }
+
+    public override void Run()
+    {
+      _cmdLine.RegisterParameter(SitecoreInstallerParameters.List,
+                      SitecoreInstallerParameters.Projects,
+                      SitecoreInstallerParameters.Install,
+                      SitecoreInstallerParameters.UnInstall,
+                      SitecoreInstallerParameters.ReInstall);
+      _cmdLine.Parse(_args);
+      Console.WriteLine(_cmdLine.HelpScreen());
+    }
+  }
 }

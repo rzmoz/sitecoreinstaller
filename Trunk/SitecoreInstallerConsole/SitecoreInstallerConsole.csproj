@@ -71,16 +71,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Runners\ArgSwitches.cs" />
+    <Compile Include="CmdArgs\CmdLine.cs" />
+    <Compile Include="CmdArgs\CmdLineException.cs" />
+    <Compile Include="CmdArgs\CmdLineParameter.cs" />
+    <Compile Include="CmdArgs\SitecoreInstallerParameters.cs" />
     <Compile Include="Runners\ConsoleRunnerFactory.cs" />
+    <Compile Include="Runners\ExistingProjectsRunner.cs" />
     <Compile Include="Runners\HelpRunner.cs" />
-    <Compile Include="Runners\IConsoleRunner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runners\InstallRunner.cs" />
     <Compile Include="Runners\ListRunner.cs" />
     <Compile Include="Runners\ConsolePipelineRunner.cs" />
-    <Compile Include="Runners\ReAttachRunner.cs" />
+    <Compile Include="Runners\ReInstallRunner.cs" />
     <Compile Include="Runners\UnInstallRunner.cs" />
   </ItemGroup>
   <ItemGroup>

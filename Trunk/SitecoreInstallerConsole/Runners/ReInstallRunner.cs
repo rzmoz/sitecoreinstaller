@@ -1,16 +1,18 @@
 ﻿using System;
-
-using SitecoreInstaller.App;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace SitecoreInstallerConsole.Runners
 {
+  using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstallerConsole.CmdArgs;
 
-  public class UnInstallRunner : ConsolePipelineRunner
+  public class ReInstallRunner : ConsolePipelineRunner
   {
-    public UnInstallRunner()
+    public ReInstallRunner()
     {
       CmdLine.RegisterParameter(SitecoreInstallerParameters.Install);
       CmdLine[SitecoreInstallerParameters.UnInstall.Name].Required = true;
@@ -18,9 +20,9 @@ namespace SitecoreInstallerConsole.Runners
 
     public override void Run()
     {
-      var projectName = CmdLine[SitecoreInstallerParameters.UnInstall.Name];
+      var projectName = CmdLine[SitecoreInstallerParameters.ReInstall.Name];
       Services.ProjectSettings.ProjectName = projectName.Value;
-      Services.Pipelines.Run<UninstallPipeline>(Dialogs.Off);
+      Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
     }
   }
 }
