@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SitecoreInstallerConsole.CmdArgs
 {
@@ -66,9 +63,6 @@ namespace SitecoreInstallerConsole.CmdArgs
     {
       int argsPointer = 0;
 
-
-
-
       while (argsPointer < args.Length)
       {
         var arg = args[argsPointer];
@@ -109,16 +103,25 @@ namespace SitecoreInstallerConsole.CmdArgs
         }
       }
 
-      // Check that required parameters are present in the command line. 
-      foreach (string key in _parameters.Keys)
-        if (_parameters[key].Required && !_parameters[key].Exists)
-          throw new CmdLineException(key, "Required parameter is not found.");
+      this.CheckRequiredParametersArePresent();
+      this.CheckParametersHaveValues();
+    }
 
-      //check that parameters have values
-      foreach (var cmdLineParameter in _parameters.Values)
+    private void CheckParametersHaveValues()
+    {
+      foreach (var cmdLineParameter in this._parameters.Values)
       {
-        if(string.IsNullOrEmpty(cmdLineParameter.Value))
+        if (string.IsNullOrEmpty(cmdLineParameter.Value))
           throw new CmdLineException(cmdLineParameter.Name, "Value is empty.");
+      }
+    }
+
+    private void CheckRequiredParametersArePresent()
+    {
+      foreach (string key in this._parameters.Keys)
+      {
+        if (this._parameters[key].Required && !this._parameters[key].Exists)
+          throw new CmdLineException(key, "Required parameter is not found.");
       }
     }
 
