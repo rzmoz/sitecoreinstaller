@@ -20,7 +20,7 @@ namespace SitecoreInstaller.UI.Navigation
       SuspendLayout();
 
       Size = Styles.Navigation.Main.Size;
-      Font = Styles.Navigation.Main.Font;
+      Font = Styles.Fonts.BaseBold;
       BackColor = Styles.Navigation.Main.BackColor;
       BackColorSelected = Styles.Navigation.Main.BackColorSelected;
       ForeColor = Styles.Navigation.Main.ForeColor;
