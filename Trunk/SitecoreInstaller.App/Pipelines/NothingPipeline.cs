@@ -5,14 +5,15 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-    using SitecoreInstaller.App.Pipelines.Steps.Nothing;
+  using SitecoreInstaller.App.Pipelines.Steps.Nothing;
 
-    public class NothingPipeline : Pipeline
+  public class NothingPipeline : Pipeline
+  {
+    public NothingPipeline()
     {
-        public NothingPipeline()
-        {
-            AddStep<DoNothing>();
-            AddStep<DoNothingForAWhile>();
-        }
+      //Init steps
+      AddStep<DoNothing>();
+      AddStep<DoNothingForAWhile>();
     }
+  }
 }

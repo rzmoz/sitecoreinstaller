@@ -15,8 +15,6 @@
     public SelectModules()
     {
       InitializeComponent();
-      lblModules.Font = Styles.Fonts.BaseRegular;
-      lblModules.ForeColor = Styles.FontColors.LabelForeColor;
     }
 
     private void SelectModules_Load(object sender, System.EventArgs e)

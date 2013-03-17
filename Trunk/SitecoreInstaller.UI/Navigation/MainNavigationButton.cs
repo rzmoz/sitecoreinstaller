@@ -7,7 +7,7 @@ namespace SitecoreInstaller.UI.Navigation
 {
   using System.Windows.Forms;
 
-  public class MainNavigationButton : SIButton
+  public class MainNavigationButton : NavButton
   {
     public MainNavigationButton(Control targetControl)
       : base(targetControl)
@@ -20,7 +20,7 @@ namespace SitecoreInstaller.UI.Navigation
       SuspendLayout();
 
       Size = Styles.Navigation.Main.Size;
-      Font = Styles.Fonts.BaseBold;
+      Font = Styles.Fonts.H2;
       BackColor = Styles.Navigation.Main.BackColor;
       BackColorSelected = Styles.Navigation.Main.BackColorSelected;
       ForeColor = Styles.Navigation.Main.ForeColor;

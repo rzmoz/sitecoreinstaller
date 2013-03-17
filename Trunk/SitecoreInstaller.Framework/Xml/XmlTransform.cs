@@ -50,7 +50,7 @@ namespace SitecoreInstaller.Framework.Xml
                     xmlTarget.Save(Destination.FullName);
                 }
             }
-            catch (XmlException exception)
+            catch (XmlException)
             {
                 flag = false;
             }
@@ -61,9 +61,9 @@ namespace SitecoreInstaller.Framework.Xml
                     if (File.Exists(Source.FullName))
                         Source.Delete();
                     if (File.Exists(Transform.FullName))
-                        Source.Delete();
+                        Transform.Delete();
                 }
-                catch (Exception e)
+                catch (Exception)
                 { }
 
             }

@@ -28,19 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-      this.lblProjectName = new System.Windows.Forms.Label();
       this.cbxProjectName = new System.Windows.Forms.ComboBox();
+      this.lblProjectName = new SitecoreInstaller.UI.Forms.SIH2();
       this.SuspendLayout();
-      // 
-      // lblProjectName
-      // 
-      this.lblProjectName.AutoSize = true;
-      this.lblProjectName.Font = new System.Drawing.Font("Segoe UI", 10F);
-      this.lblProjectName.Location = new System.Drawing.Point(0, 5);
-      this.lblProjectName.Name = "lblProjectName";
-      this.lblProjectName.Size = new System.Drawing.Size(92, 19);
-      this.lblProjectName.TabIndex = 0;
-      this.lblProjectName.Text = "Project name:";
       // 
       // cbxProjectName
       // 
@@ -52,12 +42,23 @@
       this.cbxProjectName.Size = new System.Drawing.Size(400, 21);
       this.cbxProjectName.TabIndex = 1;
       // 
+      // lblProjectName
+      // 
+      this.lblProjectName.AutoSize = true;
+      this.lblProjectName.Font = new System.Drawing.Font("Segoe UI", 10F);
+      this.lblProjectName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.lblProjectName.Location = new System.Drawing.Point(0, 3);
+      this.lblProjectName.Name = "lblProjectName";
+      this.lblProjectName.Size = new System.Drawing.Size(92, 19);
+      this.lblProjectName.TabIndex = 2;
+      this.lblProjectName.Text = "Project name:";
+      // 
       // SelectProjectName
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.cbxProjectName);
       this.Controls.Add(this.lblProjectName);
+      this.Controls.Add(this.cbxProjectName);
       this.Name = "SelectProjectName";
       this.Size = new System.Drawing.Size(400, 50);
       this.ResumeLayout(false);
@@ -67,7 +68,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblProjectName;
         private System.Windows.Forms.ComboBox cbxProjectName;
+        private Forms.SIH2 lblProjectName;
     }
 }

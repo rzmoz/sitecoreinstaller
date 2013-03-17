@@ -8,11 +8,11 @@ namespace SitecoreInstaller.UI
   using System.Windows.Forms;
   using SitecoreInstaller.Framework.System;
 
-  public class SIButton : Button
+  public class NavButton : Button
   {
     private readonly Color InitColor = Color.Chartreuse; //this color equals not set - hope no one uses this color ever!
 
-    public SIButton(Control targetControl)
+    public NavButton(Control targetControl)
     {
       if (targetControl == null) { throw new ArgumentNullException("targetControl"); }
       this.TargetControl = targetControl;
@@ -27,8 +27,8 @@ namespace SitecoreInstaller.UI
       BackColorNotSelected = InitColor;
     }
 
-    public event EventHandler<GenericEventArgs<SIButton>> Activated;
-    public event EventHandler<GenericEventArgs<SIButton>> DeActivated;
+    public event EventHandler<GenericEventArgs<NavButton>> Activated;
+    public event EventHandler<GenericEventArgs<NavButton>> DeActivated;
 
     public Control TargetControl { get; private set; }
 
@@ -59,7 +59,7 @@ namespace SitecoreInstaller.UI
         this.TargetControl.BringToFront();
 
       if (Activated != null)
-        Activated(this, new GenericEventArgs<SIButton>(this));
+        Activated(this, new GenericEventArgs<NavButton>(this));
     }
 
     public void DeActivate()
@@ -84,7 +84,7 @@ namespace SitecoreInstaller.UI
       Image = ImageNotSelected;
 
       if (DeActivated != null)
-        DeActivated(this, new GenericEventArgs<SIButton>(this));
+        DeActivated(this, new GenericEventArgs<NavButton>(this));
     }
 
     private Color MouseOverNotSelectedColor { get; set; }
@@ -109,7 +109,7 @@ namespace SitecoreInstaller.UI
       }
     }
 
-    private string GetPath(SIButton button)
+    private string GetPath(NavButton button)
     {
       if (button == null)
         return string.Empty;
@@ -122,12 +122,12 @@ namespace SitecoreInstaller.UI
       return button.GetPath(button.ParentButton) + myPath;
     }
 
-    public IEnumerable<SIButton> GetAllDescendants()
+    public IEnumerable<NavButton> GetAllDescendants()
     {
       return this.GetAllDescendants(this);
     }
 
-    private IEnumerable<SIButton> GetAllDescendants(SIButton button)
+    private IEnumerable<NavButton> GetAllDescendants(NavButton button)
     {
       return button.SubButtons.SelectMany(subButton => subButton.GetAllDescendants(subButton));
     }
@@ -141,21 +141,21 @@ namespace SitecoreInstaller.UI
       get { return this.GetLevel(this); }
     }
 
-    private int GetLevel(SIButton button)
+    private int GetLevel(NavButton button)
     {
       if (button.IsRoot || button.ParentButton.IsRoot)
         return 0;
       return 1 + this.GetLevel(this.ParentButton);
     }
 
-    public IEnumerable<SIButton> SubButtons
+    public IEnumerable<NavButton> SubButtons
     {
-      get { return this.Controls.OfType<SIButton>(); }
+      get { return this.Controls.OfType<NavButton>(); }
     }
 
-    public SIButton ParentButton
+    public NavButton ParentButton
     {
-      get { return this.Parent as SIButton; }
+      get { return this.Parent as NavButton; }
     }
 
     public bool IsRoot

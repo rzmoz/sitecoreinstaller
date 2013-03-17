@@ -28,19 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-      this.lblModules = new System.Windows.Forms.Label();
       this.chkModules = new System.Windows.Forms.CheckedListBox();
+      this.lblModules = new SitecoreInstaller.UI.Forms.SIH2();
       this.SuspendLayout();
-      // 
-      // lblModules
-      // 
-      this.lblModules.AutoSize = true;
-      this.lblModules.Font = new System.Drawing.Font("Segoe UI", 10F);
-      this.lblModules.Location = new System.Drawing.Point(0, 5);
-      this.lblModules.Name = "lblModules";
-      this.lblModules.Size = new System.Drawing.Size(65, 19);
-      this.lblModules.TabIndex = 0;
-      this.lblModules.Text = "Modules:";
       // 
       // chkModules
       // 
@@ -56,12 +46,23 @@
       this.chkModules.TabIndex = 0;
       this.chkModules.ThreeDCheckBoxes = true;
       // 
+      // lblModules
+      // 
+      this.lblModules.AutoSize = true;
+      this.lblModules.Font = new System.Drawing.Font("Segoe UI", 10F);
+      this.lblModules.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.lblModules.Location = new System.Drawing.Point(0, 5);
+      this.lblModules.Name = "lblModules";
+      this.lblModules.Size = new System.Drawing.Size(65, 19);
+      this.lblModules.TabIndex = 1;
+      this.lblModules.Text = "Modules:";
+      // 
       // SelectModules
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.chkModules);
       this.Controls.Add(this.lblModules);
+      this.Controls.Add(this.chkModules);
       this.Name = "SelectModules";
       this.Size = new System.Drawing.Size(400, 216);
       this.Load += new System.EventHandler(this.SelectModules_Load);
@@ -72,7 +73,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblModules;
         private System.Windows.Forms.CheckedListBox chkModules;
+        private Forms.SIH2 lblModules;
     }
 }

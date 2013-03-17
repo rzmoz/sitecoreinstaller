@@ -8,7 +8,7 @@ namespace SitecoreInstaller.UI.Navigation
   using System.Windows.Forms;
   using SitecoreInstaller.Framework.System;
 
-  public class NavigationCtrlList : IEnumerable<SIButton>
+  public class NavigationCtrlList : IEnumerable<NavButton>
   {
     private readonly Control _root;
 
@@ -17,17 +17,17 @@ namespace SitecoreInstaller.UI.Navigation
       _root = root;
     }
 
-    public SIButton this[string path]
+    public NavButton this[string path]
     {
       get { return this.Get(_root, path); }
     }
 
-    private SIButton Get(Control parent, string path)
+    private NavButton Get(Control parent, string path)
     {
       if (parent == null) { throw new ArgumentNullException("parent"); }
       if (string.IsNullOrEmpty(path)) { throw new ArgumentException("provided path is null or empty"); }
 
-      var button = parent as SIButton;
+      var button = parent as NavButton;
       if (button != null && button.Path == path.ToLower())
         return button;
 
@@ -40,7 +40,7 @@ namespace SitecoreInstaller.UI.Navigation
       return null;
     }
 
-    public void Add(SIButton button)
+    public void Add(NavButton button)
     {
       button.Click += this.control_Click;
       button.Activated += this.ButtonActivated;
@@ -50,12 +50,12 @@ namespace SitecoreInstaller.UI.Navigation
 
     void control_Click(object sender, EventArgs e)
     {
-      ButtonActivated(sender, new GenericEventArgs<SIButton>(null));
+      ButtonActivated(sender, new GenericEventArgs<NavButton>(null));
     }
 
-    void ButtonActivated(object sender, GenericEventArgs<SIButton> e)
+    void ButtonActivated(object sender, GenericEventArgs<NavButton> e)
     {
-      var button = sender as SIButton;
+      var button = sender as NavButton;
       if (button == null)
       {
         return;
@@ -64,7 +64,7 @@ namespace SitecoreInstaller.UI.Navigation
       if (e.Arg != null && sender == e.Arg)
         return;
 
-      foreach (var button1 in this._root.Controls.OfType<SIButton>())
+      foreach (var button1 in this._root.Controls.OfType<NavButton>())
       {
         button1.DeActivate();
       }
@@ -84,11 +84,11 @@ namespace SitecoreInstaller.UI.Navigation
       Init();
     }
 
-    public SIButton ActiveControl { get; private set; }
+    public NavButton ActiveControl { get; private set; }
 
-    public IEnumerator<SIButton> GetEnumerator()
+    public IEnumerator<NavButton> GetEnumerator()
     {
-      return _root.Controls.OfType<SIButton>().GetEnumerator();
+      return _root.Controls.OfType<NavButton>().GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -104,7 +104,7 @@ namespace SitecoreInstaller.UI.Navigation
     private void Init(IEnumerable<Control> buttons)
     {
       var index = 0;
-      foreach (var button in buttons.OfType<SIButton>())
+      foreach (var button in buttons.OfType<NavButton>())
       {
         button.Top = index * button.Height;
         button.Left = button.Level * button.Parent.Width;

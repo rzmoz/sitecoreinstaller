@@ -17,6 +17,7 @@ namespace SitecoreInstaller.App.Pipelines
             AddPrecondition<CheckProjectNameIsSet>();
             AddPrecondition<CheckWritePermissionToHostFile>();
             AddPrecondition<CheckSqlConnection>();
+
             //Init steps
             AddStep<AttachDatabases>();
             AddStep<AddSitenameToHostFile>();

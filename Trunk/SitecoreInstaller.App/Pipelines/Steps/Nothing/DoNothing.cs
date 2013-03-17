@@ -25,7 +25,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 
       var tcs = new TaskCompletionSource<int>();
       
-      Thread.Sleep(1000);
+      Task.Delay(1000);
 
       tcs.SetResult(number);
 

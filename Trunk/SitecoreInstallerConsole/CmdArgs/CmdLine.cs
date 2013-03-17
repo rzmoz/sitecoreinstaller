@@ -53,7 +53,7 @@ namespace SitecoreInstallerConsole.CmdArgs
 
       if (error != string.Empty)
       {
-        Console.WriteLine("\r\n" + error);
+        Console.WriteLine(Environment.NewLine + error);
         Console.WriteLine(this.HelpScreen());
         Environment.Exit(1);
       }
@@ -111,7 +111,7 @@ namespace SitecoreInstallerConsole.CmdArgs
     {
       foreach (var cmdLineParameter in this._parameters.Values)
       {
-        if(cmdLineParameter.AllowEmptyValue || !cmdLineParameter.Exists)
+        if (cmdLineParameter.AllowEmptyValue || !cmdLineParameter.Exists)
           continue;
         if (string.IsNullOrEmpty(cmdLineParameter.Value))
           throw new CmdLineException(cmdLineParameter.Name, "Value is empty.");
@@ -145,9 +145,9 @@ namespace SitecoreInstallerConsole.CmdArgs
         string s = "-" + parameter.Name;
         while (s.Length < len + 3)
           s += " ";
-        if(parameter.Required)
+        if (parameter.Required)
           s += "<Required> ";
-        s += parameter.Help + "\r\n";
+        s += parameter.Help + Environment.NewLine;
         help += s;
       }
       return help;

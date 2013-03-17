@@ -18,8 +18,6 @@
     public SelectLicense()
     {
       InitializeComponent();
-      lblLicenses.Font = Styles.Fonts.BaseRegular;
-      lblLicenses.ForeColor = Styles.FontColors.LabelForeColor;
     }
 
     private void SelectLicense_Load(object sender, EventArgs e)
@@ -72,7 +70,7 @@
         lblLicenses.Text = string.Format("License: (expires in {0} days)", licenseFile.ExpiresIn);
         return;
       }
-      lblLicenses.ForeColor = Styles.FontColors.LabelForeColor;
+      lblLicenses.ForeColor = Styles.Fonts.Colors.Text;
       lblLicenses.Text = string.Format("License:");
     }
   }

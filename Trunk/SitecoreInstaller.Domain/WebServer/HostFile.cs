@@ -87,7 +87,7 @@ namespace SitecoreInstaller.Domain.WebServer
                     try
                     {
                         var content = fileReader.ReadToEnd();
-                        addNewline = !content.EndsWith(Consts.Newline);
+                        addNewline = !content.EndsWith(Environment.NewLine);
                             
                     }
                     finally

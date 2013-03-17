@@ -5,24 +5,27 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-    using SitecoreInstaller.App.Pipelines.Preconditions;
-    using SitecoreInstaller.App.Pipelines.Steps.Install;
-    using SitecoreInstaller.Domain.Pipelines;
+  using SitecoreInstaller.App.Pipelines.Preconditions;
+  using SitecoreInstaller.App.Pipelines.Steps.Install;
+  using SitecoreInstaller.Domain.Pipelines;
 
-    public class ReinstallPipeline : Pipeline
+  public class ReinstallPipeline : Pipeline
+  {
+    public ReinstallPipeline()
     {
-        public ReinstallPipeline()
-        {
-            var installPipeline = new InstallPipeline();
-            var uninstallPipeline = new UninstallPipeline();
+      var installPipeline = new InstallPipeline();
+      var uninstallPipeline = new UninstallPipeline();
 
-            AddPreconditions(installPipeline.Preconditions);
-            RemovePrecondition<CheckProjectDoesNotExist>();
-            RemovePrecondition<CheckBinding>();
-            AddPrecondition<CheckProjectExists>();
-            AddStep<UpdateProjectSettings>();
-            AddSteps(uninstallPipeline.Steps);
-            AddSteps(installPipeline.Steps);
-        }
+      //Init preconditions
+      AddPreconditions(installPipeline.Preconditions);
+      RemovePrecondition<CheckProjectDoesNotExist>();
+      RemovePrecondition<CheckBinding>();
+      AddPrecondition<CheckProjectExists>();
+
+      //Init steps
+      AddStep<UpdateProjectSettings>();
+      AddSteps(uninstallPipeline.Steps);
+      AddSteps(installPipeline.Steps);
     }
+  }
 }

@@ -96,6 +96,12 @@
     <Compile Include="Advanced.Designer.cs">
       <DependentUpon>Advanced.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SIH1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\SIH2.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ListBoxes\SourceEntryCheckedListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,7 +178,10 @@
     <Compile Include="SelectSitecore.Designer.cs">
       <DependentUpon>SelectSitecore.cs</DependentUpon>
     </Compile>
-    <Compile Include="SiButton.cs">
+    <Compile Include="NavButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\SIButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Simple.cs">

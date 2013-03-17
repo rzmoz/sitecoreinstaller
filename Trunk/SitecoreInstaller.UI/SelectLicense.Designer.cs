@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
       this.components = new System.ComponentModel.Container();
-      this.cbxLicenses = new System.Windows.Forms.ComboBox();
-      this.lblLicenses = new System.Windows.Forms.Label();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.cbxLicenses = new System.Windows.Forms.ComboBox();
+      this.lblLicenses = new SitecoreInstaller.UI.Forms.SIH2();
       this.SuspendLayout();
       // 
       // cbxLicenses
@@ -50,18 +50,19 @@
       // 
       this.lblLicenses.AutoSize = true;
       this.lblLicenses.Font = new System.Drawing.Font("Segoe UI", 10F);
-      this.lblLicenses.Location = new System.Drawing.Point(0, 5);
+      this.lblLicenses.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.lblLicenses.Location = new System.Drawing.Point(0, 3);
       this.lblLicenses.Name = "lblLicenses";
       this.lblLicenses.Size = new System.Drawing.Size(56, 19);
-      this.lblLicenses.TabIndex = 8;
+      this.lblLicenses.TabIndex = 0;
       this.lblLicenses.Text = "License:";
       // 
       // SelectLicense
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.cbxLicenses);
       this.Controls.Add(this.lblLicenses);
+      this.Controls.Add(this.cbxLicenses);
       this.Name = "SelectLicense";
       this.Size = new System.Drawing.Size(400, 50);
       this.Load += new System.EventHandler(this.SelectLicense_Load);
@@ -73,7 +74,7 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cbxLicenses;
-        private System.Windows.Forms.Label lblLicenses;
         private System.Windows.Forms.ToolTip toolTip1;
+        private Forms.SIH2 lblLicenses;
     }
 }

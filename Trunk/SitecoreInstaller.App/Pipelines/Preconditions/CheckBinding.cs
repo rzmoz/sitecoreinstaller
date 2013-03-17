@@ -14,7 +14,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
             if (!Services.IisManagement.BindingExists(Services.ProjectSettings.Iis.Url))
                 return true;
 
-            ErrorMessage = "Site with binding already exixst: " + Services.ProjectSettings.Iis.Url;
+            ErrorMessage = "Site with binding already exists: " + Services.ProjectSettings.Iis.Url;
             return false;
         }
     }

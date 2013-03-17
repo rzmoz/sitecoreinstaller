@@ -11,8 +11,6 @@
     public SelectProjectName()
     {
       InitializeComponent();
-      lblProjectName.Font = Styles.Fonts.BaseRegular;
-      lblProjectName.ForeColor = Styles.FontColors.LabelForeColor;
     }
 
     public string ProjectName
@@ -48,12 +46,12 @@
 
     public void UpdateList()
     {
-      cbxProjectName.Items.Clear();/*
+      cbxProjectName.Items.Clear();
       var existingProjects = Services.Projects.GetExistingProjects();
       foreach (var existingProject in existingProjects)
       {
         cbxProjectName.Items.Add(existingProject);
-      }*/
+      }
     }
   }
 }

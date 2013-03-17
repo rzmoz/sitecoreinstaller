@@ -17,8 +17,6 @@
     public SelectSitecore()
     {
       InitializeComponent();
-      lblSitecore.Font = Styles.Fonts.BaseRegular;
-      lblSitecore.ForeColor = Styles.FontColors.LabelForeColor;
     }
 
 
@@ -48,7 +46,7 @@
         lblSitecore.Text = "You have no Sitecore versions";
         return;
       }
-      lblSitecore.ForeColor = Styles.FontColors.LabelForeColor;
+      lblSitecore.ForeColor = Styles.Fonts.Colors.Text; 
       lblSitecore.Text = string.Format("Sitecore:");
     }
   }
