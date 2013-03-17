@@ -178,7 +178,7 @@
     <Compile Include="SelectSitecore.Designer.cs">
       <DependentUpon>SelectSitecore.cs</DependentUpon>
     </Compile>
-    <Compile Include="NavButton.cs">
+    <Compile Include="Navigation\NavButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\SIButton.cs">

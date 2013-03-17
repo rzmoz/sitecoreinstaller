@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace SitecoreInstaller.UI
+﻿namespace SitecoreInstaller.UI.Navigation
 {
+  using System;
   using System.Collections.Generic;
   using System.Drawing;
   using System.Linq;
@@ -17,14 +16,14 @@ namespace SitecoreInstaller.UI
       if (targetControl == null) { throw new ArgumentNullException("targetControl"); }
       this.TargetControl = targetControl;
 
-      TextImageRelation = TextImageRelation.ImageBeforeText;
-      ImageAlign = ContentAlignment.MiddleLeft;
-      TextAlign = ContentAlignment.MiddleLeft;
-      FlatStyle = FlatStyle.Flat;
-      FlatAppearance.BorderSize = 0;
+      this.TextImageRelation = TextImageRelation.ImageBeforeText;
+      this.ImageAlign = ContentAlignment.MiddleLeft;
+      this.TextAlign = ContentAlignment.MiddleLeft;
+      this.FlatStyle = FlatStyle.Flat;
+      this.FlatAppearance.BorderSize = 0;
 
-      ForeColorNotSelected = InitColor;
-      BackColorNotSelected = InitColor;
+      this.ForeColorNotSelected = this.InitColor;
+      this.BackColorNotSelected = this.InitColor;
     }
 
     public event EventHandler<GenericEventArgs<NavButton>> Activated;
@@ -35,56 +34,56 @@ namespace SitecoreInstaller.UI
 
     public void Activate()
     {
-      if (BackColorNotSelected.Equals(InitColor))
+      if (this.BackColorNotSelected.Equals(this.InitColor))
       {
-        BackColorNotSelected = BackColor;
-        MouseOverNotSelectedColor = BackColorNotSelected;
+        this.BackColorNotSelected = this.BackColor;
+        this.MouseOverNotSelectedColor = this.BackColorNotSelected;
       }
 
-      BackColor = BackColorSelected;
-      FlatAppearance.MouseOverBackColor = BackColor;
+      this.BackColor = this.BackColorSelected;
+      this.FlatAppearance.MouseOverBackColor = this.BackColor;
 
-      if (ForeColorNotSelected.Equals(InitColor))
-        ForeColorNotSelected = ForeColor;
+      if (this.ForeColorNotSelected.Equals(this.InitColor))
+        this.ForeColorNotSelected = this.ForeColor;
 
-      ForeColor = ForeColorSelected;
+      this.ForeColor = this.ForeColorSelected;
 
-      if (ImageNotSelected == null)
-        ImageNotSelected = Image;
+      if (this.ImageNotSelected == null)
+        this.ImageNotSelected = this.Image;
 
-      if (ImageSelected != null)
-        Image = ImageSelected;
+      if (this.ImageSelected != null)
+        this.Image = this.ImageSelected;
 
       if (this.TargetControl != null)
         this.TargetControl.BringToFront();
 
-      if (Activated != null)
-        Activated(this, new GenericEventArgs<NavButton>(this));
+      if (this.Activated != null)
+        this.Activated(this, new GenericEventArgs<NavButton>(this));
     }
 
     public void DeActivate()
     {
-      if (BackColorNotSelected.Equals(InitColor))
+      if (this.BackColorNotSelected.Equals(this.InitColor))
       {
-        BackColorNotSelected = BackColor;
-        MouseOverNotSelectedColor = FlatAppearance.MouseOverBackColor;
+        this.BackColorNotSelected = this.BackColor;
+        this.MouseOverNotSelectedColor = this.FlatAppearance.MouseOverBackColor;
       }
 
-      FlatAppearance.MouseOverBackColor = MouseOverNotSelectedColor;
-      BackColor = BackColorNotSelected;
+      this.FlatAppearance.MouseOverBackColor = this.MouseOverNotSelectedColor;
+      this.BackColor = this.BackColorNotSelected;
 
-      if (ForeColorNotSelected.Equals(InitColor))
-        ForeColorNotSelected = ForeColor;
+      if (this.ForeColorNotSelected.Equals(this.InitColor))
+        this.ForeColorNotSelected = this.ForeColor;
 
-      ForeColor = ForeColorNotSelected;
+      this.ForeColor = this.ForeColorNotSelected;
 
-      if (ImageNotSelected == null)
-        ImageNotSelected = Image;
+      if (this.ImageNotSelected == null)
+        this.ImageNotSelected = this.Image;
 
-      Image = ImageNotSelected;
+      this.Image = this.ImageNotSelected;
 
-      if (DeActivated != null)
-        DeActivated(this, new GenericEventArgs<NavButton>(this));
+      if (this.DeActivated != null)
+        this.DeActivated(this, new GenericEventArgs<NavButton>(this));
     }
 
     private Color MouseOverNotSelectedColor { get; set; }
