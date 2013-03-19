@@ -37,7 +37,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
             Modules.CreateIfNotExists();
             Licenses.CreateIfNotExists();
             Sitecore.CreateIfNotExists();
-            Log.As.Info("Build library folders created at: {0}", Root.FullName);
+            Log.This.Info("Build library folders created at: {0}", Root.FullName);
         }
 
         public DirectoryInfo Root { get; private set; }

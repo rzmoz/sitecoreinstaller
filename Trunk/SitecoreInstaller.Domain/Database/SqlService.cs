@@ -26,7 +26,7 @@ namespace SitecoreInstaller.Domain.Database
 
         public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, IEnumerable<ConnectionStringName> connectionStringNames, IEnumerable<ConnectionStringName> existingConnectionStrings)
         {
-            Log.As.Info("Generating connection string delta...");
+            Log.This.Info("Generating connection string delta...");
 
             var connectionStringEntries = string.Empty;
             foreach (var connectionStringName in connectionStringNames)
@@ -40,7 +40,7 @@ namespace SitecoreInstaller.Domain.Database
             }
 
             var connectionStringDelta = string.Format(ConnectionStringFormats.ConnectionStringDotConfigDelta, connectionStringEntries);
-            Log.As.Debug(connectionStringDelta);
+            Log.This.Debug(connectionStringDelta);
             return connectionStringDelta;
         }
 

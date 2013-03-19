@@ -42,7 +42,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public override void Update(string sourceName)
         {
-            Log.As.Debug("Updating '{0}'s from {1}", SourceType, sourceName);
+            Log.This.Debug("Updating '{0}'s from {1}", SourceType, sourceName);
 
             Entries.Clear();
             if (Directory.Exists(Root.FullName) == false)
@@ -50,7 +50,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             foreach (var dir in Root.GetDirectories())
             {
-                Log.As.Debug("Adding '{0}' from directory", dir.FullName);
+                Log.This.Debug("Adding '{0}' from directory", dir.FullName);
                 Entries.Add(dir.Name.ToLower(), new SourceEntry(dir.Name, sourceName));
             }
 
@@ -59,7 +59,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
                 var cleanedName = zipFile.NameWithoutExtension();
                 if (Entries.ContainsKey(cleanedName.ToLower()))
                     continue;
-                Log.As.Debug("Adding '{0}' from zip file", cleanedName);
+                Log.This.Debug("Adding '{0}' from zip file", cleanedName);
                 Entries.Add(cleanedName.ToLower(), new SourceEntry(cleanedName, sourceName));
             }
         }

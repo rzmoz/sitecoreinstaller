@@ -6,7 +6,7 @@
     {
         public void Run(string commandString)
         {
-            Diagnostics.Log.As.Debug("Command prompt invoked: {0}", commandString);
+            Diagnostics.Log.This.Debug("Command prompt invoked: {0}", commandString);
 
             var si = new ProcessStartInfo("cmd.exe", "/c " + commandString)
             {
@@ -25,7 +25,7 @@
                 console.StandardOutput.ReadToEnd();
                 var error = console.StandardError.ReadToEnd();
                 if (error.Length > 0)
-                    Diagnostics.Log.As.Error(error);
+                    Diagnostics.Log.This.Error(error);
 
                 console.Close();
             }

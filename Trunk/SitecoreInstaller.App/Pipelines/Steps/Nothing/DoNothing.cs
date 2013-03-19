@@ -14,22 +14,28 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
   {
     protected override void InnerInvoke(object sender, StepEventArgs args)
     {
-      Log.As.Info("Starting doing nothing...");
+      Log.This.Info("Starting doing nothing...");
 
-      Parallel.For(0, 10, async i => Log.As.Info("Async finished with {0}", await this.GetWait(i)));
+      //Parallel.For(0, 10, async i => Log.This.Info("Async finished with {0}", await this.GetWait(i)));
+
+      foreach (var index in Enumerable.Range(0,1))
+      {
+        Log.This.Info("Doing nothing: {0}", index);
+        Thread.Sleep(1000);
+      }
     }
 
     public Task<int> GetWait(int number)
     {
-      Log.As.Info("Starting async task {0}", number);
+      Log.This.Info("Starting async task {0}", number);
 
       var tcs = new TaskCompletionSource<int>();
-      
+
       Task.Delay(1000);
 
       tcs.SetResult(number);
 
-      Log.As.Info("Finishing async task {0}", number);
+      Log.This.Info("Finishing async task {0}", number);
       return tcs.Task;
     }
   }

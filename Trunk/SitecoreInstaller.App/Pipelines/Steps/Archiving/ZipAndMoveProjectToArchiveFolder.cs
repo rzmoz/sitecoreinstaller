@@ -18,7 +18,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
     {
         protected override void InnerInvoke(object sender, StepEventArgs args)
         {
-            Log.As.Info("Zipping project...");
+            Log.This.Info("Zipping project...");
 
             var archiveName = Services.ProjectSettings.ProjectName + "_rev." + DateTime.Now.ToString("yyyyMMdd");
             string userInput = archiveName;
@@ -31,7 +31,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
             var zipFile = new SevenZipFile(zipFileInfo);
             zipFile.ZipContent(Services.ProjectSettings.ProjectFolder.Directory);
 
-            Log.As.Info("Moving archive to archive folder...");
+            Log.This.Info("Moving archive to archive folder...");
             var robocopy = new Robocopy();
             robocopy.Move(zipFile.File, new DirectoryInfo(UserSettings.Default.ArchiveFolder));
         }

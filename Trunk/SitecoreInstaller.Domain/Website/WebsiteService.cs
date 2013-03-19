@@ -38,12 +38,12 @@ namespace SitecoreInstaller.Domain.Website
     {
       var configFile = string.Format(WebsiteResource.DataFolderFormat, dataFolder.Directory);
       configFile.WriteToDisk(dataFolderConfigFile);
-      Log.As.Info("Data folder set to '{0}'", dataFolder.FullName);
+      Log.This.Info("Data folder set to '{0}'", dataFolder.FullName);
     }
 
     public void CopySitecoreToProjectfolder(ProjectFolder projectFolder, BuildLibraryDirectory sitecore, InstallType installType)
     {
-      Log.As.Info("Copying '{0}'...", sitecore.Directory.Name);
+      Log.This.Info("Copying '{0}'...", sitecore.Directory.Name);
 
       //Copy web site folder
       var sitecoreWebsiteFolder = sitecore.Directory.CombineTo<DirectoryInfo>(projectFolder.Website.Name);
@@ -66,7 +66,7 @@ namespace SitecoreInstaller.Domain.Website
       foreach (var file in sitecore.Directory.GetFiles())
         file.CopyTo(projectFolder, true);
 
-      Log.As.Info("Sitecore copied");
+      Log.This.Info("Sitecore copied");
     }
 
     private void CopyDatabaseFolder(string sourceDbName, DirectoryInfo sitecore, ProjectFolder projectfolder)
@@ -81,7 +81,7 @@ namespace SitecoreInstaller.Domain.Website
 
     public void CopyModulesToWebsite(ProjectFolder projectFolder, BuildLibraryDirectory module, InstallType installType)
     {
-      Log.As.Info("Copying module to website...");
+      Log.This.Info("Copying module to website...");
 
       if (installType == InstallType.Full)
       {
@@ -91,12 +91,12 @@ namespace SitecoreInstaller.Domain.Website
           foreach (var databaseFile in new[] { _fileTypes.DatabaseDataFile.GetAllSearchPattern, _fileTypes.DatabaseLogFile.GetAllSearchPattern }.SelectMany(fileExtensions => module.Directory.GetFiles(fileExtensions)))
           {
             databaseFile.CopyTo(projectFolder.Databases, true);
-            Log.As.Debug("Module database file '{0}' copied to {1}", databaseFile.FullName, projectFolder.Data.FullName);
+            Log.This.Debug("Module database file '{0}' copied to {1}", databaseFile.FullName, projectFolder.Data.FullName);
           }
         }
         catch (IOException e)
         {
-          Log.As.Warning(e.ToString());
+          Log.This.Warning(e.ToString());
         }
       }
 
@@ -105,14 +105,14 @@ namespace SitecoreInstaller.Domain.Website
       {
         var targetFolder = projectFolder.Website.AppConfig.Include;
         configFile.CopyTo(targetFolder, true);
-        Log.As.Debug("Module config file '{0}' copied to {1}", configFile.FullName, targetFolder);
+        Log.This.Debug("Module config file '{0}' copied to {1}", configFile.FullName, targetFolder);
       }
 
       //copy Sitecore packages to package folder (zip files)
       foreach (var packageFile in _fileTypes.SitecorePackage.GetFiles(module.Directory))
       {
         packageFile.CopyTo(projectFolder.Data.Packages, true);
-        Log.As.Debug("Module Sitecore package file '{0}' copied to {1}", packageFile.FullName, projectFolder.Data.Packages.FullName);
+        Log.This.Debug("Module Sitecore package file '{0}' copied to {1}", packageFile.FullName, projectFolder.Data.Packages.FullName);
       }
 
       //Copy directories to project folder
@@ -120,39 +120,39 @@ namespace SitecoreInstaller.Domain.Website
       {
         var targetFolder = projectFolder.Combine(moduleFolder);
         moduleFolder.CopyTo(targetFolder, DirCopyOptions.IncludeSubDirectories);
-        Log.As.Debug("Modules folder '{0}' copied to {1}", projectFolder.FullName, targetFolder.FullName);
+        Log.This.Debug("Modules folder '{0}' copied to {1}", projectFolder.FullName, targetFolder.FullName);
       }
 
       //Copy rest of files
       foreach (var notSitecoreSpecificFileType in Array.FindAll(module.Directory.GetFiles(), _fileTypes.IsNotRegisteredFileType))
       {
         notSitecoreSpecificFileType.CopyTo(projectFolder, true);
-        Log.As.Debug("NotSitecoreSpecificFile '{0}' copied to {1}", notSitecoreSpecificFileType.FullName, projectFolder.CombineTo<FileInfo>(notSitecoreSpecificFileType.Name).FullName);
+        Log.This.Debug("NotSitecoreSpecificFile '{0}' copied to {1}", notSitecoreSpecificFileType.FullName, projectFolder.CombineTo<FileInfo>(notSitecoreSpecificFileType.Name).FullName);
       }
 
 
-      Log.As.Info("Module copied to website");
+      Log.This.Info("Module copied to website");
     }
 
     public void CopyLicenseFileToDataFolder(BuildLibraryFile license, DataFolder dataFolder, FileInfo licenseConfigFile)
     {
-      Log.As.Info("Copying license file '{0}'...", license.File.Name);
+      Log.This.Info("Copying license file '{0}'...", license.File.Name);
 
       var targetLicenseFileName = dataFolder.Directory.CombineTo<FileInfo>("license.xml");
 
       File.Copy(license.File.FullName, targetLicenseFileName.FullName, true);
       var licenseConfig = string.Format(WebsiteResource.LicenseFileFormat, targetLicenseFileName.Name);
       licenseConfig.WriteToDisk(licenseConfigFile);
-      Log.As.Info("License file copied to '{0}'", targetLicenseFileName.FullName);
+      Log.This.Info("License file copied to '{0}'", targetLicenseFileName.FullName);
     }
 
     public void OpenSitecore(string baseUrl, DirectoryInfo websiteFolder)
     {
-      Log.As.Info("Starting up Sitecore...");
+      Log.This.Info("Starting up Sitecore...");
 
       if (string.IsNullOrEmpty(baseUrl))
       {
-        Log.As.Error("baseUrl is null or empty");
+        Log.This.Error("baseUrl is null or empty");
         return;
       }
 
@@ -165,11 +165,11 @@ namespace SitecoreInstaller.Domain.Website
 
     public void OpenFrontend(string baseUrl)
     {
-      Log.As.Info("Accessing site...");
+      Log.This.Info("Accessing site...");
 
       if (string.IsNullOrEmpty(baseUrl))
       {
-        Log.As.Error("baseUrl is null or empty");
+        Log.This.Error("baseUrl is null or empty");
         return;
       }
 
@@ -178,7 +178,7 @@ namespace SitecoreInstaller.Domain.Website
 
     public void InstallRuntimeServices(WebsiteFolder websiteFolder)
     {
-      Log.As.Info("Installing runtime services...");
+      Log.This.Info("Installing runtime services...");
 
       var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
 
@@ -187,7 +187,7 @@ namespace SitecoreInstaller.Domain.Website
       WebsiteResource.InstallPackageService.WriteToDir(runtimeServicesFolder, _InstallPackageServiceName);
       WebsiteResource.InstallPackageStatusService.WriteToDir(runtimeServicesFolder, _InstallPackageStatusName);
 
-      Log.As.Info("Runtime services installed");
+      Log.This.Info("Runtime services installed");
     }
 
     public void DeleteRuntimeServices(DirectoryInfo websiteFolder)
@@ -197,7 +197,7 @@ namespace SitecoreInstaller.Domain.Website
 
       if (runtimeServicesFolder.Exists == false)
       {
-        Log.As.Debug("Runtime services not found. Aborting...");
+        Log.This.Debug("Runtime services not found. Aborting...");
         return;
       }
 
@@ -215,26 +215,26 @@ namespace SitecoreInstaller.Domain.Website
 
       //warm up site to make sure run time service is up and running
       WakeUpSite(baseUrl);
-      Log.As.Info("Installing packages...");
+      Log.This.Info("Installing packages...");
 
       foreach (var module in modules)
       {
         foreach (var package in _fileTypes.SitecorePackage.GetFiles(module.Directory))
         {
           var packageName = HttpUtility.UrlEncode(package.Name);
-          Log.As.Info("Installing '{0}'...", HttpUtility.UrlDecode(packageName));
+          Log.This.Info("Installing '{0}'...", HttpUtility.UrlDecode(packageName));
 
           const string installFormatPattern = "Action={0}&PackageName={1}";
 
           var callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern,"Install", packageName));
           ExecuteInstallPackageAction(callingUri);
 
-          Log.As.Info("Executing post installation steps for '{0}'...", HttpUtility.UrlDecode(packageName));
+          Log.This.Info("Executing post installation steps for '{0}'...", HttpUtility.UrlDecode(packageName));
 
           callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern, "PostInstall", packageName));
           ExecuteInstallPackageAction(callingUri);
 
-          Log.As.Info("'{0}' is installed", package);
+          Log.This.Info("'{0}' is installed", package);
         }
       }
     }
@@ -245,20 +245,20 @@ namespace SitecoreInstaller.Domain.Website
       var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
       WebsiteResource.PostInstallService.WriteToDir(runtimeServicesFolder, _PostInstallServiceName);
       WakeUpSite(baseUrl);
-      Log.As.Info("Executing post install steps...");
+      Log.This.Info("Executing post install steps...");
       var callingUri = baseUrl.ToUri(_InstallerPath, _PostInstallServiceName);
       CallUrl(callingUri);
     }
 
     public void WakeUpSite(string siteBaseUrl)
     {
-      Log.As.Info("Waking up site...");
+      Log.This.Info("Waking up site...");
       CallUrl(siteBaseUrl.ToUri(_KeepAlivePingPath));
     }
 
     public void WarmUpSite(string siteBaseUrl)
     {
-      Log.As.Info("Warming up site...");
+      Log.This.Info("Warming up site...");
       CallUrl(siteBaseUrl.ToUri(_SitecorePingPath));
       CallUrl(siteBaseUrl.ToUri(_SiteRootPingPath));
     }
@@ -277,10 +277,10 @@ namespace SitecoreInstaller.Domain.Website
         response = this.FetchUrl(url);
         if (response == null)
         {
-          Log.As.Error("Faild to install {0}", url);
+          Log.This.Error("Faild to install {0}", url);
           return;
         }
-        Task.Delay(1000);
+        Thread.Sleep(1000);
       }
       while (response.StatusCode != HttpStatusCode.OK && response.StatusDescription.StartsWith("Done") == false);
     }
@@ -294,11 +294,11 @@ namespace SitecoreInstaller.Domain.Website
         var response = this.FetchUrl(url);
         if (response != null && response.StatusCode == HttpStatusCode.OK)
         {
-          Log.As.Debug("'{0}' responded: '{1}'", url.ToString(), response.StatusDescription);
+          Log.This.Debug("'{0}' responded: '{1}'", url.ToString(), response.StatusDescription);
           return;
         }
       }
-      Log.As.Error("'{0}' never responded OK.", url.ToString());
+      Log.This.Error("'{0}' never responded OK.", url.ToString());
     }
 
     private HttpWebResponse FetchUrl(Uri url)
@@ -312,7 +312,7 @@ namespace SitecoreInstaller.Domain.Website
       }
       catch (WebException we)
       {
-        //Log.As.Error(we.ToString());
+        //Log.This.Error(we.ToString());
         return null;
       }
     }

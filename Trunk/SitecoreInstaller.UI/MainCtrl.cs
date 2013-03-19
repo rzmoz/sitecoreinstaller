@@ -82,5 +82,10 @@ namespace SitecoreInstaller.UI
     {
       this.CrossThreadSafe(() => Services.Dialogs.ModalDialog(MessageBoxIcon.Error, e.Arg, string.Empty));
     }
+
+    private void siButton1_Click_1(object sender, EventArgs e)
+    {
+      Services.Pipelines.Run<NothingPipeline>();
+    }
   }
 }

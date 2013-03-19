@@ -72,9 +72,6 @@
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="ProgressODoom">
-      <HintPath>..\3rdPartyAssemblies\ProgressODoom.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
@@ -100,6 +97,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\SIH2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\SILabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ListBoxes\SourceEntryCheckedListBox.cs">
@@ -131,11 +131,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NavigationResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Processing\ProcessingResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProcessingResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Processing\ProgressCtrl.cs">
       <SubType>UserControl</SubType>
@@ -231,16 +226,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NavigationResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Processing\ProcessingResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProcessingResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Processing\ProgressCtrl.resx">
       <DependentUpon>ProgressCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectLicense.resx">
       <DependentUpon>SelectLicense.cs</DependentUpon>
@@ -280,7 +272,7 @@
     <None Include="Navigation\Images\Settings_Active.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Processing\Images\Spinner.gif" />
+    <None Include="Resources\spinner.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

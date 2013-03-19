@@ -18,7 +18,7 @@ namespace SitecoreInstallerConsole
 
       while (Services.PipelineWorker.IsBusy())
       {
-        Task.Delay(1000);
+        Thread.Sleep(1000);
       }
     }
   }

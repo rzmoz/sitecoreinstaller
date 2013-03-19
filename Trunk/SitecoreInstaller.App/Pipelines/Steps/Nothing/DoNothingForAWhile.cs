@@ -15,16 +15,16 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
     {
         protected override void InnerInvoke(object sender, StepEventArgs args)
         {
-            Log.As.Info(typeof(SourceManifest).Name);
+            Log.This.Info(typeof(SourceManifest).Name);
             for (var i = 0; i < 10; i++)
-                Log.As.Info("Logging...");
-            Log.As.Info("Pinging the world!...");
-            Task.Delay(200);
-            Log.As.Debug("Debugging the world!...");
-            Task.Delay(200);
-            Log.As.Warning("Warning the world!...");
-            Task.Delay(200);
-            Log.As.Error("Erroring the world!");
+                Log.This.Info("Logging...");
+            Log.This.Info("Pinging the world!...");
+            Thread.Sleep(200);
+            Log.This.Debug("Debugging the world!...");
+            Thread.Sleep(200);
+            Log.This.Warning("Warning the world!...");
+            Thread.Sleep(200);
+            Log.This.Error("Erroring the world!");
         }
     }
 }

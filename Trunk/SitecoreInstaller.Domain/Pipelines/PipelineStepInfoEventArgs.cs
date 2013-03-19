@@ -5,18 +5,18 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-    public class PipelineStepInfoEventArgs : EventArgs
+  public class PipelineStepInfoEventArgs : EventArgs
+  {
+    public PipelineStepInfoEventArgs(int stepNumber, int totalStepCount, string stepName)
     {
-        public PipelineStepInfoEventArgs(int stepNumber, int totalStepNumber, string stepName)
-        {
-            if (stepNumber < 1 || totalStepNumber < 1)
-                ProgressPercentage = 100;
-            else
-                ProgressPercentage = Convert.ToInt32(100.0 / ((double)totalStepNumber / (double)stepNumber));
-            StepName = stepName ?? string.Empty;
-        }
+      StepNumber = stepNumber;
+      TotalStepCount = totalStepCount;
 
-        public int ProgressPercentage { get; private set; }
-        public string StepName { get; private set; }
+      StepName = stepName ?? string.Empty;
     }
+
+    public int StepNumber { get; private set; }
+    public int TotalStepCount { get; private set; }
+    public string StepName { get; private set; }
+  }
 }

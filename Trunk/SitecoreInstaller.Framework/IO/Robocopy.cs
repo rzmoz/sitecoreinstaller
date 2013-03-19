@@ -13,7 +13,7 @@ namespace SitecoreInstaller.Framework.IO
     public class Robocopy : CommandPrompt
     {
         private const string _FileName = @"Robocopy";
-        private const string _SourceDestinationFormat = _FileName + @" ""{0}"" ""{1}"" ";
+        private const string _SourceDestinationFormat = _FileName + @" ""{0}"" ""{1}"" /NP ";
         private const string _IncludeSubfoldersSwitch = " /e ";
         private const string _MoveSwitch = " /move ";
 
@@ -23,7 +23,7 @@ namespace SitecoreInstaller.Framework.IO
             Contract.Requires<ArgumentNullException>(source != null);
 
             var command = string.Format(_SourceDestinationFormat, source.FullName, target.FullName);
-            command += switches + " /MT:10";
+            command += switches;
             Run(command);
         }
 

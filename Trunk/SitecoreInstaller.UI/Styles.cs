@@ -15,7 +15,7 @@ namespace SitecoreInstaller.UI
 
     public static class Fonts
     {
-      public static readonly Font PRegular = new Font(FontFamily, 8F, FontStyle.Regular);
+      public static readonly Font LblRegular = new Font(FontFamily, 8F, FontStyle.Regular);
       public static readonly Font PBold = new Font(FontFamily, 8F, FontStyle.Regular);
       public static readonly Font H2 = new Font(FontFamily, 10F, FontStyle.Bold);
       public static readonly Font H1 = new Font(FontFamily, 12F, FontStyle.Bold);
@@ -25,6 +25,11 @@ namespace SitecoreInstaller.UI
         public static readonly Color Text = Color.FromArgb(176, 176, 176);
         public static readonly Color H1 = Color.FromArgb(0, 150, 250);
       }
+    }
+
+    public static class ProgressBar
+    {
+      public static readonly Color ProgressColor = Color.FromArgb(0, 150, 250);
     }
 
     public static class MainCtrl

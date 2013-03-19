@@ -67,7 +67,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public BuildLibraryResource Get(SourceEntry sourceEntry, SourceType sourceType)
         {
-            Log.As.Info("Getting {0}", sourceEntry.Key);
+            Log.This.Info("Getting {0}", sourceEntry.Key);
 
             BuildLibraryResource resource;
 
@@ -78,13 +78,13 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             resource.TargetDirectory = _localBuildLibrary.Getfolder(sourceType);
 
-            Log.As.Info("Copying '{0}'", sourceEntry.Key);
+            Log.This.Info("Copying '{0}'", sourceEntry.Key);
             resource.CopyToTargetDir(BuildLibraryMode.Local);
 
-            Log.As.Info("Extracting '{0}'", sourceEntry.Key);
+            Log.This.Info("Extracting '{0}'", sourceEntry.Key);
             resource = resource.Unpack();
 
-            Log.As.Info("Updating buildlibrary");
+            Log.This.Info("Updating buildlibrary");
             _localBuildLibrary.Update();
 
             if (resource.Mode == BuildLibraryMode.Local)

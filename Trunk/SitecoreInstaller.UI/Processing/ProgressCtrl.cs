@@ -24,18 +24,13 @@ namespace SitecoreInstaller.UI.Processing
 
     private void ProgressCtrl_Load(object sender, EventArgs e)
     {
+      Log.This.EntryLogged += UpdateInfo;
       Services.PipelineWorker.StepExecuting += UpdateStatus;
     }
-
-    public void Ended(object sender, PipelineEventArgs e)
+    private void siButton1_Click(object sender, EventArgs e)
     {
-      this.CrossThreadSafe(() =>
-      {
-        picWaitingAni.Hide();
-        btnOk.Show();
-        btnOk.Focus();
-      });
-      
+      this.SendToBack();
+      this.Hide();
     }
 
     public void Starting(object sender, PipelineEventArgs e)
@@ -45,22 +40,42 @@ namespace SitecoreInstaller.UI.Processing
         this.BringToFront();
         this.Show();
         btnOk.Hide();
-        picWaitingAni.Show();
+        lblProgress.Show();
         lblTitle.Text = e.PipelineName.ToSpaceDelimiteredString();
+        picWaitAnimation.Show();
       });
     }
 
-    private void siButton1_Click(object sender, EventArgs e)
+    public void Ended(object sender, PipelineEventArgs e)
     {
-      this.SendToBack();
-      this.Hide();
+      this.CrossThreadSafe(() =>
+      {
+        lblProgress.Hide();
+        btnOk.Show();
+        btnOk.Focus();
+        picWaitAnimation.Hide();
+      });
     }
 
     public void UpdateStatus(object sender, PipelineStepInfoEventArgs e)
     {
       this.CrossThreadSafe(() =>
       {
+        lblProgress.Text = string.Format("Executing step {0} of {1}", e.StepNumber, e.TotalStepCount);
         lblStatusMessage.Text = e.StepName.ToSpaceDelimiteredString();
+        });
+    }
+
+    public void UpdateInfo(object sender, GenericEventArgs<LogEntry> e)
+    {
+      this.CrossThreadSafe(() =>
+      {
+        if (e == null)
+          return;
+        if (e.Arg == null)
+          return;
+        if (e.Arg.LogType == LogType.Info)
+          lblInfo.Text = e.Arg.Message;
       });
     }
   }

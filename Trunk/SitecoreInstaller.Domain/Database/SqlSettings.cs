@@ -44,8 +44,8 @@
             }
             catch (Exception e)
             {
-                Log.As.Debug(e.ToString());
-                Log.As.Error(e.Message);
+                Log.This.Debug(e.ToString());
+                Log.This.Error(e.Message);
                 return false;
             }
         }

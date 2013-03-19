@@ -9,7 +9,7 @@
       this.FlatStyle = FlatStyle.Flat;
       this.FlatAppearance.BorderSize = 1;
       this.FlatAppearance.BorderColor = Styles.Fonts.Colors.Text;
-      this.Font = Styles.Fonts.PRegular;
+      this.Font = Styles.Fonts.LblRegular;
       this.ForeColor = Styles.Fonts.Colors.Text;
     }
   }

@@ -23,7 +23,7 @@ namespace SitecoreInstaller.Domain.Website
       }
       catch (UriFormatException)
       {
-        Log.As.Error("Invalid Uri format. Couldn't parse this: '{0}'", url);
+        Log.This.Error("Invalid Uri format. Couldn't parse this: '{0}'", url);
         throw;
       }
     }
