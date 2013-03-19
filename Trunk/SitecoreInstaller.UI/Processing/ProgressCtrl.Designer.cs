@@ -31,7 +31,6 @@
     private void InitializeComponent()
     {
       this.lblInfo = new SitecoreInstaller.UI.Forms.SILabel();
-      this.lblProgress = new SitecoreInstaller.UI.Forms.SILabel();
       this.lblStatusMessage = new SitecoreInstaller.UI.Forms.SIH2();
       this.lblTitle = new SitecoreInstaller.UI.Forms.SIH1();
       this.btnOk = new SitecoreInstaller.UI.Forms.SIButton();
@@ -49,17 +48,6 @@
       this.lblInfo.Size = new System.Drawing.Size(71, 13);
       this.lblInfo.TabIndex = 7;
       this.lblInfo.Text = "Processing...";
-      // 
-      // lblProgress
-      // 
-      this.lblProgress.AutoSize = true;
-      this.lblProgress.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.lblProgress.Location = new System.Drawing.Point(74, 119);
-      this.lblProgress.Name = "lblProgress";
-      this.lblProgress.Size = new System.Drawing.Size(66, 13);
-      this.lblProgress.TabIndex = 6;
-      this.lblProgress.Text = "Executing...";
       // 
       // lblStatusMessage
       // 
@@ -114,7 +102,6 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.picWaitAnimation);
       this.Controls.Add(this.lblInfo);
-      this.Controls.Add(this.lblProgress);
       this.Controls.Add(this.lblStatusMessage);
       this.Controls.Add(this.lblTitle);
       this.Controls.Add(this.btnOk);
@@ -132,7 +119,6 @@
     private SIButton btnOk;
     private SIH1 lblTitle;
     private SIH2 lblStatusMessage;
-    private SILabel lblProgress;
     private SILabel lblInfo;
     private System.Windows.Forms.PictureBox picWaitAnimation;
   }

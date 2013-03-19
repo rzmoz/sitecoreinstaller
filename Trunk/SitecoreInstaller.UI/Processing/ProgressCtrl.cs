@@ -40,7 +40,6 @@ namespace SitecoreInstaller.UI.Processing
         this.BringToFront();
         this.Show();
         btnOk.Hide();
-        lblProgress.Show();
         lblTitle.Text = e.PipelineName.ToSpaceDelimiteredString();
         picWaitAnimation.Show();
       });
@@ -50,7 +49,6 @@ namespace SitecoreInstaller.UI.Processing
     {
       this.CrossThreadSafe(() =>
       {
-        lblProgress.Hide();
         btnOk.Show();
         btnOk.Focus();
         picWaitAnimation.Hide();
@@ -61,9 +59,8 @@ namespace SitecoreInstaller.UI.Processing
     {
       this.CrossThreadSafe(() =>
       {
-        lblProgress.Text = string.Format("Executing step {0} of {1}", e.StepNumber, e.TotalStepCount);
-        lblStatusMessage.Text = e.StepName.ToSpaceDelimiteredString();
-        });
+        lblStatusMessage.Text = string.Format("Executing step {0} of {1} : {2}", e.StepNumber, e.TotalStepCount, e.StepName.ToSpaceDelimiteredString());
+      });
     }
 
     public void UpdateInfo(object sender, GenericEventArgs<LogEntry> e)
