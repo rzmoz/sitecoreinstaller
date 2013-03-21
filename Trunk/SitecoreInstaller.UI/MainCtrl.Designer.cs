@@ -33,14 +33,11 @@
       this.pnlFooter = new System.Windows.Forms.Panel();
       this.pnlHeader = new System.Windows.Forms.Panel();
       this.pnlContent = new System.Windows.Forms.Panel();
-      this.btnUninstall = new SitecoreInstaller.UI.Forms.SIButton();
-      this.btnInstall = new SitecoreInstaller.UI.Forms.SIButton();
       this.selectProjectName1 = new SitecoreInstaller.UI.SelectProjectName();
       this.selectSitecore1 = new SitecoreInstaller.UI.SelectSitecore();
       this.selectLicense1 = new SitecoreInstaller.UI.SelectLicense();
       this.selectModules1 = new SitecoreInstaller.UI.SelectModules();
       this.progressCtrl1 = new SitecoreInstaller.UI.Processing.ProgressCtrl();
-      this.siButton1 = new SitecoreInstaller.UI.Forms.SIButton();
       this.pnlContent.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -65,9 +62,6 @@
       // pnlContent
       // 
       this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(69)))), ((int)(((byte)(79)))));
-      this.pnlContent.Controls.Add(this.siButton1);
-      this.pnlContent.Controls.Add(this.btnUninstall);
-      this.pnlContent.Controls.Add(this.btnInstall);
       this.pnlContent.Controls.Add(this.selectProjectName1);
       this.pnlContent.Controls.Add(this.selectSitecore1);
       this.pnlContent.Controls.Add(this.selectLicense1);
@@ -78,34 +72,7 @@
       this.pnlContent.Name = "pnlContent";
       this.pnlContent.Size = new System.Drawing.Size(800, 370);
       this.pnlContent.TabIndex = 1;
-      // 
-      // btnUninstall
-      // 
-      this.btnUninstall.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnUninstall.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.btnUninstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnUninstall.Location = new System.Drawing.Point(410, 203);
-      this.btnUninstall.Name = "btnUninstall";
-      this.btnUninstall.Size = new System.Drawing.Size(75, 23);
-      this.btnUninstall.TabIndex = 5;
-      this.btnUninstall.Text = "Uninstall";
-      this.btnUninstall.UseVisualStyleBackColor = true;
-      this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
-      // 
-      // btnInstall
-      // 
-      this.btnInstall.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnInstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnInstall.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.btnInstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnInstall.Location = new System.Drawing.Point(409, 173);
-      this.btnInstall.Name = "btnInstall";
-      this.btnInstall.Size = new System.Drawing.Size(75, 23);
-      this.btnInstall.TabIndex = 4;
-      this.btnInstall.Text = "Install";
-      this.btnInstall.UseVisualStyleBackColor = true;
-      this.btnInstall.Click += new System.EventHandler(this.siButton1_Click);
+     
       // 
       // selectProjectName1
       // 
@@ -145,21 +112,7 @@
       this.progressCtrl1.Name = "progressCtrl1";
       this.progressCtrl1.Size = new System.Drawing.Size(800, 370);
       this.progressCtrl1.TabIndex = 6;
-      // 
-      // siButton1
-      // 
-      this.siButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.siButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.siButton1.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.siButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.siButton1.Location = new System.Drawing.Point(410, 232);
-      this.siButton1.Name = "siButton1";
-      this.siButton1.Size = new System.Drawing.Size(75, 23);
-      this.siButton1.TabIndex = 7;
-      this.siButton1.Text = "DoNothing";
-      this.siButton1.UseVisualStyleBackColor = true;
-      this.siButton1.Click += new System.EventHandler(this.siButton1_Click_1);
-      // 
+ // 
       // MainCtrl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,9 +137,6 @@
     private SelectSitecore selectSitecore1;
     private SelectProjectName selectProjectName1;
     private System.Windows.Forms.Panel pnlContent;
-    private SIButton btnInstall;
-    private SIButton btnUninstall;
     private Processing.ProgressCtrl progressCtrl1;
-    private SIButton siButton1;
   }
 }

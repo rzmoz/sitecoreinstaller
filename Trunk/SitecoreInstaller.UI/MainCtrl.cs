@@ -26,7 +26,6 @@ namespace SitecoreInstaller.UI
 
     private void MainCtrl_Load(object sender, EventArgs e)
     {
-
       Services.Init();
 
       InitPipelineWorker();
@@ -40,6 +39,24 @@ namespace SitecoreInstaller.UI
       selectModules1.Init();
 
       selectProjectName1.FocusTextBox();
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+    {
+      Services.ProjectSettings = GetProjectSettings();
+      switch (keyData)
+      {
+        case Keys.N | Keys.Control | Keys.Shift:
+          Services.Pipelines.Run<DoNothingPipeline>();
+          break;
+        case Keys.B | Keys.Control | Keys.Shift:
+          Services.Pipelines.Run<InstallPipeline>();
+          break;
+        case Keys.U | Keys.Control | Keys.Shift:
+          Services.Pipelines.Run<UninstallPipeline>();
+          break;
+      }
+      return base.ProcessCmdKey(ref msg, keyData);
     }
 
     private void InitPipelineWorker()
@@ -62,18 +79,6 @@ namespace SitecoreInstaller.UI
       projectSettings.BuildLibrarySelections.SelectedModules = this.selectModules1.SelectedModules;
       return projectSettings;
     }
-
-    private void siButton1_Click(object sender, EventArgs e)
-    {
-      Services.ProjectSettings = GetProjectSettings();
-      Services.Pipelines.Run<InstallPipeline>();
-    }
-
-    private void btnUninstall_Click(object sender, EventArgs e)
-    {
-      Services.ProjectSettings = GetProjectSettings();
-      Services.Pipelines.Run<UninstallPipeline>();
-    }
     void PipelineWorker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
       Services.BuildLibrary.Update();
@@ -81,11 +86,6 @@ namespace SitecoreInstaller.UI
     void PipelineWorker_PreconditionNotMet(object sender, GenericEventArgs<string> e)
     {
       this.CrossThreadSafe(() => Services.Dialogs.ModalDialog(MessageBoxIcon.Error, e.Arg, string.Empty));
-    }
-
-    private void siButton1_Click_1(object sender, EventArgs e)
-    {
-      Services.Pipelines.Run<DoNothingPipeline>();
     }
   }
 }
