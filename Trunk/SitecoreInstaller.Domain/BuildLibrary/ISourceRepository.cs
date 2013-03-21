@@ -7,7 +7,9 @@ using SitecoreInstaller.Framework.Configuration;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-    public interface ISourceRepository
+  using System.Threading.Tasks;
+
+  public interface ISourceRepository
     {
         event EventHandler<EventArgs> Updating;
         event EventHandler<EventArgs> Updated;
@@ -20,6 +22,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         IEnumerable<SourceEntry> List(SourceType sourceType);
         BuildLibraryResource Get(SourceEntry sourceEntry, SourceType sourceType);
         IEnumerable<BuildLibraryResource> Get(IEnumerable<SourceEntry> sourceEntries, SourceType sourceType);
-        void Update();
+        Task Update();
     }
 }

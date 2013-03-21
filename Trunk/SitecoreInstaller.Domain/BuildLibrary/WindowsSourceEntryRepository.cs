@@ -8,8 +8,9 @@ using System.Text;
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
     using System.Diagnostics.Contracts;
+    using System.Threading.Tasks;
 
-    public abstract class WindowsSourceEntryRepository : IEnumerable<SourceEntry>
+  public abstract class WindowsSourceEntryRepository : IEnumerable<SourceEntry>
     {
         protected IDictionary<string, SourceEntry> Entries { get; private set; }
 
@@ -29,7 +30,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public abstract BuildLibraryResource Get(SourceEntry sourceEntry);
 
-        public abstract void Update(string sourceName);
+        public abstract Task Update(string sourceName);
 
         public IEnumerator<SourceEntry> GetEnumerator()
         {
