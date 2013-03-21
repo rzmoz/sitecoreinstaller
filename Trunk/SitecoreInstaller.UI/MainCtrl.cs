@@ -85,7 +85,7 @@ namespace SitecoreInstaller.UI
 
     private void siButton1_Click_1(object sender, EventArgs e)
     {
-      Services.Pipelines.Run<NothingPipeline>();
+      Services.Pipelines.Run<DoNothingPipeline>();
     }
   }
 }

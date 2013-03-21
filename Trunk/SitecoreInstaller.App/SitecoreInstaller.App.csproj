@@ -103,7 +103,7 @@
     </Compile>
     <Compile Include="UiDialogs.cs" />
     <Compile Include="Pipelines\InstallPipeline.cs" />
-    <Compile Include="Pipelines\NothingPipeline.cs" />
+    <Compile Include="Pipelines\DoNothingPipeline.cs" />
     <Compile Include="Pipelines\PipelineService.cs" />
     <Compile Include="Pipelines\Preconditions\CheckConnectionstringsAreSet.cs" />
     <Compile Include="Pipelines\Preconditions\CheckLicense.cs" />

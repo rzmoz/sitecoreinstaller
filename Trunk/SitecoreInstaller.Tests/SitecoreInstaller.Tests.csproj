@@ -70,6 +70,8 @@
     <Compile Include="Framework\IO\DirectoryInfoExtenstionsUT.cs" />
     <Compile Include="Framework\IO\FileSystemInfoExtensionsUT.cs" />
     <Compile Include="Framework\IO\StringExtensionsUT.cs" />
+    <Compile Include="Framework\Linguistics\SentenceUT.cs" />
+    <Compile Include="Framework\Linguistics\WordUT.cs" />
     <Compile Include="Framework\System\ObjectExtensionsUT.cs" />
     <Compile Include="Framework\System\StringExtensionsUT.cs" />
     <Compile Include="Framework\System\TypeExtensionsUT.cs" />
@@ -84,9 +86,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SitecoreInstaller.App\SitecoreInstaller.App.csproj">
       <Project>{687bab97-4f30-4a9c-bf18-197c6a241ef4}</Project>

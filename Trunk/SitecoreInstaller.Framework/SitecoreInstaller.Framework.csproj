@@ -114,6 +114,9 @@
     <Compile Include="IO\FileTypes.cs" />
     <Compile Include="Diagnostics\Profiler.cs" />
     <Compile Include="Diagnostics\ProfilerEventArgs.cs" />
+    <Compile Include="Linguistics\LinguisticsExtensions.cs" />
+    <Compile Include="Linguistics\Sentence.cs" />
+    <Compile Include="Linguistics\Word.cs" />
     <Compile Include="Network\Curl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\CommandPrompt.cs" />

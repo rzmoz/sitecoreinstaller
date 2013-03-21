@@ -5,9 +5,12 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-    public interface IPrecondition
-    {
-        bool Evaluate(object sender, PreconditionEventArgs args);
-        string ErrorMessage { get; }
-    }
+  using SitecoreInstaller.Framework.Linguistics;
+
+  public interface IPrecondition
+  {
+    Sentence Name { get; }
+    bool Evaluate(object sender, PreconditionEventArgs args);
+    string ErrorMessage { get; }
+  }
 }

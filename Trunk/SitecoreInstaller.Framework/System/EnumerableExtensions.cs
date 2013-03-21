@@ -49,7 +49,7 @@ namespace SitecoreInstaller.Framework.System
             foreach (var element in enumerable)
             {
                 resolvedName.Append(delimiter);
-                resolvedName.Append(element.ToString());
+                resolvedName.Append(element);
             }
 
             resolvedName.Remove(0, 1);//remove initial blank space

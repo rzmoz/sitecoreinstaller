@@ -5,11 +5,13 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-    public interface IPipeline
-    {
-        string Name { get; }
-        IEnumerable<IStep> Steps { get; }
-        IEnumerable<IPrecondition> Preconditions { get; }
-        Dialogs Dialogs { get; set; }
-    }
+  using SitecoreInstaller.Framework.Linguistics;
+
+  public interface IPipeline
+  {
+    Sentence Name { get; }
+    IEnumerable<IStep> Steps { get; }
+    IEnumerable<IPrecondition> Preconditions { get; }
+    Dialogs Dialogs { get; set; }
+  }
 }

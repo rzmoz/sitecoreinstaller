@@ -5,19 +5,22 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-    using SitecoreInstaller.Domain.Pipelines;
-    using SitecoreInstaller.Framework.Diagnostics;
-    using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Domain.Pipelines;
+  using SitecoreInstaller.Framework.Diagnostics;
+  using SitecoreInstaller.Framework.Linguistics;
+  using SitecoreInstaller.Framework.System;
 
-    public abstract class Precondition : IPrecondition
+  public abstract class Precondition : IPrecondition
+  {
+    protected Precondition()
     {
-        protected Precondition()
-        {
-            ErrorMessage = string.Empty;
-        }
-
-        public abstract bool Evaluate(object sender, PreconditionEventArgs args);
-
-        public string ErrorMessage { get; set; }
+      ErrorMessage = string.Empty;
+      Name = new Sentence(this.GetType().Name);
     }
+
+    public Sentence Name { get; private set; }
+    public abstract bool Evaluate(object sender, PreconditionEventArgs args);
+
+    public string ErrorMessage { get; set; }
+  }
 }

@@ -5,6 +5,8 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
+  using SitecoreInstaller.Framework.Linguistics;
+
   public abstract class Pipeline : IPipeline
   {
     private readonly IDictionary<string, IPrecondition> _preconditions;
@@ -12,7 +14,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     protected Pipeline()
     {
-      Name = GetType().Name;
+      Name = new Sentence(GetType().Name.Replace("Pipeline", string.Empty));
       _preconditions = new Dictionary<string, IPrecondition>();
       _steps = new Dictionary<string, IStep>();
     }
@@ -29,7 +31,7 @@ namespace SitecoreInstaller.Domain.Pipelines
     }
     public void AddPrecondition(IPrecondition precondition)
     {
-      _preconditions.Add(precondition.GetType().FullName, precondition);
+      _preconditions.Add(precondition.Name.ActiveForm, precondition);
     }
 
     public void AddPreconditions(IEnumerable<IPrecondition> preconditions)
@@ -67,7 +69,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     public Dialogs Dialogs { get; set; }
 
-    public string Name { get; private set; }
+    public Sentence Name { get; private set; }
 
     public IEnumerable<IStep> Steps { get { return _steps.Values; } }
   }

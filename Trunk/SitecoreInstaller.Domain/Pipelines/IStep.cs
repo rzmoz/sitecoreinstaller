@@ -5,13 +5,17 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-    public interface IStep
-    {
-        event EventHandler<EventArgs> StepInvoking;
-        event EventHandler<EventArgs> StepInvoked;
+  using SitecoreInstaller.Framework.Linguistics;
 
-        int Order { get; set; }
-        IEnumerable<IPrecondition> Preconditions { get; }
-        void Invoke(object sender, EventArgs e);
-    }
+  public interface IStep
+  {
+    Sentence Name { get; }
+
+    event EventHandler<EventArgs> StepInvoking;
+    event EventHandler<EventArgs> StepInvoked;
+
+    int Order { get; set; }
+    IEnumerable<IPrecondition> Preconditions { get; }
+    void Invoke(object sender, EventArgs e);
+  }
 }

@@ -40,7 +40,7 @@ namespace SitecoreInstaller.UI.Processing
         this.BringToFront();
         this.Show();
         btnOk.Hide();
-        lblTitle.Text = e.PipelineName.ToSpaceDelimiteredString();
+        lblTitle.Text = e.PipelineName;
         picWaitAnimation.Show();
       });
     }
@@ -59,7 +59,7 @@ namespace SitecoreInstaller.UI.Processing
     {
       this.CrossThreadSafe(() =>
       {
-        lblStatusMessage.Text = string.Format("Executing step {0} of {1} : {2}", e.StepNumber, e.TotalStepCount, e.StepName.ToSpaceDelimiteredString());
+        lblStatusMessage.Text = string.Format("We're at step {0} of {1} : {2}", e.StepNumber, e.TotalStepCount, e.StepName);
       });
     }
 
