@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI
 {
+  using System.Diagnostics;
   using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.App.Properties;
@@ -54,6 +55,15 @@ namespace SitecoreInstaller.UI
           break;
         case Keys.U | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<UninstallPipeline>();
+          break;
+        case Keys.R | Keys.Control | Keys.Shift:
+          Services.BuildLibrary.Update();
+          break;
+        case Keys.O | Keys.Control | Keys.Shift:
+          Services.Website.OpenSitecore(Services.ProjectSettings.Iis.Url, Services.ProjectSettings.ProjectFolder.Website.Directory);
+          break;
+        case Keys.O | Keys.Control | Keys.Alt:
+          Process.Start(Services.ProjectSettings.ProjectFolder.Directory.FullName);
           break;
       }
       return base.ProcessCmdKey(ref msg, keyData);

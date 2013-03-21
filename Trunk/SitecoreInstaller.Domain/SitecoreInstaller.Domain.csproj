@@ -136,8 +136,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -230,6 +232,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Website\Runtime\AdminLogin.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Website\Runtime\DeserializeItems.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Website\Runtime\InstallPackageStatusService.aspx">

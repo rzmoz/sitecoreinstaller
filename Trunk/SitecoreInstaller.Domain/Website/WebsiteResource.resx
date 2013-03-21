@@ -124,6 +124,9 @@
   <data name="DataFolderFormat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>DataFolderFormat.config;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="DeserializeItems" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Runtime\DeserializeItems.aspx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="InstallPackageService" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Runtime\InstallPackageService.aspx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>

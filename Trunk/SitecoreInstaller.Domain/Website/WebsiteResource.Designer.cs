@@ -110,6 +110,25 @@ namespace SitecoreInstaller.Domain.Website {
         ///&lt;%@ Import Namespace=&quot;Sitecore.Update.Installer.Exceptions&quot; %&gt;
         ///&lt;%@ Import Namespace=&quot;Sitecore.Update.Installer. [rest of string was truncated]&quot;;.
         /// </summary>
+        internal static string DeserializeItems {
+            get {
+                return ResourceManager.GetString("DeserializeItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;%@ Page Language=&quot;C#&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;System.IO&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Data.Engines&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Data.Proxies&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Install&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.SecurityModel&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Install.Metadata&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Install.Zip&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Update&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Update.Installer.Exceptions&quot; %&gt;
+        ///&lt;%@ Import Namespace=&quot;Sitecore.Update.Installer. [rest of string was truncated]&quot;;.
+        /// </summary>
         internal static string InstallPackageService {
             get {
                 return ResourceManager.GetString("InstallPackageService", resourceCulture);

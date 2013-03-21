@@ -93,6 +93,7 @@
     <Compile Include="Pipelines\StepEventArgs.cs" />
     <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveProjectToArchiveFolder.cs" />
+    <Compile Include="Pipelines\Steps\Install\DeserializeItems.cs" />
     <Compile Include="Pipelines\Steps\Install\ExecutePostInstallSteps.cs" />
     <Compile Include="Pipelines\Steps\Install\GrantPermissions.cs" />
     <Compile Include="SelectDatabases.cs">

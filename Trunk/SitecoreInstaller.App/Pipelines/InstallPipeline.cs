@@ -32,6 +32,7 @@ namespace SitecoreInstaller.App.Pipelines
       AddStep<CreateIisSiteAndAppPool>();
       AddStep<InstallRuntimeServices>();
       AddStep<InstallPackages>();
+      AddStep<DeserializeItems>();
       AddStep<ExecutePostInstallSteps>();
     }
   }

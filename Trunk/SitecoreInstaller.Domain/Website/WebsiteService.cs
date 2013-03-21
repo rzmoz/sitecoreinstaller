@@ -25,6 +25,7 @@ namespace SitecoreInstaller.Domain.Website
     private const string _AdminLoginName = "AdminLogin.aspx";
     private const string _InstallPackageServiceName = "InstallPackageService.aspx";
     private const string _InstallPackageStatusName = "InstallPackageStatus.aspx";
+    private const string _DeserializeItemsName = "DeserializeItems.aspx";
     private const string _PostInstallServiceName = "PostInstallService.aspx";
 
     private readonly FileTypes _fileTypes;
@@ -183,9 +184,10 @@ namespace SitecoreInstaller.Domain.Website
       var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
 
       runtimeServicesFolder.CreateIfNotExists();
-      
+
       WebsiteResource.InstallPackageService.WriteToDir(runtimeServicesFolder, _InstallPackageServiceName);
       WebsiteResource.InstallPackageStatusService.WriteToDir(runtimeServicesFolder, _InstallPackageStatusName);
+      WebsiteResource.DeserializeItems.WriteToDir(runtimeServicesFolder, _DeserializeItemsName);
 
       Log.This.Info("Runtime services installed");
     }
@@ -226,7 +228,7 @@ namespace SitecoreInstaller.Domain.Website
 
           const string installFormatPattern = "Action={0}&PackageName={1}";
 
-          var callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern,"Install", packageName));
+          var callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern, "Install", packageName));
           ExecuteInstallPackageAction(callingUri);
 
           Log.This.Info("Executing post installation steps for '{0}'...", HttpUtility.UrlDecode(packageName));
@@ -237,6 +239,13 @@ namespace SitecoreInstaller.Domain.Website
           Log.This.Info("'{0}' is installed", package);
         }
       }
+    }
+
+    public void DeserializeItems(string baseUrl)
+    {
+      Log.This.Info("Deserializing items...");
+      var callingUri = baseUrl.ToUri(_InstallerPath, _DeserializeItemsName);
+      CallUrl(callingUri);
     }
 
     public void ExecutePostInstallSteps(string baseUrl, DirectoryInfo websiteFolder)

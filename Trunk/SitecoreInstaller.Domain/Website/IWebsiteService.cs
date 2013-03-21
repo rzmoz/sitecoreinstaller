@@ -16,6 +16,7 @@ namespace SitecoreInstaller.Domain.Website
         void InstallRuntimeServices(WebsiteFolder websiteFolder);
         void DeleteRuntimeServices(DirectoryInfo websiteFolder);
         void InstallPackages(string baseUrl, IEnumerable<BuildLibraryDirectory> modules);
+        void DeserializeItems(string baseUrl);
         void ExecutePostInstallSteps(string baseUrl, DirectoryInfo websiteFolder);
         void WakeUpSite(string siteBaseUrl);
         void WarmUpSite(string siteBaseUrl);
