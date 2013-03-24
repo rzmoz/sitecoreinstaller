@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<configuration>
+<SourceManifestConfig>
     <!--
             Name : Name of source as shown in selection boxes - Must be distinct
             Parameters : A custom string that is passed to the source object upon creation. Handled invidiually in each implementation.
@@ -8,4 +8,4 @@
             AND have a constructor taking exactly one parameter (string name) where name is the name of the source
         -->
     <!--<source name="Example" parameters="\\mynetworkdrive\BuildLibrary" type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" />-->
-</configuration>
+</SourceManifestConfig>

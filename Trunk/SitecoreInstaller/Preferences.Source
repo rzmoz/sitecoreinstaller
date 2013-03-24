@@ -1,28 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-    <!--
+<UserPreferencesConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--
             Use this for overriding default settings in installer. 
             This is handy when you know the settings in advance for the target machine and / or for avoiding ui interaction upon first run.
             
-            Leave value empty to use normal settings
+            Leave value empty to use default settings
         -->
-    <ProjectsFolder></ProjectsFolder>
+  <ProjectsFolder>c:\inetpub\wwwroot\SitecoreInstaller</ProjectsFolder>
 
-    <LocalBuildLibrary></LocalBuildLibrary>
-    
-    <!-- defaults to <LocalBuildLibrary>/Sitecore so it shows up as possible to install locally for test -->
-    <ArchiveFolder></ArchiveFolder>
-    
-    <!-- Should start with dot but not a requirement-->
-    <IisSitePostfix></IisSitePostfix>
-    
-    <SqlInstanceName></SqlInstanceName>    
-    <SqlLogin></SqlLogin>    
-    <SqlPassword></SqlPassword>
-    
-    <!-- Valid values are: True, False -->
-    <PromptForUserSettings></PromptForUserSettings>
-    
-    <!-- Must be positive integer  -->
-    <LicenseExpirationPeriodInDays></LicenseExpirationPeriodInDays>
-</configuration>
+  <LocalBuildLibrary>c:\BuildLibrary</LocalBuildLibrary>
+
+  <!-- Should start with dot but not a requirement-->
+  <IisSitePostfix></IisSitePostfix>
+
+  <SqlInstanceName>(local)</SqlInstanceName>
+  <SqlLogin>sa</SqlLogin>
+  <SqlPassword>sa</SqlPassword>
+
+  <!-- Valid values are: true, false (case sensitive!)-->
+  <PromptForUserSettings>true</PromptForUserSettings>
+
+  <!-- Must be positive integer  -->
+  <LicenseExpirationPeriodInDays>14</LicenseExpirationPeriodInDays>
+</UserPreferencesConfig>

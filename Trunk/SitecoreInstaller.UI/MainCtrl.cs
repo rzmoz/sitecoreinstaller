@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI
@@ -12,11 +7,9 @@ namespace SitecoreInstaller.UI
   using System.Diagnostics;
   using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
-  using SitecoreInstaller.App.Properties;
   using SitecoreInstaller.Domain;
   using SitecoreInstaller.Domain.WebServer;
   using SitecoreInstaller.Framework.System;
-  using SitecoreInstaller.UI.Navigation;
 
   public partial class MainCtrl : UserControl
   {
@@ -80,7 +73,7 @@ namespace SitecoreInstaller.UI
     private ProjectSettings GetProjectSettings()
     {
       var projectSettings = new ProjectSettings();
-      projectSettings.Init(UserSettings.Default);
+      projectSettings.Init(Services.UserPreferences.Properties);
       projectSettings.Iis = new IisSettings();
       projectSettings.InstallType = InstallType.Full;
       projectSettings.ProjectName = this.selectProjectName1.ProjectName;

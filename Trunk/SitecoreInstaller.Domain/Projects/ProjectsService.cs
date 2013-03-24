@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using SitecoreInstaller.Framework.Configuration;
 using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.Domain.Projects
 {
     using System.Diagnostics.Contracts;
-
     using SitecoreInstaller.Framework.Diagnostics;
 
     public class ProjectsService : IProjectsService

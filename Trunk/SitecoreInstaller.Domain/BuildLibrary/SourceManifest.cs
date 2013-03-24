@@ -13,8 +13,8 @@
             Parameters = parameters ?? string.Empty;
         }
 
-        public string Name { get; private set; }
-        public string Type { get; private set; }
-        public string Parameters { get; private set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public string Parameters { get; set; }
     }
 }

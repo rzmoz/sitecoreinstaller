@@ -163,6 +163,7 @@
     <Compile Include="BuildLibrary\SourceEntry.cs" />
     <Compile Include="BuildLibrary\SourceManifest.cs" />
     <Compile Include="BuildLibrary\SourceManifestRepository.cs" />
+    <Compile Include="BuildLibrary\SourceManifestConfig.cs" />
     <Compile Include="BuildLibrary\SourceType.cs" />
     <Compile Include="BuildLibrary\WindowsLicenseFileSourceEntryRepository.cs" />
     <Compile Include="BuildLibrary\WindowsSourceEntryRepository.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Pipelines\Pipeline.cs" />
     <Compile Include="Pipelines\PreconditionEventArgs.cs" />
     <Compile Include="ProjectFolder.cs" />
+    <Compile Include="ProjectSettingsConfig.cs" />
     <Compile Include="WebsiteFolder.cs" />
     <Compile Include="Website\DataProviderType.cs" />
     <Compile Include="Website\WffmConfigFile.cs" />

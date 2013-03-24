@@ -8,7 +8,6 @@
   using System.Collections.Generic;
 
   using SitecoreInstaller.App;
-  using SitecoreInstaller.App.Properties;
   using SitecoreInstaller.Domain.BuildLibrary;
   using SitecoreInstaller.UI.ListBoxes;
   using SitecoreInstaller.UI.Properties;
@@ -64,7 +63,7 @@
         return;
       }
 
-      if (licenseFile.ExpiresIn <= UserSettings.Default.LicenseExpirationPeriodInDays)
+      if (licenseFile.ExpiresIn <= Services.UserPreferences.Properties.LicenseExpirationPeriodInDays)
       {
         lblLicenses.ForeColor = Color.Blue;
         lblLicenses.Text = string.Format("License: (expires in {0} days)", licenseFile.ExpiresIn);

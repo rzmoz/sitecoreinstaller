@@ -8,7 +8,6 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
     using System.IO;
     using System.Windows.Forms;
 
-    using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Archiving;
     using SitecoreInstaller.Framework.Diagnostics;
@@ -33,7 +32,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
 
             Log.This.Info("Moving archive to archive folder...");
             var robocopy = new Robocopy();
-            robocopy.Move(zipFile.File, new DirectoryInfo(UserSettings.Default.ArchiveFolder));
+            robocopy.Move(zipFile.File, new DirectoryInfo(Services.UserPreferences.Properties.ArchiveFolder));
         }
     }
 }

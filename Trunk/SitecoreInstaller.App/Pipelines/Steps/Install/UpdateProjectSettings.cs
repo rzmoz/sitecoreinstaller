@@ -1,32 +1,27 @@
-﻿using System;
+﻿using System.Linq;
+using SitecoreInstaller.Domain;
+using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-    using System.IO;
-
-    using SitecoreInstaller.Domain;
-    using SitecoreInstaller.Domain.BuildLibrary;
-    using SitecoreInstaller.Domain.Pipelines;
-    using SitecoreInstaller.Framework.Configuration;
-    using SitecoreInstaller.Framework.IO;
-    using SitecoreInstaller.Framework.System;
-
-    public class UpdateProjectSettings : Step
+  public class UpdateProjectSettings : Step
+  {
+    protected override void InnerInvoke(object sender, StepEventArgs args)
     {
-        protected override void InnerInvoke(object sender, StepEventArgs args)
-        {
-            dynamic projectConfig = Services.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile;
-            if (Services.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile.Exists)
-            {
-                Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseString(projectConfig.Sitecore);
-                Services.ProjectSettings.InstallType = ((string)projectConfig.InstallType).ParseToEnumValue<InstallType>();
-            }
-            else
-            {
-                Resources.EmptyConfigFile.WriteToDisk(Services.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile.Path);
-                projectConfig.Sitecore = Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore.ToString();
-                projectConfig.InstallType = Services.ProjectSettings.InstallType.ToString();
-            }
-        }
+      var projectConfig = Services.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile;
+
+      if (Services.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile.Exists)
+      {
+        projectConfig.Load();
+        Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseString(projectConfig.Properties.Sitecore);
+        Services.ProjectSettings.BuildLibrarySelections.SelectedModules = projectConfig.Properties.Modules.Select(SourceEntry.ParseString);
+      }
+      else
+      {
+        projectConfig.Properties.Sitecore = Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore.ToString();
+        projectConfig.Properties.Modules = Services.ProjectSettings.BuildLibrarySelections.SelectedModules.Select(module => module.ToString()).ToList();
+        projectConfig.Save();
+      }
     }
+  }
 }

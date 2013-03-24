@@ -1,47 +1,41 @@
 ﻿namespace SitecoreInstaller.Domain.BuildLibrary
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+  using System;
+  using System.Linq;
+  using System.Collections.Generic;
+  using System.IO;
+  using SitecoreInstaller.Framework.Configuration;
 
-    using SitecoreInstaller.Framework.Configuration;
+  public class SourceManifestRepository
+  {
+    private ConfigFile<SourceManifestConfig> _sources;
 
-    public class SourceManifestRepository
+    public SourceManifestRepository(FileInfo sourceFile)
     {
-        private readonly IDictionary<string, SourceManifest> _sources;
-
-        public SourceManifestRepository(string sourceFileName)
-        {
-            SourceFileName = sourceFileName;
-            _sources = new Dictionary<string, SourceManifest>();
-        }
-
-        public void Init()
-        {
-            var sourcesConfig = ConfigFile.Load(SourceFileName);
-            var sources = sourcesConfig.GetElements<SourceManifest>("source");
-            _sources.Clear();
-            foreach (var source in sources)
-                _sources.Add(source.Name, source);
-        }
-
-        public string SourceFileName { get; private set; }
-
-        public IEnumerable<SourceManifest> All()
-        {
-            return _sources.Values;
-        }
-
-        public SourceManifest Get(string name)
-        {
-            if (_sources.ContainsKey(name))
-                return _sources[name];
-            return null;
-        }
-
-        public void Add(SourceManifest sourceManifest)
-        {
-            throw new NotImplementedException();
-        }
+      SourceFile = sourceFile;
     }
+
+    public void Init()
+    {
+      _sources = new ConfigFile<SourceManifestConfig>(SourceFile);
+      _sources.Load();
+    }
+
+    public FileInfo SourceFile { get; private set; }
+
+    public IEnumerable<SourceManifest> All()
+    {
+      return _sources.Properties.Manifests;
+    }
+
+    public SourceManifest Get(string name)
+    {
+      return _sources.Properties.Manifests.FirstOrDefault(manifest => manifest.Name == name);
+    }
+
+    public void Add(SourceManifest sourceManifest)
+    {
+      _sources.Properties.Manifests.Add(sourceManifest);
+    }
+  }
 }

@@ -65,7 +65,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Domain\Website\WffmConfigFileUT.cs" />
-    <Compile Include="Framework\Configuration\ConfigFileUT.cs" />
+    <Compile Include="Framework\Configuration\ConfigFileTest.cs" />
+    <Compile Include="Framework\Configuration\ConfigFileTestUT.cs" />
     <Compile Include="Framework\Diagnostics\LogUT.cs" />
     <Compile Include="Framework\IO\DirectoryInfoExtenstionsUT.cs" />
     <Compile Include="Framework\IO\FileSystemInfoExtensionsUT.cs" />

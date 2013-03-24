@@ -6,7 +6,6 @@ using SitecoreInstaller.App;
 
 namespace SitecoreInstallerConsole.Runners
 {
-  using SitecoreInstaller.App.Properties;
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.System;
   using SitecoreInstallerConsole.CmdArgs;
@@ -21,7 +20,7 @@ namespace SitecoreInstallerConsole.Runners
       Services.Init();
       Log.This.EntryLogged += LogEntryLogged;
       Services.ProjectSettings = new ProjectSettings();
-      Services.ProjectSettings.Init(UserSettings.Default);
+      Services.ProjectSettings.Init(Services.UserPreferences.Properties);
       Services.BuildLibrary.Update();
     }
 

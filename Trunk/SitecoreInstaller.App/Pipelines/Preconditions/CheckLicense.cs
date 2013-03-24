@@ -5,7 +5,6 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-    using SitecoreInstaller.App.Properties;
     using SitecoreInstaller.Domain.BuildLibrary;
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
@@ -32,7 +31,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
                 return false;
             }
 
-            if (licenseFile.ExpiresWithin(UserSettings.Default.LicenseExpirationPeriodInDays))
+            if (licenseFile.ExpiresWithin(Services.UserPreferences.Properties.LicenseExpirationPeriodInDays))
             {
                 var warningMessage = string.Format("Please mind, that the selected license '{0}' epxires in {1} days.", licenseFileSourceEntry.Key, licenseFile.ExpiresIn);
                 ErrorMessage = warningMessage;

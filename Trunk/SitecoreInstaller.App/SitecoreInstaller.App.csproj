@@ -143,11 +143,7 @@
     <Compile Include="ProjectSettings.cs" />
     <Compile Include="Pipelines\UninstallPipeline.cs" />
     <Compile Include="AppConstants.cs" />
-    <Compile Include="Properties\UserSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>UserSettings.settings</DependentUpon>
-    </Compile>
+    <Compile Include="UserPreferencesConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SitecoreInstaller.Domain\SitecoreInstaller.Domain.csproj">
@@ -161,10 +157,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Properties\UserSettings.settings">
-      <Generator>PublicSettingsSingleFileGenerator</Generator>
-      <LastGenOutput>UserSettings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SelectDatabases.resx">
