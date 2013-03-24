@@ -34,7 +34,6 @@ namespace SitecoreInstaller.Domain.Pipelines
       Log.This.Clear();
       ExecuteAllText = executeAllText;
       Pipeline = pipeline;
-      pipeline.Dialogs = Dialogs.On;
     }
 
     public string ExecuteAllText { get; private set; }

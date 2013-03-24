@@ -8,6 +8,7 @@ namespace SitecoreInstaller.UI
   using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain;
+  using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Domain.WebServer;
   using SitecoreInstaller.Framework.System;
 
@@ -50,6 +51,9 @@ namespace SitecoreInstaller.UI
           Services.Pipelines.Run<UninstallPipeline>();
           break;
         case Keys.R | Keys.Control | Keys.Shift:
+          Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
+          break;
+        case Keys.R | Keys.Control:
           Services.BuildLibrary.Update();
           break;
         case Keys.O | Keys.Control | Keys.Shift:

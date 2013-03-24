@@ -9,20 +9,26 @@ namespace SitecoreInstaller.Domain.Pipelines
 
   public abstract class Pipeline : IPipeline
   {
-    private readonly IDictionary<string, IPrecondition> _preconditions;
-    private readonly IDictionary<string, IStep> _steps;
+    private readonly IList<IPrecondition> _preconditions;
+    private readonly IList<IStep> _steps;
 
     protected Pipeline()
     {
       Name = new Sentence(GetType().Name.Replace("Pipeline", string.Empty));
-      _preconditions = new Dictionary<string, IPrecondition>();
-      _steps = new Dictionary<string, IStep>();
+      _preconditions = new List<IPrecondition>();
+      _steps = new List<IStep>();
     }
     public void RemovePrecondition<T>() where T : IPrecondition, new()
     {
-      var key = typeof(T).FullName;
-      if (_preconditions.ContainsKey(key))
-        _preconditions.Remove(key);
+      for (var i = 0; i < _preconditions.Count; i++)
+      {
+        if (_preconditions[i].GetType().FullName == typeof(T).FullName)
+        {
+          _preconditions.RemoveAt(i);
+          this.RemovePrecondition<T>();
+          return;
+        }
+      }
     }
 
     public void AddPrecondition<T>() where T : IPrecondition, new()
@@ -31,7 +37,7 @@ namespace SitecoreInstaller.Domain.Pipelines
     }
     public void AddPrecondition(IPrecondition precondition)
     {
-      _preconditions.Add(precondition.Name.ActiveForm, precondition);
+      _preconditions.Add(precondition);
     }
 
     public void AddPreconditions(IEnumerable<IPrecondition> preconditions)
@@ -45,12 +51,8 @@ namespace SitecoreInstaller.Domain.Pipelines
     }
     public void AddStep(IStep step)
     {
-      var key = step.GetType().FullName;
-
-      if (_steps.ContainsKey(key))
-        return;
       step.Order = _steps.Count + 1;//we add one, since count is zero based and we want order to be 1 based
-      _steps.Add(key, step);
+      _steps.Add(step);
     }
 
     public void AddSteps(IEnumerable<IStep> steps)
@@ -60,17 +62,23 @@ namespace SitecoreInstaller.Domain.Pipelines
     }
     public void RemoveStep<T>() where T : IStep, new()
     {
-      var key = typeof(T).FullName;
-      if (_steps.ContainsKey(key))
-        _steps.Remove(key);
+      for (var i = 0; i < _steps.Count; i++)
+      {
+        if (_steps[i].GetType().FullName == typeof(T).FullName)
+        {
+          _steps.RemoveAt(i);
+          this.RemoveStep<T>();
+          return;
+        }
+      }
     }
 
-    public IEnumerable<IPrecondition> Preconditions { get { return _preconditions.Values; } }
+    public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }
 
     public Dialogs Dialogs { get; set; }
 
     public Sentence Name { get; private set; }
 
-    public IEnumerable<IStep> Steps { get { return _steps.Values; } }
+    public IEnumerable<IStep> Steps { get { return _steps; } }
   }
 }
