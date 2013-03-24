@@ -11,10 +11,13 @@ namespace SitecoreInstaller.Domain
     public ProjectSettingsConfig()
     {
       Sitecore = string.Empty;
+      License = string.Empty;
       Modules = new List<string>();
     }
 
     public string Sitecore { get; set; }
+
+    public string License { get; set; }
 
     [XmlArrayItem(ElementName = "Module", IsNullable = false)]
     public List<string> Modules { get; set; }

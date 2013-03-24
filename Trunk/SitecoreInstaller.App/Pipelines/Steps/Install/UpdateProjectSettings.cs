@@ -14,11 +14,13 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
       {
         projectConfig.Load();
         Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseString(projectConfig.Properties.Sitecore);
+        Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = SourceEntry.ParseString(projectConfig.Properties.License);
         Services.ProjectSettings.BuildLibrarySelections.SelectedModules = projectConfig.Properties.Modules.Select(SourceEntry.ParseString);
       }
       else
       {
         projectConfig.Properties.Sitecore = Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore.ToString();
+        projectConfig.Properties.License = Services.ProjectSettings.BuildLibrarySelections.SelectedLicense.ToString();
         projectConfig.Properties.Modules = Services.ProjectSettings.BuildLibrarySelections.SelectedModules.Select(module => module.ToString()).ToList();
         projectConfig.Save();
       }
