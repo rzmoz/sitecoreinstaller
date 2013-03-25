@@ -14,7 +14,6 @@ namespace SitecoreInstaller.App
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.Pipelines;
 
-  //TODO: replace with Unity some day maybe?
   public static class Services
   {
     static Services()
