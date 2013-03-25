@@ -177,7 +177,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <ConfigTransformDelta Include="Preferences.Delta" />
-    <None Include="app.config" />
+    <None Include="App.config" />
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>

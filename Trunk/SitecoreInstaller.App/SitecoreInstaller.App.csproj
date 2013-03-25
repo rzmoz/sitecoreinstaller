@@ -156,9 +156,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="SelectDatabases.resx">
       <DependentUpon>SelectDatabases.cs</DependentUpon>
     </EmbeddedResource>
