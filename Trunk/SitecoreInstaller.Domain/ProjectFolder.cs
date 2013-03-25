@@ -6,7 +6,7 @@ using System.Text;
 namespace SitecoreInstaller.Domain
 {
   using System.IO;
-
+  using SitecoreInstaller.Domain.Projects;
   using SitecoreInstaller.Domain.Website;
   using SitecoreInstaller.Framework.Configuration;
   using SitecoreInstaller.Framework.IO;

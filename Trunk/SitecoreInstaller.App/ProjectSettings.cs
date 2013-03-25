@@ -23,25 +23,29 @@
     private readonly Observable<string> _projectName;
     private UserPreferencesConfig _userPreferences;
 
+    public event EventHandler<GenericEventArgs<string>> Updated;
+
     public ProjectSettings()
     {
       _projectName = new Observable<string>();
-      _projectName.PropertyUpdated += ProjectNamePropertyUpdated;
+      _projectName.Updated += this.ProjectNameUpdated;
       Reset();
     }
 
     public void Init(UserPreferencesConfig userPreferences)
     {
       _userPreferences = userPreferences;
-      ProjectFolder = new ProjectFolder(new DirectoryInfo(userPreferences.ProjectsFolder), DataFolderMode.DataOutside);
+      this.SetSystemPaths();
       Sql.InstanceName = userPreferences.SqlInstanceName;
       Sql.Login = userPreferences.SqlLogin;
       Sql.Password = userPreferences.SqlPassword;
     }
 
-    void ProjectNamePropertyUpdated(object sender, GenericEventArgs<string> e)
+    void ProjectNameUpdated(object sender, GenericEventArgs<string> e)
     {
       ResolveDependentPaths();
+      if (this.Updated != null)
+        this.Updated(sender, e);
     }
 
     public bool ProjectNameIsSet { get { return !string.IsNullOrEmpty(ProjectName); } }
@@ -67,27 +71,25 @@
       DatabaseNames = Enumerable.Empty<ConnectionStringName>();
       InstallType = InstallType.Full;
       Iis = new IisSettings();
-      ProjectFolder = new ProjectFolder(new DirectoryInfo(@"c:\"), DataFolderMode.DataOutside);
+      ProjectFolder = new ProjectFolder(new DirectoryInfo(@"K:\"), DataFolderMode.DataOutside);
       BuildLibrarySelections = new BuildLibrarySelections();
       Sql = new SqlSettings();
     }
 
     private void ResolveDependentPaths()
     {
-      if (ProjectNameIsSet)
-        SetSystemPaths();
-      else
-        Iis.Url = string.Empty;
-
+      SetSystemPaths();
       Iis.Name = ProjectName;
     }
 
     private void SetSystemPaths()
     {
-      if(_userPreferences == null)
+      if (_userPreferences == null)
         throw new NotSupportedException("User preferences has not been set. Call Init(UserPreferencesConfig) first");
 
-      var projectfolder = new DirectoryInfo(_userPreferences.ProjectsFolder).CombineTo<DirectoryInfo>(ProjectName);
+      var projectfolder = new DirectoryInfo(_userPreferences.ProjectsFolder);
+      if (ProjectNameIsSet)
+        projectfolder = projectfolder.CombineTo<DirectoryInfo>(ProjectName);
       ProjectFolder = new ProjectFolder(projectfolder, DataFolderMode.DataOutside);
       Iis.Url = ProjectName + _userPreferences.IisSitePostfix;
     }

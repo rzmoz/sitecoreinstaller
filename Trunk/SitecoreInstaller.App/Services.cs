@@ -72,7 +72,7 @@ namespace SitecoreInstaller.App
     public static ProjectSettings ProjectSettings { get; set; }
     public static PipelineService Pipelines { get; private set; }
     public static ISourceRepository BuildLibrary { get; set; }
-    public static IProjectsService Projects { get; set; }
+    public static ProjectsService Projects { get; set; }
     public static IWebsiteService Website { get; set; }
     public static IIisManagementService IisManagement { get; set; }
     public static ISqlService Sql { get; set; }

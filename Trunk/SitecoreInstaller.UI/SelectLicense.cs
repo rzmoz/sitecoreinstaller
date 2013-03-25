@@ -72,5 +72,10 @@
       lblLicenses.ForeColor = Styles.Fonts.Colors.Text;
       lblLicenses.Text = string.Format("License:");
     }
+
+    protected override SourceEntry GetRelevantSourceEntry(BuildLibrarySelections buildLibrarySelections)
+    {
+      return buildLibrarySelections.SelectedLicense;
+    }
   }
 }

@@ -30,13 +30,23 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.picWaitAnimation = new System.Windows.Forms.PictureBox();
       this.lblInfo = new SitecoreInstaller.UI.Forms.SILabel();
       this.lblStatusMessage = new SitecoreInstaller.UI.Forms.SIH2();
       this.lblTitle = new SitecoreInstaller.UI.Forms.SIH1();
       this.btnOk = new SitecoreInstaller.UI.Forms.SIButton();
-      this.picWaitAnimation = new System.Windows.Forms.PictureBox();
       ((System.ComponentModel.ISupportInitialize)(this.picWaitAnimation)).BeginInit();
       this.SuspendLayout();
+      // 
+      // picWaitAnimation
+      // 
+      this.picWaitAnimation.Image = global::SitecoreInstaller.UI.Properties.Resources.spinner;
+      this.picWaitAnimation.Location = new System.Drawing.Point(200, 120);
+      this.picWaitAnimation.Name = "picWaitAnimation";
+      this.picWaitAnimation.Size = new System.Drawing.Size(129, 134);
+      this.picWaitAnimation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.picWaitAnimation.TabIndex = 10;
+      this.picWaitAnimation.TabStop = false;
       // 
       // lblInfo
       // 
@@ -78,7 +88,7 @@
       this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnOk.Font = new System.Drawing.Font("Segoe UI", 8F);
       this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnOk.Location = new System.Drawing.Point(662, 283);
+      this.btnOk.Location = new System.Drawing.Point(392, 283);
       this.btnOk.Name = "btnOk";
       this.btnOk.Size = new System.Drawing.Size(75, 51);
       this.btnOk.TabIndex = 3;
@@ -86,27 +96,18 @@
       this.btnOk.UseVisualStyleBackColor = true;
       this.btnOk.Click += new System.EventHandler(this.siButton1_Click);
       // 
-      // picWaitAnimation
-      // 
-      this.picWaitAnimation.Image = global::SitecoreInstaller.UI.Properties.Resources.spinner;
-      this.picWaitAnimation.Location = new System.Drawing.Point(76, 147);
-      this.picWaitAnimation.Name = "picWaitAnimation";
-      this.picWaitAnimation.Size = new System.Drawing.Size(129, 134);
-      this.picWaitAnimation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.picWaitAnimation.TabIndex = 8;
-      this.picWaitAnimation.TabStop = false;
-      // 
       // ProgressCtrl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.BackColor = System.Drawing.Color.White;
       this.Controls.Add(this.picWaitAnimation);
       this.Controls.Add(this.lblInfo);
       this.Controls.Add(this.lblStatusMessage);
       this.Controls.Add(this.lblTitle);
       this.Controls.Add(this.btnOk);
       this.Name = "ProgressCtrl";
-      this.Size = new System.Drawing.Size(800, 370);
+      this.Size = new System.Drawing.Size(530, 370);
       this.Load += new System.EventHandler(this.ProgressCtrl_Load);
       ((System.ComponentModel.ISupportInitialize)(this.picWaitAnimation)).EndInit();
       this.ResumeLayout(false);

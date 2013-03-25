@@ -7,9 +7,12 @@ namespace SitecoreInstaller.Framework.Configuration
 {
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.IO;
+  using SitecoreInstaller.Framework.System;
 
   public sealed class ConfigFile<T> where T : IConfig, new()
   {
+    public event EventHandler<GenericEventArgs<T>> Updated;
+
     public ConfigFile(FileInfo path)
     {
       this.Path = path;
@@ -43,9 +46,11 @@ namespace SitecoreInstaller.Framework.Configuration
       }
       catch (Exception e)
       {
-
         Log.This.Error(e.ToString());
       }
+
+      if (Updated != null)
+        Updated(this, new GenericEventArgs<T>(Properties));
     }
 
     public void Save()
@@ -68,6 +73,8 @@ namespace SitecoreInstaller.Framework.Configuration
       {
         Log.This.Error(e.ToString());
       }
+      if (Updated != null)
+        Updated(this, new GenericEventArgs<T>(Properties));
     }
   }
 }

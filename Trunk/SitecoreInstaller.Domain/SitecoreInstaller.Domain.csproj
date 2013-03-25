@@ -183,7 +183,7 @@
     <Compile Include="Pipelines\Pipeline.cs" />
     <Compile Include="Pipelines\PreconditionEventArgs.cs" />
     <Compile Include="ProjectFolder.cs" />
-    <Compile Include="ProjectSettingsConfig.cs" />
+    <Compile Include="Projects\ProjectSettingsConfig.cs" />
     <Compile Include="WebsiteFolder.cs" />
     <Compile Include="Website\DataProviderType.cs" />
     <Compile Include="Website\WffmConfigFile.cs" />
@@ -197,7 +197,6 @@
     <Compile Include="Pipelines\PipelineEventArgs.cs" />
     <Compile Include="Pipelines\PipelineRunner.cs" />
     <Compile Include="Pipelines\PipelineStepInfoEventArgs.cs" />
-    <Compile Include="Projects\IProjectsService.cs" />
     <Compile Include="Projects\ProjectsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebServer\IisSettings.cs" />

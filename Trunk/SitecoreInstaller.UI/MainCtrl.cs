@@ -5,11 +5,11 @@ using System.Windows.Forms;
 namespace SitecoreInstaller.UI
 {
   using System.Diagnostics;
+  using System.Linq;
   using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
-  using SitecoreInstaller.Domain;
+  using SitecoreInstaller.Domain.BuildLibrary;
   using SitecoreInstaller.Domain.Pipelines;
-  using SitecoreInstaller.Domain.WebServer;
   using SitecoreInstaller.Framework.System;
 
   public partial class MainCtrl : UserControl
@@ -19,11 +19,14 @@ namespace SitecoreInstaller.UI
       InitializeComponent();
     }
 
+    private event EventHandler<GenericEventArgs<BuildLibrarySelections>> BuildLibrarySelectionsUpdated;
+
     private void MainCtrl_Load(object sender, EventArgs e)
     {
       Services.Init();
 
       InitPipelineWorker();
+      InitProjectSettings();
       progressCtrl1.SendToBack();
       progressCtrl1.Hide();
       progressCtrl1.Dock = DockStyle.Fill;
@@ -36,9 +39,45 @@ namespace SitecoreInstaller.UI
       selectProjectName1.FocusTextBox();
     }
 
+    private void InitProjectSettings()
+    {
+      Services.UserPreferences.Updated += UserPreferences_Updated;
+      Services.ProjectSettings.Updated += ProjectSettings_Updated;
+      BuildLibrarySelectionsUpdated += selectSitecore1.BuildLibrarySelectionsUpdated;
+      BuildLibrarySelectionsUpdated += selectLicense1.BuildLibrarySelectionsUpdated;
+      BuildLibrarySelectionsUpdated += selectModules1.BuildLibrarySelectionsUpdated;
+      Services.UserPreferences.Load();
+    }
+
+    void ProjectSettings_Updated(object sender, GenericEventArgs<string> e)
+    {
+      //load project settings if file exist or reset if it doesn't
+      if (Services.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile.Exists)
+      {
+        var projectConfig = Services.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile;
+        projectConfig.Load();
+        Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseString(projectConfig.Properties.Sitecore);
+        Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = SourceEntry.ParseString(projectConfig.Properties.License);
+        Services.ProjectSettings.BuildLibrarySelections.SelectedModules = projectConfig.Properties.Modules.Select(SourceEntry.ParseString);
+      }
+      else
+      {
+        Services.ProjectSettings.BuildLibrarySelections = new BuildLibrarySelections();
+      }
+
+      if (BuildLibrarySelectionsUpdated != null)
+        BuildLibrarySelectionsUpdated(sender, new GenericEventArgs<BuildLibrarySelections>(Services.ProjectSettings.BuildLibrarySelections));
+    }
+
+    void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
+    {
+      Services.ProjectSettings.Init(e.Arg);
+    }
+
     protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
     {
-      Services.ProjectSettings = GetProjectSettings();
+      this.UpdateBuildLibrarySelections();
+
       switch (keyData)
       {
         case Keys.N | Keys.Control | Keys.Shift:
@@ -66,6 +105,13 @@ namespace SitecoreInstaller.UI
       return base.ProcessCmdKey(ref msg, keyData);
     }
 
+    private void UpdateBuildLibrarySelections()
+    {
+      Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
+      Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
+      Services.ProjectSettings.BuildLibrarySelections.SelectedModules = this.selectModules1.SelectedModules;
+    }
+
     private void InitPipelineWorker()
     {
       Services.PipelineWorker.AllStepsExecuting += progressCtrl1.Starting;
@@ -74,18 +120,6 @@ namespace SitecoreInstaller.UI
       Services.PipelineWorker.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
     }
 
-    private ProjectSettings GetProjectSettings()
-    {
-      var projectSettings = new ProjectSettings();
-      projectSettings.Init(Services.UserPreferences.Properties);
-      projectSettings.Iis = new IisSettings();
-      projectSettings.InstallType = InstallType.Full;
-      projectSettings.ProjectName = this.selectProjectName1.ProjectName;
-      projectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
-      projectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
-      projectSettings.BuildLibrarySelections.SelectedModules = this.selectModules1.SelectedModules;
-      return projectSettings;
-    }
     void PipelineWorker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
       Services.BuildLibrary.Update();

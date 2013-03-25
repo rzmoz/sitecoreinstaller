@@ -3,14 +3,13 @@
   using System;
   using System.Collections.Generic;
   using System.Drawing;
-  using System.IO;
   using System.Linq;
   using System.Windows.Forms;
 
   using SitecoreInstaller.App;
   using SitecoreInstaller.Domain.BuildLibrary;
+  using SitecoreInstaller.Framework.System;
   using SitecoreInstaller.UI.ListBoxes;
-  using SitecoreInstaller.UI.Properties;
 
   public partial class SelectSitecore : SourceEntryComboBox
   {
@@ -18,7 +17,6 @@
     {
       InitializeComponent();
     }
-
 
     private void SelectSitecore_Load(object sender, EventArgs e)
     {
@@ -46,8 +44,13 @@
         lblSitecore.Text = "You have no Sitecore versions";
         return;
       }
-      lblSitecore.ForeColor = Styles.Fonts.Colors.Text; 
+      lblSitecore.ForeColor = Styles.Fonts.Colors.Text;
       lblSitecore.Text = string.Format("Sitecore:");
+    }
+
+    protected override SourceEntry GetRelevantSourceEntry(BuildLibrarySelections buildLibrarySelections)
+    {
+      return buildLibrarySelections.SelectedSitecore;
     }
   }
 }

@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace SitecoreInstaller.Domain
+﻿namespace SitecoreInstaller.Domain.Projects
 {
-  using System;
+  using System.Collections.Generic;
   using System.Xml.Serialization;
   using SitecoreInstaller.Framework.Configuration;
 
@@ -11,9 +9,9 @@ namespace SitecoreInstaller.Domain
   {
     public ProjectSettingsConfig()
     {
-      Sitecore = string.Empty;
-      License = string.Empty;
-      Modules = new List<string>();
+      this.Sitecore = string.Empty;
+      this.License = string.Empty;
+      this.Modules = new List<string>();
     }
 
     public string Sitecore { get; set; }

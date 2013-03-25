@@ -1,5 +1,6 @@
 ﻿namespace SitecoreInstaller.UI
 {
+  using System;
   using System.Collections.Generic;
   using System.IO;
   using System.Linq;
@@ -7,6 +8,7 @@
 
   using SitecoreInstaller.App;
   using SitecoreInstaller.Domain.BuildLibrary;
+  using SitecoreInstaller.Framework.System;
   using SitecoreInstaller.UI.ListBoxes;
   using SitecoreInstaller.UI.Properties;
 
@@ -17,7 +19,16 @@
       InitializeComponent();
     }
 
-    private void SelectModules_Load(object sender, System.EventArgs e)
+    public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<BuildLibrarySelections> e)
+    {
+      for (var i = 0; i < chkModules.Items.Count; i++)
+      {
+        var isChecked = e.Arg.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)chkModules.Items[i]).Key);
+        chkModules.SetItemChecked(i, isChecked);
+      }
+    }
+
+    private void SelectModules_Load(object sender, EventArgs e)
     {
       if (chkModules.Items.Count > 0)
         chkModules.SetItemChecked(0, true);//default check first module

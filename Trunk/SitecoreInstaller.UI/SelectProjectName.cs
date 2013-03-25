@@ -53,5 +53,15 @@
         cbxProjectName.Items.Add(existingProject);
       }
     }
+
+    private void cbxProjectName_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      Services.ProjectSettings.ProjectName = cbxProjectName.Text;
+    }
+
+    private void cbxProjectName_TextUpdate(object sender, EventArgs e)
+    {
+      Services.ProjectSettings.ProjectName = cbxProjectName.Text;
+    }
   }
 }

@@ -33,7 +33,7 @@ namespace SitecoreInstaller.Framework.System
 
         private readonly Func<T, bool> _setValue;
         public event EventHandler<GenericEventArgs<T>> PropertyUpdating;
-        public event EventHandler<GenericEventArgs<T>> PropertyUpdated;
+        public event EventHandler<GenericEventArgs<T>> Updated;
 
         public void Reset()
         {
@@ -55,8 +55,8 @@ namespace SitecoreInstaller.Framework.System
 
             _value = t;
 
-            if (_notifyListeners && PropertyUpdated != null)
-                PropertyUpdated(this, new GenericEventArgs<T>(_value));
+            if (_notifyListeners && this.Updated != null)
+                this.Updated(this, new GenericEventArgs<T>(_value));
         }
 
         private bool ValueTypeSetter(T t)
