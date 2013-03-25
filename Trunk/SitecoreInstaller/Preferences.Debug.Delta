@@ -2,7 +2,7 @@
 
 <!-- For more information on using web.config transformation visit http://go.microsoft.com/fwlink/?LinkId=125889 -->
 
-<UserPreferencesConfig xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+<UserPreferences xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
 
     <ProjectsFolder xdt:Transform="Replace">C:\inetpub\wwwrootDebug</ProjectsFolder>
 
@@ -15,4 +15,4 @@
     <SqlPassword xdt:Transform="Replace">1234</SqlPassword>
 
     <PromptForUserSettings xdt:Transform="Replace">false</PromptForUserSettings>
-</UserPreferencesConfig>
+</UserPreferences>

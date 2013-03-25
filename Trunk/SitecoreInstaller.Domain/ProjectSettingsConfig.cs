@@ -6,6 +6,7 @@ namespace SitecoreInstaller.Domain
   using System.Xml.Serialization;
   using SitecoreInstaller.Framework.Configuration;
 
+  [XmlRoot(ElementName = "ProjectSettings", IsNullable = false)]
   public class ProjectSettingsConfig : IConfig
   {
     public ProjectSettingsConfig()

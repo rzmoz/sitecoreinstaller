@@ -4,6 +4,7 @@ namespace SitecoreInstaller.App
 {
   using System.Xml.Serialization;
 
+  [XmlRoot(ElementName = "UserPreferences", IsNullable = false)]
   public class UserPreferencesConfig : IConfig
   {
     public string ProjectsFolder { get; set; }

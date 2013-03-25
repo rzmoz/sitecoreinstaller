@@ -9,6 +9,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
   using System.Xml.Serialization;
   using SitecoreInstaller.Framework.Configuration;
 
+  [XmlRoot(ElementName = "Sources", IsNullable = false)]
   public class SourceManifestConfig : IConfig
   {
     public SourceManifestConfig()

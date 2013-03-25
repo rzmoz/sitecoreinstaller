@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<UserPreferencesConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<UserPreferences xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <!--
             Use this for overriding default settings in installer. 
             This is handy when you know the settings in advance for the target machine and / or for avoiding ui interaction upon first run.
@@ -22,4 +22,4 @@
 
   <!-- Must be positive integer  -->
   <LicenseExpirationPeriodInDays>14</LicenseExpirationPeriodInDays>
-</UserPreferencesConfig>
+</UserPreferences>
