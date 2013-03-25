@@ -76,20 +76,20 @@ namespace SitecoreInstaller.UI
 
     protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
     {
-      this.UpdateBuildLibrarySelections();
-
       switch (keyData)
       {
         case Keys.N | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<DoNothingPipeline>();
           break;
         case Keys.B | Keys.Control | Keys.Shift:
+          this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<InstallPipeline>();
           break;
         case Keys.U | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<UninstallPipeline>();
           break;
         case Keys.R | Keys.Control | Keys.Shift:
+          this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
           break;
         case Keys.R | Keys.Control:

@@ -126,7 +126,7 @@
     <Compile Include="Pipelines\Steps\Install\CreateProjectFolder.cs" />
     <Compile Include="Pipelines\Steps\Install\InstallPackages.cs" />
     <Compile Include="Pipelines\Steps\Install\InstallRuntimeServices.cs" />
-    <Compile Include="Pipelines\Steps\Install\UpdateProjectSettings.cs" />
+    <Compile Include="Pipelines\Steps\Install\SaveProjectSettings.cs" />
     <Compile Include="Pipelines\Steps\Install\SetConnectionStrings.cs" />
     <Compile Include="Pipelines\Steps\Install\SetDataFolder.cs" />
     <Compile Include="Pipelines\Steps\Nothing\DoNothing.cs" />

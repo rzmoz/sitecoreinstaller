@@ -23,7 +23,7 @@ namespace SitecoreInstaller.App.Pipelines
       AddPrecondition<CheckProjectExists>();
 
       //Init steps
-      AddStep<UpdateProjectSettings>();
+      AddStep<SaveProjectSettings>();
       AddSteps(uninstallPipeline.Steps);
       AddSteps(installPipeline.Steps);
     }

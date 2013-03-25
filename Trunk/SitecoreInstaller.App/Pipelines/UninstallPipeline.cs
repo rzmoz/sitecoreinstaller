@@ -20,7 +20,6 @@ namespace SitecoreInstaller.App.Pipelines
             AddPrecondition<CheckSqlConnection>();
 
             //Init steps
-            AddStep<UpdateProjectSettings>();
             AddStep<StopApplication>();
             AddStep<DetachDatabases>();
             AddStep<DeleteIisSiteAndAppPool>();
