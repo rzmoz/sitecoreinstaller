@@ -6,7 +6,7 @@
             
             Leave value empty to use default settings
         -->
-  <ProjectsFolder>c:\inetpub\wwwroot\SitecoreInstaller</ProjectsFolder>
+  <ProjectsFolder>c:\inetpub\sitecoreinstallerwwwroot</ProjectsFolder>
 
   <LocalBuildLibrary>c:\BuildLibrary</LocalBuildLibrary>
 
