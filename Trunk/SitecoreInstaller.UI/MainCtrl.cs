@@ -95,14 +95,19 @@ namespace SitecoreInstaller.UI
         case Keys.R | Keys.Control:
           Services.BuildLibrary.Update();
           break;
+        case Keys.O | Keys.Control:
+          Services.Website.OpenFrontend(Services.ProjectSettings.Iis.Url);
+          break;
         case Keys.O | Keys.Control | Keys.Shift:
           Services.Website.OpenSitecore(Services.ProjectSettings.Iis.Url, Services.ProjectSettings.ProjectFolder.Website.Directory);
           break;
         case Keys.O | Keys.Control | Keys.Alt:
           Process.Start(Services.ProjectSettings.ProjectFolder.Directory.FullName);
           break;
+        default:
+          return base.ProcessCmdKey(ref msg, keyData);
       }
-      return base.ProcessCmdKey(ref msg, keyData);
+      return true;
     }
 
     private void UpdateBuildLibrarySelections()
