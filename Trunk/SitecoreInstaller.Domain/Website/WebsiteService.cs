@@ -116,6 +116,13 @@ namespace SitecoreInstaller.Domain.Website
         Log.This.Debug("Module Sitecore package file '{0}' copied to {1}", packageFile.FullName, projectFolder.Data.Packages.FullName);
       }
 
+      //copy Sitecore update packages to package folder (update files)
+      foreach (var updateFile in _fileTypes.SitecoreUpdate.GetFiles(module.Directory))
+      {
+        updateFile.CopyTo(projectFolder.Data.Packages, true);
+        Log.This.Debug("Module Sitecore update file '{0}' copied to {1}", updateFile.FullName, projectFolder.Data.Packages.FullName);
+      }
+
       //Copy directories to project folder
       foreach (var moduleFolder in module.Directory.GetDirectories())
       {
@@ -223,22 +230,31 @@ namespace SitecoreInstaller.Domain.Website
       {
         foreach (var package in _fileTypes.SitecorePackage.GetFiles(module.Directory))
         {
-          var packageName = HttpUtility.UrlEncode(package.Name);
-          Log.This.Info("Installing '{0}'...", HttpUtility.UrlDecode(packageName));
-
-          const string installFormatPattern = "Action={0}&PackageName={1}";
-
-          var callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern, "Install", packageName));
-          ExecuteInstallPackageAction(callingUri);
-
-          Log.This.Info("Executing post installation steps for '{0}'...", HttpUtility.UrlDecode(packageName));
-
-          callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern, "PostInstall", packageName));
-          ExecuteInstallPackageAction(callingUri);
-
-          Log.This.Info("'{0}' is installed", package);
+          this.InstallPackage(baseUrl, package);
+        }
+        foreach (var update in _fileTypes.SitecoreUpdate.GetFiles(module.Directory))
+        {
+          this.InstallPackage(baseUrl, update);
         }
       }
+    }
+
+    private void InstallPackage(string baseUrl, FileInfo package)
+    {
+      var packageName = HttpUtility.UrlEncode(package.Name);
+      Log.This.Info("Installing '{0}'...", HttpUtility.UrlDecode(packageName));
+
+      const string installFormatPattern = "Action={0}&PackageName={1}";
+
+      var callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern, "Install", packageName));
+      this.ExecuteInstallPackageAction(callingUri);
+
+      Log.This.Info("Executing post installation steps for '{0}'...", HttpUtility.UrlDecode(packageName));
+
+      callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern, "PostInstall", packageName));
+      this.ExecuteInstallPackageAction(callingUri);
+
+      Log.This.Info("'{0}' is installed", package);
     }
 
     public void DeserializeItems(string baseUrl)

@@ -18,6 +18,8 @@
             _knownFileTypes.Add(SitecoreConfigFile.Extension.ToLower());
             SitecorePackage = new FileType("SitecorePackage", ".zip");
             _knownFileTypes.Add(SitecorePackage.Extension.ToLower());
+            this.SitecoreUpdate = new FileType("SitecorePackage", ".update");
+            _knownFileTypes.Add(SitecorePackage.Extension.ToLower());
         }
 
         public bool IsNotRegisteredFileType(FileInfo file)
@@ -29,5 +31,6 @@
         public FileType DatabaseLogFile { get; private set; }
         public FileType SitecoreConfigFile { get; private set; }
         public FileType SitecorePackage { get; private set; }
+        public FileType SitecoreUpdate { get; private set; }
     }
 }
