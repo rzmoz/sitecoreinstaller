@@ -33,11 +33,8 @@
       this.pnlFooter = new System.Windows.Forms.Panel();
       this.pnlHeader = new System.Windows.Forms.Panel();
       this.pnlContent = new System.Windows.Forms.Panel();
-      this.selectProjectName1 = new SitecoreInstaller.UI.SelectProjectName();
-      this.selectSitecore1 = new SitecoreInstaller.UI.SelectSitecore();
-      this.selectLicense1 = new SitecoreInstaller.UI.SelectLicense();
-      this.selectModules1 = new SitecoreInstaller.UI.SelectModules();
       this.progressCtrl1 = new SitecoreInstaller.UI.Processing.ProgressCtrl();
+      this.mainDeveloper1 = new SitecoreInstaller.UI.MainDeveloper();
       this.pnlContent.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -62,57 +59,30 @@
       // pnlContent
       // 
       this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(69)))), ((int)(((byte)(79)))));
-      this.pnlContent.Controls.Add(this.selectProjectName1);
-      this.pnlContent.Controls.Add(this.selectSitecore1);
-      this.pnlContent.Controls.Add(this.selectLicense1);
-      this.pnlContent.Controls.Add(this.selectModules1);
+      this.pnlContent.Controls.Add(this.mainDeveloper1);
       this.pnlContent.Controls.Add(this.progressCtrl1);
       this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
       this.pnlContent.Location = new System.Drawing.Point(0, 30);
       this.pnlContent.Name = "pnlContent";
       this.pnlContent.Size = new System.Drawing.Size(800, 370);
       this.pnlContent.TabIndex = 1;
-     
-      // 
-      // selectProjectName1
-      // 
-      this.selectProjectName1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-      this.selectProjectName1.Location = new System.Drawing.Point(3, 0);
-      this.selectProjectName1.Name = "selectProjectName1";
-      this.selectProjectName1.ProjectName = "";
-      this.selectProjectName1.Size = new System.Drawing.Size(400, 50);
-      this.selectProjectName1.TabIndex = 0;
-      // 
-      // selectSitecore1
-      // 
-      this.selectSitecore1.Location = new System.Drawing.Point(3, 42);
-      this.selectSitecore1.Name = "selectSitecore1";
-      this.selectSitecore1.Size = new System.Drawing.Size(400, 50);
-      this.selectSitecore1.TabIndex = 1;
-      // 
-      // selectLicense1
-      // 
-      this.selectLicense1.Location = new System.Drawing.Point(3, 89);
-      this.selectLicense1.Name = "selectLicense1";
-      this.selectLicense1.Size = new System.Drawing.Size(400, 50);
-      this.selectLicense1.TabIndex = 2;
-      // 
-      // selectModules1
-      // 
-      this.selectModules1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-      this.selectModules1.Location = new System.Drawing.Point(3, 136);
-      this.selectModules1.Name = "selectModules1";
-      this.selectModules1.Size = new System.Drawing.Size(400, 231);
-      this.selectModules1.TabIndex = 3;
       // 
       // progressCtrl1
       // 
+      this.progressCtrl1.BackColor = System.Drawing.Color.White;
       this.progressCtrl1.Location = new System.Drawing.Point(-3, 1);
       this.progressCtrl1.Name = "progressCtrl1";
       this.progressCtrl1.Size = new System.Drawing.Size(800, 370);
       this.progressCtrl1.TabIndex = 6;
- // 
+      // 
+      // mainDeveloper1
+      // 
+      this.mainDeveloper1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.mainDeveloper1.Location = new System.Drawing.Point(0, 0);
+      this.mainDeveloper1.Name = "mainDeveloper1";
+      this.mainDeveloper1.Size = new System.Drawing.Size(800, 370);
+      this.mainDeveloper1.TabIndex = 7;
+      // 
       // MainCtrl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -132,11 +102,8 @@
 
     private System.Windows.Forms.Panel pnlFooter;
     private System.Windows.Forms.Panel pnlHeader;
-    private SelectModules selectModules1;
-    private SelectLicense selectLicense1;
-    private SelectSitecore selectSitecore1;
-    private SelectProjectName selectProjectName1;
     private System.Windows.Forms.Panel pnlContent;
     private Processing.ProgressCtrl progressCtrl1;
+    private MainDeveloper mainDeveloper1;
   }
 }

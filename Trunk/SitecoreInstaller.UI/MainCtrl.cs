@@ -31,21 +31,14 @@ namespace SitecoreInstaller.UI
       progressCtrl1.Hide();
       progressCtrl1.Dock = DockStyle.Fill;
 
-      selectProjectName1.Init();
-      selectSitecore1.Init();
-      selectLicense1.Init();
-      selectModules1.Init();
-
-      selectProjectName1.FocusTextBox();
+      mainDeveloper1.Init();
     }
 
     private void InitProjectSettings()
     {
       Services.UserPreferences.Updated += UserPreferences_Updated;
       Services.ProjectSettings.Updated += ProjectSettings_Updated;
-      BuildLibrarySelectionsUpdated += selectSitecore1.BuildLibrarySelectionsUpdated;
-      BuildLibrarySelectionsUpdated += selectLicense1.BuildLibrarySelectionsUpdated;
-      BuildLibrarySelectionsUpdated += selectModules1.BuildLibrarySelectionsUpdated;
+      BuildLibrarySelectionsUpdated += mainDeveloper1.BuildLibrarySelectionsUpdated;
       Services.UserPreferences.Load();
     }
 
@@ -72,49 +65,6 @@ namespace SitecoreInstaller.UI
     void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
     {
       Services.ProjectSettings.Init(e.Arg);
-    }
-
-    protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-    {
-      switch (keyData)
-      {
-        case Keys.N | Keys.Control | Keys.Shift:
-          Services.Pipelines.Run<DoNothingPipeline>();
-          break;
-        case Keys.B | Keys.Control | Keys.Shift:
-          this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<InstallPipeline>();
-          break;
-        case Keys.U | Keys.Control | Keys.Shift:
-          Services.Pipelines.Run<UninstallPipeline>();
-          break;
-        case Keys.R | Keys.Control | Keys.Shift:
-          this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
-          break;
-        case Keys.R | Keys.Control:
-          Services.BuildLibrary.Update();
-          break;
-        case Keys.O | Keys.Control:
-          Services.Website.OpenFrontend(Services.ProjectSettings.Iis.Url);
-          break;
-        case Keys.O | Keys.Control | Keys.Shift:
-          Services.Website.OpenSitecore(Services.ProjectSettings.Iis.Url, Services.ProjectSettings.ProjectFolder.Website.Directory);
-          break;
-        case Keys.O | Keys.Control | Keys.Alt:
-          Process.Start(Services.ProjectSettings.ProjectFolder.Directory.FullName);
-          break;
-        default:
-          return base.ProcessCmdKey(ref msg, keyData);
-      }
-      return true;
-    }
-
-    private void UpdateBuildLibrarySelections()
-    {
-      Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
-      Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
-      Services.ProjectSettings.BuildLibrarySelections.SelectedModules = this.selectModules1.SelectedModules;
     }
 
     private void InitPipelineWorker()

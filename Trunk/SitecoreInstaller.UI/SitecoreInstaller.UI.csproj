@@ -117,6 +117,12 @@
     <Compile Include="MainCtrl.Designer.cs">
       <DependentUpon>MainCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainDeveloper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainDeveloper.Designer.cs">
+      <DependentUpon>MainDeveloper.cs</DependentUpon>
+    </Compile>
     <Compile Include="Navigation\MainNavigationButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -143,11 +149,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\UiUserSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>UiUserSettings.settings</DependentUpon>
     </Compile>
     <Compile Include="SelectLicense.cs">
       <SubType>UserControl</SubType>
@@ -203,18 +204,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\UiUserSettings.settings">
-      <Generator>PublicSettingsSingleFileGenerator</Generator>
-      <LastGenOutput>UiUserSettings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Advanced.resx">
       <DependentUpon>Advanced.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl.resx">
       <DependentUpon>MainCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainDeveloper.resx">
+      <DependentUpon>MainDeveloper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Navigation\MainNavigationButton.resx">
       <DependentUpon>MainNavigationButton.cs</DependentUpon>
