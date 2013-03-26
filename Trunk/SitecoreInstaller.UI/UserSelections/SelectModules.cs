@@ -1,42 +1,39 @@
-﻿namespace SitecoreInstaller.UI
+﻿namespace SitecoreInstaller.UI.UserSelections
 {
   using System;
   using System.Collections.Generic;
-  using System.IO;
   using System.Linq;
   using System.Windows.Forms;
-
   using SitecoreInstaller.App;
   using SitecoreInstaller.Domain.BuildLibrary;
   using SitecoreInstaller.Framework.System;
   using SitecoreInstaller.UI.ListBoxes;
-  using SitecoreInstaller.UI.Properties;
 
   public partial class SelectModules : SourceEntryCheckedListBox
   {
     public SelectModules()
     {
-      InitializeComponent();
+      this.InitializeComponent();
     }
 
     public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<BuildLibrarySelections> e)
     {
-      for (var i = 0; i < chkModules.Items.Count; i++)
+      for (var i = 0; i < this.chkModules.Items.Count; i++)
       {
-        var isChecked = e.Arg.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)chkModules.Items[i]).Key);
-        chkModules.SetItemChecked(i, isChecked);
+        var isChecked = e.Arg.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)this.chkModules.Items[i]).Key);
+        this.chkModules.SetItemChecked(i, isChecked);
       }
     }
 
     private void SelectModules_Load(object sender, EventArgs e)
     {
-      if (chkModules.Items.Count > 0)
-        chkModules.SetItemChecked(0, true);//default check first module
+      if (this.chkModules.Items.Count > 0)
+        this.chkModules.SetItemChecked(0, true);//default check first module
     }
 
     protected override CheckedListBox ListBox
     {
-      get { return chkModules; }
+      get { return this.chkModules; }
     }
 
     protected override IEnumerable<SourceEntry> ListDataSource
@@ -53,7 +50,7 @@
     {
       get
       {
-        return (from object item in chkModules.CheckedItems select item).Cast<SourceEntry>();
+        return (from object item in this.chkModules.CheckedItems select item).Cast<SourceEntry>();
       }
     }
   }

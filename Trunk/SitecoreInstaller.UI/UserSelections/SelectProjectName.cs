@@ -1,67 +1,65 @@
-﻿namespace SitecoreInstaller.UI
+﻿namespace SitecoreInstaller.UI.UserSelections
 {
   using System;
-  using System.Linq;
   using System.Windows.Forms;
-
   using SitecoreInstaller.App;
 
   public partial class SelectProjectName : UserControl
   {
     public SelectProjectName()
     {
-      InitializeComponent();
+      this.InitializeComponent();
     }
 
     public string ProjectName
     {
-      get { return cbxProjectName.Text; }
+      get { return this.cbxProjectName.Text; }
       set
       {
         if (string.IsNullOrEmpty(value))
           return;
 
-        cbxProjectName.Text = value;
+        this.cbxProjectName.Text = value;
       }
     }
     public ComboBoxStyle DropDownStyle
     {
-      get { return cbxProjectName.DropDownStyle; }
-      set { cbxProjectName.DropDownStyle = value; }
+      get { return this.cbxProjectName.DropDownStyle; }
+      set { this.cbxProjectName.DropDownStyle = value; }
     }
     public void Init()
     {
-      cbxProjectName.Text = string.Empty;
-      UpdateList();
-      Services.BuildLibrary.Updated += BuildLibraryUpdated;
+      this.cbxProjectName.Text = string.Empty;
+      this.UpdateList();
+      Services.BuildLibrary.Updated += this.BuildLibraryUpdated;
     }
     public void FocusTextBox()
     {
-      cbxProjectName.Focus();
+      this.cbxProjectName.Focus();
     }
     void BuildLibraryUpdated(object sender, EventArgs e)
     {
-      UpdateList();
+      this.UpdateList();
     }
 
     public void UpdateList()
     {
-      cbxProjectName.Items.Clear();
+      this.cbxProjectName.Items.Clear();
       var existingProjects = Services.Projects.GetExistingProjects();
       foreach (var existingProject in existingProjects)
       {
-        cbxProjectName.Items.Add(existingProject);
+        this.cbxProjectName.Items.Add(existingProject);
       }
     }
 
     private void cbxProjectName_SelectedIndexChanged(object sender, EventArgs e)
     {
-      Services.ProjectSettings.ProjectName = cbxProjectName.Text;
+      Services.ProjectSettings.ProjectName = this.cbxProjectName.Text;
     }
 
     private void cbxProjectName_TextUpdate(object sender, EventArgs e)
     {
-      Services.ProjectSettings.ProjectName = cbxProjectName.Text;
+      Services.ProjectSettings.ProjectName = this.cbxProjectName.Text;
     }
   }
 }

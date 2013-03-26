@@ -1,31 +1,29 @@
-﻿namespace SitecoreInstaller.UI
+﻿namespace SitecoreInstaller.UI.UserSelections
 {
   using System;
   using System.Collections.Generic;
   using System.Drawing;
   using System.Linq;
   using System.Windows.Forms;
-
   using SitecoreInstaller.App;
   using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Framework.System;
   using SitecoreInstaller.UI.ListBoxes;
 
   public partial class SelectSitecore : SourceEntryComboBox
   {
     public SelectSitecore()
     {
-      InitializeComponent();
+      this.InitializeComponent();
     }
 
     private void SelectSitecore_Load(object sender, EventArgs e)
     {
-      cbxSitecore_SelectedIndexChanged(this, EventArgs.Empty);
+      this.cbxSitecore_SelectedIndexChanged(this, EventArgs.Empty);
     }
 
     protected override ComboBox ListBox
     {
-      get { return cbxSitecore; }
+      get { return this.cbxSitecore; }
     }
     protected override IEnumerable<SourceEntry> ListDataSource
     {
@@ -38,14 +36,14 @@
     }
     private void cbxSitecore_SelectedIndexChanged(object sender, EventArgs e)
     {
-      if (ListBox.Items.Count == 0)
+      if (this.ListBox.Items.Count == 0)
       {
-        lblSitecore.ForeColor = Color.Red;
-        lblSitecore.Text = "You have no Sitecore versions";
+        this.lblSitecore.ForeColor = Color.Red;
+        this.lblSitecore.Text = "You have no Sitecore versions";
         return;
       }
-      lblSitecore.ForeColor = Styles.Fonts.Colors.Text;
-      lblSitecore.Text = string.Format("Sitecore:");
+      this.lblSitecore.ForeColor = Styles.Fonts.Colors.Text;
+      this.lblSitecore.Text = string.Format("Sitecore:");
     }
 
     protected override SourceEntry GetRelevantSourceEntry(BuildLibrarySelections buildLibrarySelections)

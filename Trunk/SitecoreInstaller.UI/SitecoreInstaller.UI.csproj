@@ -150,28 +150,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SelectLicense.cs">
+    <Compile Include="UserSelections\SelectLicense.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SelectLicense.Designer.cs">
+    <Compile Include="UserSelections\SelectLicense.Designer.cs">
       <DependentUpon>SelectLicense.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectModules.cs">
+    <Compile Include="UserSelections\SelectModules.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SelectModules.Designer.cs">
+    <Compile Include="UserSelections\SelectModules.Designer.cs">
       <DependentUpon>SelectModules.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectProjectName.cs">
+    <Compile Include="UserSelections\SelectProjectName.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SelectProjectName.Designer.cs">
+    <Compile Include="UserSelections\SelectProjectName.Designer.cs">
       <DependentUpon>SelectProjectName.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectSitecore.cs">
+    <Compile Include="UserSelections\SelectSitecore.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SelectSitecore.Designer.cs">
+    <Compile Include="UserSelections\SelectSitecore.Designer.cs">
       <DependentUpon>SelectSitecore.cs</DependentUpon>
     </Compile>
     <Compile Include="Navigation\NavButton.cs">
@@ -231,16 +231,16 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectLicense.resx">
+    <EmbeddedResource Include="UserSelections\SelectLicense.resx">
       <DependentUpon>SelectLicense.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectModules.resx">
+    <EmbeddedResource Include="UserSelections\SelectModules.resx">
       <DependentUpon>SelectModules.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectProjectName.resx">
+    <EmbeddedResource Include="UserSelections\SelectProjectName.resx">
       <DependentUpon>SelectProjectName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectSitecore.resx">
+    <EmbeddedResource Include="UserSelections\SelectSitecore.resx">
       <DependentUpon>SelectSitecore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Simple.resx">

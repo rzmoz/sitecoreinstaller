@@ -1,5 +1,7 @@
 ﻿namespace SitecoreInstaller.UI
 {
+  using SitecoreInstaller.UI.UserSelections;
+
   partial class MainDeveloper
   {
     /// <summary> 
@@ -29,10 +31,10 @@
     private void InitializeComponent()
     {
       this.pnlUserSelections = new System.Windows.Forms.Panel();
-      this.selectProjectName1 = new SitecoreInstaller.UI.SelectProjectName();
-      this.selectSitecore1 = new SitecoreInstaller.UI.SelectSitecore();
-      this.selectLicense1 = new SitecoreInstaller.UI.SelectLicense();
-      this.selectModules1 = new SitecoreInstaller.UI.SelectModules();
+      this.selectProjectName1 = new SitecoreInstaller.UI.UserSelections.SelectProjectName();
+      this.selectSitecore1 = new SitecoreInstaller.UI.UserSelections.SelectSitecore();
+      this.selectLicense1 = new SitecoreInstaller.UI.UserSelections.SelectLicense();
+      this.selectModules1 = new SitecoreInstaller.UI.UserSelections.SelectModules();
       this.pnlUserSelections.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -54,7 +56,7 @@
       this.selectProjectName1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.selectProjectName1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-      this.selectProjectName1.Location = new System.Drawing.Point(13, 0);
+      this.selectProjectName1.Location = new System.Drawing.Point(12, 0);
       this.selectProjectName1.Name = "selectProjectName1";
       this.selectProjectName1.ProjectName = "";
       this.selectProjectName1.Size = new System.Drawing.Size(285, 50);
@@ -64,7 +66,7 @@
       // 
       this.selectSitecore1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.selectSitecore1.Location = new System.Drawing.Point(13, 42);
+      this.selectSitecore1.Location = new System.Drawing.Point(12, 45);
       this.selectSitecore1.Name = "selectSitecore1";
       this.selectSitecore1.Size = new System.Drawing.Size(285, 50);
       this.selectSitecore1.TabIndex = 9;
@@ -73,7 +75,7 @@
       // 
       this.selectLicense1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.selectLicense1.Location = new System.Drawing.Point(13, 89);
+      this.selectLicense1.Location = new System.Drawing.Point(12, 90);
       this.selectLicense1.Name = "selectLicense1";
       this.selectLicense1.Size = new System.Drawing.Size(285, 50);
       this.selectLicense1.TabIndex = 10;
@@ -83,7 +85,7 @@
       this.selectModules1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.selectModules1.Location = new System.Drawing.Point(13, 136);
+      this.selectModules1.Location = new System.Drawing.Point(12, 136);
       this.selectModules1.Name = "selectModules1";
       this.selectModules1.Size = new System.Drawing.Size(285, 253);
       this.selectModules1.TabIndex = 11;
