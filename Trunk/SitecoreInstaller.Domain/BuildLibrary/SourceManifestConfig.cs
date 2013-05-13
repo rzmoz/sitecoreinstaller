@@ -17,7 +17,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       this.Manifests = new List<SourceManifest>();
     }
 
-    [XmlArrayItem(ElementName = "Source", IsNullable = false)]
+    [XmlArrayItem(ElementName = "Manifest", IsNullable = false)]
     public List<SourceManifest> Manifests { get; set; }
   }
 }

@@ -1,5 +1,6 @@
 ﻿namespace SitecoreInstaller.Domain.BuildLibrary
 {
+
     public class SourceManifest
     {
         public SourceManifest()
