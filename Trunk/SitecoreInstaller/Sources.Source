@@ -9,11 +9,7 @@
             AND have a constructor taking exactly one parameter (string name) where name is the name of the source
     -->
     <!--
-        <Manifest>
-          <Name>Example</Name>
-          <Parameters>\\mynetworkdrive\BuildLibrary</Parameters>
-          <Type>SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain</Type>          
-        </Manifest>
-  -->
+        <Manifest><Name>Example</Name><Parameters>\\mynetworkdrive\BuildLibrary</Parameters><Type>SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain</Type></Manifest>
+    -->
   </Manifests>
 </Sources>    

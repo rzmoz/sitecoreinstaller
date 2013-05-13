@@ -2,25 +2,10 @@
 <!-- For more information on using web.config transformation visit http://go.microsoft.com/fwlink/?LinkId=125889 -->
 
 <Sources xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
-  <Manifests>
-    <Manifest xdt:Transform="Insert">
-      <Name>RAR</Name>
-      <Parameters>C:\BuildLibraryExternalMock</Parameters>
-      <Type>SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain</Type>
-    </Manifest>
-<!--
-    <Manifest xdt:Transform="Insert">
-      <Name>SA</Name>
-      <Parameters>\\fil1dk1.dk.sitecore.net\DATA2\Sitecore\SolutionArchitects\BuildLibrary</Parameters>
-      <Type>SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain</Type>
-    </Manifest>
-
-    <Manifest xdt:Transform="Insert">
-      <Name>SALES</Name>
-      <Parameters>\\fil1dk1.dk.sitecore.net\DATA2\Sitecore\SolutionArchitects\BuildLibrary\Common</Parameters>
-      <Type>SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain</Type>
-    </Manifest>
+  <Manifests xdt:Transform="Insert">
+    <Manifest><Name>RAR</Name><Parameters>C:\BuildLibraryExternalMock</Parameters><Type>SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain</Type></Manifest>
+    <!--
+      <Manifest><Name>SALES</Name><Parameters>\\fil1dk1.dk.sitecore.net\DATA2\Sitecore\SitecoreInstallerBuildLibrary\Common</Parameters><Type>SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain</Type></Manifest>
     -->
-    
-  </Manifests>    
+  </Manifests>
 </Sources>
