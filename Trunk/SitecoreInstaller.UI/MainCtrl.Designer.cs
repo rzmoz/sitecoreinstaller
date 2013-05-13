@@ -34,9 +34,9 @@
       this.btnViewLog = new SitecoreInstaller.UI.Forms.SIButton();
       this.pnlHeader = new System.Windows.Forms.Panel();
       this.pnlContent = new System.Windows.Forms.Panel();
+      this.logViewer1 = new SitecoreInstaller.UI.Log.LogViewer();
       this.mainDeveloper1 = new SitecoreInstaller.UI.MainDeveloper();
       this.progressCtrl1 = new SitecoreInstaller.UI.Processing.ProgressCtrl();
-      this.logViewer1 = new SitecoreInstaller.UI.Log.LogViewer();
       this.pnlFooter.SuspendLayout();
       this.pnlContent.SuspendLayout();
       this.SuspendLayout();
@@ -62,6 +62,7 @@
       this.btnViewLog.Name = "btnViewLog";
       this.btnViewLog.Size = new System.Drawing.Size(75, 23);
       this.btnViewLog.TabIndex = 0;
+      this.btnViewLog.TabStop = false;
       this.btnViewLog.Text = "View Log";
       this.btnViewLog.UseVisualStyleBackColor = true;
       this.btnViewLog.Click += new System.EventHandler(this.btnViewLog_Click);
@@ -87,6 +88,17 @@
       this.pnlContent.Size = new System.Drawing.Size(800, 370);
       this.pnlContent.TabIndex = 1;
       // 
+      // logViewer1
+      // 
+      this.logViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.logViewer1.Location = new System.Drawing.Point(0, 187);
+      this.logViewer1.Name = "logViewer1";
+      this.logViewer1.Size = new System.Drawing.Size(800, 184);
+      this.logViewer1.TabIndex = 0;
+      this.logViewer1.TabStop = false;
+      // 
       // mainDeveloper1
       // 
       this.mainDeveloper1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -102,16 +114,6 @@
       this.progressCtrl1.Name = "progressCtrl1";
       this.progressCtrl1.Size = new System.Drawing.Size(800, 370);
       this.progressCtrl1.TabIndex = 6;
-      // 
-      // logViewer1
-      // 
-      this.logViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.logViewer1.Location = new System.Drawing.Point(0, 187);
-      this.logViewer1.Name = "logViewer1";
-      this.logViewer1.Size = new System.Drawing.Size(800, 184);
-      this.logViewer1.TabIndex = 0;
       // 
       // MainCtrl
       // 

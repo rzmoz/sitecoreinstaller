@@ -7,6 +7,7 @@
         var admin = Sitecore.Security.Accounts.User.FromName(@"sitecore\admin", true);
         var profile = admin.Profile;
         profile["WallPaper"] = string.Empty;
+        profile["Wallpaper"] = string.Empty;
         profile.Save();
     }
 

@@ -54,6 +54,7 @@
       this.chkFollowLogTrail.Name = "chkFollowLogTrail";
       this.chkFollowLogTrail.Size = new System.Drawing.Size(75, 17);
       this.chkFollowLogTrail.TabIndex = 4;
+      this.chkFollowLogTrail.TabStop = false;
       this.chkFollowLogTrail.Text = "Follow trail";
       this.chkFollowLogTrail.UseVisualStyleBackColor = true;
       this.chkFollowLogTrail.CheckedChanged += new System.EventHandler(this.chkFollowLogTrail_CheckedChanged);
@@ -69,6 +70,7 @@
       this.btnClear.Name = "btnClear";
       this.btnClear.Size = new System.Drawing.Size(75, 23);
       this.btnClear.TabIndex = 3;
+      this.btnClear.TabStop = false;
       this.btnClear.Text = "Clear";
       this.btnClear.UseVisualStyleBackColor = true;
       this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -84,6 +86,7 @@
       this.btnClose.Name = "btnClose";
       this.btnClose.Size = new System.Drawing.Size(75, 23);
       this.btnClose.TabIndex = 2;
+      this.btnClose.TabStop = false;
       this.btnClose.Text = "Close";
       this.btnClose.UseVisualStyleBackColor = true;
       this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
