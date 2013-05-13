@@ -111,6 +111,12 @@
     <Compile Include="ListBoxes\SourceEntryListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Log\LogViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Log\LogViewer.Designer.cs">
+      <DependentUpon>LogViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,6 +212,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Advanced.resx">
       <DependentUpon>Advanced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Log\LogViewer.resx">
+      <DependentUpon>LogViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainCtrl.resx">
       <DependentUpon>MainCtrl.cs</DependentUpon>

@@ -30,7 +30,7 @@ namespace SitecoreInstaller.UI
       progressCtrl1.SendToBack();
       progressCtrl1.Hide();
       progressCtrl1.Dock = DockStyle.Fill;
-
+      logViewer1.Init();
       mainDeveloper1.Init();
     }
 
@@ -82,6 +82,12 @@ namespace SitecoreInstaller.UI
     void PipelineWorker_PreconditionNotMet(object sender, GenericEventArgs<string> e)
     {
       this.CrossThreadSafe(() => Services.Dialogs.ModalDialog(MessageBoxIcon.Error, e.Arg, string.Empty));
+    }
+
+    private void btnViewLog_Click(object sender, EventArgs e)
+    {
+      logViewer1.BringToFront();
+      logViewer1.Show();
     }
   }
 }
