@@ -9,11 +9,21 @@ using System.Windows.Forms;
 
 namespace SitecoreInstaller
 {
-    public partial class FrmMain : Form
+  using SitecoreInstaller.App;
+  using SitecoreInstaller.App.Pipelines;
+
+  public partial class FrmMain : Form
+  {
+    public FrmMain()
     {
-        public FrmMain()
-        {
-            InitializeComponent();
-        }
+      InitializeComponent();
     }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+    {
+      if (mainCtrl1.ProcessKeyPress(keyData))
+        return true;
+      return base.ProcessCmdKey(ref msg, keyData);
+    }
+  }
 }

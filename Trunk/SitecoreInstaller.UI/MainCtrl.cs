@@ -32,6 +32,11 @@ namespace SitecoreInstaller.UI
       mainDeveloper1.Init();
     }
 
+    public bool ProcessKeyPress(Keys keyData)
+    {
+      return mainDeveloper1.ProcessKeyPress(keyData);
+    }
+
     private void InitProjectSettings()
     {
       Services.UserPreferences.Updated += UserPreferences_Updated;

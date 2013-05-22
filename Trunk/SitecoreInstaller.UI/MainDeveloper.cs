@@ -41,7 +41,7 @@ namespace SitecoreInstaller.UI
       selectModules1.BuildLibrarySelectionsUpdated(sender, e);
     }
 
-    protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+    public bool ProcessKeyPress(Keys keyData)
     {
       switch (keyData)
       {
@@ -72,7 +72,7 @@ namespace SitecoreInstaller.UI
           Process.Start(Services.ProjectSettings.ProjectFolder.Directory.FullName);
           break;
         default:
-          return base.ProcessCmdKey(ref msg, keyData);
+          return false;
       }
       return true;
     }
