@@ -43,7 +43,7 @@ namespace SitecoreInstaller.Domain.WebServer
       {
         if (iisManager.Sites[applicationName] == null)
         {
-          Log.This.Error("Site not found in iis: {0}", applicationName);
+          Log.This.Warning("Site not found in iis: {0}", applicationName);
           return;
         }
 
@@ -128,7 +128,7 @@ namespace SitecoreInstaller.Domain.WebServer
       using (var iisManager = new ServerManager())
       {
         if (iisManager.ApplicationPools[applicationName] == null)
-          Log.This.Error("Application pool not found: " + applicationName);
+          Log.This.Warning("Application pool not found: " + applicationName);
         else
         {
           if (iisManager.ApplicationPools[applicationName].State == ObjectState.Started)
@@ -143,7 +143,7 @@ namespace SitecoreInstaller.Domain.WebServer
         var site = iisManager.Sites[applicationName];
 
         if (site == null)
-          Log.This.Error("Site not found: " + applicationName);
+          Log.This.Warning("Site not found: " + applicationName);
         else
         {
           if (site.State == ObjectState.Started)

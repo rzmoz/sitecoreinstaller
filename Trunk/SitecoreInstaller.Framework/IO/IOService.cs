@@ -57,7 +57,7 @@ namespace SitecoreInstaller.Framework.IO
     }
     public static void DeleteWithLog(this DirectoryInfo folder)
     {
-      const int retries = 10;
+      const int retries = 15;
 
       if (folder.Exists() == false)
         return;
@@ -76,23 +76,23 @@ namespace SitecoreInstaller.Framework.IO
         }
         catch (UnauthorizedAccessException)
         {
-          Log.This.Debug("Waiting for iis to release file handles...");
-          Thread.Sleep(500);
+          Log.This.Debug("Waiting for release of file handles...");
+          Thread.Sleep(1000);
         }
         catch (IOException)
         {
-          Log.This.Debug("Waiting for iis to release file handles...");
-          Thread.Sleep(500);
+          Log.This.Debug("Waiting for release of file handles...");
+          Thread.Sleep(1000);
         }
-        catch (SecurityException e)
+        catch (SecurityException)
         {
-          Log.This.Debug("Waiting for iis to release file handles...");
-          Thread.Sleep(500);
+          Log.This.Debug("Waiting for release of file handles...");
+          Thread.Sleep(1000);
         }
       }
 
       if (folder.Exists())
-        Log.This.Warning("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
+        Log.This.Error("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
     }
 
     public static void ConsolidateIdenticalSubfolders(this DirectoryInfo rootFolder)
