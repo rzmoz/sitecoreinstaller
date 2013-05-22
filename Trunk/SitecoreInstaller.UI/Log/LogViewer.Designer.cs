@@ -31,7 +31,6 @@
       this.rtbLog = new System.Windows.Forms.RichTextBox();
       this.chkFollowLogTrail = new System.Windows.Forms.CheckBox();
       this.btnClear = new SitecoreInstaller.UI.Forms.SIButton();
-      this.btnClose = new SitecoreInstaller.UI.Forms.SIButton();
       this.SuspendLayout();
       // 
       // rtbLog
@@ -40,9 +39,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.rtbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.rtbLog.Location = new System.Drawing.Point(0, 50);
+      this.rtbLog.Location = new System.Drawing.Point(0, 30);
       this.rtbLog.Name = "rtbLog";
-      this.rtbLog.Size = new System.Drawing.Size(800, 200);
+      this.rtbLog.Size = new System.Drawing.Size(800, 220);
       this.rtbLog.TabIndex = 0;
       this.rtbLog.Text = "";
       // 
@@ -50,7 +49,7 @@
       // 
       this.chkFollowLogTrail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.chkFollowLogTrail.AutoSize = true;
-      this.chkFollowLogTrail.Location = new System.Drawing.Point(531, 16);
+      this.chkFollowLogTrail.Location = new System.Drawing.Point(626, 7);
       this.chkFollowLogTrail.Name = "chkFollowLogTrail";
       this.chkFollowLogTrail.Size = new System.Drawing.Size(75, 17);
       this.chkFollowLogTrail.TabIndex = 4;
@@ -66,7 +65,7 @@
       this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnClear.Font = new System.Drawing.Font("Segoe UI", 8F);
       this.btnClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnClear.Location = new System.Drawing.Point(628, 12);
+      this.btnClear.Location = new System.Drawing.Point(710, 3);
       this.btnClear.Name = "btnClear";
       this.btnClear.Size = new System.Drawing.Size(75, 23);
       this.btnClear.TabIndex = 3;
@@ -75,29 +74,12 @@
       this.btnClear.UseVisualStyleBackColor = true;
       this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
       // 
-      // btnClose
-      // 
-      this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnClose.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnClose.Location = new System.Drawing.Point(709, 12);
-      this.btnClose.Name = "btnClose";
-      this.btnClose.Size = new System.Drawing.Size(75, 23);
-      this.btnClose.TabIndex = 2;
-      this.btnClose.TabStop = false;
-      this.btnClose.Text = "Close";
-      this.btnClose.UseVisualStyleBackColor = true;
-      this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-      // 
       // LogViewer
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.chkFollowLogTrail);
       this.Controls.Add(this.btnClear);
-      this.Controls.Add(this.btnClose);
       this.Controls.Add(this.rtbLog);
       this.Name = "LogViewer";
       this.Size = new System.Drawing.Size(800, 250);
@@ -109,7 +91,6 @@
     #endregion
 
     private System.Windows.Forms.RichTextBox rtbLog;
-    private Forms.SIButton btnClose;
     private Forms.SIButton btnClear;
     private System.Windows.Forms.CheckBox chkFollowLogTrail;
   }

@@ -66,12 +66,6 @@ namespace SitecoreInstaller.UI.Log
       this.Clear(this, e);
     }
 
-    private void btnClose_Click(object sender, EventArgs e)
-    {
-      this.SendToBack();
-      this.Hide();
-    }
-
     private void chkFollowLogTrail_CheckedChanged(object sender, EventArgs e)
     {
       if (!chkFollowLogTrail.Checked)

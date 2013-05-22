@@ -29,16 +29,14 @@ namespace SitecoreInstaller.UI.Processing
     }
     private void siButton1_Click(object sender, EventArgs e)
     {
-      this.SendToBack();
-      this.Hide();
+      ViewportStack.Close(this);
     }
 
     public void Starting(object sender, PipelineEventArgs e)
     {
       this.CrossThreadSafe(() =>
       {
-        this.BringToFront();
-        this.Show();
+        ViewportStack.Open(this);
         btnOk.Hide();
         lblTitle.Text = e.PipelineName;
         picWaitAnimation.Show();

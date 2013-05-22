@@ -19,11 +19,11 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
             for (var i = 0; i < 10; i++)
                 Log.This.Info("Logging...");
             Log.This.Info("Pinging the world!...");
-            Thread.Sleep(200);
+            Thread.Sleep(1000);
             Log.This.Debug("Debugging the world!...");
-            Thread.Sleep(200);
+            Thread.Sleep(1000);
             Log.This.Warning("Warning the world!...");
-            Thread.Sleep(200);
+            Thread.Sleep(1000);
             Log.This.Error("Erroring the world!");
         }
     }

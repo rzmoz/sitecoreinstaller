@@ -4,12 +4,9 @@ using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI
 {
-  using System.Diagnostics;
   using System.Linq;
   using SitecoreInstaller.App;
-  using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.System;
 
   public partial class MainCtrl : UserControl
@@ -27,8 +24,9 @@ namespace SitecoreInstaller.UI
 
       InitPipelineWorker();
       InitProjectSettings();
-      progressCtrl1.SendToBack();
-      progressCtrl1.Hide();
+
+      ViewportStack.Close(progressCtrl1);
+
       progressCtrl1.Dock = DockStyle.Fill;
       logViewer1.Init();
       mainDeveloper1.Init();
@@ -86,8 +84,7 @@ namespace SitecoreInstaller.UI
 
     private void btnViewLog_Click(object sender, EventArgs e)
     {
-      logViewer1.BringToFront();
-      logViewer1.Show();
+      ViewportStack.OpenCloseDependingOnCurrentState(logViewer1);
     }
   }
 }
