@@ -6,6 +6,7 @@ namespace SitecoreInstaller.UI
 {
   using System.Linq;
   using SitecoreInstaller.App;
+  using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.BuildLibrary;
   using SitecoreInstaller.Framework.System;
 
@@ -34,6 +35,19 @@ namespace SitecoreInstaller.UI
 
     public bool ProcessKeyPress(Keys keyData)
     {
+      switch (keyData)
+      {
+        case Keys.N | Keys.Control | Keys.Shift:
+          Services.Pipelines.Run<DoNothingPipeline>();
+          return true;
+        case Keys.L | Keys.Control | Keys.Shift:
+          ViewportStack.OpenCloseDependingOnCurrentState(logViewer1);
+          return true;
+        case Keys.R | Keys.Control:
+          Services.BuildLibrary.Update();
+          return true;
+      }
+
       return mainDeveloper1.ProcessKeyPress(keyData);
     }
 

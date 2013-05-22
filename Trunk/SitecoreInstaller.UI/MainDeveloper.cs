@@ -45,9 +45,6 @@ namespace SitecoreInstaller.UI
     {
       switch (keyData)
       {
-        case Keys.N | Keys.Control | Keys.Shift:
-          Services.Pipelines.Run<DoNothingPipeline>();
-          break;
         case Keys.B | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<InstallPipeline>();
@@ -58,9 +55,6 @@ namespace SitecoreInstaller.UI
         case Keys.R | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
-          break;
-        case Keys.R | Keys.Control:
-          Services.BuildLibrary.Update();
           break;
         case Keys.O | Keys.Control:
           Services.Website.OpenFrontend(Services.ProjectSettings.Iis.Url);
