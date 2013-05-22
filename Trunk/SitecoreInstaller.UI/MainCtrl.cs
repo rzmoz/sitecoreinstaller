@@ -29,8 +29,26 @@ namespace SitecoreInstaller.UI
       ViewportStack.Close(progressCtrl1);
 
       progressCtrl1.Dock = DockStyle.Fill;
-      logViewer1.Init();
+      InitLog();
       mainDeveloper1.Init();
+    }
+
+    private void InitLog()
+    {
+      this.logViewer1.Init();
+      Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
+      Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;
+      btnViewLog.FlatAppearance.BorderSize = 0;
+    }
+
+    void PipelineWorker_AllStepsExecuted(object sender, Domain.Pipelines.PipelineEventArgs e)
+    {
+      btnViewLog.Image = Properties.Resources.Log;
+    }
+
+    void PipelineWorker_AllStepsExecuting(object sender, Domain.Pipelines.PipelineEventArgs e)
+    {
+      btnViewLog.Image = Properties.Resources.Log_active;
     }
 
     public bool ProcessKeyPress(Keys keyData)
