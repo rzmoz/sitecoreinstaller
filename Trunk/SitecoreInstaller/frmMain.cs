@@ -1,22 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace SitecoreInstaller
 {
+  using System;
+  using System.Threading;
+  using Microsoft.WindowsAPICodePack.Taskbar;
   using SitecoreInstaller.App;
-  using SitecoreInstaller.App.Pipelines;
+  using SitecoreInstaller.Domain.Pipelines;
 
   public partial class FrmMain : Form
   {
     public FrmMain()
     {
       InitializeComponent();
+    }
+
+    protected override void OnLoad(System.EventArgs e)
+    {
+      base.OnLoad(e);
+
+      Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
+      Services.PipelineWorker.StepExecuting += PipelineWorker_StepExecuting;
+      Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;
+    }
+
+    private void PipelineWorkerOnAllStepsExecuting(object sender, PipelineEventArgs pipelineEventArgs)
+    {
+      if (!TaskbarManager.IsPlatformSupported)
+        return;
+      TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Indeterminate);
+    }
+
+    private void PipelineWorker_StepExecuting(object sender, PipelineStepInfoEventArgs e)
+    {
+      if (!TaskbarManager.IsPlatformSupported)
+        return;
+
+      TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
+      TaskbarManager.Instance.SetProgressValue(e.StepNumber - 1, e.TotalStepCount);
+    }
+
+    private void PipelineWorker_AllStepsExecuted(object sender, PipelineEventArgs e)
+    {
+      if (!TaskbarManager.IsPlatformSupported)
+        return;
+      TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Indeterminate);
+      Thread.Sleep(3000);
+      TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
     }
 
     protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
