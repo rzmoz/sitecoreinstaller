@@ -193,7 +193,11 @@
       <DependentUpon>Simple.cs</DependentUpon>
     </Compile>
     <Compile Include="Styles.cs" />
-    <Compile Include="ViewportStack.cs" />
+    <Compile Include="Viewport\IListExtensionsForBetterStack.cs" />
+    <Compile Include="Viewport\SIUsercontrol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewport\ViewportStack.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@ namespace SitecoreInstaller.UI
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.BuildLibrary;
   using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.UI.Viewport;
 
   public partial class MainCtrl : UserControl
   {
@@ -26,11 +27,12 @@ namespace SitecoreInstaller.UI
       InitPipelineWorker();
       InitProjectSettings();
 
-      ViewportStack.Close(progressCtrl1);
+      ViewportStack.Hide(progressCtrl1);
 
       progressCtrl1.Dock = DockStyle.Fill;
       InitLog();
       mainDeveloper1.Init();
+      ViewportStack.Show(mainDeveloper1);
     }
 
     private void InitLog()
@@ -59,7 +61,7 @@ namespace SitecoreInstaller.UI
           Services.Pipelines.Run<DoNothingPipeline>();
           return true;
         case Keys.L | Keys.Control | Keys.Shift:
-          ViewportStack.OpenCloseDependingOnCurrentState(logViewer1);
+          ViewportStack.OpenOrCloseDependingOnCurrentState(logViewer1);
           return true;
         case Keys.R | Keys.Control:
           Services.BuildLibrary.Update();
@@ -121,7 +123,7 @@ namespace SitecoreInstaller.UI
 
     private void btnViewLog_Click(object sender, EventArgs e)
     {
-      ViewportStack.OpenCloseDependingOnCurrentState(logViewer1);
+      ViewportStack.OpenOrCloseDependingOnCurrentState(logViewer1);
     }
   }
 }

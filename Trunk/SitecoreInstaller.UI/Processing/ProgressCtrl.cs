@@ -14,8 +14,9 @@ namespace SitecoreInstaller.UI.Processing
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.UI.Viewport;
 
-  public partial class ProgressCtrl : UserControl
+  public partial class ProgressCtrl : SIUserControl
   {
     public ProgressCtrl()
     {
@@ -29,14 +30,14 @@ namespace SitecoreInstaller.UI.Processing
     }
     private void siButton1_Click(object sender, EventArgs e)
     {
-      ViewportStack.Close(this);
+      ViewportStack.Hide(this);
     }
 
     public void Starting(object sender, PipelineEventArgs e)
     {
       this.CrossThreadSafe(() =>
       {
-        ViewportStack.Open(this);
+        ViewportStack.Show(this);
         btnOk.Hide();
         lblTitle.Text = e.PipelineName;
         picWaitAnimation.Show();
@@ -72,6 +73,11 @@ namespace SitecoreInstaller.UI.Processing
         if (e.Arg.LogType == LogType.Info)
           lblInfo.Text = e.Arg.Message;
       });
+    }
+
+    public override bool BlocksView
+    {
+      get { return true; }
     }
   }
 }

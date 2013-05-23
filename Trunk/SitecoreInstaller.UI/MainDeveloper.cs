@@ -16,8 +16,9 @@ namespace SitecoreInstaller.UI
   using SitecoreInstaller.Domain.BuildLibrary;
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.UI.Viewport;
 
-  public partial class MainDeveloper : UserControl
+  public partial class MainDeveloper : SIUserControl
   {
     public MainDeveloper()
     {
@@ -43,6 +44,10 @@ namespace SitecoreInstaller.UI
 
     public bool ProcessKeyPress(Keys keyData)
     {
+      //we only activate key board shortcuts, if we're visible
+      if (ViewportStack.IsVisible(this) == false)
+        return false;
+
       switch (keyData)
       {
         case Keys.B | Keys.Control | Keys.Shift:
@@ -76,6 +81,11 @@ namespace SitecoreInstaller.UI
       Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
       Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
       Services.ProjectSettings.BuildLibrarySelections.SelectedModules = this.selectModules1.SelectedModules;
+    }
+
+    public override bool BlocksView
+    {
+      get { return true; }
     }
   }
 }

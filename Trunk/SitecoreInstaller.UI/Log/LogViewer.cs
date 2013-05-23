@@ -14,8 +14,9 @@ namespace SitecoreInstaller.UI.Log
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.UI.Viewport;
 
-  public partial class LogViewer : UserControl
+  public partial class LogViewer : SIUserControl
   {
     private IDictionary<LogType, Color> _colors;
 
@@ -74,5 +75,9 @@ namespace SitecoreInstaller.UI.Log
       rtbLog.ScrollToCaret();
     }
 
+    public override bool BlocksView
+    {
+      get { return false; }
+    }
   }
 }
