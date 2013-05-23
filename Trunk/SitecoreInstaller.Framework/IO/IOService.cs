@@ -74,19 +74,19 @@ namespace SitecoreInstaller.Framework.IO
           //happens when the files are released and deleted between retries
           break;
         }
-        catch (UnauthorizedAccessException)
+        catch (UnauthorizedAccessException e)
         {
-          Log.This.Debug("Waiting for release of file handles...");
+          Log.This.Debug("Waiting for release of file handles due to UnauthorizedAccessException...{0}", e.ToString());
           Thread.Sleep(1000);
         }
-        catch (IOException)
+        catch (IOException e)
         {
-          Log.This.Debug("Waiting for release of file handles...");
+          Log.This.Debug("Waiting for release of file handles due to IOException...{0}", e.ToString());
           Thread.Sleep(1000);
         }
-        catch (SecurityException)
+        catch (SecurityException e)
         {
-          Log.This.Debug("Waiting for release of file handles...");
+          Log.This.Debug("Waiting for release of file handles due to SecurityException...{0}", e.ToString());
           Thread.Sleep(1000);
         }
       }
