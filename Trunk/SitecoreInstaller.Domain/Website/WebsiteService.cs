@@ -337,7 +337,7 @@ namespace SitecoreInstaller.Domain.Website
       }
       catch (WebException we)
       {
-        //Log.This.Error(we.ToString());
+        Log.This.Debug(we.ToString());
         return null;
       }
     }
