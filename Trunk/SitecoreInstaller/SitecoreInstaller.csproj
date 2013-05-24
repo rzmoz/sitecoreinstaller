@@ -221,8 +221,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(SolutionDir)3rdPartyAssemblies\7za.exe $(TargetDir)
-copy $(SolutionDir)3rdPartyAssemblies\curl.exe $(TargetDir)
-copy $(SolutionDir)3rdPartyAssemblies\handle.exe $(TargetDir)</PostBuildEvent>
+copy $(SolutionDir)3rdPartyAssemblies\curl.exe $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <Import Project="..\packages\ConfigTransform.2.0.2\tools\ConfigTransform.targets" />

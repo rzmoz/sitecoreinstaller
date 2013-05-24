@@ -39,12 +39,12 @@ namespace SitecoreInstaller.Framework.Xml
         _transformationXml.WriteToDisk(Transform);
         Destination.CopyTo(Source.FullName, true);
 
-        XmlTransformableDocument xmlTarget = OpenSourceFile(Source.FullName);
+        XmlTransformableDocument configFile = OpenSourceFile(Source.FullName);
 
-        flag = new XmlTransformation(Transform.FullName).Apply(xmlTarget);
+        flag = new XmlTransformation(Transform.FullName).Apply(configFile);
         if (flag)
         {
-          xmlTarget.Save(Destination.FullName);
+          configFile.Save(Destination.FullName);
         }
       }
       catch (XmlException)
