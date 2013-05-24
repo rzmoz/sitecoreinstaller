@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SitecoreInstallerConsole.CmdArgs
+﻿namespace SitecoreInstallerConsole
 {
+  using SitecoreInstaller.Framework.CmdArgs;
+
   public static class SitecoreInstallerParameters
   {
     public static CmdLineParameter List { get { return new CmdLineParameter("list", "Lists available sitecores, licenses and modules"); } }

@@ -2,8 +2,6 @@
 
 namespace SitecoreInstallerConsole.Runners
 {
-  using SitecoreInstallerConsole.CmdArgs;
-
   public class ConsoleRunnerFactory
   {
     public ConsolePipelineRunner Create(string[] args)

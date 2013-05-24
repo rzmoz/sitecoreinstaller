@@ -11,7 +11,6 @@ namespace SitecoreInstallerConsole.Runners
 {
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.Pipelines;
-  using SitecoreInstallerConsole.CmdArgs;
 
   public class InstallRunner : ConsolePipelineRunner
   {

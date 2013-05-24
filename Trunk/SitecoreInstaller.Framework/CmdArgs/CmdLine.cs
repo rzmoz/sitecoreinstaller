@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Console = System.Console;
+using Environment = System.Environment;
+using Math = System.Math;
 
-namespace SitecoreInstallerConsole.CmdArgs
+namespace SitecoreInstaller.Framework.CmdArgs
 {
   public class CmdLine
   {
@@ -11,9 +13,9 @@ namespace SitecoreInstallerConsole.CmdArgs
     {
       get
       {
-        if (!_parameters.ContainsKey(name))
+        if (!this._parameters.ContainsKey(name))
           return null;
-        return _parameters[name];
+        return this._parameters[name];
       }
     }
 
@@ -21,21 +23,21 @@ namespace SitecoreInstallerConsole.CmdArgs
     {
       foreach (var p in parameters)
       {
-        if (_parameters.ContainsKey(p.Name))
+        if (this._parameters.ContainsKey(p.Name))
           throw new CmdLineException(p.Name, "Parameter is already registered.");
-        _parameters.Add(p.Name, p);
+        this._parameters.Add(p.Name, p);
       }
     }
     public bool UnRegisterParameter(string name)
     {
-      if (_parameters.ContainsKey(name))
-        return _parameters.Remove(name);
+      if (this._parameters.ContainsKey(name))
+        return this._parameters.Remove(name);
       return false;
     }
 
     public void ClearParameters()
     {
-      _parameters.Clear();
+      this._parameters.Clear();
     }
 
     public void Parse(string[] args)
@@ -44,7 +46,7 @@ namespace SitecoreInstallerConsole.CmdArgs
       string error = string.Empty;
       try
       {
-        ParseArgs(args);
+        this.ParseArgs(args);
       }
       catch (CmdLineException ex)
       {
@@ -67,7 +69,7 @@ namespace SitecoreInstallerConsole.CmdArgs
       {
         var arg = args[argsPointer];
 
-        if (IsParameter(arg))
+        if (this.IsParameter(arg))
         {
           string key = arg.TrimStart('-').ToLower();
           string value = string.Empty;
@@ -78,7 +80,7 @@ namespace SitecoreInstallerConsole.CmdArgs
           while (nextIsValue && argsPointer < args.Length)
           {
             arg = args[argsPointer];
-            if (IsParameter(arg))
+            if (this.IsParameter(arg))
             {
               nextIsValue = false;
             }
@@ -89,13 +91,13 @@ namespace SitecoreInstallerConsole.CmdArgs
               argsPointer++;
             }
           }
-          if (!_parameters.ContainsKey(key))
+          if (!this._parameters.ContainsKey(key))
             throw new CmdLineException(key, "Parameter is not recognized.");
 
-          if (_parameters[key].Exists)
+          if (this._parameters[key].Exists)
             throw new CmdLineException(key, "Parameter is   specified more than once.");
 
-          _parameters[key].SetValue(value.Trim('|'));
+          this._parameters[key].SetValue(value.Trim('|'));
         }
         else
         {
@@ -136,11 +138,11 @@ namespace SitecoreInstallerConsole.CmdArgs
     {
       int len = 0;
 
-      foreach (string key in _parameters.Keys)
+      foreach (string key in this._parameters.Keys)
         len = Math.Max(len, key.Length);
 
       string help = "\nParameters:\r\n\r\n";
-      foreach (var parameter in _parameters.Values)
+      foreach (var parameter in this._parameters.Values)
       {
         string s = "-" + parameter.Name;
         while (s.Length < len + 3)

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SitecoreInstallerConsole.Runners
+﻿namespace SitecoreInstallerConsole.Runners
 {
   using SitecoreInstaller.App;
-  using SitecoreInstallerConsole.CmdArgs;
 
   public class OpenFrontendRunner : ConsolePipelineRunner
   {

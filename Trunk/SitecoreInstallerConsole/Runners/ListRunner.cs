@@ -7,8 +7,6 @@ using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstallerConsole.Runners
 {
-  using SitecoreInstallerConsole.CmdArgs;
-
   public class ListRunner : ConsolePipelineRunner
   {
     public ListRunner() 

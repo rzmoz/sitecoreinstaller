@@ -6,9 +6,9 @@ using SitecoreInstaller.App;
 
 namespace SitecoreInstallerConsole.Runners
 {
+  using SitecoreInstaller.Framework.CmdArgs;
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.System;
-  using SitecoreInstallerConsole.CmdArgs;
 
   public abstract class ConsolePipelineRunner
   {

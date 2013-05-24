@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SitecoreInstallerConsole.Runners
 {
-  using SitecoreInstallerConsole.CmdArgs;
+  using SitecoreInstaller.Framework.CmdArgs;
 
   public class HelpRunner : ConsolePipelineRunner
   {

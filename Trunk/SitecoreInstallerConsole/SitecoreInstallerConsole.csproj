@@ -71,10 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CmdArgs\CmdLine.cs" />
-    <Compile Include="CmdArgs\CmdLineException.cs" />
-    <Compile Include="CmdArgs\CmdLineParameter.cs" />
-    <Compile Include="CmdArgs\SitecoreInstallerParameters.cs" />
+    <Compile Include="SitecoreInstallerParameters.cs" />
     <Compile Include="Runners\ConsoleRunnerFactory.cs" />
     <Compile Include="Runners\ExistingProjectsRunner.cs" />
     <Compile Include="Runners\HelpRunner.cs" />

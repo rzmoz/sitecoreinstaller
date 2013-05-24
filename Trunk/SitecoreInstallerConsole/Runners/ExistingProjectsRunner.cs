@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace SitecoreInstallerConsole.Runners
 {
   using SitecoreInstaller.App;
-  using SitecoreInstallerConsole.CmdArgs;
 
   public class ExistingProjectsRunner : ConsolePipelineRunner
   {
