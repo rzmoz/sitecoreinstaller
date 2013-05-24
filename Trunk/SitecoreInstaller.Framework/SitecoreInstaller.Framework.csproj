@@ -120,6 +120,7 @@
     <Compile Include="Network\Curl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\CommandPrompt.cs" />
+    <Compile Include="System\CommandPromptResult.cs" />
     <Compile Include="System\ControlExtensions.cs" />
     <Compile Include="System\Converters\BoolConverter.cs" />
     <Compile Include="System\Converters\Converter.cs" />
