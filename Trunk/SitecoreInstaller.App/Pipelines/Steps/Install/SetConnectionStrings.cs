@@ -37,8 +37,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             }
 
             var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.ProjectSettings.Sql, Services.ProjectSettings.DatabaseNames, existingConnectionStringNames);
-            var transform = new XmlTransform(connectionStrings.File, connectionStringsDelta);
-            transform.Run();
+            var transform = new XmlTransform();
+            transform.Transform(connectionStrings.File, connectionStringsDelta);
 
             //WFFM Sql-Dataprovider connection string set
             connectionStrings.InitFromFile();

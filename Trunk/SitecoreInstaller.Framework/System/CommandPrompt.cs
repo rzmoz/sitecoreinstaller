@@ -4,6 +4,11 @@
 
   public class CommandPrompt
   {
+    public CommandPromptResult Run(string commandFormat, params object [] args)
+    {
+      var command = string.Format(commandFormat, args);
+      return Run(command);
+    }
     public CommandPromptResult Run(string commandString)
     {
       Diagnostics.Log.This.Debug("Command prompt invoked: {0}", commandString);
@@ -21,7 +26,6 @@
       using (var console = new Process { StartInfo = si })
       {
         console.Start();
-
 
         var result = new CommandPromptResult
         {

@@ -1,69 +1,35 @@
 ﻿using System;
 using System.IO;
-using System.Xml;
-using Microsoft.Web.Publishing.Tasks;
 using SitecoreInstaller.Framework.IO;
+using System.Diagnostics.Contracts;
 
 namespace SitecoreInstaller.Framework.Xml
 {
-  using global::System.Diagnostics.Contracts;
+  using SitecoreInstaller.Framework.System;
 
-  public class XmlTransform
+  public class XmlTransform : CommandPrompt
   {
-    private readonly string _transformationXml;
+    private const string _FileName = "SitecoreInstaller.XmlTransform.exe";
+    private const string _TransformFormat = _FileName + @" -source ""{0}"" -delta ""{1}"" -output ""{2}""";
 
-    public XmlTransform(FileInfo existingFile, string transformationXml)
+    public bool Transform(FileInfo existingFile, string transformationXml)
     {
-      Contract.Requires<ArgumentNullException>(existingFile != null);
-      Contract.Requires<ArgumentNullException>(transformationXml != null);
-
-      Destination = existingFile;
-      Source = Destination.WithNewExtension("Source");
-      Transform = Destination.WithNewExtension("Delta");
-      _transformationXml = transformationXml;
-    }
-
-    public FileInfo Source { get; private set; }
-    public FileInfo Transform { get; private set; }
-    public FileInfo Destination { get; private set; }
-
-    public bool Run()
-    {
-      if (File.Exists(Destination.FullName) == false)
+      if (existingFile.Exists() == false)
         return false;
 
-      bool flag;
+      var output = existingFile;
+      var source = output.WithNewExtension("Source");
+      var delta = output.WithNewExtension("Delta");
 
-      try
-      {
-        _transformationXml.WriteToDisk(Transform);
-        Destination.CopyTo(Source.FullName, true);
+      transformationXml.WriteToDisk(delta);
+      output.CopyTo(source.FullName, true);
 
-        XmlTransformableDocument configFile = OpenSourceFile(Source.FullName);
+      var result = this.Run(_TransformFormat, source.FullName, delta.FullName, output.FullName);
+      
+      source.Delete();
+      delta.Delete();
 
-        flag = new XmlTransformation(Transform.FullName).Apply(configFile);
-        if (flag)
-        {
-          configFile.Save(Destination.FullName);
-        }
-      }
-      catch (XmlException)
-      {
-        flag = false;
-      }
-      finally
-      {
-        Source.Delete();
-        Transform.Delete();
-      }
-      return flag;
-    }
-
-    private XmlTransformableDocument OpenSourceFile(string sourceFile)
-    {
-      var document = new XmlTransformableDocument();
-      document.Load(sourceFile);
-      return document;
+      return string.IsNullOrEmpty(result.StandardError);
     }
   }
 }
