@@ -30,13 +30,14 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainCtrl));
       this.pnlFooter = new System.Windows.Forms.Panel();
-      this.btnViewLog = new SitecoreInstaller.UI.Forms.SIButton();
       this.pnlHeader = new System.Windows.Forms.Panel();
       this.pnlContent = new System.Windows.Forms.Panel();
       this.mainDeveloper1 = new SitecoreInstaller.UI.MainDeveloper();
       this.progressCtrl1 = new SitecoreInstaller.UI.Processing.ProgressCtrl();
       this.logViewer1 = new SitecoreInstaller.UI.Log.LogViewer();
+      this.showHideLogViewerButton1 = new SitecoreInstaller.UI.Log.ShowHideLogViewerButton();
       this.pnlFooter.SuspendLayout();
       this.pnlContent.SuspendLayout();
       this.SuspendLayout();
@@ -44,29 +45,12 @@
       // pnlFooter
       // 
       this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-      this.pnlFooter.Controls.Add(this.btnViewLog);
+      this.pnlFooter.Controls.Add(this.showHideLogViewerButton1);
       this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.pnlFooter.Location = new System.Drawing.Point(0, 400);
       this.pnlFooter.Name = "pnlFooter";
       this.pnlFooter.Size = new System.Drawing.Size(800, 50);
       this.pnlFooter.TabIndex = 2;
-      // 
-      // btnViewLog
-      // 
-      this.btnViewLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnViewLog.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.btnViewLog.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnViewLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnViewLog.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.btnViewLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnViewLog.Image = global::SitecoreInstaller.UI.Properties.Resources.Log;
-      this.btnViewLog.Location = new System.Drawing.Point(760, 13);
-      this.btnViewLog.Name = "btnViewLog";
-      this.btnViewLog.Size = new System.Drawing.Size(25, 25);
-      this.btnViewLog.TabIndex = 0;
-      this.btnViewLog.TabStop = false;
-      this.btnViewLog.UseVisualStyleBackColor = true;
-      this.btnViewLog.Click += new System.EventHandler(this.btnViewLog_Click);
       // 
       // pnlHeader
       // 
@@ -116,6 +100,23 @@
       this.logViewer1.TabIndex = 0;
       this.logViewer1.TabStop = false;
       // 
+      // showHideLogViewerButton1
+      // 
+      this.showHideLogViewerButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.showHideLogViewerButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.showHideLogViewerButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.showHideLogViewerButton1.FlatAppearance.BorderSize = 0;
+      this.showHideLogViewerButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.showHideLogViewerButton1.Font = new System.Drawing.Font("Segoe UI", 8F);
+      this.showHideLogViewerButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.showHideLogViewerButton1.Image = ((System.Drawing.Image)(resources.GetObject("showHideLogViewerButton1.Image")));
+      this.showHideLogViewerButton1.Location = new System.Drawing.Point(759, 13);
+      this.showHideLogViewerButton1.Name = "showHideLogViewerButton1";
+      this.showHideLogViewerButton1.Size = new System.Drawing.Size(25, 25);
+      this.showHideLogViewerButton1.TabIndex = 0;
+      this.showHideLogViewerButton1.TabStop = false;
+      this.showHideLogViewerButton1.UseVisualStyleBackColor = true;
+      // 
       // MainCtrl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -140,6 +141,6 @@
     private Processing.ProgressCtrl progressCtrl1;
     private MainDeveloper mainDeveloper1;
     private Log.LogViewer logViewer1;
-    private SIButton btnViewLog;
+    private Log.ShowHideLogViewerButton showHideLogViewerButton1;
   }
 }

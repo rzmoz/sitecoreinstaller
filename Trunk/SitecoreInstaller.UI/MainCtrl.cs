@@ -8,7 +8,6 @@ namespace SitecoreInstaller.UI
   using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.System;
   using SitecoreInstaller.UI.Viewport;
 
@@ -40,40 +39,7 @@ namespace SitecoreInstaller.UI
     {
       this.logViewer1.Init();
       ViewportStack.Register(logViewer1);
-      Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
-      Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;
-      Framework.Diagnostics.Log.This.EntryLogged += This_EntryLogged;
-      Framework.Diagnostics.Log.This.LogCleared += This_LogCleared;
-      btnViewLog.FlatAppearance.BorderSize = 0;
-    }
-
-    void This_LogCleared(object sender, EventArgs e)
-    {
-      btnViewLog.Image = Properties.Resources.Log;
-    }
-
-    private void This_EntryLogged(object sender, GenericEventArgs<LogEntry> e)
-    {
-      switch (e.Arg.LogType)
-      {
-        case LogType.Error:
-        case LogType.Warning:
-          btnViewLog.Image = Properties.Resources.Log_error_active;
-          break;
-      }
-    }
-
-    void PipelineWorker_AllStepsExecuted(object sender, Domain.Pipelines.PipelineEventArgs e)
-    {
-      if (Framework.Diagnostics.Log.This.Status == LogStatus.NoProblems)
-        btnViewLog.Image = Properties.Resources.Log;
-      else
-        btnViewLog.Image = Properties.Resources.Log_error;
-    }
-
-    void PipelineWorker_AllStepsExecuting(object sender, Domain.Pipelines.PipelineEventArgs e)
-    {
-      btnViewLog.Image = Properties.Resources.Log_active;
+      this.showHideLogViewerButton1.Init(logViewer1);
     }
 
     public bool ProcessKeyPress(Keys keyData)
@@ -145,11 +111,6 @@ namespace SitecoreInstaller.UI
     void PipelineWorker_PreconditionNotMet(object sender, GenericEventArgs<string> e)
     {
       this.CrossThreadSafe(() => Services.Dialogs.ModalDialog(MessageBoxIcon.Error, e.Arg, string.Empty));
-    }
-
-    private void btnViewLog_Click(object sender, EventArgs e)
-    {
-      ViewportStack.OpenOrCloseDependingOnCurrentState(logViewer1);
     }
   }
 }

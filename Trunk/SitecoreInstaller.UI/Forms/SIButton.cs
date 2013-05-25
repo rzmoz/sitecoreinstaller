@@ -6,6 +6,7 @@
   {
     public SIButton()
     {
+      this.Cursor = Cursors.Hand;
       this.FlatStyle = FlatStyle.Flat;
       this.FlatAppearance.BorderSize = 1;
       this.FlatAppearance.BorderColor = Styles.Fonts.Colors.Text;

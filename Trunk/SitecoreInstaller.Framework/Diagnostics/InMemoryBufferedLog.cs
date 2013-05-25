@@ -33,7 +33,6 @@ namespace SitecoreInstaller.Framework.Diagnostics
 
     private void _logStatus_Updated(object sender, GenericEventArgs<LogStatus> e)
     {
-      Status = e.Arg;
       switch (e.Arg)
       {
         case LogStatus.NoProblems:
@@ -59,7 +58,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
       lock (_notifyBuffer)
       {
         _notifyBuffer.Clear();
-        Status = LogStatus.NoProblems;
+        _logStatus.Value = LogStatus.NoProblems;
       }
       _flushTimer = new Timer(FlushLogBuffer, null, 0, _FlushInterval);
 
@@ -72,7 +71,11 @@ namespace SitecoreInstaller.Framework.Diagnostics
       get { return _entries; }
     }
 
-    public LogStatus Status { get; private set; }
+    public LogStatus Status
+    {
+      get { return _logStatus.Value; }
+    }
+
     private readonly Observable<LogStatus> _logStatus;
 
     public void StopFlushTimer()
