@@ -1,14 +1,36 @@
 ﻿namespace SitecoreInstaller.UI.Viewport
 {
   using System.Collections.Generic;
+  using System.Linq;
 
   public static class ViewportStack
   {
     private static readonly IList<SIUserControl> _controlStack;
+    private static readonly ISet<SIUserControl> _registeredControls;
 
     static ViewportStack()
     {
       _controlStack = new List<SIUserControl>();
+      _registeredControls = new HashSet<SIUserControl>();
+    }
+
+    public static void Register(SIUserControl ctrl)
+    {
+      lock (_registeredControls)
+      {
+        if (_registeredControls.Contains(ctrl))
+          return;
+        _registeredControls.Add(ctrl);
+      }
+    }
+
+    public static void UnRegister(SIUserControl ctrl)
+    {
+      lock (_registeredControls)
+      {
+        if (_registeredControls.Contains(ctrl))
+          _registeredControls.Remove(ctrl);
+      }
     }
 
     public static void Hide(SIUserControl control)
@@ -33,12 +55,23 @@
         Show(control);
     }
 
+    public static void Show(string controlKey)
+    {
+      if (string.IsNullOrEmpty(controlKey))
+        return;
+      var control = _registeredControls.FirstOrDefault(ctrl => ctrl.GetType().ToString() == controlKey);
+      Show(control);
+    }
+
     public static void Show(SIUserControl control)
     {
       if (control == null)
         return;
+      
       lock (_controlStack)
       {
+        if (IsVisible(control))
+          return;
         control.Show();
         control.BringToFront();
         _controlStack.Push(control);

@@ -35,8 +35,9 @@
       this.lblStatusMessage = new SitecoreInstaller.UI.Forms.SIH2();
       this.lblTitle = new SitecoreInstaller.UI.Forms.SIH1();
       this.btnOk = new SitecoreInstaller.UI.Forms.SIButton();
-      this.rtbResult = new System.Windows.Forms.RichTextBox();
+      this.imgStatus = new System.Windows.Forms.PictureBox();
       ((System.ComponentModel.ISupportInitialize)(this.picWaitAnimation)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.imgStatus)).BeginInit();
       this.SuspendLayout();
       // 
       // picWaitAnimation
@@ -97,36 +98,33 @@
       this.btnOk.UseVisualStyleBackColor = true;
       this.btnOk.Click += new System.EventHandler(this.siButton1_Click);
       // 
-      // rtbResult
+      // imgStatus
       // 
-      this.rtbResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.rtbResult.BackColor = System.Drawing.Color.White;
-      this.rtbResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.rtbResult.Location = new System.Drawing.Point(76, 100);
-      this.rtbResult.Name = "rtbResult";
-      this.rtbResult.ReadOnly = true;
-      this.rtbResult.Size = new System.Drawing.Size(391, 177);
-      this.rtbResult.TabIndex = 11;
-      this.rtbResult.TabStop = false;
-      this.rtbResult.Text = "";
+      this.imgStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.imgStatus.Location = new System.Drawing.Point(182, 65);
+      this.imgStatus.Margin = new System.Windows.Forms.Padding(0);
+      this.imgStatus.Name = "imgStatus";
+      this.imgStatus.Size = new System.Drawing.Size(20, 20);
+      this.imgStatus.TabIndex = 11;
+      this.imgStatus.TabStop = false;
+      this.imgStatus.Click += new System.EventHandler(this.imgStatus_Click);
       // 
       // ProgressCtrl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.White;
+      this.Controls.Add(this.imgStatus);
       this.Controls.Add(this.picWaitAnimation);
       this.Controls.Add(this.lblInfo);
       this.Controls.Add(this.lblStatusMessage);
       this.Controls.Add(this.lblTitle);
       this.Controls.Add(this.btnOk);
-      this.Controls.Add(this.rtbResult);
       this.Name = "ProgressCtrl";
       this.Size = new System.Drawing.Size(530, 370);
       this.Load += new System.EventHandler(this.ProgressCtrl_Load);
       ((System.ComponentModel.ISupportInitialize)(this.picWaitAnimation)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.imgStatus)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -139,6 +137,6 @@
     private SIH2 lblStatusMessage;
     private SILabel lblInfo;
     private System.Windows.Forms.PictureBox picWaitAnimation;
-    private System.Windows.Forms.RichTextBox rtbResult;
+    private System.Windows.Forms.PictureBox imgStatus;
   }
 }

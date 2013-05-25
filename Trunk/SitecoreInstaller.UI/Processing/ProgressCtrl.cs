@@ -40,11 +40,10 @@ namespace SitecoreInstaller.UI.Processing
       this.CrossThreadSafe(() =>
       {
         ViewportStack.Show(this);
-        rtbResult.Text = string.Empty;
+        imgStatus.Hide();
         lblTitle.Text = e.PipelineName;
         picWaitAnimation.Show();
         btnOk.Hide();
-        rtbResult.Hide();
         lblStatusMessage.Show();
         lblInfo.Show();
       });
@@ -56,7 +55,7 @@ namespace SitecoreInstaller.UI.Processing
       {
         lblInfo.Hide();
         picWaitAnimation.Hide();
-        rtbResult.Show();
+        imgStatus.Show();
         btnOk.Show();
         btnOk.Focus();
 
@@ -64,15 +63,19 @@ namespace SitecoreInstaller.UI.Processing
 
         lblStatusMessage.Text = "Finished with " + logStatus.ToString().ToSpaceDelimiteredString();
 
-        if (logStatus != LogStatus.NoProblems)
+        switch (logStatus)
         {
-          rtbResult.Show();
-
-          foreach (var logEntry in e.Messages)
-            rtbResult.Text += string.Format("{0}{1}", logEntry.Message, Environment.NewLine);
-
-          lblStatusMessage.Text += ". View log for further details.";
+          case LogStatus.NoProblems:
+            imgStatus.Image = ProgressResources.Status_Ok;
+            break;
+          case LogStatus.Warnings:
+          case LogStatus.Errors:
+            imgStatus.Image = ProgressResources.Status_Error;
+            lblStatusMessage.Text += ". View log for further details.";
+            break;
         }
+
+        imgStatus.Left = lblStatusMessage.Right + 10;
       });
     }
 
@@ -95,6 +98,12 @@ namespace SitecoreInstaller.UI.Processing
         if (e.Arg.LogType == LogType.Info)
           lblInfo.Text = e.Arg.Message;
       });
+    }
+
+    private void imgStatus_Click(object sender, EventArgs e)
+    {
+      //I don't really like this. Thought the coupling is loose, it's still there. The progress control is referencing the logviwer control :-/
+      ViewportStack.Show("SitecoreInstaller.UI.Log.LogViewer");
     }
   }
 }

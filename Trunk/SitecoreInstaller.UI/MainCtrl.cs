@@ -39,6 +39,7 @@ namespace SitecoreInstaller.UI
     private void InitLog()
     {
       this.logViewer1.Init();
+      ViewportStack.Register(logViewer1);
       Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
       Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;
       Framework.Diagnostics.Log.This.EntryLogged += This_EntryLogged;
