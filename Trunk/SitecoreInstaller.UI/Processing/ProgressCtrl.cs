@@ -32,6 +32,7 @@ namespace SitecoreInstaller.UI.Processing
     private void siButton1_Click(object sender, EventArgs e)
     {
       ViewportStack.Hide(this);
+      Log.This.Clear();
     }
 
     public void Starting(object sender, PipelineEventArgs e)
