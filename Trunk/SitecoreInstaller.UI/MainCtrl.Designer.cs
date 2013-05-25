@@ -31,12 +31,12 @@
     private void InitializeComponent()
     {
       this.pnlFooter = new System.Windows.Forms.Panel();
+      this.btnViewLog = new SitecoreInstaller.UI.Forms.SIButton();
       this.pnlHeader = new System.Windows.Forms.Panel();
       this.pnlContent = new System.Windows.Forms.Panel();
       this.mainDeveloper1 = new SitecoreInstaller.UI.MainDeveloper();
       this.progressCtrl1 = new SitecoreInstaller.UI.Processing.ProgressCtrl();
       this.logViewer1 = new SitecoreInstaller.UI.Log.LogViewer();
-      this.btnViewLog = new SitecoreInstaller.UI.Forms.SIButton();
       this.pnlFooter.SuspendLayout();
       this.pnlContent.SuspendLayout();
       this.SuspendLayout();
@@ -50,6 +50,23 @@
       this.pnlFooter.Name = "pnlFooter";
       this.pnlFooter.Size = new System.Drawing.Size(800, 50);
       this.pnlFooter.TabIndex = 2;
+      // 
+      // btnViewLog
+      // 
+      this.btnViewLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnViewLog.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.btnViewLog.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnViewLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnViewLog.Font = new System.Drawing.Font("Segoe UI", 8F);
+      this.btnViewLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnViewLog.Image = global::SitecoreInstaller.UI.Properties.Resources.Log;
+      this.btnViewLog.Location = new System.Drawing.Point(760, 13);
+      this.btnViewLog.Name = "btnViewLog";
+      this.btnViewLog.Size = new System.Drawing.Size(25, 25);
+      this.btnViewLog.TabIndex = 0;
+      this.btnViewLog.TabStop = false;
+      this.btnViewLog.UseVisualStyleBackColor = true;
+      this.btnViewLog.Click += new System.EventHandler(this.btnViewLog_Click);
       // 
       // pnlHeader
       // 
@@ -98,22 +115,6 @@
       this.logViewer1.Size = new System.Drawing.Size(800, 184);
       this.logViewer1.TabIndex = 0;
       this.logViewer1.TabStop = false;
-      // 
-      // btnViewLog
-      // 
-      this.btnViewLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnViewLog.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnViewLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnViewLog.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.btnViewLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnViewLog.Image = global::SitecoreInstaller.UI.Properties.Resources.Log;
-      this.btnViewLog.Location = new System.Drawing.Point(760, 13);
-      this.btnViewLog.Name = "btnViewLog";
-      this.btnViewLog.Size = new System.Drawing.Size(25, 25);
-      this.btnViewLog.TabIndex = 0;
-      this.btnViewLog.TabStop = false;
-      this.btnViewLog.UseVisualStyleBackColor = true;
-      this.btnViewLog.Click += new System.EventHandler(this.btnViewLog_Click);
       // 
       // MainCtrl
       // 
