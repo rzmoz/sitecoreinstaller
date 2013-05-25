@@ -58,9 +58,12 @@ namespace SitecoreInstaller.UI.Processing
         rtbResult.Show();
         btnOk.Show();
         btnOk.Focus();
-        lblStatusMessage.Text = "Finished with " + e.Status.ToString().ToSpaceDelimiteredString();
 
-        if (e.Status != PipelineStatus.NoProblems)
+        var logStatus = Log.This.Status;
+
+        lblStatusMessage.Text = "Finished with " + logStatus.ToString().ToSpaceDelimiteredString();
+
+        if (logStatus != LogStatus.NoProblems)
         {
           rtbResult.Show();
 

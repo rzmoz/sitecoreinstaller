@@ -191,7 +191,6 @@
     <Compile Include="Database\SqlService.cs" />
     <Compile Include="Database\SqlSettings.cs" />
     <Compile Include="Pipelines\IPipeline.cs" />
-    <Compile Include="Pipelines\PipelineStatus.cs" />
     <Compile Include="Pipelines\PipelineWorker.cs" />
     <Compile Include="Pipelines\IPipelineRunner.cs" />
     <Compile Include="Pipelines\PipelineEventArgs.cs" />

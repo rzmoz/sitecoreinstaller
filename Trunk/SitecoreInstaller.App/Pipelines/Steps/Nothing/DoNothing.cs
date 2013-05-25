@@ -16,27 +16,11 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
     {
       Log.This.Info("Starting doing nothing...");
 
-      //Parallel.For(0, 10, async i => Log.This.Info("Async finished with {0}", await this.GetWait(i)));
-
       foreach (var index in Enumerable.Range(0,1))
       {
         Log.This.Info("Doing nothing: {0}", index);
-        Thread.Sleep(1000);
+        Thread.Sleep(100);
       }
-    }
-
-    public Task<int> GetWait(int number)
-    {
-      Log.This.Info("Starting async task {0}", number);
-
-      var tcs = new TaskCompletionSource<int>();
-
-      Task.Delay(1000);
-
-      tcs.SetResult(number);
-
-      Log.This.Info("Finishing async task {0}", number);
-      return tcs.Task;
     }
   }
 }

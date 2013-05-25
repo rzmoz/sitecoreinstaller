@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 {
   using System.Threading;
-  using System.Threading.Tasks;
   using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Diagnostics;
 
   public class DoNothingForAWhile : Step
@@ -25,6 +20,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
       Log.This.Warning("Warning the world!...");
       Thread.Sleep(1000);
       Log.This.Error("Erroring the world! {0}", Environment.StackTrace);
+      Thread.Sleep(1000);
     }
   }
 }

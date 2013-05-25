@@ -43,7 +43,7 @@ namespace SitecoreInstaller.Domain.Pipelines
       if (PreconditionsAreMet(Pipeline.Preconditions, Pipeline.Name.ToString()))
       {
         if (AllStepsExecuting != null)
-          AllStepsExecuting(sender, new PipelineEventArgs(Pipeline, PipelineStatus.NoProblems));
+          AllStepsExecuting(sender, new PipelineEventArgs(Pipeline));
 
         var elapsed = Profiler.This(InnerExecuteAllSteps, sender, e);
         Log.This.Profile(Pipeline.Name.ToString(), elapsed);
@@ -51,24 +51,13 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         Log.This.Flush();
 
-        var warnings = from entry in Log.This.Entries
-                       where entry.LogType == LogType.Warning
+        var issues = from entry in Log.This.Entries
+                       where entry.LogType == LogType.Warning ||
+                       entry.LogType == LogType.Error
                        select entry;
 
-        var errors = from entry in Log.This.Entries
-                     where entry.LogType == LogType.Error
-                     select entry;
-
-        var pipelineStatus = PipelineStatus.NoProblems;
-        if (warnings.Any())
-          pipelineStatus = PipelineStatus.Warnings;
-        if (errors.Any())
-          pipelineStatus = PipelineStatus.Errors;
-
-        var results = warnings.Concat(errors);
-
         if (AllStepsExecuted != null)
-          AllStepsExecuted(sender, new PipelineEventArgs(Pipeline, pipelineStatus, results.ToArray()));
+          AllStepsExecuted(sender, new PipelineEventArgs(Pipeline, issues.ToArray()));
       }
 
       //we clear listeners here since we don't want old listeners to hang around

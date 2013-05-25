@@ -25,6 +25,27 @@ namespace SitecoreInstaller.Framework.Diagnostics
     {
       _entries = new List<LogEntry>(50000);
       _notifyBuffer = new Queue<LogEntry>(_FlushInterval * 10);//initial size of log should be proportional to how often it is flushed
+      _logStatus = new Observable<LogStatus>();
+      _logStatus.Updated += _logStatus_Updated;
+      _logStatus.Value = LogStatus.NoProblems;
+      SetStatus = this.SetStatusWhenHasNoProblems;
+    }
+
+    private void _logStatus_Updated(object sender, GenericEventArgs<LogStatus> e)
+    {
+      Status = e.Arg;
+      switch (e.Arg)
+      {
+        case LogStatus.NoProblems:
+          SetStatus = this.SetStatusWhenHasNoProblems;
+          break;
+        case LogStatus.Warnings:
+          SetStatus = this.SetStatusWhenHasWarnings;
+          break;
+        case LogStatus.Errors:
+          SetStatus = this.SetStatusWhenHasErrors;
+          break;
+      }
     }
 
     public void Flush()
@@ -38,6 +59,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
       lock (_notifyBuffer)
       {
         _notifyBuffer.Clear();
+        Status = LogStatus.NoProblems;
       }
       _flushTimer = new Timer(FlushLogBuffer, null, 0, _FlushInterval);
 
@@ -49,6 +71,9 @@ namespace SitecoreInstaller.Framework.Diagnostics
     {
       get { return _entries; }
     }
+
+    public LogStatus Status { get; private set; }
+    private readonly Observable<LogStatus> _logStatus;
 
     public void StopFlushTimer()
     {
@@ -112,12 +137,35 @@ namespace SitecoreInstaller.Framework.Diagnostics
         return;
       lock (_notifyBuffer)
       {
+        //we set status based on entries in buffer before dequeuing
+        SetStatus();
         while (_notifyBuffer.Count > 0)
         {
           var logMessage = _notifyBuffer.Dequeue();
           EntryLogged(this, new GenericEventArgs<LogEntry>(logMessage));
         }
       }
+    }
+
+    private Action SetStatus { get; set; }
+
+    private void SetStatusWhenHasErrors()
+    { }
+    private void SetStatusWhenHasWarnings()
+    {
+      if (_notifyBuffer.Any(entry => entry.LogType == LogType.Error))
+        _logStatus.Value = LogStatus.Errors;
+    }
+    private void SetStatusWhenHasNoProblems()
+    {
+      //see if we have any errors
+      this.SetStatusWhenHasWarnings();
+
+      //if Errors are found, we don't bother checking for warnings
+      if (_logStatus.Value == LogStatus.Errors)
+        return;
+      if (_notifyBuffer.Any(entry => entry.LogType == LogType.Warning))
+        _logStatus.Value = LogStatus.Warnings;
     }
   }
 }

@@ -74,6 +74,7 @@
     <Compile Include="Framework\Linguistics\SentenceUT.cs" />
     <Compile Include="Framework\Linguistics\WordUT.cs" />
     <Compile Include="Framework\System\ObjectExtensionsUT.cs" />
+    <Compile Include="Framework\System\ObservableUT.cs" />
     <Compile Include="Framework\System\StringExtensionsUT.cs" />
     <Compile Include="Framework\System\TypeExtensionsUT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
