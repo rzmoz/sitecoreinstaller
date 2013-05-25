@@ -82,10 +82,5 @@ namespace SitecoreInstaller.UI
       Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
       Services.ProjectSettings.BuildLibrarySelections.SelectedModules = this.selectModules1.SelectedModules;
     }
-
-    public override bool BlocksView
-    {
-      get { return true; }
-    }
   }
 }

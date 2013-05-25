@@ -2,8 +2,8 @@
 {
   using System.Windows.Forms;
 
-  public abstract class SIUserControl : UserControl
+  public class SIUserControl : UserControl
   {
-    public abstract bool BlocksView { get; }
+    public bool BlocksView { get; protected set; }
   }
 }

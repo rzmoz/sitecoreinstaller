@@ -28,6 +28,7 @@ namespace SitecoreInstaller.UI.Processing
       Log.This.EntryLogged += UpdateInfo;
       Services.PipelineWorker.StepExecuting += UpdateStatus;
     }
+
     private void siButton1_Click(object sender, EventArgs e)
     {
       ViewportStack.Hide(this);
@@ -38,9 +39,13 @@ namespace SitecoreInstaller.UI.Processing
       this.CrossThreadSafe(() =>
       {
         ViewportStack.Show(this);
-        btnOk.Hide();
+        rtbResult.Text = string.Empty;
         lblTitle.Text = e.PipelineName;
         picWaitAnimation.Show();
+        btnOk.Hide();
+        rtbResult.Hide();
+        lblStatusMessage.Show();
+        lblInfo.Show();
       });
     }
 
@@ -48,9 +53,22 @@ namespace SitecoreInstaller.UI.Processing
     {
       this.CrossThreadSafe(() =>
       {
+        lblInfo.Hide();
+        picWaitAnimation.Hide();
+        rtbResult.Show();
         btnOk.Show();
         btnOk.Focus();
-        picWaitAnimation.Hide();
+        lblStatusMessage.Text = "Finished with " + e.Status.ToString().ToSpaceDelimiteredString();
+
+        if (e.Status != PipelineStatus.NoProblems)
+        {
+          rtbResult.Show();
+
+          foreach (var logEntry in e.Messages)
+            rtbResult.Text += string.Format("{0}{1}", logEntry.Message, Environment.NewLine);
+
+          lblStatusMessage.Text += ". View log for further details.";
+        }
       });
     }
 
@@ -73,11 +91,6 @@ namespace SitecoreInstaller.UI.Processing
         if (e.Arg.LogType == LogType.Info)
           lblInfo.Text = e.Arg.Message;
       });
-    }
-
-    public override bool BlocksView
-    {
-      get { return true; }
     }
   }
 }

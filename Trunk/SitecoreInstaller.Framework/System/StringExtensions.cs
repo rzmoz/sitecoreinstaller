@@ -12,6 +12,11 @@ namespace SitecoreInstaller.Framework.System
     private const string _MultipleSlashRegexFormat = "[/]{2,}";
     private static readonly Regex _multipleSlashRegex = new Regex(_MultipleSlashRegexFormat, RegexOptions.Compiled);
 
+    public static string ToSpaceDelimiteredString(this string str)
+    {
+      return str.TokenizeWhenCharIsUpper().ToDelimiteredString();
+    }
+
     internal static IEnumerable<string> TokenizeWhenCharIsUpper(this string str)
     {
       if (string.IsNullOrEmpty(str))

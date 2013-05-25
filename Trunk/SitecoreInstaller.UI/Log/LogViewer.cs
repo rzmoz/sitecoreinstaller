@@ -23,6 +23,7 @@ namespace SitecoreInstaller.UI.Log
     public LogViewer()
     {
       InitializeComponent();
+      BlocksView = false;
     }
     public void Init()
     {
@@ -73,11 +74,6 @@ namespace SitecoreInstaller.UI.Log
         return;
       rtbLog.SelectionStart = rtbLog.Text.Length;
       rtbLog.ScrollToCaret();
-    }
-
-    public override bool BlocksView
-    {
-      get { return false; }
     }
   }
 }
