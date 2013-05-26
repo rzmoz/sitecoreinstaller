@@ -59,7 +59,10 @@ namespace SitecoreInstaller.UI.Log
 
     private void This_LogCleared(object sender, EventArgs e)
     {
-      Image = LogResources.Log;
+      if (Services.PipelineWorker.IsBusy())
+        Image = LogResources.Log_active;
+      else
+        Image = LogResources.Log;
     }
 
     private void ShowHideLogViewerButton_Click(object sender, EventArgs e)

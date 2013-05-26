@@ -61,7 +61,7 @@ namespace SitecoreInstaller.UI.Processing
 
         var logStatus = Log.This.Status;
 
-        lblStatusMessage.Text = "Finished with " + logStatus.ToString().ToSpaceDelimiteredString();
+        lblStatusMessage.Text = "Finished with " + logStatus.ToString().ToSpaceDelimiteredString().ToLower();
 
         switch (logStatus)
         {
