@@ -63,12 +63,6 @@ namespace SitecoreInstaller.UI.Log
       this.CrossThreadSafe(() => rtbLog.Text = string.Empty);
     }
 
-    private void btnClear_Click(object sender, EventArgs e)
-    {
-      Log.This.Clear();
-      this.Clear(this, e);
-    }
-
     private void chkFollowLogTrail_CheckedChanged(object sender, EventArgs e)
     {
       if (!chkFollowLogTrail.Checked)

@@ -71,7 +71,7 @@ namespace SitecoreInstaller.UI.Processing
           case LogStatus.Warnings:
           case LogStatus.Errors:
             imgStatus.Image = ProgressResources.Status_Error;
-            lblStatusMessage.Text += ". View log for further details.";
+            lblStatusMessage.Text += ". Click on icon to view log for further details =>";
             break;
         }
 
