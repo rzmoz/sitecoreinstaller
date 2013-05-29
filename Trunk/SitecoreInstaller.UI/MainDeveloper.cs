@@ -18,7 +18,7 @@ namespace SitecoreInstaller.UI
   using SitecoreInstaller.Framework.System;
   using SitecoreInstaller.UI.Viewport;
 
-  public partial class MainDeveloper : SIUserControl
+  public partial class MainDeveloper : MainSIUserControl
   {
     public MainDeveloper()
     {
@@ -42,7 +42,7 @@ namespace SitecoreInstaller.UI
       selectModules1.BuildLibrarySelectionsUpdated(sender, e);
     }
 
-    public bool ProcessKeyPress(Keys keyData)
+    public override bool ProcessKeyPress(Keys keyData)
     {
       //we only activate key board shortcuts, if we're visible
       if (ViewportStack.IsVisible(this) == false)
@@ -53,27 +53,25 @@ namespace SitecoreInstaller.UI
         case Keys.B | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<InstallPipeline>();
-          break;
+          return true;
         case Keys.U | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<UninstallPipeline>();
-          break;
+          return true;
         case Keys.R | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
-          break;
+          return true;
         case Keys.O | Keys.Control:
           Services.Website.OpenFrontend(Services.ProjectSettings.Iis.Url);
-          break;
+          return true;
         case Keys.O | Keys.Control | Keys.Shift:
           Services.Website.OpenSitecore(Services.ProjectSettings.Iis.Url, Services.ProjectSettings.ProjectFolder.Website.Directory);
-          break;
+          return true;
         case Keys.O | Keys.Control | Keys.Alt:
           Process.Start(Services.ProjectSettings.ProjectFolder.Directory.FullName);
-          break;
-        default:
-          return false;
+          return true;
       }
-      return true;
+      return false;
     }
 
     private void UpdateBuildLibrarySelections()

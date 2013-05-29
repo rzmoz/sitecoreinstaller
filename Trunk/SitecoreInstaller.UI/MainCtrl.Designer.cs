@@ -38,6 +38,7 @@
       this.progressCtrl1 = new SitecoreInstaller.UI.Processing.ProgressCtrl();
       this.logViewer1 = new SitecoreInstaller.UI.Log.LogViewer();
       this.showHideLogViewerButton1 = new SitecoreInstaller.UI.Log.ShowHideLogViewerButton();
+      this.mainSimple1 = new SitecoreInstaller.UI.MainSimple();
       this.pnlFooter.SuspendLayout();
       this.pnlContent.SuspendLayout();
       this.SuspendLayout();
@@ -67,6 +68,7 @@
       this.pnlContent.Controls.Add(this.mainDeveloper1);
       this.pnlContent.Controls.Add(this.progressCtrl1);
       this.pnlContent.Controls.Add(this.logViewer1);
+      this.pnlContent.Controls.Add(this.mainSimple1);
       this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
       this.pnlContent.Location = new System.Drawing.Point(0, 30);
       this.pnlContent.Name = "pnlContent";
@@ -117,6 +119,14 @@
       this.showHideLogViewerButton1.TabStop = false;
       this.showHideLogViewerButton1.UseVisualStyleBackColor = true;
       // 
+      // mainSimple1
+      // 
+      this.mainSimple1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.mainSimple1.Location = new System.Drawing.Point(0, 0);
+      this.mainSimple1.Name = "mainSimple1";
+      this.mainSimple1.Size = new System.Drawing.Size(800, 370);
+      this.mainSimple1.TabIndex = 8;
+      // 
       // MainCtrl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,5 +152,6 @@
     private MainDeveloper mainDeveloper1;
     private Log.LogViewer logViewer1;
     private Log.ShowHideLogViewerButton showHideLogViewerButton1;
+    private MainSimple mainSimple1;
   }
 }

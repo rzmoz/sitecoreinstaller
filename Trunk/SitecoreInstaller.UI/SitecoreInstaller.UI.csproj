@@ -137,6 +137,15 @@
     <Compile Include="MainDeveloper.Designer.cs">
       <DependentUpon>MainDeveloper.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainSimple.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainSimple.Designer.cs">
+      <DependentUpon>MainSimple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainSiUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Navigation\MainNavigationButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -243,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainDeveloper.resx">
       <DependentUpon>MainDeveloper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainSimple.resx">
+      <DependentUpon>MainSimple.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Navigation\MainNavigationButton.resx">
       <DependentUpon>MainNavigationButton.cs</DependentUpon>

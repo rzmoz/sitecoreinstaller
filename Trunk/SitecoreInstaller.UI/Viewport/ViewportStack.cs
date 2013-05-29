@@ -40,10 +40,12 @@
 
       lock (_controlStack)
       {
+        if (_controlStack.Contains(control) == false)
+          return;
+
         control.SendToBack();
         control.Hide();
-        if (IsVisible(control))
-          _controlStack.Pop();
+        _controlStack.Remove(control);
       }
     }
 
@@ -67,13 +69,14 @@
     {
       if (control == null)
         return;
-      
+
       lock (_controlStack)
       {
         if (IsVisible(control))
           return;
         control.Show();
         control.BringToFront();
+        _controlStack.Remove(control);
         _controlStack.Push(control);
       }
     }

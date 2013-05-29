@@ -20,6 +20,8 @@ namespace SitecoreInstaller.UI
 
     private event EventHandler<GenericEventArgs<BuildLibrarySelections>> BuildLibrarySelectionsUpdated;
 
+    public MainSIUserControl ActiveSiControl { get; private set; }
+
     private void MainCtrl_Load(object sender, EventArgs e)
     {
       Services.Init();
@@ -31,8 +33,21 @@ namespace SitecoreInstaller.UI
 
       progressCtrl1.Dock = DockStyle.Fill;
       InitLog();
-      mainDeveloper1.Init();
-      ViewportStack.Show(mainDeveloper1);
+      InitMainDeveloper();
+      InitMainSimple();
+      ActiveSiControl = mainDeveloper1;
+      ViewportStack.Show(ActiveSiControl);
+    }
+
+    private void InitMainSimple()
+    {
+      this.mainSimple1.Init();
+    }
+
+    private void InitMainDeveloper()
+    {
+      this.mainDeveloper1.Init();
+      BuildLibrarySelectionsUpdated += mainDeveloper1.BuildLibrarySelectionsUpdated;
     }
 
     private void InitLog()
@@ -46,6 +61,18 @@ namespace SitecoreInstaller.UI
     {
       switch (keyData)
       {
+        case Keys.D | Keys.Control | Keys.Shift:
+          if (!Services.PipelineWorker.IsBusy())
+          {
+            ViewportStack.Hide(ActiveSiControl);
+            if (ActiveSiControl == mainDeveloper1)
+              ActiveSiControl = mainSimple1;
+            else
+              ActiveSiControl = mainDeveloper1;
+            ViewportStack.Show(ActiveSiControl);
+            return true;  
+          }
+          break;
         case Keys.N | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<DoNothingPipeline>();
           return true;
@@ -60,14 +87,14 @@ namespace SitecoreInstaller.UI
           return true;
       }
 
-      return mainDeveloper1.ProcessKeyPress(keyData);
+      return ActiveSiControl.ProcessKeyPress(keyData);
     }
 
     private void InitProjectSettings()
     {
       Services.UserPreferences.Updated += UserPreferences_Updated;
       Services.ProjectSettings.Updated += ProjectSettings_Updated;
-      BuildLibrarySelectionsUpdated += mainDeveloper1.BuildLibrarySelectionsUpdated;
+
       Services.UserPreferences.Load();
     }
 
