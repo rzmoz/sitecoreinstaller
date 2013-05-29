@@ -99,7 +99,7 @@ namespace SitecoreInstaller.UI
     private void InitPipelineWorker()
     {
       Services.PipelineWorker.AllStepsExecuting += progressCtrl1.Starting;
-      Services.PipelineWorker.AllStepsExecuted += progressCtrl1.Ended;
+      Services.PipelineWorker.WorkerCompleted += progressCtrl1.Ended;
       Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
       Services.PipelineWorker.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
     }

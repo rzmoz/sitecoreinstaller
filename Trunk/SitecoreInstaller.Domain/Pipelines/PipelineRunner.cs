@@ -47,7 +47,6 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         var elapsed = Profiler.This(InnerExecuteAllSteps, sender, e);
         Log.This.Profile(Pipeline.Name.ToString(), elapsed);
-        Log.This.Info("{0} finished.", Pipeline.Name.ToString());
 
         Log.This.Flush();
 

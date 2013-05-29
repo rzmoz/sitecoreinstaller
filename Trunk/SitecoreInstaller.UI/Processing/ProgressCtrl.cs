@@ -49,7 +49,7 @@ namespace SitecoreInstaller.UI.Processing
       });
     }
 
-    public void Ended(object sender, PipelineEventArgs e)
+    public void Ended(object sender, RunWorkerCompletedEventArgs e)
     {
       this.CrossThreadSafe(() =>
       {

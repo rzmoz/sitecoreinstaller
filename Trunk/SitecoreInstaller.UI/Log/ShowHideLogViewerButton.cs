@@ -30,10 +30,10 @@ namespace SitecoreInstaller.UI.Log
       Log.This.LogCleared += This_LogCleared;
       Log.This.EntryLogged += This_EntryLogged;
       Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
-      Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;
+      Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
     }
 
-    void PipelineWorker_AllStepsExecuted(object sender, Domain.Pipelines.PipelineEventArgs e)
+    void PipelineWorker_WorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
     {
       if (Log.This.Status == LogStatus.NoProblems)
         Image = LogResources.Log;
