@@ -42,6 +42,7 @@
       // 
       // picWaitAnimation
       // 
+      this.picWaitAnimation.Anchor = System.Windows.Forms.AnchorStyles.None;
       this.picWaitAnimation.Image = global::SitecoreInstaller.UI.Properties.Resources.spinner;
       this.picWaitAnimation.Location = new System.Drawing.Point(202, 120);
       this.picWaitAnimation.Name = "picWaitAnimation";
@@ -86,6 +87,7 @@
       // btnOk
       // 
       this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
       this.btnOk.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnOk.Font = new System.Drawing.Font("Segoe UI", 8F);
