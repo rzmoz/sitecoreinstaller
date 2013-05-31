@@ -33,8 +33,8 @@ namespace SitecoreInstaller.UI
 
       progressCtrl1.Dock = DockStyle.Fill;
       InitLog();
-      InitMainDeveloper();
       InitMainSimple();
+      InitMainDeveloper();
       ActiveSiControl = mainDeveloper1;
       ViewportStack.Show(ActiveSiControl);
     }

@@ -34,11 +34,11 @@
       this.pnlFooter = new System.Windows.Forms.Panel();
       this.pnlHeader = new System.Windows.Forms.Panel();
       this.pnlContent = new System.Windows.Forms.Panel();
+      this.mainSimple1 = new SitecoreInstaller.UI.MainSimple();
       this.mainDeveloper1 = new SitecoreInstaller.UI.MainDeveloper();
       this.progressCtrl1 = new SitecoreInstaller.UI.Processing.ProgressCtrl();
       this.logViewer1 = new SitecoreInstaller.UI.Log.LogViewer();
       this.showHideLogViewerButton1 = new SitecoreInstaller.UI.Log.ShowHideLogViewerButton();
-      this.mainSimple1 = new SitecoreInstaller.UI.MainSimple();
       this.pnlFooter.SuspendLayout();
       this.pnlContent.SuspendLayout();
       this.SuspendLayout();
@@ -75,13 +75,21 @@
       this.pnlContent.Size = new System.Drawing.Size(800, 370);
       this.pnlContent.TabIndex = 1;
       // 
+      // mainSimple1
+      // 
+      this.mainSimple1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.mainSimple1.Location = new System.Drawing.Point(0, 0);
+      this.mainSimple1.Name = "mainSimple1";
+      this.mainSimple1.Size = new System.Drawing.Size(800, 370);
+      this.mainSimple1.TabIndex = 8;
+      // 
       // mainDeveloper1
       // 
       this.mainDeveloper1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.mainDeveloper1.Location = new System.Drawing.Point(0, 0);
       this.mainDeveloper1.Name = "mainDeveloper1";
       this.mainDeveloper1.Size = new System.Drawing.Size(800, 370);
-      this.mainDeveloper1.TabIndex = 7;
+      this.mainDeveloper1.TabIndex = 0;
       // 
       // progressCtrl1
       // 
@@ -90,6 +98,7 @@
       this.progressCtrl1.Name = "progressCtrl1";
       this.progressCtrl1.Size = new System.Drawing.Size(800, 370);
       this.progressCtrl1.TabIndex = 6;
+      this.progressCtrl1.TabStop = false;
       // 
       // logViewer1
       // 
@@ -118,14 +127,6 @@
       this.showHideLogViewerButton1.TabIndex = 0;
       this.showHideLogViewerButton1.TabStop = false;
       this.showHideLogViewerButton1.UseVisualStyleBackColor = true;
-      // 
-      // mainSimple1
-      // 
-      this.mainSimple1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.mainSimple1.Location = new System.Drawing.Point(0, 0);
-      this.mainSimple1.Name = "mainSimple1";
-      this.mainSimple1.Size = new System.Drawing.Size(800, 370);
-      this.mainSimple1.TabIndex = 8;
       // 
       // MainCtrl
       // 
