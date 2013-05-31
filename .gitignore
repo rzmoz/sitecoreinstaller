@@ -6,7 +6,6 @@ Trunk/packages/Fluent*
 Trunk/packages/NSubstitute*
 Trunk/*/bin/*
 Trunk/*/obj/*
-Trunk/Build/
 *.user
 *.suo
 Trunk/SitecoreInstaller/*.config
