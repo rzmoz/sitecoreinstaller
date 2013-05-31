@@ -36,9 +36,9 @@ namespace SitecoreInstaller.App
 
       var localBuildLibrary = new WindowsFileSystemSource(string.Empty) { Parameters = UserPreferences.Properties.LocalBuildLibrary };
       if (BuildLibrary == null)
-        BuildLibrary = new LocalSourceRepository(localBuildLibrary, SourceManifests.All().Select(Create));
+        BuildLibrary = new LocalSourceRepository(localBuildLibrary, SourceManifests.Enabled.Select(Create));
       else
-        ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, SourceManifests.All().Select(Create));
+        ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, SourceManifests.Enabled.Select(Create));
 
       BuildLibrary.Update();
 
@@ -63,6 +63,7 @@ namespace SitecoreInstaller.App
       var sourceFactory = new SourceFactory();
       var sourceInstance = sourceFactory.Create<ISource>(sourceManifest.Type, sourceManifest.Name);
       sourceInstance.Parameters = sourceManifest.Parameters;
+      sourceInstance.Enabled = sourceManifest.Enabled;
       return sourceInstance;
     }
 

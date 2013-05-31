@@ -3,9 +3,7 @@
 
 <Sources xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
   <Manifests>
-    <Manifest Name="RAR" Parameters="C:\BuildLibraryExternalMock" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
-    <!--
-    <Manifest Name="SALES" Parameters="\\fil1dk1.dk.sitecore.net\DATA2\Sitecore\SitecoreInstallerBuildLibrary\Common" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
-    -->
+    <Manifest Enabled="true" Name="RAR" Parameters="C:\BuildLibraryExternalMock" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
+    <Manifest Enabled="false" Name="SALES" Parameters="\\fil1dk1.dk.sitecore.net\DATA2\Sitecore\SitecoreInstallerBuildLibrary\Common" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
   </Manifests>
 </Sources>

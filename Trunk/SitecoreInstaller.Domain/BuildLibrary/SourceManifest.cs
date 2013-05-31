@@ -6,14 +6,11 @@
   {
     public SourceManifest()
     {
+      this.Enabled = true;
     }
 
-    public SourceManifest(string name, string type, string parameters)
-    {
-      Name = name ?? string.Empty;
-      Type = type ?? string.Empty;
-      Parameters = parameters ?? string.Empty;
-    }
+    [XmlAttribute]
+    public bool Enabled { get; set; }
 
     [XmlAttribute]
     public string Name { get; set; }

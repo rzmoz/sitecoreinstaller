@@ -25,6 +25,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     public event EventHandler<EventArgs> Updating;
     public event EventHandler<EventArgs> Updated;
 
+    public bool Enabled { get; set; }
     public string Name { get; private set; }
 
     public void SetMode(BuildLibraryMode buildLibraryMode)
