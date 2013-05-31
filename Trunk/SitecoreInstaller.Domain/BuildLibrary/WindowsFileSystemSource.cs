@@ -79,7 +79,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     }
     public IEnumerable<BuildLibraryResource> Get(IEnumerable<SourceEntry> sourceEntries, SourceType sourceType)
     {
-      return from module in sourceEntries select Get(module, SourceType.Module);
+      return from sourceEntry in sourceEntries select Get(sourceEntry, sourceType);
     }
 
     public BuildLibraryFile Add(string file, SourceType sourceType)
