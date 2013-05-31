@@ -22,6 +22,9 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public IEnumerable<SourceEntry> List(SourceType sourceType)
     {
+      //read from local file
+      //check for online update
+      //download to local if online is updated
       yield break;
     }
 
@@ -32,7 +35,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public IEnumerable<BuildLibraryResource> Get(IEnumerable<SourceEntry> sourceEntries, SourceType sourceType)
     {
-      yield break;
+      return from sourceEntry in sourceEntries select Get(sourceEntry, sourceType);
     }
 
     public async Task Update()
