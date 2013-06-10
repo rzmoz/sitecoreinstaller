@@ -30,6 +30,9 @@ namespace SitecoreInstaller.UI
 
       switch (keyData)
       {
+        case Keys.D | Keys.Control | Keys.Shift:
+          ViewportStack.Show("SitecoreInstaller.UI.MainDeveloper");
+          return true;
         case Keys.B | Keys.Control | Keys.Shift:
           MessageBox.Show("We're in simple", "Hello World!", MessageBoxButtons.OK, MessageBoxIcon.None);
           return true;

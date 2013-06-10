@@ -20,8 +20,6 @@ namespace SitecoreInstaller.UI
 
     private event EventHandler<GenericEventArgs<BuildLibrarySelections>> BuildLibrarySelectionsUpdated;
 
-    public MainSIUserControl ActiveSiControl { get; private set; }
-
     private void MainCtrl_Load(object sender, EventArgs e)
     {
       Services.Init();
@@ -33,22 +31,24 @@ namespace SitecoreInstaller.UI
       InitLog();
       InitMainSimple();
       InitMainDeveloper();
-      ActiveSiControl = mainDeveloper1;
-      ViewportStack.Show(ActiveSiControl);
+      ViewportStack.Show(mainDeveloper1);
     }
 
     private void InitUserPreferences()
     {
       ViewportStack.Register(userPreferences1);
+      userPreferences1.Init();
     }
 
     private void InitMainSimple()
     {
+      ViewportStack.Register(mainSimple1);
       this.mainSimple1.Init();
     }
 
     private void InitMainDeveloper()
     {
+      ViewportStack.Register(mainDeveloper1);
       this.mainDeveloper1.Init();
       BuildLibrarySelectionsUpdated += mainDeveloper1.BuildLibrarySelectionsUpdated;
     }
@@ -69,7 +69,7 @@ namespace SitecoreInstaller.UI
           ViewportStack.OpenOrCloseDependingOnCurrentState(logViewer1);
           return true;
       }
-      
+
       //can only run if we're not busy running a pipeline
       if (Services.PipelineWorker.IsBusy())
         return false;
@@ -77,18 +77,6 @@ namespace SitecoreInstaller.UI
       //we only handle keypress from here if pipeline is not busy
       switch (keyData)
       {
-        case Keys.D | Keys.Control | Keys.Shift:
-          if (!Services.PipelineWorker.IsBusy())
-          {
-            ViewportStack.Hide(ActiveSiControl);
-            if (ActiveSiControl == mainDeveloper1)
-              ActiveSiControl = mainSimple1;
-            else
-              ActiveSiControl = mainDeveloper1;
-            ViewportStack.Show(ActiveSiControl);
-            return true;
-          }
-          break;
         case Keys.N | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<DoNothingPipeline>();
           return true;
@@ -103,7 +91,11 @@ namespace SitecoreInstaller.UI
           return true;
       }
 
-      return ActiveSiControl.ProcessKeyPress(keyData);
+      var activeMainCtrl = ViewportStack.ActiveCtrl as MainSIUserControl;
+      if (activeMainCtrl == null)
+        return false;
+
+      return activeMainCtrl.ProcessKeyPress(keyData);
     }
 
     private void InitProjectSettings()

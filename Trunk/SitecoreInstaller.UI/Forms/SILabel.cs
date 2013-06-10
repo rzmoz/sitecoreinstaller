@@ -13,7 +13,7 @@ namespace SitecoreInstaller.UI.Forms
     public SILabel()
     {
       this.Font = Styles.Fonts.LblRegular;
-      this.ForeColor = Styles.Fonts.Colors.Text;
+      this.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
     }
   }
 }

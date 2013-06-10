@@ -14,6 +14,19 @@
       _registeredControls = new HashSet<SIUserControl>();
     }
 
+    public static SIUserControl ActiveCtrl
+    {
+      get
+      {
+        foreach (var siUserControl in _controlStack)
+        {
+          if (siUserControl.BlocksView)
+            return siUserControl;
+        }
+        return null;
+      }
+    }
+
     public static void Register(SIUserControl ctrl)
     {
       lock (_registeredControls)

@@ -50,6 +50,9 @@ namespace SitecoreInstaller.UI
 
       switch (keyData)
       {
+        case Keys.D | Keys.Control | Keys.Shift:
+            ViewportStack.Show("SitecoreInstaller.UI.MainSimple");
+            return true;
         case Keys.B | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<InstallPipeline>();

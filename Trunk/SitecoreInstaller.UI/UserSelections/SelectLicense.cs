@@ -66,7 +66,7 @@
         this.lblLicenses.Text = string.Format("License: (expires in {0} days)", licenseFile.ExpiresIn);
         return;
       }
-      this.lblLicenses.ForeColor = Styles.Fonts.Colors.Text;
+      this.lblLicenses.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
       this.lblLicenses.Text = string.Format("License:");
     }
 

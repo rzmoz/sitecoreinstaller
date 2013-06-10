@@ -9,9 +9,9 @@
       this.Cursor = Cursors.Hand;
       this.FlatStyle = FlatStyle.Flat;
       this.FlatAppearance.BorderSize = 1;
-      this.FlatAppearance.BorderColor = Styles.Fonts.Colors.Text;
+      this.FlatAppearance.BorderColor = Styles.Fonts.DarkBg.Colors.Text;
       this.Font = Styles.Fonts.LblRegular;
-      this.ForeColor = Styles.Fonts.Colors.Text;
+      this.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
     }
   }
 }

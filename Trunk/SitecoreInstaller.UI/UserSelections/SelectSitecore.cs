@@ -42,7 +42,7 @@
         this.lblSitecore.Text = "You have no Sitecore versions";
         return;
       }
-      this.lblSitecore.ForeColor = Styles.Fonts.Colors.Text;
+      this.lblSitecore.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
       this.lblSitecore.Text = string.Format("Sitecore:");
     }
 

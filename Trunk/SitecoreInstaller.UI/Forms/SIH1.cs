@@ -13,7 +13,7 @@ namespace SitecoreInstaller.UI.Forms
     public SIH1()
     {
       this.Font = Styles.Fonts.H1;
-      this.ForeColor = Styles.Fonts.Colors.H1;
+      this.ForeColor = Styles.Fonts.DarkBg.Colors.H1;
     }
   }
 }

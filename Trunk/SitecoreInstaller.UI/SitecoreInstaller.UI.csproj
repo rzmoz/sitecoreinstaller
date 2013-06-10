@@ -146,20 +146,20 @@
     <Compile Include="MainSiUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Navigation\MainNavigationButton.cs">
+    <Compile Include="Navigation\Level1NavigationButton.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Navigation\NavigationCtrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Navigation\NavigationCtrl.Designer.cs">
-      <DependentUpon>NavigationCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Navigation\NavigationCtrlList.cs" />
     <Compile Include="Navigation\NavigationResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NavigationResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Preferences\DatabaseSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Preferences\DatabaseSettings.Designer.cs">
+      <DependentUpon>DatabaseSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Preferences\UserPreferences.cs">
       <SubType>UserControl</SubType>
@@ -262,15 +262,15 @@
     <EmbeddedResource Include="MainSimple.resx">
       <DependentUpon>MainSimple.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Navigation\MainNavigationButton.resx">
-      <DependentUpon>MainNavigationButton.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Navigation\NavigationCtrl.resx">
-      <DependentUpon>NavigationCtrl.cs</DependentUpon>
+    <EmbeddedResource Include="Navigation\Level1NavigationButton.resx">
+      <DependentUpon>Level1NavigationButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Navigation\NavigationResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NavigationResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preferences\DatabaseSettings.resx">
+      <DependentUpon>DatabaseSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Preferences\UserPreferences.resx">
       <DependentUpon>UserPreferences.cs</DependentUpon>
