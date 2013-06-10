@@ -96,6 +96,7 @@
     <Compile Include="Pipelines\Steps\Install\DeserializeItems.cs" />
     <Compile Include="Pipelines\Steps\Install\ExecutePostInstallSteps.cs" />
     <Compile Include="Pipelines\Steps\Install\GrantPermissions.cs" />
+    <Compile Include="Pipelines\Steps\SqlSettings\VerifySqlConnection.cs" />
     <Compile Include="SelectDatabases.cs">
       <SubType>Form</SubType>
     </Compile>

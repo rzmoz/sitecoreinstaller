@@ -15,23 +15,23 @@ namespace SitecoreInstaller.UI.Preferences
 
   public partial class UserPreferences : SIUserControl
   {
-    private NavigationCtrlList _navList;
+    private readonly NavigationCtrlList _navList;
 
     public UserPreferences()
     {
       InitializeComponent();
-      _navList = new NavigationCtrlList(this);
-      //_navList.Add(new H1NavigationButton());
+      _navList = new NavigationCtrlList(pnlButtons);
+      _navList.Add(new Level1NavigationButton(databaseSettings1) { Text = "Sql", Image = PreferencesResources.Sql, ImageSelected = PreferencesResources.Sql_Active });
+      _navList.Add(new Level1NavigationButton(sourcesSettings1) { Text = "Sources", Image = PreferencesResources.Sources, ImageSelected = PreferencesResources.Sources_Active });
+      _navList.Init();
+      _navList.First().Activate();
+      pnlButtons.BackColor = Styles.Navigation.Level1.BackColor;
     }
 
     public void Init()
     {
       databaseSettings1.Init();
     }
-
-    private void btnSave_Click(object sender, EventArgs e)
-    {
-      ViewportStack.Hide(this);
-    }
   }
 }
+

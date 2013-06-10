@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI.Preferences
 {
   using SitecoreInstaller.App;
+  using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Framework.System;
 
-  public partial class DatabaseSettings : UserControl
+  public partial class DatabaseSettings : UserPreferenceCtrl
   {
     public DatabaseSettings()
     {
       InitializeComponent();
+      this.Label = "Sql Settings";
     }
 
     public void Init()
@@ -33,12 +27,18 @@ namespace SitecoreInstaller.UI.Preferences
       tbxPassword.Text = e.Arg.SqlPassword;
     }
 
-    private void btnSave_Click(object sender, EventArgs e)
+    protected override void btnSave_Click(object sender, EventArgs e)
     {
       Services.UserPreferences.Properties.SqlInstanceName = tbxInstanceName.Text;
       Services.UserPreferences.Properties.SqlLogin = tbxLogin.Text;
       Services.UserPreferences.Properties.SqlPassword = tbxPassword.Text;
       Services.UserPreferences.Save();
+    }
+
+    private void siButton1_Click(object sender, EventArgs e)
+    {
+      btnSave_Click(sender, e);
+      Services.Pipelines.Run<TestSqlSettingsPipeline>();
     }
   }
 }

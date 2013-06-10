@@ -87,12 +87,6 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Advanced.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Advanced.Designer.cs">
-      <DependentUpon>Advanced.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\SIH1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -160,6 +154,23 @@
     </Compile>
     <Compile Include="Preferences\DatabaseSettings.Designer.cs">
       <DependentUpon>DatabaseSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preferences\PreferencesResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PreferencesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Preferences\SourcesSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Preferences\SourcesSettings.Designer.cs">
+      <DependentUpon>SourcesSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preferences\UserPreferenceCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Preferences\UserPreferenceCtrl.Designer.cs">
+      <DependentUpon>UserPreferenceCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Preferences\UserPreferences.cs">
       <SubType>UserControl</SubType>
@@ -243,9 +254,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Advanced.resx">
-      <DependentUpon>Advanced.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Log\LogResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LogResources.Designer.cs</LastGenOutput>
@@ -271,6 +279,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Preferences\DatabaseSettings.resx">
       <DependentUpon>DatabaseSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preferences\PreferencesResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PreferencesResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preferences\SourcesSettings.resx">
+      <DependentUpon>SourcesSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preferences\UserPreferenceCtrl.resx">
+      <DependentUpon>UserPreferenceCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Preferences\UserPreferences.resx">
       <DependentUpon>UserPreferences.cs</DependentUpon>
@@ -304,25 +322,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Navigation\Images\ExistingInstallations_Active.png" />
+    <None Include="Preferences\Images\Settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Navigation\Images\InstallNewSitecore.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Navigation\Images\InstallNewSitecore_Active.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Navigation\Images\MySitecores.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Navigation\Images\MySitecores_Active.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Navigation\Images\Settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Navigation\Images\Settings_Active.png" />
+    <None Include="Preferences\Images\Settings_Active.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\spinner.gif" />
@@ -344,6 +347,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Status_Ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Navigation\Images\InstallNewSitecore.png" />
+    <Content Include="Navigation\Images\InstallNewSitecore_Active.png" />
+    <Content Include="Navigation\Images\MySitecores.png" />
+    <Content Include="Navigation\Images\MySitecores_Active.png" />
+    <Content Include="Preferences\Images\Sources.png" />
+    <Content Include="Preferences\Images\Sources_Active.png" />
+    <Content Include="Preferences\Images\Sql.png" />
+    <Content Include="Preferences\Images\Sql_Active.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
