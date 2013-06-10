@@ -161,6 +161,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NavigationResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Preferences\UserPreferences.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Preferences\UserPreferences.Designer.cs">
+      <DependentUpon>UserPreferences.cs</DependentUpon>
+    </Compile>
     <Compile Include="Processing\ProgressCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -265,6 +271,9 @@
     <EmbeddedResource Include="Navigation\NavigationResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NavigationResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preferences\UserPreferences.resx">
+      <DependentUpon>UserPreferences.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Processing\ProgressCtrl.resx">
       <DependentUpon>ProgressCtrl.cs</DependentUpon>

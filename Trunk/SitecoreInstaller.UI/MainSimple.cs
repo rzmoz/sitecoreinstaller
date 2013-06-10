@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI
 {
+  using SitecoreInstaller.App;
   using SitecoreInstaller.UI.Viewport;
 
   public partial class MainSimple : MainSIUserControl
@@ -30,7 +31,7 @@ namespace SitecoreInstaller.UI
       switch (keyData)
       {
         case Keys.B | Keys.Control | Keys.Shift:
-          MessageBox.Show("We in simple", "Hello World!", MessageBoxButtons.OK, MessageBoxIcon.None);
+          MessageBox.Show("We're in simple", "Hello World!", MessageBoxButtons.OK, MessageBoxIcon.None);
           return true;
       }
       return false;

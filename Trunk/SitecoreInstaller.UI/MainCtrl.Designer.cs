@@ -32,13 +32,14 @@
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainCtrl));
       this.pnlFooter = new System.Windows.Forms.Panel();
+      this.showHideLogViewerButton1 = new SitecoreInstaller.UI.Log.ShowHideLogViewerButton();
       this.pnlHeader = new System.Windows.Forms.Panel();
       this.pnlContent = new System.Windows.Forms.Panel();
-      this.mainSimple1 = new SitecoreInstaller.UI.MainSimple();
       this.mainDeveloper1 = new SitecoreInstaller.UI.MainDeveloper();
       this.progressCtrl1 = new SitecoreInstaller.UI.Processing.ProgressCtrl();
+      this.mainSimple1 = new SitecoreInstaller.UI.MainSimple();
       this.logViewer1 = new SitecoreInstaller.UI.Log.LogViewer();
-      this.showHideLogViewerButton1 = new SitecoreInstaller.UI.Log.ShowHideLogViewerButton();
+      this.userPreferences1 = new SitecoreInstaller.UI.Preferences.UserPreferences();
       this.pnlFooter.SuspendLayout();
       this.pnlContent.SuspendLayout();
       this.SuspendLayout();
@@ -52,64 +53,6 @@
       this.pnlFooter.Name = "pnlFooter";
       this.pnlFooter.Size = new System.Drawing.Size(800, 50);
       this.pnlFooter.TabIndex = 2;
-      // 
-      // pnlHeader
-      // 
-      this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-      this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-      this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-      this.pnlHeader.Name = "pnlHeader";
-      this.pnlHeader.Size = new System.Drawing.Size(800, 30);
-      this.pnlHeader.TabIndex = 3;
-      // 
-      // pnlContent
-      // 
-      this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(69)))), ((int)(((byte)(79)))));
-      this.pnlContent.Controls.Add(this.mainDeveloper1);
-      this.pnlContent.Controls.Add(this.progressCtrl1);
-      this.pnlContent.Controls.Add(this.logViewer1);
-      this.pnlContent.Controls.Add(this.mainSimple1);
-      this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pnlContent.Location = new System.Drawing.Point(0, 30);
-      this.pnlContent.Name = "pnlContent";
-      this.pnlContent.Size = new System.Drawing.Size(800, 370);
-      this.pnlContent.TabIndex = 1;
-      // 
-      // mainSimple1
-      // 
-      this.mainSimple1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.mainSimple1.Location = new System.Drawing.Point(0, 0);
-      this.mainSimple1.Name = "mainSimple1";
-      this.mainSimple1.Size = new System.Drawing.Size(800, 370);
-      this.mainSimple1.TabIndex = 8;
-      // 
-      // mainDeveloper1
-      // 
-      this.mainDeveloper1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.mainDeveloper1.Location = new System.Drawing.Point(0, 0);
-      this.mainDeveloper1.Name = "mainDeveloper1";
-      this.mainDeveloper1.Size = new System.Drawing.Size(800, 370);
-      this.mainDeveloper1.TabIndex = 0;
-      // 
-      // progressCtrl1
-      // 
-      this.progressCtrl1.BackColor = System.Drawing.Color.White;
-      this.progressCtrl1.Location = new System.Drawing.Point(-3, 1);
-      this.progressCtrl1.Name = "progressCtrl1";
-      this.progressCtrl1.Size = new System.Drawing.Size(800, 370);
-      this.progressCtrl1.TabIndex = 6;
-      this.progressCtrl1.TabStop = false;
-      // 
-      // logViewer1
-      // 
-      this.logViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.logViewer1.Location = new System.Drawing.Point(0, 187);
-      this.logViewer1.Name = "logViewer1";
-      this.logViewer1.Size = new System.Drawing.Size(800, 184);
-      this.logViewer1.TabIndex = 0;
-      this.logViewer1.TabStop = false;
       // 
       // showHideLogViewerButton1
       // 
@@ -127,6 +70,75 @@
       this.showHideLogViewerButton1.TabIndex = 0;
       this.showHideLogViewerButton1.TabStop = false;
       this.showHideLogViewerButton1.UseVisualStyleBackColor = true;
+      // 
+      // pnlHeader
+      // 
+      this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+      this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+      this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+      this.pnlHeader.Name = "pnlHeader";
+      this.pnlHeader.Size = new System.Drawing.Size(800, 30);
+      this.pnlHeader.TabIndex = 3;
+      // 
+      // pnlContent
+      // 
+      this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(69)))), ((int)(((byte)(79)))));
+      this.pnlContent.Controls.Add(this.mainDeveloper1);
+      this.pnlContent.Controls.Add(this.progressCtrl1);
+      this.pnlContent.Controls.Add(this.mainSimple1);
+      this.pnlContent.Controls.Add(this.logViewer1);
+      this.pnlContent.Controls.Add(this.userPreferences1);
+      this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pnlContent.Location = new System.Drawing.Point(0, 30);
+      this.pnlContent.Name = "pnlContent";
+      this.pnlContent.Size = new System.Drawing.Size(800, 370);
+      this.pnlContent.TabIndex = 1;
+      // 
+      // mainDeveloper1
+      // 
+      this.mainDeveloper1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.mainDeveloper1.Location = new System.Drawing.Point(0, 0);
+      this.mainDeveloper1.Name = "mainDeveloper1";
+      this.mainDeveloper1.Size = new System.Drawing.Size(800, 370);
+      this.mainDeveloper1.TabIndex = 0;
+      // 
+      // progressCtrl1
+      // 
+      this.progressCtrl1.BackColor = System.Drawing.Color.White;
+      this.progressCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.progressCtrl1.Location = new System.Drawing.Point(0, 0);
+      this.progressCtrl1.Name = "progressCtrl1";
+      this.progressCtrl1.Size = new System.Drawing.Size(800, 370);
+      this.progressCtrl1.TabIndex = 6;
+      this.progressCtrl1.TabStop = false;
+      // 
+      // mainSimple1
+      // 
+      this.mainSimple1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.mainSimple1.Location = new System.Drawing.Point(0, 0);
+      this.mainSimple1.Name = "mainSimple1";
+      this.mainSimple1.Size = new System.Drawing.Size(800, 370);
+      this.mainSimple1.TabIndex = 8;
+      // 
+      // logViewer1
+      // 
+      this.logViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.logViewer1.Location = new System.Drawing.Point(0, 187);
+      this.logViewer1.Name = "logViewer1";
+      this.logViewer1.Size = new System.Drawing.Size(800, 184);
+      this.logViewer1.TabIndex = 0;
+      this.logViewer1.TabStop = false;
+      // 
+      // userPreferences1
+      // 
+      this.userPreferences1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.userPreferences1.Location = new System.Drawing.Point(0, 0);
+      this.userPreferences1.Name = "userPreferences1";
+      this.userPreferences1.Size = new System.Drawing.Size(800, 370);
+      this.userPreferences1.TabIndex = 9;
+      this.userPreferences1.TabStop = false;
       // 
       // MainCtrl
       // 
@@ -154,5 +166,6 @@
     private Log.LogViewer logViewer1;
     private Log.ShowHideLogViewerButton showHideLogViewerButton1;
     private MainSimple mainSimple1;
+    private Preferences.UserPreferences userPreferences1;
   }
 }

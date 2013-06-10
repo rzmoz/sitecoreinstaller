@@ -29,14 +29,17 @@ namespace SitecoreInstaller.UI
       InitPipelineWorker();
       InitProjectSettings();
 
-      ViewportStack.Hide(progressCtrl1);
-
-      progressCtrl1.Dock = DockStyle.Fill;
+      InitUserPreferences();
       InitLog();
       InitMainSimple();
       InitMainDeveloper();
       ActiveSiControl = mainDeveloper1;
       ViewportStack.Show(ActiveSiControl);
+    }
+
+    private void InitUserPreferences()
+    {
+      ViewportStack.Register(userPreferences1);
     }
 
     private void InitMainSimple()
@@ -59,6 +62,19 @@ namespace SitecoreInstaller.UI
 
     public bool ProcessKeyPress(Keys keyData)
     {
+      //can always run
+      switch (keyData)
+      {
+        case Keys.L | Keys.Control | Keys.Shift:
+          ViewportStack.OpenOrCloseDependingOnCurrentState(logViewer1);
+          return true;
+      }
+      
+      //can only run if we're not busy running a pipeline
+      if (Services.PipelineWorker.IsBusy())
+        return false;
+
+      //we only handle keypress from here if pipeline is not busy
       switch (keyData)
       {
         case Keys.D | Keys.Control | Keys.Shift:
@@ -70,20 +86,20 @@ namespace SitecoreInstaller.UI
             else
               ActiveSiControl = mainDeveloper1;
             ViewportStack.Show(ActiveSiControl);
-            return true;  
+            return true;
           }
           break;
         case Keys.N | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<DoNothingPipeline>();
-          return true;
-        case Keys.L | Keys.Control | Keys.Shift:
-          ViewportStack.OpenOrCloseDependingOnCurrentState(logViewer1);
           return true;
         case Keys.C | Keys.Control | Keys.Shift:
           Framework.Diagnostics.Log.This.Clear();
           return true;
         case Keys.R | Keys.Control:
           Services.BuildLibrary.Update();
+          return true;
+        case Keys.P | Keys.Control | Keys.Shift:
+          ViewportStack.Show(userPreferences1);
           return true;
       }
 

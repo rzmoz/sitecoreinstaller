@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace SitecoreInstaller.UI
 {
   using System.Windows.Forms;
+  using SitecoreInstaller.App;
   using SitecoreInstaller.Domain.BuildLibrary;
   using SitecoreInstaller.Framework.System;
   using SitecoreInstaller.UI.Viewport;
