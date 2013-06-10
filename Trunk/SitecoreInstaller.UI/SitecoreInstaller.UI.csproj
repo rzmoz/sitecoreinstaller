@@ -155,6 +155,12 @@
     <Compile Include="Preferences\DatabaseSettings.Designer.cs">
       <DependentUpon>DatabaseSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Preferences\FoldersSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Preferences\FoldersSettings.Designer.cs">
+      <DependentUpon>FoldersSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Preferences\PreferencesResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -280,12 +286,12 @@
     <EmbeddedResource Include="Preferences\DatabaseSettings.resx">
       <DependentUpon>DatabaseSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Preferences\FoldersSettings.resx">
+      <DependentUpon>FoldersSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Preferences\PreferencesResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PreferencesResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Preferences\SourcesSettings.resx">
-      <DependentUpon>SourcesSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Preferences\UserPreferenceCtrl.resx">
       <DependentUpon>UserPreferenceCtrl.cs</DependentUpon>
@@ -354,6 +360,8 @@
     <Content Include="Navigation\Images\MySitecores.png" />
     <Content Include="Navigation\Images\MySitecores_Active.png" />
     <Content Include="Preferences\Images\back.png" />
+    <Content Include="Preferences\Images\Folders.png" />
+    <Content Include="Preferences\Images\Folders_Active.png" />
     <Content Include="Preferences\Images\Sources.png" />
     <Content Include="Preferences\Images\Sources_Active.png" />
     <Content Include="Preferences\Images\Sql.png" />

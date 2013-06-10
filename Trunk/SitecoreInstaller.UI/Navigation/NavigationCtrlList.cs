@@ -10,11 +10,13 @@ namespace SitecoreInstaller.UI.Navigation
 
   public class NavigationCtrlList : IEnumerable<NavButton>
   {
+    private ToolTip _toolTip;
     private readonly Control _root;
-    private int _topOffset;
+    private readonly int _topOffset;
 
-    public NavigationCtrlList(Control root, int topOffset = 0)
+    public NavigationCtrlList(Control root, int topOffset = 0, ToolTip toolTip = null)
     {
+      _toolTip = toolTip;
       _root = root;
       _topOffset = topOffset;
     }
@@ -112,6 +114,8 @@ namespace SitecoreInstaller.UI.Navigation
         button.Left = button.Level * button.Parent.Width;
         button.TabIndex = button.Level * 10 + index;
         button.Name = "btn" + button.Text.Replace(" ", string.Empty);
+        if (_toolTip != null)
+          _toolTip.SetToolTip(button, button.Text);
         index++;
       }
     }

@@ -24,18 +24,20 @@ namespace SitecoreInstaller.UI.Preferences
 
     public void Init()
     {
-      _navList = new NavigationCtrlList(pnlButtons, btnBack.Height);
+      pnlButtons.BackColor = Styles.Navigation.Level1.BackColor;
+      btnBack.Image = PreferencesResources.back;
+      btnBack.FlatAppearance.BorderSize = 0;
+
+      _navList = new NavigationCtrlList(pnlButtons, btnBack.Height, toolTip1);
       _navList.Add(new Level1NavigationButton(databaseSettings1) { Text = "Sql", Image = PreferencesResources.Sql, ImageSelected = PreferencesResources.Sql_Active });
+      _navList.Add(new Level1NavigationButton(foldersSettings1) { Text = "Folders", Image = PreferencesResources.Folders, ImageSelected = PreferencesResources.Folders_Active });
       _navList.Add(new Level1NavigationButton(sourcesSettings1) { Text = "Sources", Image = PreferencesResources.Sources, ImageSelected = PreferencesResources.Sources_Active });
       _navList.Init();
       _navList.First().Activate();
-      pnlButtons.BackColor = Styles.Navigation.Level1.BackColor;
 
-
-      databaseSettings1.Init();
-      sourcesSettings1.Init();
-      btnBack.Image = PreferencesResources.back;
-      btnBack.FlatAppearance.BorderSize = 0;
+      Parallel.ForEach(_navList.Select(x => x.TargetControl).OfType<UserPreferenceCtrl>(),
+                      ctrl => ctrl.Init());
+      toolTip1.SetToolTip(btnBack, "Back");
     }
 
     private void btnBack_Click(object sender, EventArgs e)

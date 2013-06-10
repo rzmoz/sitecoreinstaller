@@ -31,6 +31,7 @@ namespace SitecoreInstaller.UI
       InitLog();
       InitMainSimple();
       InitMainDeveloper();
+      Services.UserPreferences.Load();
       ViewportStack.Show(mainDeveloper1);
     }
 

@@ -23,6 +23,8 @@ namespace SitecoreInstaller.UI.Preferences
       set { this.lblHeader.Text = value; }
     }
 
+    public virtual void Init(){}
+
     protected virtual void btnSave_Click(object sender, EventArgs e)
     {
     }

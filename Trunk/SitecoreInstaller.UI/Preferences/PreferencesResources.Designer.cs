@@ -73,6 +73,26 @@ namespace SitecoreInstaller.UI.Preferences {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Folders {
+            get {
+                object obj = ResourceManager.GetObject("Folders", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Folders_Active {
+            get {
+                object obj = ResourceManager.GetObject("Folders_Active", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Sources {
             get {
                 object obj = ResourceManager.GetObject("Sources", resourceCulture);

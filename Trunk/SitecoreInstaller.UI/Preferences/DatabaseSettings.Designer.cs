@@ -105,13 +105,13 @@
       this.siButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.siButton1.Font = new System.Drawing.Font("Segoe UI", 8F);
       this.siButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.siButton1.Location = new System.Drawing.Point(373, 171);
+      this.siButton1.Location = new System.Drawing.Point(373, 185);
       this.siButton1.Name = "siButton1";
       this.siButton1.Size = new System.Drawing.Size(120, 52);
       this.siButton1.TabIndex = 9;
       this.siButton1.Text = "Test Sql settings";
       this.siButton1.UseVisualStyleBackColor = true;
-      this.siButton1.Click += new System.EventHandler(this.siButton1_Click);
+      this.siButton1.Click += new System.EventHandler(this.btnTestSqlSettings_Click);
       // 
       // DatabaseSettings
       // 

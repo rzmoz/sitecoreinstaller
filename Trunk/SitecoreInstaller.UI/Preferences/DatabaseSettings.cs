@@ -11,13 +11,12 @@ namespace SitecoreInstaller.UI.Preferences
     public DatabaseSettings()
     {
       InitializeComponent();
-      this.Label = "Sql Settings";
     }
 
-    public void Init()
+    public override void Init()
     {
       Services.UserPreferences.Updated += UserPreferences_Updated;
-      Services.UserPreferences.Load();
+      this.Label = "Sql Settings";
     }
 
     private void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
@@ -35,7 +34,7 @@ namespace SitecoreInstaller.UI.Preferences
       Services.UserPreferences.Save();
     }
 
-    private void siButton1_Click(object sender, EventArgs e)
+    private void btnTestSqlSettings_Click(object sender, EventArgs e)
     {
       btnSave_Click(sender, e);
       Services.Pipelines.Run<TestSqlSettingsPipeline>();
