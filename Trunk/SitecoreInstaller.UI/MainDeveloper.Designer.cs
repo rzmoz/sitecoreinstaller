@@ -108,7 +108,12 @@
       this.rtbKeyboardShortcuts.TabIndex = 9;
       this.rtbKeyboardShortcuts.TabStop = false;
       this.rtbKeyboardShortcuts.Text = "CTRL + SHIFT + B = Install\nCTRL + SHIFT + U = Un-Install\nCTRL + SHIFT + R = Re-In" +
-    "stall\nCTRL + SHIFT + L = Show / Hide Log\n";
+    "stall\n\rCTRL + SHIFT + L = Show / Hide Log\n" +
+        "CTRL + SHIFT + P = Show Preferences\n\n" +
+        
+        "CTRL + SHIFT + O = Open Sitecore\n" +
+        "CTRL + O = Open frontend\n\n"+
+        "CTRL + ALT + O = Open project folder\n";
       // 
       // MainDeveloper
       // 

@@ -35,8 +35,11 @@ namespace SitecoreInstaller.UI.Preferences
       _navList.Init();
       _navList.First().Activate();
 
-      Parallel.ForEach(_navList.Select(x => x.TargetControl).OfType<UserPreferenceCtrl>(),
-                      ctrl => ctrl.Init());
+      foreach (var ctrl in _navList.Select(x => x.TargetControl).OfType<UserPreferenceCtrl>())
+      {
+        ctrl.Init();
+      }
+      
       toolTip1.SetToolTip(btnBack, "Back");
     }
 
