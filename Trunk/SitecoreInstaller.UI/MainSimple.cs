@@ -20,7 +20,7 @@ namespace SitecoreInstaller.UI
       InitializeComponent();
     }
 
-    public void Init(){}
+    public void Init() { }
 
     public override bool ProcessKeyPress(Keys keyData)
     {
@@ -38,6 +38,29 @@ namespace SitecoreInstaller.UI
           return true;
       }
       return false;
+    }
+
+    private void MainSimple_Resize(object sender, EventArgs e)
+    {
+      const int padding = 3;
+
+      var buttonWidth = (this.Width - 2 * padding) / 3;
+      var buttonHeight = (this.Height - 2 * padding) / 2;
+
+      btnInstall.Top = padding;
+      btnInstall.Left = padding;
+      btnInstall.Width = buttonWidth;
+      btnInstall.Height = buttonHeight;
+
+      btnUninstall.Top = padding;
+      btnUninstall.Left = padding + buttonWidth;
+      btnUninstall.Width = buttonWidth;
+      btnUninstall.Height = buttonHeight;
+
+      btnReinstall.Top = padding;
+      btnReinstall.Left = padding + buttonWidth * 2;
+      btnReinstall.Width = buttonWidth;
+      btnReinstall.Height = buttonHeight;
     }
   }
 }
