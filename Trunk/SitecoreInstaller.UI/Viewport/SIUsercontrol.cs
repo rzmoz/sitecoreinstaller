@@ -4,6 +4,11 @@
 
   public class SIUserControl : UserControl
   {
+    public SIUserControl()
+    {
+      BlocksView = true;
+    }
+
     public bool BlocksView { get; protected set; }
   }
 }
