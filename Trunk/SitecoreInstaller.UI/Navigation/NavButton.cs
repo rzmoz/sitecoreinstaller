@@ -15,7 +15,7 @@
     {
       if (targetControl == null) { throw new ArgumentNullException("targetControl"); }
       this.TargetControl = targetControl;
-
+      this.Cursor = Cursors.Hand;
       this.TextImageRelation = TextImageRelation.ImageBeforeText;
       this.ImageAlign = ContentAlignment.MiddleLeft;
       this.TextAlign = ContentAlignment.MiddleLeft;

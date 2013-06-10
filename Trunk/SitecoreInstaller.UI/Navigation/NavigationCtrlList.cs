@@ -11,10 +11,12 @@ namespace SitecoreInstaller.UI.Navigation
   public class NavigationCtrlList : IEnumerable<NavButton>
   {
     private readonly Control _root;
+    private int _topOffset;
 
-    public NavigationCtrlList(Control root)
+    public NavigationCtrlList(Control root, int topOffset = 0)
     {
       _root = root;
+      _topOffset = topOffset;
     }
 
     public NavButton this[string path]
@@ -106,7 +108,7 @@ namespace SitecoreInstaller.UI.Navigation
       var index = 0;
       foreach (var button in buttons.OfType<NavButton>())
       {
-        button.Top = index * button.Height;
+        button.Top = index * button.Height + _topOffset;
         button.Left = button.Level * button.Parent.Width;
         button.TabIndex = button.Level * 10 + index;
         button.Name = "btn" + button.Text.Replace(" ", string.Empty);

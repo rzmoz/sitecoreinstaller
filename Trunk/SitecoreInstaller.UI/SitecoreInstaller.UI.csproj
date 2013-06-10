@@ -353,6 +353,7 @@
     <Content Include="Navigation\Images\InstallNewSitecore_Active.png" />
     <Content Include="Navigation\Images\MySitecores.png" />
     <Content Include="Navigation\Images\MySitecores_Active.png" />
+    <Content Include="Preferences\Images\back.png" />
     <Content Include="Preferences\Images\Sources.png" />
     <Content Include="Preferences\Images\Sources_Active.png" />
     <Content Include="Preferences\Images\Sql.png" />

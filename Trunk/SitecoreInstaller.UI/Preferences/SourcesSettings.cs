@@ -16,5 +16,9 @@ namespace SitecoreInstaller.UI.Preferences
     {
       InitializeComponent();
     }
+    public void Init()
+    {
+      
+    }
   }
 }
