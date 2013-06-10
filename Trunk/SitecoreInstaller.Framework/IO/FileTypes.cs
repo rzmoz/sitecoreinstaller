@@ -18,7 +18,7 @@
             _knownFileTypes.Add(SitecoreConfigFile.Extension.ToLower());
             SitecorePackage = new FileType("SitecorePackage", ".zip");
             _knownFileTypes.Add(SitecorePackage.Extension.ToLower());
-            this.SitecoreUpdate = new FileType("SitecorePackage", ".update");
+            SitecoreUpdate = new FileType("SitecoreUpdatePackage", ".update");
             _knownFileTypes.Add(SitecorePackage.Extension.ToLower());
         }
 

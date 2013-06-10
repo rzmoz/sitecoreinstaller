@@ -1,5 +1,6 @@
 ﻿namespace SitecoreInstaller.UI
 {
+  using System;
   using SitecoreInstaller.UI.UserSelections;
 
   partial class MainDeveloper
@@ -35,6 +36,7 @@
       this.selectSitecore1 = new SitecoreInstaller.UI.UserSelections.SelectSitecore();
       this.selectLicense1 = new SitecoreInstaller.UI.UserSelections.SelectLicense();
       this.selectModules1 = new SitecoreInstaller.UI.UserSelections.SelectModules();
+      this.rtbKeyboardShortcuts = new System.Windows.Forms.RichTextBox();
       this.pnlUserSelections.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -90,10 +92,29 @@
       this.selectModules1.Size = new System.Drawing.Size(285, 253);
       this.selectModules1.TabIndex = 11;
       // 
+      // rtbKeyboardShortcuts
+      // 
+      this.rtbKeyboardShortcuts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.rtbKeyboardShortcuts.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+      this.rtbKeyboardShortcuts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.rtbKeyboardShortcuts.Font = new System.Drawing.Font("Segoe UI", 10F);
+      this.rtbKeyboardShortcuts.ForeColor = System.Drawing.Color.White;
+      this.rtbKeyboardShortcuts.Location = new System.Drawing.Point(338, 26);
+      this.rtbKeyboardShortcuts.Name = "rtbKeyboardShortcuts";
+      this.rtbKeyboardShortcuts.ReadOnly = true;
+      this.rtbKeyboardShortcuts.Size = new System.Drawing.Size(398, 354);
+      this.rtbKeyboardShortcuts.TabIndex = 9;
+      this.rtbKeyboardShortcuts.TabStop = false;
+      this.rtbKeyboardShortcuts.Text = "CTRL + SHIFT + B = Install\nCTRL + SHIFT + U = Un-Install\nCTRL + SHIFT + R = Re-In" +
+    "stall\nCTRL + SHIFT + L = Show / Hide Log\n";
+      // 
       // MainDeveloper
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.Controls.Add(this.rtbKeyboardShortcuts);
       this.Controls.Add(this.pnlUserSelections);
       this.Name = "MainDeveloper";
       this.Size = new System.Drawing.Size(753, 395);
@@ -109,6 +130,7 @@
     private SelectSitecore selectSitecore1;
     private SelectLicense selectLicense1;
     private SelectModules selectModules1;
+    private System.Windows.Forms.RichTextBox rtbKeyboardShortcuts;
 
   }
 }

@@ -82,3 +82,4 @@ namespace SitecoreInstaller.UI
     }
   }
 }
+
