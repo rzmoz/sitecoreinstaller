@@ -97,6 +97,14 @@ namespace SitecoreInstaller.Framework.IO
             directoryInfo.Create();
         }
 
+        public static void DeleteIfExists(this DirectoryInfo directoryInfo)
+        {
+          if (directoryInfo == null)
+            return;
+          if (Directory.Exists(directoryInfo.FullName))
+            directoryInfo.Delete();
+        }
+
         public static void GrantFullControl(this Folder folder, string username)
         {
             folder.Directory.GrantFullControl(username);

@@ -173,7 +173,7 @@ namespace SitecoreInstaller.Framework.IO
     {
       if (Directory.Exists(source.FullName) == false)
       {
-        Log.This.Debug("Source '{0}' not found. Aborting", source.FullName);
+        Log.This.Warning("Source '{0}' not found. Aborting", source.FullName);
         return;
       }
 
@@ -182,8 +182,31 @@ namespace SitecoreInstaller.Framework.IO
         Log.This.Debug("Source and Target are the same '{0}'. Aborting", source.FullName);
         return;
       }
-      var robocopy = new Robocopy();
-      robocopy.Copy(source, target, dirCopyOptions);
+      
+      try
+      {
+        target.CreateIfNotExists();
+
+        foreach (var file in source.GetFiles())
+          file.CopyTo(target, true);
+
+        if (dirCopyOptions == DirCopyOptions.ExcludeSubDirectories)
+          return;
+
+        // Include subdirectories
+        Parallel.ForEach(source.GetDirectories(), dir =>
+        {
+          DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(dir.Name);
+          CopyTo(dir, nextTargetSubDir, dirCopyOptions);
+        });
+      }
+      catch (IOException e)
+      {
+        Log.This.Debug("IOException - falling back to use robocopy\r\n{0}", e.ToString());
+        target.DeleteIfExists();
+        var robocopy = new Robocopy();
+        robocopy.Copy(source, target, dirCopyOptions);
+      }
     }
 
     public static void CopyFlattenedTo(this DirectoryInfo source, DirectoryInfo target, string searchPattern = "*")
