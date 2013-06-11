@@ -83,11 +83,11 @@
       // pnlContent
       // 
       this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(69)))), ((int)(((byte)(79)))));
-      this.pnlContent.Controls.Add(this.mainDeveloper1);
-      this.pnlContent.Controls.Add(this.progressCtrl1);
       this.pnlContent.Controls.Add(this.mainSimple1);
       this.pnlContent.Controls.Add(this.logViewer1);
       this.pnlContent.Controls.Add(this.userPreferences1);
+      this.pnlContent.Controls.Add(this.mainDeveloper1);
+      this.pnlContent.Controls.Add(this.progressCtrl1);
       this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
       this.pnlContent.Location = new System.Drawing.Point(0, 30);
       this.pnlContent.Name = "pnlContent";

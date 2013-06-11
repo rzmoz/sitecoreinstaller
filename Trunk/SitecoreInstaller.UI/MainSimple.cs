@@ -56,11 +56,6 @@ namespace SitecoreInstaller.UI
       btnUninstall.Left = padding + buttonWidth;
       btnUninstall.Width = buttonWidth;
       btnUninstall.Height = buttonHeight;
-
-      btnReinstall.Top = padding;
-      btnReinstall.Left = padding + buttonWidth * 2;
-      btnReinstall.Width = buttonWidth;
-      btnReinstall.Height = buttonHeight;
     }
   }
 }
