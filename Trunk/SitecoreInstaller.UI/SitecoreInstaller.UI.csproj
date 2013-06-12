@@ -240,12 +240,6 @@
     <Compile Include="Forms\SIButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Simple.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Simple.Designer.cs">
-      <DependentUpon>Simple.cs</DependentUpon>
-    </Compile>
     <Compile Include="Styles.cs" />
     <Compile Include="Viewport\IListExtensionsForBetterStack.cs" />
     <Compile Include="Viewport\SIUsercontrol.cs">
@@ -331,9 +325,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserSelections\SelectSitecore.resx">
       <DependentUpon>SelectSitecore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Simple.resx">
-      <DependentUpon>Simple.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
