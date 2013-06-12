@@ -42,20 +42,29 @@ namespace SitecoreInstaller.UI
 
     private void MainSimple_Resize(object sender, EventArgs e)
     {
-      const int padding = 3;
+      this.ResizeButton(btnInstall, btnUninstall, btnOpenSite);
+    }
 
-      var buttonWidth = (this.Width - 2 * padding) / 3;
-      var buttonHeight = (this.Height - 2 * padding) / 2;
+    private void ResizeButton(params Button[] buttons)
+    {
+      if (buttons == null || buttons.Length == 0)
+        return;
 
-      btnInstall.Top = padding;
-      btnInstall.Left = padding;
-      btnInstall.Width = buttonWidth;
-      btnInstall.Height = buttonHeight;
+      const int padding = 40;
+      const int buttonMinWidth = 120;
+      var buttonWidth = (this.Width - padding) / buttons.Length - padding;
+      if (buttonWidth < buttonMinWidth)
+        buttonWidth = buttonMinWidth;
 
-      btnUninstall.Top = padding;
-      btnUninstall.Left = padding + buttonWidth;
-      btnUninstall.Width = buttonWidth;
-      btnUninstall.Height = buttonHeight;
+      var i = 1;
+      foreach (var button in buttons)
+      {
+        button.Width = buttonWidth;
+        button.Height = buttonWidth;
+        button.Top = this.Height / 2 - button.Height / 2;
+        button.Left = (padding * i) + button.Width * (i - 1);
+        i++;
+      }
     }
   }
 }

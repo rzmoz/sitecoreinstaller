@@ -210,6 +210,11 @@
     <Compile Include="Preferences\ShowHideSettingsButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Simple\SimpleResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SimpleResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserSelections\SelectLicense.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -313,6 +318,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Simple\SimpleResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SimpleResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UserSelections\SelectLicense.resx">
       <DependentUpon>SelectLicense.cs</DependentUpon>
