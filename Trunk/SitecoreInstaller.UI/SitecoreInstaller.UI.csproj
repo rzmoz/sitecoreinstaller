@@ -99,6 +99,9 @@
     <Compile Include="Forms\SILabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\SISystemButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ListBoxes\SourceEntryCheckedListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -168,6 +171,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PreferencesResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Preferences\ShowHidePreferenecsButton.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Preferences\SourcesSettings.cs">
       <SubType>UserControl</SubType>

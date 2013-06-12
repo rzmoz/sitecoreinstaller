@@ -39,6 +39,8 @@ namespace SitecoreInstaller.UI
     {
       ViewportStack.Register(userPreferences1);
       userPreferences1.Init();
+      showHidePreferenecsButton1.Init(userPreferences1, toolTip1);
+
     }
 
     private void InitMainSimple()

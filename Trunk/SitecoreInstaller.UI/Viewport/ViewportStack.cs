@@ -62,12 +62,13 @@
       }
     }
 
-    public static void OpenOrCloseDependingOnCurrentState(SIUserControl control)
+    public static bool OpenOrCloseDependingOnCurrentState(SIUserControl control)
     {
       if (IsVisible(control))
         Hide(control);
       else
         Show(control);
+      return IsVisible(control);
     }
 
     public static void Show(string controlKey)

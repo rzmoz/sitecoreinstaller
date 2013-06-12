@@ -29,9 +29,9 @@ namespace SitecoreInstaller.UI.Preferences
       btnBack.FlatAppearance.BorderSize = 0;
 
       _navList = new NavigationCtrlList(pnlButtons, btnBack.Height, toolTip1);
-      _navList.Add(new Level1NavigationButton(databaseSettings1) { Text = "Sql", Image = PreferencesResources.Sql, ImageSelected = PreferencesResources.Sql_Active });
-      _navList.Add(new Level1NavigationButton(foldersSettings1) { Text = "Folders", Image = PreferencesResources.Folders, ImageSelected = PreferencesResources.Folders_Active });
-      _navList.Add(new Level1NavigationButton(sourcesSettings1) { Text = "Sources", Image = PreferencesResources.Sources, ImageSelected = PreferencesResources.Sources_Active });
+      _navList.Add(new Level1NavigationButton(databaseSettings1) { Text = "Sql", Image = PreferencesResources.Sql, ImageActive = PreferencesResources.Sql_Active });
+      _navList.Add(new Level1NavigationButton(foldersSettings1) { Text = "Folders", Image = PreferencesResources.Folders, ImageActive = PreferencesResources.Folders_Active });
+      _navList.Add(new Level1NavigationButton(sourcesSettings1) { Text = "Sources", Image = PreferencesResources.Sources, ImageActive = PreferencesResources.Sources_Active });
       _navList.Init();
       _navList.First().Activate();
 

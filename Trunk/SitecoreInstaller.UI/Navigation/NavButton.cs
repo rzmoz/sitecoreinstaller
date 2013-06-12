@@ -2,6 +2,7 @@
 {
   using System;
   using System.Collections.Generic;
+  using System.Drawing;
   using System.Linq;
   using System.Windows.Forms;
   using SitecoreInstaller.UI.Forms;
@@ -12,7 +13,9 @@
     {
       if (targetControl == null) { throw new ArgumentNullException("targetControl"); }
       this.TargetControl = targetControl;
-
+      this.TextImageRelation = TextImageRelation.ImageBeforeText;
+      this.ImageAlign = ContentAlignment.MiddleLeft;
+      this.TextAlign = ContentAlignment.MiddleLeft;
     }
 
     public Control TargetControl { get; private set; }

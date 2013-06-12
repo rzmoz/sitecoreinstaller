@@ -3,7 +3,6 @@
 namespace SitecoreInstaller.UI.Forms
 {
   using System.Drawing;
-  using System.Windows.Forms;
   using SitecoreInstaller.Framework.System;
 
   public class SIButtonWithActiveState : SIButton
@@ -12,9 +11,6 @@ namespace SitecoreInstaller.UI.Forms
 
     public SIButtonWithActiveState()
     {
-      this.TextImageRelation = TextImageRelation.ImageBeforeText;
-      this.ImageAlign = ContentAlignment.MiddleLeft;
-      this.TextAlign = ContentAlignment.MiddleLeft;
       this.FlatAppearance.BorderSize = 0;
 
       this.ForeColorNotSelected = this.InitColor;
@@ -43,8 +39,10 @@ namespace SitecoreInstaller.UI.Forms
       if (this.ImageNotSelected == null)
         this.ImageNotSelected = this.Image;
 
-      if (this.ImageSelected != null)
-        this.Image = this.ImageSelected;
+      if (this.ImageActive != null)
+        this.Image = this.ImageActive;
+
+      this.SetToolTip(ToolTipTextActive);
 
       if (this.Activated != null)
         this.Activated(this, new GenericEventArgs<SIButtonWithActiveState>(this));
@@ -71,6 +69,8 @@ namespace SitecoreInstaller.UI.Forms
 
       this.Image = this.ImageNotSelected;
 
+      this.SetToolTip(ToolTipTextDeActive);
+
       if (this.DeActivated != null)
         this.DeActivated(this, new GenericEventArgs<SIButtonWithActiveState>(this));
     }
@@ -83,8 +83,10 @@ namespace SitecoreInstaller.UI.Forms
     public Color BackColorSelected { get; set; }
     private Color BackColorNotSelected { get; set; }
 
-    public Image ImageSelected { get; set; }
+    public Image ImageActive { get; set; }
     private Image ImageNotSelected { get; set; }
 
+    public string ToolTipTextActive { get; set; }
+    public string ToolTipTextDeActive { get; set; }
   }
 }
