@@ -1,4 +1,4 @@
-﻿namespace SitecoreInstaller.UI.Preferences
+﻿namespace SitecoreInstaller.UI.Settings
 {
   partial class SourcesSettings
   {

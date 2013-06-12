@@ -33,13 +33,13 @@
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainCtrl));
       this.pnlFooter = new System.Windows.Forms.Panel();
-      this.showHidePreferenecsButton1 = new SitecoreInstaller.UI.Preferences.ShowHidePreferenecsButton();
+      this.showHideSettingsButton1 = new SitecoreInstaller.UI.Settings.ShowHideSettingsButton();
       this.showHideLogViewerButton1 = new SitecoreInstaller.UI.Log.ShowHideLogViewerButton();
       this.pnlHeader = new System.Windows.Forms.Panel();
       this.pnlContent = new System.Windows.Forms.Panel();
       this.mainSimple1 = new SitecoreInstaller.UI.MainSimple();
       this.logViewer1 = new SitecoreInstaller.UI.Log.LogViewer();
-      this.userPreferences1 = new SitecoreInstaller.UI.Preferences.UserPreferences();
+      this.userPreferences1 = new SitecoreInstaller.UI.Settings.UserSettings();
       this.mainDeveloper1 = new SitecoreInstaller.UI.MainDeveloper();
       this.progressCtrl1 = new SitecoreInstaller.UI.Processing.ProgressCtrl();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -50,7 +50,7 @@
       // pnlFooter
       // 
       this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-      this.pnlFooter.Controls.Add(this.showHidePreferenecsButton1);
+      this.pnlFooter.Controls.Add(this.showHideSettingsButton1);
       this.pnlFooter.Controls.Add(this.showHideLogViewerButton1);
       this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.pnlFooter.Location = new System.Drawing.Point(0, 400);
@@ -60,20 +60,20 @@
       // 
       // showHidePreferenecsButton1
       // 
-      this.showHidePreferenecsButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.showHidePreferenecsButton1.BackColorSelected = System.Drawing.Color.Empty;
-      this.showHidePreferenecsButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.showHidePreferenecsButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.showHidePreferenecsButton1.FlatAppearance.BorderSize = 0;
-      this.showHidePreferenecsButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.showHidePreferenecsButton1.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.showHidePreferenecsButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.showHidePreferenecsButton1.ForeColorSelected = System.Drawing.Color.Empty;
-      this.showHidePreferenecsButton1.Location = new System.Drawing.Point(13, 13);
-      this.showHidePreferenecsButton1.Name = "showHidePreferenecsButton1";
-      this.showHidePreferenecsButton1.Size = new System.Drawing.Size(25, 25);
-      this.showHidePreferenecsButton1.TabIndex = 1;
-      this.showHidePreferenecsButton1.UseVisualStyleBackColor = true;
+      this.showHideSettingsButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.showHideSettingsButton1.BackColorSelected = System.Drawing.Color.Empty;
+      this.showHideSettingsButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.showHideSettingsButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.showHideSettingsButton1.FlatAppearance.BorderSize = 0;
+      this.showHideSettingsButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.showHideSettingsButton1.Font = new System.Drawing.Font("Segoe UI", 8F);
+      this.showHideSettingsButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.showHideSettingsButton1.ForeColorSelected = System.Drawing.Color.Empty;
+      this.showHideSettingsButton1.Location = new System.Drawing.Point(13, 13);
+      this.showHideSettingsButton1.Name = "showHideSettingsButton1";
+      this.showHideSettingsButton1.Size = new System.Drawing.Size(25, 25);
+      this.showHideSettingsButton1.TabIndex = 1;
+      this.showHideSettingsButton1.UseVisualStyleBackColor = true;
       // 
       // showHideLogViewerButton1
       // 
@@ -187,8 +187,8 @@
     private Log.LogViewer logViewer1;
     private Log.ShowHideLogViewerButton showHideLogViewerButton1;
     private MainSimple mainSimple1;
-    private Preferences.UserPreferences userPreferences1;
-    private Preferences.ShowHidePreferenecsButton showHidePreferenecsButton1;
+    private Settings.UserSettings userPreferences1;
+    private Settings.ShowHideSettingsButton showHideSettingsButton1;
     private System.Windows.Forms.ToolTip toolTip1;
   }
 }

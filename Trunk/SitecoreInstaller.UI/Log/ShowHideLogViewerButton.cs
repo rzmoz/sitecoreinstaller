@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.UI.Log
 {
+  using System.Windows.Forms;
   using SitecoreInstaller.App;
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.System;
@@ -14,6 +15,9 @@ namespace SitecoreInstaller.UI.Log
 
   public class ShowHideLogViewerButton : SIButton
   {
+    private const string _toolTipWhenVisible = "Hide Log viewer";
+    private const string _toolTipWhenNotVisible = "Show Log viewer";
+
     public ShowHideLogViewerButton()
     {
       Image = LogResources.Log;
@@ -23,14 +27,17 @@ namespace SitecoreInstaller.UI.Log
 
     public LogViewer LogViewer { get; private set; }
 
-    public void Init(LogViewer logViewer)
+    public void Init(LogViewer logViewer, ToolTip toolTip=null)
     {
       if (logViewer == null) { throw new ArgumentNullException("logViewer"); }
       LogViewer = logViewer;
+      base.Init(toolTip);
+      base.SetToolTip(_toolTipWhenNotVisible);
       Log.This.LogCleared += This_LogCleared;
       Log.This.EntryLogged += This_EntryLogged;
       Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
       Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
+      
     }
 
     void PipelineWorker_WorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
@@ -67,7 +74,11 @@ namespace SitecoreInstaller.UI.Log
 
     private void ShowHideLogViewerButton_Click(object sender, EventArgs e)
     {
-      ViewportStack.OpenOrCloseDependingOnCurrentState(LogViewer);
+      var visible = ViewportStack.OpenOrCloseDependingOnCurrentState(LogViewer);
+      if(visible)
+        base.SetToolTip(_toolTipWhenVisible);
+      else
+        base.SetToolTip(_toolTipWhenNotVisible);
     }
   }
 }

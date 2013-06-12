@@ -1,6 +1,6 @@
-﻿namespace SitecoreInstaller.UI.Preferences
+﻿namespace SitecoreInstaller.UI.Settings
 {
-  partial class UserPreferenceCtrl
+  partial class UserSettingsCtrl
   {
     /// <summary> 
     /// Required designer variable.
@@ -77,7 +77,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.pnlHeader);
       this.Controls.Add(this.btnSave);
-      this.Name = "UserPreferenceCtrl";
+      this.Name = "UserSettingsCtrl";
       this.Size = new System.Drawing.Size(500, 300);
       this.pnlHeader.ResumeLayout(false);
       this.pnlHeader.PerformLayout();

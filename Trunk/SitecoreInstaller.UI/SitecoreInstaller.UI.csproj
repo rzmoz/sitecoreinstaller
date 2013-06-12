@@ -167,13 +167,10 @@
     <Compile Include="Preferences\FoldersSettings.Designer.cs">
       <DependentUpon>FoldersSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Preferences\PreferencesResources.Designer.cs">
+    <Compile Include="Preferences\SettingsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PreferencesResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Preferences\ShowHidePreferenecsButton.cs">
-      <SubType>Component</SubType>
+      <DependentUpon>SettingsResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Preferences\SourcesSettings.cs">
       <SubType>UserControl</SubType>
@@ -181,17 +178,17 @@
     <Compile Include="Preferences\SourcesSettings.Designer.cs">
       <DependentUpon>SourcesSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Preferences\UserPreferenceCtrl.cs">
+    <Compile Include="Preferences\UserSettingsCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Preferences\UserPreferenceCtrl.Designer.cs">
-      <DependentUpon>UserPreferenceCtrl.cs</DependentUpon>
+    <Compile Include="Preferences\UserSettingsCtrl.Designer.cs">
+      <DependentUpon>UserSettingsCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Preferences\UserPreferences.cs">
+    <Compile Include="Preferences\UserSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Preferences\UserPreferences.Designer.cs">
-      <DependentUpon>UserPreferences.cs</DependentUpon>
+    <Compile Include="Preferences\UserSettings.Designer.cs">
+      <DependentUpon>UserSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Processing\ProgressCtrl.cs">
       <SubType>UserControl</SubType>
@@ -209,6 +206,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Preferences\ShowHideSettingsButton.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UserSelections\SelectLicense.cs">
       <SubType>UserControl</SubType>
@@ -298,15 +298,15 @@
     <EmbeddedResource Include="Preferences\FoldersSettings.resx">
       <DependentUpon>FoldersSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Preferences\PreferencesResources.resx">
+    <EmbeddedResource Include="Preferences\SettingsResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>PreferencesResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>SettingsResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Preferences\UserPreferenceCtrl.resx">
-      <DependentUpon>UserPreferenceCtrl.cs</DependentUpon>
+    <EmbeddedResource Include="Preferences\UserSettingsCtrl.resx">
+      <DependentUpon>UserSettingsCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Preferences\UserPreferences.resx">
-      <DependentUpon>UserPreferences.cs</DependentUpon>
+    <EmbeddedResource Include="Preferences\UserSettings.resx">
+      <DependentUpon>UserSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Processing\ProgressCtrl.resx">
       <DependentUpon>ProgressCtrl.cs</DependentUpon>

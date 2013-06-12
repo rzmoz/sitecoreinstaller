@@ -22,14 +22,14 @@ namespace SitecoreInstaller.UI.Preferences {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class PreferencesResources {
+    internal class SettingsResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal PreferencesResources() {
+        internal SettingsResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace SitecoreInstaller.UI.Preferences {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SitecoreInstaller.UI.Preferences.PreferencesResources", typeof(PreferencesResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SitecoreInstaller.UI.Preferences.SettingsResources", typeof(SettingsResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

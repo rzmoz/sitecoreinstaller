@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace SitecoreInstaller.UI.Preferences
+namespace SitecoreInstaller.UI.Settings
 {
   using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Framework.System;
 
-  public partial class DatabaseSettings : UserPreferenceCtrl
+  public partial class DatabaseSettings : UserSettingsCtrl
   {
     public DatabaseSettings()
     {

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SitecoreInstaller.UI.Preferences
+namespace SitecoreInstaller.UI.Settings
 {
-  public partial class UserPreferenceCtrl : UserControl
+  public partial class UserSettingsCtrl : UserControl
   {
-    public UserPreferenceCtrl()
+    public UserSettingsCtrl()
     {
       InitializeComponent();
     }

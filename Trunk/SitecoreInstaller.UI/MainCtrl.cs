@@ -39,7 +39,7 @@ namespace SitecoreInstaller.UI
     {
       ViewportStack.Register(userPreferences1);
       userPreferences1.Init();
-      showHidePreferenecsButton1.Init(userPreferences1, toolTip1);
+      this.showHideSettingsButton1.Init(userPreferences1, toolTip1);
 
     }
 
@@ -60,7 +60,7 @@ namespace SitecoreInstaller.UI
     {
       this.logViewer1.Init();
       ViewportStack.Register(logViewer1);
-      this.showHideLogViewerButton1.Init(logViewer1);
+      this.showHideLogViewerButton1.Init(logViewer1, toolTip1);
     }
 
     public bool ProcessKeyPress(Keys keyData)

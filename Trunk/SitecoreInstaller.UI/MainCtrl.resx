@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="showHidePreferenecsButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="showHideSettingsButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAIoSURBVEhL7ZU/aFNBHMdTbCtWIsWCuJQuIghdRKhQROjk4OYUlw7FUag4dulSqlvpUEoRh66h
@@ -133,7 +133,7 @@
         HGdcZ1yVycJz62/Uf7ojFjsG5+x8FaABQ+wAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="showHidePreferenecsButton1.ImageActive" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="showHideSettingsButton1.ImageActive" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAJiSURBVEhL7ZU9aBRBFMdPjIqRiCiIhZLmUDzCodnL7s7Mec7ObO5jZ3cPrGJjIZaCkjKNjaid

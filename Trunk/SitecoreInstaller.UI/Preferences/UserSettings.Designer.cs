@@ -1,6 +1,6 @@
-﻿namespace SitecoreInstaller.UI.Preferences
+﻿namespace SitecoreInstaller.UI.Settings
 {
-  partial class UserPreferences
+  partial class UserSettings
   {
     /// <summary> 
     /// Required designer variable.
@@ -32,9 +32,9 @@
       this.pnlButtons = new System.Windows.Forms.Panel();
       this.btnBack = new SitecoreInstaller.UI.Forms.SIButton();
       this.pnlContent = new System.Windows.Forms.Panel();
-      this.databaseSettings1 = new SitecoreInstaller.UI.Preferences.DatabaseSettings();
-      this.sourcesSettings1 = new SitecoreInstaller.UI.Preferences.SourcesSettings();
-      this.foldersSettings1 = new SitecoreInstaller.UI.Preferences.FoldersSettings();
+      this.databaseSettings1 = new DatabaseSettings();
+      this.sourcesSettings1 = new SourcesSettings();
+      this.foldersSettings1 = new FoldersSettings();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
       this.pnlButtons.SuspendLayout();
       this.pnlContent.SuspendLayout();
@@ -108,7 +108,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.pnlContent);
       this.Controls.Add(this.pnlButtons);
-      this.Name = "UserPreferences";
+      this.Name = "UserSettings";
       this.Size = new System.Drawing.Size(637, 386);
       this.pnlButtons.ResumeLayout(false);
       this.pnlContent.ResumeLayout(false);

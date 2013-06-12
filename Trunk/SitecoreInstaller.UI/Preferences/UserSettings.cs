@@ -8,16 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SitecoreInstaller.UI.Preferences
+namespace SitecoreInstaller.UI.Settings
 {
   using SitecoreInstaller.UI.Navigation;
+  using SitecoreInstaller.UI.Preferences;
   using SitecoreInstaller.UI.Viewport;
 
-  public partial class UserPreferences : SIUserControl
+  public partial class UserSettings : SIUserControl
   {
     private NavigationCtrlList _navList;
 
-    public UserPreferences()
+    public UserSettings()
     {
       InitializeComponent();
     }
@@ -25,17 +26,17 @@ namespace SitecoreInstaller.UI.Preferences
     public void Init()
     {
       pnlButtons.BackColor = Styles.Navigation.Level1.BackColor;
-      btnBack.Image = PreferencesResources.back;
+      btnBack.Image = SettingsResources.back;
       btnBack.FlatAppearance.BorderSize = 0;
 
       _navList = new NavigationCtrlList(pnlButtons, btnBack.Height, toolTip1);
-      _navList.Add(new Level1NavigationButton(databaseSettings1) { Text = "Sql", Image = PreferencesResources.Sql, ImageActive = PreferencesResources.Sql_Active });
-      _navList.Add(new Level1NavigationButton(foldersSettings1) { Text = "Folders", Image = PreferencesResources.Folders, ImageActive = PreferencesResources.Folders_Active });
-      _navList.Add(new Level1NavigationButton(sourcesSettings1) { Text = "Sources", Image = PreferencesResources.Sources, ImageActive = PreferencesResources.Sources_Active });
+      _navList.Add(new Level1NavigationButton(databaseSettings1) { Text = "Sql", Image = SettingsResources.Sql, ImageActive = SettingsResources.Sql_Active });
+      _navList.Add(new Level1NavigationButton(foldersSettings1) { Text = "Folders", Image = SettingsResources.Folders, ImageActive = SettingsResources.Folders_Active });
+      _navList.Add(new Level1NavigationButton(sourcesSettings1) { Text = "Sources", Image = SettingsResources.Sources, ImageActive = SettingsResources.Sources_Active });
       _navList.Init();
       _navList.First().Activate();
 
-      foreach (var ctrl in _navList.Select(x => x.TargetControl).OfType<UserPreferenceCtrl>())
+      foreach (var ctrl in _navList.Select(x => x.TargetControl).OfType<UserSettingsCtrl>())
       {
         ctrl.Init();
       }

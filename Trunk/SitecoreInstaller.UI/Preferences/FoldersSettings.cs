@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SitecoreInstaller.UI.Preferences
+namespace SitecoreInstaller.UI.Settings
 {
   using SitecoreInstaller.App;
   using SitecoreInstaller.Framework.System;
 
-  public partial class FoldersSettings : UserPreferenceCtrl
+  public partial class FoldersSettings : UserSettingsCtrl
   {
     public FoldersSettings()
     {
