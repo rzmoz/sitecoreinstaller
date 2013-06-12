@@ -58,7 +58,7 @@
       this.pnlFooter.Size = new System.Drawing.Size(800, 50);
       this.pnlFooter.TabIndex = 2;
       // 
-      // showHidePreferenecsButton1
+      // showHideSettingsButton1
       // 
       this.showHideSettingsButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.showHideSettingsButton1.BackColorSelected = System.Drawing.Color.Empty;
@@ -69,10 +69,14 @@
       this.showHideSettingsButton1.Font = new System.Drawing.Font("Segoe UI", 8F);
       this.showHideSettingsButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.showHideSettingsButton1.ForeColorSelected = System.Drawing.Color.Empty;
+      this.showHideSettingsButton1.Image = ((System.Drawing.Image)(resources.GetObject("showHideSettingsButton1.Image")));
+      this.showHideSettingsButton1.ImageActive = ((System.Drawing.Image)(resources.GetObject("showHideSettingsButton1.ImageActive")));
       this.showHideSettingsButton1.Location = new System.Drawing.Point(13, 13);
       this.showHideSettingsButton1.Name = "showHideSettingsButton1";
       this.showHideSettingsButton1.Size = new System.Drawing.Size(25, 25);
       this.showHideSettingsButton1.TabIndex = 1;
+      this.showHideSettingsButton1.ToolTipTextActive = "Open Settings";
+      this.showHideSettingsButton1.ToolTipTextDeActive = "";
       this.showHideSettingsButton1.UseVisualStyleBackColor = true;
       // 
       // showHideLogViewerButton1
@@ -104,11 +108,11 @@
       // pnlContent
       // 
       this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(69)))), ((int)(((byte)(79)))));
-      this.pnlContent.Controls.Add(this.mainSimple1);
       this.pnlContent.Controls.Add(this.logViewer1);
       this.pnlContent.Controls.Add(this.userPreferences1);
       this.pnlContent.Controls.Add(this.mainDeveloper1);
       this.pnlContent.Controls.Add(this.progressCtrl1);
+      this.pnlContent.Controls.Add(this.mainSimple1);
       this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
       this.pnlContent.Location = new System.Drawing.Point(0, 30);
       this.pnlContent.Name = "pnlContent";
@@ -125,12 +129,11 @@
       // 
       // logViewer1
       // 
-      this.logViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.logViewer1.Location = new System.Drawing.Point(0, 187);
+      this.logViewer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+      this.logViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.logViewer1.Location = new System.Drawing.Point(0, 0);
       this.logViewer1.Name = "logViewer1";
-      this.logViewer1.Size = new System.Drawing.Size(800, 184);
+      this.logViewer1.Size = new System.Drawing.Size(800, 370);
       this.logViewer1.TabIndex = 0;
       this.logViewer1.TabStop = false;
       // 

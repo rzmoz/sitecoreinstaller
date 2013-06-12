@@ -23,7 +23,8 @@ namespace SitecoreInstaller.UI.Log
     public LogViewer()
     {
       InitializeComponent();
-      BlocksView = false;
+      this.BackColor = Styles.Controls.BackColor;
+      chkFollowLogTrail.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
     }
     public void Init()
     {
@@ -39,6 +40,20 @@ namespace SitecoreInstaller.UI.Log
                     { LogType.Profiling, Color.Green }
                 };
       chkFollowLogTrail.Checked = true;
+    }
+
+    protected override void OnPaint(PaintEventArgs e)
+    {
+      base.OnPaint(e);
+
+      var graphics = this.CreateGraphics();
+
+      var myPen = new Pen(Color.White)
+      {
+        Width = 2
+      };
+
+      graphics.DrawLine(myPen, 0, 0, this.Width, 0);
     }
 
     private void EntryLogged(object sender, GenericEventArgs<LogEntry> e)
