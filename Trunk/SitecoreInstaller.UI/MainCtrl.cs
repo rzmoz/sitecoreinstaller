@@ -90,7 +90,7 @@ namespace SitecoreInstaller.UI
           Services.BuildLibrary.Update();
           return true;
         case Keys.P | Keys.Control | Keys.Shift:
-          ViewportStack.Show(userPreferences1);
+          ViewportStack.OpenOrCloseDependingOnCurrentState(userPreferences1);
           return true;
       }
 
