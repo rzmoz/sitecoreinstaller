@@ -7,10 +7,11 @@ namespace SitecoreInstaller.UI.Navigation
   using System.Collections;
   using System.Windows.Forms;
   using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.UI.Forms;
 
   public class NavigationCtrlList : IEnumerable<NavButton>
   {
-    private ToolTip _toolTip;
+    private readonly ToolTip _toolTip;
     private readonly Control _root;
     private readonly int _topOffset;
 
@@ -54,10 +55,10 @@ namespace SitecoreInstaller.UI.Navigation
 
     void control_Click(object sender, EventArgs e)
     {
-      ButtonActivated(sender, new GenericEventArgs<NavButton>(null));
+      ButtonActivated(sender, new GenericEventArgs<SIButtonWithActiveState>(null));
     }
 
-    void ButtonActivated(object sender, GenericEventArgs<NavButton> e)
+    void ButtonActivated(object sender, GenericEventArgs<SIButtonWithActiveState> e)
     {
       var button = sender as NavButton;
       if (button == null)

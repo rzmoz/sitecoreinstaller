@@ -87,6 +87,9 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\SIButtonWithActiveState.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\SIH1.cs">
       <SubType>Component</SubType>
     </Compile>
