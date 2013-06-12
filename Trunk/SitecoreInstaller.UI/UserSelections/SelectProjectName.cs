@@ -3,6 +3,7 @@
   using System;
   using System.Windows.Forms;
   using SitecoreInstaller.App;
+  using SitecoreInstaller.UI.Viewport;
 
   public partial class SelectProjectName : UserControl
   {

@@ -90,6 +90,7 @@
           return;
         control.Show();
         control.BringToFront();
+        control.OnShow();
         _controlStack.Remove(control);
         _controlStack.Push(control);
       }

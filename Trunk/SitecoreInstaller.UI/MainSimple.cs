@@ -20,7 +20,10 @@ namespace SitecoreInstaller.UI
       InitializeComponent();
     }
 
-    public void Init() { }
+    public void Init()
+    {
+      openSiteCtrl1.Init();
+    }
 
     public override bool ProcessKeyPress(Keys keyData)
     {
@@ -65,6 +68,11 @@ namespace SitecoreInstaller.UI
         button.Left = (padding * i) + button.Width * (i - 1);
         i++;
       }
+    }
+
+    private void btnOpenSite_Click(object sender, EventArgs e)
+    {
+      ViewportStack.Show(openSiteCtrl1);
     }
   }
 }

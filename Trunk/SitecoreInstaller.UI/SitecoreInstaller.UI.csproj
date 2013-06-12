@@ -210,6 +210,12 @@
     <Compile Include="Preferences\ShowHideSettingsButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Simple\OpenSiteCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Simple\OpenSiteCtrl.Designer.cs">
+      <DependentUpon>OpenSiteCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Simple\SimpleResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -318,6 +324,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Simple\OpenSiteCtrl.resx">
+      <DependentUpon>OpenSiteCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Simple\SimpleResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

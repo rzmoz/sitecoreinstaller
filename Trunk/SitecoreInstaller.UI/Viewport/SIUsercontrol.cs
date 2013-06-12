@@ -10,5 +10,9 @@
     }
 
     public bool BlocksView { get; protected set; }
+
+    public virtual void OnShow()
+    {
+    }
   }
 }
