@@ -15,13 +15,7 @@
     public string ProjectName
     {
       get { return this.cbxProjectName.Text; }
-      set
-      {
-        if (string.IsNullOrEmpty(value))
-          return;
-
-        this.cbxProjectName.Text = value;
-      }
+      set { this.cbxProjectName.Text = value ?? string.Empty; }
     }
     public ComboBoxStyle DropDownStyle
     {

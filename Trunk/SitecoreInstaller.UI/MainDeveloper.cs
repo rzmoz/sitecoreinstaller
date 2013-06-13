@@ -31,8 +31,6 @@ namespace SitecoreInstaller.UI
       selectSitecore1.Init();
       selectLicense1.Init();
       selectModules1.Init();
-
-      selectProjectName1.FocusTextBox();
     }
 
     public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<BuildLibrarySelections> e)
@@ -40,6 +38,14 @@ namespace SitecoreInstaller.UI
       selectSitecore1.BuildLibrarySelectionsUpdated(sender, e);
       selectLicense1.BuildLibrarySelectionsUpdated(sender, e);
       selectModules1.BuildLibrarySelectionsUpdated(sender, e);
+    }
+
+    public override void OnShow()
+    {
+      base.OnShow();
+      selectProjectName1.UpdateList();
+      selectProjectName1.ProjectName = string.Empty;
+      selectProjectName1.FocusTextBox();
     }
 
     public override bool ProcessKeyPress(Keys keyData)

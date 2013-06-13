@@ -59,6 +59,8 @@
         control.SendToBack();
         control.Hide();
         _controlStack.Remove(control);
+        if (_controlStack.Any())
+          _controlStack.Peek().Show();
       }
     }
 
@@ -90,9 +92,9 @@
           return;
         control.Show();
         control.BringToFront();
-        control.OnShow();
         _controlStack.Remove(control);
         _controlStack.Push(control);
+        control.OnShow();
       }
     }
 
