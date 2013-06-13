@@ -5,7 +5,6 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain
 {
-    using System.Diagnostics.Contracts;
     using System.IO;
 
     using SitecoreInstaller.Domain.Website;

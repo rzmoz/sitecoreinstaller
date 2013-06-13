@@ -6,7 +6,6 @@ namespace SitecoreInstaller.Framework.Archiving
   using SitecoreInstaller.Framework.IO;
   using SitecoreInstaller.Framework.System;
 
-  using global::System.Diagnostics.Contracts;
   using global::System.IO;
 
   public class SevenZipFile : CommandPrompt
@@ -21,7 +20,7 @@ namespace SitecoreInstaller.Framework.Archiving
 
     public SevenZipFile(FileInfo zipFile)
     {
-      Contract.Requires<ArgumentNullException>(zipFile != null);
+      if (zipFile == null) { throw new ArgumentNullException("zipFile"); }
 
       File = zipFile;
       if (File.Name.EndsWith(".zip", StringComparison.OrdinalIgnoreCase) == false)
@@ -30,7 +29,8 @@ namespace SitecoreInstaller.Framework.Archiving
 
     public void ExtractAll(DirectoryInfo target)
     {
-      Contract.Requires<ArgumentNullException>(target != null);
+      if (target == null){throw new ArgumentNullException("target");}
+
       if (global::System.IO.File.Exists(File.FullName) == false)
       {
         Log.This.Error("File not found for extrating: {0}", File.FullName);

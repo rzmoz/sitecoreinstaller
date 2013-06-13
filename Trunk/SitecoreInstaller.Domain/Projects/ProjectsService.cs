@@ -5,8 +5,6 @@ using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.Domain.Projects
 {
-  using System.Diagnostics.Contracts;
-  using SitecoreInstaller.Framework.Configuration;
   using SitecoreInstaller.Framework.Diagnostics;
 
   public class ProjectsService
@@ -47,7 +45,7 @@ namespace SitecoreInstaller.Domain.Projects
 
     public void CreateProject(DirectoryInfo projectFolder)
     {
-      Contract.Requires<ArgumentNullException>(projectFolder != null);
+      if (projectFolder == null) { throw new ArgumentNullException("projectFolder"); }
       projectFolder.CreateWithLog();
     }
   }

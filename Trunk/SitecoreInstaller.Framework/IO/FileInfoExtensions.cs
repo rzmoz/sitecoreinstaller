@@ -6,8 +6,6 @@ namespace SitecoreInstaller.Framework.IO
 {
   using Ionic.Zip;
 
-  using global::System.Diagnostics.Contracts;
-
   public static class FileInfoExtensions
   {
     public static bool Exists(this FileInfo file)
@@ -37,10 +35,11 @@ namespace SitecoreInstaller.Framework.IO
         return zipFile.Entries.First().FileName.Equals("package.zip");
       }
     }
+
     public static FileInfo WithNewExtension(this FileInfo file, string newExtension)
     {
-      Contract.Requires<ArgumentNullException>(file != null);
-      Contract.Requires<ArgumentNullException>(newExtension != null);
+      if (file == null) { throw new ArgumentNullException("file"); }
+      if (newExtension == null) { throw new ArgumentNullException("newExtension"); }
 
       return new FileInfo(file.FullNameWithoutExtension() + "." + newExtension);
     }

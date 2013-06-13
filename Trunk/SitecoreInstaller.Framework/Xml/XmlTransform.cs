@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using SitecoreInstaller.Framework.IO;
-using System.Diagnostics.Contracts;
 
 namespace SitecoreInstaller.Framework.Xml
 {

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace SitecoreInstaller.Framework.IO
 {
   using SitecoreInstaller.Framework.Diagnostics;
-  using global::System.Diagnostics.Contracts;
 
   public static class IoService
   {
@@ -139,9 +138,10 @@ namespace SitecoreInstaller.Framework.IO
       Log.This.Debug("Existing file was backed up to :" + backupFileName);
       return true;
     }
+
     private static string GetBackupFileName(FileInfo file)
     {
-      Contract.Requires<ArgumentNullException>(file != null);
+      if (file == null) { throw new ArgumentNullException("file"); }
 
       var backupExtension = "." + DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss") + ".backup";
       return file.FullName + backupExtension;
@@ -182,7 +182,7 @@ namespace SitecoreInstaller.Framework.IO
         Log.This.Debug("Source and Target are the same '{0}'. Aborting", source.FullName);
         return;
       }
-      
+
       try
       {
         target.CreateIfNotExists();

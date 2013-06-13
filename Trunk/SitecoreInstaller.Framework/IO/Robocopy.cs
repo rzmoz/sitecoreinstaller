@@ -6,8 +6,6 @@ using System.Text;
 namespace SitecoreInstaller.Framework.IO
 {
   using SitecoreInstaller.Framework.System;
-
-  using global::System.Diagnostics.Contracts;
   using global::System.IO;
 
   public class Robocopy : CommandPrompt
@@ -19,8 +17,8 @@ namespace SitecoreInstaller.Framework.IO
 
     private void Run(DirectoryInfo source, DirectoryInfo target, string switches)
     {
-      Contract.Requires<ArgumentNullException>(target != null);
-      Contract.Requires<ArgumentNullException>(source != null);
+      if (source == null) { throw new ArgumentNullException("source"); }
+      if (target == null) { throw new ArgumentNullException("target"); }
 
       var command = string.Format(_SourceDestinationFormat, source.FullName, target.FullName);
       command += switches;

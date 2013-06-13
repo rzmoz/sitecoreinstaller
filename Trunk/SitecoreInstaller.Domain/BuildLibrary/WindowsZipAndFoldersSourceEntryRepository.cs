@@ -5,7 +5,6 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-  using System.Diagnostics.Contracts;
   using System.IO;
   using System.Threading.Tasks;
   using SitecoreInstaller.Framework.Diagnostics;

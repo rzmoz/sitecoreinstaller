@@ -5,15 +5,14 @@ using SitecoreInstaller.Framework.System;
 
 namespace SitecoreInstaller.Domain.Website
 {
-  using System.Diagnostics.Contracts;
   using SitecoreInstaller.Framework.Diagnostics;
 
   internal static class WebsiteExtensions
   {
     public static Uri ToUri(this string baseUrl, params string[] subPaths)
     {
-      Contract.Requires<ArgumentNullException>(baseUrl != null);
-      Contract.Requires<ArgumentNullException>(subPaths != null);
+      if (baseUrl == null) { throw new ArgumentNullException("baseUrl"); }
+      if (subPaths == null) { throw new ArgumentNullException("subPaths"); }
 
       var url = baseUrl.UrlCombine(subPaths);
       try

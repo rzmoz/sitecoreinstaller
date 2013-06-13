@@ -1,27 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SitecoreInstaller.Framework.IO
 {
-    using global::System.Diagnostics.Contracts;
-    using global::System.IO;
+  using global::System.IO;
 
-    public class Folder
+  public class Folder
+  {
+    public Folder(DirectoryInfo directory)
     {
-        public Folder(DirectoryInfo directory)
-        {
-            Contract.Requires<ArgumentNullException>(directory != null);
-            Directory = directory;
-        }
-        public string FullName { get { return Directory.FullName; } }
-        public string Name { get { return Directory.Name; } }
-        public DirectoryInfo Directory { get; private set; }
+      if (directory == null) { throw new ArgumentNullException("directory"); }
 
-        public override string ToString()
-        {
-            return Directory.ToString();
-        }
+      Directory = directory;
     }
+
+    public string FullName { get { return Directory.FullName; } }
+    public string Name { get { return Directory.Name; } }
+    public DirectoryInfo Directory { get; private set; }
+
+    public override string ToString()
+    {
+      return Directory.ToString();
+    }
+  }
 }
