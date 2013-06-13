@@ -17,21 +17,26 @@
       get { return this.cbxProjectName.Text; }
       set { this.cbxProjectName.Text = value ?? string.Empty; }
     }
+
     public ComboBoxStyle DropDownStyle
     {
       get { return this.cbxProjectName.DropDownStyle; }
       set { this.cbxProjectName.DropDownStyle = value; }
     }
+    
     public void Init()
     {
+      this.cbxProjectName.Font = Styles.Fonts.LblRegular;
       this.cbxProjectName.Text = string.Empty;
       this.UpdateList();
       Services.BuildLibrary.Updated += this.BuildLibraryUpdated;
     }
+    
     public void FocusTextBox()
     {
       this.cbxProjectName.Focus();
     }
+    
     void BuildLibraryUpdated(object sender, EventArgs e)
     {
       this.UpdateList();

@@ -43,7 +43,7 @@
       this.btnOpenSite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.btnOpenSite.Location = new System.Drawing.Point(347, 149);
       this.btnOpenSite.Name = "btnOpenSite";
-      this.btnOpenSite.Size = new System.Drawing.Size(100, 75);
+      this.btnOpenSite.Size = new System.Drawing.Size(100, 50);
       this.btnOpenSite.TabIndex = 0;
       this.btnOpenSite.Text = "Open Site";
       this.btnOpenSite.UseVisualStyleBackColor = true;
@@ -69,7 +69,7 @@
       this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.btnBack.Location = new System.Drawing.Point(47, 149);
       this.btnBack.Name = "btnBack";
-      this.btnBack.Size = new System.Drawing.Size(100, 75);
+      this.btnBack.Size = new System.Drawing.Size(100, 50);
       this.btnBack.TabIndex = 2;
       this.btnBack.Text = "Back";
       this.btnBack.UseVisualStyleBackColor = true;
