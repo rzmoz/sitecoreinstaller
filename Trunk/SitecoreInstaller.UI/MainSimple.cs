@@ -27,7 +27,8 @@ namespace SitecoreInstaller.UI
       openSiteCtrl1.Init();
 
       btnInstall.Image = SimpleResources.Install;
-
+      btnUninstall.Image = SimpleResources.Uninstall;
+      btnOpenSite.Image = SimpleResources.OpenSite;
       this.InitButtons(btnInstall, btnUninstall, btnOpenSite);
 
     }
@@ -77,7 +78,7 @@ namespace SitecoreInstaller.UI
       if (buttons == null || buttons.Length == 0)
         return;
 
-      const int padding = 40;
+      const int padding = 30;
       const int buttonMinWidth = 120;
       var buttonWidth = (this.Width - padding) / buttons.Length - padding;
       if (buttonWidth < buttonMinWidth)

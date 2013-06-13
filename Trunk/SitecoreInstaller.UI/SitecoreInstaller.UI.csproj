@@ -399,6 +399,8 @@
     <Content Include="Settings\Images\Sql.png" />
     <Content Include="Settings\Images\Sql_Active.png" />
     <Content Include="Simple\Images\Install.png" />
+    <Content Include="Simple\Images\OpenSite.png" />
+    <None Include="Simple\Images\Uninstall.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
