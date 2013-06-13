@@ -69,6 +69,7 @@
       this.btnOpenSite.TabIndex = 8;
       this.btnOpenSite.Text = "Open Site";
       this.btnOpenSite.UseVisualStyleBackColor = true;
+      this.btnOpenSite.Click += new System.EventHandler(this.btnOpenSite_Click);
       // 
       // btnUninstall
       // 
@@ -83,6 +84,7 @@
       this.btnUninstall.TabIndex = 7;
       this.btnUninstall.Text = "Uninstall";
       this.btnUninstall.UseVisualStyleBackColor = true;
+      this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
       // 
       // btnInstall
       // 
@@ -97,6 +99,7 @@
       this.btnInstall.TabIndex = 6;
       this.btnInstall.Text = "Install";
       this.btnInstall.UseVisualStyleBackColor = true;
+      this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
       // 
       // uninstallCtrl1
       // 

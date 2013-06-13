@@ -28,42 +28,33 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.tbxProjectName = new System.Windows.Forms.TextBox();
-      this.selectLicense1 = new SitecoreInstaller.UI.UserSelections.SelectLicense();
-      this.lblProjectName = new SitecoreInstaller.UI.Forms.SIH2();
+      this.lblProjectName = new SitecoreInstaller.UI.Forms.SILabel();
+      this.selectSitecore1 = new SitecoreInstaller.UI.UserSelections.SelectSitecore();
       this.btnBack = new SitecoreInstaller.UI.Forms.SIButton();
       this.btnInstall = new SitecoreInstaller.UI.Forms.SIButton();
-      this.selectSitecore1 = new SitecoreInstaller.UI.UserSelections.SelectSitecore();
+      this.selectLicense1 = new SitecoreInstaller.UI.UserSelections.SelectLicense();
+      this.tbxProjectName = new System.Windows.Forms.TextBox();
       this.SuspendLayout();
-      // 
-      // tbxProjectName
-      // 
-      this.tbxProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.tbxProjectName.Location = new System.Drawing.Point(50, 36);
-      this.tbxProjectName.Name = "tbxProjectName";
-      this.tbxProjectName.Size = new System.Drawing.Size(400, 20);
-      this.tbxProjectName.TabIndex = 0;
-      // 
-      // selectLicense1
-      // 
-      this.selectLicense1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.selectLicense1.Location = new System.Drawing.Point(50, 139);
-      this.selectLicense1.Name = "selectLicense1";
-      this.selectLicense1.Size = new System.Drawing.Size(400, 50);
-      this.selectLicense1.TabIndex = 2;
       // 
       // lblProjectName
       // 
       this.lblProjectName.AutoSize = true;
-      this.lblProjectName.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+      this.lblProjectName.Font = new System.Drawing.Font("Segoe UI", 10F);
       this.lblProjectName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.lblProjectName.Location = new System.Drawing.Point(49, 14);
+      this.lblProjectName.Location = new System.Drawing.Point(50, 15);
       this.lblProjectName.Name = "lblProjectName";
-      this.lblProjectName.Size = new System.Drawing.Size(98, 19);
-      this.lblProjectName.TabIndex = 2;
-      this.lblProjectName.Text = "Project name";
+      this.lblProjectName.Size = new System.Drawing.Size(92, 19);
+      this.lblProjectName.TabIndex = 5;
+      this.lblProjectName.Text = "Project name:";
+      // 
+      // selectSitecore1
+      // 
+      this.selectSitecore1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.selectSitecore1.Location = new System.Drawing.Point(50, 72);
+      this.selectSitecore1.Name = "selectSitecore1";
+      this.selectSitecore1.Size = new System.Drawing.Size(400, 50);
+      this.selectSitecore1.TabIndex = 1;
       // 
       // btnBack
       // 
@@ -72,7 +63,7 @@
       this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnBack.Font = new System.Drawing.Font("Segoe UI", 8F);
       this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnBack.Location = new System.Drawing.Point(53, 231);
+      this.btnBack.Location = new System.Drawing.Point(50, 231);
       this.btnBack.Name = "btnBack";
       this.btnBack.Size = new System.Drawing.Size(100, 50);
       this.btnBack.TabIndex = 4;
@@ -88,7 +79,7 @@
       this.btnInstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnInstall.Font = new System.Drawing.Font("Segoe UI", 8F);
       this.btnInstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnInstall.Location = new System.Drawing.Point(353, 231);
+      this.btnInstall.Location = new System.Drawing.Point(350, 231);
       this.btnInstall.Name = "btnInstall";
       this.btnInstall.Size = new System.Drawing.Size(100, 50);
       this.btnInstall.TabIndex = 3;
@@ -96,23 +87,32 @@
       this.btnInstall.UseVisualStyleBackColor = true;
       this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
       // 
-      // selectSitecore1
+      // selectLicense1
       // 
-      this.selectSitecore1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      this.selectLicense1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.selectSitecore1.Location = new System.Drawing.Point(50, 72);
-      this.selectSitecore1.Name = "selectSitecore1";
-      this.selectSitecore1.Size = new System.Drawing.Size(400, 50);
-      this.selectSitecore1.TabIndex = 1;
+      this.selectLicense1.Location = new System.Drawing.Point(50, 139);
+      this.selectLicense1.Name = "selectLicense1";
+      this.selectLicense1.Size = new System.Drawing.Size(400, 50);
+      this.selectLicense1.TabIndex = 2;
+      // 
+      // tbxProjectName
+      // 
+      this.tbxProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tbxProjectName.Location = new System.Drawing.Point(50, 36);
+      this.tbxProjectName.Name = "tbxProjectName";
+      this.tbxProjectName.Size = new System.Drawing.Size(400, 20);
+      this.tbxProjectName.TabIndex = 0;
       // 
       // InstallCtrl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.Controls.Add(this.lblProjectName);
       this.Controls.Add(this.selectSitecore1);
       this.Controls.Add(this.btnBack);
       this.Controls.Add(this.btnInstall);
-      this.Controls.Add(this.lblProjectName);
       this.Controls.Add(this.selectLicense1);
       this.Controls.Add(this.tbxProjectName);
       this.Name = "InstallCtrl";
@@ -126,9 +126,9 @@
 
     private System.Windows.Forms.TextBox tbxProjectName;
     private UserSelections.SelectLicense selectLicense1;
-    private Forms.SIH2 lblProjectName;
     private Forms.SIButton btnBack;
     private Forms.SIButton btnInstall;
     private UserSelections.SelectSitecore selectSitecore1;
+    private Forms.SILabel lblProjectName;
   }
 }
