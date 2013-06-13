@@ -6,7 +6,6 @@ namespace SitecoreInstaller.UI.Settings
   using SitecoreInstaller.App;
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.UI.Forms;
-  using SitecoreInstaller.UI.Preferences;
   using SitecoreInstaller.UI.Viewport;
 
   public class ShowHideSettingsButton : SISystemButton

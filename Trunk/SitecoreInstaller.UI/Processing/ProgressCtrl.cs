@@ -23,6 +23,11 @@ namespace SitecoreInstaller.UI.Processing
       InitializeComponent();
     }
 
+    public void Init()
+    {
+      picWaitAnimation.Image = ProgressResources.Spinner;
+    }
+
     private void ProgressCtrl_Load(object sender, EventArgs e)
     {
       Log.This.EntryLogged += UpdateInfo;

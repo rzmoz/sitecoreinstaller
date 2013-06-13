@@ -43,7 +43,6 @@
       // picWaitAnimation
       // 
       this.picWaitAnimation.Anchor = System.Windows.Forms.AnchorStyles.None;
-      this.picWaitAnimation.Image = global::SitecoreInstaller.UI.Properties.Resources.spinner;
       this.picWaitAnimation.Location = new System.Drawing.Point(202, 140);
       this.picWaitAnimation.Name = "picWaitAnimation";
       this.picWaitAnimation.Size = new System.Drawing.Size(129, 134);

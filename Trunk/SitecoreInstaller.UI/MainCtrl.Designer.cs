@@ -88,7 +88,6 @@
       this.showHideLogViewerButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.showHideLogViewerButton1.Font = new System.Drawing.Font("Segoe UI", 8F);
       this.showHideLogViewerButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.showHideLogViewerButton1.Image = ((System.Drawing.Image)(resources.GetObject("showHideLogViewerButton1.Image")));
       this.showHideLogViewerButton1.Location = new System.Drawing.Point(759, 13);
       this.showHideLogViewerButton1.Name = "showHideLogViewerButton1";
       this.showHideLogViewerButton1.Size = new System.Drawing.Size(25, 25);

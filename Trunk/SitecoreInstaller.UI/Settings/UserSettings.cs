@@ -11,7 +11,6 @@ using System.Windows.Forms;
 namespace SitecoreInstaller.UI.Settings
 {
   using SitecoreInstaller.UI.Navigation;
-  using SitecoreInstaller.UI.Preferences;
   using SitecoreInstaller.UI.Viewport;
 
   public partial class UserSettings : SIUserControl

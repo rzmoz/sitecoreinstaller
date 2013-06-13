@@ -27,12 +27,18 @@ namespace SitecoreInstaller.UI
       InitPipelineWorker();
       InitProjectSettings();
 
+      InitProgress();
       InitUserPreferences();
       InitLog();
       InitMainSimple();
       InitMainDeveloper();
       Services.UserPreferences.Load();
       ViewportStack.Show(mainDeveloper1);
+    }
+
+    private void InitProgress()
+    {
+      progressCtrl1.Init();
     }
 
     private void InitUserPreferences()

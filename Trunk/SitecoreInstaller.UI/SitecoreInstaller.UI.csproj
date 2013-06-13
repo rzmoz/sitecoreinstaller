@@ -152,39 +152,39 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NavigationResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Preferences\DatabaseSettings.cs">
+    <Compile Include="Settings\DatabaseSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Preferences\DatabaseSettings.Designer.cs">
+    <Compile Include="Settings\DatabaseSettings.Designer.cs">
       <DependentUpon>DatabaseSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Preferences\FoldersSettings.cs">
+    <Compile Include="Settings\FoldersSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Preferences\FoldersSettings.Designer.cs">
+    <Compile Include="Settings\FoldersSettings.Designer.cs">
       <DependentUpon>FoldersSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Preferences\SettingsResources.Designer.cs">
+    <Compile Include="Settings\SettingsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SettingsResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Preferences\SourcesSettings.cs">
+    <Compile Include="Settings\SourcesSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Preferences\SourcesSettings.Designer.cs">
+    <Compile Include="Settings\SourcesSettings.Designer.cs">
       <DependentUpon>SourcesSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Preferences\UserSettingsCtrl.cs">
+    <Compile Include="Settings\UserSettingsCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Preferences\UserSettingsCtrl.Designer.cs">
+    <Compile Include="Settings\UserSettingsCtrl.Designer.cs">
       <DependentUpon>UserSettingsCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Preferences\UserSettings.cs">
+    <Compile Include="Settings\UserSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Preferences\UserSettings.Designer.cs">
+    <Compile Include="Settings\UserSettings.Designer.cs">
       <DependentUpon>UserSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Processing\ProgressCtrl.cs">
@@ -199,12 +199,7 @@
       <DependentUpon>ProgressResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Preferences\ShowHideSettingsButton.cs">
+    <Compile Include="Settings\ShowHideSettingsButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Simple\InstallCtrl.cs">
@@ -306,20 +301,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NavigationResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Preferences\DatabaseSettings.resx">
+    <EmbeddedResource Include="Settings\DatabaseSettings.resx">
       <DependentUpon>DatabaseSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Preferences\FoldersSettings.resx">
+    <EmbeddedResource Include="Settings\FoldersSettings.resx">
       <DependentUpon>FoldersSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Preferences\SettingsResources.resx">
+    <EmbeddedResource Include="Settings\SettingsResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SettingsResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Preferences\UserSettingsCtrl.resx">
+    <EmbeddedResource Include="Settings\UserSettingsCtrl.resx">
       <DependentUpon>UserSettingsCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Preferences\UserSettings.resx">
+    <EmbeddedResource Include="Settings\UserSettings.resx">
       <DependentUpon>UserSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Processing\ProgressCtrl.resx">
@@ -328,11 +323,6 @@
     <EmbeddedResource Include="Processing\ProgressResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ProgressResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Simple\InstallCtrl.resx">
       <DependentUpon>InstallCtrl.cs</DependentUpon>
@@ -361,44 +351,44 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Preferences\Images\Settings.png" />
+    <None Include="Settings\Images\Settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Preferences\Images\Settings_Active.png" />
+    <None Include="Settings\Images\Settings_Active.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\spinner.gif" />
+    <None Include="Processing\Images\Spinner.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Log_active.gif" />
+    <None Include="Log\Images\Log_active.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Log.png" />
+    <None Include="Log\Images\Log.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Log_error.png" />
+    <None Include="Log\Images\Log_error.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Log_error_active.gif" />
+    <None Include="Log\Images\Log_error_active.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Status_Error.png" />
+    <None Include="Processing\Images\Status_Error.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Status_Ok.png" />
+    <None Include="Processing\Images\Status_Ok.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Navigation\Images\InstallNewSitecore.png" />
     <Content Include="Navigation\Images\InstallNewSitecore_Active.png" />
     <Content Include="Navigation\Images\MySitecores.png" />
     <Content Include="Navigation\Images\MySitecores_Active.png" />
-    <Content Include="Preferences\Images\back.png" />
-    <Content Include="Preferences\Images\Folders.png" />
-    <Content Include="Preferences\Images\Folders_Active.png" />
-    <Content Include="Preferences\Images\Sources.png" />
-    <Content Include="Preferences\Images\Sources_Active.png" />
-    <Content Include="Preferences\Images\Sql.png" />
-    <Content Include="Preferences\Images\Sql_Active.png" />
+    <Content Include="Settings\Images\back.png" />
+    <Content Include="Settings\Images\Folders.png" />
+    <Content Include="Settings\Images\Folders_Active.png" />
+    <Content Include="Settings\Images\Sources.png" />
+    <Content Include="Settings\Images\Sources_Active.png" />
+    <Content Include="Settings\Images\Sql.png" />
+    <Content Include="Settings\Images\Sql_Active.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

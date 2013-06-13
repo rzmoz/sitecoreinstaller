@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SitecoreInstaller.UI.Preferences {
+namespace SitecoreInstaller.UI.Settings {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SitecoreInstaller.UI.Preferences {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SitecoreInstaller.UI.Preferences.SettingsResources", typeof(SettingsResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SitecoreInstaller.UI.Settings.SettingsResources", typeof(SettingsResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
