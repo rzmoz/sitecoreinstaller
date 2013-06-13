@@ -22,6 +22,21 @@ namespace SitecoreInstaller.UI.Settings
       InitializeComponent();
     }
 
+    public override bool ProcessKeyPress(Keys keyData)
+    {
+      //we only activate key board shortcuts, if we're visible
+      if (ViewportStack.IsVisible(this) == false)
+        return false;
+
+      switch (keyData)
+      {
+        case Keys.Escape:
+          btnBack_Click(this, new EventArgs());
+          return true;
+      }
+      return false;
+    }
+
     public void Init()
     {
       pnlButtons.BackColor = Styles.Navigation.Level1.BackColor;
@@ -39,7 +54,7 @@ namespace SitecoreInstaller.UI.Settings
       {
         ctrl.Init();
       }
-      
+
       toolTip1.SetToolTip(btnBack, "Back");
     }
 
