@@ -143,9 +143,6 @@
     <Compile Include="MainSimple.Designer.cs">
       <DependentUpon>MainSimple.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainSiUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Navigation\Level1NavigationButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -209,6 +206,12 @@
     </Compile>
     <Compile Include="Preferences\ShowHideSettingsButton.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Simple\InstallCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Simple\InstallCtrl.Designer.cs">
+      <DependentUpon>InstallCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Simple\OpenSiteCtrl.cs">
       <SubType>UserControl</SubType>
@@ -324,6 +327,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Simple\InstallCtrl.resx">
+      <DependentUpon>InstallCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Simple\OpenSiteCtrl.resx">
       <DependentUpon>OpenSiteCtrl.cs</DependentUpon>

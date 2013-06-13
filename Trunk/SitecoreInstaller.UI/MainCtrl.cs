@@ -94,7 +94,7 @@ namespace SitecoreInstaller.UI
           return true;
       }
 
-      var activeMainCtrl = ViewportStack.ActiveCtrl as MainSIUserControl;
+      var activeMainCtrl = ViewportStack.ActiveCtrl;
       if (activeMainCtrl == null)
         return false;
 

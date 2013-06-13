@@ -13,7 +13,7 @@ namespace SitecoreInstaller.UI
   using SitecoreInstaller.App;
   using SitecoreInstaller.UI.Viewport;
 
-  public partial class MainSimple : MainSIUserControl
+  public partial class MainSimple : SIUserControl
   {
     public MainSimple()
     {
@@ -23,6 +23,7 @@ namespace SitecoreInstaller.UI
     public void Init()
     {
       openSiteCtrl1.Init();
+      installCtrl1.Init();
     }
 
     public override bool ProcessKeyPress(Keys keyData)
@@ -37,7 +38,10 @@ namespace SitecoreInstaller.UI
           ViewportStack.Show("SitecoreInstaller.UI.MainDeveloper");
           return true;
         case Keys.B | Keys.Control | Keys.Shift:
-          MessageBox.Show("We're in simple", "Hello World!", MessageBoxButtons.OK, MessageBoxIcon.None);
+          ViewportStack.Show(installCtrl1);
+          return true;
+        case Keys.O | Keys.Control:
+          ViewportStack.Show(openSiteCtrl1);
           return true;
       }
       return false;
@@ -73,6 +77,11 @@ namespace SitecoreInstaller.UI
     private void btnOpenSite_Click(object sender, EventArgs e)
     {
       ViewportStack.Show(openSiteCtrl1);
+    }
+
+    private void btnInstall_Click(object sender, EventArgs e)
+    {
+      ViewportStack.Show(installCtrl1);
     }
   }
 }

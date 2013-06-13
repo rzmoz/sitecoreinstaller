@@ -41,7 +41,7 @@
       this.btnOpenSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnOpenSite.Font = new System.Drawing.Font("Segoe UI", 8F);
       this.btnOpenSite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnOpenSite.Location = new System.Drawing.Point(347, 149);
+      this.btnOpenSite.Location = new System.Drawing.Point(350, 149);
       this.btnOpenSite.Name = "btnOpenSite";
       this.btnOpenSite.Size = new System.Drawing.Size(100, 50);
       this.btnOpenSite.TabIndex = 0;
@@ -54,7 +54,7 @@
       this.selectProjectName1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.selectProjectName1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-      this.selectProjectName1.Location = new System.Drawing.Point(47, 81);
+      this.selectProjectName1.Location = new System.Drawing.Point(50, 80);
       this.selectProjectName1.Name = "selectProjectName1";
       this.selectProjectName1.ProjectName = "";
       this.selectProjectName1.Size = new System.Drawing.Size(400, 50);
@@ -67,7 +67,7 @@
       this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnBack.Font = new System.Drawing.Font("Segoe UI", 8F);
       this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnBack.Location = new System.Drawing.Point(47, 149);
+      this.btnBack.Location = new System.Drawing.Point(50, 149);
       this.btnBack.Name = "btnBack";
       this.btnBack.Size = new System.Drawing.Size(100, 50);
       this.btnBack.TabIndex = 2;

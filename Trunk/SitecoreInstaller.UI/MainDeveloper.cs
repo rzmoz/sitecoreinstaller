@@ -18,7 +18,7 @@ namespace SitecoreInstaller.UI
   using SitecoreInstaller.Framework.System;
   using SitecoreInstaller.UI.Viewport;
 
-  public partial class MainDeveloper : MainSIUserControl
+  public partial class MainDeveloper : SIUserControl
   {
     public MainDeveloper()
     {
@@ -57,9 +57,14 @@ namespace SitecoreInstaller.UI
       switch (keyData)
       {
         case Keys.D | Keys.Control | Keys.Shift:
-            ViewportStack.Show("SitecoreInstaller.UI.MainSimple");
-            return true;
+          ViewportStack.Show("SitecoreInstaller.UI.MainSimple");
+          return true;
         case Keys.B | Keys.Control | Keys.Shift:
+          if (selectProjectName1.ProjectName.Length == 0)
+          {
+            Services.Dialogs.Information("Please enter project name");
+            return true;
+          }
           this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<InstallPipeline>();
           return true;

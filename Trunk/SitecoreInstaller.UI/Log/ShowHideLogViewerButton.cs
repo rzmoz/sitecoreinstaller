@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.UI.Log
 {
+  using System.ComponentModel;
   using System.Windows.Forms;
   using SitecoreInstaller.App;
   using SitecoreInstaller.Framework.Diagnostics;
@@ -15,6 +16,8 @@ namespace SitecoreInstaller.UI.Log
 
   public class ShowHideLogViewerButton : SIButton
   {
+    private Timer _timer;
+
     private const string _toolTipWhenVisible = "Hide Log viewer";
     private const string _toolTipWhenNotVisible = "Show Log viewer";
 
@@ -23,24 +26,34 @@ namespace SitecoreInstaller.UI.Log
       Image = LogResources.Log;
       FlatAppearance.BorderSize = 0;
       this.Click += this.ShowHideLogViewerButton_Click;
+      _timer = new Timer
+      {
+        Interval = 1000
+      };
+      _timer.Tick += _timer_Tick;
+    }
+
+    void _timer_Tick(object sender, EventArgs e)
+    {
+      PipelineWorker_WorkerCompleted(sender, new RunWorkerCompletedEventArgs(null, null, false));
     }
 
     public LogViewer LogViewer { get; private set; }
 
-    public void Init(LogViewer logViewer, ToolTip toolTip=null)
+    public void Init(LogViewer logViewer, ToolTip toolTip = null)
     {
       if (logViewer == null) { throw new ArgumentNullException("logViewer"); }
       LogViewer = logViewer;
-      base.Init(toolTip);
-      base.SetToolTip(_toolTipWhenNotVisible);
+      this.Init(toolTip);
+      this.SetToolTip(_toolTipWhenNotVisible);
       Log.This.LogCleared += This_LogCleared;
       Log.This.EntryLogged += This_EntryLogged;
       Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
       Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
-      
+      _timer.Start();
     }
 
-    void PipelineWorker_WorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+    void PipelineWorker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
       if (Log.This.Status == LogStatus.NoProblems)
         Image = LogResources.Log;
@@ -75,7 +88,7 @@ namespace SitecoreInstaller.UI.Log
     private void ShowHideLogViewerButton_Click(object sender, EventArgs e)
     {
       var visible = ViewportStack.OpenOrCloseDependingOnCurrentState(LogViewer);
-      if(visible)
+      if (visible)
         base.SetToolTip(_toolTipWhenVisible);
       else
         base.SetToolTip(_toolTipWhenNotVisible);

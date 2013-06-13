@@ -11,6 +11,11 @@
 
     public bool BlocksView { get; protected set; }
 
+    public virtual bool ProcessKeyPress(Keys keyData)
+    {
+      return false;
+    }
+
     public virtual void OnShow()
     {
     }
