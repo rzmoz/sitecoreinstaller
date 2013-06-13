@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI
 {
+  using SitecoreInstaller.UI.Simple;
   using SitecoreInstaller.UI.Viewport;
 
   public partial class MainSimple : SIUserControl
@@ -24,6 +25,22 @@ namespace SitecoreInstaller.UI
       installCtrl1.Init();
       uninstallCtrl1.Init();
       openSiteCtrl1.Init();
+
+      btnInstall.Image = SimpleResources.Install;
+
+      this.InitButtons(btnInstall, btnUninstall, btnOpenSite);
+
+    }
+
+    private void InitButtons(params Button[] buttons)
+    {
+      foreach (var button in buttons)
+      {
+        button.BackColor = Styles.Navigation.Level1.BackColor;
+        button.ForeColor = Styles.Navigation.Level1.ForeColor;
+        button.FlatAppearance.BorderSize = 0;
+        button.TextImageRelation = TextImageRelation.ImageBeforeText;
+      }
     }
 
     public override bool ProcessKeyPress(Keys keyData)
@@ -52,10 +69,10 @@ namespace SitecoreInstaller.UI
 
     private void MainSimple_Resize(object sender, EventArgs e)
     {
-      this.ResizeButton(btnInstall, btnUninstall, btnOpenSite);
+      this.ResizeButtons(btnInstall, btnUninstall, btnOpenSite);
     }
 
-    private void ResizeButton(params Button[] buttons)
+    private void ResizeButtons(params Button[] buttons)
     {
       if (buttons == null || buttons.Length == 0)
         return;

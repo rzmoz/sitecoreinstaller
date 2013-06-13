@@ -152,6 +152,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NavigationResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings\DatabaseSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -301,6 +306,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NavigationResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings\DatabaseSettings.resx">
       <DependentUpon>DatabaseSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -389,7 +398,9 @@
     <Content Include="Settings\Images\Sources_Active.png" />
     <Content Include="Settings\Images\Sql.png" />
     <Content Include="Settings\Images\Sql_Active.png" />
+    <Content Include="Simple\Images\Install.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
