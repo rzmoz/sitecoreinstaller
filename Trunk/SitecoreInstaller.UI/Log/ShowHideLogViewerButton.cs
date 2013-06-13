@@ -35,7 +35,8 @@ namespace SitecoreInstaller.UI.Log
 
     void _timer_Tick(object sender, EventArgs e)
     {
-      PipelineWorker_WorkerCompleted(sender, new RunWorkerCompletedEventArgs(null, null, false));
+      if (Services.PipelineWorker.IsBusy() == false)
+        PipelineWorker_WorkerCompleted(sender, new RunWorkerCompletedEventArgs(null, null, false));
     }
 
     public LogViewer LogViewer { get; private set; }

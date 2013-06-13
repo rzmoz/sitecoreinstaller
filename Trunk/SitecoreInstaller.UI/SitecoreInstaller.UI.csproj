@@ -224,6 +224,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SimpleResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Simple\UninstallCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Simple\UninstallCtrl.Designer.cs">
+      <DependentUpon>UninstallCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserSelections\SelectLicense.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -337,6 +343,9 @@
     <EmbeddedResource Include="Simple\SimpleResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SimpleResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Simple\UninstallCtrl.resx">
+      <DependentUpon>UninstallCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserSelections\SelectLicense.resx">
       <DependentUpon>SelectLicense.cs</DependentUpon>

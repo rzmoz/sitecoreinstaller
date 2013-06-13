@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI
 {
-  using SitecoreInstaller.App;
   using SitecoreInstaller.UI.Viewport;
 
   public partial class MainSimple : SIUserControl
@@ -22,8 +21,9 @@ namespace SitecoreInstaller.UI
 
     public void Init()
     {
-      openSiteCtrl1.Init();
       installCtrl1.Init();
+      uninstallCtrl1.Init();
+      openSiteCtrl1.Init();
     }
 
     public override bool ProcessKeyPress(Keys keyData)
@@ -38,10 +38,13 @@ namespace SitecoreInstaller.UI
           ViewportStack.Show("SitecoreInstaller.UI.MainDeveloper");
           return true;
         case Keys.B | Keys.Control | Keys.Shift:
-          ViewportStack.Show(installCtrl1);
+          this.btnInstall_Click(this, new EventArgs());
+          return true;
+        case Keys.U | Keys.Control | Keys.Shift:
+          this.btnUninstall_Click(this, new EventArgs());
           return true;
         case Keys.O | Keys.Control:
-          ViewportStack.Show(openSiteCtrl1);
+          btnOpenSite_Click(this, new EventArgs());
           return true;
       }
       return false;
@@ -82,6 +85,11 @@ namespace SitecoreInstaller.UI
     private void btnInstall_Click(object sender, EventArgs e)
     {
       ViewportStack.Show(installCtrl1);
+    }
+
+    private void btnUninstall_Click(object sender, EventArgs e)
+    {
+      ViewportStack.Show(uninstallCtrl1);
     }
   }
 }

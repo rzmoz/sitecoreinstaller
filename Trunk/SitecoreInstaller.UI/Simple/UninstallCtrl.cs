@@ -11,11 +11,12 @@ using System.Windows.Forms;
 namespace SitecoreInstaller.UI.Simple
 {
   using SitecoreInstaller.App;
+  using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.UI.Viewport;
 
-  public partial class OpenSiteCtrl : SIUserControl
+  public partial class UninstallCtrl : SIUserControl
   {
-    public OpenSiteCtrl()
+    public UninstallCtrl()
     {
       InitializeComponent();
     }
@@ -33,7 +34,6 @@ namespace SitecoreInstaller.UI.Simple
       selectProjectName1.Focus();
     }
 
-
     public override bool ProcessKeyPress(Keys keyData)
     {
       //we only activate key board shortcuts, if we're visible
@@ -45,8 +45,8 @@ namespace SitecoreInstaller.UI.Simple
         case Keys.Escape:
           this.btnBack_Click(this, new EventArgs());
           return true;
-        case Keys.O | Keys.Control:
-          this.btnOpenSite_Click(this, new EventArgs());
+        case Keys.U | Keys.Control | Keys.Shift:
+          this.btnUninstall_Click(this, new EventArgs());
           return true;
       }
       return false;
@@ -57,15 +57,15 @@ namespace SitecoreInstaller.UI.Simple
       ViewportStack.Hide(this);
     }
 
-    private void btnOpenSite_Click(object sender, EventArgs e)
+    private void btnUninstall_Click(object sender, EventArgs e)
     {
       if (string.IsNullOrEmpty(selectProjectName1.ProjectName))
       {
         Services.Dialogs.Information("Please select a project");
         return;
       }
-
-      Services.Website.OpenFrontend(Services.ProjectSettings.Iis.Url);
+      Services.Pipelines.Run<UninstallPipeline>();
+      ViewportStack.Hide(this);
     }
   }
 }

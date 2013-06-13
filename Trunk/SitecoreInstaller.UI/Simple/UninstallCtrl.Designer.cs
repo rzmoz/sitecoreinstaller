@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.UI.Simple
 {
-  partial class OpenSiteCtrl
+  partial class UninstallCtrl
   {
     /// <summary> 
     /// Required designer variable.
@@ -28,26 +28,10 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.btnOpenSite = new SitecoreInstaller.UI.Forms.SIButton();
       this.selectProjectName1 = new SitecoreInstaller.UI.UserSelections.SelectProjectName();
       this.btnBack = new SitecoreInstaller.UI.Forms.SIButton();
+      this.btnUninstall = new SitecoreInstaller.UI.Forms.SIButton();
       this.SuspendLayout();
-      // 
-      // btnOpenSite
-      // 
-      this.btnOpenSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnOpenSite.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.btnOpenSite.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnOpenSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnOpenSite.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.btnOpenSite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnOpenSite.Location = new System.Drawing.Point(350, 150);
-      this.btnOpenSite.Name = "btnOpenSite";
-      this.btnOpenSite.Size = new System.Drawing.Size(100, 50);
-      this.btnOpenSite.TabIndex = 0;
-      this.btnOpenSite.Text = "Open Site";
-      this.btnOpenSite.UseVisualStyleBackColor = true;
-      this.btnOpenSite.Click += new System.EventHandler(this.btnOpenSite_Click);
       // 
       // selectProjectName1
       // 
@@ -58,7 +42,7 @@
       this.selectProjectName1.Name = "selectProjectName1";
       this.selectProjectName1.ProjectName = "";
       this.selectProjectName1.Size = new System.Drawing.Size(400, 50);
-      this.selectProjectName1.TabIndex = 1;
+      this.selectProjectName1.TabIndex = 0;
       // 
       // btnBack
       // 
@@ -70,19 +54,35 @@
       this.btnBack.Location = new System.Drawing.Point(50, 150);
       this.btnBack.Name = "btnBack";
       this.btnBack.Size = new System.Drawing.Size(100, 50);
-      this.btnBack.TabIndex = 2;
+      this.btnBack.TabIndex = 4;
       this.btnBack.Text = "Back";
       this.btnBack.UseVisualStyleBackColor = true;
       this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
       // 
-      // OpenSiteCtrl
+      // btnUninstall
+      // 
+      this.btnUninstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnUninstall.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.btnUninstall.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnUninstall.Font = new System.Drawing.Font("Segoe UI", 8F);
+      this.btnUninstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnUninstall.Location = new System.Drawing.Point(350, 150);
+      this.btnUninstall.Name = "btnUninstall";
+      this.btnUninstall.Size = new System.Drawing.Size(100, 50);
+      this.btnUninstall.TabIndex = 3;
+      this.btnUninstall.Text = "Uninstall";
+      this.btnUninstall.UseVisualStyleBackColor = true;
+      this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
+      // 
+      // UninstallCtrl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.btnBack);
+      this.Controls.Add(this.btnUninstall);
       this.Controls.Add(this.selectProjectName1);
-      this.Controls.Add(this.btnOpenSite);
-      this.Name = "OpenSiteCtrl";
+      this.Name = "UninstallCtrl";
       this.Size = new System.Drawing.Size(500, 300);
       this.ResumeLayout(false);
 
@@ -90,8 +90,8 @@
 
     #endregion
 
-    private Forms.SIButton btnOpenSite;
     private UserSelections.SelectProjectName selectProjectName1;
     private Forms.SIButton btnBack;
+    private Forms.SIButton btnUninstall;
   }
 }

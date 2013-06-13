@@ -28,41 +28,13 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.btnInstall = new SitecoreInstaller.UI.Forms.SIButton();
-      this.btnUninstall = new SitecoreInstaller.UI.Forms.SIButton();
       this.btnOpenSite = new SitecoreInstaller.UI.Forms.SIButton();
-      this.openSiteCtrl1 = new SitecoreInstaller.UI.Simple.OpenSiteCtrl();
+      this.btnUninstall = new SitecoreInstaller.UI.Forms.SIButton();
+      this.btnInstall = new SitecoreInstaller.UI.Forms.SIButton();
       this.installCtrl1 = new SitecoreInstaller.UI.Simple.InstallCtrl();
+      this.openSiteCtrl1 = new SitecoreInstaller.UI.Simple.OpenSiteCtrl();
+      this.uninstallCtrl1 = new SitecoreInstaller.UI.Simple.UninstallCtrl();
       this.SuspendLayout();
-      // 
-      // btnInstall
-      // 
-      this.btnInstall.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.btnInstall.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnInstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnInstall.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.btnInstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnInstall.Location = new System.Drawing.Point(32, 92);
-      this.btnInstall.Name = "btnInstall";
-      this.btnInstall.Size = new System.Drawing.Size(100, 100);
-      this.btnInstall.TabIndex = 0;
-      this.btnInstall.Text = "Install";
-      this.btnInstall.UseVisualStyleBackColor = true;
-      this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
-      // 
-      // btnUninstall
-      // 
-      this.btnUninstall.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.btnUninstall.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnUninstall.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.btnUninstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnUninstall.Location = new System.Drawing.Point(189, 92);
-      this.btnUninstall.Name = "btnUninstall";
-      this.btnUninstall.Size = new System.Drawing.Size(100, 100);
-      this.btnUninstall.TabIndex = 1;
-      this.btnUninstall.Text = "Uninstall";
-      this.btnUninstall.UseVisualStyleBackColor = true;
       // 
       // btnOpenSite
       // 
@@ -79,6 +51,46 @@
       this.btnOpenSite.UseVisualStyleBackColor = true;
       this.btnOpenSite.Click += new System.EventHandler(this.btnOpenSite_Click);
       // 
+      // btnUninstall
+      // 
+      this.btnUninstall.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.btnUninstall.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnUninstall.Font = new System.Drawing.Font("Segoe UI", 8F);
+      this.btnUninstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnUninstall.Location = new System.Drawing.Point(189, 92);
+      this.btnUninstall.Name = "btnUninstall";
+      this.btnUninstall.Size = new System.Drawing.Size(100, 100);
+      this.btnUninstall.TabIndex = 1;
+      this.btnUninstall.Text = "Uninstall";
+      this.btnUninstall.UseVisualStyleBackColor = true;
+      this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
+      // 
+      // btnInstall
+      // 
+      this.btnInstall.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.btnInstall.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnInstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnInstall.Font = new System.Drawing.Font("Segoe UI", 8F);
+      this.btnInstall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnInstall.Location = new System.Drawing.Point(32, 92);
+      this.btnInstall.Name = "btnInstall";
+      this.btnInstall.Size = new System.Drawing.Size(100, 100);
+      this.btnInstall.TabIndex = 0;
+      this.btnInstall.Text = "Install";
+      this.btnInstall.UseVisualStyleBackColor = true;
+      this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
+      // 
+      // installCtrl1
+      // 
+      this.installCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.installCtrl1.Location = new System.Drawing.Point(0, 0);
+      this.installCtrl1.Name = "installCtrl1";
+      this.installCtrl1.Size = new System.Drawing.Size(500, 300);
+      this.installCtrl1.TabIndex = 4;
+      this.installCtrl1.TabStop = false;
+      this.installCtrl1.Visible = false;
+      // 
       // openSiteCtrl1
       // 
       this.openSiteCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -89,14 +101,15 @@
       this.openSiteCtrl1.TabStop = false;
       this.openSiteCtrl1.Visible = false;
       // 
-      // installCtrl1
+      // uninstallCtrl1
       // 
-      this.installCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.installCtrl1.Location = new System.Drawing.Point(0, 0);
-      this.installCtrl1.Name = "installCtrl1";
-      this.installCtrl1.Size = new System.Drawing.Size(500, 300);
-      this.installCtrl1.TabIndex = 4;
-      this.installCtrl1.Visible = false;
+      this.uninstallCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.uninstallCtrl1.Location = new System.Drawing.Point(0, 0);
+      this.uninstallCtrl1.Name = "uninstallCtrl1";
+      this.uninstallCtrl1.Size = new System.Drawing.Size(500, 300);
+      this.uninstallCtrl1.TabIndex = 5;
+      this.uninstallCtrl1.TabStop = false;
+      this.uninstallCtrl1.Visible = false;
       // 
       // MainSimple
       // 
@@ -105,6 +118,7 @@
       this.Controls.Add(this.btnOpenSite);
       this.Controls.Add(this.btnUninstall);
       this.Controls.Add(this.btnInstall);
+      this.Controls.Add(this.uninstallCtrl1);
       this.Controls.Add(this.installCtrl1);
       this.Controls.Add(this.openSiteCtrl1);
       this.Name = "MainSimple";
@@ -121,6 +135,7 @@
     private Forms.SIButton btnOpenSite;
     private Simple.OpenSiteCtrl openSiteCtrl1;
     private Simple.InstallCtrl installCtrl1;
+    private Simple.UninstallCtrl uninstallCtrl1;
 
   }
 }
