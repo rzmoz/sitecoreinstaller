@@ -61,12 +61,12 @@
       this.btnOpenSite.Cursor = System.Windows.Forms.Cursors.Hand;
       this.btnOpenSite.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.btnOpenSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnOpenSite.Font = new System.Drawing.Font("Segoe UI", 8F);
+      this.btnOpenSite.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnOpenSite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.btnOpenSite.Location = new System.Drawing.Point(348, 92);
       this.btnOpenSite.Name = "btnOpenSite";
       this.btnOpenSite.Size = new System.Drawing.Size(100, 100);
-      this.btnOpenSite.TabIndex = 8;
+      this.btnOpenSite.TabIndex = 2;
       this.btnOpenSite.UseVisualStyleBackColor = true;
       this.btnOpenSite.Click += new System.EventHandler(this.btnOpenSite_Click);
       // 
@@ -80,7 +80,7 @@
       this.btnUninstall.Location = new System.Drawing.Point(189, 92);
       this.btnUninstall.Name = "btnUninstall";
       this.btnUninstall.Size = new System.Drawing.Size(100, 100);
-      this.btnUninstall.TabIndex = 7;
+      this.btnUninstall.TabIndex = 1;
       this.btnUninstall.UseVisualStyleBackColor = true;
       this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
       // 
@@ -94,7 +94,7 @@
       this.btnInstall.Location = new System.Drawing.Point(32, 92);
       this.btnInstall.Name = "btnInstall";
       this.btnInstall.Size = new System.Drawing.Size(100, 100);
-      this.btnInstall.TabIndex = 6;
+      this.btnInstall.TabIndex = 0;
       this.btnInstall.UseVisualStyleBackColor = true;
       this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
       // 

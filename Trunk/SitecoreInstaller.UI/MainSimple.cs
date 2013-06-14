@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI
 {
+  using SitecoreInstaller.App;
   using SitecoreInstaller.UI.Simple;
   using SitecoreInstaller.UI.Viewport;
 
@@ -40,8 +41,13 @@ namespace SitecoreInstaller.UI
         button.BackColor = Styles.Navigation.Level1.BackColor;
         button.ForeColor = Styles.Navigation.Level1.ForeColor;
         button.FlatAppearance.BorderSize = 0;
-        button.TextImageRelation = TextImageRelation.ImageBeforeText;
       }
+    }
+
+    public override void OnShow()
+    {
+      base.OnShow();
+      btnOpenSite.Text = Services.Projects.GetExistingProjects().Count() + new string(' ', 29);
     }
 
     public override bool ProcessKeyPress(Keys keyData)

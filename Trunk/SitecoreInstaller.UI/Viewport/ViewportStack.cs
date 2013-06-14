@@ -60,7 +60,7 @@
         control.Hide();
         _controlStack.Remove(control);
         if (_controlStack.Any())
-          _controlStack.Peek().Show();
+          Show(_controlStack.Peek());
       }
     }
 
@@ -88,13 +88,13 @@
 
       lock (_controlStack)
       {
+        control.OnShow();
         if (IsVisible(control))
           return;
         control.Show();
         control.BringToFront();
         _controlStack.Remove(control);
         _controlStack.Push(control);
-        control.OnShow();
       }
     }
 
