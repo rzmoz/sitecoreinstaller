@@ -85,5 +85,10 @@ namespace SitecoreInstaller.UI.Log
       rtbLog.SelectionStart = rtbLog.Text.Length;
       rtbLog.ScrollToCaret();
     }
+
+    private void btnClear_Click(object sender, EventArgs e)
+    {
+      Log.This.Clear();
+    }
   }
 }
