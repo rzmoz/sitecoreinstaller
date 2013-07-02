@@ -1,12 +1,11 @@
 # git ignore file
 *_Resharper*
-Trunk/packages/repositories.config
-Trunk/packages/NUnit*
-Trunk/packages/Fluent*
-Trunk/packages/NSubstitute*
-Trunk/*/bin/*
-Trunk/*/obj/*
-Trunk/Build
+packages/repositories.config
+packages/NUnit*
+packages/Fluent*
+packages/NSubstitute*
+*/bin/*
+*/obj/*
 *.user
 *.suo
-Trunk/SitecoreInstaller/*.config
+SitecoreInstaller/*.config
