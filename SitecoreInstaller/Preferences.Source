@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UserPreferences xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectsFolder>c:\inetpub\sitecoreinstallerwwwroot</ProjectsFolder>
+
+  <LocalBuildLibrary>c:\BuildLibrary</LocalBuildLibrary>
+
+  <!-- Should start with dot but not a requirement-->
+  <IisSitePostfix></IisSitePostfix>
+
+  <SqlInstanceName>(local)</SqlInstanceName>
+  <SqlLogin>sa</SqlLogin>
+  <SqlPassword>sa</SqlPassword>
+
+  <!-- Valid values are: true, false (case sensitive!)-->
+  <PromptForUserSettings>true</PromptForUserSettings>
+
+  <!-- Must be positive integer  -->
+  <LicenseExpirationPeriodInDays>14</LicenseExpirationPeriodInDays>
+</UserPreferences>

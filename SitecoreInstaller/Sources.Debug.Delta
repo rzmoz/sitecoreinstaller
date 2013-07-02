@@ -1,0 +1,9 @@
+﻿<?xml version="1.0"?>
+<!-- For more information on using web.config transformation visit http://go.microsoft.com/fwlink/?LinkId=125889 -->
+
+<Sources xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <Manifests>
+    <Manifest Enabled="true" Name="RAR" Parameters="C:\BuildLibraryExternal" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
+    <Manifest Enabled="true" Name="SALES" Parameters="\\fil1dk1.dk.sitecore.net\DATA2\Sitecore\SitecoreInstallerBuildLibrary\Common" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
+  </Manifests>
+</Sources>
