@@ -44,7 +44,6 @@ namespace SitecoreInstaller.UI
     {
       base.OnShow();
       selectProjectName1.UpdateList();
-      selectProjectName1.ProjectName = string.Empty;
       selectProjectName1.FocusTextBox();
     }
 
@@ -57,6 +56,7 @@ namespace SitecoreInstaller.UI
       switch (keyData)
       {
         case Keys.D | Keys.Control | Keys.Shift:
+          selectProjectName1.ProjectName = string.Empty;
           ViewportStack.Show("SitecoreInstaller.UI.MainSimple");
           return true;
         case Keys.B | Keys.Control | Keys.Shift:
