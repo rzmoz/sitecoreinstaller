@@ -68,6 +68,10 @@ namespace SitecoreInstaller.UI
           this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<InstallPipeline>();
           return true;
+        case Keys.C | Keys.Control:
+          selectProjectName1.ProjectName = string.Empty;
+          this.BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
+          return true;
         case Keys.U | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<UninstallPipeline>();
           return true;

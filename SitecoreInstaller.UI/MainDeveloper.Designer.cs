@@ -31,6 +31,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainDeveloper));
       this.pnlUserSelections = new System.Windows.Forms.Panel();
       this.selectProjectName1 = new SitecoreInstaller.UI.UserSelections.SelectProjectName();
       this.selectSitecore1 = new SitecoreInstaller.UI.UserSelections.SelectSitecore();
@@ -107,13 +108,7 @@
       this.rtbKeyboardShortcuts.Size = new System.Drawing.Size(398, 354);
       this.rtbKeyboardShortcuts.TabIndex = 9;
       this.rtbKeyboardShortcuts.TabStop = false;
-      this.rtbKeyboardShortcuts.Text = "CTRL + SHIFT + B = Install\nCTRL + SHIFT + U = Un-Install\nCTRL + SHIFT + R = Re-In" +
-    "stall\n\rCTRL + SHIFT + L = Show / Hide Log\n" +
-        "CTRL + SHIFT + P = Show Preferences\n\n" +
-        
-        "CTRL + SHIFT + O = Open Sitecore\n" +
-        "CTRL + O = Open frontend\n\n"+
-        "CTRL + ALT + O = Open project folder\n";
+      this.rtbKeyboardShortcuts.Text = resources.GetString("rtbKeyboardShortcuts.Text");
       // 
       // MainDeveloper
       // 

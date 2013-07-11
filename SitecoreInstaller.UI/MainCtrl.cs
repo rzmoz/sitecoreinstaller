@@ -125,14 +125,16 @@ namespace SitecoreInstaller.UI
         Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseString(projectConfig.Properties.Sitecore);
         Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = SourceEntry.ParseString(projectConfig.Properties.License);
         Services.ProjectSettings.BuildLibrarySelections.SelectedModules = projectConfig.Properties.Modules.Select(SourceEntry.ParseString);
+
+        if (BuildLibrarySelectionsUpdated != null)
+          BuildLibrarySelectionsUpdated(sender, new GenericEventArgs<BuildLibrarySelections>(Services.ProjectSettings.BuildLibrarySelections));
       }
       else
       {
         Services.ProjectSettings.BuildLibrarySelections = new BuildLibrarySelections();
       }
 
-      if (BuildLibrarySelectionsUpdated != null)
-        BuildLibrarySelectionsUpdated(sender, new GenericEventArgs<BuildLibrarySelections>(Services.ProjectSettings.BuildLibrarySelections));
+     
     }
 
     void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
