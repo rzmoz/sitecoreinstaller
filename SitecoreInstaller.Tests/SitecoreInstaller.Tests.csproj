@@ -73,6 +73,7 @@
     <Compile Include="Framework\IO\StringExtensionsUT.cs" />
     <Compile Include="Framework\Linguistics\SentenceUT.cs" />
     <Compile Include="Framework\Linguistics\WordUT.cs" />
+    <Compile Include="Framework\Scripting\PowerShellRunnerUT.cs" />
     <Compile Include="Framework\System\ObjectExtensionsUT.cs" />
     <Compile Include="Framework\System\ObservableUT.cs" />
     <Compile Include="Framework\System\StringExtensionsUT.cs" />
@@ -84,6 +85,9 @@
     <None Include="Domain\Website\formsSQL.config" />
     <None Include="Domain\Website\formsSQLite.config" />
     <None Include="Framework\Configuration\ConfigFileTest.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Framework\Scripting\Greetings.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

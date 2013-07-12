@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace SitecoreInstaller.Framework.IO
 {
+  using System.Collections.Generic;
   using Ionic.Zip;
 
   public static class FileInfoExtensions
@@ -56,8 +57,6 @@ namespace SitecoreInstaller.Framework.IO
 
     public static void CopyTo(this FileInfo source, Folder target, bool overwrite)
     {
-      if (!source.Exists())
-        return;
       source.CopyTo(target.Directory, overwrite);
     }
 
@@ -69,6 +68,21 @@ namespace SitecoreInstaller.Framework.IO
       var targetFile = target.Combine(source);
       target.CreateIfNotExists();
       source.CopyTo(targetFile.FullName, overwrite);
+    }
+
+    public static void CopyTo(this IEnumerable<FileInfo> files, Folder target, bool overwrite)
+    {
+      foreach (var file in files)
+      {
+        file.CopyTo(target, overwrite);
+      }
+    }
+    public static void CopyTo(this IEnumerable<FileInfo> files, DirectoryInfo target, bool overwrite)
+    {
+      foreach (var file in files)
+      {
+        file.CopyTo(target, overwrite);
+      }
     }
   }
 }

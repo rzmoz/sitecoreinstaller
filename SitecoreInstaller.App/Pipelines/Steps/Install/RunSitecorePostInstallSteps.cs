@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-    public class ExecutePostInstallSteps : Step
+    public class RunSitecorePostInstallSteps : Step
     {
         protected override void InnerInvoke(object sender, StepEventArgs args)
         {

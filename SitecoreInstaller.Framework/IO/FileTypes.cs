@@ -3,11 +3,11 @@
     using global::System.Collections.Generic;
     using global::System.IO;
 
-    public class FileTypes
+    public static class FileTypes
     {
-        private readonly HashSet<string> _knownFileTypes;
+        private static readonly HashSet<string> _knownFileTypes;
 
-        public FileTypes()
+        static FileTypes()
         {
             _knownFileTypes = new HashSet<string>();
             DatabaseDataFile = new FileType("DatabaseDataFile", ".mdf");
@@ -19,18 +19,22 @@
             SitecorePackage = new FileType("SitecorePackage", ".zip");
             _knownFileTypes.Add(SitecorePackage.Extension.ToLower());
             SitecoreUpdate = new FileType("SitecoreUpdatePackage", ".update");
-            _knownFileTypes.Add(SitecorePackage.Extension.ToLower());
+            _knownFileTypes.Add(SitecoreUpdate.Extension.ToLower());
+            PowerShellScript = new FileType("PowerShellScript", ".ps1");
+            _knownFileTypes.Add(PowerShellScript.Extension.ToLower());
         }
 
-        public bool IsNotRegisteredFileType(FileInfo file)
+
+        public static bool IsNotRegisteredFileType(FileInfo file)
         {
             return !_knownFileTypes.Contains(file.Extension.ToLower());
         }
 
-        public FileType DatabaseDataFile { get; private set; }
-        public FileType DatabaseLogFile { get; private set; }
-        public FileType SitecoreConfigFile { get; private set; }
-        public FileType SitecorePackage { get; private set; }
-        public FileType SitecoreUpdate { get; private set; }
+        public static FileType DatabaseDataFile { get; private set; }
+        public static FileType DatabaseLogFile { get; private set; }
+        public static FileType SitecoreConfigFile { get; private set; }
+        public static FileType SitecorePackage { get; private set; }
+        public static FileType SitecoreUpdate { get; private set; }
+        public static FileType PowerShellScript { get; private set; }
     }
 }
