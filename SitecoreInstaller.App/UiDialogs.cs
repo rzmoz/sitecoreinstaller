@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Windows.Forms;
-using SitecoreInstaller.Framework.System;
+using SitecoreInstaller.Framework.Sys;
 namespace SitecoreInstaller.App
 {
   using System;

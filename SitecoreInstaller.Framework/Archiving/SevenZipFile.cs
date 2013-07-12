@@ -4,7 +4,7 @@ namespace SitecoreInstaller.Framework.Archiving
 {
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.IO;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   using global::System.IO;
 

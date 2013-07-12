@@ -7,7 +7,7 @@ namespace SitecoreInstaller.Domain.WebServer
 {
   using System.Runtime.Serialization;
 
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   [DataContract]
   public class ClrVersion : EnumClass

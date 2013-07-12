@@ -1,4 +1,4 @@
-﻿namespace SitecoreInstaller.Framework.System.Converters
+﻿namespace SitecoreInstaller.Framework.Sys.Converters
 {
   public class StringConverter : Converter
   {

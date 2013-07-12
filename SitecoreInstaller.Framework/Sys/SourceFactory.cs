@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace SitecoreInstaller.Framework.System
+namespace SitecoreInstaller.Framework.Sys
 {
     public class SourceFactory
     {

@@ -1,7 +1,7 @@
 ﻿namespace SitecoreInstaller.UI.Forms
 {
   using System.Windows.Forms;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   public class SIButton : Button
   {

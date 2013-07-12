@@ -7,7 +7,7 @@ namespace SitecoreInstaller.Framework.Configuration
 {
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.IO;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   public sealed class ConfigFile<T> where T : IConfig, new()
   {

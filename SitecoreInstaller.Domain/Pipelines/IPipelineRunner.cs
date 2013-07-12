@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-    using SitecoreInstaller.Framework.System;
+    using SitecoreInstaller.Framework.Sys;
 
     public interface IPipelineRunner
     {

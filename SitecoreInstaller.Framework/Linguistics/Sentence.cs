@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Framework.Linguistics
 {
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   public class Sentence
   {

@@ -9,7 +9,7 @@ namespace SitecoreInstaller.Domain.WebServer
     using System.Security;
 
     using SitecoreInstaller.Framework.Diagnostics;
-    using SitecoreInstaller.Framework.System;
+    using SitecoreInstaller.Framework.Sys;
 
     public class HostFile
     {

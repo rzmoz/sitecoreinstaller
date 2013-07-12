@@ -4,7 +4,7 @@
     using System.ComponentModel;
 
     using SitecoreInstaller.Framework.Diagnostics;
-    using SitecoreInstaller.Framework.System;
+    using SitecoreInstaller.Framework.Sys;
 
     public class PipelineWorker
     {

@@ -7,7 +7,7 @@ namespace SitecoreInstaller.App.Test.System
 {
     using NUnit.Framework;
 
-    using SitecoreInstaller.Framework.System;
+    using SitecoreInstaller.Framework.Sys;
 
     [TestFixture]
     public class TypeExtensionsUT

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SitecoreInstaller.Framework.System
+namespace SitecoreInstaller.Framework.Sys
 {
   public static class TypeExtensions
   {

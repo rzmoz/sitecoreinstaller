@@ -9,7 +9,7 @@ namespace SitecoreInstaller.Framework.Test.System
 
     using NUnit.Framework;
 
-    using SitecoreInstaller.Framework.System;
+    using SitecoreInstaller.Framework.Sys;
 
     [TestFixture]
     public class ObjectExtensionsUT

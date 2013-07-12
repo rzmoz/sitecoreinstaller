@@ -6,7 +6,7 @@ namespace SitecoreInstaller.UI.Navigation
 {
   using System.Collections;
   using System.Windows.Forms;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
   using SitecoreInstaller.UI.Forms;
 
   public class NavigationCtrlList : IEnumerable<NavButton>

@@ -3,7 +3,7 @@
 namespace SitecoreInstaller.UI.Forms
 {
   using System.Drawing;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   public class SIButtonWithActiveState : SIButton
   {

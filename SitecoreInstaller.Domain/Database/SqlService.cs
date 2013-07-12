@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 
 using SitecoreInstaller.Framework.IO;
-using SitecoreInstaller.Framework.System;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Domain.Database
 {

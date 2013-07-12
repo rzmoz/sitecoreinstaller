@@ -9,7 +9,7 @@ namespace SitecoreInstaller.Tests.Framework.System
   using FluentAssertions;
   using NUnit.Framework;
   using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   [TestFixture]
   public class ObservableUT

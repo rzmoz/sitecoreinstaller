@@ -6,7 +6,7 @@
   using System.Windows.Forms;
   using SitecoreInstaller.App;
   using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
   using SitecoreInstaller.UI.ListBoxes;
 
   public partial class SelectModules : SourceEntryCheckedListBox

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SitecoreInstaller.Framework.System.Converters
+namespace SitecoreInstaller.Framework.Sys.Converters
 {
   public static class ConverterFactory
   {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SitecoreInstaller.Framework.System
+namespace SitecoreInstaller.Framework.Sys
 {
-  using SitecoreInstaller.Framework.System.Converters;
+  using SitecoreInstaller.Framework.Sys.Converters;
   using global::System.Reflection;
 
   public static class ObjectExtensions

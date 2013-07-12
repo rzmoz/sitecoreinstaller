@@ -14,7 +14,7 @@ namespace SitecoreInstaller.UI
 
     using SitecoreInstaller.App;
     using SitecoreInstaller.Domain.Database;
-    using SitecoreInstaller.Framework.System;
+    using SitecoreInstaller.Framework.Sys;
 
     public partial class SelectDatabases : Form
     {

@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace SitecoreInstaller.Framework.Configuration {
-    using System;
+    using SitecoreInstaller.Framework.Sys;
     
     
     /// <summary>

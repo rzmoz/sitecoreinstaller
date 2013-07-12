@@ -1,4 +1,4 @@
-﻿namespace SitecoreInstaller.Framework.System
+﻿namespace SitecoreInstaller.Framework.Sys
 {
   public class CommandPromptResult
   {

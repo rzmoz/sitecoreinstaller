@@ -10,7 +10,7 @@ namespace SitecoreInstaller.UI.Log
   using System.Windows.Forms;
   using SitecoreInstaller.App;
   using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
   using SitecoreInstaller.UI.Forms;
   using SitecoreInstaller.UI.Viewport;
 

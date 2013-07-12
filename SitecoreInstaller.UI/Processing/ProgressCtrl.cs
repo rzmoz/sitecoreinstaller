@@ -13,7 +13,7 @@ namespace SitecoreInstaller.UI.Processing
   using SitecoreInstaller.App;
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
   using SitecoreInstaller.UI.Viewport;
 
   public partial class ProgressCtrl : SIUserControl

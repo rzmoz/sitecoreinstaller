@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.Linguistics;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   public abstract class Precondition : IPrecondition
   {

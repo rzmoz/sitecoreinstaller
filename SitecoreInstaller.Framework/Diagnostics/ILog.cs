@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller.Framework.Diagnostics
 {
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   public interface ILog
   {

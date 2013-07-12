@@ -1,4 +1,4 @@
-﻿namespace SitecoreInstaller.Framework.System
+﻿namespace SitecoreInstaller.Framework.Sys
 {
     using global::System.Runtime.Serialization;
 

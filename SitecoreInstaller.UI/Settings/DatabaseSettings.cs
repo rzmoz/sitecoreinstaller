@@ -4,7 +4,7 @@ namespace SitecoreInstaller.UI.Settings
 {
   using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   public partial class DatabaseSettings : UserSettingsCtrl
   {

@@ -3,7 +3,7 @@
 namespace SitecoreInstaller.Tests.Framework.System
 {
   using NUnit.Framework;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
   using FluentAssertions;
 
   [TestFixture]

@@ -4,7 +4,7 @@
   using System.Windows.Forms;
 
   using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   public abstract class SourceEntryComboBox : SourceEntryListControl<ComboBox>
   {

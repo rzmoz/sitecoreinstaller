@@ -9,7 +9,7 @@ namespace SitecoreInstaller.Domain.Pipelines
   using System.Threading;
 
   using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   /// <summary>
   /// Use as decorator for classes that have methods with StepAttributes

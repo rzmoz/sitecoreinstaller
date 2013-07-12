@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace SitecoreInstaller.Framework.System
+namespace SitecoreInstaller.Framework.Sys
 {
   public static class StringExtensions
   {

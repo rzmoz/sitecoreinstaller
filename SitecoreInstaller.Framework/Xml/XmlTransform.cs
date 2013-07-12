@@ -3,7 +3,7 @@ using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.Framework.Xml
 {
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   public class XmlTransform : CommandPrompt
   {

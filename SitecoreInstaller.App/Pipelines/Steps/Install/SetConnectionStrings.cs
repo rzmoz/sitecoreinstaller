@@ -12,7 +12,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     using SitecoreInstaller.Domain.Database;
     using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Domain.Website;
-    using SitecoreInstaller.Framework.System;
+    using SitecoreInstaller.Framework.Sys;
     using SitecoreInstaller.Framework.Xml;
 
     public class SetConnectionStrings : Step

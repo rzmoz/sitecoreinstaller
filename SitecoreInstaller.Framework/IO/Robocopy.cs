@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller.Framework.IO
 {
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
   using global::System.IO;
 
   public class Robocopy : CommandPrompt

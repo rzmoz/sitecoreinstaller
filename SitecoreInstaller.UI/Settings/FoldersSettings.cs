@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace SitecoreInstaller.UI.Settings
 {
   using SitecoreInstaller.App;
-  using SitecoreInstaller.Framework.System;
+  using SitecoreInstaller.Framework.Sys;
 
   public partial class FoldersSettings : UserSettingsCtrl
   {

@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Test.IO
 
     using NUnit.Framework;
 
-    using SitecoreInstaller.Framework.System;
+    using SitecoreInstaller.Framework.Sys;
 
     using global::System.IO;
 
