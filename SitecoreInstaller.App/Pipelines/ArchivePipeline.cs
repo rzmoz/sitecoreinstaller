@@ -1,6 +1,7 @@
 ﻿namespace SitecoreInstaller.App.Pipelines
 {
   using SitecoreInstaller.App.Pipelines.Preconditions;
+  using SitecoreInstaller.App.Pipelines.Steps;
   using SitecoreInstaller.App.Pipelines.Steps.Archiving;
   using SitecoreInstaller.App.Pipelines.Steps.Install;
   using SitecoreInstaller.App.Pipelines.Steps.Uninstall;
@@ -25,6 +26,7 @@
       AddStep<CopyLicensefile>();
       AddStep<AttachDatabases>();
       AddStep<StartApplication>();
+      AddStep<WarmUpNoWait>();
     }
   }
 }

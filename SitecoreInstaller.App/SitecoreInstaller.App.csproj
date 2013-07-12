@@ -103,6 +103,7 @@
     <Compile Include="Pipelines\Steps\SqlSettings\VerifySqlConnection.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPostUninstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPreUninstallPowerShellScripts.cs" />
+    <Compile Include="Pipelines\Steps\WarmUpNoWait.cs" />
     <Compile Include="SelectDatabases.cs">
       <SubType>Form</SubType>
     </Compile>

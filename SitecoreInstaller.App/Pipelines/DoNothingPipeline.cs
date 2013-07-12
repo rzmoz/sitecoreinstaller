@@ -2,6 +2,7 @@
 
 namespace SitecoreInstaller.App.Pipelines
 {
+  using SitecoreInstaller.App.Pipelines.Steps;
   using SitecoreInstaller.App.Pipelines.Steps.Nothing;
 
   public class DoNothingPipeline : Pipeline
@@ -11,6 +12,7 @@ namespace SitecoreInstaller.App.Pipelines
       //Init steps
       AddStep<DoNothing>();
       AddStep<DoNothingForAWhile>();
+      AddStep<WarmUpNoWait>();
     }
   }
 }

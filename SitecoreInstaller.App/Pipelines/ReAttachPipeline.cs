@@ -5,23 +5,25 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-    using SitecoreInstaller.App.Pipelines.Preconditions;
-    using SitecoreInstaller.App.Pipelines.Steps.Install;
-    using SitecoreInstaller.Domain.Pipelines;
+  using SitecoreInstaller.App.Pipelines.Preconditions;
+  using SitecoreInstaller.App.Pipelines.Steps;
+  using SitecoreInstaller.App.Pipelines.Steps.Install;
+  using SitecoreInstaller.Domain.Pipelines;
 
-    public class ReAttachPipeline : Pipeline
+  public class ReAttachPipeline : Pipeline
+  {
+    public ReAttachPipeline()
     {
-        public ReAttachPipeline()
-        {
-            //Init preconditions
-            AddPrecondition<CheckProjectNameIsSet>();
-            AddPrecondition<CheckWritePermissionToHostFile>();
-            AddPrecondition<CheckSqlConnection>();
+      //Init preconditions
+      AddPrecondition<CheckProjectNameIsSet>();
+      AddPrecondition<CheckWritePermissionToHostFile>();
+      AddPrecondition<CheckSqlConnection>();
 
-            //Init steps
-            AddStep<AttachDatabases>();
-            AddStep<AddSitenameToHostFile>();
-            AddStep<CreateIisSiteAndAppPool>();
-        }
+      //Init steps
+      AddStep<AttachDatabases>();
+      AddStep<AddSitenameToHostFile>();
+      AddStep<CreateIisSiteAndAppPool>();
+      AddStep<WarmUpNoWait>();
     }
+  }
 }

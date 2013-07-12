@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 
+
 using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.Domain.Website
@@ -262,7 +263,7 @@ namespace SitecoreInstaller.Domain.Website
       HttpWebResponse response;
       do
       {
-        response = TheWww.FetchUrl(url);
+        response = TheWww.CallUrlOnce(url);
         if (response == null)
         {
           Log.This.Error("Faild to install {0}", url);

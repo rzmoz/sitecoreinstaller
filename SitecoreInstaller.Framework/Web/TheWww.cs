@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 namespace SitecoreInstaller.Framework.Web
 {
   using System.Net;
+  using System.Threading;
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.Sys;
 
-  public  class TheWww
+  public class TheWww
   {
-    public static void CallUrl(Uri url)
+    public static void CallUrl(Uri url, int retryCount = 100)
     {
-      const int retries = 100;
-
-      for (var tryCount = 1; tryCount <= retries; tryCount++)
+      for (var tryCount = 1; tryCount <= retryCount; tryCount++)
       {
-        var response = FetchUrl(url);
+        var response = CallUrlOnce(url);
         if (response != null && response.StatusCode == HttpStatusCode.OK)
         {
           Log.This.Debug("'{0}' responded: '{1}'", url.ToString(), response.StatusDescription);
@@ -28,7 +27,12 @@ namespace SitecoreInstaller.Framework.Web
       Log.This.Error("'{0}' never responded OK.", url.ToString());
     }
 
-    public static HttpWebResponse FetchUrl(Uri url)
+    public static void CallUrlOnceNoWait(Uri uri)
+    {
+      ThreadPool.QueueUserWorkItem(t => CallUrlOnce(uri));
+    }
+
+    public static HttpWebResponse CallUrlOnce(Uri url)
     {
       try
       {

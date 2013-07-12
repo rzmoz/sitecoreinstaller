@@ -3,6 +3,7 @@
 namespace SitecoreInstaller.App.Pipelines
 {
   using SitecoreInstaller.App.Pipelines.Preconditions;
+  using SitecoreInstaller.App.Pipelines.Steps;
   using SitecoreInstaller.App.Pipelines.Steps.Install;
 
   public class InstallPipeline : Pipeline
@@ -37,6 +38,7 @@ namespace SitecoreInstaller.App.Pipelines
       AddStep<RunPostInstallPowerShellScripts>();
       AddStep<RunSitecorePostInstallSteps>();
       AddStep<RunPostInstallPowerShellScripts>();
+      AddStep<WarmUpNoWait>();
     }
   }
 }

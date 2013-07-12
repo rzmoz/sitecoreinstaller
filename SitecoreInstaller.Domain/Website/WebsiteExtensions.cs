@@ -7,7 +7,7 @@ namespace SitecoreInstaller.Domain.Website
 {
   using SitecoreInstaller.Framework.Diagnostics;
 
-  internal static class WebsiteExtensions
+  public static class WebsiteExtensions
   {
     public static Uri ToUri(this string baseUrl, params string[] subPaths)
     {
