@@ -54,7 +54,8 @@ namespace SitecoreInstaller.Framework.IO
         Log.This.Debug("Folder created: '{0}'", folder.FullName);
       }
     }
-    public static void DeleteWithLog(this DirectoryInfo folder)
+
+    public static void DeleteWithLog(this DirectoryInfo folder, OnFail onFail = OnFail.LogError)
     {
       const int retries = 15;
 
@@ -89,6 +90,9 @@ namespace SitecoreInstaller.Framework.IO
           Thread.Sleep(1000);
         }
       }
+
+      if (onFail == OnFail.Ignore)
+        return;
 
       if (folder.Exists())
         Log.This.Error("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);

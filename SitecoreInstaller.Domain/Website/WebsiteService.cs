@@ -18,9 +18,7 @@ namespace SitecoreInstaller.Domain.Website
   {
     private const string _InstallerPath = "temp/SitecoreInstaller";
     private const string _KeepAlivePingPath = "/sitecore/service/keepalive.aspx";
-    private const string _SitecorePingPath = "/sitecore/login/";
-    private const string _SiteRootPingPath = "/";
-
+    
     private const string _AdminLoginName = "AdminLogin.aspx";
     private const string _InstallPackageServiceName = "InstallPackageService.aspx";
     private const string _InstallPackageStatusName = "InstallPackageStatus.aspx";
@@ -56,8 +54,7 @@ namespace SitecoreInstaller.Domain.Website
       sitecoreDataFolder.CopyTo(projectFolder.Data, DirCopyOptions.IncludeSubDirectories);
 
       //Copy rest of files as is
-      foreach (var file in sitecore.Directory.GetFiles())
-        file.CopyTo(projectFolder, true);
+      sitecore.Directory.GetFiles().CopyTo(projectFolder, true);
 
       Log.This.Info("Sitecore copied");
     }
@@ -252,13 +249,6 @@ namespace SitecoreInstaller.Domain.Website
     {
       Log.This.Info("Waking up site...");
       TheWww.CallUrl(siteBaseUrl.ToUri(_KeepAlivePingPath));
-    }
-
-    public void WarmUpSite(string siteBaseUrl)
-    {
-      Log.This.Info("Warming up site...");
-      TheWww.CallUrl(siteBaseUrl.ToUri(_SitecorePingPath));
-      TheWww.CallUrl(siteBaseUrl.ToUri(_SiteRootPingPath));
     }
 
     public void CreateWffmConfigFile(string connectionString, FileInfo wffmConfigFile)

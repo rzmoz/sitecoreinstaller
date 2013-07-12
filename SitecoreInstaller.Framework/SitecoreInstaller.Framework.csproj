@@ -115,6 +115,7 @@
     <Compile Include="IO\Folder.cs" />
     <Compile Include="IO\IOService.cs" />
     <Compile Include="IO\FileNameExtensions.cs" />
+    <Compile Include="IO\OnFail.cs" />
     <Compile Include="IO\Robocopy.cs" />
     <Compile Include="IO\FileTypes.cs" />
     <Compile Include="Diagnostics\Profiler.cs" />

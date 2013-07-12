@@ -121,6 +121,7 @@
     <value>CTRL + SHIFT + B = Install
 CTRL + SHIFT + U = Un-Install
 CTRL + SHIFT + R = Re-Install
+CTRL + SHIFT + A = Archive
 
 CTRL + SHIFT + L = Show / Hide Log
 CTRL + SHIFT + P = Show Preferences

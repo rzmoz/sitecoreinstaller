@@ -19,16 +19,16 @@ namespace SitecoreInstaller.Domain.Projects
     {
       return _projectsFolder.GetSubFolders("Existing project");
     }
-
+    
     public void CleanProjectForArchiving(ProjectFolder projectFolder)
     {
       Log.This.Info("Cleaning project for archiving '{0}'", projectFolder.Name);
-      projectFolder.IisLogFiles.DeleteWithLog();
-      projectFolder.Data.Viewstate.Clean();
-      projectFolder.Data.Logs.Clean();
-      projectFolder.Data.Audit.Clean();
-      projectFolder.Data.Packages.Clean();
-      projectFolder.Website.Temp.Clean();
+      projectFolder.IisLogFiles.Clean(OnFail.Ignore);
+      projectFolder.Data.Viewstate.Clean(OnFail.Ignore);
+      projectFolder.Data.Logs.Clean(OnFail.Ignore);
+      projectFolder.Data.Audit.Clean(OnFail.Ignore);
+      projectFolder.Data.Packages.Clean(OnFail.Ignore);
+      projectFolder.Website.Temp.Clean(OnFail.Ignore);
       projectFolder.ProjectSettingsConfigFile.Path.Delete();
       projectFolder.Data.LicenseFile.Delete();
     }

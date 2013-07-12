@@ -13,7 +13,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
     using SitecoreInstaller.Framework.Diagnostics;
     using SitecoreInstaller.Framework.IO;
 
-    public class ZipAndMoveProjectToArchiveFolder : Step
+    public class ZipAndMoveToArchiveFolder : Step
     {
         protected override void InnerInvoke(object sender, StepEventArgs args)
         {

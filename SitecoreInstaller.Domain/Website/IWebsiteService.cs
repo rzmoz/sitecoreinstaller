@@ -19,7 +19,6 @@ namespace SitecoreInstaller.Domain.Website
         void DeserializeItems(string baseUrl);
         void ExecutePostInstallSteps(string baseUrl, DirectoryInfo websiteFolder);
         void WakeUpSite(string siteBaseUrl);
-        void WarmUpSite(string siteBaseUrl);
 
         void CreateWffmConfigFile(string connectionString, FileInfo wffmConfigFile);
     }

@@ -18,9 +18,9 @@ namespace SitecoreInstaller.Framework.IO
       _fileSystemInfoFactory = new FileSystemInfoFactory();
     }
 
-    public static void Clean(this DirectoryInfo dir)
+    public static void Clean(this DirectoryInfo dir, OnFail onFail = OnFail.LogError)
     {
-      dir.DeleteWithLog();
+      dir.DeleteWithLog(onFail);
       dir.CreateIfNotExists();
     }
 

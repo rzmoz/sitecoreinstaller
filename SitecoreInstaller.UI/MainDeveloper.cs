@@ -79,6 +79,10 @@ namespace SitecoreInstaller.UI
           this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
           return true;
+        case Keys.A | Keys.Control | Keys.Shift:
+          this.UpdateBuildLibrarySelections();
+          Services.Pipelines.Run<ArchivePipeline>();
+          return true;
         case Keys.O | Keys.Control:
           Services.Website.OpenFrontend(Services.ProjectSettings.Iis.Url);
           return true;
