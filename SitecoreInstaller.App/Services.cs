@@ -19,6 +19,7 @@ namespace SitecoreInstaller.App
     static Services()
     {
       Pipelines = new PipelineService();
+      PowerShellScripts = new PowerShellScriptService();
       Website = new WebsiteService();
       Dialogs = new UiDialogs();
       IisManagement = new IisManagementService();
@@ -70,14 +71,16 @@ namespace SitecoreInstaller.App
     private static SourceManifestRepository SourceManifests { get; set; }
     public static ConfigFile<UserPreferencesConfig> UserPreferences { get; private set; }
 
-    public static ProjectSettings ProjectSettings { get; set; }
+    public static ProjectSettings ProjectSettings { get; private set; }
     public static PipelineService Pipelines { get; private set; }
-    public static ISourceRepository BuildLibrary { get; set; }
-    public static ProjectsService Projects { get; set; }
-    public static IWebsiteService Website { get; set; }
-    public static IIisManagementService IisManagement { get; set; }
-    public static ISqlService Sql { get; set; }
-    public static UiDialogs Dialogs { get; set; }
-    public static PipelineWorker PipelineWorker { get; set; }
+    public static PowerShellScriptService PowerShellScripts { get; private set; }
+    public static ISourceRepository BuildLibrary { get; private set; }
+    public static ProjectsService Projects { get; private set; }
+    public static IWebsiteService Website { get; private set; }
+    public static IIisManagementService IisManagement { get; private set; }
+    public static ISqlService Sql { get; private set; }
+    public static UiDialogs Dialogs { get; private set; }
+    public static PipelineWorker PipelineWorker { get; private set; }
+    
   }
 }

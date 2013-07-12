@@ -22,6 +22,7 @@ namespace SitecoreInstaller.App.Pipelines
       AddStep<CreateProjectFolder>();
       AddStep<GrantPermissions>();
       AddStep<SaveProjectSettings>();
+      AddStep<RunPreInstallPowerShellScripts>();
       AddStep<CopySitecore>();
       AddStep<CopyLicensefile>();
       AddStep<SetDataFolder>();
@@ -35,6 +36,7 @@ namespace SitecoreInstaller.App.Pipelines
       AddStep<DeserializeItems>();
       AddStep<RunPostInstallPowerShellScripts>();
       AddStep<RunSitecorePostInstallSteps>();
+      AddStep<RunPostInstallPowerShellScripts>();
     }
   }
 }

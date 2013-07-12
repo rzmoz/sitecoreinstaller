@@ -8,18 +8,18 @@
 
   public class PowerShellRunner
   {
-    public string RunPowerShellFunction(string method, KeyValuePair<string, object> arg, string scriptPath)
+    public string RunPowerShellFunction(string method, KeyValuePair<string, object> arg, FileInfo script)
     {
       if (method == null) { throw new ArgumentNullException("method"); }
-      if (scriptPath == null) { throw new ArgumentNullException("scriptPath"); }
-      var scriptFullPath = Path.GetFullPath(scriptPath);
+      if (script == null) { throw new ArgumentNullException("scriptPath"); }
 
-      if (File.Exists(scriptFullPath) == false)
-        throw new ArgumentException("Script not found at:" + scriptPath);
+
+      if (File.Exists(script.FullName) == false)
+        throw new ArgumentException("Script not found at:" + script.FullName);
 
       using (var ps = PowerShell.Create())
       {
-        ps.AddScript(". '" + scriptFullPath + "'", false);
+        ps.AddScript(". '" + script.FullName + "'", false);
         ps.Invoke();
 
         ps.Commands.Clear();

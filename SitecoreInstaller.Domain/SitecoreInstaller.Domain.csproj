@@ -185,6 +185,7 @@
     <Compile Include="Pipelines\PreconditionEventArgs.cs" />
     <Compile Include="ProjectFolder.cs" />
     <Compile Include="Projects\ProjectSettingsConfig.cs" />
+    <Compile Include="WebServer\PowerShellScriptService.cs" />
     <Compile Include="WebsiteFolder.cs" />
     <Compile Include="Website\DataProviderType.cs" />
     <Compile Include="Website\WffmConfigFile.cs" />

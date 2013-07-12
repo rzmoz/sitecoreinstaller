@@ -1,10 +1,10 @@
 ﻿namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class RunPostInstallPowerShellScripts : PowerShellScriptStep
+  public class RunPreInstallPowerShellScripts : PowerShellScriptStep
   {
     protected override string MethodName
     {
-      get { return "Post-Install"; }
+      get { return "Pre-Install"; }
     }
   }
 }

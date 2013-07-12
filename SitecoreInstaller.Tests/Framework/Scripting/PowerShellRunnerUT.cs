@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileInfo = System.IO.FileInfo;
 
 namespace SitecoreInstaller.Tests.Framework.Scripting
 {
@@ -24,7 +25,7 @@ namespace SitecoreInstaller.Tests.Framework.Scripting
     [Test]
     public void RunPowerShellFunction_ExecuteScript_HelloworldIsOutputted()
     {
-      var result = _psr.RunPowerShellFunction("Greet", new KeyValuePair<string, object>("greetee", "World"), @".\framework\scripting\greetings.ps1");
+      var result = _psr.RunPowerShellFunction("Greet", new KeyValuePair<string, object>("greetee", "World"),new FileInfo(@".\framework\scripting\greetings.ps1"));
 
       result.Should().Be("Hello World!");
     }

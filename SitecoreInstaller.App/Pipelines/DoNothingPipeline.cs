@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-
-using SitecoreInstaller.Domain.Pipelines;
+﻿using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {

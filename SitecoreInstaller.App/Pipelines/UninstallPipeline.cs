@@ -1,30 +1,28 @@
-﻿using System;
-using SitecoreInstaller.Domain.Pipelines;
+﻿using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-    using System.Collections.Generic;
+  using SitecoreInstaller.App.Pipelines.Preconditions;
+  using SitecoreInstaller.App.Pipelines.Steps.Uninstall;
 
-    using SitecoreInstaller.App.Pipelines.Preconditions;
-    using SitecoreInstaller.App.Pipelines.Steps.Install;
-    using SitecoreInstaller.App.Pipelines.Steps.Uninstall;
-
-    public class UninstallPipeline : Pipeline
+  public class UninstallPipeline : Pipeline
+  {
+    public UninstallPipeline()
     {
-        public UninstallPipeline()
-        {
-            //Init preconditions
-            AddPrecondition<CheckProjectNameIsSet>();
-            AddPrecondition<CheckWritePermissionToHostFile>();
-            AddPrecondition<CheckProjectExists>();
-            AddPrecondition<CheckSqlConnection>();
+      //Init preconditions
+      AddPrecondition<CheckProjectNameIsSet>();
+      AddPrecondition<CheckWritePermissionToHostFile>();
+      AddPrecondition<CheckProjectExists>();
+      AddPrecondition<CheckSqlConnection>();
 
-            //Init steps
-            AddStep<StopApplication>();
-            AddStep<DetachDatabases>();
-            AddStep<DeleteIisSiteAndAppPool>();
-            AddStep<DeleteSiteFromHostFile>();
-            AddStep<DeleteProject>();
-        }
+      //Init steps
+      AddStep<RunPreUninstallPowerShellScripts>();
+      AddStep<StopApplication>();
+      AddStep<DetachDatabases>();
+      AddStep<DeleteIisSiteAndAppPool>();
+      AddStep<DeleteSiteFromHostFile>();
+      AddStep<DeleteProject>();
+      AddStep<RunPostUninstallPowerShellScripts>();
     }
+  }
 }
