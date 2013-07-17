@@ -22,8 +22,6 @@ namespace SitecoreInstaller.UI
 
     private void MainCtrl_Load(object sender, EventArgs e)
     {
-      Services.Init();
-
       InitPipelineWorker();
       InitProjectSettings();
 

@@ -11,6 +11,7 @@ using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.App
 {
+  using System.Threading.Tasks;
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.Pipelines;
 
@@ -28,24 +29,30 @@ namespace SitecoreInstaller.App
       SourceManifests = new SourceManifestRepository(new FileInfo(AppConstants.SourcesConfigFileName));
     }
 
-    public static void Init()
+    public static async Task InitAsync()
     {
-      LoadUserPreferences();
+      await Task.Factory.StartNew(() =>
+      {
+        LoadUserPreferences();
 
-      //init before initializing build library
-      SourceManifests.Init();
+        //init before initializing build library
+        SourceManifests.Init();
 
-      var localBuildLibrary = new WindowsFileSystemSource(string.Empty) { Parameters = UserPreferences.Properties.LocalBuildLibrary };
-      if (BuildLibrary == null)
-        BuildLibrary = new LocalSourceRepository(localBuildLibrary, SourceManifests.Enabled.Select(Create));
-      else
-        ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, SourceManifests.Enabled.Select(Create));
+        var localBuildLibrary = new WindowsFileSystemSource(string.Empty)
+        {
+          Parameters = UserPreferences.Properties.LocalBuildLibrary
+        };
+        if (BuildLibrary == null)
+          BuildLibrary = new LocalSourceRepository(localBuildLibrary, SourceManifests.Enabled.Select(Create));
+        else
+          ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, SourceManifests.Enabled.Select(Create));
 
-      BuildLibrary.Update();
+        BuildLibrary.Update();
 
-      Projects = new ProjectsService(UserPreferences.Properties.ProjectsFolder);
+        Projects = new ProjectsService(UserPreferences.Properties.ProjectsFolder);
 
-      Sql = new SqlService();
+        Sql = new SqlService();
+      });
     }
 
     private static void LoadUserPreferences()
