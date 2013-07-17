@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Framework.Web
 {
+  using System.IO;
   using System.Net;
   using System.Threading;
   using SitecoreInstaller.Framework.Diagnostics;
@@ -13,6 +14,13 @@ namespace SitecoreInstaller.Framework.Web
 
   public class TheWww
   {
+    public static void DownloadFile(Uri uri,FileInfo targetFile, int timeoutInMs = 5000)
+    {
+      var wc = new WebClient();
+      wc.DownloadFile(uri, targetFile.FullName);
+    }
+
+
     public static void CallUrl(Uri url, int retryCount = 100)
     {
       for (var tryCount = 1; tryCount <= retryCount; tryCount++)

@@ -2,16 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace SitecoreInstaller.Framework.Sys
 {
   public static class StringExtensions
   {
-    private const string _Slash = "/";
-    private const string _MultipleSlashRegexFormat = "[/]{2,}";
-    private static readonly Regex _multipleSlashRegex = new Regex(_MultipleSlashRegexFormat, RegexOptions.Compiled);
-
     public static string ToSpaceDelimiteredString(this string str)
     {
       return str.TokenizeWhenCharIsUpper().ToDelimiteredString();
@@ -31,16 +26,6 @@ namespace SitecoreInstaller.Framework.Sys
         resolvedName.Append(@char);
       }
       return resolvedName.ToString().Trim().Split(' ');
-    }
-
-    public static string UrlCombine(this string str, params string[] paths)
-    {
-      foreach (var path in paths)
-      {
-        str += "/" + path;
-      }
-      str = str.Replace(@"\", _Slash);
-      return _multipleSlashRegex.Replace(str, _Slash);
     }
   }
 }

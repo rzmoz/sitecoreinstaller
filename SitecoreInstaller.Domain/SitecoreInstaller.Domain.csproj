@@ -152,6 +152,7 @@
     <Compile Include="BuildLibrary\BuildLibraryFile.cs" />
     <Compile Include="BuildLibrary\BuildLibraryFolders.cs" />
     <Compile Include="BuildLibrary\BuildLibrarySelections.cs" />
+    <Compile Include="BuildLibrary\ExternalSource.cs" />
     <Compile Include="BuildLibrary\LicenseFile.cs" />
     <Compile Include="BuildLibrary\BuildLibraryResource.cs" />
     <Compile Include="BuildLibrary\BuildLibraryResourceFactory.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Database\ConnectionStringFormats.cs" />
     <Compile Include="Database\SqlDatabase.cs" />
     <Compile Include="DataFolder.cs" />
+    <Compile Include="ExternalSourcetype.cs" />
     <Compile Include="IncludeFolder.cs" />
     <Compile Include="InstallType.cs" />
     <Compile Include="Pipelines\Dialogs.cs" />
@@ -212,7 +214,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Website\WebsiteExtensions.cs" />
     <Compile Include="Website\WebsiteService.cs" />
   </ItemGroup>
   <ItemGroup>

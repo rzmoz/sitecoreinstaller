@@ -19,5 +19,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     [XmlArrayItem(ElementName = "Manifest", IsNullable = false)]
     public List<SourceManifest> Manifests { get; set; }
+
+    [XmlArrayItem(ElementName = "ExternalSource", IsNullable = false)]
+    public List<ExternalSource> ExternalSources { get; set; }
   }
 }

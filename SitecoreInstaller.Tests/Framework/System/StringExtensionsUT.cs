@@ -16,24 +16,5 @@ namespace SitecoreInstaller.Tests.Framework.System
       var result = input.TokenizeWhenCharIsUpper();
       expectedTokens.Should().Be(Enumerable.Count(result));
     }
-
-    [Test]
-    public void UrlCombine_PathCombination_PathIsCombinedAndSeperatedBySlash()
-    {
-      const string root = "root";
-      const string expected = "root/part1/part2/part3";
-      var result = root.UrlCombine("part1", "part2", "part3");
-
-      expected.Should().Be(result);
-    }
-    [Test]
-    public void UrlCombine_TrickyPathCombination_PathIsCombinedAndSeperatedBySlash()
-    {
-      const string root = "root.sc.local/";
-      const string expected = @"root.sc.local/part1/part2/part3";
-      var result = root.UrlCombine(@"//part1\part2///part3");
-
-      expected.Should().Be(result);
-    }
   }
 }

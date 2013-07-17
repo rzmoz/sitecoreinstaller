@@ -144,6 +144,8 @@
     <Compile Include="Sys\StringExtensions.cs" />
     <Compile Include="Sys\TypeExtensions.cs" />
     <Compile Include="Web\TheWww.cs" />
+    <Compile Include="Web\Url.cs" />
+    <Compile Include="Web\WebExtensions.cs" />
     <Compile Include="Xml\XmlTransform.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -58,7 +58,6 @@
     <Compile Include="Domain\Pipelines\InstallerServiceMock.cs" />
     <Compile Include="Domain\ProjectFolderUT.cs" />
     <Compile Include="Domain\WebServer\HostFileServiceUT.cs" />
-    <Compile Include="Domain\Website\WebsiteExtensionsUT.cs" />
     <Compile Include="Domain\Website\WebsiteTestResource.Designer.cs">
       <DependentUpon>WebsiteTestResource.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -78,6 +77,7 @@
     <Compile Include="Framework\System\ObservableUT.cs" />
     <Compile Include="Framework\System\StringExtensionsUT.cs" />
     <Compile Include="Framework\System\TypeExtensionsUT.cs" />
+    <Compile Include="Framework\Web\WebExtensionsUT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
