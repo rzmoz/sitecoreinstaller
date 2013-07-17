@@ -18,7 +18,7 @@ namespace SitecoreInstaller
     protected override void OnLoad(System.EventArgs e)
     {
       base.OnLoad(e);
-
+      this.CenterToScreen();
       Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
       Services.PipelineWorker.StepExecuting += PipelineWorker_StepExecuting;
       Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;

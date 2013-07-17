@@ -6,6 +6,7 @@ using SitecoreInstaller.App;
 
 namespace SitecoreInstallerConsole.Runners
 {
+  using System.Threading.Tasks;
   using SitecoreInstaller.Framework.CmdArgs;
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.Sys;
@@ -17,7 +18,7 @@ namespace SitecoreInstallerConsole.Runners
     protected ConsolePipelineRunner()
     {
       this.CmdLine = new CmdLine();
-      Services.Init();
+      Task.WaitAll(Services.InitAsync());
       Log.This.EntryLogged += LogEntryLogged;
       Services.ProjectSettings.Init(Services.UserPreferences.Properties);
       Services.BuildLibrary.Update();
