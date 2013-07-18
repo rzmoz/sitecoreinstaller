@@ -42,7 +42,6 @@ namespace SitecoreInstaller.Framework.CmdArgs
 
     public void Parse(string[] args)
     {
-      string[] ret = null;
       string error = string.Empty;
       try
       {

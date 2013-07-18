@@ -28,13 +28,13 @@ namespace SitecoreInstaller.UI.Settings
 
     private void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
     {
-      this.tbxBuildLibraryFolder.Text = e.Arg.LocalBuildLibrary;
-      tbxProjectFolder.Text = e.Arg.ProjectsFolder;
+      fldBuildLibraryFolder.Text = e.Arg.LocalBuildLibrary;
+      fldProjectfolder.Text = e.Arg.ProjectsFolder;
     }
     protected override void btnSave_Click(object sender, EventArgs e)
     {
-      Services.UserPreferences.Properties.LocalBuildLibrary= this.tbxBuildLibraryFolder.Text;
-      Services.UserPreferences.Properties.ProjectsFolder= tbxProjectFolder.Text;
+      Services.UserPreferences.Properties.LocalBuildLibrary = fldBuildLibraryFolder.Text;
+      Services.UserPreferences.Properties.ProjectsFolder = fldProjectfolder.Text;
       Services.UserPreferences.Save();
     }
   }

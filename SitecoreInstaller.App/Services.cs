@@ -38,32 +38,53 @@ namespace SitecoreInstaller.App
         //init before initializing build library
         SourceManifests.Init();
 
-        var localBuildLibrary = new WindowsFileSystemSource(string.Empty)
-        {
-          Parameters = UserPreferences.Properties.LocalBuildLibrary
-        };
-        if (BuildLibrary == null)
-          BuildLibrary = new LocalSourceRepository(localBuildLibrary, SourceManifests.Enabled.Select(Create));
-        else
-          ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, SourceManifests.Enabled.Select(Create));
+        InitBuildLibrary();
 
-        BuildLibrary.Update();
-
-        Projects = new ProjectsService(UserPreferences.Properties.ProjectsFolder);
+        InitProjects();
 
         Sql = new SqlService();
       });
     }
 
+    private static void InitBuildLibrary()
+    {
+      var localBuildLibrary = new WindowsFileSystemSource(string.Empty)
+      {
+        Parameters = UserPreferences.Properties.LocalBuildLibrary
+      };
+      if (BuildLibrary == null)
+      {
+        BuildLibrary = new LocalSourceRepository(localBuildLibrary, SourceManifests.Enabled.Select(Create));
+      }
+      else
+      {
+        ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, SourceManifests.Enabled.Select(Create));
+      }
+
+      BuildLibrary.Update();
+    }
+
     private static void LoadUserPreferences()
     {
       UserPreferences = new ConfigFile<UserPreferencesConfig>(new FileInfo(AppConstants.UserPreferencesFileName));
+      UserPreferences.Updated += UserPreferences_Updated;
 
       if (File.Exists(AppConstants.UserPreferencesFileName) == false)
         return;
 
       new BuildLibraryFolders(UserPreferences.Properties.LocalBuildLibrary).Create();
       new DirectoryInfo(UserPreferences.Properties.ProjectsFolder).Create();
+    }
+
+    static void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
+    {
+      InitProjects();
+      InitBuildLibrary();
+    }
+
+    private static void InitProjects()
+    {
+      Projects = new ProjectsService(UserPreferences.Properties.ProjectsFolder);
     }
 
     private static ISource Create(SourceManifest sourceManifest)

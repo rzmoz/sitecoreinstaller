@@ -99,6 +99,12 @@
     <Compile Include="Forms\SILabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\SISelectFolder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SISelectFolder.Designer.cs">
+      <DependentUpon>SISelectFolder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SISystemButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -283,6 +289,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\SISelectFolder.resx">
+      <DependentUpon>SISelectFolder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Log\LogResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LogResources.Designer.cs</LastGenOutput>

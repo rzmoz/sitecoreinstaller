@@ -48,16 +48,18 @@
       this.lblTitle.TabIndex = 0;
       this.lblTitle.Text = "SitecoreInstaller is loading...";
       this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.lblTitle.UseWaitCursor = true;
       // 
       // picLogo
       // 
       this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-      this.picLogo.Location = new System.Drawing.Point(50, 176);
+      this.picLogo.Location = new System.Drawing.Point(250, 180);
       this.picLogo.Name = "picLogo";
       this.picLogo.Size = new System.Drawing.Size(75, 75);
       this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.picLogo.TabIndex = 1;
       this.picLogo.TabStop = false;
+      this.picLogo.UseWaitCursor = true;
       // 
       // timer1
       // 
