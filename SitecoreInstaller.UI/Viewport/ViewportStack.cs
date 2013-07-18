@@ -2,6 +2,7 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+  using SitecoreInstaller.Domain.Pipelines;
 
   public static class ViewportStack
   {
@@ -12,7 +13,10 @@
     {
       _controlStack = new List<SIUserControl>();
       _registeredControls = new HashSet<SIUserControl>();
+      Dialogs = new UserDialogs();
     }
+
+    public static UserDialogs Dialogs { get; private set; }
 
     public static SIUserControl ActiveCtrl
     {

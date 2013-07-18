@@ -18,6 +18,7 @@ namespace SitecoreInstallerConsole.Runners
     protected ConsolePipelineRunner()
     {
       this.CmdLine = new CmdLine();
+      
       Task.WaitAll(Services.InitAsync());
       Log.This.EntryLogged += LogEntryLogged;
       Services.ProjectSettings.Init(Services.UserPreferences.Properties);

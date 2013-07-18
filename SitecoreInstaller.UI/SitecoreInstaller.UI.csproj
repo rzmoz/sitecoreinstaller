@@ -87,8 +87,15 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\MessageBoxBtns.cs" />
     <Compile Include="Forms\SIButtonWithActiveState.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\SIDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SIDialog.Designer.cs">
+      <DependentUpon>SIDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SIH1.cs">
       <SubType>Component</SubType>
@@ -236,6 +243,7 @@
     <Compile Include="Simple\UninstallCtrl.Designer.cs">
       <DependentUpon>UninstallCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Viewport\UserDialogs.cs" />
     <Compile Include="UserSelections\SelectLicense.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -289,6 +297,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\SIDialog.resx">
+      <DependentUpon>SIDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SISelectFolder.resx">
       <DependentUpon>SISelectFolder.cs</DependentUpon>
     </EmbeddedResource>

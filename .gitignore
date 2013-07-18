@@ -1,9 +1,6 @@
 # git ignore file
 *_Resharper*
-packages/repositories.config
-packages/NUnit*
-packages/Fluent*
-packages/NSubstitute*
+packages/
 */bin/*
 */obj/*
 *.user

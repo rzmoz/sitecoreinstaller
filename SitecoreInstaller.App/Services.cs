@@ -11,6 +11,7 @@ using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.App
 {
+  using System;
   using System.Threading.Tasks;
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.Pipelines;
@@ -22,11 +23,19 @@ namespace SitecoreInstaller.App
       Pipelines = new PipelineService();
       PowerShellScripts = new PowerShellScriptService();
       Website = new WebsiteService();
-      Dialogs = new UiDialogs();
       IisManagement = new IisManagementService();
       PipelineWorker = new PipelineWorker();
       ProjectSettings = new ProjectSettings();
       SourceManifests = new SourceManifestRepository(new FileInfo(AppConstants.SourcesConfigFileName));
+    }
+
+    public static void InitDialogs(IDialogs dialogs)
+    {
+      if (dialogs == null)
+      {
+        throw new ArgumentNullException("dialogs");
+      }
+      Dialogs = dialogs;
     }
 
     public static async Task InitAsync()
@@ -107,8 +116,7 @@ namespace SitecoreInstaller.App
     public static IWebsiteService Website { get; private set; }
     public static IIisManagementService IisManagement { get; private set; }
     public static ISqlService Sql { get; private set; }
-    public static UiDialogs Dialogs { get; private set; }
     public static PipelineWorker PipelineWorker { get; private set; }
-    
+    public static IDialogs Dialogs { get; private set; }
   }
 }

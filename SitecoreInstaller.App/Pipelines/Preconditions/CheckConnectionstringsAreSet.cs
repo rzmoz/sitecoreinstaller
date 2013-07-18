@@ -7,9 +7,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
   using SitecoreInstaller.Domain;
   using SitecoreInstaller.Domain.Pipelines;
-  using SitecoreInstaller.Framework.Linguistics;
-  using SitecoreInstaller.UI;
-
+  
   public class CheckConnectionstringsAreSet : Precondition
   {
     public override bool Evaluate(object sender, PreconditionEventArgs args)
@@ -19,10 +17,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
       if (Services.ProjectSettings.InstallType == InstallType.Client)
       {
-        using (var selectDatabases = new SelectDatabases())
-        {
-          var result = selectDatabases.ShowDialog();
-        }
+        throw new NotImplementedException();
       }
       return true;
     }

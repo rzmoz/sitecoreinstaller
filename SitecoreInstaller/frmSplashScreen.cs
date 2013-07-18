@@ -12,6 +12,7 @@ namespace SitecoreInstaller
 {
   using SitecoreInstaller.App;
   using SitecoreInstaller.UI;
+  using SitecoreInstaller.UI.Viewport;
 
   public partial class frmSplashScreen : Form
   {
@@ -24,9 +25,13 @@ namespace SitecoreInstaller
     {
       base.OnLoad(e);
       this.BackColor = Styles.Controls.BackColor;
-      timer1.Start();
+      
       this.CenterToScreen();
+      
+      Services.InitDialogs(new UserDialogs());
+
       await Services.InitAsync();
+      timer1.Start();
       var frmMain = new FrmMain();
       frmMain.Closed += (sender, args) => this.Close();
       this.Hide();

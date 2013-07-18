@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleDialogs.cs" />
     <Compile Include="SitecoreInstallerParameters.cs" />
     <Compile Include="Runners\ConsoleRunnerFactory.cs" />
     <Compile Include="Runners\ExistingProjectsRunner.cs" />

@@ -23,7 +23,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
             string userInput = archiveName;
             if (args.Dialogs == Dialogs.On)
             {
-                if (Services.Dialogs.InputBox("Enter archive name", "Archive name", ref userInput) == DialogResult.OK && userInput.Length > 0)
+              
+                if (Services.Dialogs.InputBox("Enter archive name", "Archive name", ref userInput) && userInput.Length > 0)
                     archiveName = userInput;
             }
             var zipFileInfo = Services.ProjectSettings.ProjectFolder.CombineTo<FileInfo>(archiveName);
