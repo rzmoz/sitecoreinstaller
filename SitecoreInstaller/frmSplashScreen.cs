@@ -18,20 +18,33 @@ namespace SitecoreInstaller
     public frmSplashScreen()
     {
       InitializeComponent();
-      
     }
 
     protected async override void OnLoad(EventArgs e)
     {
       base.OnLoad(e);
       this.BackColor = Styles.Controls.BackColor;
+      timer1.Start();
       this.CenterToScreen();
       await Services.InitAsync();
-      //Task.WaitAll(Task.Delay(5000));
       var frmMain = new FrmMain();
       frmMain.Closed += (sender, args) => this.Close();
       this.Hide();
       frmMain.Show();
     }
+
+    private void timer1_Tick(object sender, EventArgs e)
+    {
+      //if we reached right side, then we go back
+      var rightProximity = this.Width - picLogo.Right;
+      var leftProximity = picLogo.Left;
+
+      if (rightProximity < 50 || leftProximity < 50)
+        this.movePicOffSet = movePicOffSet * -1;
+      
+      picLogo.Left += movePicOffSet;
+    }
+
+    private int movePicOffSet = 3;
   }
 }
