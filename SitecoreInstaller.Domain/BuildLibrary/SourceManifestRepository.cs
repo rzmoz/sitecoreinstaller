@@ -7,10 +7,14 @@
   using System.IO;
   using System.Net;
   using System.Threading.Tasks;
+  using System.Web.Security;
   using Sitecore.Configuration;
   using Sitecore.Diagnostics;
   using SitecoreInstaller.Framework.Configuration;
+  using SitecoreInstaller.Framework.Sys.Security;
+
   using SitecoreInstaller.Framework.Web;
+  using SitecoreInstaller.Framework.IO;
 
   public class SourceManifestRepository : IEnumerable<SourceManifest>
   {
@@ -59,15 +63,15 @@
 
     private static FileInfo DownloadExternalSourceFile(ExternalSource source)
     {
-      var tempFile = new FileInfo(Path.GetTempFileName());
+      var sourceFile = new FileInfo(Path.GetTempFileName());
       try
       {
-        TheWww.DownloadFile(source.Uri, tempFile);
-        return tempFile;
+        TheWww.DownloadFile(source.Uri, sourceFile);
+        return sourceFile;
       }
       catch (WebException e)
       {
-        tempFile.Delete();
+        sourceFile.Delete();
         Framework.Diagnostics.Log.This.Warning(e.ToString());
         return null;
       }

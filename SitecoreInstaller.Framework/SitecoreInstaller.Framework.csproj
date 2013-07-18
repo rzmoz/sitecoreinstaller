@@ -140,6 +140,7 @@
     <Compile Include="Sys\GenericEventArgs.cs" />
     <Compile Include="Sys\ObjectExtensions.cs" />
     <Compile Include="Sys\Observable.cs" />
+    <Compile Include="Sys\Security\SecurityExtensions.cs" />
     <Compile Include="Sys\SourceFactory.cs" />
     <Compile Include="Sys\StringExtensions.cs" />
     <Compile Include="Sys\TypeExtensions.cs" />

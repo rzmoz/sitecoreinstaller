@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,10 +74,11 @@
     <Compile Include="Framework\Linguistics\SentenceUT.cs" />
     <Compile Include="Framework\Linguistics\WordUT.cs" />
     <Compile Include="Framework\Scripting\PowerShellRunnerUT.cs" />
-    <Compile Include="Framework\System\ObjectExtensionsUT.cs" />
-    <Compile Include="Framework\System\ObservableUT.cs" />
-    <Compile Include="Framework\System\StringExtensionsUT.cs" />
-    <Compile Include="Framework\System\TypeExtensionsUT.cs" />
+    <Compile Include="Framework\Sys\ObjectExtensionsUT.cs" />
+    <Compile Include="Framework\Sys\ObservableUT.cs" />
+    <Compile Include="Framework\Sys\Security\SecurityExtensionsUT.cs" />
+    <Compile Include="Framework\Sys\StringExtensionsUT.cs" />
+    <Compile Include="Framework\Sys\TypeExtensionsUT.cs" />
     <Compile Include="Framework\Web\WebExtensionsUT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
