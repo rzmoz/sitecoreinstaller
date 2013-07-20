@@ -25,13 +25,11 @@ namespace SitecoreInstaller
     {
       base.OnLoad(e);
       this.BackColor = Styles.Controls.BackColor;
-      
       this.CenterToScreen();
+      timer1.Start();//start timer as one of the first tasks to start animation!
       
       Services.InitDialogs(new UserDialogs());
-
       await Services.InitAsync();
-      timer1.Start();
       var frmMain = new FrmMain();
       frmMain.Closed += (sender, args) => this.Close();
       this.Hide();
