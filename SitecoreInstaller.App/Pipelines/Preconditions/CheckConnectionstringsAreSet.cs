@@ -6,7 +6,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
   public class CheckConnectionstringsAreSet : Precondition
   {
-    public override bool InnerEvaluate(object sender, StepEventArgs args)
+    public override bool InnerEvaluate(object sender, PipelineEventArgs args)
     {
       if (args.ProjectSettings.InstallType == InstallType.Full)
         return true;

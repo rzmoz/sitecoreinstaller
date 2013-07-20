@@ -68,7 +68,7 @@ namespace SitecoreInstaller.UI.Log
       });
     }
 
-    void PipelineWorker_AllStepsExecuting(object sender, PipelineEventArgs e)
+    void PipelineWorker_AllStepsExecuting(object sender, PipelineInfoEventArgs e)
     {
       this.CrossThreadSafe(() => this.Clear(sender, e));
     }

@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
     public class CheckUserAcceptForDeleteProject : Precondition
     {
-      public override bool InnerEvaluate(object sender, StepEventArgs args)
+      public override bool InnerEvaluate(object sender, PipelineEventArgs args)
         {
             if (args.Dialogs == Dialogs.Off)
                 return true;

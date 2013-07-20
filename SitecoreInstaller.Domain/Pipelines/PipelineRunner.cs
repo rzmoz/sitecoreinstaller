@@ -13,8 +13,8 @@ namespace SitecoreInstaller.Domain.Pipelines
   /// <typeparam name="T"></typeparam>
   public class PipelineRunner<T> : IPipelineRunner where T : class,IPipeline
   {
-    public event EventHandler<PipelineEventArgs> AllStepsExecuting;
-    public event EventHandler<PipelineEventArgs> AllStepsExecuted;
+    public event EventHandler<PipelineInfoEventArgs> AllStepsExecuting;
+    public event EventHandler<PipelineInfoEventArgs> AllStepsExecuted;
 
     public event EventHandler<PipelineStepInfoEventArgs> StepExecuting;
     public event EventHandler<PipelineStepInfoEventArgs> StepExecuted;
@@ -39,7 +39,7 @@ namespace SitecoreInstaller.Domain.Pipelines
       if (PreconditionsAreMet(Pipeline.Preconditions, Pipeline.Name.ToString(), Pipeline.Args))
       {
         if (AllStepsExecuting != null)
-          AllStepsExecuting(sender, new PipelineEventArgs(Pipeline));
+          AllStepsExecuting(sender, new PipelineInfoEventArgs(Pipeline));
 
         var elapsed = Profiler.This(InnerExecuteAllSteps, this, Pipeline.Args);
         Log.This.Profile(Pipeline.Name.ToString(), elapsed);
@@ -52,7 +52,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                      select entry;
 
         if (AllStepsExecuted != null)
-          AllStepsExecuted(sender, new PipelineEventArgs(Pipeline, issues.ToArray()));
+          AllStepsExecuted(sender, new PipelineInfoEventArgs(Pipeline, issues.ToArray()));
       }
 
       //we clear listeners here since we don't want old listeners to hang around

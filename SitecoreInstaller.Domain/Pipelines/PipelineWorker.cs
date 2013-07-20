@@ -21,8 +21,8 @@
 
         public event EventHandler<RunWorkerCompletedEventArgs> WorkerCompleted;
 
-        public event EventHandler<PipelineEventArgs> AllStepsExecuting;
-        public event EventHandler<PipelineEventArgs> AllStepsExecuted;
+        public event EventHandler<PipelineInfoEventArgs> AllStepsExecuting;
+        public event EventHandler<PipelineInfoEventArgs> AllStepsExecuted;
 
         public event EventHandler<PipelineStepInfoEventArgs> StepExecuting;
         public event EventHandler<PipelineStepInfoEventArgs> StepExecuted;

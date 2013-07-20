@@ -39,7 +39,7 @@ namespace SitecoreInstaller.UI.Processing
       ViewportStack.Hide(this);
     }
 
-    public void Starting(object sender, PipelineEventArgs e)
+    public void Starting(object sender, PipelineInfoEventArgs e)
     {
       this.CrossThreadSafe(() =>
       {

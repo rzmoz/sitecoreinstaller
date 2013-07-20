@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps
 
   public class WarmUpNoWait : Step
   {
-    protected override void InnerInvoke(object sender, StepEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineEventArgs args)
     {
       try
       {

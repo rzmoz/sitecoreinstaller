@@ -10,7 +10,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
   public class CheckSqlConnection:Precondition
   {
-    public override bool InnerEvaluate(object sender, StepEventArgs args)
+    public override bool InnerEvaluate(object sender, PipelineEventArgs args)
     {
       if (args.ProjectSettings.Sql.TestConnection())
         return true;

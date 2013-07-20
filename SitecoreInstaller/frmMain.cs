@@ -24,7 +24,7 @@ namespace SitecoreInstaller
       Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;
     }
 
-    private void PipelineWorkerOnAllStepsExecuting(object sender, PipelineEventArgs pipelineEventArgs)
+    private void PipelineWorkerOnAllStepsExecuting(object sender, PipelineInfoEventArgs pipelineInfoEventArgs)
     {
       if (!TaskbarManager.IsPlatformSupported)
         return;
@@ -40,7 +40,7 @@ namespace SitecoreInstaller
       TaskbarManager.Instance.SetProgressValue(e.StepNumber - 1, e.TotalStepCount);
     }
 
-    private void PipelineWorker_AllStepsExecuted(object sender, PipelineEventArgs e)
+    private void PipelineWorker_AllStepsExecuted(object sender, PipelineInfoEventArgs e)
     {
       if (!TaskbarManager.IsPlatformSupported)
         return;

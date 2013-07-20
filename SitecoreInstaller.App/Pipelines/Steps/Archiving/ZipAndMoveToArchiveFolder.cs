@@ -15,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
 
     public class ZipAndMoveToArchiveFolder : Step
     {
-        protected override void InnerInvoke(object sender, StepEventArgs args)
+        protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {
             Log.This.Info("Zipping project...");
 

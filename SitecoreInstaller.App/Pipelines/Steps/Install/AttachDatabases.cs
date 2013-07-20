@@ -12,7 +12,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class AttachDatabases : Step
     {
-        protected override void InnerInvoke(object sender, StepEventArgs  args)
+        protected override void InnerInvoke(object sender, PipelineEventArgs  args)
         {
             if (args.ProjectSettings.InstallType == InstallType.Client)
                 return;

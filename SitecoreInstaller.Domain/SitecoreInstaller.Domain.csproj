@@ -196,7 +196,7 @@
     <Compile Include="Pipelines\IPipeline.cs" />
     <Compile Include="Pipelines\PipelineWorker.cs" />
     <Compile Include="Pipelines\IPipelineRunner.cs" />
-    <Compile Include="Pipelines\PipelineEventArgs.cs" />
+    <Compile Include="Pipelines\PipelineInfoEventArgs.cs" />
     <Compile Include="Pipelines\PipelineRunner.cs" />
     <Compile Include="Pipelines\PipelineStepInfoEventArgs.cs" />
     <Compile Include="Projects\ProjectsService.cs" />

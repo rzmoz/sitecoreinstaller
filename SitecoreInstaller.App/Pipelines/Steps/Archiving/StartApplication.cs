@@ -2,7 +2,7 @@
 {
   public class StartApplication : Step
   {
-    protected override void InnerInvoke(object sender, StepEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineEventArgs args)
     {
       Services.IisManagement.StartApplication(args.ProjectSettings.Iis.Name);
     }

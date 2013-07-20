@@ -32,18 +32,18 @@ namespace SitecoreInstaller.App.Pipelines.Steps
 
     public void Invoke(object sender, EventArgs args)
     {
-      if (args is StepEventArgs == false)
-        throw new ArgumentException("args must be of type:" + typeof(StepEventArgs) + ". Was:" + args.GetType());
+      if (args is PipelineEventArgs == false)
+        throw new ArgumentException("args must be of type:" + typeof(PipelineEventArgs) + ". Was:" + args.GetType());
 
       if (StepInvoking != null)
         StepInvoking(this, args);
 
-      InnerInvoke(sender, args as StepEventArgs);
+      InnerInvoke(sender, args as PipelineEventArgs);
 
       if (StepInvoked != null)
         StepInvoked(this, args);
     }
 
-    protected abstract void InnerInvoke(object sender, StepEventArgs args);
+    protected abstract void InnerInvoke(object sender, PipelineEventArgs args);
   }
 }

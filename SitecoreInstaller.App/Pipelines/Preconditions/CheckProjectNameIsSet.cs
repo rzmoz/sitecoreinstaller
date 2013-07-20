@@ -3,7 +3,7 @@
   public class CheckProjectNameIsSet : Precondition
   {
 
-    public override bool InnerEvaluate(object sender, StepEventArgs args)
+    public override bool InnerEvaluate(object sender, PipelineEventArgs args)
     {
       if (args.ProjectSettings.ProjectNameIsSet)
         return true;

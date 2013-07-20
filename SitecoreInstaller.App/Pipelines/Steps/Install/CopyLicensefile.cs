@@ -12,7 +12,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class CopyLicensefile : Step
     {
-        protected override void InnerInvoke(object sender, StepEventArgs args)
+        protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {
             var license = Services.BuildLibrary.Get(args.ProjectSettings.BuildLibrarySelections.SelectedLicense, SourceType.License);
             if (license is BuildLibraryFile == false)

@@ -17,12 +17,12 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
     public bool Evaluate(object sender, EventArgs args)
     {
-      if (args is StepEventArgs == false)
-        throw new ArgumentException("args must be of type:" + typeof(StepEventArgs) + ". Was:" + args.GetType());
+      if (args is PipelineEventArgs == false)
+        throw new ArgumentException("args must be of type:" + typeof(PipelineEventArgs) + ". Was:" + args.GetType());
 
-      return this.InnerEvaluate(this, args as StepEventArgs);
+      return this.InnerEvaluate(this, args as PipelineEventArgs);
     }
-    public abstract bool InnerEvaluate(object sender, StepEventArgs args);
+    public abstract bool InnerEvaluate(object sender, PipelineEventArgs args);
 
     public string ErrorMessage { get; set; }
   }

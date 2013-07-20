@@ -6,7 +6,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
   public class CopyModuleFiles : Step
   {
-    protected override void InnerInvoke(object sender, StepEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineEventArgs args)
     {
       var selectedModules = from module in args.ProjectSettings.BuildLibrarySelections.SelectedModules
                             select Services.BuildLibrary.Get(module, SourceType.Module);

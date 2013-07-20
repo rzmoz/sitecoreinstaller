@@ -9,8 +9,8 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     public interface IPipelineRunner
     {
-        event EventHandler<PipelineEventArgs> AllStepsExecuting;
-        event EventHandler<PipelineEventArgs> AllStepsExecuted;
+        event EventHandler<PipelineInfoEventArgs> AllStepsExecuting;
+        event EventHandler<PipelineInfoEventArgs> AllStepsExecuted;
 
         event EventHandler<PipelineStepInfoEventArgs> StepExecuting;
         event EventHandler<PipelineStepInfoEventArgs> StepExecuted;

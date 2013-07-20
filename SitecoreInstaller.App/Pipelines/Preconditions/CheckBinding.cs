@@ -2,7 +2,7 @@
 {
   public class CheckBinding : Precondition
     {
-        public override bool InnerEvaluate(object sender, StepEventArgs args)
+        public override bool InnerEvaluate(object sender, PipelineEventArgs args)
         {
             if (!Services.IisManagement.BindingExists(args.ProjectSettings.Iis.Url))
                 return true;

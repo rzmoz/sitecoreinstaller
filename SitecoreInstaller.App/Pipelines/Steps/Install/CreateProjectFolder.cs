@@ -15,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             AddPrecondition<CheckProjectDoesNotExist>();
         }
 
-        protected override void InnerInvoke(object sender, StepEventArgs args)
+        protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {
             Services.Projects.CreateProject(args.ProjectSettings.ProjectFolder.Directory);
         }

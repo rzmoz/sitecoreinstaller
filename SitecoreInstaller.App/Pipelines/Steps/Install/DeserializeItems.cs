@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
   public class DeserializeItems : Step
   {
-    protected override void InnerInvoke(object sender, StepEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineEventArgs args)
     {
       Services.Website.DeserializeItems(args.ProjectSettings.Iis.Url);
     }

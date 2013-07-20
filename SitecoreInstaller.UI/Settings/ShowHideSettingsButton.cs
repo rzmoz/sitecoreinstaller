@@ -41,7 +41,7 @@ namespace SitecoreInstaller.UI.Settings
       this.Activate();
     }
 
-    private void PipelineWorker_AllStepsExecuting(object sender, PipelineEventArgs e)
+    private void PipelineWorker_AllStepsExecuting(object sender, PipelineInfoEventArgs e)
     {
       this.DeActivate();
     }

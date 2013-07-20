@@ -22,7 +22,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             AddPrecondition<CheckConnectionstringsAreSet>();
         }
 
-        protected override void InnerInvoke(object sender, StepEventArgs args)
+        protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {
             var connectionStrings = args.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
 

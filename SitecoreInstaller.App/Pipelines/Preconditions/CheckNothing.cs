@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
   public class CheckNothing : Precondition
   {
-    public override bool InnerEvaluate(object sender, StepEventArgs args)
+    public override bool InnerEvaluate(object sender, PipelineEventArgs args)
     {
       return args.ProjectSettings != null;
     }

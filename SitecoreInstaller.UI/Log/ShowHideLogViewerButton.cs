@@ -62,7 +62,7 @@ namespace SitecoreInstaller.UI.Log
         Image = LogResources.Log_error;
     }
 
-    void PipelineWorker_AllStepsExecuting(object sender, Domain.Pipelines.PipelineEventArgs e)
+    void PipelineWorker_AllStepsExecuting(object sender, Domain.Pipelines.PipelineInfoEventArgs e)
     {
       Image = LogResources.Log_active;
     }

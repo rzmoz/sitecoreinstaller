@@ -6,7 +6,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
   public class SaveProjectSettings : Step
   {
-    protected override void InnerInvoke(object sender, StepEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineEventArgs args)
     {
       var projectConfig = args.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile;
 

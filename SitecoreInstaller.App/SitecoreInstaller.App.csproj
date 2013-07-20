@@ -94,7 +94,7 @@
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckNothing.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />
-    <Compile Include="Pipelines\StepEventArgs.cs" />
+    <Compile Include="Pipelines\PipelineEventArgs.cs" />
     <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Archiving\StartApplication.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveToArchiveFolder.cs" />

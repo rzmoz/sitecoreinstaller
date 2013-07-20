@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 
   public class DoNothingForAWhile : Step
   {
-    protected override void InnerInvoke(object sender, StepEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineEventArgs args)
     {
       Log.This.Info(typeof(SourceManifest).Name);
       for (var i = 0; i < 10; i++)

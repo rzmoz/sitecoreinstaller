@@ -12,7 +12,7 @@ namespace SitecoreInstaller.App.Pipelines
 
       var runner = Get<T>();
       runner.Pipeline.Dialogs = dialogs;
-      runner.Pipeline.Args = new StepEventArgs { ProjectSettings = projectSettings };
+      runner.Pipeline.Args = new PipelineEventArgs { ProjectSettings = projectSettings };
       Services.PipelineWorker.RunPipeline(runner);
     }
 

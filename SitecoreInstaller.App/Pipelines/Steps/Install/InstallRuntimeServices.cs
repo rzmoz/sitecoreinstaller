@@ -7,7 +7,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     public class InstallRuntimeServices : Step
     {
-        protected override void InnerInvoke(object sender, StepEventArgs args)
+        protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {
             Services.Website.InstallRuntimeServices(args.ProjectSettings.ProjectFolder.Website);
         }

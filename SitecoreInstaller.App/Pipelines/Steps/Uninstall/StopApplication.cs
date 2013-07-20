@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 
     public class StopApplication : Step
     {
-        protected override void InnerInvoke(object sender, StepEventArgs args)
+        protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {
             Services.IisManagement.StopApplication(args.ProjectSettings.Iis.Name);
         }

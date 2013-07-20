@@ -12,7 +12,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 
   public class DoNothing : Step
   {
-    protected override void InnerInvoke(object sender, StepEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineEventArgs args)
     {
       Log.This.Info("Starting doing nothing...");
 

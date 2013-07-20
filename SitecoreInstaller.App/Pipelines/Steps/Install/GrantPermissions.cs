@@ -15,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     public class GrantPermissions : Step
     {
-        protected override void InnerInvoke(object sender, StepEventArgs  args)
+        protected override void InnerInvoke(object sender, PipelineEventArgs  args)
         {
             args.ProjectSettings.ProjectFolder.GrantFullControl("everyone");
             new DirectoryInfo(@"c:\windows\temp").GrantFullControl(ProcessModelIdentityType.NetworkService.ToString());
