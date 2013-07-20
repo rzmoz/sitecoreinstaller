@@ -71,7 +71,7 @@
       DatabaseNames = Enumerable.Empty<ConnectionStringName>();
       InstallType = InstallType.Full;
       Iis = new IisSettings();
-      ProjectFolder = new ProjectFolder(new DirectoryInfo(@"K:\"), DataFolderMode.DataOutside);
+      ProjectFolder = new ProjectFolder(new DirectoryInfo(@"K:\"));
       BuildLibrarySelections = new BuildLibrarySelections();
       Sql = new SqlSettings();
     }
@@ -90,7 +90,7 @@
       var projectfolder = new DirectoryInfo(_userPreferences.ProjectsFolder);
       if (ProjectNameIsSet)
         projectfolder = projectfolder.CombineTo<DirectoryInfo>(ProjectName);
-      ProjectFolder = new ProjectFolder(projectfolder, DataFolderMode.DataOutside);
+      ProjectFolder = new ProjectFolder(projectfolder);
       Iis.Url = ProjectName + _userPreferences.IisSitePostfix;
     }
   }

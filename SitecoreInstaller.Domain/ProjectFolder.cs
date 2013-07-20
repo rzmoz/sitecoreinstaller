@@ -15,35 +15,21 @@ namespace SitecoreInstaller.Domain
   {
     private const string _ProjectSettingsConfigFileName = "ProjectSettings.config";
 
-    private const string _AppDataFolderName = "App_Data";
     private const string _DataFolderName = "Data";
 
     private const string _DatabasesFolderName = "Databases";
     private const string _WebsiteFolderName = "Website";
     private const string _IisLogFilesFolderName = "IisLogFiles";
 
-    public ProjectFolder(DirectoryInfo directory, DataFolderMode dataFolderMode)
+    public ProjectFolder(DirectoryInfo directory)
       : base(directory)
     {
-      DataFolderMode = dataFolderMode;
-
       Website = new WebsiteFolder(Directory.CombineTo<DirectoryInfo>(_WebsiteFolderName));
       Databases = Directory.CombineTo<DirectoryInfo>(_DatabasesFolderName);
       IisLogFiles = Directory.CombineTo<DirectoryInfo>(_IisLogFilesFolderName);
       ProjectSettingsConfigFile = new ConfigFile<ProjectSettingsConfig>(Directory.CombineTo<FileInfo>(_ProjectSettingsConfigFileName));
-
-      switch (DataFolderMode)
-      {
-        case DataFolderMode.AppDataInside:
-          Data = new DataFolder(Directory.CombineTo<DirectoryInfo>(Website.Name, _AppDataFolderName));
-          break;
-        case DataFolderMode.DataOutside:
-        default:
-          Data = new DataFolder(Directory.CombineTo<DirectoryInfo>(_DataFolderName));
-          break;
-      }
+      Data = new DataFolder(Directory.CombineTo<DirectoryInfo>(_DataFolderName));
     }
-    public DataFolderMode DataFolderMode { get; private set; }
 
     public DataFolder Data { get; private set; }
     public DirectoryInfo Databases { get; private set; }

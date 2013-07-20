@@ -24,7 +24,7 @@ namespace SitecoreInstaller.Domain.Test.Website
         [Test]
         public void ctor_ResolvePaths_ProjectFolderIsSet()
         {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder), DataFolderMode.DataOutside);
+            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder, projectFolder.FullName);
         }
@@ -33,7 +33,7 @@ namespace SitecoreInstaller.Domain.Test.Website
         [Test]
         public void ctor_ResolvePaths_WebsiteFolderIsSet()
         {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder), DataFolderMode.DataOutside);
+            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder + @"\Website", projectFolder.Website.FullName);
         }
@@ -41,7 +41,7 @@ namespace SitecoreInstaller.Domain.Test.Website
         [Test]
         public void ctor_ResolvePaths_DatabaseFolderIsSet()
         {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder), DataFolderMode.DataOutside);
+            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder + @"\Databases", projectFolder.Databases.FullName);
         }
@@ -49,7 +49,7 @@ namespace SitecoreInstaller.Domain.Test.Website
         [Test]
         public void ctor_ResolvePaths_IisLogFolderIsSet()
         {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder), DataFolderMode.DataOutside);
+            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder + @"\IisLogFiles", projectFolder.IisLogFiles.FullName);
         }
@@ -57,7 +57,7 @@ namespace SitecoreInstaller.Domain.Test.Website
         [Test]
         public void ctor_ResolvePaths_ConfigFolderIsSet()
         {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder), DataFolderMode.DataOutside);
+            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder + @"\Website\App_Config", projectFolder.Website.AppConfig.FullName);
         }
@@ -65,14 +65,14 @@ namespace SitecoreInstaller.Domain.Test.Website
         [Test]
         public void ctor_ResolvePaths_ConfigIncludeFolderIsSet()
         {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder), DataFolderMode.DataOutside);
+            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder + @"\Website\App_Config\Include", projectFolder.Website.AppConfig.Include.FullName);
         }
         [Test]
         public void ctor_ResolvePaths_DataFolderOutsideIsSet()
         {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder), DataFolderMode.DataOutside);
+            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder + @"\Data", projectFolder.Data.FullName);
         }
@@ -80,7 +80,7 @@ namespace SitecoreInstaller.Domain.Test.Website
         [Test]
         public void ctor_ResolvePaths_DataFolderInsideIsSet()
         {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder), DataFolderMode.AppDataInside);
+            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder + @"\Website\App_Data", projectFolder.Data.FullName);
         }
@@ -88,14 +88,14 @@ namespace SitecoreInstaller.Domain.Test.Website
         [Test]
         public void ctor_ResolvePaths_PackagesFolderIsOutsideSet()
         {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder), DataFolderMode.DataOutside);
+            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder + @"\Data\Packages", projectFolder.Data.Packages.FullName);
         }
         [Test]
         public void ctor_ResolvePaths_PackagesFolderIsInsideSet()
         {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder), DataFolderMode.AppDataInside);
+            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder + @"\Website\App_Data\Packages", projectFolder.Data.Packages.FullName);
         }
