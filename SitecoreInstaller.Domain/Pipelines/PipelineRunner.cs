@@ -36,7 +36,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     public void ExecuateAllSteps(object sender, EventArgs e)
     {
-      if (PreconditionsAreMet(Pipeline.Preconditions, Pipeline.Name.ToString()))
+      if (PreconditionsAreMet(Pipeline.Preconditions, Pipeline.Name.ToString(), Pipeline.Args))
       {
         if (AllStepsExecuting != null)
           AllStepsExecuting(sender, new PipelineEventArgs(Pipeline));
@@ -62,15 +62,13 @@ namespace SitecoreInstaller.Domain.Pipelines
       AllStepsExecuted = null;
     }
 
-    private bool PreconditionsAreMet(IEnumerable<IPrecondition> preconditions, string taskName)
+    private bool PreconditionsAreMet(IEnumerable<IPrecondition> preconditions, string taskName, EventArgs args)
     {
       Log.This.Info("Evaluating preconditions for {0}", taskName);
 
-      var preConditionArgs = new PreconditionEventArgs { Dialogs = Pipeline.Dialogs };
-
       foreach (var precondition in preconditions)
       {
-        if (precondition.Evaluate(this, preConditionArgs))
+        if (precondition.Evaluate(this, args))
         {
           Log.This.Info("Precondition met: {0}", precondition.Name.ActiveForm);
         }
@@ -87,25 +85,25 @@ namespace SitecoreInstaller.Domain.Pipelines
       return true;
     }
 
-    private void InnerExecuteAllSteps(object sender, EventArgs e)
+    private void InnerExecuteAllSteps(object sender, EventArgs args)
     {
       var totalCount = Pipeline.Steps.Count();
       foreach (var step in Pipeline.Steps)
       {
-        var args = new PipelineStepInfoEventArgs(step.Order, totalCount, step.Name.ActiveForm);
+        var infoArgs = new PipelineStepInfoEventArgs(step.Order, totalCount, step.Name.ActiveForm);
         if (StepExecuting != null)
-          StepExecuting(step, args);
+          StepExecuting(step, infoArgs);
 
-        if (PreconditionsAreMet(step.Preconditions, step.Name.ActiveForm))
+        if (PreconditionsAreMet(step.Preconditions, step.Name.ActiveForm, args))
         {
-          var elapsed = Profiler.This(step.Invoke, sender, e);
+          var elapsed = Profiler.This(step.Invoke, sender, args);
           Log.This.Profile(step.Name.ActiveForm, elapsed);
         }
         else
           break;
 
         if (StepExecuted != null)
-          StepExecuted(step, args);
+          StepExecuted(step, infoArgs);
       }
 
       //we clear listeners here since we don't want old listeners to hang around

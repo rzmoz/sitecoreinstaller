@@ -25,7 +25,6 @@ namespace SitecoreInstaller.App
       Website = new WebsiteService();
       IisManagement = new IisManagementService();
       PipelineWorker = new PipelineWorker();
-      ProjectSettings = new ProjectSettings();
       SourceManifests = new SourceManifestRepository(new FileInfo(AppConstants.SourcesConfigFileName));
     }
 
@@ -108,7 +107,6 @@ namespace SitecoreInstaller.App
     private static SourceManifestRepository SourceManifests { get; set; }
     public static ConfigFile<UserPreferencesConfig> UserPreferences { get; private set; }
 
-    public static ProjectSettings ProjectSettings { get; private set; }
     public static PipelineService Pipelines { get; private set; }
     public static PowerShellScriptService PowerShellScripts { get; private set; }
     public static ISourceRepository BuildLibrary { get; private set; }

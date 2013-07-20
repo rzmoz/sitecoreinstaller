@@ -15,11 +15,11 @@ namespace SitecoreInstallerConsole.Runners
       CmdLine[SitecoreInstallerParameters.UnInstall.Name].Required = true;
     }
 
-    public override void Run()
+    public override void Run(ProjectSettings projectSettings)
     {
       var projectName = CmdLine[SitecoreInstallerParameters.UnInstall.Name];
-      Services.ProjectSettings.ProjectName = projectName.Value;
-      Services.Pipelines.Run<UninstallPipeline>(Services.ProjectSettings, Dialogs.Off);
+      projectSettings.ProjectName = projectName.Value;
+      Services.Pipelines.Run<UninstallPipeline>(projectSettings, Dialogs.Off);
     }
   }
 }

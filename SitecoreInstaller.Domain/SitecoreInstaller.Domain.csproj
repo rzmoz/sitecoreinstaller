@@ -184,7 +184,6 @@
     <Compile Include="Pipelines\IPrecondition.cs" />
     <Compile Include="Pipelines\IStep.cs" />
     <Compile Include="Pipelines\Pipeline.cs" />
-    <Compile Include="Pipelines\PreconditionEventArgs.cs" />
     <Compile Include="ProjectFolder.cs" />
     <Compile Include="Projects\ProjectSettingsConfig.cs" />
     <Compile Include="WebServer\PowerShellScriptService.cs" />

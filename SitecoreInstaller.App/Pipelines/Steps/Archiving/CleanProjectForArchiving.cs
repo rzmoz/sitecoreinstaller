@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
     {
         protected override void InnerInvoke(object sender, StepEventArgs args)
         {
-            Services.Projects.CleanProjectForArchiving(Services.ProjectSettings.ProjectFolder);
+            Services.Projects.CleanProjectForArchiving(args.ProjectSettings.ProjectFolder);
         }
     }
 }

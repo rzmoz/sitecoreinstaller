@@ -10,7 +10,7 @@ namespace SitecoreInstaller.Domain.Pipelines
   public interface IPrecondition
   {
     Sentence Name { get; }
-    bool Evaluate(object sender, PreconditionEventArgs args);
+    bool Evaluate(object sender, EventArgs args);
     string ErrorMessage { get; }
   }
 }

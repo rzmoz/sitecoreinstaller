@@ -14,9 +14,9 @@ namespace SitecoreInstaller
   using SitecoreInstaller.UI;
   using SitecoreInstaller.UI.Viewport;
 
-  public partial class frmSplashScreen : Form
+  public partial class FrmSplashScreen : Form
   {
-    public frmSplashScreen()
+    public FrmSplashScreen()
     {
       InitializeComponent();
     }

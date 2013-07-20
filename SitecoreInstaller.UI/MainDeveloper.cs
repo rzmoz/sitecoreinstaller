@@ -66,31 +66,31 @@ namespace SitecoreInstaller.UI
             return true;
           }
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<InstallPipeline>(Services.ProjectSettings);
+          Services.Pipelines.Run<InstallPipeline>(UiServices.ProjectSettings);
           return true;
         case Keys.C | Keys.Control:
           selectProjectName1.ProjectName = string.Empty;
           this.BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
           return true;
         case Keys.U | Keys.Control | Keys.Shift:
-          Services.Pipelines.Run<UninstallPipeline>(Services.ProjectSettings);
+          Services.Pipelines.Run<UninstallPipeline>(UiServices.ProjectSettings);
           return true;
         case Keys.R | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<ReinstallPipeline>(Services.ProjectSettings, Dialogs.Off);
+          Services.Pipelines.Run<ReinstallPipeline>(UiServices.ProjectSettings, Dialogs.Off);
           return true;
         case Keys.A | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<ArchivePipeline>(Services.ProjectSettings);
+          Services.Pipelines.Run<ArchivePipeline>(UiServices.ProjectSettings);
           return true;
         case Keys.O | Keys.Control:
-          Services.Website.OpenFrontend(Services.ProjectSettings.Iis.Url);
+          Services.Website.OpenFrontend(UiServices.ProjectSettings.Iis.Url);
           return true;
         case Keys.O | Keys.Control | Keys.Shift:
-          Services.Website.OpenSitecore(Services.ProjectSettings.Iis.Url, Services.ProjectSettings.ProjectFolder.Website.Directory);
+          Services.Website.OpenSitecore(UiServices.ProjectSettings.Iis.Url, UiServices.ProjectSettings.ProjectFolder.Website.Directory);
           return true;
         case Keys.O | Keys.Control | Keys.Alt:
-          Process.Start(Services.ProjectSettings.ProjectFolder.Directory.FullName);
+          Process.Start(UiServices.ProjectSettings.ProjectFolder.Directory.FullName);
           return true;
       }
       return false;
@@ -98,9 +98,9 @@ namespace SitecoreInstaller.UI
 
     private void UpdateBuildLibrarySelections()
     {
-      Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
-      Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
-      Services.ProjectSettings.BuildLibrarySelections.SelectedModules = this.selectModules1.SelectedModules;
+      UiServices.ProjectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
+      UiServices.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
+      UiServices.ProjectSettings.BuildLibrarySelections.SelectedModules = this.selectModules1.SelectedModules;
     }
   }
 }

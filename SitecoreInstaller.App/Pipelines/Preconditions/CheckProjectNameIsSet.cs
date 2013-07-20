@@ -1,17 +1,14 @@
 ﻿namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-    using System;
+  public class CheckProjectNameIsSet : Precondition
+  {
 
-    using SitecoreInstaller.Domain.Pipelines;
-
-    public class CheckProjectNameIsSet : Precondition
+    public override bool InnerEvaluate(object sender, StepEventArgs args)
     {
-        public override bool Evaluate(object sender, PreconditionEventArgs args)
-        {
-            if (Services.ProjectSettings.ProjectNameIsSet)
-                return true;
-            ErrorMessage = "Project name not set. Please enter project name";
-            return false;
-        }
+      if (args.ProjectSettings.ProjectNameIsSet)
+        return true;
+      ErrorMessage = "Project name not set. Please enter project name";
+      return false;
     }
+  }
 }

@@ -14,7 +14,7 @@ namespace SitecoreInstallerConsole.Runners
       CmdLine.RegisterParameter(SitecoreInstallerParameters.List);
     }
 
-    public override void Run()
+    public override void Run(ProjectSettings projectSettings)
     {
       Console.WriteLine(string.Empty);
       Console.WriteLine("**** Sitecore ***********************************");

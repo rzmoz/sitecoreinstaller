@@ -10,11 +10,11 @@
       CmdLine[SitecoreInstallerParameters.Open.Name].Required = true;
     }
 
-    public override void Run()
+    public override void Run(ProjectSettings projectSettings)
     {
       var projectName = CmdLine[SitecoreInstallerParameters.Open.Name];
-      Services.ProjectSettings.ProjectName = projectName.Value;
-      Services.Website.OpenFrontend(Services.ProjectSettings.Iis.Url);
+      projectSettings.ProjectName = projectName.Value;
+      Services.Website.OpenFrontend(projectSettings.Iis.Url);
     }
   }
 }

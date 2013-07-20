@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
   using SitecoreInstaller.Domain.Pipelines;
-  using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.Linguistics;
-  using SitecoreInstaller.Framework.Sys;
 
   public abstract class Precondition : IPrecondition
   {
@@ -19,7 +14,15 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
     }
 
     public Sentence Name { get; private set; }
-    public abstract bool Evaluate(object sender, PreconditionEventArgs args);
+
+    public bool Evaluate(object sender, EventArgs args)
+    {
+      if (args is StepEventArgs == false)
+        throw new ArgumentException("args must be of type:" + typeof(StepEventArgs) + ". Was:" + args.GetType());
+
+      return this.InnerEvaluate(this, args as StepEventArgs);
+    }
+    public abstract bool InnerEvaluate(object sender, StepEventArgs args);
 
     public string ErrorMessage { get; set; }
   }

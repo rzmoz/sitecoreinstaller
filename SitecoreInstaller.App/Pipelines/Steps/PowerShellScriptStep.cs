@@ -12,8 +12,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps
   {
     protected override void InnerInvoke(object sender, StepEventArgs args)
     {
-      var scripts = FileTypes.PowerShellScript.GetFiles(Services.ProjectSettings.ProjectFolder.Directory);
-      Services.PowerShellScripts.RunScripts(scripts, MethodName, "projectSettings", Services.ProjectSettings);
+      var scripts = FileTypes.PowerShellScript.GetFiles(args.ProjectSettings.ProjectFolder.Directory);
+      Services.PowerShellScripts.RunScripts(scripts, MethodName, "projectSettings", args.ProjectSettings);
     }
     protected abstract string MethodName { get; }
   }

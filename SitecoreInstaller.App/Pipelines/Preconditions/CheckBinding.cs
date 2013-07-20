@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SitecoreInstaller.App.Pipelines.Preconditions
+﻿namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-    using SitecoreInstaller.Domain.Pipelines;
-
-    public class CheckBinding : Precondition
+  public class CheckBinding : Precondition
     {
-        public override bool Evaluate(object sender, PreconditionEventArgs args)
+        public override bool InnerEvaluate(object sender, StepEventArgs args)
         {
-            if (!Services.IisManagement.BindingExists(Services.ProjectSettings.Iis.Url))
+            if (!Services.IisManagement.BindingExists(args.ProjectSettings.Iis.Url))
                 return true;
 
-            ErrorMessage = "Site with binding already exists: " + Services.ProjectSettings.Iis.Url;
+            ErrorMessage = "Site with binding already exists: " + args.ProjectSettings.Iis.Url;
             return false;
         }
     }

@@ -2,6 +2,7 @@
 
 namespace SitecoreInstaller.App.Pipelines
 {
+  using SitecoreInstaller.App.Pipelines.Preconditions;
   using SitecoreInstaller.App.Pipelines.Steps;
   using SitecoreInstaller.App.Pipelines.Steps.Nothing;
 
@@ -9,6 +10,9 @@ namespace SitecoreInstaller.App.Pipelines
   {
     public DoNothingPipeline()
     {
+      //Init preconditions
+      this.AddPrecondition<CheckNothing>();
+
       //Init steps
       AddStep<DoNothing>();
       AddStep<DoNothingForAWhile>();

@@ -9,13 +9,13 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
     public class CheckUserAcceptForDeleteProject : Precondition
     {
-        public override bool Evaluate(object sender, PreconditionEventArgs args)
+      public override bool InnerEvaluate(object sender, StepEventArgs args)
         {
             if (args.Dialogs == Dialogs.Off)
                 return true;
             return !Services.Dialogs.UserAccept(
                     "Do you want to keep '{0}'? (Saying no will delete it forever!)",
-                    Services.ProjectSettings.ProjectName);
+                    args.ProjectSettings.ProjectName);
         }
     }
 }

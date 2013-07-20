@@ -24,19 +24,19 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
         protected override void InnerInvoke(object sender, StepEventArgs args)
         {
-            var connectionStrings = Services.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
+            var connectionStrings = args.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
 
             connectionStrings.InitFromFile();
 
             var existingConnectionStringNames = connectionStrings.Select(entry => entry.Name);
 
-            if (Services.ProjectSettings.InstallType == InstallType.Full)
+            if (args.ProjectSettings.InstallType == InstallType.Full)
             {
-                var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName);
-                Services.ProjectSettings.DatabaseNames = databases.Select(db => db.LogicalName).AsUniqueStrings().Select(name => new ConnectionStringName(Services.ProjectSettings.ProjectName, name));
+                var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
+                args.ProjectSettings.DatabaseNames = databases.Select(db => db.LogicalName).AsUniqueStrings().Select(name => new ConnectionStringName(args.ProjectSettings.ProjectName, name));
             }
 
-            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(Services.ProjectSettings.Sql, Services.ProjectSettings.DatabaseNames, existingConnectionStringNames);
+            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(args.ProjectSettings.Sql, args.ProjectSettings.DatabaseNames, existingConnectionStringNames);
             var transform = new XmlTransform();
             transform.Transform(connectionStrings.File, connectionStringsDelta);
 
@@ -48,12 +48,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             if (webFormsConnectionString == null)
                 return;
 
-            if (File.Exists(Services.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile.FullName) == false)
+            if (File.Exists(args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile.FullName) == false)
                 return;
 
-            var formsConfigFile = new WffmConfigFile(Services.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile);
+            var formsConfigFile = new WffmConfigFile(args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile);
             if (formsConfigFile.DataProviderType == DataProviderType.Sql)
-                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString, Services.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmSqlDataproviderConfigFile);
+                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmSqlDataproviderConfigFile);
         }
     }
 }

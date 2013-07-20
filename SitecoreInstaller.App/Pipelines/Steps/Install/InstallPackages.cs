@@ -12,8 +12,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, StepEventArgs args)
         {
-            var selectedModules = Services.BuildLibrary.Get(Services.ProjectSettings.BuildLibrarySelections.SelectedModules, SourceType.Module);
-            Services.Website.InstallPackages(Services.ProjectSettings.Iis.Url, selectedModules.OfType<BuildLibraryDirectory>());
+            var selectedModules = Services.BuildLibrary.Get(args.ProjectSettings.BuildLibrarySelections.SelectedModules, SourceType.Module);
+            Services.Website.InstallPackages(args.ProjectSettings.Iis.Url, selectedModules.OfType<BuildLibraryDirectory>());
         }
     }
 }

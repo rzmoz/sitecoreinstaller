@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SitecoreInstallerConsole.Runners
 {
+  using SitecoreInstaller.App;
   using SitecoreInstaller.Framework.CmdArgs;
 
   public class HelpRunner : ConsolePipelineRunner
@@ -17,7 +18,7 @@ namespace SitecoreInstallerConsole.Runners
       this._cmdLine = new CmdLine();
     }
 
-    public override void Run()
+    public override void Run(ProjectSettings projectSettings)
     {
       _cmdLine.RegisterParameter(SitecoreInstallerParameters.List,
                       SitecoreInstallerParameters.Projects,

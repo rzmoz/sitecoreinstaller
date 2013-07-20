@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SitecoreInstaller.App.Pipelines.Preconditions
+﻿namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-    using SitecoreInstaller.Domain.Pipelines;
-
-    public class CheckWritePermissionToHostFile : Precondition
+  public class CheckWritePermissionToHostFile : Precondition
     {
-        public override bool Evaluate(object sender, PreconditionEventArgs args)
+      public override bool InnerEvaluate(object sender, StepEventArgs args)
         {
             if (Services.IisManagement.HostFile.HasWritePermissions())
                 return true;

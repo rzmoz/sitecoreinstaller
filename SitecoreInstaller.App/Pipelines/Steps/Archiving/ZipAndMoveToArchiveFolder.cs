@@ -19,7 +19,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
         {
             Log.This.Info("Zipping project...");
 
-            var archiveName = Services.ProjectSettings.ProjectName + "_rev." + DateTime.Now.ToString("yyyyMMdd");
+            var archiveName = args.ProjectSettings.ProjectName + "_rev." + DateTime.Now.ToString("yyyyMMdd");
             string userInput = archiveName;
             if (args.Dialogs == Dialogs.On)
             {
@@ -27,9 +27,9 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
                 if (Services.Dialogs.InputBox("Enter archive name", "Archive name", ref userInput) && userInput.Length > 0)
                     archiveName = userInput;
             }
-            var zipFileInfo = Services.ProjectSettings.ProjectFolder.CombineTo<FileInfo>(archiveName);
+            var zipFileInfo = args.ProjectSettings.ProjectFolder.CombineTo<FileInfo>(archiveName);
             var zipFile = new SevenZipFile(zipFileInfo);
-            zipFile.ZipContent(Services.ProjectSettings.ProjectFolder.Directory);
+            zipFile.ZipContent(args.ProjectSettings.ProjectFolder.Directory);
 
             Log.This.Info("Moving archive to archive folder...");
             var robocopy = new Robocopy();

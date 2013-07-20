@@ -10,9 +10,9 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
   public class CheckSqlConnection:Precondition
   {
-    public override bool Evaluate(object sender, PreconditionEventArgs args)
+    public override bool InnerEvaluate(object sender, StepEventArgs args)
     {
-      if (Services.ProjectSettings.Sql.TestConnection())
+      if (args.ProjectSettings.Sql.TestConnection())
         return true;
       ErrorMessage = "Sql settings are not properly set. Check under preferences";
       return false;

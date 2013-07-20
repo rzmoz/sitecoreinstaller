@@ -54,12 +54,12 @@
 
     private void cbxProjectName_SelectedIndexChanged(object sender, EventArgs e)
     {
-      Services.ProjectSettings.ProjectName = this.cbxProjectName.Text;
+      UiServices.ProjectSettings.ProjectName = this.cbxProjectName.Text;
     }
 
     private void cbxProjectName_TextUpdate(object sender, EventArgs e)
     {
-      Services.ProjectSettings.ProjectName = this.cbxProjectName.Text;
+      UiServices.ProjectSettings.ProjectName = this.cbxProjectName.Text;
     }
   }
 }

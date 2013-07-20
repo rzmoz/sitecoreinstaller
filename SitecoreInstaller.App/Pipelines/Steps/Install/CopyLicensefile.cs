@@ -14,10 +14,10 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, StepEventArgs args)
         {
-            var license = Services.BuildLibrary.Get(Services.ProjectSettings.BuildLibrarySelections.SelectedLicense, SourceType.License);
+            var license = Services.BuildLibrary.Get(args.ProjectSettings.BuildLibrarySelections.SelectedLicense, SourceType.License);
             if (license is BuildLibraryFile == false)
                 throw new DirectoryNotFoundException("license was not of type BuildLibraryFile. Was:" + license.GetType());
-            Services.Website.CopyLicenseFileToDataFolder(license as BuildLibraryFile, Services.ProjectSettings.ProjectFolder.Data, Services.ProjectSettings.ProjectFolder.Website.AppConfig.Include.LicenseConfigFile);
+            Services.Website.CopyLicenseFileToDataFolder(license as BuildLibraryFile, args.ProjectSettings.ProjectFolder.Data, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.LicenseConfigFile);
         }
     }
 }

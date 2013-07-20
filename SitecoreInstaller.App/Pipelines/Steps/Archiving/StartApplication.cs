@@ -4,7 +4,7 @@
   {
     protected override void InnerInvoke(object sender, StepEventArgs args)
     {
-      Services.IisManagement.StartApplication(Services.ProjectSettings.Iis.Name);
+      Services.IisManagement.StartApplication(args.ProjectSettings.Iis.Name);
     }
   }
 }

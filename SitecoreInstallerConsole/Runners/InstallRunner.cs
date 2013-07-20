@@ -23,50 +23,83 @@ namespace SitecoreInstallerConsole.Runners
       CmdLine.RegisterParameter(SitecoreInstallerParameters.Modules);
     }
 
-    public override void Run()
+    public override void Run(ProjectSettings projectSettings)
     {
-      var projectName = CmdLine[SitecoreInstallerParameters.Install.Name].Value;
-      var sitecore = CmdLine[SitecoreInstallerParameters.Sitecore.Name];
+      this.SetProjectName(projectSettings);
 
-      if (string.IsNullOrEmpty(sitecore.Value))
-        sitecore = SitecoreInstallerParameters.Latest;
+      this.SetSelectedSitecore(projectSettings);
 
-      var license = CmdLine[SitecoreInstallerParameters.License.Name];
-      if (string.IsNullOrEmpty(license.Value))
-        license = SitecoreInstallerParameters.Latest;
+      this.SetSelectedLicense(projectSettings);
 
+      this.SetSelecteModules(projectSettings);
 
-      var modules = CmdLine[SitecoreInstallerParameters.Modules.Name];
+      Services.Pipelines.Run<InstallPipeline>(projectSettings, Dialogs.Off);
+    }
 
-      Console.WriteLine("Project name: " + projectName);
-      Console.WriteLine("Sitecore: " + sitecore.Value);
-      Console.WriteLine("License: " + license.Value);
-      Console.WriteLine("Modules: " + modules.Value);
+    private void SetSelecteModules(ProjectSettings projectSettings)
+    {
+      var modules = this.CmdLine[SitecoreInstallerParameters.Modules.Name];
 
       var selectedModules = new List<SourceEntry>();
 
       foreach (var module in modules.Value.Split('|'))
+      {
         selectedModules.Add(new SourceEntry(module, string.Empty));
+      }
 
-      Install(projectName, sitecore.Value, license.Value, selectedModules);
+      projectSettings.BuildLibrarySelections.SelectedModules = selectedModules;
+
+      Console.WriteLine("Modules: " + modules.Value);
     }
 
-    private void Install(string projectName, string sitecore, string license, IEnumerable<SourceEntry> selectedModules)
+    private void SetSelectedLicense(ProjectSettings projectSettings)
     {
-      Services.ProjectSettings.ProjectName = projectName;
-      Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
-      Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license, string.Empty);
-      if (sitecore == SitecoreInstallerParameters.Latest.Name)
-        Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = Services.BuildLibrary.List(SourceType.Sitecore).Last();
-      else
-        Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = new SourceEntry(sitecore, string.Empty);
-      if (license == SitecoreInstallerParameters.Latest.Name)
-        Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = Services.BuildLibrary.List(SourceType.License).Last();
-      else
-        Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license, string.Empty);
-      Services.ProjectSettings.BuildLibrarySelections.SelectedModules = selectedModules;
+      var license = this.CmdLine[SitecoreInstallerParameters.License.Name];
+      if (string.IsNullOrEmpty(license.Value))
+      {
+        license = SitecoreInstallerParameters.Latest;
+      }
 
-      Services.Pipelines.Run<InstallPipeline>(Services.ProjectSettings, Dialogs.Off);
+      if (license.Value == SitecoreInstallerParameters.Latest.Name)
+      {
+        projectSettings.BuildLibrarySelections.SelectedLicense = Services.BuildLibrary.List(SourceType.License).Last();
+      }
+      else
+      {
+        projectSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license.Value, string.Empty);
+      }
+
+
+      Console.WriteLine("License: " + license.Value);
+    }
+
+    private void SetSelectedSitecore(ProjectSettings projectSettings)
+    {
+      var sitecore = this.CmdLine[SitecoreInstallerParameters.Sitecore.Name];
+
+      if (string.IsNullOrEmpty(sitecore.Value))
+      {
+        sitecore = SitecoreInstallerParameters.Latest;
+      }
+
+      if (sitecore.Value == SitecoreInstallerParameters.Latest.Name)
+      {
+        projectSettings.BuildLibrarySelections.SelectedSitecore = Services.BuildLibrary.List(SourceType.Sitecore).Last();
+      }
+      else
+      {
+        projectSettings.BuildLibrarySelections.SelectedSitecore = new SourceEntry(sitecore.Value, string.Empty);
+      }
+
+      Console.WriteLine("Sitecore: " + sitecore.Value);
+    }
+
+    private void SetProjectName(ProjectSettings projectSettings)
+    {
+      var projectName = this.CmdLine[SitecoreInstallerParameters.Install.Name].Value;
+      projectSettings.ProjectName = projectName;
+
+      Console.WriteLine("Project name: " + projectName);
     }
   }
 }

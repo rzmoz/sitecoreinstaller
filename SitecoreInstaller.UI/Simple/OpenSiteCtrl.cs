@@ -65,7 +65,7 @@ namespace SitecoreInstaller.UI.Simple
         return;
       }
 
-      Services.Website.OpenFrontend(Services.ProjectSettings.Iis.Url);
+      Services.Website.OpenFrontend(UiServices.ProjectSettings.Iis.Url);
     }
   }
 }

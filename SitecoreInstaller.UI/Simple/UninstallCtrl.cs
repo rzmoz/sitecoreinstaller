@@ -64,7 +64,7 @@ namespace SitecoreInstaller.UI.Simple
         Services.Dialogs.Information("Please select a project");
         return;
       }
-      Services.Pipelines.Run<UninstallPipeline>(Services.ProjectSettings);
+      Services.Pipelines.Run<UninstallPipeline>(UiServices.ProjectSettings);
       ViewportStack.Hide(this);
     }
   }

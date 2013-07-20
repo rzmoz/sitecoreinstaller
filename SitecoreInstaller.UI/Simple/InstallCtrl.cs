@@ -73,10 +73,10 @@ namespace SitecoreInstaller.UI.Simple
         return;
       }
 
-      Services.ProjectSettings.ProjectName = tbxProjectName.Text;
-      Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
-      Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
-      Services.Pipelines.Run<InstallPipeline>(Services.ProjectSettings);
+      UiServices.ProjectSettings.ProjectName = tbxProjectName.Text;
+      UiServices.ProjectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
+      UiServices.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
+      Services.Pipelines.Run<InstallPipeline>(UiServices.ProjectSettings);
       ViewportStack.Hide(this);
     }
   }

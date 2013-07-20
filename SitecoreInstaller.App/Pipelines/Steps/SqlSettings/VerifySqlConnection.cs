@@ -10,7 +10,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.SqlSettings
   {
     protected override void InnerInvoke(object sender, StepEventArgs args)
     {
-      Services.ProjectSettings.Sql.TestConnection();
+      args.ProjectSettings.Sql.TestConnection();
     }
   }
 }

@@ -12,7 +12,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps
     {
       try
       {
-        TheWww.CallUrlOnceNoWait(Services.ProjectSettings.Iis.Url.ToUri());
+        TheWww.CallUrlOnceNoWait(args.ProjectSettings.Iis.Url.ToUri());
       }
       catch (UriFormatException e)
       {

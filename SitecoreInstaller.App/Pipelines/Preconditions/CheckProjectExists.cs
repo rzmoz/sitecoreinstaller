@@ -11,12 +11,12 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
     public class CheckProjectExists : Precondition
     {
-        public override bool Evaluate(object sender, PreconditionEventArgs args)
+      public override bool InnerEvaluate(object sender, StepEventArgs args)
         {
-            if (Directory.Exists(Services.ProjectSettings.ProjectFolder.FullName))
+            if (Directory.Exists(args.ProjectSettings.ProjectFolder.FullName))
                 return true;
 
-            ErrorMessage = string.Format("Project '{0}' doesn't exist.\r\n\r\nLocation: {1}", Services.ProjectSettings.ProjectName, Services.ProjectSettings.ProjectFolder);
+            ErrorMessage = string.Format("Project '{0}' doesn't exist.\r\n\r\nLocation: {1}", args.ProjectSettings.ProjectName, args.ProjectSettings.ProjectFolder);
             return false;
         }
     }

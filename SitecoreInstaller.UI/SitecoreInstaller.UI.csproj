@@ -243,6 +243,7 @@
     <Compile Include="Simple\UninstallCtrl.Designer.cs">
       <DependentUpon>UninstallCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UiServices.cs" />
     <Compile Include="Viewport\UserDialogs.cs" />
     <Compile Include="UserSelections\SelectLicense.cs">
       <SubType>UserControl</SubType>

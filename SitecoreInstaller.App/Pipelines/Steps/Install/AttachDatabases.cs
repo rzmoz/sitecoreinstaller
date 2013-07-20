@@ -14,14 +14,14 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, StepEventArgs  args)
         {
-            if (Services.ProjectSettings.InstallType == InstallType.Client)
+            if (args.ProjectSettings.InstallType == InstallType.Client)
                 return;
 
-            var databases = Services.Sql.GetDatabases(Services.ProjectSettings.ProjectFolder.Databases, Services.ProjectSettings.ProjectName);
+            var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
             foreach (var sqlDatabase in databases)
             {
               Log.This.Info("Attaching {0}...", sqlDatabase.Name);
-              sqlDatabase.Attach(Services.ProjectSettings.Sql);
+              sqlDatabase.Attach(args.ProjectSettings.Sql);
             }
         }
     }

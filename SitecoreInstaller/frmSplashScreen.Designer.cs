@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller
 {
-  partial class frmSplashScreen
+  partial class FrmSplashScreen
   {
     /// <summary>
     /// Required designer variable.
@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSplashScreen));
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSplashScreen));
       this.lblTitle = new System.Windows.Forms.Label();
       this.picLogo = new System.Windows.Forms.PictureBox();
       this.timer1 = new System.Windows.Forms.Timer(this.components);

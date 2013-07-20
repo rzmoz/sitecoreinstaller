@@ -21,7 +21,6 @@ namespace SitecoreInstallerConsole.Runners
       
       Task.WaitAll(Services.InitAsync());
       Log.This.EntryLogged += LogEntryLogged;
-      Services.ProjectSettings.Init(Services.UserPreferences.Properties);
       Services.BuildLibrary.Update();
     }
 
@@ -30,6 +29,6 @@ namespace SitecoreInstallerConsole.Runners
       Console.WriteLine(e.Arg.Message);
     }
 
-    public abstract void Run();
+    public abstract void Run(ProjectSettings projectSettings);
   }
 }

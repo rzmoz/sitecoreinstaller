@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-    using SitecoreInstaller.Domain.BuildLibrary;
-    using SitecoreInstaller.Domain.Pipelines;
+  using SitecoreInstaller.Domain.BuildLibrary;
 
-    public class CopyModuleFiles : Step
+  public class CopyModuleFiles : Step
+  {
+    protected override void InnerInvoke(object sender, StepEventArgs args)
     {
-        protected override void InnerInvoke(object sender, StepEventArgs args)
-        {
-            var selectedModules = from module in Services.ProjectSettings.BuildLibrarySelections.SelectedModules
-                                  select Services.BuildLibrary.Get(module, SourceType.Module);
+      var selectedModules = from module in args.ProjectSettings.BuildLibrarySelections.SelectedModules
+                            select Services.BuildLibrary.Get(module, SourceType.Module);
 
-            foreach (var module in selectedModules.OfType<BuildLibraryDirectory>())
-                Services.Website.CopyModulesToWebsite(Services.ProjectSettings.ProjectFolder, module, Services.ProjectSettings.InstallType);
-        }
+      foreach (var module in selectedModules.OfType<BuildLibraryDirectory>())
+        Services.Website.CopyModulesToWebsite(args.ProjectSettings.ProjectFolder, module, args.ProjectSettings.InstallType);
     }
+  }
 }

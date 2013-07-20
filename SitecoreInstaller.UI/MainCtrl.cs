@@ -85,7 +85,7 @@ namespace SitecoreInstaller.UI
       switch (keyData)
       {
         case Keys.N | Keys.Control | Keys.Shift:
-          Services.Pipelines.Run<DoNothingPipeline>(Services.ProjectSettings);
+          Services.Pipelines.Run<DoNothingPipeline>(UiServices.ProjectSettings);
           return true;
         case Keys.C | Keys.Control | Keys.Shift:
           Framework.Diagnostics.Log.This.Clear();
@@ -108,7 +108,7 @@ namespace SitecoreInstaller.UI
     private void InitProjectSettings()
     {
       Services.UserPreferences.Updated += UserPreferences_Updated;
-      Services.ProjectSettings.Updated += ProjectSettings_Updated;
+      UiServices.ProjectSettings.Updated += ProjectSettings_Updated;
 
       Services.UserPreferences.Load();
     }
@@ -116,28 +116,26 @@ namespace SitecoreInstaller.UI
     void ProjectSettings_Updated(object sender, GenericEventArgs<string> e)
     {
       //load project settings if file exists or reset if it doesn't
-      if (Services.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile.Exists)
+      if (UiServices.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile.Exists)
       {
-        var projectConfig = Services.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile;
+        var projectConfig = UiServices.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile;
         projectConfig.Load();
-        Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseString(projectConfig.Properties.Sitecore);
-        Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = SourceEntry.ParseString(projectConfig.Properties.License);
-        Services.ProjectSettings.BuildLibrarySelections.SelectedModules = projectConfig.Properties.Modules.Select(SourceEntry.ParseString);
+        UiServices.ProjectSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseString(projectConfig.Properties.Sitecore);
+        UiServices.ProjectSettings.BuildLibrarySelections.SelectedLicense = SourceEntry.ParseString(projectConfig.Properties.License);
+        UiServices.ProjectSettings.BuildLibrarySelections.SelectedModules = projectConfig.Properties.Modules.Select(SourceEntry.ParseString);
 
         if (BuildLibrarySelectionsUpdated != null)
-          BuildLibrarySelectionsUpdated(sender, new GenericEventArgs<BuildLibrarySelections>(Services.ProjectSettings.BuildLibrarySelections));
+          BuildLibrarySelectionsUpdated(sender, new GenericEventArgs<BuildLibrarySelections>(UiServices.ProjectSettings.BuildLibrarySelections));
       }
       else
       {
-        Services.ProjectSettings.BuildLibrarySelections = new BuildLibrarySelections();
+        UiServices.ProjectSettings.BuildLibrarySelections = new BuildLibrarySelections();
       }
-
-
     }
 
     void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
     {
-      Services.ProjectSettings.Init(e.Arg);
+      UiServices.ProjectSettings.Init(e.Arg);
     }
 
     private void InitPipelineWorker()

@@ -13,9 +13,18 @@ namespace SitecoreInstaller
         [STAThread]
         static void Main()
         {
+          try
+          {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmSplashScreen());
+            Application.Run(new FrmSplashScreen());
+          }
+          catch (Exception)
+          {
+            
+            throw;
+          }
+            
         }
     }
 }

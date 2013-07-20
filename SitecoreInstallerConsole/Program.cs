@@ -14,7 +14,11 @@ namespace SitecoreInstallerConsole
       var consoleRunnerFactory = new ConsoleRunnerFactory();
       var runner = consoleRunnerFactory.Create(args) ?? new HelpRunner(args);
       runner.CmdLine.Parse(args);
-      runner.Run();
+
+      var projectSettings = new ProjectSettings();
+      projectSettings.Init(Services.UserPreferences.Properties);
+
+      runner.Run(projectSettings);
 
       while (Services.PipelineWorker.IsBusy())
       {

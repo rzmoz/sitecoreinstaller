@@ -17,7 +17,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, StepEventArgs  args)
         {
-            Services.ProjectSettings.ProjectFolder.GrantFullControl("everyone");
+            args.ProjectSettings.ProjectFolder.GrantFullControl("everyone");
             new DirectoryInfo(@"c:\windows\temp").GrantFullControl(ProcessModelIdentityType.NetworkService.ToString());
         }
     }
