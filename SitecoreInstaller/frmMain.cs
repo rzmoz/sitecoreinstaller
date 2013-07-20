@@ -4,6 +4,7 @@ namespace SitecoreInstaller
 {
   using System;
   using System.Threading;
+  using System.Threading.Tasks;
   using Microsoft.WindowsAPICodePack.Taskbar;
   using SitecoreInstaller.App;
   using SitecoreInstaller.Domain.Pipelines;
@@ -45,7 +46,7 @@ namespace SitecoreInstaller
       if (!TaskbarManager.IsPlatformSupported)
         return;
       TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Indeterminate);
-      Thread.Sleep(3000);
+      Task.WaitAll(Task.Delay(3000));
       TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
     }
 

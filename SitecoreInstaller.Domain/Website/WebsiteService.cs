@@ -11,6 +11,7 @@ using SitecoreInstaller.Framework.IO;
 namespace SitecoreInstaller.Domain.Website
 {
   using System.Threading;
+  using System.Threading.Tasks;
   using SitecoreInstaller.Domain.BuildLibrary;
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.Web;
@@ -269,7 +270,7 @@ namespace SitecoreInstaller.Domain.Website
           Log.This.Error("Faild to install {0}", url);
           return;
         }
-        Thread.Sleep(1000);
+        Task.WaitAll(Task.Delay(1000));
       }
       while (response.StatusCode != HttpStatusCode.OK && response.StatusDescription.StartsWith("Done") == false);
     }

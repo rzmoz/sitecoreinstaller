@@ -77,17 +77,17 @@ namespace SitecoreInstaller.Framework.IO
         catch (UnauthorizedAccessException e)
         {
           Log.This.Debug("Waiting for release of file handles due to UnauthorizedAccessException...{0}", e.ToString());
-          Thread.Sleep(1000);
+          Task.WaitAll(Task.Delay(1000));
         }
         catch (IOException e)
         {
           Log.This.Debug("Waiting for release of file handles due to IOException...{0}", e.ToString());
-          Thread.Sleep(1000);
+          Task.WaitAll(Task.Delay(1000));
         }
         catch (SecurityException e)
         {
           Log.This.Debug("Waiting for release of file handles due to SecurityException...{0}", e.ToString());
-          Thread.Sleep(1000);
+          Task.WaitAll(Task.Delay(1000));
         }
       }
 

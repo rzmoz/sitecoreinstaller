@@ -22,7 +22,7 @@ namespace SitecoreInstallerConsole
 
       while (Services.PipelineWorker.IsBusy())
       {
-        Thread.Sleep(1000);
+        Task.WaitAll(Task.Delay(1000));
       }
     }
   }

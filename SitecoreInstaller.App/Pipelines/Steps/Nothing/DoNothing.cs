@@ -19,7 +19,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
       foreach (var index in Enumerable.Range(0,1))
       {
         Log.This.Info("Doing nothing: {0}", index);
-        Thread.Sleep(100);
+        Task.WaitAll(Task.Delay(100));
       }
     }
   }
