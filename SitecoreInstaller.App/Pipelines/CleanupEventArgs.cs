@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SitecoreInstaller.App.Pipelines
+﻿namespace SitecoreInstaller.App.Pipelines
 {
   public class CleanupEventArgs : PipelineEventArgs
   {
     public CleanupEventArgs()
     {
-      DeleteProject = false;
+      this.DeepClean = true;
     }
 
-    public bool DeleteProject { get; set; }
+    public bool DeepClean { get; set; }
   }
 }

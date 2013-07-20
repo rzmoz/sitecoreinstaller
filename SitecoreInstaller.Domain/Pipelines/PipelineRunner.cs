@@ -21,7 +21,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     public event EventHandler<GenericEventArgs<string>> PreconditionNotMet;
 
-    public T Pipeline { get; private set; }
+    public IPipeline Pipeline { get; private set; }
 
     public PipelineRunner(T pipeline, string executeAllText = "")
     {

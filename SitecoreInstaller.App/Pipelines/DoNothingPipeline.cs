@@ -11,7 +11,7 @@ namespace SitecoreInstaller.App.Pipelines
     public DoNothingPipeline()
     {
       //Init preconditions
-      this.AddPrecondition<CheckNothing>();
+      AddPrecondition<CheckNothing>();
 
       //Init steps
       AddStep<DoNothing>();

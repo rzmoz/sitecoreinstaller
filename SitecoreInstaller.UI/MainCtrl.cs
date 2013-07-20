@@ -85,7 +85,7 @@ namespace SitecoreInstaller.UI
       switch (keyData)
       {
         case Keys.N | Keys.Control | Keys.Shift:
-          Services.Pipelines.Run<DoNothingPipeline>(UiServices.ProjectSettings);
+          Services.Pipelines.Run<DoNothingPipeline>(UiServices.ProjectSettings, NothingDialog);
           return true;
         case Keys.C | Keys.Control | Keys.Shift:
           Framework.Diagnostics.Log.This.Clear();
@@ -103,6 +103,11 @@ namespace SitecoreInstaller.UI
         return false;
 
       return activeMainCtrl.ProcessKeyPress(keyData);
+    }
+
+    private void NothingDialog(ProjectSettings projectSettings)
+    {
+      UiServices.Dialogs.Information("Hello World!");
     }
 
     private void InitProjectSettings()

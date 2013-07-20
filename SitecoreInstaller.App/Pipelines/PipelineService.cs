@@ -6,7 +6,8 @@ namespace SitecoreInstaller.App.Pipelines
 
   public class PipelineService
   {
-    public void Run<T>(ProjectSettings projectSettings) where T : class,IPipeline, new()
+    public void Run<T>(ProjectSettings projectSettings, params Action<ProjectSettings>[] preProcessors)
+      where T : class,IPipeline, new()
     {
       if (projectSettings == null) { throw new ArgumentNullException("projectSettings"); }
 
@@ -14,9 +15,10 @@ namespace SitecoreInstaller.App.Pipelines
       var pipelineEventArgs = runner.Pipeline.Args as PipelineEventArgs;
       if (pipelineEventArgs == null)
         throw new TypeLoadException("pipeline args is not " + typeof(PipelineEventArgs));
+
       pipelineEventArgs.ProjectSettings = projectSettings;
 
-      Services.PipelineWorker.RunPipeline(runner);
+      Services.PipelineWorker.RunPipeline(runner, projectSettings, preProcessors);
     }
 
     public PipelineRunner<T> Get<T>() where T : class,IPipeline, new()

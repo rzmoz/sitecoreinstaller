@@ -8,8 +8,8 @@ namespace SitecoreInstaller.Domain.Pipelines
   public interface IPipeline
   {
     Sentence Name { get; }
-    IEnumerable<IStep> Steps { get; }
     IEnumerable<IPrecondition> Preconditions { get; }
+    IEnumerable<IStep> Steps { get; }
     EventArgs Args { get; set; }
   }
 }

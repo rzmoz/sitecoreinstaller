@@ -4,7 +4,7 @@
   {
     public override bool InnerEvaluate(object sender, CleanupEventArgs args)
     {
-      return args.DeleteProject;
+      return args.DeepClean;
     }
   }
 }

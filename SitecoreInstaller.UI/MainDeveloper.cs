@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI
 {
@@ -14,7 +6,6 @@ namespace SitecoreInstaller.UI
   using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Sys;
   using SitecoreInstaller.UI.Viewport;
 
