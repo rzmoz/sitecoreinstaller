@@ -206,7 +206,7 @@
     <Compile Include="WebServer\HostFile.cs" />
     <Compile Include="WebServer\IIisManagementService.cs" />
     <Compile Include="WebServer\IisManagementService.cs" />
-    <Compile Include="Website\DataFolderMode.cs" />
+    <Compile Include="DataFolderMode.cs" />
     <Compile Include="Website\IWebsiteService.cs" />
     <Compile Include="Website\WebsiteResource.Designer.cs">
       <DependentUpon>WebsiteResource.resx</DependentUpon>
