@@ -28,7 +28,6 @@ namespace SitecoreInstaller
       this.CenterToScreen();
       timer1.Start();//start timer as one of the first tasks to start animation!
       
-      Services.InitDialogs(new UserDialogs());
       await Services.InitAsync();
       var frmMain = new FrmMain();
       frmMain.Closed += (sender, args) => this.Close();

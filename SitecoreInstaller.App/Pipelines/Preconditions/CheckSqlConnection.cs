@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-  using SitecoreInstaller.Domain.Pipelines;
-
-  public class CheckSqlConnection:Precondition
+  public class CheckSqlConnection : Precondition<PipelineEventArgs>
   {
     public override bool InnerEvaluate(object sender, PipelineEventArgs args)
     {

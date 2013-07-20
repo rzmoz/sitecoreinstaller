@@ -2,7 +2,7 @@
 {
   using System.IO;
 
-  public class CheckProjectExists : Precondition
+  public class CheckProjectExists : Precondition<PipelineEventArgs>
   {
     public override bool InnerEvaluate(object sender, PipelineEventArgs args)
     {

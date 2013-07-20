@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class SetDataFolder : Step
+  public class SetDataFolder : Step<PipelineEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {

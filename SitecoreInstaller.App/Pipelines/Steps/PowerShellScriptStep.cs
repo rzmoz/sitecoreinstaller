@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps
 {
   using SitecoreInstaller.Framework.IO;
 
-  public abstract class PowerShellScriptStep : Step
+  public abstract class PowerShellScriptStep : Step<PipelineEventArgs>
   {
     protected override void InnerInvoke(object sender, PipelineEventArgs args)
     {

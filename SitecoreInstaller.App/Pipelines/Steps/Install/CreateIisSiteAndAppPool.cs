@@ -5,9 +5,8 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-    using SitecoreInstaller.Domain.Pipelines;
-
-    public class CreateIisSiteAndAppPool : Step
+  
+  public class CreateIisSiteAndAppPool : Step<PipelineEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {

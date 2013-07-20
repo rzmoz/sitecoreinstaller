@@ -15,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     using SitecoreInstaller.Framework.Sys;
     using SitecoreInstaller.Framework.Xml;
 
-    public class SetConnectionStrings : Step
+  public class SetConnectionStrings : Step<PipelineEventArgs>
     {
         public SetConnectionStrings()
         {

@@ -6,7 +6,7 @@ namespace SitecoreInstaller.App.Pipelines
   using SitecoreInstaller.App.Pipelines.Steps;
   using SitecoreInstaller.App.Pipelines.Steps.Nothing;
 
-  public class DoNothingPipeline : Pipeline
+  public class DoNothingPipeline : Pipeline<DoNothingEventArgs>
   {
     public DoNothingPipeline()
     {

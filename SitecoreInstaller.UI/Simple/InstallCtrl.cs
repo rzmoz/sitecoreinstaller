@@ -63,13 +63,13 @@ namespace SitecoreInstaller.UI.Simple
 
       if (string.IsNullOrEmpty(tbxProjectName.Text))
       {
-        Services.Dialogs.Information("Please enter project name");
+        UiServices.Dialogs.Information("Please enter project name");
         return;
       }
 
       if (Services.Projects.GetExistingProjects().Any(p => p.Name.ToLower() == projectName.ToLower()))
       {
-        Services.Dialogs.Information("Project '{0}' already exists.", projectName);
+        UiServices.Dialogs.Information("Project '{0}' already exists.", projectName);
         return;
       }
 

@@ -28,15 +28,6 @@ namespace SitecoreInstaller.App
       SourceManifests = new SourceManifestRepository(new FileInfo(AppConstants.SourcesConfigFileName));
     }
 
-    public static void InitDialogs(IDialogs dialogs)
-    {
-      if (dialogs == null)
-      {
-        throw new ArgumentNullException("dialogs");
-      }
-      Dialogs = dialogs;
-    }
-
     public static async Task InitAsync()
     {
       await Task.Factory.StartNew(() =>
@@ -115,6 +106,5 @@ namespace SitecoreInstaller.App
     public static IIisManagementService IisManagement { get; private set; }
     public static ISqlService Sql { get; private set; }
     public static PipelineWorker PipelineWorker { get; private set; }
-    public static IDialogs Dialogs { get; private set; }
   }
 }

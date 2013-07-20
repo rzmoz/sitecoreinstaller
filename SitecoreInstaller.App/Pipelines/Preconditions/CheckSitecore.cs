@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-  public class CheckSitecore : Precondition
+  public class CheckSitecore : Precondition<PipelineEventArgs>
     {
       public override bool InnerEvaluate(object sender, PipelineEventArgs args)
         {

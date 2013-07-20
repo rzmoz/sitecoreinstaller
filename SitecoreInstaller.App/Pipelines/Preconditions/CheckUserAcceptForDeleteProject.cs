@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SitecoreInstaller.App.Pipelines.Preconditions
+﻿namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-    using SitecoreInstaller.Domain.Pipelines;
-
-    public class CheckUserAcceptForDeleteProject : Precondition
+  public class CheckUserAcceptForDeleteProject : Precondition<CleanupEventArgs>
+  {
+    public override bool InnerEvaluate(object sender, CleanupEventArgs args)
     {
-      public override bool InnerEvaluate(object sender, PipelineEventArgs args)
-        {
-            if (args.Dialogs == Dialogs.Off)
-                return true;
-            return !Services.Dialogs.UserAccept(
-                    "Do you want to keep '{0}'? (Saying no will delete it forever!)",
-                    args.ProjectSettings.ProjectName);
-        }
+      return args.DeleteProject;
     }
+  }
 }

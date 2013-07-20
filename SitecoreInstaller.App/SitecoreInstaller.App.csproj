@@ -91,10 +91,12 @@
     <Compile Include="IDialogs.cs" />
     <Compile Include="DialogButtons.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
+    <Compile Include="Pipelines\CleanupEventArgs.cs" />
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckNothing.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />
     <Compile Include="Pipelines\PipelineEventArgs.cs" />
+    <Compile Include="Pipelines\Steps\Archiving\ArchiveEventArgs.cs" />
     <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Archiving\StartApplication.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveToArchiveFolder.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Pipelines\Steps\Install\RunSitecorePostInstallSteps.cs" />
     <Compile Include="Pipelines\Steps\Install\GrantPermissions.cs" />
     <Compile Include="Pipelines\Steps\Install\RunPostInstallPowerShellScripts.cs" />
+    <Compile Include="Pipelines\Steps\Nothing\DoNothingEventArgs.cs" />
     <Compile Include="Pipelines\Steps\PowerShellScriptStep.cs" />
     <Compile Include="Pipelines\Steps\SqlSettings\VerifySqlConnection.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPostUninstallPowerShellScripts.cs" />

@@ -6,7 +6,7 @@ namespace SitecoreInstaller.App.Pipelines
   using SitecoreInstaller.App.Pipelines.Steps;
   using SitecoreInstaller.App.Pipelines.Steps.Install;
 
-  public class InstallPipeline : Pipeline
+  public class InstallPipeline : Pipeline<PipelineEventArgs>
   {
     public InstallPipeline()
     {

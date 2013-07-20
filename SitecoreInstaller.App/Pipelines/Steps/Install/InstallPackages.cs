@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     using SitecoreInstaller.Domain.BuildLibrary;
     using SitecoreInstaller.Domain.Pipelines;
 
-    public class InstallPackages : Step
+  public class InstallPackages : Step<PipelineEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {

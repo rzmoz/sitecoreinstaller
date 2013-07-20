@@ -152,7 +152,7 @@ namespace SitecoreInstaller.UI
     }
     void PipelineWorker_PreconditionNotMet(object sender, GenericEventArgs<string> e)
     {
-      this.CrossThreadSafe(() => Services.Dialogs.ModalDialog(DialogIcons.Error, e.Arg, string.Empty));
+      this.CrossThreadSafe(() => UiServices.Dialogs.ModalDialog(DialogIcons.Error, e.Arg, string.Empty));
     }
   }
 }

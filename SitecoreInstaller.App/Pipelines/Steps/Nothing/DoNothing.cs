@@ -10,13 +10,13 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Diagnostics;
 
-  public class DoNothing : Step
+  public class DoNothing : Step<DoNothingEventArgs>
   {
-    protected override void InnerInvoke(object sender, PipelineEventArgs args)
+    protected override void InnerInvoke(object sender, DoNothingEventArgs args)
     {
       Log.This.Info("Starting doing nothing...");
 
-      foreach (var index in Enumerable.Range(0,1))
+      foreach (var index in Enumerable.Range(0, 1))
       {
         Log.This.Info("Doing nothing: {0}", index);
         Task.WaitAll(Task.Delay(100));

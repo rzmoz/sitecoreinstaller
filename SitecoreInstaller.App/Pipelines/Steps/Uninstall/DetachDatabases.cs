@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
     using SitecoreInstaller.Domain;
     using SitecoreInstaller.Domain.Pipelines;
 
-    public class DetachDatabases : Step
+  public class DetachDatabases : Step<PipelineEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {

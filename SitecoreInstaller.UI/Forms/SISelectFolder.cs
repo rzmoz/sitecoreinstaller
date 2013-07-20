@@ -34,7 +34,7 @@ namespace SitecoreInstaller.UI.Forms
     private void btnBrowse_Click(object sender, EventArgs e)
     {
       string selectedFolder;
-      if (Services.Dialogs.ChooseFolder(out selectedFolder, this.tbxFolder.Text))
+      if (UiServices.Dialogs.ChooseFolder(out selectedFolder, this.tbxFolder.Text))
         this.tbxFolder.Text = selectedFolder;
     }
   }

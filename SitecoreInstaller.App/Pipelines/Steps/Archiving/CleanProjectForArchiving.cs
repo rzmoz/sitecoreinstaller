@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
 {
-    public class CleanProjectForArchiving : Step
+  public class CleanProjectForArchiving : Step<PipelineEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {

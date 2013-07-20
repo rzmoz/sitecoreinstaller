@@ -62,7 +62,7 @@ namespace SitecoreInstaller.UI
         case Keys.B | Keys.Control | Keys.Shift:
           if (selectProjectName1.ProjectName.Length == 0)
           {
-            Services.Dialogs.Information("Please enter project name");
+            UiServices.Dialogs.Information("Please enter project name");
             return true;
           }
           this.UpdateBuildLibrarySelections();
@@ -77,7 +77,7 @@ namespace SitecoreInstaller.UI
           return true;
         case Keys.R | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<ReinstallPipeline>(UiServices.ProjectSettings, Dialogs.Off);
+          Services.Pipelines.Run<ReinstallPipeline>(UiServices.ProjectSettings);
           return true;
         case Keys.A | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();

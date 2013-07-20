@@ -9,7 +9,7 @@ namespace SitecoreInstaller.App.Pipelines
   using SitecoreInstaller.App.Pipelines.Steps.Install;
   using SitecoreInstaller.Domain.Pipelines;
 
-  public class ReinstallPipeline : Pipeline
+  public class ReinstallPipeline : Pipeline<PipelineEventArgs>
   {
     public ReinstallPipeline()
     {

@@ -5,9 +5,7 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
-    using SitecoreInstaller.Domain.Pipelines;
-
-    public class DeleteIisSiteAndAppPool : Step
+  public class DeleteIisSiteAndAppPool : Step<PipelineEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {

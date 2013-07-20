@@ -6,13 +6,16 @@ namespace SitecoreInstaller.App.Pipelines
 
   public class PipelineService
   {
-    public void Run<T>(ProjectSettings projectSettings, Dialogs dialogs = Dialogs.On) where T : class,IPipeline, new()
+    public void Run<T>(ProjectSettings projectSettings) where T : class,IPipeline, new()
     {
       if (projectSettings == null) { throw new ArgumentNullException("projectSettings"); }
 
       var runner = Get<T>();
-      runner.Pipeline.Dialogs = dialogs;
-      runner.Pipeline.Args = new PipelineEventArgs { ProjectSettings = projectSettings };
+      var pipelineEventArgs = runner.Pipeline.Args as PipelineEventArgs;
+      if (pipelineEventArgs == null)
+        throw new TypeLoadException("pipeline args is not " + typeof(PipelineEventArgs));
+      pipelineEventArgs.ProjectSettings = projectSettings;
+
       Services.PipelineWorker.RunPipeline(runner);
     }
 

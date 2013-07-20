@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
   using SitecoreInstaller.Framework.Linguistics;
 
-  public abstract class Pipeline : IPipeline
+  public abstract class Pipeline<T> : IPipeline where T : EventArgs, new()
   {
     private readonly IList<IPrecondition> _preconditions;
     private readonly IList<IStep> _steps;
@@ -15,25 +13,27 @@ namespace SitecoreInstaller.Domain.Pipelines
     protected Pipeline()
     {
       Name = new Sentence(GetType().Name.Replace("Pipeline", string.Empty));
+      Args = new T();
       _preconditions = new List<IPrecondition>();
       _steps = new List<IStep>();
     }
-    public void RemovePrecondition<T>() where T : IPrecondition, new()
+
+    public void RemovePrecondition<TK>() where TK : IPrecondition, new()
     {
       for (var i = 0; i < _preconditions.Count; i++)
       {
-        if (_preconditions[i].GetType().FullName == typeof(T).FullName)
+        if (_preconditions[i].GetType().FullName == typeof(TK).FullName)
         {
           _preconditions.RemoveAt(i);
-          this.RemovePrecondition<T>();
+          this.RemovePrecondition<TK>();
           return;
         }
       }
     }
 
-    public void AddPrecondition<T>() where T : IPrecondition, new()
+    public void AddPrecondition<TK>() where TK : IPrecondition, new()
     {
-      AddPrecondition(new T());
+      AddPrecondition(new TK());
     }
     public void AddPrecondition(IPrecondition precondition)
     {
@@ -45,9 +45,9 @@ namespace SitecoreInstaller.Domain.Pipelines
       foreach (var precondition in preconditions)
         AddPrecondition(precondition);
     }
-    public void AddStep<T>() where T : IStep, new()
+    public void AddStep<TK>() where TK : IStep, new()
     {
-      AddStep(new T());
+      AddStep(new TK());
     }
     public void AddStep(IStep step)
     {
@@ -60,14 +60,14 @@ namespace SitecoreInstaller.Domain.Pipelines
       foreach (var step in steps)
         AddStep(step);
     }
-    public void RemoveStep<T>() where T : IStep, new()
+    public void RemoveStep<TK>() where TK : IStep, new()
     {
       for (var i = 0; i < _steps.Count; i++)
       {
-        if (_steps[i].GetType().FullName == typeof(T).FullName)
+        if (_steps[i].GetType().FullName == typeof(TK).FullName)
         {
           _steps.RemoveAt(i);
-          this.RemoveStep<T>();
+          this.RemoveStep<TK>();
           return;
         }
       }
@@ -75,7 +75,6 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }
 
-    public Dialogs Dialogs { get; set; }
     public EventArgs Args { get; set; }
 
     public Sentence Name { get; private set; }

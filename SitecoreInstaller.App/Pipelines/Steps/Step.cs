@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Linguistics;
 
-  public abstract class Step : IStep
+  public abstract class Step<T> : IStep where T : PipelineEventArgs
   {
     private readonly IList<IPrecondition> _preconditions;
     public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }
@@ -25,25 +25,25 @@ namespace SitecoreInstaller.App.Pipelines.Steps
 
     public int Order { get; set; }
 
-    public void AddPrecondition<T>() where T : IPrecondition, new()
+    public void AddPrecondition<TK>() where TK : IPrecondition, new()
     {
-      _preconditions.Add(new T());
+      _preconditions.Add(new TK());
     }
 
     public void Invoke(object sender, EventArgs args)
     {
-      if (args is PipelineEventArgs == false)
-        throw new ArgumentException("args must be of type:" + typeof(PipelineEventArgs) + ". Was:" + args.GetType());
+      if (args is T == false)
+        throw new ArgumentException("args must be of type:" + typeof(T) + ". Was:" + args.GetType());
 
       if (StepInvoking != null)
         StepInvoking(this, args);
 
-      InnerInvoke(sender, args as PipelineEventArgs);
+      InnerInvoke(sender, args as T);
 
       if (StepInvoked != null)
         StepInvoked(this, args);
     }
 
-    protected abstract void InnerInvoke(object sender, PipelineEventArgs args);
+    protected abstract void InnerInvoke(object sender, T args);
   }
 }

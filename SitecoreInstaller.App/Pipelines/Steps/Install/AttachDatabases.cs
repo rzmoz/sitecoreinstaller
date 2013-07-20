@@ -5,12 +5,10 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-    using SitecoreInstaller.App.Pipelines.Preconditions;
     using SitecoreInstaller.Domain;
-    using SitecoreInstaller.Domain.Pipelines;
     using SitecoreInstaller.Framework.Diagnostics;
 
-    public class AttachDatabases : Step
+  public class AttachDatabases : Step<PipelineEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineEventArgs  args)
         {

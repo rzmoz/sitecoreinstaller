@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
     using SitecoreInstaller.App.Pipelines.Preconditions;
     using SitecoreInstaller.Domain.Pipelines;
 
-    public class DeleteProject : Step
+  public class DeleteProject : Step<PipelineEventArgs>
     {
         public DeleteProject()
         {

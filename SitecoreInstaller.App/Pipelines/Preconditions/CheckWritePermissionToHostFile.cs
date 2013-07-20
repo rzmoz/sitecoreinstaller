@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-  public class CheckWritePermissionToHostFile : Precondition
+  public class CheckWritePermissionToHostFile : Precondition<PipelineEventArgs>
     {
       public override bool InnerEvaluate(object sender, PipelineEventArgs args)
         {

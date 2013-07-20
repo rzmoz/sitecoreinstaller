@@ -4,7 +4,7 @@
   using SitecoreInstaller.App.Pipelines.Steps.SqlSettings;
   using SitecoreInstaller.Domain.Pipelines;
 
-  public class TestSqlSettingsPipeline : Pipeline
+  public class TestSqlSettingsPipeline : Pipeline<PipelineEventArgs>
   {
     public TestSqlSettingsPipeline()
     {

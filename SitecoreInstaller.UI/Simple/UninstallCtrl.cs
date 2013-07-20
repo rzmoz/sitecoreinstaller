@@ -61,7 +61,7 @@ namespace SitecoreInstaller.UI.Simple
     {
       if (string.IsNullOrEmpty(selectProjectName1.ProjectName))
       {
-        Services.Dialogs.Information("Please select a project");
+        UiServices.Dialogs.Information("Please select a project");
         return;
       }
       Services.Pipelines.Run<UninstallPipeline>(UiServices.ProjectSettings);

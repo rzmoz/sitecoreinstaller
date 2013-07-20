@@ -10,7 +10,6 @@ namespace SitecoreInstaller.Domain.Pipelines
     Sentence Name { get; }
     IEnumerable<IStep> Steps { get; }
     IEnumerable<IPrecondition> Preconditions { get; }
-    Dialogs Dialogs { get; set; }
     EventArgs Args { get; set; }
   }
 }

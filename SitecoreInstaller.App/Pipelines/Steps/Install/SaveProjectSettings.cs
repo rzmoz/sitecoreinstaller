@@ -4,7 +4,7 @@ using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class SaveProjectSettings : Step
+  public class SaveProjectSettings : Step<PipelineEventArgs>
   {
     protected override void InnerInvoke(object sender, PipelineEventArgs args)
     {

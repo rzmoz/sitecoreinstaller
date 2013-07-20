@@ -7,7 +7,7 @@
   using SitecoreInstaller.App.Pipelines.Steps.Uninstall;
   using SitecoreInstaller.Domain.Pipelines;
 
-  public class ArchivePipeline : Pipeline
+  public class ArchivePipeline : Pipeline<ArchiveEventArgs>
   {
     public ArchivePipeline()
     {

@@ -7,9 +7,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
     using System.IO;
     using SitecoreInstaller.Domain.BuildLibrary;
-    using SitecoreInstaller.Domain.Pipelines;
 
-    public class CopySitecore : Step
+  public class CopySitecore : Step<PipelineEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineEventArgs args)
         {

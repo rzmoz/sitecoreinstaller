@@ -4,7 +4,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
   using SitecoreInstaller.Domain;
 
-  public class CheckConnectionstringsAreSet : Precondition
+  public class CheckConnectionstringsAreSet : Precondition<PipelineEventArgs>
   {
     public override bool InnerEvaluate(object sender, PipelineEventArgs args)
     {

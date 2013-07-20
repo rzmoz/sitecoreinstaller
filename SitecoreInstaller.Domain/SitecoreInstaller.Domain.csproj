@@ -180,7 +180,6 @@
     <Compile Include="ExternalSourcetype.cs" />
     <Compile Include="IncludeFolder.cs" />
     <Compile Include="InstallType.cs" />
-    <Compile Include="Pipelines\Dialogs.cs" />
     <Compile Include="Pipelines\IPrecondition.cs" />
     <Compile Include="Pipelines\IStep.cs" />
     <Compile Include="Pipelines\Pipeline.cs" />

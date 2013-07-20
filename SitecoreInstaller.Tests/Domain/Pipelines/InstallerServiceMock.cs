@@ -2,10 +2,11 @@
 {
   using System;
   using System.Collections.Generic;
+  using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Linguistics;
 
-  public class InstallerServiceMock : Pipeline
+  public class InstallerServiceMock : Pipeline<PipelineEventArgs>
   {
     public class EmptyStep : IStep
     {

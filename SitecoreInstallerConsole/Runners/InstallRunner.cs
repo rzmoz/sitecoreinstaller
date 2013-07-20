@@ -33,7 +33,7 @@ namespace SitecoreInstallerConsole.Runners
 
       this.SetSelecteModules(projectSettings);
 
-      Services.Pipelines.Run<InstallPipeline>(projectSettings, Dialogs.Off);
+      Services.Pipelines.Run<InstallPipeline>(projectSettings);
     }
 
     private void SetSelecteModules(ProjectSettings projectSettings)

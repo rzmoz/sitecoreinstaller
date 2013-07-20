@@ -9,11 +9,9 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
     using Microsoft.Web.Administration;
 
-    using SitecoreInstaller.Domain.Pipelines;
-    using SitecoreInstaller.Framework.Diagnostics;
     using SitecoreInstaller.Framework.IO;
 
-    public class GrantPermissions : Step
+  public class GrantPermissions : Step<PipelineEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineEventArgs  args)
         {
