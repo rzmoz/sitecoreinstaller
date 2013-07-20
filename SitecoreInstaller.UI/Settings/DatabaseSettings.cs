@@ -37,7 +37,7 @@ namespace SitecoreInstaller.UI.Settings
     private void btnTestSqlSettings_Click(object sender, EventArgs e)
     {
       btnSave_Click(sender, e);
-      Services.Pipelines.Run<TestSqlSettingsPipeline>();
+      Services.Pipelines.Run<TestSqlSettingsPipeline>(Services.ProjectSettings);
     }
   }
 }

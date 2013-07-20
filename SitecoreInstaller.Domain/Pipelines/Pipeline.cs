@@ -76,6 +76,7 @@ namespace SitecoreInstaller.Domain.Pipelines
     public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }
 
     public Dialogs Dialogs { get; set; }
+    public EventArgs Args { get; set; }
 
     public Sentence Name { get; private set; }
 

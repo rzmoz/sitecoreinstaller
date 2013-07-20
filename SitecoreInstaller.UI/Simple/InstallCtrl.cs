@@ -76,7 +76,7 @@ namespace SitecoreInstaller.UI.Simple
       Services.ProjectSettings.ProjectName = tbxProjectName.Text;
       Services.ProjectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
       Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
-      Services.Pipelines.Run<InstallPipeline>();
+      Services.Pipelines.Run<InstallPipeline>(Services.ProjectSettings);
       ViewportStack.Hide(this);
     }
   }

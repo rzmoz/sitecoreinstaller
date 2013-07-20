@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-  using System.Threading;
-
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.Sys;
 
@@ -45,15 +41,15 @@ namespace SitecoreInstaller.Domain.Pipelines
         if (AllStepsExecuting != null)
           AllStepsExecuting(sender, new PipelineEventArgs(Pipeline));
 
-        var elapsed = Profiler.This(InnerExecuteAllSteps, sender, e);
+        var elapsed = Profiler.This(InnerExecuteAllSteps, this, Pipeline.Args);
         Log.This.Profile(Pipeline.Name.ToString(), elapsed);
 
         Log.This.Flush();
 
         var issues = from entry in Log.This.Entries
-                       where entry.LogType == LogType.Warning ||
-                       entry.LogType == LogType.Error
-                       select entry;
+                     where entry.LogType == LogType.Warning ||
+                     entry.LogType == LogType.Error
+                     select entry;
 
         if (AllStepsExecuted != null)
           AllStepsExecuted(sender, new PipelineEventArgs(Pipeline, issues.ToArray()));

@@ -85,7 +85,7 @@ namespace SitecoreInstaller.UI
       switch (keyData)
       {
         case Keys.N | Keys.Control | Keys.Shift:
-          Services.Pipelines.Run<DoNothingPipeline>();
+          Services.Pipelines.Run<DoNothingPipeline>(Services.ProjectSettings);
           return true;
         case Keys.C | Keys.Control | Keys.Shift:
           Framework.Diagnostics.Log.This.Clear();
@@ -132,7 +132,7 @@ namespace SitecoreInstaller.UI
         Services.ProjectSettings.BuildLibrarySelections = new BuildLibrarySelections();
       }
 
-     
+
     }
 
     void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)

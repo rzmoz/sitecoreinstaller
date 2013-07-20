@@ -34,7 +34,7 @@ namespace SitecoreInstallerConsole.Runners
       var license = CmdLine[SitecoreInstallerParameters.License.Name];
       if (string.IsNullOrEmpty(license.Value))
         license = SitecoreInstallerParameters.Latest;
-      
+
 
       var modules = CmdLine[SitecoreInstallerParameters.Modules.Name];
 
@@ -46,7 +46,7 @@ namespace SitecoreInstallerConsole.Runners
       var selectedModules = new List<SourceEntry>();
 
       foreach (var module in modules.Value.Split('|'))
-        selectedModules.Add(new SourceEntry(module, string.Empty)); 
+        selectedModules.Add(new SourceEntry(module, string.Empty));
 
       Install(projectName, sitecore.Value, license.Value, selectedModules);
     }
@@ -66,7 +66,7 @@ namespace SitecoreInstallerConsole.Runners
         Services.ProjectSettings.BuildLibrarySelections.SelectedLicense = new SourceEntry(license, string.Empty);
       Services.ProjectSettings.BuildLibrarySelections.SelectedModules = selectedModules;
 
-      Services.Pipelines.Run<InstallPipeline>(Dialogs.Off);
+      Services.Pipelines.Run<InstallPipeline>(Services.ProjectSettings, Dialogs.Off);
     }
   }
 }

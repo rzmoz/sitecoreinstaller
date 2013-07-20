@@ -19,7 +19,7 @@ namespace SitecoreInstallerConsole.Runners
     {
       var projectName = CmdLine[SitecoreInstallerParameters.UnInstall.Name];
       Services.ProjectSettings.ProjectName = projectName.Value;
-      Services.Pipelines.Run<UninstallPipeline>(Dialogs.Off);
+      Services.Pipelines.Run<UninstallPipeline>(Services.ProjectSettings, Dialogs.Off);
     }
   }
 }

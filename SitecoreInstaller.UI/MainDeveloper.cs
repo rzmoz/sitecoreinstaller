@@ -66,22 +66,22 @@ namespace SitecoreInstaller.UI
             return true;
           }
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<InstallPipeline>();
+          Services.Pipelines.Run<InstallPipeline>(Services.ProjectSettings);
           return true;
         case Keys.C | Keys.Control:
           selectProjectName1.ProjectName = string.Empty;
           this.BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
           return true;
         case Keys.U | Keys.Control | Keys.Shift:
-          Services.Pipelines.Run<UninstallPipeline>();
+          Services.Pipelines.Run<UninstallPipeline>(Services.ProjectSettings);
           return true;
         case Keys.R | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<ReinstallPipeline>(Dialogs.Off);
+          Services.Pipelines.Run<ReinstallPipeline>(Services.ProjectSettings, Dialogs.Off);
           return true;
         case Keys.A | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<ArchivePipeline>();
+          Services.Pipelines.Run<ArchivePipeline>(Services.ProjectSettings);
           return true;
         case Keys.O | Keys.Control:
           Services.Website.OpenFrontend(Services.ProjectSettings.Iis.Url);

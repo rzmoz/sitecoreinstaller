@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
@@ -13,5 +11,6 @@ namespace SitecoreInstaller.Domain.Pipelines
     IEnumerable<IStep> Steps { get; }
     IEnumerable<IPrecondition> Preconditions { get; }
     Dialogs Dialogs { get; set; }
+    EventArgs Args { get; set; }
   }
 }
