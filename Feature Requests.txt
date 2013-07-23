@@ -4,7 +4,8 @@ SDN source!
 Installation of Sitecore Counters
 Option for cancelling pipeline (cancel button)
 Optional rollback pipeline (if something goes wrong or user cancels)
-Elaborate on the module concept by enabling PowerShell scripts, Nuget packages and MSBuild scripts.
+Make sources filter on entry names (to support libraries with noise files)
+Save install times for future comparisons
 
 UI:
 More detailed UI for pipeline progress
