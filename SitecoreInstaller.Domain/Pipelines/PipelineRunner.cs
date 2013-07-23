@@ -36,7 +36,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     public void ExecuateAllSteps(object sender, EventArgs e)
     {
-      if (PreconditionsAreMet(Pipeline.Preconditions, Pipeline.Name.ToString(), Pipeline.Args))
+      if (PreconditionsAreMet(Pipeline.Preconditions, Pipeline.Args))
       {
         if (AllStepsExecuting != null)
           AllStepsExecuting(sender, new PipelineInfoEventArgs(Pipeline));
@@ -62,18 +62,18 @@ namespace SitecoreInstaller.Domain.Pipelines
       AllStepsExecuted = null;
     }
 
-    private bool PreconditionsAreMet(IEnumerable<IPrecondition> preconditions, string taskName, EventArgs args)
+    private bool PreconditionsAreMet(IEnumerable<IPrecondition> preconditions, EventArgs args)
     {
-      Log.This.Info("Evaluating preconditions for {0}", taskName);
-
       foreach (var precondition in preconditions)
       {
+        Log.This.Info("Evaluating precondition: {0}", precondition.Name.ActiveForm);
         if (precondition.Evaluate(this, args))
         {
           Log.This.Info("Precondition met: {0}", precondition.Name.ActiveForm);
         }
         else
         {
+          Log.This.Error("Precondition NOT met: {0}", precondition.Name.ActiveForm);
           if (string.IsNullOrEmpty(precondition.ErrorMessage) == false)
             Log.This.Error(precondition.ErrorMessage);
           if (PreconditionNotMet != null)
@@ -94,8 +94,9 @@ namespace SitecoreInstaller.Domain.Pipelines
         if (StepExecuting != null)
           StepExecuting(step, infoArgs);
 
-        if (PreconditionsAreMet(step.Preconditions, step.Name.ActiveForm, args))
+        if (PreconditionsAreMet(step.Preconditions, args))
         {
+          Log.This.Info("Executing " + step.Name.ActiveForm);
           var elapsed = Profiler.This(step.Invoke, sender, args);
           Log.This.Profile(step.Name.ActiveForm, elapsed);
         }

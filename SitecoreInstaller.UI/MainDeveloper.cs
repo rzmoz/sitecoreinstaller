@@ -50,6 +50,10 @@ namespace SitecoreInstaller.UI
           selectProjectName1.ProjectName = string.Empty;
           ViewportStack.Show("SitecoreInstaller.UI.MainSimple");
           return true;
+        case Keys.C | Keys.Control:
+          selectProjectName1.ProjectName = string.Empty;
+          this.BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
+          return true;
         case Keys.B | Keys.Control | Keys.Shift:
           if (selectProjectName1.ProjectName.Length == 0)
           {
@@ -58,10 +62,6 @@ namespace SitecoreInstaller.UI
           }
           this.UpdateBuildLibrarySelections();
           Services.Pipelines.Run<InstallPipeline>(UiServices.ProjectSettings);
-          return true;
-        case Keys.C | Keys.Control:
-          selectProjectName1.ProjectName = string.Empty;
-          this.BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
           return true;
         case Keys.U | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<UninstallPipeline>(UiServices.ProjectSettings);
