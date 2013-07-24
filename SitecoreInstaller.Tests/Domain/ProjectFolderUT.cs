@@ -78,26 +78,11 @@ namespace SitecoreInstaller.Domain.Test.Website
         }
 
         [Test]
-        public void ctor_ResolvePaths_DataFolderInsideIsSet()
-        {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
-
-            Assert.AreEqual(_ProjectFolder + @"\Website\App_Data", projectFolder.Data.FullName);
-        }
-
-        [Test]
         public void ctor_ResolvePaths_PackagesFolderIsOutsideSet()
         {
             var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
 
             Assert.AreEqual(_ProjectFolder + @"\Data\Packages", projectFolder.Data.Packages.FullName);
         }
-        [Test]
-        public void ctor_ResolvePaths_PackagesFolderIsInsideSet()
-        {
-            var projectFolder = new ProjectFolder(new DirectoryInfo(_ProjectFolder));
-
-            Assert.AreEqual(_ProjectFolder + @"\Website\App_Data\Packages", projectFolder.Data.Packages.FullName);
         }
-    }
 }
