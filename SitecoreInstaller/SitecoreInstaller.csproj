@@ -152,15 +152,6 @@
     <Reference Include="Microsoft.WindowsAPICodePack.Shell">
       <HintPath>..\3rdPartyAssemblies\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
-    <Reference Include="SitecoreInstaller.App">
-      <HintPath>..\SitecoreInstaller.App\bin\Debug\SitecoreInstaller.App.dll</HintPath>
-    </Reference>
-    <Reference Include="SitecoreInstaller.Domain">
-      <HintPath>..\SitecoreInstaller.Domain\bin\Debug\SitecoreInstaller.Domain.dll</HintPath>
-    </Reference>
-    <Reference Include="SitecoreInstaller.Framework">
-      <HintPath>..\SitecoreInstaller.Framework\bin\Debug\SitecoreInstaller.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -208,6 +199,18 @@
     <None Include="Sources.Source" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SitecoreInstaller.App\SitecoreInstaller.App.csproj">
+      <Project>{687bab97-4f30-4a9c-bf18-197c6a241ef4}</Project>
+      <Name>SitecoreInstaller.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SitecoreInstaller.Domain\SitecoreInstaller.Domain.csproj">
+      <Project>{32b57ff0-1ef1-46c7-979e-f6144e6d4387}</Project>
+      <Name>SitecoreInstaller.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SitecoreInstaller.Framework\SitecoreInstaller.Framework.csproj">
+      <Project>{4ddd98bc-4f89-4c94-847e-7215486ce358}</Project>
+      <Name>SitecoreInstaller.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SitecoreInstaller.UI\SitecoreInstaller.UI.csproj">
       <Project>{7938E4D7-0388-4CAD-AC67-1C084DE97652}</Project>
       <Name>SitecoreInstaller.UI</Name>
