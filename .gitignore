@@ -1,6 +1,7 @@
 # git ignore file
 *_Resharper*
-packages/
+packages/*
+!packages/ConfigTransform.2.0.4/
 */bin/*
 */obj/*
 *.user
