@@ -1,6 +1,6 @@
 ﻿using Enumerable = System.Linq.Enumerable;
 
-namespace SitecoreInstaller.Tests.Framework.System
+namespace SitecoreInstaller.Tests.Framework.Sys
 {
   using NUnit.Framework;
   using SitecoreInstaller.Framework.Sys;

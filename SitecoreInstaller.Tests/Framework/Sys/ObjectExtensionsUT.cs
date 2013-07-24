@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SitecoreInstaller.Framework.Test.System
+namespace SitecoreInstaller.Framework.Test.Sys
 {
     using FluentAssertions;
 

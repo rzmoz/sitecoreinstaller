@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SitecoreInstaller.App.Test.System
+namespace SitecoreInstaller.App.Test.Sys
 {
     using NUnit.Framework;
 

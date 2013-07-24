@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SitecoreInstaller.Tests.Framework.System
+namespace SitecoreInstaller.Tests.Framework.Sys
 {
   using FluentAssertions;
   using NUnit.Framework;

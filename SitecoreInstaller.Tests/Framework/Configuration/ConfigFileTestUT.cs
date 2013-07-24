@@ -6,6 +6,7 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
   using FluentAssertions;
   using NUnit.Framework;
   using SitecoreInstaller.Framework.Configuration;
+  using SitecoreInstaller.Framework.IO;
 
   [TestFixture]
   public class ConfigFileTestUT
@@ -18,8 +19,10 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
     [TestFixtureSetUp]
     public void FixtureSetup()
     {
-      _configFileTestFileInfo = new FileInfo("Framework/Configuration/ConfigFileTest.config");
-      _configFileTestWorkingFileInfo = new FileInfo("Framework/Configuration/ConfigFileTestWorking.config");
+      var executingAssembly = new FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+      _configFileTestFileInfo = executingAssembly.Directory.CombineTo<FileInfo>("Framework/Configuration/ConfigFileTest.config");
+      _configFileTestWorkingFileInfo = executingAssembly.Directory.CombineTo<FileInfo>("Framework/Configuration/ConfigFileTestWorking.config");
     }
 
     [SetUp]
