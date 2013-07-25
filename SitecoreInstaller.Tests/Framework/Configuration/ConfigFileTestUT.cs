@@ -68,6 +68,7 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
       var configFile = new ConfigFile<ConfigFileTest>(_configFile.Path);
 
       configFile.FileExists.Should().BeTrue();
+      configFile.Load();
       configFile.Properties.Greeting.Should().Be(newPropertyValue); //test from disk
       configFile.Properties.MyCollection.Count.Should().Be(3);
       configFile.Properties.MyCollection.First().Should().Be("item 1");
@@ -85,6 +86,7 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
 
       var configFile = new ConfigFile<ConfigFileTest>(_configFile.Path);
 
+      configFile.Load();
 
       //verify that they're looking at the same file
       _configFile.Path.Should().BeSameAs(configFile.Path);
