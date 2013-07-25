@@ -129,16 +129,10 @@
     <Compile Include="Sys\CommandPrompt.cs" />
     <Compile Include="Sys\CommandPromptResult.cs" />
     <Compile Include="Sys\ControlExtensions.cs" />
-    <Compile Include="Sys\Converters\BoolConverter.cs" />
-    <Compile Include="Sys\Converters\Converter.cs" />
-    <Compile Include="Sys\Converters\ConverterFactory.cs" />
-    <Compile Include="Sys\Converters\Intconverter.cs" />
-    <Compile Include="Sys\Converters\StringConverter.cs" />
     <Compile Include="Sys\EnumClass.cs" />
     <Compile Include="Sys\EnumerableExtensions.cs" />
     <Compile Include="Sys\EnumExtensions.cs" />
     <Compile Include="Sys\GenericEventArgs.cs" />
-    <Compile Include="Sys\ObjectExtensions.cs" />
     <Compile Include="Sys\Observable.cs" />
     <Compile Include="Sys\Security\SecurityExtensions.cs" />
     <Compile Include="Sys\SourceFactory.cs" />
