@@ -46,7 +46,6 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
     [Test]
     public void GetMember_WriteProperty_PropertyIsSet()
     {
-      _configFile.Path.Delete();
       _configFile.Load();
       const string newPropertyValue = "HEllo";
 
@@ -83,7 +82,7 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
       _configFile.Path.Should().BeSameAs(configFile.Path);
 
       //verify that the file they're looking at exists
-      configFile.FileExists.Should().BeTrue("config file physical file path must exist");
+      configFile.FileExists.Should().BeTrue();
 
       //verify that we have a new file
       configFile.Should().NotBeSameAs(this._configFile);
