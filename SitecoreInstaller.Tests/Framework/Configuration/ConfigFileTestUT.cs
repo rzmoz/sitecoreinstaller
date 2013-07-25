@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace SitecoreInstaller.Tests.Framework.Configuration
 {
+  using System;
   using FluentAssertions;
   using NUnit.Framework;
   using SitecoreInstaller.Framework.Configuration;
@@ -73,6 +74,9 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
       this._configFile.Save();
 
       var configFile = new ConfigFile<ConfigFileTest>(_configFile.Path);
+
+      throw new ApplicationException("_configFile:"+ _configFile.Path.FullName +
+                                     "\r\nconfigFile:" + configFile.Path.FullName);
 
       //verify that we have a new file
       configFile.Should().NotBeSameAs(this._configFile);
