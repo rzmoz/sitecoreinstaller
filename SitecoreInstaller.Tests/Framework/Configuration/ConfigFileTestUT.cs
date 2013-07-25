@@ -75,9 +75,12 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
 
       var configFile = new ConfigFile<ConfigFileTest>(_configFile.Path);
 
-      throw new ApplicationException("_configFile:"+ _configFile.Path.FullName +
-                                     "\r\nconfigFile:" + configFile.Path.FullName);
+      
+      
+      _configFile.Path.Should().BeSameAs(configFile.Path);
+      configFile.Exists.Should().BeTrue("config file physical file path must exist");
 
+      
       //verify that we have a new file
       configFile.Should().NotBeSameAs(this._configFile);
 
