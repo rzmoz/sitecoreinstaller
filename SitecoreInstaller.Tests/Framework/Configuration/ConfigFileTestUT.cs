@@ -60,10 +60,11 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
       _configFile.Save();
       var configFile = new ConfigFile<ConfigFileTest>(_configFile.Path);
       
-      configFile.Exists.Should().BeTrue();
+      configFile.FileExists.Should().BeTrue();
+      configFile.Properties.Greeting.Should().Be(newPropertyValue); //test from disk
       configFile.Properties.MyCollection.Count.Should().Be(3);
       configFile.Properties.MyCollection.First().Should().Be("item 1");
-      configFile.Properties.Greeting.Should().Be(newPropertyValue); //test from disk
+      
     }
 
     [Test]
@@ -82,7 +83,7 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
       _configFile.Path.Should().BeSameAs(configFile.Path);
 
       //verify that the file they're looking at exists
-      configFile.Exists.Should().BeTrue("config file physical file path must exist");
+      configFile.FileExists.Should().BeTrue("config file physical file path must exist");
 
       //verify that we have a new file
       configFile.Should().NotBeSameAs(this._configFile);

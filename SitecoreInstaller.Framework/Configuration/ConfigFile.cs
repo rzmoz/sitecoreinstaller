@@ -23,17 +23,15 @@ namespace SitecoreInstaller.Framework.Configuration
 
     public T Properties { get; private set; }
     public FileInfo Path { get; set; }
-    public bool Exists { get { return File.Exists(Path.FullName); } }
+    public bool FileExists { get { return File.Exists(Path.FullName); } }
 
     public void Load()
     {
       if (Path == null)
         throw new NotSupportedException("Path is not set");
 
-      if (File.Exists(Path.FullName) == false)
-      {
-        this.Properties = new T();
-      }
+      if (!this.FileExists)
+        throw new IOException("Config file not found. Looking for: " + Path.FullName);
 
       try
       {

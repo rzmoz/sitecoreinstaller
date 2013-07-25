@@ -121,7 +121,7 @@ namespace SitecoreInstaller.UI
     void ProjectSettings_Updated(object sender, GenericEventArgs<string> e)
     {
       //load project settings if file exists or reset if it doesn't
-      if (UiServices.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile.Exists)
+      if (UiServices.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile.FileExists)
       {
         var projectConfig = UiServices.ProjectSettings.ProjectFolder.ProjectSettingsConfigFile;
         projectConfig.Load();
