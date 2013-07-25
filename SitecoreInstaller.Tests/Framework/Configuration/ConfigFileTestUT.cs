@@ -4,6 +4,7 @@ using System.Linq;
 namespace SitecoreInstaller.Tests.Framework.Configuration
 {
   using System;
+  using System.Reflection;
   using FluentAssertions;
   using NUnit.Framework;
   using SitecoreInstaller.Framework.Configuration;
@@ -20,10 +21,10 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
     [TestFixtureSetUp]
     public void FixtureSetup()
     {
-      var executingAssembly = new FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+      var callingAsembly = Assembly.GetExecutingAssembly().Location.ToFileInfo();
 
-      _configFileTestFileInfo = executingAssembly.Directory.CombineTo<FileInfo>("Framework/Configuration/ConfigFileTest.config");
-      _configFileTestWorkingFileInfo = executingAssembly.Directory.CombineTo<FileInfo>("Framework/Configuration/ConfigFileTestWorking.config");
+      _configFileTestFileInfo = callingAsembly.Directory.CombineTo<FileInfo>("Framework/Configuration/ConfigFileTest.config");
+      _configFileTestWorkingFileInfo = callingAsembly.Directory.CombineTo<FileInfo>("Framework/Configuration/ConfigFileTestWorking.config");
     }
 
     [SetUp]
@@ -32,6 +33,12 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
       _configFile = new ConfigFile<ConfigFileTest>(_configFileTestWorkingFileInfo);
       _configFile.Path.Delete();
       _configFileTestFileInfo.CopyTo(_configFile.Path.FullName);
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+      _configFileTestWorkingFileInfo.Delete();
     }
 
     [Test]
@@ -50,6 +57,7 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
       const string newPropertyValue = "HEllo";
 
       this._configFile.Properties.Greeting = newPropertyValue;
+      this._configFile.Properties.MyCollection.Clear();
       this._configFile.Properties.MyCollection.Add("item 1");
       this._configFile.Properties.MyCollection.Add("item 2");
       this._configFile.Properties.MyCollection.Add("item 3");
@@ -58,12 +66,12 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
       this._configFile.Properties.Greeting.Should().Be(newPropertyValue);//test from in memory
       _configFile.Save();
       var configFile = new ConfigFile<ConfigFileTest>(_configFile.Path);
-      
+
       configFile.FileExists.Should().BeTrue();
       configFile.Properties.Greeting.Should().Be(newPropertyValue); //test from disk
       configFile.Properties.MyCollection.Count.Should().Be(3);
       configFile.Properties.MyCollection.First().Should().Be("item 1");
-      
+
     }
 
     [Test]
@@ -77,7 +85,7 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
 
       var configFile = new ConfigFile<ConfigFileTest>(_configFile.Path);
 
-      
+
       //verify that they're looking at the same file
       _configFile.Path.Should().BeSameAs(configFile.Path);
 

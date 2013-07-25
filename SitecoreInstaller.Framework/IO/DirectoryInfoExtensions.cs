@@ -18,6 +18,12 @@ namespace SitecoreInstaller.Framework.IO
       _fileSystemInfoFactory = new FileSystemInfoFactory();
     }
 
+    public static DirectoryInfo ToDirectoryInfo(this string dir)
+    {
+      if (dir == null) { throw new ArgumentNullException("dir"); }
+      return new DirectoryInfo(dir);
+    }
+
     public static void Clean(this DirectoryInfo dir, OnFail onFail = OnFail.LogError)
     {
       dir.DeleteWithLog(onFail);

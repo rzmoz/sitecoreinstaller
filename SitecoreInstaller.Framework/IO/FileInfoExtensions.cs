@@ -9,6 +9,12 @@ namespace SitecoreInstaller.Framework.IO
 
   public static class FileInfoExtensions
   {
+    public static FileInfo ToFileInfo(this string path)
+    {
+      if (path == null) { throw new ArgumentNullException("path"); }
+      return new FileInfo(path);
+    }
+
     public static bool Exists(this FileInfo file)
     {
       if (file == null)
