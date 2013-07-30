@@ -11,7 +11,9 @@ namespace SitecoreInstaller.Domain.Pipelines
   /// Use as decorator for classes that have methods with StepAttributes
   /// </summary>
   /// <typeparam name="T"></typeparam>
-  public class PipelineRunner<T> : IPipelineRunner where T : class,IPipeline
+  public class PipelineRunner<T, TK> : IPipelineRunner
+    where T : class,IPipeline
+    where TK : EventArgs
   {
     public event EventHandler<PipelineInfoEventArgs> AllStepsExecuting;
     public event EventHandler<PipelineInfoEventArgs> AllStepsExecuted;
@@ -21,18 +23,21 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     public event EventHandler<GenericEventArgs<string>> PreconditionNotMet;
 
-    public IPipeline Pipeline { get; private set; }
 
-    public PipelineRunner(T pipeline, string executeAllText = "")
+    public IPipeline Pipeline { get; private set; }
+    public IEnumerable<Action<TK>> PreProcessors { get; private set; }
+    public PipelineRunner(T pipeline, IEnumerable<Action<TK>> preProcessors = null, string executeAllText = "")
     {
       if (pipeline == null) throw new ArgumentNullException("pipeline");
 
       Log.This.Clear();
       ExecuteAllText = executeAllText;
+      PreProcessors = preProcessors ?? Enumerable.Empty<Action<TK>>();
       Pipeline = pipeline;
     }
 
     public string ExecuteAllText { get; private set; }
+
 
     public void ExecuateAllSteps(object sender, EventArgs e)
     {
@@ -40,6 +45,12 @@ namespace SitecoreInstaller.Domain.Pipelines
       {
         if (AllStepsExecuting != null)
           AllStepsExecuting(sender, new PipelineInfoEventArgs(Pipeline));
+        Log.This.Info("Executing pre processors");
+        foreach (var preProcessor in PreProcessors)
+        {
+          preProcessor(Pipeline.Args as TK);
+        }
+        Log.This.Info("Pre processors executed");
 
         var elapsed = Profiler.This(InnerExecuteAllSteps, this, Pipeline.Args);
         Log.This.Profile(Pipeline.Name.ToString(), elapsed);

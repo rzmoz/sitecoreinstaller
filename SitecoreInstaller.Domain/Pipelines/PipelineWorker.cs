@@ -29,21 +29,16 @@
 
     public event EventHandler<GenericEventArgs<string>> PreconditionNotMet;
 
-    public void RunPipeline<T>(IPipelineRunner runner, T preProcessorArgs, params Action<T>[] preProcessors)
+    public void RunPipeline(IPipelineRunner runner)
     {
       lock (_syncRoot)
       {
         if (IsBusy())
           return; //we abort if worker is already busy
-
-        foreach (var preProcessor in preProcessors)
-        {
-          preProcessor(preProcessorArgs);
-        }
-
+        
         _worker = new BackgroundWorker();
         _worker.DoWork += runner.ExecuateAllSteps;
-        _worker.WorkerReportsProgress = true;
+        _worker.WorkerReportsProgress = false;
 
         runner.StepExecuting += StepExecuting;
         runner.StepExecuted += StepExecuted;

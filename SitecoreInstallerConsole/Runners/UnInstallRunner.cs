@@ -1,11 +1,8 @@
-﻿using System;
-using SitecoreInstaller;
-using SitecoreInstaller.App;
+﻿using SitecoreInstaller.App;
 
 namespace SitecoreInstallerConsole.Runners
 {
   using SitecoreInstaller.App.Pipelines;
-  using SitecoreInstaller.Domain.Pipelines;
 
   public class UnInstallRunner : ConsolePipelineRunner
   {
@@ -19,7 +16,7 @@ namespace SitecoreInstallerConsole.Runners
     {
       var projectName = CmdLine[SitecoreInstallerParameters.UnInstall.Name];
       projectSettings.ProjectName = projectName.Value;
-      Services.Pipelines.Run<UninstallPipeline>(projectSettings);
+      Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(projectSettings);
     }
   }
 }

@@ -7,6 +7,7 @@ namespace SitecoreInstaller.UI
   using System.Diagnostics;
   using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
+  using SitecoreInstaller.App.Pipelines.Steps.Archiving;
   using SitecoreInstaller.Domain.BuildLibrary;
   using SitecoreInstaller.Framework.Sys;
   using SitecoreInstaller.UI.Viewport;
@@ -63,18 +64,18 @@ namespace SitecoreInstaller.UI
             return true;
           }
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<InstallPipeline>(UiServices.ProjectSettings);
+          Services.Pipelines.Run<InstallPipeline, PipelineEventArgs>(UiServices.ProjectSettings);
           return true;
         case Keys.U | Keys.Control | Keys.Shift:
-          Services.Pipelines.Run<UninstallPipeline>(UiServices.ProjectSettings);
+          Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings);
           return true;
         case Keys.R | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<ReinstallPipeline>(UiServices.ProjectSettings);
+          Services.Pipelines.Run<ReinstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings);
           return true;
         case Keys.A | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<ArchivePipeline>(UiServices.ProjectSettings);
+          Services.Pipelines.Run<ArchivePipeline, ArchiveEventArgs>(UiServices.ProjectSettings);
           return true;
         case Keys.O | Keys.Control:
           Services.Website.OpenFrontend(UiServices.ProjectSettings.Iis.Url);
