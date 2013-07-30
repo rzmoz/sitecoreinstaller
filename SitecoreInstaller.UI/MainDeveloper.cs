@@ -2,6 +2,8 @@
 
 namespace SitecoreInstaller.UI
 {
+  using System;
+  using System.ComponentModel;
   using System.Diagnostics;
   using SitecoreInstaller.App;
   using SitecoreInstaller.App.Pipelines;
@@ -81,7 +83,16 @@ namespace SitecoreInstaller.UI
           Services.Website.OpenSitecore(UiServices.ProjectSettings.Iis.Url, UiServices.ProjectSettings.ProjectFolder.Website.Directory);
           return true;
         case Keys.O | Keys.Control | Keys.Alt:
-          Process.Start(UiServices.ProjectSettings.ProjectFolder.Directory.FullName);
+          try
+          {
+            Process.Start(UiServices.ProjectSettings.ProjectFolder.Directory.FullName);
+          }
+          catch (Win32Exception)
+          {
+            var dialogs = new UserDialogs();
+            dialogs.Information("Folder doesn't exist: '{0}'", UiServices.ProjectSettings.ProjectFolder.Directory.FullName);
+          }
+
           return true;
       }
       return false;
