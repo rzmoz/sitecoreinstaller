@@ -75,7 +75,7 @@ namespace SitecoreInstaller.UI
           return true;
         case Keys.A | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<ArchivePipeline, ArchiveEventArgs>(UiServices.ProjectSettings);
+          Services.Pipelines.Run<ArchivePipeline, ArchiveEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.SetArchiveName);
           return true;
         case Keys.O | Keys.Control:
           Services.Website.OpenFrontend(UiServices.ProjectSettings.Iis.Url);
