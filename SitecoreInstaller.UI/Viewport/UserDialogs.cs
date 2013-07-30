@@ -7,11 +7,17 @@
   using System.Reflection;
   using System.Windows.Forms;
   using SitecoreInstaller.App;
+  using SitecoreInstaller.App.Pipelines;
   using SitecoreInstaller.Domain.BuildLibrary;
   using SitecoreInstaller.Framework.Sys;
 
-  public class UserDialogs : IDialogs
+  public class UserDialogs
   {
+    public void DeleteProjectDialog(CleanupEventArgs args)
+    {
+      args.DeepClean = UserAccept("Do you want to delete all files associated with '{0}'", args.ProjectSettings.ProjectName);
+    }
+
     public bool ChooseFolder(out string selectedFolder, string startPath = "")
     {
       var folderBrowser = new FolderBrowserDialog

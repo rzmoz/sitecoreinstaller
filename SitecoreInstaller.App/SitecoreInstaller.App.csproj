@@ -88,7 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DialogIcons.cs" />
-    <Compile Include="IDialogs.cs" />
     <Compile Include="DialogButtons.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\CleanupEventArgs.cs" />
@@ -118,7 +117,6 @@
     <Compile Include="Pipelines\Preconditions\CheckLicense.cs" />
     <Compile Include="Pipelines\Preconditions\CheckProjectExists.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSitecore.cs" />
-    <Compile Include="Pipelines\Preconditions\CheckUserAcceptForDeleteProject.cs" />
     <Compile Include="Pipelines\Preconditions\CheckWritePermissionToHostFile.cs" />
     <Compile Include="Pipelines\Preconditions\Precondition.cs" />
     <Compile Include="Pipelines\Preconditions\CheckProjectDoesNotExist.cs" />

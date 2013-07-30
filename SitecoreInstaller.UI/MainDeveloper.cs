@@ -67,7 +67,7 @@ namespace SitecoreInstaller.UI
           Services.Pipelines.Run<InstallPipeline, PipelineEventArgs>(UiServices.ProjectSettings);
           return true;
         case Keys.U | Keys.Control | Keys.Shift:
-          Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings);
+          Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.DeleteProjectDialog);
           return true;
         case Keys.R | Keys.Control | Keys.Shift:
           this.UpdateBuildLibrarySelections();
@@ -90,8 +90,7 @@ namespace SitecoreInstaller.UI
           }
           catch (Win32Exception)
           {
-            var dialogs = new UserDialogs();
-            dialogs.Information("Folder doesn't exist: '{0}'", UiServices.ProjectSettings.ProjectFolder.Directory.FullName);
+            UiServices.Dialogs.Information("Folder doesn't exist: '{0}'", UiServices.ProjectSettings.ProjectFolder.Directory.FullName);
           }
 
           return true;
