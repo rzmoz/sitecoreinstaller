@@ -15,7 +15,7 @@
   {
     public void DeleteProjectDialog(CleanupEventArgs args)
     {
-      args.DeepClean = UserAccept("Do you want to delete all files associated with '{0}'", args.ProjectSettings.ProjectName);
+      args.DeepClean = !UserAccept("Do you want to keep the files for '{0}'? Saying no will delete everything permanently.", args.ProjectSettings.ProjectName);
     }
 
     public void SetArchiveName(ArchiveEventArgs args)
