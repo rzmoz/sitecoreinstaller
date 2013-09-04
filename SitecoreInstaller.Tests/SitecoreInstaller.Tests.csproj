@@ -76,7 +76,6 @@
     <Compile Include="Framework\Linguistics\WordUT.cs" />
     <Compile Include="Framework\Scripting\PowerShellRunnerUT.cs" />
     <Compile Include="Framework\Sys\ObservableUT.cs" />
-    <Compile Include="Framework\Sys\Security\SecurityExtensionsUT.cs" />
     <Compile Include="Framework\Sys\StringExtensionsUT.cs" />
     <Compile Include="Framework\Sys\TypeExtensionsUT.cs" />
     <Compile Include="Framework\Web\WebExtensionsUT.cs" />
@@ -94,7 +93,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Framework\Sys\Security\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SitecoreInstaller.App\SitecoreInstaller.App.csproj">
       <Project>{687bab97-4f30-4a9c-bf18-197c6a241ef4}</Project>
