@@ -28,11 +28,19 @@ namespace SitecoreInstaller.UI
 
       InitProgress();
       InitUserPreferences();
+      InitSdnLogin();
       InitLog();
       InitMainSimple();
       InitMainDeveloper();
       Services.UserPreferences.Load();
       ViewportStack.Show(mainDeveloper1);
+    }
+
+    private void InitSdnLogin()
+    {
+      ViewportStack.Register(sdnLogin1);
+      sdnLogin1.Init();
+      btnSdn.Init(sdnLogin1, toolTip1);
     }
 
     private void InitProgress()

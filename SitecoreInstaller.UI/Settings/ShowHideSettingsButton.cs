@@ -18,6 +18,8 @@ namespace SitecoreInstaller.UI.Settings
       this.Image = SettingsResources.Settings;
       this.ImageActive = SettingsResources.Settings_Active;
       this.Text = string.Empty;
+      this.ToolTipWhenVisible = _toolTipWhenVisible;
+      this.ToolTipWhenNotVisible = _toolTipWhenNotVisible;
       this.Click += this.ShowHidePreferenecsButton_Click;
 
       this.ToolTipTextDeActive = string.Empty;
@@ -50,11 +52,7 @@ namespace SitecoreInstaller.UI.Settings
     {
       if (Services.PipelineWorker.IsBusy())
         return;
-      var visible = ViewportStack.OpenOrCloseDependingOnCurrentState(this.UserSettings);
-      if (visible)
-        this.ToolTipTextActive = _toolTipWhenVisible;
-      else
-        this.ToolTipTextActive = _toolTipWhenNotVisible;
+      this.OpenOrCloseControlDependingOnCurrentState(this.UserSettings);
       this.Activate();
     }
   }

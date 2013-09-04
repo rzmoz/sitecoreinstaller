@@ -70,8 +70,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
@@ -113,6 +111,9 @@
       <DependentUpon>SISelectFolder.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SISystemButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\SITextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ListBoxes\SourceEntryCheckedListBox.cs">
@@ -169,6 +170,20 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SDN\SdnLogin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SDN\SdnLogin.Designer.cs">
+      <DependentUpon>SdnLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SDN\SdnLoginButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SDN\SdnResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SdnResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings\DatabaseSettings.cs">
       <SubType>UserControl</SubType>
@@ -331,6 +346,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="SDN\SdnLogin.resx">
+      <DependentUpon>SdnLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SDN\SdnResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SdnResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings\DatabaseSettings.resx">
       <DependentUpon>DatabaseSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -412,6 +434,10 @@
     <Content Include="Navigation\Images\InstallNewSitecore_Active.png" />
     <Content Include="Navigation\Images\MySitecores.png" />
     <Content Include="Navigation\Images\MySitecores_Active.png" />
+    <None Include="SDN\Images\Login_Failed.png" />
+    <None Include="SDN\Images\Login_Ok.png" />
+    <Content Include="SDN\Images\Sdn.png" />
+    <Content Include="SDN\Images\Sdn_Active.png" />
     <Content Include="Settings\Images\back.png" />
     <Content Include="Settings\Images\Folders.png" />
     <Content Include="Settings\Images\Folders_Active.png" />
@@ -423,7 +449,6 @@
     <Content Include="Simple\Images\OpenSite.png" />
     <None Include="Simple\Images\Uninstall.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -16,7 +16,7 @@ namespace SitecoreInstaller.UI.Log
 
   public class ShowHideLogViewerButton : SIButton
   {
-    private Timer _timer;
+    private readonly Timer _timer;
 
     private const string _toolTipWhenVisible = "Hide Log viewer";
     private const string _toolTipWhenNotVisible = "Show Log viewer";

@@ -11,8 +11,6 @@
   using Sitecore.Configuration;
   using Sitecore.Diagnostics;
   using SitecoreInstaller.Framework.Configuration;
-  using SitecoreInstaller.Framework.Sys.Security;
-
   using SitecoreInstaller.Framework.Web;
   using SitecoreInstaller.Framework.IO;
 
