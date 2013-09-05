@@ -15,12 +15,18 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
     protected override void InnerInvoke(object sender, DoNothingEventArgs args)
     {
       Log.This.Info("Starting doing nothing...");
+      
 
+      const string loginUrl = "http://sdn.sitecore.net/sdn5/misc/loginpage.aspx";
+
+
+
+      /*
       foreach (var index in Enumerable.Range(0, 1))
       {
         Log.This.Info("Doing nothing: {0}", index);
         Task.WaitAll(Task.Delay(100));
-      }
+      }*/
     }
   }
 }

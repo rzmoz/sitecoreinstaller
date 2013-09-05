@@ -77,6 +77,7 @@
       // 
       // btnVerify
       // 
+      this.btnVerify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.btnVerify.Cursor = System.Windows.Forms.Cursors.Hand;
       this.btnVerify.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.btnVerify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

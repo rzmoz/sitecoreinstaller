@@ -129,6 +129,7 @@
       this.btnSdn.ToolTipTextActive = null;
       this.btnSdn.ToolTipTextDeActive = null;
       this.btnSdn.UseVisualStyleBackColor = true;
+      this.btnSdn.Visible = false;
       // 
       // pnlContent
       // 
