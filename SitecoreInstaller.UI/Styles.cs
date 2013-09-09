@@ -13,6 +13,12 @@ namespace SitecoreInstaller.UI
   {
     public static readonly FontFamily FontFamily = new FontFamily("Segoe UI", new InstalledFontCollection());
 
+    public static class MainForm
+    {
+      public const int HeightDeveloper = 650;
+      public const int HeightSimple= 450;
+    }
+
     public static class Controls
     {
       public static readonly Color BackColor = Color.FromArgb(43, 43, 46);
