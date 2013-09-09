@@ -16,9 +16,10 @@ namespace SitecoreInstaller
       InitializeComponent();
     }
 
-    protected override void OnLoad(EventArgs e)
+    public void Init()
     {
-      base.OnLoad(e);
+      mainCtrl1.Init();
+
       this.CenterToScreen();
       Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
       Services.PipelineWorker.StepExecuting += PipelineWorker_StepExecuting;

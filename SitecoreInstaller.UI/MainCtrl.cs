@@ -21,7 +21,7 @@ namespace SitecoreInstaller.UI
 
     private event EventHandler<GenericEventArgs<BuildLibrarySelections>> BuildLibrarySelectionsUpdated;
 
-    private void MainCtrl_Load(object sender, EventArgs e)
+    public void Init()
     {
       InitPipelineWorker();
       InitProjectSettings();
@@ -35,7 +35,7 @@ namespace SitecoreInstaller.UI
       Services.UserPreferences.Load();
       ViewportStack.Show(mainDeveloper1);
     }
-
+    
     private void InitSdnLogin()
     {
       ViewportStack.Register(sdnLogin1);

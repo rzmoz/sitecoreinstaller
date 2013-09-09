@@ -31,6 +31,7 @@ namespace SitecoreInstaller
       await Services.InitAsync();
       var frmMain = new FrmMain();
       frmMain.Closed += (sender, args) => this.Close();
+      frmMain.Init();
       this.Hide();
       frmMain.Show();
     }

@@ -208,7 +208,6 @@
       this.Controls.Add(this.pnlHeader);
       this.Name = "MainCtrl";
       this.Size = new System.Drawing.Size(800, 450);
-      this.Load += new System.EventHandler(this.MainCtrl_Load);
       this.pnlFooter.ResumeLayout(false);
       this.pnlHeader.ResumeLayout(false);
       this.pnlContent.ResumeLayout(false);
