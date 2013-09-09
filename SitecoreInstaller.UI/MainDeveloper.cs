@@ -39,6 +39,7 @@ namespace SitecoreInstaller.UI
       base.OnShow();
       selectProjectName1.UpdateList();
       selectProjectName1.FocusTextBox();
+      this.ParentForm.Height = Styles.MainForm.HeightDeveloper;
     }
 
     public override bool ProcessKeyPress(Keys keyData)

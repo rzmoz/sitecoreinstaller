@@ -31,7 +31,6 @@ namespace SitecoreInstaller.UI
       btnUninstall.Image = SimpleResources.Uninstall;
       btnOpenSite.Image = SimpleResources.OpenSite;
       this.InitButtons(btnInstall, btnUninstall, btnOpenSite);
-
     }
 
     private void InitButtons(params Button[] buttons)
@@ -48,6 +47,7 @@ namespace SitecoreInstaller.UI
     {
       base.OnShow();
       btnOpenSite.Text = Services.Projects.GetExistingProjects().Count() + new string(' ', 29);
+      this.ParentForm.Height = Styles.MainForm.HeightSimple;
     }
 
     public override bool ProcessKeyPress(Keys keyData)
