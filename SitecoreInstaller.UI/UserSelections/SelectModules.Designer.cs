@@ -65,7 +65,6 @@
       this.Controls.Add(this.chkModules);
       this.Name = "SelectModules";
       this.Size = new System.Drawing.Size(400, 216);
-      this.Load += new System.EventHandler(this.SelectModules_Load);
       this.ResumeLayout(false);
       this.PerformLayout();
 
