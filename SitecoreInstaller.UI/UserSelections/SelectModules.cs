@@ -25,12 +25,6 @@
       }
     }
 
-    private void SelectModules_Load(object sender, EventArgs e)
-    {
-      if (this.chkModules.Items.Count > 0)
-        this.chkModules.SetItemChecked(0, true);//default check first module
-    }
-
     protected override CheckedListBox ListBox
     {
       get { return this.chkModules; }
