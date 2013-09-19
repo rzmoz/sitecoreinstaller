@@ -73,9 +73,9 @@ namespace SitecoreInstaller.UI.Settings {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Databases {
+        internal static System.Drawing.Bitmap Database {
             get {
-                object obj = ResourceManager.GetObject("Databases", resourceCulture);
+                object obj = ResourceManager.GetObject("Database", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace SitecoreInstaller.UI.Settings {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Databases_Active {
+        internal static System.Drawing.Bitmap Database_Active {
             get {
-                object obj = ResourceManager.GetObject("Databases_Active", resourceCulture);
+                object obj = ResourceManager.GetObject("Database_Active", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

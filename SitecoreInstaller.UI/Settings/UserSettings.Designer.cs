@@ -28,91 +28,102 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.components = new System.ComponentModel.Container();
-      this.pnlButtons = new System.Windows.Forms.Panel();
-      this.btnBack = new SitecoreInstaller.UI.Forms.SIButton();
-      this.pnlContent = new System.Windows.Forms.Panel();
-      this.databaseSettings1 = new DatabaseSettings();
-      this.sourcesSettings1 = new SourcesSettings();
-      this.foldersSettings1 = new FoldersSettings();
-      this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-      this.pnlButtons.SuspendLayout();
-      this.pnlContent.SuspendLayout();
-      this.SuspendLayout();
-      // 
-      // pnlButtons
-      // 
-      this.pnlButtons.Controls.Add(this.btnBack);
-      this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Left;
-      this.pnlButtons.Location = new System.Drawing.Point(0, 0);
-      this.pnlButtons.Name = "pnlButtons";
-      this.pnlButtons.Size = new System.Drawing.Size(150, 386);
-      this.pnlButtons.TabIndex = 0;
-      // 
-      // btnBack
-      // 
-      this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.btnBack.Dock = System.Windows.Forms.DockStyle.Top;
-      this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnBack.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnBack.Location = new System.Drawing.Point(0, 0);
-      this.btnBack.Name = "btnBack";
-      this.btnBack.Size = new System.Drawing.Size(150, 85);
-      this.btnBack.TabIndex = 0;
-      this.btnBack.UseVisualStyleBackColor = true;
-      this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-      // 
-      // pnlContent
-      // 
-      this.pnlContent.Controls.Add(this.databaseSettings1);
-      this.pnlContent.Controls.Add(this.sourcesSettings1);
-      this.pnlContent.Controls.Add(this.foldersSettings1);
-      this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pnlContent.Location = new System.Drawing.Point(150, 0);
-      this.pnlContent.Name = "pnlContent";
-      this.pnlContent.Size = new System.Drawing.Size(487, 386);
-      this.pnlContent.TabIndex = 1;
-      // 
-      // databaseSettings1
-      // 
-      this.databaseSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.databaseSettings1.Label = "Sql Settings";
-      this.databaseSettings1.Location = new System.Drawing.Point(0, 0);
-      this.databaseSettings1.Name = "databaseSettings1";
-      this.databaseSettings1.Size = new System.Drawing.Size(487, 386);
-      this.databaseSettings1.TabIndex = 2;
-      // 
-      // sourcesSettings1
-      // 
-      this.sourcesSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.sourcesSettings1.Label = "Header";
-      this.sourcesSettings1.Location = new System.Drawing.Point(0, 0);
-      this.sourcesSettings1.Name = "sourcesSettings1";
-      this.sourcesSettings1.Size = new System.Drawing.Size(487, 386);
-      this.sourcesSettings1.TabIndex = 3;
-      // 
-      // foldersSettings1
-      // 
-      this.foldersSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.foldersSettings1.Label = "Header";
-      this.foldersSettings1.Location = new System.Drawing.Point(0, 0);
-      this.foldersSettings1.Name = "foldersSettings1";
-      this.foldersSettings1.Size = new System.Drawing.Size(487, 386);
-      this.foldersSettings1.TabIndex = 4;
-      // 
-      // UserPreferences
-      // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.pnlContent);
-      this.Controls.Add(this.pnlButtons);
-      this.Name = "UserSettings";
-      this.Size = new System.Drawing.Size(637, 386);
-      this.pnlButtons.ResumeLayout(false);
-      this.pnlContent.ResumeLayout(false);
-      this.ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            this.pnlButtons = new System.Windows.Forms.Panel();
+            this.btnBack = new SitecoreInstaller.UI.Forms.SIButton();
+            this.pnlContent = new System.Windows.Forms.Panel();
+            this.mongoSettings1 = new SitecoreInstaller.UI.Settings.MongoSettings();
+            this._sqlSettings1 = new SitecoreInstaller.UI.Settings.SqlSettings();
+            this.sourcesSettings1 = new SitecoreInstaller.UI.Settings.SourcesSettings();
+            this.foldersSettings1 = new SitecoreInstaller.UI.Settings.FoldersSettings();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pnlButtons.SuspendLayout();
+            this.pnlContent.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // pnlButtons
+            // 
+            this.pnlButtons.Controls.Add(this.btnBack);
+            this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlButtons.Location = new System.Drawing.Point(0, 0);
+            this.pnlButtons.Name = "pnlButtons";
+            this.pnlButtons.Size = new System.Drawing.Size(150, 386);
+            this.pnlButtons.TabIndex = 0;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBack.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnBack.Location = new System.Drawing.Point(0, 0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(150, 85);
+            this.btnBack.TabIndex = 0;
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // pnlContent
+            // 
+            this.pnlContent.Controls.Add(this.mongoSettings1);
+            this.pnlContent.Controls.Add(this._sqlSettings1);
+            this.pnlContent.Controls.Add(this.sourcesSettings1);
+            this.pnlContent.Controls.Add(this.foldersSettings1);
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Location = new System.Drawing.Point(150, 0);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(487, 386);
+            this.pnlContent.TabIndex = 1;
+            // 
+            // mongoSettings1
+            // 
+            this.mongoSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mongoSettings1.Label = "Mongo Settings";
+            this.mongoSettings1.Location = new System.Drawing.Point(0, 0);
+            this.mongoSettings1.Name = "mongoSettings1";
+            this.mongoSettings1.Size = new System.Drawing.Size(487, 386);
+            this.mongoSettings1.TabIndex = 5;
+            // 
+            // _sqlSettings1
+            // 
+            this._sqlSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._sqlSettings1.Label = "Sql Settings";
+            this._sqlSettings1.Location = new System.Drawing.Point(0, 0);
+            this._sqlSettings1.Name = "_sqlSettings1";
+            this._sqlSettings1.Size = new System.Drawing.Size(487, 386);
+            this._sqlSettings1.TabIndex = 2;
+            // 
+            // sourcesSettings1
+            // 
+            this.sourcesSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourcesSettings1.Label = "Header";
+            this.sourcesSettings1.Location = new System.Drawing.Point(0, 0);
+            this.sourcesSettings1.Name = "sourcesSettings1";
+            this.sourcesSettings1.Size = new System.Drawing.Size(487, 386);
+            this.sourcesSettings1.TabIndex = 3;
+            // 
+            // foldersSettings1
+            // 
+            this.foldersSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.foldersSettings1.Label = "Header";
+            this.foldersSettings1.Location = new System.Drawing.Point(0, 0);
+            this.foldersSettings1.Name = "foldersSettings1";
+            this.foldersSettings1.Size = new System.Drawing.Size(487, 386);
+            this.foldersSettings1.TabIndex = 4;
+            // 
+            // UserSettings
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pnlContent);
+            this.Controls.Add(this.pnlButtons);
+            this.Name = "UserSettings";
+            this.Size = new System.Drawing.Size(637, 386);
+            this.pnlButtons.ResumeLayout(false);
+            this.pnlContent.ResumeLayout(false);
+            this.ResumeLayout(false);
 
     }
 
@@ -120,10 +131,11 @@
 
     private System.Windows.Forms.Panel pnlButtons;
     private System.Windows.Forms.Panel pnlContent;
-    private DatabaseSettings databaseSettings1;
+    private SqlSettings _sqlSettings1;
     private SourcesSettings sourcesSettings1;
     private Forms.SIButton btnBack;
     private FoldersSettings foldersSettings1;
     private System.Windows.Forms.ToolTip toolTip1;
+    private MongoSettings mongoSettings1;
   }
 }

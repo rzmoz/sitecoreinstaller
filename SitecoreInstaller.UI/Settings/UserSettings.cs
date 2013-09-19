@@ -44,7 +44,8 @@ namespace SitecoreInstaller.UI.Settings
       btnBack.FlatAppearance.BorderSize = 0;
 
       _navList = new NavigationCtrlList(pnlButtons, btnBack.Height, toolTip1);
-      _navList.Add(new Level1NavigationButton(databaseSettings1) { Text = "Databases", Image = SettingsResources.Databases, ImageActive = SettingsResources.Databases_Active });
+      _navList.Add(new Level1NavigationButton(_sqlSettings1) { Text = "Sql", Image = SettingsResources.Database, ImageActive = SettingsResources.Database_Active });
+      _navList.Add(new Level1NavigationButton(mongoSettings1) { Text = "Mongo", Image = SettingsResources.Database, ImageActive = SettingsResources.Database_Active });
       _navList.Add(new Level1NavigationButton(foldersSettings1) { Text = "Folders", Image = SettingsResources.Folders, ImageActive = SettingsResources.Folders_Active });
       _navList.Add(new Level1NavigationButton(sourcesSettings1) { Text = "Sources", Image = SettingsResources.Sources, ImageActive = SettingsResources.Sources_Active });
       _navList.Init();

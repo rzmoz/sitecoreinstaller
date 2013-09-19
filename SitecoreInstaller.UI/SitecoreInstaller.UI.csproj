@@ -185,17 +185,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SdnResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Settings\DatabaseSettings.cs">
+    <Compile Include="Settings\SqlSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Settings\DatabaseSettings.Designer.cs">
-      <DependentUpon>DatabaseSettings.cs</DependentUpon>
+    <Compile Include="Settings\SqlSettings.Designer.cs">
+      <DependentUpon>SqlSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings\FoldersSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Settings\FoldersSettings.Designer.cs">
       <DependentUpon>FoldersSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\MongoSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\MongoSettings.Designer.cs">
+      <DependentUpon>MongoSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings\SettingsResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -353,11 +359,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SdnResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\DatabaseSettings.resx">
-      <DependentUpon>DatabaseSettings.cs</DependentUpon>
+    <EmbeddedResource Include="Settings\SqlSettings.resx">
+      <DependentUpon>SqlSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings\FoldersSettings.resx">
       <DependentUpon>FoldersSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\MongoSettings.resx">
+      <DependentUpon>MongoSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings\SettingsResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
