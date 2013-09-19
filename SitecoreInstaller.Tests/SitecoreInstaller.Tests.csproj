@@ -56,6 +56,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Domain\Database\ConnectionStringNameUT.cs" />
+    <Compile Include="Domain\Database\MockConnectionStrings.cs" />
+    <Compile Include="Domain\Database\MongoDbConnectionStringUT.cs" />
+    <Compile Include="Domain\Database\MsSqlConnectionStringUT.cs" />
     <Compile Include="Domain\Database\SqlDatabaseUT.cs" />
     <Compile Include="Domain\Pipelines\InstallerServiceMock.cs" />
     <Compile Include="Domain\ProjectFolderUT.cs" />

@@ -13,7 +13,7 @@ namespace SitecoreInstaller.Domain.Database
     using Microsoft.SqlServer.Management.Common;
     using Microsoft.SqlServer.Management.Smo;
 
-    using SitecoreInstaller.Framework.Diagnostics;
+    using Framework.Diagnostics;
 
     public class SqlService : ISqlService
     {
