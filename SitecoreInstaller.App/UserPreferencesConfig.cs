@@ -28,6 +28,8 @@ namespace SitecoreInstaller.App
         public string MongoUsername { get; set; }
         public string MongoPassword { get; set; }
 
+        public bool AdvancedView { get; set; }
+
         public bool PromptForUserSettings { get; set; }
 
         public int LicenseExpirationPeriodInDays { get; set; }
