@@ -53,9 +53,9 @@
       this.lblInstanceName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.lblInstanceName.Location = new System.Drawing.Point(3, 33);
       this.lblInstanceName.Name = "lblInstanceName";
-      this.lblInstanceName.Size = new System.Drawing.Size(148, 19);
+      this.lblInstanceName.Size = new System.Drawing.Size(151, 19);
       this.lblInstanceName.TabIndex = 3;
-      this.lblInstanceName.Text = "MsSql Instance name";
+      this.lblInstanceName.Text = "MsSql Instance Name";
       // 
       // tbxInstanceName
       // 
@@ -129,9 +129,9 @@
       this.lblMongoEndpoint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.lblMongoEndpoint.Location = new System.Drawing.Point(3, 206);
       this.lblMongoEndpoint.Name = "lblMongoEndpoint";
-      this.lblMongoEndpoint.Size = new System.Drawing.Size(121, 19);
+      this.lblMongoEndpoint.Size = new System.Drawing.Size(120, 19);
       this.lblMongoEndpoint.TabIndex = 10;
-      this.lblMongoEndpoint.Text = "Mongo endpoint";
+      this.lblMongoEndpoint.Text = "Mongo Endpoint";
       // 
       // tbxMongoEndpoint
       // 
@@ -151,7 +151,7 @@
       this.lblPort.Name = "lblPort";
       this.lblPort.Size = new System.Drawing.Size(90, 19);
       this.lblPort.TabIndex = 12;
-      this.lblPort.Text = "Mongo port";
+      this.lblPort.Text = "Mongo Port";
       // 
       // tbxMongoPort
       // 
@@ -180,7 +180,7 @@
       this.lblMongoPassword.Name = "lblMongoPassword";
       this.lblMongoPassword.Size = new System.Drawing.Size(125, 19);
       this.lblMongoPassword.TabIndex = 16;
-      this.lblMongoPassword.Text = "Mongo password";
+      this.lblMongoPassword.Text = "Mongo Password";
       // 
       // tbxMongoUsername
       // 
@@ -198,9 +198,9 @@
       this.lblMongoUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.lblMongoUsername.Location = new System.Drawing.Point(3, 296);
       this.lblMongoUsername.Name = "lblMongoUsername";
-      this.lblMongoUsername.Size = new System.Drawing.Size(126, 19);
+      this.lblMongoUsername.Size = new System.Drawing.Size(128, 19);
       this.lblMongoUsername.TabIndex = 14;
-      this.lblMongoUsername.Text = "Mongo username";
+      this.lblMongoUsername.Text = "Mongo Username";
       // 
       // btnTestMongoSettings
       // 
