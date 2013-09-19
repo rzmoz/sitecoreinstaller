@@ -16,5 +16,5 @@
     
     <AdvancedView xdt:Transform="Replace">true</AdvancedView>
 
-    <PromptForUserSettings xdt:Transform="Replace">false</PromptForUserSettings>
+    <PromptForUserSettings xdt:Transform="Replace">true</PromptForUserSettings>
 </UserPreferences>
