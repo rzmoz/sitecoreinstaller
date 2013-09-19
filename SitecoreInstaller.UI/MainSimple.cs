@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using SitecoreInstaller.App;
+using SitecoreInstaller.UI.Simple;
+using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
 {
-    using SitecoreInstaller.App;
-    using SitecoreInstaller.UI.Simple;
-    using SitecoreInstaller.UI.Viewport;
-
     public partial class MainSimple : SIUserControl
     {
         public MainSimple()
@@ -64,6 +57,10 @@ namespace SitecoreInstaller.UI
                     ViewportStack.Show("SitecoreInstaller.UI.MainDeveloper");
                     return true;
                 case Keys.B | Keys.Control | Keys.Shift:
+ 
+                    
+                    
+                    
                     this.btnInstall_Click(this, new EventArgs());
                     return true;
                 case Keys.U | Keys.Control | Keys.Shift:

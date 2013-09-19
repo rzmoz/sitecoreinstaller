@@ -1,17 +1,16 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
+using SitecoreInstaller.App;
+using SitecoreInstaller.App.Pipelines;
+using SitecoreInstaller.App.Pipelines.Steps.Nothing;
+using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Framework.Sys;
+using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
 {
-    using System.Linq;
-    using SitecoreInstaller.App;
-    using SitecoreInstaller.App.Pipelines;
-    using SitecoreInstaller.App.Pipelines.Steps.Nothing;
-    using SitecoreInstaller.Domain.BuildLibrary;
-    using SitecoreInstaller.Framework.Sys;
-    using SitecoreInstaller.UI.Viewport;
-
     public partial class MainCtrl : UserControl
     {
         public MainCtrl()
@@ -56,7 +55,6 @@ namespace SitecoreInstaller.UI
             ViewportStack.Register(userPreferences1);
             userPreferences1.Init();
             this.showHideSettingsButton1.Init(userPreferences1, toolTip1);
-
         }
 
         private void InitMainSimple()

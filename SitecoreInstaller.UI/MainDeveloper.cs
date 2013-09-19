@@ -1,17 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Windows.Forms;
+using SitecoreInstaller.App;
+using SitecoreInstaller.App.Pipelines;
+using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Framework.Sys;
+using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using SitecoreInstaller.App;
-    using SitecoreInstaller.App.Pipelines;
-    using SitecoreInstaller.App.Pipelines.Steps.Archiving;
-    using SitecoreInstaller.Domain.BuildLibrary;
-    using SitecoreInstaller.Framework.Sys;
-    using SitecoreInstaller.UI.Viewport;
-
     public partial class MainDeveloper : SIUserControl
     {
         public MainDeveloper()
