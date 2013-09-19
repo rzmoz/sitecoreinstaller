@@ -53,7 +53,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
             var formsConfigFile = new WffmConfigFile(args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile);
             if (formsConfigFile.DataProviderType == DataProviderType.Sql)
-                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmSqlDataproviderConfigFile);
+                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString.Value, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmSqlDataproviderConfigFile);
         }
     }
 }

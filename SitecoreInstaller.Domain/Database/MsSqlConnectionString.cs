@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Domain.Database
 {
-    public class MsSqlConnectionString : IConnectionString
+    public class MsSqlConnectionString : BaseConnectionString
     {
-        public string Value { get; set; }
-        public bool IsValid()
+        private const string _connectionStringFormat = "user id={0};password={1};Data Source={2};Database={3}";
+        
+        public MsSqlConnectionString()
         {
-            if (string.IsNullOrEmpty(Value))
-                return false;
+        }
 
-            //we assume it's always good
-            return true;
+        public MsSqlConnectionString(SqlSettings parameters, ConnectionStringName connectionStringName)
+        {
+            Value = string.Format(_connectionStringFormat, parameters.Login, parameters.Password, parameters.InstanceName, connectionStringName);
         }
     }
 }

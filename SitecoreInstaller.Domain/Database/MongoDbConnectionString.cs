@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Domain.Database
 {
-    public class MongoDbConnectionString : IConnectionString
+    public class MongoDbConnectionString : BaseConnectionString
     {
         private const string _protocol = @"mongodb://";
-
-        public string Value { get; set; }
-        public bool IsValid()
+        
+        public override bool IsValid()
         {
             if (string.IsNullOrEmpty(Value))
                 return false;

@@ -7,6 +7,8 @@ namespace SitecoreInstaller.Domain.Database
 {
     public class ConnectionStringEntry
     {
+        private readonly ConnectionStringFactory _connectionStringFactory = new ConnectionStringFactory();
+
         public ConnectionStringEntry()
             : this(string.Empty, string.Empty)
         {
@@ -14,19 +16,23 @@ namespace SitecoreInstaller.Domain.Database
 
         public ConnectionStringEntry(string entryName, string connectionString)
         {
+            if (connectionString == null) throw new ArgumentNullException("connectionString");
+
             Name = new ConnectionStringName();
             if (entryName != null)
                 Name = new ConnectionStringName(" _" + entryName);
-            ConnectionString = connectionString ?? string.Empty;
+
+            ConnectionString = _connectionStringFactory.Create(connectionString);
         }
 
         public ConnectionStringEntry(SqlSettings parameters, ConnectionStringName connectionStringName)
         {
             Name = connectionStringName;
-            ConnectionString = string.Format(_ConnectionStringFormat, parameters.Login, parameters.Password, parameters.InstanceName, connectionStringName);
+            ConnectionString = _connectionStringFactory.Create(parameters, connectionStringName);
+
         }
         public ConnectionStringName Name { get; set; }
-        public string ConnectionString { get; set; }
+        public IConnectionString ConnectionString { get; set; }
 
         public override string ToString()
         {
@@ -47,6 +53,5 @@ namespace SitecoreInstaller.Domain.Database
 ";
         private const string _ConnectionStringReplaceEntryFormat = @"<add name=""{0}"" connectionString=""{1}"" xdt:Transform=""Replace"" xdt:Locator=""Match(name)""/>
 ";
-        private const string _ConnectionStringFormat = "user id={0};password={1};Data Source={2};Database={3}";
     }
 }

@@ -55,6 +55,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Domain\Database\ConnectionStringFactoryUT.cs" />
     <Compile Include="Domain\Database\ConnectionStringNameUT.cs" />
     <Compile Include="Domain\Database\MockConnectionStrings.cs" />
     <Compile Include="Domain\Database\MongoDbConnectionStringUT.cs" />

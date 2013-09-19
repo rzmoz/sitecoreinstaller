@@ -171,7 +171,9 @@
     <Compile Include="BuildLibrary\WindowsSourceEntryRepository.cs" />
     <Compile Include="BuildLibrary\WindowsFileSystemSource.cs" />
     <Compile Include="BuildLibrary\WindowsZipAndFoldersSourceEntryRepository.cs" />
+    <Compile Include="Database\BaseConnectionString.cs" />
     <Compile Include="Database\ConnectionStringEntry.cs" />
+    <Compile Include="Database\ConnectionStringFactory.cs" />
     <Compile Include="Database\ConnectionStringName.cs" />
     <Compile Include="Database\ConnectionStringsFile.cs" />
     <Compile Include="Database\ConnectionStringFormats.cs" />
