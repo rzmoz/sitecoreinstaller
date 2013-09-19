@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Driver;
 using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.Database
@@ -27,7 +28,11 @@ namespace SitecoreInstaller.Domain.Database
         {
           try
           {
-            throw new NotImplementedException();
+            var conStr = new MongoConnectionString(this).Value;
+            var client = new MongoClient(conStr);
+            var server = client.GetServer();
+            server.Ping();
+            return true;
           }
           catch (Exception e)
           {
