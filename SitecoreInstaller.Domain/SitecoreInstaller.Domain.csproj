@@ -186,6 +186,7 @@
     <Compile Include="Database\ConnectionStringFormats.cs" />
     <Compile Include="Database\IConnectionString.cs" />
     <Compile Include="Database\MongoConnectionString.cs" />
+    <Compile Include="Database\MongoService.cs" />
     <Compile Include="Database\MongoSettings.cs" />
     <Compile Include="Database\MsSqlConnectionString.cs" />
     <Compile Include="Database\SqlDatabase.cs" />
@@ -202,7 +203,6 @@
     <Compile Include="WebsiteFolder.cs" />
     <Compile Include="Website\DataProviderType.cs" />
     <Compile Include="Website\WffmConfigFile.cs" />
-    <Compile Include="Database\ISqlService.cs" />
     <Compile Include="Database\SqlService.cs" />
     <Compile Include="Database\SqlSettings.cs" />
     <Compile Include="Pipelines\IPipeline.cs" />

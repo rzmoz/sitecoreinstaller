@@ -31,5 +31,17 @@ namespace SitecoreInstaller.Tests.Domain.Database
 
             conStr.IsValid().Should().BeFalse();
         }
+
+        [Test]
+        [TestCase("mongodb://localhost/analytics", "mongodb://localhost/MyProject_analytics")]
+        [TestCase("mongodb://localhost/MyProject_analytics", "mongodb://localhost/MyProject_analytics")]
+        public void SetProjectName_InsertProjectName_ProjectNameIsIncluded(string input, string expected)
+        {
+            var mongoConnectionString = new MongoConnectionString();
+            mongoConnectionString.Value = input;
+            mongoConnectionString.SetProjectName("MyProject");
+            mongoConnectionString.Value.Should().Be(expected);
+        }
+
     }
 }

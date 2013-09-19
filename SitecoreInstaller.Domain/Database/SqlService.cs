@@ -15,20 +15,19 @@ namespace SitecoreInstaller.Domain.Database
 
     using Framework.Diagnostics;
 
-    public class SqlService : ISqlService
+    public class SqlService
     {
-
-
-        public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, IEnumerable<ConnectionStringName> connectionStringNames, IEnumerable<ConnectionStringName> existingConnectionStrings)
+        public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, IEnumerable<ConnectionStringName> databaseNames, IEnumerable<ConnectionStringEntry> existingEntries)
         {
             Log.This.Info("Generating connection string delta...");
+            var existingConnectionStringNames = existingEntries.Select(entry => entry.Name).ToList();
 
             var connectionStringEntries = string.Empty;
-            foreach (var connectionStringName in connectionStringNames)
+            foreach (var databaseName in databaseNames)
             {
-                var connectionStringEntry = new ConnectionStringEntry(sqlSettings, connectionStringName);
+                var connectionStringEntry = new ConnectionStringEntry(sqlSettings, databaseName);
 
-                if (existingConnectionStrings.Select(name => name.DatabasePart).ContainsCaseInsensitive(connectionStringName.DatabasePart))
+                if (existingConnectionStringNames.Select(name => name.DatabasePart).ContainsCaseInsensitive(databaseName.DatabasePart))
                     connectionStringEntries += connectionStringEntry.ToReplaceString();
                 else
                     connectionStringEntries += connectionStringEntry.ToInsertString();

@@ -26,6 +26,8 @@ namespace SitecoreInstaller.App
       IisManagement = new IisManagementService();
       PipelineWorker = new PipelineWorker();
       SourceManifests = new SourceManifestRepository(new FileInfo(AppConstants.SourcesConfigFileName));
+      Sql = new SqlService();
+      Mongo = new MongoService();
     }
 
     public static async Task InitAsync()
@@ -41,7 +43,7 @@ namespace SitecoreInstaller.App
 
         InitProjects();
 
-        Sql = new SqlService();
+
       });
     }
 
@@ -104,7 +106,8 @@ namespace SitecoreInstaller.App
     public static ProjectsService Projects { get; private set; }
     public static IWebsiteService Website { get; private set; }
     public static IIisManagementService IisManagement { get; private set; }
-    public static ISqlService Sql { get; private set; }
+    public static SqlService Sql { get; private set; }
+    public static MongoService Mongo { get; private set; }
     public static PipelineWorker PipelineWorker { get; private set; }
   }
 }

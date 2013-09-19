@@ -15,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     using SitecoreInstaller.Framework.Sys;
     using SitecoreInstaller.Framework.Xml;
 
-  public class SetConnectionStrings : Step<PipelineEventArgs>
+    public class SetConnectionStrings : Step<PipelineEventArgs>
     {
         public SetConnectionStrings()
         {
@@ -28,17 +28,22 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
             connectionStrings.InitFromFile();
 
-            var existingConnectionStringNames = connectionStrings.Select(entry => entry.Name);
-
             if (args.ProjectSettings.InstallType == InstallType.Full)
             {
                 var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
                 args.ProjectSettings.DatabaseNames = databases.Select(db => db.LogicalName).AsUniqueStrings().Select(name => new ConnectionStringName(args.ProjectSettings.ProjectName, name));
             }
 
-            var connectionStringsDelta = Services.Sql.GenerateConnectionStringsDelta(args.ProjectSettings.Sql, args.ProjectSettings.DatabaseNames, existingConnectionStringNames);
+            var sqlDelta = Services.Sql.GenerateConnectionStringsDelta(args.ProjectSettings.Sql, args.ProjectSettings.DatabaseNames, connectionStrings);
             var transform = new XmlTransform();
-            transform.Transform(connectionStrings.File, connectionStringsDelta);
+            transform.Transform(connectionStrings.File, sqlDelta);
+
+            //mongo
+            connectionStrings.InitFromFile();
+
+            var mongoDelta = Services.Mongo.GenerateConnectionStringsDelta(args.ProjectSettings.Mongo, connectionStrings, args.ProjectSettings.ProjectName);
+            
+            transform.Transform(connectionStrings.File, mongoDelta);
 
             //WFFM Sql-Dataprovider connection string set
             connectionStrings.InitFromFile();

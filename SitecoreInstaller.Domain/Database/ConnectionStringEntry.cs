@@ -28,9 +28,15 @@ namespace SitecoreInstaller.Domain.Database
         public ConnectionStringEntry(SqlSettings parameters, ConnectionStringName connectionStringName)
         {
             Name = connectionStringName;
-            ConnectionString = _connectionStringFactory.Create(parameters, connectionStringName);
-
+            ConnectionString = new MsSqlConnectionString(parameters, connectionStringName);
         }
+
+        public ConnectionStringEntry(MongoSettings settings, ConnectionStringName connectionStringName)
+        {
+            Name = connectionStringName;
+            ConnectionString=new MongoConnectionString(settings, connectionStringName);
+        }
+
         public ConnectionStringName Name { get; set; }
         public IConnectionString ConnectionString { get; set; }
 
