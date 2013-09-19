@@ -28,17 +28,22 @@
     public ProjectSettings()
     {
       _projectName = new Observable<string>();
-      _projectName.Updated += this.ProjectNameUpdated;
+      _projectName.Updated += ProjectNameUpdated;
       Reset();
     }
 
     public void Init(UserPreferencesConfig userPreferences)
     {
       _userPreferences = userPreferences;
-      this.SetSystemPaths();
+      SetSystemPaths();
       Sql.InstanceName = userPreferences.SqlInstanceName;
       Sql.Login = userPreferences.SqlLogin;
       Sql.Password = userPreferences.SqlPassword;
+
+      Mongo.Endpoint = userPreferences.MongoEndpoint;
+      Mongo.Port = userPreferences.MongoPort;
+      Mongo.Username = userPreferences.MongoUsername;
+      Mongo.Password = userPreferences.MongoPassword;
     }
 
     void ProjectNameUpdated(object sender, GenericEventArgs<string> e)
@@ -60,6 +65,7 @@
 
     public BuildLibrarySelections BuildLibrarySelections { get; set; }
     public SqlSettings Sql { get; set; }
+    public MongoSettings Mongo { get; set; }
     public IisSettings Iis { get; set; }
     public ProjectFolder ProjectFolder { get; set; }
 
@@ -74,6 +80,7 @@
       ProjectFolder = new ProjectFolder(new DirectoryInfo(@"K:\"));
       BuildLibrarySelections = new BuildLibrarySelections();
       Sql = new SqlSettings();
+      Mongo = new MongoSettings();
     }
 
     private void ResolveDependentPaths()

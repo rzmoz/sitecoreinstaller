@@ -34,7 +34,7 @@
       this.tbxLogin = new System.Windows.Forms.TextBox();
       this.lblPassword = new SitecoreInstaller.UI.Forms.SIH2();
       this.tbxPassword = new System.Windows.Forms.TextBox();
-      this.siButton1 = new SitecoreInstaller.UI.Forms.SIButton();
+      this.btnTestSqlSettings = new SitecoreInstaller.UI.Forms.SIButton();
       this.lblMongoEndpoint = new SitecoreInstaller.UI.Forms.SIH2();
       this.tbxMongoEndpoint = new System.Windows.Forms.TextBox();
       this.lblPort = new SitecoreInstaller.UI.Forms.SIH2();
@@ -43,6 +43,7 @@
       this.lblMongoPassword = new SitecoreInstaller.UI.Forms.SIH2();
       this.tbxMongoUsername = new System.Windows.Forms.TextBox();
       this.lblMongoUsername = new SitecoreInstaller.UI.Forms.SIH2();
+      this.btnTestMongoSettings = new SitecoreInstaller.UI.Forms.SIButton();
       this.SuspendLayout();
       // 
       // lblInstanceName
@@ -105,21 +106,21 @@
       this.tbxPassword.Size = new System.Drawing.Size(486, 20);
       this.tbxPassword.TabIndex = 8;
       // 
-      // siButton1
+      // btnTestSqlSettings
       // 
-      this.siButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.siButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.siButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.siButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.siButton1.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.siButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.siButton1.Location = new System.Drawing.Point(321, 182);
-      this.siButton1.Name = "siButton1";
-      this.siButton1.Size = new System.Drawing.Size(172, 23);
-      this.siButton1.TabIndex = 9;
-      this.siButton1.Text = "Test Sql settings";
-      this.siButton1.UseVisualStyleBackColor = true;
-      this.siButton1.Click += new System.EventHandler(this.btnTestSqlSettings_Click);
+      this.btnTestSqlSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnTestSqlSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.btnTestSqlSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnTestSqlSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnTestSqlSettings.Font = new System.Drawing.Font("Segoe UI", 8F);
+      this.btnTestSqlSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnTestSqlSettings.Location = new System.Drawing.Point(321, 182);
+      this.btnTestSqlSettings.Name = "btnTestSqlSettings";
+      this.btnTestSqlSettings.Size = new System.Drawing.Size(172, 23);
+      this.btnTestSqlSettings.TabIndex = 9;
+      this.btnTestSqlSettings.Text = "Test Sql settings";
+      this.btnTestSqlSettings.UseVisualStyleBackColor = true;
+      this.btnTestSqlSettings.Click += new System.EventHandler(this.btnTestSqlSettings_Click);
       // 
       // lblMongoEndpoint
       // 
@@ -201,10 +202,27 @@
       this.lblMongoUsername.TabIndex = 14;
       this.lblMongoUsername.Text = "Mongo username";
       // 
+      // btnTestMongoSettings
+      // 
+      this.btnTestMongoSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnTestMongoSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.btnTestMongoSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnTestMongoSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnTestMongoSettings.Font = new System.Drawing.Font("Segoe UI", 8F);
+      this.btnTestMongoSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnTestMongoSettings.Location = new System.Drawing.Point(321, 399);
+      this.btnTestMongoSettings.Name = "btnTestMongoSettings";
+      this.btnTestMongoSettings.Size = new System.Drawing.Size(172, 23);
+      this.btnTestMongoSettings.TabIndex = 18;
+      this.btnTestMongoSettings.Text = "Test Mongo settings";
+      this.btnTestMongoSettings.UseVisualStyleBackColor = true;
+      this.btnTestMongoSettings.Click += new System.EventHandler(this.btnTestMongoSettings_Click);
+      // 
       // DatabaseSettings
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.Controls.Add(this.btnTestMongoSettings);
       this.Controls.Add(this.tbxMongoPassword);
       this.Controls.Add(this.lblMongoPassword);
       this.Controls.Add(this.tbxMongoUsername);
@@ -213,7 +231,7 @@
       this.Controls.Add(this.lblPort);
       this.Controls.Add(this.tbxMongoEndpoint);
       this.Controls.Add(this.lblMongoEndpoint);
-      this.Controls.Add(this.siButton1);
+      this.Controls.Add(this.btnTestSqlSettings);
       this.Controls.Add(this.tbxPassword);
       this.Controls.Add(this.lblPassword);
       this.Controls.Add(this.tbxLogin);
@@ -221,14 +239,13 @@
       this.Controls.Add(this.tbxInstanceName);
       this.Controls.Add(this.lblInstanceName);
       this.Name = "DatabaseSettings";
-      this.Size = new System.Drawing.Size(500, 600);
       this.Controls.SetChildIndex(this.lblInstanceName, 0);
       this.Controls.SetChildIndex(this.tbxInstanceName, 0);
       this.Controls.SetChildIndex(this.lblLogin, 0);
       this.Controls.SetChildIndex(this.tbxLogin, 0);
       this.Controls.SetChildIndex(this.lblPassword, 0);
       this.Controls.SetChildIndex(this.tbxPassword, 0);
-      this.Controls.SetChildIndex(this.siButton1, 0);
+      this.Controls.SetChildIndex(this.btnTestSqlSettings, 0);
       this.Controls.SetChildIndex(this.lblMongoEndpoint, 0);
       this.Controls.SetChildIndex(this.tbxMongoEndpoint, 0);
       this.Controls.SetChildIndex(this.lblPort, 0);
@@ -237,6 +254,7 @@
       this.Controls.SetChildIndex(this.tbxMongoUsername, 0);
       this.Controls.SetChildIndex(this.lblMongoPassword, 0);
       this.Controls.SetChildIndex(this.tbxMongoPassword, 0);
+      this.Controls.SetChildIndex(this.btnTestMongoSettings, 0);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -250,7 +268,7 @@
     private System.Windows.Forms.TextBox tbxLogin;
     private Forms.SIH2 lblPassword;
     private System.Windows.Forms.TextBox tbxPassword;
-    private Forms.SIButton siButton1;
+    private Forms.SIButton btnTestSqlSettings;
     private Forms.SIH2 lblMongoEndpoint;
     private System.Windows.Forms.TextBox tbxMongoEndpoint;
     private Forms.SIH2 lblPort;
@@ -259,6 +277,7 @@
     private Forms.SIH2 lblMongoPassword;
     private System.Windows.Forms.TextBox tbxMongoUsername;
     private Forms.SIH2 lblMongoUsername;
+    private Forms.SIButton btnTestMongoSettings;
 
   }
 }

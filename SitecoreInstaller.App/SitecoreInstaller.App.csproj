@@ -99,6 +99,7 @@
     <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Archiving\StartApplication.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveToArchiveFolder.cs" />
+    <Compile Include="Pipelines\Steps\DatabaseSettings\VerifyMongoDbConnection.cs" />
     <Compile Include="Pipelines\Steps\Install\DeserializeItems.cs" />
     <Compile Include="Pipelines\Steps\Install\RunPreInstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\Install\RunSitecorePostInstallSteps.cs" />
@@ -106,7 +107,7 @@
     <Compile Include="Pipelines\Steps\Install\RunPostInstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\Nothing\DoNothingEventArgs.cs" />
     <Compile Include="Pipelines\Steps\PowerShellScriptStep.cs" />
-    <Compile Include="Pipelines\Steps\SqlSettings\VerifySqlConnection.cs" />
+    <Compile Include="Pipelines\Steps\DatabaseSettings\VerifySqlConnection.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPostUninstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPreUninstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\WarmUpNoWait.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Pipelines\Steps\Uninstall\DeleteSiteFromHostFile.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\DetachDatabases.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\StopApplication.cs" />
+    <Compile Include="Pipelines\TestMongoSettingsPipeline.cs" />
     <Compile Include="Pipelines\TestSqlSettingsPipeline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services.cs" />

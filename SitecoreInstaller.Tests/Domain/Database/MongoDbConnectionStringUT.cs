@@ -17,7 +17,7 @@ namespace SitecoreInstaller.Tests.Domain.Database
         [TestCase(MockConnectionStrings.Mongo.WithUsernameAndPassword)]
         public void IsValid_CheckConnectionStringFormat_ValueIsValid(string connectionString)
         {
-            var conStr = new MongoDbConnectionString { Value = connectionString };
+            var conStr = new MongoConnectionString { Value = connectionString };
 
             conStr.IsValid().Should().BeTrue();
         }
@@ -27,7 +27,7 @@ namespace SitecoreInstaller.Tests.Domain.Database
         [TestCase(MockConnectionStrings.MsSql.ConnectionToASQLServerInstance)]
         public void IsValid_CheckConnectionStringFormat_ValueIsNotValid(string connectionString)
         {
-            var conStr = new MongoDbConnectionString { Value = connectionString };
+            var conStr = new MongoConnectionString { Value = connectionString };
 
             conStr.IsValid().Should().BeFalse();
         }

@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.Database
 {
-    public class MongoDbSettings
+    public class MongoSettings
     {
-        public MongoDbSettings()
+        public MongoSettings()
         {
             Username = string.Empty;
             Password = string.Empty;
@@ -20,5 +22,19 @@ namespace SitecoreInstaller.Domain.Database
         public string Password { get; set; }
         public string Endpoint { get; set; }
         public int Port { get; set; }
+
+        public bool TestConnection()
+        {
+          try
+          {
+            throw new NotImplementedException();
+          }
+          catch (Exception e)
+          {
+            Log.This.Debug(e.ToString());
+            Log.This.Error(e.Message);
+            return false;
+          }
+        }
     }
 }

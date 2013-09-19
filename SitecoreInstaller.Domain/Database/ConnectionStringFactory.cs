@@ -10,7 +10,7 @@ namespace SitecoreInstaller.Domain.Database
     {
         public IConnectionString Create(string connectionString)
         {
-            IConnectionString con = new MongoDbConnectionString { Value = connectionString };
+            IConnectionString con = new MongoConnectionString { Value = connectionString };
             if (con.IsValid())
                 return con;
 

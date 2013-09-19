@@ -21,7 +21,7 @@ namespace SitecoreInstaller.Tests.Domain.Database
 
             var con = factory.Create(connectionString);
 
-            con.GetType().Should().Be<MongoDbConnectionString>();
+            con.GetType().Should().Be<MongoConnectionString>();
         }
         [Test]
         [TestCase(MockConnectionStrings.MsSql.StandardSecurtiy)]

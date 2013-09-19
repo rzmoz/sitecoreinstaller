@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Domain.Database
 {
-    public class MongoDbConnectionString : BaseConnectionString
+    public class MongoConnectionString : BaseConnectionString
     {
         private const string _protocol = @"mongodb://";
         private const string _connectionStringFormat = "mongodb://{0}:{1}/{2}";
         private const string _connectionStringWithUsernameAndPasswordFormat = "mongodb://{0}:{1}@{2}:{3}/{4}";
 
-        public MongoDbConnectionString()
+        public MongoConnectionString()
         {
         }
 
-        public MongoDbConnectionString(MongoDbSettings settings, string dbName)
+        public MongoConnectionString(MongoSettings settings, string dbName)
         {
             if (string.IsNullOrEmpty(settings.Username) || string.IsNullOrEmpty(settings.Password))
                 Value = string.Format(_connectionStringFormat, settings.Endpoint, settings.Port, dbName);
