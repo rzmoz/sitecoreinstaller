@@ -5,9 +5,9 @@ using System;
 
 namespace SitecoreInstaller.Framework.Configuration
 {
-  using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.IO;
-  using SitecoreInstaller.Framework.Sys;
+  using Diagnostics;
+  using IO;
+  using Sys;
 
   public sealed class ConfigFile<T> where T : IConfig, new()
   {

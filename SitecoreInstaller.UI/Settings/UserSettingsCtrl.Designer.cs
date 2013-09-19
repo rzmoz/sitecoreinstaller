@@ -42,7 +42,7 @@
       this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnSave.Font = new System.Drawing.Font("Segoe UI", 8F);
       this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnSave.Location = new System.Drawing.Point(418, 270);
+      this.btnSave.Location = new System.Drawing.Point(418, 570);
       this.btnSave.Name = "btnSave";
       this.btnSave.Size = new System.Drawing.Size(75, 23);
       this.btnSave.TabIndex = 0;
@@ -71,14 +71,14 @@
       this.lblHeader.TabIndex = 0;
       this.lblHeader.Text = "Header";
       // 
-      // UserPreferenceCtrl
+      // UserSettingsCtrl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.pnlHeader);
       this.Controls.Add(this.btnSave);
       this.Name = "UserSettingsCtrl";
-      this.Size = new System.Drawing.Size(500, 300);
+      this.Size = new System.Drawing.Size(500, 600);
       this.pnlHeader.ResumeLayout(false);
       this.pnlHeader.PerformLayout();
       this.ResumeLayout(false);
