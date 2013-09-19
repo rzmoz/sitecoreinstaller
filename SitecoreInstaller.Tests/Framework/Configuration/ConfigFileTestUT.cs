@@ -21,10 +21,10 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
     [TestFixtureSetUp]
     public void FixtureSetup()
     {
-      var callingAsembly = Assembly.GetExecutingAssembly().Location.ToFileInfo();
+      var rootDir = Assembly.GetExecutingAssembly().Location.ToFileInfo().Directory;
 
-      _configFileTestFileInfo = callingAsembly.Directory.CombineTo<FileInfo>("Framework/Configuration/ConfigFileTest.config");
-      _configFileTestWorkingFileInfo = callingAsembly.Directory.CombineTo<FileInfo>("Framework/Configuration/ConfigFileTestWorking.config");
+      _configFileTestFileInfo = rootDir.CombineTo<FileInfo>("Framework/Configuration/ConfigFileTest.config");
+      _configFileTestWorkingFileInfo = rootDir.CombineTo<FileInfo>("Framework/Configuration/ConfigFileTestWorking.config");
     }
 
     [SetUp]
@@ -56,14 +56,14 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
       _configFile.Load();
       const string newPropertyValue = "HEllo";
 
-      this._configFile.Properties.Greeting = newPropertyValue;
-      this._configFile.Properties.MyCollection.Clear();
-      this._configFile.Properties.MyCollection.Add("item 1");
-      this._configFile.Properties.MyCollection.Add("item 2");
-      this._configFile.Properties.MyCollection.Add("item 3");
+      _configFile.Properties.Greeting = newPropertyValue;
+      _configFile.Properties.MyCollection.Clear();
+      _configFile.Properties.MyCollection.Add("item 1");
+      _configFile.Properties.MyCollection.Add("item 2");
+      _configFile.Properties.MyCollection.Add("item 3");
 
 
-      this._configFile.Properties.Greeting.Should().Be(newPropertyValue);//test from in memory
+      _configFile.Properties.Greeting.Should().Be(newPropertyValue);//test from in memory
       _configFile.Save();
       var configFile = new ConfigFile<ConfigFileTest>(_configFile.Path);
 
@@ -80,9 +80,8 @@ namespace SitecoreInstaller.Tests.Framework.Configuration
     {
       const string newPropertyValue = "Hello New World!";
 
-
-      this._configFile.Properties.Greeting = newPropertyValue;
-      this._configFile.Save();
+      _configFile.Properties.Greeting = newPropertyValue;
+      _configFile.Save();
 
       var configFile = new ConfigFile<ConfigFileTest>(_configFile.Path);
 
