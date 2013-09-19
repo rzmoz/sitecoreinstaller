@@ -13,6 +13,8 @@
     <SqlInstanceName xdt:Transform="Replace">(local)</SqlInstanceName>
     <SqlLogin xdt:Transform="Replace">sc</SqlLogin>
     <SqlPassword xdt:Transform="Replace">1234</SqlPassword>
+    
+    <AdvancedView xdt:Transform="Replace">true</AdvancedView>
 
     <PromptForUserSettings xdt:Transform="Replace">false</PromptForUserSettings>
 </UserPreferences>
