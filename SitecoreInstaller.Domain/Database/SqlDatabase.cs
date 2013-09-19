@@ -12,12 +12,12 @@ namespace SitecoreInstaller.Domain.Database
     using Microsoft.SqlServer.Management.Common;
     using Microsoft.SqlServer.Management.Smo;
 
-    using SitecoreInstaller.Framework.Diagnostics;
-    using SitecoreInstaller.Framework.IO;
+    using Framework.Diagnostics;
+    using Framework.IO;
 
     public class SqlDatabase
     {
-        private readonly char[] _physicalDatabaseNameDelimiter = new[] { '.', '_' };
+        private readonly char[] _physicalDatabaseNameDelimiter = { '.', '_' };
 
         public SqlDatabase(DirectoryInfo folder, string physicalDatabaseName, string projectName)
         {
@@ -32,7 +32,7 @@ namespace SitecoreInstaller.Domain.Database
         {
             try
             {
-                var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString)));
+                var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString.Value)));
                 var files = new StringCollection { DatafileFullPath, LogFileFullPath };
                 
                 sqlServer.AttachDatabase(Name,files);
@@ -52,7 +52,7 @@ namespace SitecoreInstaller.Domain.Database
         {
             try
             {
-                var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString)));
+                var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString.Value)));
                 sqlServer.KillAllProcesses(Name);
                 sqlServer.DetachDatabase(Name,false);
                 Log.This.Info("Database {0} detached", Name);

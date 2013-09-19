@@ -3,7 +3,7 @@ using System.IO;
 
 namespace SitecoreInstaller.Domain.Website
 {
-    using SitecoreInstaller.Domain.BuildLibrary;
+    using BuildLibrary;
 
     public interface IWebsiteService
     {

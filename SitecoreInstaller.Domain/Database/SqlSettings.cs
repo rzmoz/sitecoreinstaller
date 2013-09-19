@@ -3,7 +3,7 @@
     using System;
     using System.Data.SqlClient;
 
-    using SitecoreInstaller.Framework.Diagnostics;
+    using Framework.Diagnostics;
 
     public class SqlSettings
     {
@@ -12,13 +12,11 @@
         public string InstanceName { get; set; }
         public bool UseIntegratedSecurity { get; set; }
 
-        public string ConnectionString
+        public MsSqlConnectionString ConnectionString
         {
             get
             {
-                if(UseIntegratedSecurity)
-                    return string.Format(_ConnectionStringIntegratedSecurityFormat, InstanceName);
-                return string.Format(_ConnectionStringFormat, InstanceName, Login, Password);
+                return new MsSqlConnectionString(this, new ConnectionStringName("master"));
             }
         }
 
@@ -50,7 +48,7 @@
             }
         }
 
-        private const string _ConnectionStringFormat = @"Data Source={0};Initial Catalog=Master;User Id={1};Password={2};";
-        private const string _ConnectionStringIntegratedSecurityFormat = @"Data Source={0};Initial Catalog=Master;Integrated Security=SSPI;";
+
+
     }
 }

@@ -22,10 +22,15 @@ namespace SitecoreInstaller.Domain.Database
 
             var delimiterIndex = databaseName.LastIndexOf(_Delimiter);
             if (delimiterIndex < 0)
-                throw new ArgumentException(string.Format("database name should have {0} as delimiter", _Delimiter));
-
-            ProjectPart = databaseName.Substring(0, delimiterIndex);
-            DatabasePart = databaseName.Substring(delimiterIndex + 1);
+            {
+                ProjectPart = string.Empty;
+                DatabasePart = databaseName;
+            }
+            else
+            {
+                ProjectPart = databaseName.Substring(0, delimiterIndex);
+                DatabasePart = databaseName.Substring(delimiterIndex + 1);    
+            }
         }
 
         public ConnectionStringName(string projectPart, string databasePart)
@@ -39,6 +44,8 @@ namespace SitecoreInstaller.Domain.Database
 
         public override string ToString()
         {
+            if (string.IsNullOrEmpty(ProjectPart))
+                return DatabasePart;
             return ProjectPart + _Delimiter + DatabasePart;
         }
     }

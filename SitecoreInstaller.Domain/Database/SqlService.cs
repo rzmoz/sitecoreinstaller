@@ -17,7 +17,7 @@ namespace SitecoreInstaller.Domain.Database
 
     public class SqlService : ISqlService
     {
-     
+
 
         public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, IEnumerable<ConnectionStringName> connectionStringNames, IEnumerable<ConnectionStringName> existingConnectionStrings)
         {
@@ -51,7 +51,7 @@ namespace SitecoreInstaller.Domain.Database
 
         public IEnumerable<string> GetExistingDatabaseNames(SqlSettings sqlSettings)
         {
-            var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString)));
+            var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString.Value)));
             foreach (Database database in sqlServer.Databases)
             {
                 yield return database.Name;
