@@ -1,8 +1,8 @@
-﻿namespace SitecoreInstaller.Framework.IO
-{
-    using global::System.Collections.Generic;
-    using global::System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
+namespace SitecoreInstaller.Framework.IO
+{
     public static class FileTypes
     {
         private static readonly HashSet<string> _knownFileTypes;
@@ -22,6 +22,8 @@
             _knownFileTypes.Add(SitecoreUpdate.Extension.ToLower());
             PowerShellScript = new FileType("PowerShellScript", ".ps1");
             _knownFileTypes.Add(PowerShellScript.Extension.ToLower());
+            ConfigDelta = new FileType("ConfigFileDelta", ".delta");
+            _knownFileTypes.Add(ConfigDelta.Extension.ToLower());
         }
 
 
@@ -36,5 +38,6 @@
         public static FileType SitecorePackage { get; private set; }
         public static FileType SitecoreUpdate { get; private set; }
         public static FileType PowerShellScript { get; private set; }
+        public static FileType ConfigDelta { get; private set; }
     }
 }

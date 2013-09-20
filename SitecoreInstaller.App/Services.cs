@@ -104,7 +104,7 @@ namespace SitecoreInstaller.App
         public static PowerShellScriptService PowerShellScripts { get; private set; }
         public static ISourceRepository BuildLibrary { get; private set; }
         public static ProjectsService Projects { get; private set; }
-        public static IWebsiteService Website { get; private set; }
+        public static WebsiteService Website { get; private set; }
         public static IIisManagementService IisManagement { get; private set; }
         public static SqlService Sql { get; private set; }
         public static MongoService Mongo { get; private set; }

@@ -62,7 +62,7 @@ namespace SitecoreInstaller.Domain.Database
             if (Directory.Exists(databaseFolder.FullName) == false)
                 return Enumerable.Empty<string>();
 
-            var databaseNames = from databaseName in FileTypes.DatabaseDataFile.GetFiles(databaseFolder, SearchOption.AllDirectories)
+            var databaseNames = from databaseName in databaseFolder.GetFiles(FileTypes.DatabaseDataFile, SearchOption.AllDirectories)
                                 select databaseName.NameWithoutExtension();
             return databaseNames.AsUniqueStrings();
         }

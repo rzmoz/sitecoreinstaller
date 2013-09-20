@@ -105,6 +105,7 @@
     <Compile Include="Pipelines\Steps\Install\RunSitecorePostInstallSteps.cs" />
     <Compile Include="Pipelines\Steps\Install\GrantPermissions.cs" />
     <Compile Include="Pipelines\Steps\Install\RunPostInstallPowerShellScripts.cs" />
+    <Compile Include="Pipelines\Steps\Install\TransformConfigFiles.cs" />
     <Compile Include="Pipelines\Steps\Nothing\DoNothingEventArgs.cs" />
     <Compile Include="Pipelines\Steps\PowerShellScriptStep.cs" />
     <Compile Include="Pipelines\Steps\DatabaseSettings\VerifySqlConnection.cs" />
