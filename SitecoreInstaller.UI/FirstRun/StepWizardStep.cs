@@ -9,5 +9,6 @@ namespace SitecoreInstaller.UI.FirstRun
 {
     public abstract class StepWizardStep : UserControl
     {
+        public abstract void Save();
     }
 }

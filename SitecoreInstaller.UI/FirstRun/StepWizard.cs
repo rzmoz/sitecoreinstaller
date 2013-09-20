@@ -12,9 +12,12 @@ namespace SitecoreInstaller.UI.FirstRun
 {
     public partial class StepWizard : UserControl
     {
+        private IList<StepWizardStep> _steps;
+
         public StepWizard()
         {
             InitializeComponent();
+            _steps = new List<StepWizardStep>();
             WizardFinished = false;
         }
 
@@ -33,9 +36,14 @@ namespace SitecoreInstaller.UI.FirstRun
 
         public bool WizardFinished { get; private set; }
 
-        private void siButton1_Click(object sender, EventArgs e)
+        private void btnNext_Click(object sender, EventArgs e)
         {
-            WizardFinished = true;
+
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
