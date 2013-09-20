@@ -27,18 +27,19 @@ namespace SitecoreInstaller
             timer1.Start();//start timer as one of the first tasks to start animation!
             await Services.LoadUserPreferencesAsync();
 
-            Task userPreferences = null;
+            Task wizardFinishedTask = null;
             if (Services.UserPreferences.Properties.PromptForUserSettings)
             {
-                userPreferences = Task.Factory.StartNew(() => Services.UserPreferences.Properties.AdvancedView = !UiServices.Dialogs.UserAccept("Do you want to use simple view? (no means advanced view with a lot of buttons"));
+                wizardFinishedTask = stepWizard1.StartWizard();
+                Services.UserPreferences.Properties.PromptForUserSettings = false;
+                Services.UserPreferences.Save();
             }
+
             await Services.InitAsync();
-            
-            Services.UserPreferences.Properties.PromptForUserSettings = false;
-            Services.UserPreferences.Save();
-            
-            if (userPreferences != null)
-                userPreferences.Wait();
+
+            if (wizardFinishedTask != null)
+                await wizardFinishedTask;
+
             var frmMain = new FrmMain();
             frmMain.Closed += (sender, args) => this.Close();
             frmMain.Init();

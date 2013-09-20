@@ -85,6 +85,15 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FirstRun\StepWizard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FirstRun\StepWizard.Designer.cs">
+      <DependentUpon>StepWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FirstRun\StepWizardStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\MessageBoxBtns.cs" />
     <Compile Include="Forms\SIButtonWithActiveState.cs">
       <SubType>Component</SubType>
@@ -319,6 +328,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FirstRun\StepWizard.resx">
+      <DependentUpon>StepWizard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SIDialog.resx">
       <DependentUpon>SIDialog.cs</DependentUpon>
     </EmbeddedResource>
