@@ -28,12 +28,12 @@ namespace SitecoreInstaller
             await Services.LoadUserPreferencesAsync();
 
             Task wizardFinishedTask = null;
-            if (Services.UserPreferences.Properties.PromptForUserSettings)
+           /* if (Services.UserPreferences.Properties.PromptForUserSettings)
             {
                 wizardFinishedTask = stepWizard1.StartWizard();
                 Services.UserPreferences.Properties.PromptForUserSettings = false;
                 Services.UserPreferences.Save();
-            }
+            }*/
 
             await Services.InitAsync();
 
