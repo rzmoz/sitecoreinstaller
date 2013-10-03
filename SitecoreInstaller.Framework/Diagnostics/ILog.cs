@@ -5,14 +5,14 @@ using System.Text;
 
 namespace SitecoreInstaller.Framework.Diagnostics
 {
-  using SitecoreInstaller.Framework.Sys;
+  using Sys;
 
   public interface ILog
   {
     event EventHandler<GenericEventArgs<LogEntry>> EntryLogged;
     event EventHandler LogCleared;
     void Flush();
-    void Clear();
+    void Reset();
 
     IEnumerable<LogEntry> Entries { get; }
     LogStatus Status { get; }

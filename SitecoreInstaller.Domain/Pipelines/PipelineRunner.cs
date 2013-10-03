@@ -30,7 +30,7 @@ namespace SitecoreInstaller.Domain.Pipelines
     {
       if (pipeline == null) throw new ArgumentNullException("pipeline");
 
-      Log.This.Clear();
+      Log.This.Reset();
       ExecuteAllText = executeAllText;
       PreProcessors = preProcessors ?? Enumerable.Empty<Action<TK>>();
       Pipeline = pipeline;

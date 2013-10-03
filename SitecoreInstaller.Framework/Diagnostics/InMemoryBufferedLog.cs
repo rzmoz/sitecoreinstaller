@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SitecoreInstaller.Framework.Diagnostics
 {
-  using SitecoreInstaller.Framework.Sys;
+  using Sys;
 
-  using global::System.Threading;
+  using System.Threading;
 
   public class InMemoryBufferedLog : ILog
   {
@@ -29,6 +29,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
       _logStatus.Updated += _logStatus_Updated;
       _logStatus.Value = LogStatus.NoProblems;
       SetStatus = this.SetStatusWhenHasNoProblems;
+      Reset();
     }
 
     private void _logStatus_Updated(object sender, GenericEventArgs<LogStatus> e)
@@ -52,7 +53,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
       FlushLogBuffer(null);
     }
 
-    public void Clear()
+    public void Reset()
     {
       _entries.Clear();
       lock (_notifyBuffer)

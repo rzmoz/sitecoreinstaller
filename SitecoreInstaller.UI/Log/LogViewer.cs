@@ -88,7 +88,7 @@ namespace SitecoreInstaller.UI.Log
 
     private void btnClear_Click(object sender, EventArgs e)
     {
-      Log.This.Clear();
+      Log.This.Reset();
     }
   }
 }
