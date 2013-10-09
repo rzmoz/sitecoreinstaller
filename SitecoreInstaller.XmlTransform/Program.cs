@@ -20,9 +20,9 @@ namespace SitecoreInstaller.XmlTransform
                                 XmlTransformParameters.Output);
       cmdLine.Parse(args);
 
-      var source = cmdLine[XmlTransformParameters.Source.Name].Value;
-      var delta = cmdLine[XmlTransformParameters.Delta.Name].Value;
-      var output = cmdLine[XmlTransformParameters.Output.Name].Value;
+      var source = cmdLine[XmlTransformParameters.Source].Value;
+      var delta = cmdLine[XmlTransformParameters.Delta].Value;
+      var output = cmdLine[XmlTransformParameters.Output].Value;
 
       try
       {

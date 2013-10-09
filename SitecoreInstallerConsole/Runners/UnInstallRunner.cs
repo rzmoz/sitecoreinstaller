@@ -9,12 +9,12 @@ namespace SitecoreInstallerConsole.Runners
     public UnInstallRunner()
     {
       CmdLine.RegisterParameter(SitecoreInstallerParameters.UnInstall);
-      CmdLine[SitecoreInstallerParameters.UnInstall.Name].Required = true;
+      CmdLine[SitecoreInstallerParameters.UnInstall].Required = true;
     }
 
     public override void Run(ProjectSettings projectSettings)
     {
-      var projectName = CmdLine[SitecoreInstallerParameters.UnInstall.Name];
+      var projectName = CmdLine[SitecoreInstallerParameters.UnInstall];
       projectSettings.ProjectName = projectName.Value;
       Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(projectSettings);
     }

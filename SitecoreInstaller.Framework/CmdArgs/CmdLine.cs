@@ -9,14 +9,21 @@ namespace SitecoreInstaller.Framework.CmdArgs
   {
     private readonly Dictionary<string, CmdLineParameter> _parameters = new Dictionary<string, CmdLineParameter>();
 
-    public CmdLineParameter this[string name]
+    public CmdLineParameter this[CmdLineParameter cmdParam]
+    {
+      get
+      {
+        return _parameters[cmdParam.Name];
+      }
+    }
+    private CmdLineParameter this[string name]
     {
       get
       {
         var key = name.ToLower();
-        if (!this._parameters.ContainsKey(key))
+        if (!_parameters.ContainsKey(key))
           return null;
-        return this._parameters[key];
+        return _parameters[key];
       }
     }
 
@@ -25,22 +32,22 @@ namespace SitecoreInstaller.Framework.CmdArgs
       foreach (var p in parameters)
       {
         var key = p.Name.ToLower();
-        if (this._parameters.ContainsKey(key))
+        if (_parameters.ContainsKey(key))
           throw new CmdLineException(key, "Parameter is already registered.");
-        this._parameters.Add(key, p);
+        _parameters.Add(key, p);
       }
     }
     public bool UnRegisterParameter(string name)
     {
       var key = name.ToLower();
-      if (this._parameters.ContainsKey(key))
-        return this._parameters.Remove(key);
+      if (_parameters.ContainsKey(key))
+        return _parameters.Remove(key);
       return false;
     }
 
     public void ClearParameters()
     {
-      this._parameters.Clear();
+      _parameters.Clear();
     }
 
     public void Parse(string[] args)
@@ -48,7 +55,7 @@ namespace SitecoreInstaller.Framework.CmdArgs
       string error = string.Empty;
       try
       {
-        this.ParseArgs(args);
+        ParseArgs(args);
       }
       catch (CmdLineException ex)
       {
@@ -58,7 +65,7 @@ namespace SitecoreInstaller.Framework.CmdArgs
       if (error != string.Empty)
       {
         Console.WriteLine(Environment.NewLine + error);
-        Console.WriteLine(this.HelpScreen());
+        Console.WriteLine(HelpScreen());
         Environment.Exit(1);
       }
     }
@@ -93,13 +100,13 @@ namespace SitecoreInstaller.Framework.CmdArgs
               argsPointer++;
             }
           }
-          if (!this._parameters.ContainsKey(key))
+          if (!_parameters.ContainsKey(key))
             throw new CmdLineException(key, "Parameter is not recognized.");
 
-          if (this._parameters[key].Exists)
+          if (_parameters[key].Exists)
             throw new CmdLineException(key, "Parameter is   specified more than once.");
 
-          this._parameters[key].SetValue(value.Trim('|'));
+          _parameters[key].SetValue(value.Trim('|'));
         }
         else
         {
@@ -107,13 +114,13 @@ namespace SitecoreInstaller.Framework.CmdArgs
         }
       }
 
-      this.CheckRequiredParametersArePresent();
-      this.CheckParametersHaveValues();
+      CheckRequiredParametersArePresent();
+      CheckParametersHaveValues();
     }
 
     private void CheckParametersHaveValues()
     {
-      foreach (var cmdLineParameter in this._parameters.Values)
+      foreach (var cmdLineParameter in _parameters.Values)
       {
         if (cmdLineParameter.AllowEmptyValue || !cmdLineParameter.Exists)
           continue;
@@ -124,9 +131,9 @@ namespace SitecoreInstaller.Framework.CmdArgs
 
     private void CheckRequiredParametersArePresent()
     {
-      foreach (string key in this._parameters.Keys)
+      foreach (string key in _parameters.Keys)
       {
-        if (this._parameters[key].Required && !this._parameters[key].Exists)
+        if (_parameters[key].Required && !_parameters[key].Exists)
           throw new CmdLineException(key, "Required parameter is not found.");
       }
     }
@@ -140,11 +147,11 @@ namespace SitecoreInstaller.Framework.CmdArgs
     {
       int len = 0;
 
-      foreach (string key in this._parameters.Keys)
+      foreach (string key in _parameters.Keys)
         len = Math.Max(len, key.Length);
 
       string help = "\nParameters:\r\n\r\n";
-      foreach (var parameter in this._parameters.Values)
+      foreach (var parameter in _parameters.Values)
       {
         string s = "-" + parameter.Name;
         while (s.Length < len + 3)

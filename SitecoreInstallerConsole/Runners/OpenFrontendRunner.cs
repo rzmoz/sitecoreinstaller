@@ -7,12 +7,12 @@
     public OpenFrontendRunner()
     {
       CmdLine.RegisterParameter(SitecoreInstallerParameters.Open);
-      CmdLine[SitecoreInstallerParameters.Open.Name].Required = true;
+      CmdLine[SitecoreInstallerParameters.Open].Required = true;
     }
 
     public override void Run(ProjectSettings projectSettings)
     {
-      var projectName = CmdLine[SitecoreInstallerParameters.Open.Name];
+      var projectName = CmdLine[SitecoreInstallerParameters.Open];
       projectSettings.ProjectName = projectName.Value;
       Services.Website.OpenFrontend(projectSettings.Iis.Url);
     }

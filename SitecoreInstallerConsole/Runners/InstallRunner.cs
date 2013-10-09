@@ -17,7 +17,7 @@ namespace SitecoreInstallerConsole.Runners
     public InstallRunner()
     {
       CmdLine.RegisterParameter(SitecoreInstallerParameters.Install);
-      CmdLine[SitecoreInstallerParameters.Install.Name].Required = true;
+      CmdLine[SitecoreInstallerParameters.Install].Required = true;
       CmdLine.RegisterParameter(SitecoreInstallerParameters.Sitecore);
       CmdLine.RegisterParameter(SitecoreInstallerParameters.License);
       CmdLine.RegisterParameter(SitecoreInstallerParameters.Modules);
@@ -38,7 +38,7 @@ namespace SitecoreInstallerConsole.Runners
 
     private void SetSelecteModules(ProjectSettings projectSettings)
     {
-      var modules = this.CmdLine[SitecoreInstallerParameters.Modules.Name];
+      var modules = this.CmdLine[SitecoreInstallerParameters.Modules];
 
       var selectedModules = new List<SourceEntry>();
 
@@ -54,7 +54,7 @@ namespace SitecoreInstallerConsole.Runners
 
     private void SetSelectedLicense(ProjectSettings projectSettings)
     {
-      var license = this.CmdLine[SitecoreInstallerParameters.License.Name];
+      var license = this.CmdLine[SitecoreInstallerParameters.License];
       if (string.IsNullOrEmpty(license.Value))
       {
         license = SitecoreInstallerParameters.Latest;
@@ -75,7 +75,7 @@ namespace SitecoreInstallerConsole.Runners
 
     private void SetSelectedSitecore(ProjectSettings projectSettings)
     {
-      var sitecore = this.CmdLine[SitecoreInstallerParameters.Sitecore.Name];
+      var sitecore = this.CmdLine[SitecoreInstallerParameters.Sitecore];
 
       if (string.IsNullOrEmpty(sitecore.Value))
       {
@@ -96,7 +96,7 @@ namespace SitecoreInstallerConsole.Runners
 
     private void SetProjectName(ProjectSettings projectSettings)
     {
-      var projectName = this.CmdLine[SitecoreInstallerParameters.Install.Name].Value;
+      var projectName = this.CmdLine[SitecoreInstallerParameters.Install].Value;
       projectSettings.ProjectName = projectName;
 
       Console.WriteLine("Project name: " + projectName);
