@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SitecoreInstaller.Framework.Sys
 {
-    using global::System.Windows.Forms;
+    using System.Windows.Forms;
 
     public static class ControlExtensions
     {

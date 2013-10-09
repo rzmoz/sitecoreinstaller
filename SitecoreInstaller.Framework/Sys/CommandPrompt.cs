@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.Framework.Sys
 {
-  using global::System.Diagnostics;
+  using System.Diagnostics;
 
   public class CommandPrompt
   {
