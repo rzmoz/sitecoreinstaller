@@ -13,9 +13,10 @@ namespace SitecoreInstaller.Framework.CmdArgs
     {
       get
       {
-        if (!this._parameters.ContainsKey(name))
+        var key = name.ToLower();
+        if (!this._parameters.ContainsKey(key))
           return null;
-        return this._parameters[name];
+        return this._parameters[key];
       }
     }
 
@@ -23,15 +24,17 @@ namespace SitecoreInstaller.Framework.CmdArgs
     {
       foreach (var p in parameters)
       {
-        if (this._parameters.ContainsKey(p.Name))
-          throw new CmdLineException(p.Name, "Parameter is already registered.");
-        this._parameters.Add(p.Name, p);
+        var key = p.Name.ToLower();
+        if (this._parameters.ContainsKey(key))
+          throw new CmdLineException(key, "Parameter is already registered.");
+        this._parameters.Add(key, p);
       }
     }
     public bool UnRegisterParameter(string name)
     {
-      if (this._parameters.ContainsKey(name))
-        return this._parameters.Remove(name);
+      var key = name.ToLower();
+      if (this._parameters.ContainsKey(key))
+        return this._parameters.Remove(key);
       return false;
     }
 
