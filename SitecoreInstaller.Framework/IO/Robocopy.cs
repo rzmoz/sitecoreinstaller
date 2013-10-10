@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.IO
 {
-  using SitecoreInstaller.Framework.Sys;
-  using global::System.IO;
-
   public class Robocopy : CommandPrompt
   {
     private const string _FileName = @"Robocopy";
