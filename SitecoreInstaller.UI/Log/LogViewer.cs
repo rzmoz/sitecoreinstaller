@@ -23,13 +23,13 @@ namespace SitecoreInstaller.UI.Log
     public LogViewer()
     {
       InitializeComponent();
-      this.BackColor = Styles.Controls.BackColor;
       chkFollowLogTrail.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
     }
     public void Init()
     {
+      BackColor = Styles.Controls.BackColor;
       Log.This.EntryLogged += EntryLogged;
-      Log.This.LogCleared += this.Clear;
+      Log.This.LogCleared += Clear;
       Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
       _colors = new Dictionary<LogType, Color>
                 {
@@ -53,18 +53,21 @@ namespace SitecoreInstaller.UI.Log
         Width = 2
       };
 
-      graphics.DrawLine(myPen, 0, 0, this.Width, 0);
+      graphics.DrawLine(myPen, 0, 0, Width, 0);
     }
 
     private void EntryLogged(object sender, GenericEventArgs<LogEntry> e)
     {
       this.CrossThreadSafe(() =>
       {
+        //TODO: Renable and debug cross thread issue
+        /*
         rtbLog.SelectionColor = _colors[e.Arg.LogType];
         rtbLog.AppendText(e.Arg + Environment.NewLine);
 
         if (chkFollowLogTrail.Checked)
           chkFollowLogTrail_CheckedChanged(this, new EventArgs());
+         * */
       });
     }
 
