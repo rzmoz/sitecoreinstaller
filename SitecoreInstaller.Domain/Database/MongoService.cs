@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Driver;
+using MongoDB.Driver.Internal;
 using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.Database
@@ -23,5 +25,17 @@ namespace SitecoreInstaller.Domain.Database
             Log.This.Debug(connectionStringDelta);
             return connectionStringDelta;
         }
+
+      public IEnumerable<MongoDatabase> GetDatabases(ConnectionStringsFile connectionStrings)
+      {
+        foreach (var mongoEntry in connectionStrings.Where(entry => entry.ConnectionString is MongoConnectionString))
+        {
+          var conStr = new MongoUrl(mongoEntry.ConnectionString.Value);
+          var client = new MongoClient(conStr);
+          var server = client.GetServer();
+          var dbSettings = new MongoDatabaseSettings();
+          yield return new MongoDatabase(server, conStr.DatabaseName , dbSettings);
+        }
+      }
     }
 }
