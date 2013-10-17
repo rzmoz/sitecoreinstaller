@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI.Log
 {
-  using SitecoreInstaller.App;
-  using SitecoreInstaller.Domain.Pipelines;
-  using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.Sys;
-  using SitecoreInstaller.UI.Viewport;
+  using App;
+  using Domain.Pipelines;
+  using Framework.Diagnostics;
+  using Framework.Sys;
+  using Viewport;
 
   public partial class LogViewer : SIUserControl
   {
@@ -28,8 +23,6 @@ namespace SitecoreInstaller.UI.Log
     public void Init()
     {
       BackColor = Styles.Controls.BackColor;
-      Log.As.EntryLogged += EntryLogged;
-      Log.As.LogCleared += Clear;
       Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
       _colors = new Dictionary<LogType, Color>
                 {
@@ -40,6 +33,9 @@ namespace SitecoreInstaller.UI.Log
                     { LogType.Profiling, Color.Green }
                 };
       chkFollowLogTrail.Checked = true;
+      Log.As.Flush();
+      Log.As.EntryLogged += EntryLogged;
+      Log.As.LogCleared += Clear;
     }
 
     protected override void OnPaint(PaintEventArgs e)
@@ -59,7 +55,7 @@ namespace SitecoreInstaller.UI.Log
     private void EntryLogged(object sender, GenericEventArgs<LogEntry> e)
     {
       this.CrossThreadSafe(() =>
-      { 
+      {
         rtbLog.SelectionColor = _colors[e.Arg.LogType];
         rtbLog.AppendText(e.Arg + Environment.NewLine);
 
@@ -70,7 +66,7 @@ namespace SitecoreInstaller.UI.Log
 
     void PipelineWorker_AllStepsExecuting(object sender, PipelineInfoEventArgs e)
     {
-      this.CrossThreadSafe(() => this.Clear(sender, e));
+      this.CrossThreadSafe(() => Clear(sender, e));
     }
 
     public void Clear(object sender, EventArgs e)

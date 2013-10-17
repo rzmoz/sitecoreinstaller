@@ -54,27 +54,27 @@ namespace SitecoreInstaller.UI
         {
             ViewportStack.Register(userPreferences1);
             userPreferences1.Init();
-            this.showHideSettingsButton1.Init(userPreferences1, toolTip1);
+            showHideSettingsButton1.Init(userPreferences1, toolTip1);
         }
 
         private void InitMainSimple()
         {
             ViewportStack.Register(mainSimple1);
-            this.mainSimple1.Init();
+            mainSimple1.Init();
         }
 
         private void InitMainDeveloper()
         {
             ViewportStack.Register(mainDeveloper1);
-            this.mainDeveloper1.Init();
+            mainDeveloper1.Init();
             BuildLibrarySelectionsUpdated += mainDeveloper1.BuildLibrarySelectionsUpdated;
         }
 
         private void InitLog()
         {
-            this.logViewer1.Init();
+            logViewer1.Init();
             ViewportStack.Register(logViewer1);
-            this.showHideLogViewerButton1.Init(logViewer1, toolTip1);
+            showHideLogViewerButton1.Init(logViewer1, toolTip1);
         }
 
         public bool ProcessKeyPress(Keys keyData)
