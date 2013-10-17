@@ -8,7 +8,7 @@ namespace SitecoreInstaller.Framework.Sys
   {
     public static void CrossThreadSafe(this Control control, Action code)
     {
-      if (control.InvokeRequired)
+      if (control.InvokeRequired || control.IsHandleCreated)
       {
         control.BeginInvoke(code);
         return;

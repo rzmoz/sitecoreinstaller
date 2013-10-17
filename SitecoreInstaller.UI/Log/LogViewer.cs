@@ -46,7 +46,7 @@ namespace SitecoreInstaller.UI.Log
     {
       base.OnPaint(e);
 
-      var graphics = this.CreateGraphics();
+      var graphics = CreateGraphics();
 
       var myPen = new Pen(Color.White)
       {
@@ -59,15 +59,12 @@ namespace SitecoreInstaller.UI.Log
     private void EntryLogged(object sender, GenericEventArgs<LogEntry> e)
     {
       this.CrossThreadSafe(() =>
-      {
-        //TODO: Renable and debug cross thread issue
-        /*
+      { 
         rtbLog.SelectionColor = _colors[e.Arg.LogType];
         rtbLog.AppendText(e.Arg + Environment.NewLine);
 
         if (chkFollowLogTrail.Checked)
           chkFollowLogTrail_CheckedChanged(this, new EventArgs());
-         * */
       });
     }
 

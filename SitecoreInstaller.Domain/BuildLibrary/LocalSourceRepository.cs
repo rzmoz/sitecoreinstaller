@@ -68,8 +68,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public BuildLibraryResource Get(SourceEntry sourceEntry, SourceType sourceType)
     {
-      Log.This.Info("Getting {0}", sourceEntry.Key);
-
+      //Log.This.Info("Getting {0}", sourceEntry.Key);
       BuildLibraryResource resource;
 
       if (_localBuildLibrary.Contains(sourceEntry.Key, sourceType))

@@ -24,8 +24,8 @@ namespace SitecoreInstaller
     protected async override void OnLoad(EventArgs e)
     {
       base.OnLoad(e);
-      this.BackColor = Styles.Controls.BackColor;
-      this.CenterToScreen();
+      BackColor = Styles.Controls.BackColor;
+      CenterToScreen();
       timer1.Start();//start timer as one of the first tasks to start animation!
       Log.This.EntryLogged += This_EntryLogged;
 
@@ -44,10 +44,12 @@ namespace SitecoreInstaller
       if (wizardFinishedTask != null)
         await wizardFinishedTask;
 
+      Log.This.EntryLogged -= This_EntryLogged;
+
       var frmMain = new FrmMain();
       frmMain.Closed += (sender, args) => this.Close();
       frmMain.Init();
-      this.Hide();
+      Hide();
       frmMain.Show();
     }
 
@@ -66,7 +68,7 @@ namespace SitecoreInstaller
       var leftProximity = picLogo.Left;
 
       if (rightProximity < 50 || leftProximity < 50)
-        this.movePicOffSet = movePicOffSet * -1;
+        movePicOffSet = movePicOffSet * -1;
 
       picLogo.Left += movePicOffSet;
     }

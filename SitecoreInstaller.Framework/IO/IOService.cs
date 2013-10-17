@@ -156,7 +156,7 @@ namespace SitecoreInstaller.Framework.IO
       if (rootFolder == null)
         yield break;
 
-      Log.This.Debug("Getting {0}s", subfoldersDescription);
+      //Log.This.Debug("Getting {0}s", subfoldersDescription);
       if (!rootFolder.Exists)
       {
         Log.This.Error(subfoldersDescription + " folder not found: {0}", rootFolder.FullName);
