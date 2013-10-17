@@ -142,7 +142,7 @@ namespace SitecoreInstaller.Framework.IO
         {
             if (Directory.Exists(dir.FullName) == false)
                 return;
-            Log.As.Debug("Giving Network Service user write access to: {0}", dir.FullName);
+            Log.This.Debug("Giving Network Service user write access to: {0}", dir.FullName);
 
             DirectorySecurity directorySecurity = dir.GetAccessControl();
             CanonicalizeDacl(directorySecurity);

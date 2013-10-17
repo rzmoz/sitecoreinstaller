@@ -11,7 +11,7 @@
     }
     public CommandPromptResult Run(string commandString)
     {
-      Diagnostics.Log.As.Debug("Command prompt invoked: {0}", commandString);
+      Diagnostics.Log.This.Debug("Command prompt invoked: {0}", commandString);
 
       var si = new ProcessStartInfo("cmd.exe", "/c " + commandString)
       {
@@ -34,7 +34,7 @@
         };
 
         if (result.StandardError.Length > 0)
-          Diagnostics.Log.As.Error(result.StandardError);
+          Diagnostics.Log.This.Error(result.StandardError);
 
         console.Close();
         return result;

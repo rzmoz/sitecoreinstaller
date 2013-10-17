@@ -70,7 +70,7 @@
       catch (WebException e)
       {
         sourceFile.Delete();
-        Framework.Diagnostics.Log.As.Warning("Failed getting external source file from {0}{1}{2}", source.Uri, Environment.NewLine, e.Message);
+        Framework.Diagnostics.Log.This.Warning("Failed getting external source file from {0}{1}{2}", source.Uri, Environment.NewLine, e.Message);
         return null;
       }
     }

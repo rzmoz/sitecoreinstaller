@@ -44,7 +44,7 @@ namespace SitecoreInstaller.Framework.Configuration
       }
       catch (Exception e)
       {
-        Log.As.Error(e.ToString());
+        Log.This.Error(e.ToString());
       }
 
       if (Updated != null)
@@ -69,7 +69,7 @@ namespace SitecoreInstaller.Framework.Configuration
       }
       catch (Exception e)
       {
-        Log.As.Error(e.ToString());
+        Log.This.Error(e.ToString());
       }
       if (Updated != null)
         Updated(this, new GenericEventArgs<T>(Properties));

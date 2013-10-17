@@ -14,7 +14,7 @@
       }
       catch (UriFormatException e)
       {
-        Log.As.Debug(e.ToString());
+        Log.This.Debug(e.ToString());
       }
     }
   }

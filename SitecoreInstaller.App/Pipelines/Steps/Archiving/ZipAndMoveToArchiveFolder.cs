@@ -9,7 +9,7 @@
   {
     protected override void InnerInvoke(object sender, ArchiveEventArgs args)
     {
-      Log.As.Info("Zipping project...");
+      Log.This.Info("Zipping project...");
 
       /*var archiveName = args.ProjectSettings.ProjectName + "_rev." + DateTime.Now.ToString("yyyyMMdd");
       string userInput = archiveName;
@@ -24,7 +24,7 @@
       var zipFile = new SevenZipFile(zipFileInfo);
       zipFile.ZipContent(args.ProjectSettings.ProjectFolder.Directory);
 
-      Log.As.Info("Moving archive to archive folder...");
+      Log.This.Info("Moving archive to archive folder...");
       var robocopy = new Robocopy();
       robocopy.Move(zipFile.File, new DirectoryInfo(Services.UserPreferences.Properties.ArchiveFolder));
     }

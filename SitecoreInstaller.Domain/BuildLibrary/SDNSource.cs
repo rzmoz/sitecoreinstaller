@@ -41,7 +41,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public async Task Update()
     {
-      Log.As.Info("Initializing from {0}", Parameters);
+      Log.This.Info("Initializing from {0}", Parameters);
       //dummy implementation
       await Task.Delay(1);
     }

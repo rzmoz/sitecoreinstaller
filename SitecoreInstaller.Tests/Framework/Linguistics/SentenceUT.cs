@@ -9,25 +9,25 @@
   {
     [Test]
     //just add ing
-    [TestCase("AddThis", "Adding As")]
+    [TestCase("AddThis", "Adding This")]
 
     //delete last vowel and add ing
-    [TestCase("CopyThis", "Copying As")]
-    [TestCase("CreateThis", "Creating As")]
+    [TestCase("CopyThis", "Copying This")]
+    [TestCase("CreateThis", "Creating This")]
     
     //duplicate last consonant and add ing
-    [TestCase("SetThis", "Setting As")]
-    [TestCase("ZipThis", "Zipping As")]
+    [TestCase("SetThis", "Setting This")]
+    [TestCase("ZipThis", "Zipping This")]
 
     //dual verbs!
-    [TestCase("ZipAndMoveThis", "Zipping And Moving As")]
+    [TestCase("ZipAndMoveThis", "Zipping And Moving This")]
     public void ActiveForm_ActiveForm_SentenceIsInActiveForm(string passiveSentence, string activeSentence)
     {
       var sentence = new Sentence(passiveSentence);
       sentence.ActiveForm.Should().Be(activeSentence);
     }
     
-    [TestCase("DoThis", "Do As")]
+    [TestCase("DoThis", "Do This")]
     public void Original_MakeSpaceDelimitedString_WordsAreDelimitedBySpace(string passiveSentence, string activeSentence)
     {
       var sentence = new Sentence(passiveSentence);

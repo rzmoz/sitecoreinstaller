@@ -20,7 +20,7 @@ namespace SitecoreInstallerConsole.Runners
       this.CmdLine = new CmdLine();
       
       Task.WaitAll(Services.InitAsync());
-      Log.As.EntryLogged += LogEntryLogged;
+      Log.This.EntryLogged += LogEntryLogged;
       Services.BuildLibrary.Update();
     }
 

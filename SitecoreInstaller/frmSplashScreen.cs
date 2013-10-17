@@ -27,7 +27,7 @@ namespace SitecoreInstaller
       BackColor = Styles.Controls.BackColor;
       CenterToScreen();
       timer1.Start();//start timer as one of the first tasks to start animation!
-      Log.As.EntryLogged += This_EntryLogged;
+      Log.This.EntryLogged += This_EntryLogged;
 
       await Services.LoadUserPreferencesAsync();
 
@@ -44,7 +44,7 @@ namespace SitecoreInstaller
       if (wizardFinishedTask != null)
         await wizardFinishedTask;
 
-      Log.As.EntryLogged -= This_EntryLogged;
+      Log.This.EntryLogged -= This_EntryLogged;
 
       var frmMain = new FrmMain();
       frmMain.Init();

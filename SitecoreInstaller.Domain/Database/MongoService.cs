@@ -22,7 +22,7 @@ namespace SitecoreInstaller.Domain.Database
             }
 
             var connectionStringDelta = string.Format(ConnectionStringFormats.ConnectionStringDotConfigDelta, connectionStringEntries);
-            Log.As.Debug(connectionStringDelta);
+            Log.This.Debug(connectionStringDelta);
             return connectionStringDelta;
         }
 

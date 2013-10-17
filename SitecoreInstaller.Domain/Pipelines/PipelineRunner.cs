@@ -30,7 +30,7 @@ namespace SitecoreInstaller.Domain.Pipelines
     {
       if (pipeline == null) throw new ArgumentNullException("pipeline");
 
-      Log.As.Reset();
+      Log.This.Reset();
       ExecuteAllText = executeAllText;
       PreProcessors = preProcessors ?? Enumerable.Empty<Action<TK>>();
       Pipeline = pipeline;
@@ -45,19 +45,19 @@ namespace SitecoreInstaller.Domain.Pipelines
       {
         if (AllStepsExecuting != null)
           AllStepsExecuting(sender, new PipelineInfoEventArgs(Pipeline));
-        Log.As.Info("Executing pre processors");
+        Log.This.Info("Executing pre processors");
         foreach (var preProcessor in PreProcessors)
         {
           preProcessor(Pipeline.Args as TK);
         }
-        Log.As.Info("Pre processors executed");
+        Log.This.Info("Pre processors executed");
 
         var elapsed = Profiler.This(InnerExecuteAllSteps, this, Pipeline.Args);
-        Log.As.Profile(Pipeline.Name.ToString(), elapsed);
+        Log.This.Profile(Pipeline.Name.ToString(), elapsed);
 
-        Log.As.Flush();
+        Log.This.Flush();
 
-        var issues = from entry in Log.As.Entries
+        var issues = from entry in Log.This.Entries
                      where entry.LogType == LogType.Warning ||
                      entry.LogType == LogType.Error
                      select entry;
@@ -77,16 +77,16 @@ namespace SitecoreInstaller.Domain.Pipelines
     {
       foreach (var precondition in preconditions)
       {
-        Log.As.Info("Evaluating precondition: {0}", precondition.Name.ActiveForm);
+        Log.This.Info("Evaluating precondition: {0}", precondition.Name.ActiveForm);
         if (precondition.Evaluate(this, args))
         {
-          Log.As.Info("Precondition met: {0}", precondition.Name.ActiveForm);
+          Log.This.Info("Precondition met: {0}", precondition.Name.ActiveForm);
         }
         else
         {
-          Log.As.Error("Precondition NOT met: {0}", precondition.Name.ActiveForm);
+          Log.This.Error("Precondition NOT met: {0}", precondition.Name.ActiveForm);
           if (string.IsNullOrEmpty(precondition.ErrorMessage) == false)
-            Log.As.Error(precondition.ErrorMessage);
+            Log.This.Error(precondition.ErrorMessage);
           if (PreconditionNotMet != null)
             PreconditionNotMet(Pipeline, new GenericEventArgs<string>(precondition.ErrorMessage));
           return false;
@@ -107,9 +107,9 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         if (PreconditionsAreMet(step.Preconditions, args))
         {
-          Log.As.Info("Executing " + step.Name.ActiveForm);
+          Log.This.Info("Executing " + step.Name.ActiveForm);
           var elapsed = Profiler.This(step.Invoke, sender, args);
-          Log.As.Profile(step.Name.ActiveForm, elapsed);
+          Log.This.Profile(step.Name.ActiveForm, elapsed);
         }
         else
           break;

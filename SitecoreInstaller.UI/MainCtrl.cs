@@ -98,7 +98,7 @@ namespace SitecoreInstaller.UI
                     Services.Pipelines.Run<DoNothingPipeline, DoNothingEventArgs>(UiServices.ProjectSettings);
                     return true;
                 case Keys.C | Keys.Control | Keys.Shift:
-                    Framework.Diagnostics.Log.As.Reset();
+                    Framework.Diagnostics.Log.This.Reset();
                     return true;
                 case Keys.R | Keys.Control:
                     Services.BuildLibrary.Update();

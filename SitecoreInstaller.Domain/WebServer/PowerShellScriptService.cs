@@ -17,12 +17,12 @@ namespace SitecoreInstaller.Domain.WebServer
         foreach (var script in scripts)
         {
           var result = psr.RunPowerShellFunction("Post-Install", new KeyValuePair<string, object>(argName, arg), script);
-          Log.As.Debug(result);
+          Log.This.Debug(result);
         }
       }
       catch (Exception e)
       {
-        Log.As.Error(e.ToString());
+        Log.This.Error(e.ToString());
       }
     }
   }

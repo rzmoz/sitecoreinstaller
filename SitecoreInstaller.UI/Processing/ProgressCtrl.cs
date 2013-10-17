@@ -30,7 +30,7 @@ namespace SitecoreInstaller.UI.Processing
 
     private void ProgressCtrl_Load(object sender, EventArgs e)
     {
-      Log.As.EntryLogged += UpdateInfo;
+      Log.This.EntryLogged += UpdateInfo;
       Services.PipelineWorker.StepExecuting += UpdateStatus;
     }
 
@@ -63,7 +63,7 @@ namespace SitecoreInstaller.UI.Processing
         btnOk.Show();
         btnOk.Focus();
 
-        var logStatus = Log.As.Status;
+        var logStatus = Log.This.Status;
 
         lblStatusMessage.Text = "Finished with " + logStatus.ToString().ToSpaceDelimiteredString().ToLower();
 
