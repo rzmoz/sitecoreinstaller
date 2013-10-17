@@ -28,8 +28,8 @@ namespace SitecoreInstaller.UI.Log
     public void Init()
     {
       BackColor = Styles.Controls.BackColor;
-      Log.This.EntryLogged += EntryLogged;
-      Log.This.LogCleared += Clear;
+      Log.As.EntryLogged += EntryLogged;
+      Log.As.LogCleared += Clear;
       Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
       _colors = new Dictionary<LogType, Color>
                 {
@@ -88,7 +88,7 @@ namespace SitecoreInstaller.UI.Log
 
     private void btnClear_Click(object sender, EventArgs e)
     {
-      Log.This.Reset();
+      Log.As.Reset();
     }
   }
 }

@@ -24,10 +24,12 @@ namespace SitecoreInstaller
     protected async override void OnLoad(EventArgs e)
     {
       base.OnLoad(e);
+      var frmMain = new FrmMain(); //must be created before we start logging!
+
       BackColor = Styles.Controls.BackColor;
       CenterToScreen();
       timer1.Start();//start timer as one of the first tasks to start animation!
-      Log.This.EntryLogged += This_EntryLogged;
+      Log.As.EntryLogged += This_EntryLogged;
 
       await Services.LoadUserPreferencesAsync();
 
@@ -44,9 +46,9 @@ namespace SitecoreInstaller
       if (wizardFinishedTask != null)
         await wizardFinishedTask;
 
-      Log.This.EntryLogged -= This_EntryLogged;
+      Log.As.EntryLogged -= This_EntryLogged;
 
-      var frmMain = new FrmMain();
+ 
       frmMain.Closed += (sender, args) => this.Close();
       frmMain.Init();
       Hide();

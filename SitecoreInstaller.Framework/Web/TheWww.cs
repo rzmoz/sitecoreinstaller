@@ -28,11 +28,11 @@ namespace SitecoreInstaller.Framework.Web
         var response = CallUrlOnce(url);
         if (response != null && response.StatusCode == HttpStatusCode.OK)
         {
-          Log.This.Debug("'{0}' responded: '{1}'", url.ToString(), response.StatusDescription);
+          Log.As.Debug("'{0}' responded: '{1}'", url.ToString(), response.StatusDescription);
           return;
         }
       }
-      Log.This.Error("'{0}' never responded OK.", url.ToString());
+      Log.As.Error("'{0}' never responded OK.", url.ToString());
     }
 
     public static void CallUrlOnceNoWait(Uri uri)
@@ -51,7 +51,7 @@ namespace SitecoreInstaller.Framework.Web
       }
       catch (WebException we)
       {
-        Log.This.Debug(we.ToString());
+        Log.As.Debug(we.ToString());
         return null;
       }
     }

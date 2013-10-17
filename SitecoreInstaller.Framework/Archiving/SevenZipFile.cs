@@ -33,7 +33,7 @@ namespace SitecoreInstaller.Framework.Archiving
 
       if (global::System.IO.File.Exists(File.FullName) == false)
       {
-        Log.This.Error("File not found for extrating: {0}", File.FullName);
+        Log.As.Error("File not found for extrating: {0}", File.FullName);
         return;
       }
 

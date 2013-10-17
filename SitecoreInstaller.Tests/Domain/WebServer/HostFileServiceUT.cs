@@ -57,8 +57,8 @@
 
 
         private const string Production_Sample_HostFile = @"# Copyright (c) 1993-2009 Microsoft Corp.
-# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
-# This file contains the mappings of IP addresses to host names. Each
+# As is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+# As file contains the mappings of IP addresses to host names. Each
 # entry should be kept on an individual line. The IP address should
 # be placed in the first column followed by the corresponding host name.
 # The IP address and the host name should be separated by at least one

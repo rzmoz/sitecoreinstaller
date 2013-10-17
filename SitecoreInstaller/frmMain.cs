@@ -2,12 +2,10 @@
 
 namespace SitecoreInstaller
 {
-  using System;
-  using System.Threading;
   using System.Threading.Tasks;
   using Microsoft.WindowsAPICodePack.Taskbar;
-  using SitecoreInstaller.App;
-  using SitecoreInstaller.Domain.Pipelines;
+  using App;
+  using Domain.Pipelines;
 
   public partial class FrmMain : Form
   {
@@ -20,7 +18,7 @@ namespace SitecoreInstaller
     {
       mainCtrl1.Init();
 
-      this.CenterToScreen();
+      CenterToScreen();
       Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
       Services.PipelineWorker.StepExecuting += PipelineWorker_StepExecuting;
       Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;

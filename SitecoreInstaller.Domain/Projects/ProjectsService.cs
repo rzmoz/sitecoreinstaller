@@ -22,7 +22,7 @@ namespace SitecoreInstaller.Domain.Projects
     
     public void CleanProjectForArchiving(ProjectFolder projectFolder)
     {
-      Log.This.Info("Cleaning project for archiving '{0}'", projectFolder.Name);
+      Log.As.Info("Cleaning project for archiving '{0}'", projectFolder.Name);
       projectFolder.IisLogFiles.Clean(OnFail.Ignore);
       projectFolder.Data.Viewstate.Clean(OnFail.Ignore);
       projectFolder.Data.Logs.Clean(OnFail.Ignore);
@@ -35,12 +35,12 @@ namespace SitecoreInstaller.Domain.Projects
 
     public void DeleteProject(DirectoryInfo projectFolder)
     {
-      Log.This.Info("Deleting project '{0}'", projectFolder.Name);
+      Log.As.Info("Deleting project '{0}'", projectFolder.Name);
 
       projectFolder.DeleteWithLog();
 
       if (projectFolder.Exists() == false)
-        Log.This.Info("Project deleted");
+        Log.As.Info("Project deleted");
     }
 
     public void CreateProject(DirectoryInfo projectFolder)

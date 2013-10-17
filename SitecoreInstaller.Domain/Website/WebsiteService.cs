@@ -28,12 +28,12 @@ namespace SitecoreInstaller.Domain.Website
         {
             var configFile = string.Format(WebsiteResource.DataFolderFormat, dataFolder.Directory);
             configFile.WriteToDisk(dataFolderConfigFile);
-            Log.This.Info("Data folder set to '{0}'", dataFolder.FullName);
+            Log.As.Info("Data folder set to '{0}'", dataFolder.FullName);
         }
 
         public void CopySitecoreToProjectfolder(ProjectFolder projectFolder, BuildLibraryDirectory sitecore, InstallType installType)
         {
-            Log.This.Info("Copying '{0}'...", sitecore.Directory.Name);
+            Log.As.Info("Copying '{0}'...", sitecore.Directory.Name);
 
             //Copy web site folder
             var sitecoreWebsiteFolder = sitecore.Directory.CombineTo<DirectoryInfo>(projectFolder.Website.Name);
@@ -55,7 +55,7 @@ namespace SitecoreInstaller.Domain.Website
             //Copy rest of files as is
             sitecore.Directory.GetFiles().CopyTo(projectFolder, true);
 
-            Log.This.Info("Sitecore copied");
+            Log.As.Info("Sitecore copied");
         }
 
         private void CopyDatabaseFolder(string sourceDbName, DirectoryInfo sitecore, ProjectFolder projectfolder)
@@ -70,7 +70,7 @@ namespace SitecoreInstaller.Domain.Website
 
         public void CopyModulesToWebsite(ProjectFolder projectFolder, BuildLibraryDirectory module, InstallType installType)
         {
-            Log.This.Info("Copying module to website...");
+            Log.As.Info("Copying module to website...");
 
             if (installType == InstallType.Full)
             {
@@ -86,7 +86,7 @@ namespace SitecoreInstaller.Domain.Website
                 }
                 catch (IOException e)
                 {
-                    Log.This.Warning(e.ToString());
+                    Log.As.Warning(e.ToString());
                 }
             }
 
@@ -111,7 +111,7 @@ namespace SitecoreInstaller.Domain.Website
             //Copy directories to project folder
             module.Directory.GetDirectories().CopyTo(projectFolder);
 
-            Log.This.Info("Module copied to website");
+            Log.As.Info("Module copied to website");
         }
 
         public void TransformConfigFiles(IEnumerable<FileInfo> configDeltas, FileInfo webConfig, FileInfo connectionStrings)
@@ -140,23 +140,23 @@ namespace SitecoreInstaller.Domain.Website
 
         public void CopyLicenseFileToDataFolder(BuildLibraryFile license, DataFolder dataFolder, FileInfo licenseConfigFile)
         {
-            Log.This.Info("Copying license file '{0}'...", license.File.Name);
+            Log.As.Info("Copying license file '{0}'...", license.File.Name);
 
             var targetLicenseFileName = dataFolder.Directory.CombineTo<FileInfo>("license.xml");
 
             File.Copy(license.File.FullName, targetLicenseFileName.FullName, true);
             var licenseConfig = string.Format(WebsiteResource.LicenseFileFormat, targetLicenseFileName.Name);
             licenseConfig.WriteToDisk(licenseConfigFile);
-            Log.This.Info("License file copied to '{0}'", targetLicenseFileName.FullName);
+            Log.As.Info("License file copied to '{0}'", targetLicenseFileName.FullName);
         }
 
         public void OpenSitecore(string baseUrl, DirectoryInfo websiteFolder)
         {
-            Log.This.Info("Starting up Sitecore...");
+            Log.As.Info("Starting up Sitecore...");
 
             if (string.IsNullOrEmpty(baseUrl))
             {
-                Log.This.Error("baseUrl is null or empty");
+                Log.As.Error("baseUrl is null or empty");
                 return;
             }
 
@@ -169,11 +169,11 @@ namespace SitecoreInstaller.Domain.Website
 
         public void OpenFrontend(string baseUrl)
         {
-            Log.This.Info("Accessing site...");
+            Log.As.Info("Accessing site...");
 
             if (string.IsNullOrEmpty(baseUrl))
             {
-                Log.This.Error("baseUrl is null or empty");
+                Log.As.Error("baseUrl is null or empty");
                 return;
             }
 
@@ -182,7 +182,7 @@ namespace SitecoreInstaller.Domain.Website
 
         public void InstallRuntimeServices(WebsiteFolder websiteFolder)
         {
-            Log.This.Info("Installing runtime services...");
+            Log.As.Info("Installing runtime services...");
 
             var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
 
@@ -192,7 +192,7 @@ namespace SitecoreInstaller.Domain.Website
             WebsiteResource.InstallPackageStatusService.WriteToDir(runtimeServicesFolder, _InstallPackageStatusName);
             WebsiteResource.DeserializeItems.WriteToDir(runtimeServicesFolder, _DeserializeItemsName);
 
-            Log.This.Info("Runtime services installed");
+            Log.As.Info("Runtime services installed");
         }
 
         public void DeleteRuntimeServices(DirectoryInfo websiteFolder)
@@ -202,7 +202,7 @@ namespace SitecoreInstaller.Domain.Website
 
             if (runtimeServicesFolder.Exists == false)
             {
-                Log.This.Debug("Runtime services not found. Aborting...");
+                Log.As.Debug("Runtime services not found. Aborting...");
                 return;
             }
 
@@ -220,7 +220,7 @@ namespace SitecoreInstaller.Domain.Website
 
             //warm up site to make sure run time service is up and running
             WakeUpSite(baseUrl);
-            Log.This.Info("Installing packages...");
+            Log.As.Info("Installing packages...");
 
             foreach (var module in modules)
             {
@@ -238,24 +238,24 @@ namespace SitecoreInstaller.Domain.Website
         private void InstallPackage(string baseUrl, FileInfo package)
         {
             var packageName = HttpUtility.UrlEncode(package.Name);
-            Log.This.Info("Installing '{0}'...", HttpUtility.UrlDecode(packageName));
+            Log.As.Info("Installing '{0}'...", HttpUtility.UrlDecode(packageName));
 
             const string installFormatPattern = "Action={0}&PackageName={1}";
 
             var callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern, "Install", packageName));
             this.ExecuteInstallPackageAction(callingUri);
 
-            Log.This.Info("Executing post installation steps for '{0}'...", HttpUtility.UrlDecode(packageName));
+            Log.As.Info("Executing post installation steps for '{0}'...", HttpUtility.UrlDecode(packageName));
 
             callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern, "PostInstall", packageName));
             this.ExecuteInstallPackageAction(callingUri);
 
-            Log.This.Info("'{0}' is installed", package);
+            Log.As.Info("'{0}' is installed", package);
         }
 
         public void DeserializeItems(string baseUrl)
         {
-            Log.This.Info("Deserializing items...");
+            Log.As.Info("Deserializing items...");
             var callingUri = baseUrl.ToUri(_InstallerPath, _DeserializeItemsName);
             TheWww.CallUrl(callingUri);
         }
@@ -266,14 +266,14 @@ namespace SitecoreInstaller.Domain.Website
             var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
             WebsiteResource.PostInstallService.WriteToDir(runtimeServicesFolder, _PostInstallServiceName);
             WakeUpSite(baseUrl);
-            Log.This.Info("Executing post install steps...");
+            Log.As.Info("Executing post install steps...");
             var callingUri = baseUrl.ToUri(_InstallerPath, _PostInstallServiceName);
             TheWww.CallUrl(callingUri);
         }
 
         public void WakeUpSite(string siteBaseUrl)
         {
-            Log.This.Info("Waking up site...");
+            Log.As.Info("Waking up site...");
             TheWww.CallUrl(siteBaseUrl.ToUri(_KeepAlivePingPath));
         }
 
@@ -291,7 +291,7 @@ namespace SitecoreInstaller.Domain.Website
                 response = TheWww.CallUrlOnce(url);
                 if (response == null)
                 {
-                    Log.This.Error("Faild to install {0}", url);
+                    Log.As.Error("Faild to install {0}", url);
                     return;
                 }
                 Task.WaitAll(Task.Delay(1000));
