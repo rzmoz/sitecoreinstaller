@@ -16,6 +16,8 @@ namespace SitecoreInstaller.Framework.IO
             _knownFileTypes.Add(DatabaseLogFile.Extension.ToLower());
             SitecoreConfigFile = new FileType("SitecoreConfigFile", ".config");
             _knownFileTypes.Add(SitecoreConfigFile.Extension.ToLower());
+            DisabledSitecoreConfigFile = new FileType("DisabledSitecoreConfigFile", ".config.disabled");
+            _knownFileTypes.Add(SitecoreConfigFile.Extension.ToLower());
             SitecorePackage = new FileType("SitecorePackage", ".zip");
             _knownFileTypes.Add(SitecorePackage.Extension.ToLower());
             SitecoreUpdate = new FileType("SitecoreUpdatePackage", ".update");
@@ -35,6 +37,7 @@ namespace SitecoreInstaller.Framework.IO
         public static FileType DatabaseDataFile { get; private set; }
         public static FileType DatabaseLogFile { get; private set; }
         public static FileType SitecoreConfigFile { get; private set; }
+        public static FileType DisabledSitecoreConfigFile { get; private set; }
         public static FileType SitecorePackage { get; private set; }
         public static FileType SitecoreUpdate { get; private set; }
         public static FileType PowerShellScript { get; private set; }

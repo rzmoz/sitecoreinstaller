@@ -99,6 +99,9 @@ namespace SitecoreInstaller.Domain.Website
             //copy config files to App_Config/Include folder
             module.Directory.GetFiles(FileTypes.SitecoreConfigFile).CopyTo(projectFolder.Website.AppConfig.Include, true);
 
+            //copy disabled config files to App_Config/Include folder
+            module.Directory.GetFiles(FileTypes.DisabledSitecoreConfigFile).CopyTo(projectFolder.Website.AppConfig.Include, true);
+
             //copy Sitecore packages to package folder (zip files)
             module.Directory.GetFiles(FileTypes.SitecorePackage).CopyTo(projectFolder.Data.Packages, true);
 
