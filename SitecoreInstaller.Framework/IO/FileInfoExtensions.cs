@@ -19,11 +19,14 @@ namespace SitecoreInstaller.Framework.IO
     {
       if (file == null)
         return false;
-      return File.Exists(file.FullName);
+      file.Refresh();
+      return file.Exists;
     }
 
     public static bool IsZipfile(this FileInfo file)
     {
+      if (file == null)
+        return false;
       if (!file.Exists())
         return false;
       return file.Extension.ToLowerInvariant().EndsWith("zip");

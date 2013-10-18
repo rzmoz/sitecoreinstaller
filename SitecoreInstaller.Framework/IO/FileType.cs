@@ -1,8 +1,7 @@
 ﻿namespace SitecoreInstaller.Framework.IO
 {
-    using global::System.Collections.Generic;
-    using global::System.Globalization;
-    using global::System.IO;
+    using System.Collections.Generic;
+    using System.IO;
 
     public class FileType
     {

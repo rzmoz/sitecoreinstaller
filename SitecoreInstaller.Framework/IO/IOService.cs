@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Framework.IO
 {
-  using SitecoreInstaller.Framework.Diagnostics;
+  using Diagnostics;
 
   public static class IoService
   {
@@ -21,6 +21,7 @@ namespace SitecoreInstaller.Framework.IO
       File.WriteAllText(targetFile.FullName, content);
       Log.This.Debug("Saved string to disk at: {0}", targetFile.FullName);
     }
+
     public static void WriteToDir(this string content, DirectoryInfo dir, string filename)
     {
       var file = new FileInfo(Path.Combine(dir.FullName, filename));
@@ -44,6 +45,7 @@ namespace SitecoreInstaller.Framework.IO
         }
       }
     }
+
     public static void CreateWithLog(this DirectoryInfo folder)
     {
       if (Directory.Exists(folder.FullName))
@@ -206,7 +208,7 @@ namespace SitecoreInstaller.Framework.IO
       }
       catch (IOException e)
       {
-        Log.This.Debug("IOException - falling back to use robocopy\r\n{0}", e.ToString());
+        Log.This.Debug("Fast copy failed - falling back to use robocopy\r\n{0}", e.ToString());
         target.DeleteIfExists();
         var robocopy = new Robocopy();
         robocopy.Copy(source, target, dirCopyOptions);

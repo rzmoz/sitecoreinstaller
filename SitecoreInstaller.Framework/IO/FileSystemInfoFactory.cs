@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SitecoreInstaller.Framework.IO
 {
-    using SitecoreInstaller.Framework.Sys;
+    using Sys;
 
-    using global::System.IO;
+    using System.IO;
 
     public class FileSystemInfoFactory
     {

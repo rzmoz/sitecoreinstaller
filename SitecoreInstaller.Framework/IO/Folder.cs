@@ -2,7 +2,7 @@
 
 namespace SitecoreInstaller.Framework.IO
 {
-  using global::System.IO;
+  using System.IO;
 
   public class Folder
   {
