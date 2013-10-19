@@ -38,15 +38,6 @@ namespace SitecoreInstaller.UI.Log
       Log.This.LogCleared += Clear;
     }
 
-    protected override void OnPaint(PaintEventArgs e)
-    {
-      base.OnPaint(e);
-
-      var graphics = CreateGraphics();
-      var myPen = new Pen(Color.White) { Width = 2 };
-      graphics.DrawLine(myPen, 0, 0, Width, 0);
-    }
-
     private void EntryLogged(object sender, GenericEventArgs<LogEntry> e)
     {
       this.CrossThreadSafe(() =>
