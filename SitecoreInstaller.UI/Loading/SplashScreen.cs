@@ -21,7 +21,11 @@ namespace SitecoreInstaller.UI.Loading
     protected override void OnLoad(EventArgs e)
     {
       base.OnLoad(e);
+      BackColor = Styles.Controls.BackColor;
       timer1.Start();
+      timer1.Interval = 30;
+      lblTitle.Width = Width;
+      lblTitle.Height = Height;
     }
 
     public void Stop()

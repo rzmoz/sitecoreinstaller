@@ -21,7 +21,8 @@ namespace SitecoreInstaller
       CenterToScreen();
       splashScreen1.Show();
       splashScreen1.BringToFront();
-      
+
+      await Task.Delay(TimeSpan.FromSeconds(1));//just to make sure splash screen is open long enough to be readable
       await Services.LoadUserPreferencesAsync();
       await Services.InitAsync();
 
