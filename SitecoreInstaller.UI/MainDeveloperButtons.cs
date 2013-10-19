@@ -21,6 +21,15 @@ namespace SitecoreInstaller.UI
     public void Init()
     {
       BackColor = Styles.Navigation.Level1.BackColor;
+      toolTip1.SetToolTip(btnInstall, "CTRL + SHIFT + B");
+      toolTip1.SetToolTip(btnUninstall, "CTRL + SHIFT + U");
+      toolTip1.SetToolTip(btnReinstall, "CTRL + SHIFT + R");
+      toolTip1.SetToolTip(btnArchive, "CTRL + SHIFT + A");
+
+      toolTip1.SetToolTip(btnOpenSitecore, "CTRL + SHIFT + O");
+      toolTip1.SetToolTip(btnOpenWebsite, "CTRL + O");
+
+      toolTip1.SetToolTip(btnOpenProjectFolder, "CTRL + ALT + O");
     }
 
     private void TriggerKeyboardShortcut(Keys keys)
@@ -63,7 +72,7 @@ namespace SitecoreInstaller.UI
       TriggerKeyboardShortcut(Keys.O | Keys.Control);
     }
 
-    private void siMainDevActionButton1_Click(object sender, EventArgs e)
+    private void btnOpenProjectFolder_Click(object sender, EventArgs e)
     {
       TriggerKeyboardShortcut(Keys.O | Keys.Control | Keys.Alt);
     }

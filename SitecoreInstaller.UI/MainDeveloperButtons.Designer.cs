@@ -28,34 +28,36 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.siMainDevActionButton1 = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
+      this.components = new System.ComponentModel.Container();
+      this.btnOpenProjectFolder = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnOpenWebsite = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnOpenSitecore = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnArchive = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnReinstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnUninstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnInstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
+      this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
       this.SuspendLayout();
       // 
-      // siMainDevActionButton1
+      // btnOpenProjectFolder
       // 
-      this.siMainDevActionButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      this.btnOpenProjectFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.siMainDevActionButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
-      this.siMainDevActionButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.siMainDevActionButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.siMainDevActionButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(155)))), ((int)(((byte)(189)))));
-      this.siMainDevActionButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(193)))), ((int)(((byte)(222)))));
-      this.siMainDevActionButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.siMainDevActionButton1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-      this.siMainDevActionButton1.ForeColor = System.Drawing.Color.White;
-      this.siMainDevActionButton1.Location = new System.Drawing.Point(0, 332);
-      this.siMainDevActionButton1.Name = "siMainDevActionButton1";
-      this.siMainDevActionButton1.Size = new System.Drawing.Size(231, 50);
-      this.siMainDevActionButton1.TabIndex = 6;
-      this.siMainDevActionButton1.Text = "Open Project Folder";
-      this.siMainDevActionButton1.UseVisualStyleBackColor = false;
-      this.siMainDevActionButton1.Click += new System.EventHandler(this.siMainDevActionButton1_Click);
+      this.btnOpenProjectFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
+      this.btnOpenProjectFolder.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.btnOpenProjectFolder.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnOpenProjectFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(155)))), ((int)(((byte)(189)))));
+      this.btnOpenProjectFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(193)))), ((int)(((byte)(222)))));
+      this.btnOpenProjectFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnOpenProjectFolder.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+      this.btnOpenProjectFolder.ForeColor = System.Drawing.Color.White;
+      this.btnOpenProjectFolder.Location = new System.Drawing.Point(0, 332);
+      this.btnOpenProjectFolder.Name = "btnOpenProjectFolder";
+      this.btnOpenProjectFolder.Size = new System.Drawing.Size(231, 50);
+      this.btnOpenProjectFolder.TabIndex = 6;
+      this.btnOpenProjectFolder.Text = "Open Project Folder";
+      this.btnOpenProjectFolder.UseVisualStyleBackColor = false;
+      this.btnOpenProjectFolder.Click += new System.EventHandler(this.btnOpenProjectFolder_Click);
       // 
       // btnOpenWebsite
       // 
@@ -181,7 +183,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.siMainDevActionButton1);
+      this.Controls.Add(this.btnOpenProjectFolder);
       this.Controls.Add(this.btnOpenWebsite);
       this.Controls.Add(this.btnOpenSitecore);
       this.Controls.Add(this.btnArchive);
@@ -202,6 +204,7 @@
     private Forms.SIMainDevActionButton btnArchive;
     private Forms.SIMainDevActionButton btnOpenSitecore;
     private Forms.SIMainDevActionButton btnOpenWebsite;
-    private Forms.SIMainDevActionButton siMainDevActionButton1;
+    private Forms.SIMainDevActionButton btnOpenProjectFolder;
+    private System.Windows.Forms.ToolTip toolTip1;
   }
 }
