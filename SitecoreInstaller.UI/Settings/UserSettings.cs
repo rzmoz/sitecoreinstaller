@@ -47,7 +47,7 @@ namespace SitecoreInstaller.UI.Settings
       _navList.Add(new Level1NavigationButton(_sqlSettings1) { Text = "Sql", Image = SettingsResources.Database, ImageActive = SettingsResources.Database_Active });
       _navList.Add(new Level1NavigationButton(mongoSettings1) { Text = "Mongo", Image = SettingsResources.Database, ImageActive = SettingsResources.Database_Active });
       _navList.Add(new Level1NavigationButton(foldersSettings1) { Text = "Folders", Image = SettingsResources.Folders, ImageActive = SettingsResources.Folders_Active });
-      _navList.Add(new Level1NavigationButton(sourcesSettings1) { Text = "Sources", Image = SettingsResources.Sources, ImageActive = SettingsResources.Sources_Active });
+      //_navList.Add(new Level1NavigationButton(sourcesSettings1) { Text = "Sources", Image = SettingsResources.Sources, ImageActive = SettingsResources.Sources_Active });
       _navList.Init();
       _navList.First().Activate();
 
