@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace SitecoreInstaller
 {
@@ -14,11 +15,22 @@ namespace SitecoreInstaller
       InitializeComponent();
     }
 
+    protected async override void OnLoad(EventArgs e)
+    {
+      base.OnLoad(e);
+      CenterToScreen();
+
+      await Services.LoadUserPreferencesAsync();
+      await Services.InitAsync();
+
+      Init();
+    }
+
     public void Init()
     {
       mainCtrl1.Init();
 
-      CenterToScreen();
+      
       Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
       Services.PipelineWorker.StepExecuting += PipelineWorker_StepExecuting;
       Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;

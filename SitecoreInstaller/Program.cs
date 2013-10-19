@@ -15,7 +15,7 @@ namespace SitecoreInstaller
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new FrmSplashScreen());
+      Application.Run(new FrmMain());
     }
   }
 }

@@ -76,6 +76,7 @@
     <Compile Include="Framework\Diagnostics\LogUT.cs" />
     <Compile Include="Framework\IO\DirectoryInfoExtenstionsUT.cs" />
     <Compile Include="Framework\IO\FileSystemInfoExtensionsUT.cs" />
+    <Compile Include="Framework\IO\FileTypeUT.cs" />
     <Compile Include="Framework\IO\StringExtensionsUT.cs" />
     <Compile Include="Framework\Linguistics\SentenceUT.cs" />
     <Compile Include="Framework\Linguistics\WordUT.cs" />
