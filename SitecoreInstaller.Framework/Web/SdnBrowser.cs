@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.IO;
+using System.Net;
 using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
 namespace SitecoreInstaller.Framework.Web
 {
   public class SdnBrowser
   {
-    
-  }
+    private const string LoginUrl = "http://sdn.sitecore.net/sdn5/misc/loginpage.aspx";
+
+    public void Go()
+    {
+     
+    }
+ }
 }
