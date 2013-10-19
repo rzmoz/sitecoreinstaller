@@ -22,6 +22,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         IEnumerable<SourceEntry> List(SourceType sourceType);
         BuildLibraryResource Get(SourceEntry sourceEntry, SourceType sourceType);
         IEnumerable<BuildLibraryResource> Get(IEnumerable<SourceEntry> sourceEntries, SourceType sourceType);
-        Task Update();
+        Task UpdateAsync();
     }
 }

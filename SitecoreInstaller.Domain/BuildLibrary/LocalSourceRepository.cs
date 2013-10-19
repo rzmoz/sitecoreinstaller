@@ -30,20 +30,20 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     public BuildLibraryFile Add(string file, SourceType sourceType)
     {
       var buildLibraryFile = _localBuildLibrary.Add(file, sourceType);
-      Update();
+      UpdateAsync();
       return buildLibraryFile;
     }
 
     public void Add(BuildLibraryFile buildLibraryFile, SourceType sourceType)
     {
       _localBuildLibrary.Add(buildLibraryFile, sourceType);
-      Update();
+      UpdateAsync();
     }
 
     public void Delete(SourceEntry sourceEntry, SourceType sourceType)
     {
       _localBuildLibrary.Delete(sourceEntry, sourceType);
-      Update();
+      UpdateAsync();
     }
 
     public void Delete(IEnumerable<SourceEntry> sourceEntries, SourceType sourceType)
@@ -85,7 +85,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       resource = resource.Unpack();
 
       Log.This.Info("Updating buildlibrary");
-      _localBuildLibrary.Update();
+      _localBuildLibrary.UpdateAsync();
 
       if (resource.Mode == BuildLibraryMode.Local)
         return resource;
@@ -98,12 +98,12 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       return from module in sourceEntries select Get(module, SourceType.Module);
     }
 
-    public async Task Update()
+    public async Task UpdateAsync()
     {
       if (Updating != null)
         Updating(this, new EventArgs());
       
-      await Task.WhenAll(_sources.Select(s => s.Value.Update()));
+      await Task.WhenAll(_sources.Select(s => s.Value.UpdateAsync()));
 
       if (Updated != null)
         Updated(this, new EventArgs());

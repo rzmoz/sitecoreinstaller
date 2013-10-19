@@ -35,7 +35,7 @@ namespace SitecoreInstaller.UI.Forms
     {
       string selectedFolder;
       if (UiServices.Dialogs.ChooseFolder(out selectedFolder, this.tbxFolder.Text))
-        this.tbxFolder.Text = selectedFolder;
+        tbxFolder.Text = selectedFolder;
     }
   }
 }

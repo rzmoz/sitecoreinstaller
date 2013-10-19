@@ -134,6 +134,12 @@
     <Compile Include="ListBoxes\SourceEntryListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Loading\SplashScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Loading\SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Log\LogResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -336,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SISelectFolder.resx">
       <DependentUpon>SISelectFolder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Loading\SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Log\LogResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

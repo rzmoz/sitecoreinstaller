@@ -30,6 +30,7 @@
         {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
       this.mainCtrl1 = new SitecoreInstaller.UI.MainCtrl();
+      this.splashScreen1 = new SitecoreInstaller.UI.Loading.SplashScreen();
       this.SuspendLayout();
       // 
       // mainCtrl1
@@ -40,12 +41,21 @@
       this.mainCtrl1.Size = new System.Drawing.Size(584, 412);
       this.mainCtrl1.TabIndex = 0;
       // 
+      // splashScreen1
+      // 
+      this.splashScreen1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.splashScreen1.Location = new System.Drawing.Point(0, 0);
+      this.splashScreen1.Name = "splashScreen1";
+      this.splashScreen1.Size = new System.Drawing.Size(584, 412);
+      this.splashScreen1.TabIndex = 1;
+      // 
       // FrmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.White;
       this.ClientSize = new System.Drawing.Size(584, 412);
+      this.Controls.Add(this.splashScreen1);
       this.Controls.Add(this.mainCtrl1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "FrmMain";
@@ -57,6 +67,7 @@
         #endregion
 
         private UI.MainCtrl mainCtrl1;
+        private UI.Loading.SplashScreen splashScreen1;
 
     }
 }

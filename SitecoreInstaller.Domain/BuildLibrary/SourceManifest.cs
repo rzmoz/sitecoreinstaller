@@ -57,9 +57,9 @@
     {
       unchecked
       {
-        int hashCode = (this.Name != null ? this.Name.GetHashCode() : 0);
-        hashCode = (hashCode * 397) ^ (this.Type != null ? this.Type.GetHashCode() : 0);
-        hashCode = (hashCode * 397) ^ (this.Parameters != null ? this.Parameters.GetHashCode() : 0);
+        int hashCode = (Name != null ? Name.GetHashCode() : 0);
+        hashCode = (hashCode * 397) ^ (Type != null ? Type.GetHashCode() : 0);
+        hashCode = (hashCode * 397) ^ (Parameters != null ? Parameters.GetHashCode() : 0);
         return hashCode;
       }
     }

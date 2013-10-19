@@ -70,11 +70,11 @@ namespace SitecoreInstaller.UI
                     Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.DeleteProjectDialog);
                     return true;
                 case Keys.R | Keys.Control | Keys.Shift:
-                    this.UpdateBuildLibrarySelections();
+                    UpdateBuildLibrarySelections();
                     Services.Pipelines.Run<ReinstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings);
                     return true;
                 case Keys.A | Keys.Control | Keys.Shift:
-                    this.UpdateBuildLibrarySelections();
+                    UpdateBuildLibrarySelections();
                     Services.Pipelines.Run<ArchivePipeline, ArchiveEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.SetArchiveName);
                     return true;
                 case Keys.O | Keys.Control:
@@ -100,9 +100,9 @@ namespace SitecoreInstaller.UI
 
         private void UpdateBuildLibrarySelections()
         {
-            UiServices.ProjectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
-            UiServices.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
-            UiServices.ProjectSettings.BuildLibrarySelections.SelectedModules = this.selectModules1.SelectedModules;
+            UiServices.ProjectSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
+            UiServices.ProjectSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
+            UiServices.ProjectSettings.BuildLibrarySelections.SelectedModules = selectModules1.SelectedModules;
         }
     }
 }

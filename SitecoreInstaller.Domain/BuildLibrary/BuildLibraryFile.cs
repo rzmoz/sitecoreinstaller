@@ -1,16 +1,10 @@
-﻿using Ionic.Zip;
-using SitecoreInstaller.Framework.IO;
-using System.Collections.Generic;
+﻿using SitecoreInstaller.Framework.IO;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
     using System;
-    using System.Diagnostics;
-
     using SitecoreInstaller.Framework.Archiving;
 
     public class BuildLibraryFile : BuildLibraryResource

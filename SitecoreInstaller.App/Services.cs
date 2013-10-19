@@ -12,13 +12,14 @@ using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.App
 {
-  using System;
   using System.Threading.Tasks;
-  using SitecoreInstaller.App.Pipelines;
-  using SitecoreInstaller.Domain.Pipelines;
+  using Pipelines;
+  using Domain.Pipelines;
 
   public static class Services
   {
+    private static bool _buildLibrariesInitialized = false;
+
     static Services()
     {
       Pipelines = new PipelineService();
@@ -27,8 +28,15 @@ namespace SitecoreInstaller.App
       IisManagement = new IisManagementService();
       PipelineWorker = new PipelineWorker();
       SourceManifests = new SourceManifestRepository(new FileInfo(AppConstants.SourcesConfigFileName));
+      SourceManifests.ExternalManifestsLoaded += SourceManifests_ExternalManifestsLoaded;
       Sql = new SqlService();
       Mongo = new MongoService();
+    }
+
+    static void SourceManifests_ExternalManifestsLoaded(object sender, System.EventArgs e)
+    {
+      if (_buildLibrariesInitialized)
+        InitBuildLibrary();
     }
 
     public static async Task LoadUserPreferencesAsync()
@@ -37,15 +45,12 @@ namespace SitecoreInstaller.App
     }
     public static async Task InitAsync()
     {
-      await Task.Factory.StartNew(() =>
-      {
-        //init before initializing build library
-        SourceManifests.Init();
+      //init before initializing build library
+      SourceManifests.UpdateLocal();
 
-        InitBuildLibrary();
+      InitBuildLibrary();
 
-        InitProjects();
-      });
+      InitProjects();
     }
 
     private static void InitBuildLibrary()
@@ -64,7 +69,8 @@ namespace SitecoreInstaller.App
         ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, SourceManifests.Enabled.Select(Create));
       }
 
-      BuildLibrary.Update();
+      BuildLibrary.UpdateAsync();
+      _buildLibrariesInitialized = true;
     }
 
     private static void LoadUserPreferences()
@@ -100,7 +106,7 @@ namespace SitecoreInstaller.App
       return sourceInstance;
     }
 
-    private static SourceManifestRepository SourceManifests { get; set; }
+    public static SourceManifestRepository SourceManifests { get; set; }
     public static ConfigFile<UserPreferencesConfig> UserPreferences { get; private set; }
 
     public static PipelineService Pipelines { get; private set; }

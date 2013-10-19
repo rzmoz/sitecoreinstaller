@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
   using System.IO;
   using System.Threading.Tasks;
-  using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.IO;
+  using Framework.IO;
 
   public class WindowsZipAndFoldersSourceEntryRepository : WindowsSourceEntryRepository
   {

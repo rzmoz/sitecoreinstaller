@@ -19,18 +19,25 @@ namespace SitecoreInstaller
     {
       base.OnLoad(e);
       CenterToScreen();
-
+      splashScreen1.Show();
+      splashScreen1.BringToFront();
+      
       await Services.LoadUserPreferencesAsync();
       await Services.InitAsync();
 
       Init();
+      
+      splashScreen1.Hide();
+      splashScreen1.SendToBack();
+      splashScreen1.Stop();
+
+      await Task.Factory.StartNew(() => Services.SourceManifests.UpdateExternalAsync());
     }
 
     public void Init()
     {
       mainCtrl1.Init();
 
-      
       Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
       Services.PipelineWorker.StepExecuting += PipelineWorker_StepExecuting;
       Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;

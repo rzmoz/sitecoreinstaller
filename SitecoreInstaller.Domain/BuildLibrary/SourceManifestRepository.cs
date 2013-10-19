@@ -7,16 +7,16 @@
   using System.IO;
   using System.Net;
   using System.Threading.Tasks;
-  using System.Web.Security;
-  using Sitecore.Configuration;
-  using Sitecore.Diagnostics;
-  using SitecoreInstaller.Framework.Configuration;
-  using SitecoreInstaller.Framework.Web;
-  using SitecoreInstaller.Framework.IO;
+  using Framework.Configuration;
+  using Framework.Web;
 
   public class SourceManifestRepository : IEnumerable<SourceManifest>
   {
     private List<SourceManifest> _manifests;
+    private static readonly object _manifestsLock = new object();
+
+    public event EventHandler ExternalManifestsLoaded;
+
 
     public SourceManifestRepository(FileInfo sourceFile)
     {
@@ -24,20 +24,43 @@
       SourceFile = sourceFile;
     }
 
-    public void Init()
+    public void UpdateLocal()
     {
-      _manifests = this.LoadManifests(SourceFile).ToList();
+      _manifests = LoadManifests(SourceFile, GetLocalManifests).ToList();
     }
 
-    private IEnumerable<SourceManifest> LoadManifests(FileInfo sourceFile)
+    public void UpdateExternalAsync()
+    {
+      var externalManifests = LoadManifests(SourceFile, GetExternalManifests).ToList();
+      if (externalManifests.Count > 0)
+      {
+        var localManifests = LoadManifests(SourceFile, GetLocalManifests).ToList();
+        var joinedManifests = localManifests.Concat(externalManifests.Distinct()).ToList();
+        lock (_manifestsLock)
+        {
+          _manifests = joinedManifests;
+        }
+        if (ExternalManifestsLoaded != null)
+          ExternalManifestsLoaded(this, EventArgs.Empty);
+      }
+    }
+
+    private IEnumerable<SourceManifest> LoadManifests(FileInfo sourceFile, Func<ConfigFile<SourceManifestConfig>, IEnumerable<SourceManifest>> getManifestsFunc)
     {
       var manifests = new List<SourceManifest>();
-
       var sources = new ConfigFile<SourceManifestConfig>(sourceFile);
       sources.Load();
-      manifests.AddRange(sources.Properties.Manifests);
+      manifests.AddRange(getManifestsFunc(sources));
+      return manifests.Distinct();
+    }
 
+    private IEnumerable<SourceManifest> GetLocalManifests(ConfigFile<SourceManifestConfig> sources)
+    {
+      return sources.Properties.Manifests;
+    }
 
+    private IEnumerable<SourceManifest> GetExternalManifests(ConfigFile<SourceManifestConfig> sources)
+    {
       var files = new List<FileInfo>();
       foreach (var source in sources.Properties.ExternalSources)
       {
@@ -51,11 +74,11 @@
         }
       }
 
+      var manifests = new List<SourceManifest>();
       foreach (var fileInfo in files)
       {
-        manifests.AddRange(this.LoadManifests(fileInfo));
+        manifests.AddRange(LoadManifests(fileInfo, GetLocalManifests));
       }
-
       return manifests.Distinct();
     }
 

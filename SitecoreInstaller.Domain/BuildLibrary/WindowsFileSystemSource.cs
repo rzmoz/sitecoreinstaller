@@ -136,7 +136,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       return _repositories[sourceType];
     }
 
-    public async Task Update()
+    public async Task UpdateAsync()
     {
       if (Updating != null)
         Updating(this, new EventArgs());

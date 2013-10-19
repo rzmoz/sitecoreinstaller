@@ -18,11 +18,14 @@
 
     public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<BuildLibrarySelections> e)
     {
-      for (var i = 0; i < this.chkModules.Items.Count; i++)
+      this.CrossThreadSafe(() =>
       {
-        var isChecked = e.Arg.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)this.chkModules.Items[i]).Key);
-        this.chkModules.SetItemChecked(i, isChecked);
-      }
+        for (var i = 0; i < this.chkModules.Items.Count; i++)
+        {
+          var isChecked = e.Arg.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)this.chkModules.Items[i]).Key);
+          this.chkModules.SetItemChecked(i, isChecked);
+        }  
+      });
     }
 
     protected override CheckedListBox ListBox

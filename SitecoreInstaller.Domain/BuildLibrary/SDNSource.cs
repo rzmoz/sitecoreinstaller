@@ -11,7 +11,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
   {
     public SdnSource(string name)
     {
-      this.Name = name ?? this.GetType().Name + Guid.NewGuid();
+      Name = name ?? GetType().Name + Guid.NewGuid();
     }
 
     public event EventHandler<EventArgs> Updating;
@@ -39,7 +39,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       return from sourceEntry in sourceEntries select Get(sourceEntry, sourceType);
     }
 
-    public async Task Update()
+    public async Task UpdateAsync()
     {
       Log.This.Info("Initializing from {0}", Parameters);
       //dummy implementation

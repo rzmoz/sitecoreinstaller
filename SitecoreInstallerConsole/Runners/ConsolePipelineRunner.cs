@@ -21,7 +21,7 @@ namespace SitecoreInstallerConsole.Runners
       
       Task.WaitAll(Services.InitAsync());
       Log.This.EntryLogged += LogEntryLogged;
-      Services.BuildLibrary.Update();
+      Services.BuildLibrary.UpdateAsync();
     }
 
     protected void LogEntryLogged(object sender, GenericEventArgs<LogEntry> e)

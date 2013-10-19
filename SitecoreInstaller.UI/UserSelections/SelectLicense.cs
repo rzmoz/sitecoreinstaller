@@ -1,4 +1,6 @@
-﻿namespace SitecoreInstaller.UI.UserSelections
+﻿using SitecoreInstaller.Framework.Sys;
+
+namespace SitecoreInstaller.UI.UserSelections
 {
   using System;
   using System.Drawing;
@@ -42,32 +44,35 @@
 
     private void cbxLicenses_SelectedIndexChanged(object sender, System.EventArgs e)
     {
-      if (this.ListBox.Items.Count == 0)
+      this.CrossThreadSafe(() =>
       {
-        this.lblLicenses.ForeColor = Color.Red;
-        this.lblLicenses.Text = "You have no licenses";
-        return;
-      }
+        if (ListBox.Items.Count == 0)
+        {
+          lblLicenses.ForeColor = Color.Red;
+          lblLicenses.Text = "You have no licenses";
+          return;
+        }
 
-      if (this.ListBox.SelectedItem is LicenseFileSourceEntry == false)
-        return;
+        if (ListBox.SelectedItem is LicenseFileSourceEntry == false)
+          return;
 
-      var licenseFile = (this.ListBox.SelectedItem as LicenseFileSourceEntry).LicenseFile;
-      if (licenseFile.IsExpired)
-      {
-        this.lblLicenses.ForeColor = Color.Red;
-        this.lblLicenses.Text = string.Format("License has expired:");
-        return;
-      }
+        var licenseFile = (ListBox.SelectedItem as LicenseFileSourceEntry).LicenseFile;
+        if (licenseFile.IsExpired)
+        {
+          lblLicenses.ForeColor = Color.Red;
+          lblLicenses.Text = string.Format("License has expired:");
+          return;
+        }
 
-      if (licenseFile.ExpiresIn <= Services.UserPreferences.Properties.LicenseExpirationPeriodInDays)
-      {
-        this.lblLicenses.ForeColor = Color.Blue;
-        this.lblLicenses.Text = string.Format("License: (expires in {0} days)", licenseFile.ExpiresIn);
-        return;
-      }
-      this.lblLicenses.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
-      this.lblLicenses.Text = string.Format("License:");
+        if (licenseFile.ExpiresIn <= Services.UserPreferences.Properties.LicenseExpirationPeriodInDays)
+        {
+          lblLicenses.ForeColor = Color.Blue;
+          lblLicenses.Text = string.Format("License: (expires in {0} days)", licenseFile.ExpiresIn);
+          return;
+        }
+        lblLicenses.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
+        lblLicenses.Text = string.Format("License:");  
+      });
     }
 
     protected override SourceEntry GetRelevantSourceEntry(BuildLibrarySelections buildLibrarySelections)

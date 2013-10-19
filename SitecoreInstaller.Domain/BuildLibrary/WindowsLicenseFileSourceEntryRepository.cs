@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SitecoreInstaller.Domain.BuildLibrary
+﻿namespace SitecoreInstaller.Domain.BuildLibrary
 {
   using System.IO;
   using System.Threading.Tasks;
-  using System.Xml.Linq;
-  using SitecoreInstaller.Framework.Diagnostics;
 
   public class WindowsLicenseFileSourceEntryRepository : WindowsSourceEntryRepository
   {
