@@ -117,19 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="rtbKeyboardShortcuts.Text" xml:space="preserve">
-    <value>CTRL + SHIFT + B = Install
-CTRL + SHIFT + U = Un-Install
-CTRL + SHIFT + R = Re-Install
-CTRL + SHIFT + A = Archive
-
-CTRL + SHIFT + L = Show / Hide Log
-CTRL + SHIFT + P = Show Preferences
-
-CTRL + SHIFT + O = Open Sitecore
-CTRL + O = Open frontend
-
-CTRL + ALT + O = Open project folder
-CTRL + C = Clear Selections</value>
-  </data>
 </root>

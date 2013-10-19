@@ -113,6 +113,9 @@
     <Compile Include="Forms\SILabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\SIMainDevActionButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\SISelectFolder.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -165,6 +168,12 @@
     </Compile>
     <Compile Include="MainDeveloper.Designer.cs">
       <DependentUpon>MainDeveloper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainDeveloperButtons.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainDeveloperButtons.Designer.cs">
+      <DependentUpon>MainDeveloperButtons.cs</DependentUpon>
     </Compile>
     <Compile Include="MainSimple.cs">
       <SubType>UserControl</SubType>
@@ -358,6 +367,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainDeveloper.resx">
       <DependentUpon>MainDeveloper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainDeveloperButtons.resx">
+      <DependentUpon>MainDeveloperButtons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainSimple.resx">
       <DependentUpon>MainSimple.cs</DependentUpon>

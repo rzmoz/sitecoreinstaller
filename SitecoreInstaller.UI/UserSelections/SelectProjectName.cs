@@ -4,7 +4,7 @@ namespace SitecoreInstaller.UI.UserSelections
 {
   using System;
   using System.Windows.Forms;
-  using SitecoreInstaller.App;
+  using App;
 
   public partial class SelectProjectName : UserControl
   {
@@ -12,6 +12,8 @@ namespace SitecoreInstaller.UI.UserSelections
     {
       InitializeComponent();
     }
+
+    public event EventHandler<string> ProjectNameChanged;
 
     public string ProjectName
     {
@@ -52,12 +54,14 @@ namespace SitecoreInstaller.UI.UserSelections
 
     private void cbxProjectName_SelectedIndexChanged(object sender, EventArgs e)
     {
-      UiServices.ProjectSettings.ProjectName = this.cbxProjectName.Text;
+      UiServices.ProjectSettings.ProjectName = cbxProjectName.Text;
     }
 
     private void cbxProjectName_TextUpdate(object sender, EventArgs e)
     {
-      UiServices.ProjectSettings.ProjectName = this.cbxProjectName.Text;
+      UiServices.ProjectSettings.ProjectName = cbxProjectName.Text;
+      if (ProjectNameChanged != null)
+        ProjectNameChanged(this, cbxProjectName.Text);
     }
   }
 }
