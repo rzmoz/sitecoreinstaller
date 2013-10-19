@@ -43,12 +43,7 @@ namespace SitecoreInstaller.UI.Log
       base.OnPaint(e);
 
       var graphics = CreateGraphics();
-
-      var myPen = new Pen(Color.White)
-      {
-        Width = 2
-      };
-
+      var myPen = new Pen(Color.White) { Width = 2 };
       graphics.DrawLine(myPen, 0, 0, Width, 0);
     }
 

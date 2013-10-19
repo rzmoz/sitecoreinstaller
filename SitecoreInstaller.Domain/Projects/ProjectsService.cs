@@ -5,7 +5,7 @@ using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.Domain.Projects
 {
-  using SitecoreInstaller.Framework.Diagnostics;
+  using Framework.Diagnostics;
 
   public class ProjectsService
   {

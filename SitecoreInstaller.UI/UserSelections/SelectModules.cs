@@ -20,17 +20,17 @@
     {
       this.CrossThreadSafe(() =>
       {
-        for (var i = 0; i < this.chkModules.Items.Count; i++)
+        for (var i = 0; i < chkModules.Items.Count; i++)
         {
-          var isChecked = e.Arg.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)this.chkModules.Items[i]).Key);
-          this.chkModules.SetItemChecked(i, isChecked);
+          var isChecked = e.Arg.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)chkModules.Items[i]).Key);
+          chkModules.SetItemChecked(i, isChecked);
         }  
       });
     }
 
     protected override CheckedListBox ListBox
     {
-      get { return this.chkModules; }
+      get { return chkModules; }
     }
 
     protected override IEnumerable<SourceEntry> ListDataSource
@@ -47,7 +47,7 @@
     {
       get
       {
-        return (from object item in this.chkModules.CheckedItems select item).Cast<SourceEntry>();
+        return (from object item in chkModules.CheckedItems select item).Cast<SourceEntry>();
       }
     }
   }
