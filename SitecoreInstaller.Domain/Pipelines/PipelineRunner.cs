@@ -107,7 +107,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         if (PreconditionsAreMet(step.Preconditions, args))
         {
-          Log.This.Info("Executing " + step.Name.ActiveForm);
+          Log.This.Info(step.Name.ActiveForm);
           var elapsed = Profiler.This(step.Invoke, sender, args);
           Log.This.Profile(step.Name.ActiveForm, elapsed);
         }

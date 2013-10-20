@@ -23,7 +23,7 @@ namespace SitecoreInstaller.App.Pipelines
       AddStep<AttachDatabases>();
       AddStep<AddSitenameToHostFile>();
       AddStep<CreateIisSiteAndAppPool>();
-      AddStep<WarmUpNoWait>();
+      AddStep<WarmUpSite>();
     }
   }
 }

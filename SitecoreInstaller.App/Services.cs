@@ -55,7 +55,7 @@ namespace SitecoreInstaller.App
 
     private static void InitBuildLibrary()
     {
-      Log.This.Info("Initializing Build library");
+      Log.This.Debug("Initializing Build library");
       var localBuildLibrary = new WindowsFileSystemSource(string.Empty)
       {
         Parameters = UserPreferences.Properties.LocalBuildLibrary

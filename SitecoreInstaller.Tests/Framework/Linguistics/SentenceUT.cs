@@ -18,6 +18,7 @@
     //duplicate last consonant and add ing
     [TestCase("SetThis", "Setting This")]
     [TestCase("ZipThis", "Zipping This")]
+    [TestCase("RunThis", "Running This")]
 
     //dual verbs!
     [TestCase("ZipAndMoveThis", "Zipping And Moving This")]

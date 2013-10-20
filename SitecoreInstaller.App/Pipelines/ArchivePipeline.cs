@@ -26,7 +26,7 @@
       AddStep<CopyLicensefile>();
       AddStep<AttachDatabases>();
       AddStep<StartApplication>();
-      AddStep<WarmUpNoWait>();
+      AddStep<WarmUpSite>();
     }
   }
 }

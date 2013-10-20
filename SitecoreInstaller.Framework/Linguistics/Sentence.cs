@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.Linguistics
 {
-  using SitecoreInstaller.Framework.Sys;
-
   public class Sentence
   {
     private readonly IList<Word> _words;

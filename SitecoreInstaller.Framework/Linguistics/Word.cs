@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Framework.Linguistics
 {
@@ -10,7 +6,7 @@ namespace SitecoreInstaller.Framework.Linguistics
   {
     public Word(string word)
     {
-      this.Original = word ?? string.Empty;
+      Original = word ?? string.Empty;
 
       SetActiveForm();
     }
@@ -28,9 +24,12 @@ namespace SitecoreInstaller.Framework.Linguistics
       //we don't consider single character verbs
       if (verb.Length < 2)
         return verb;
-
+      
       var lastChar = verb[verb.Length - 1];
       var secondLastChar = verb[verb.Length - 2];
+
+      if (verb.ToLowerInvariant() == "run")
+        return verb + lastChar;
 
       switch (lastChar)
       {

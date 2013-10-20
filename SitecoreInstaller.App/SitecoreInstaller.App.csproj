@@ -120,7 +120,7 @@
     <Compile Include="Pipelines\Steps\DatabaseSettings\VerifyMongoDbConnection.cs" />
     <Compile Include="Pipelines\Steps\Install\DeserializeItems.cs" />
     <Compile Include="Pipelines\Steps\Install\RunPreInstallPowerShellScripts.cs" />
-    <Compile Include="Pipelines\Steps\Install\RunSitecorePostInstallSteps.cs" />
+    <Compile Include="Pipelines\Steps\Install\ConfigureFinishingTasks.cs" />
     <Compile Include="Pipelines\Steps\Install\GrantPermissions.cs" />
     <Compile Include="Pipelines\Steps\Install\RunPostInstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\Install\TransformConfigFiles.cs" />
@@ -129,7 +129,7 @@
     <Compile Include="Pipelines\Steps\DatabaseSettings\VerifySqlConnection.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPostUninstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPreUninstallPowerShellScripts.cs" />
-    <Compile Include="Pipelines\Steps\WarmUpNoWait.cs" />
+    <Compile Include="Pipelines\Steps\WarmUpSite.cs" />
     <Compile Include="Pipelines\InstallPipeline.cs" />
     <Compile Include="Pipelines\DoNothingPipeline.cs" />
     <Compile Include="Pipelines\PipelineService.cs" />

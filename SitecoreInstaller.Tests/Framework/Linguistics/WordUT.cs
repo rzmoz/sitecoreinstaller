@@ -30,6 +30,7 @@ namespace SitecoreInstaller.Tests.Framework.Linguistics
     [TestCase("Set", "Setting")]
     [TestCase("Stop", "Stopping")]
     [TestCase("Zip", "Zipping")]
+    [TestCase("Run", "Running")]
     public void ActiveForm_ToActive_WordIsInActiveForm(string imperativeForm, string activeForm)
     {
       var word = new Word(imperativeForm);
