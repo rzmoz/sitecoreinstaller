@@ -1,16 +1,15 @@
 ﻿using System;
+using SitecoreInstaller.Domain.Pipelines;
+using SitecoreInstaller.Framework.Linguistics;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-  using SitecoreInstaller.Domain.Pipelines;
-  using SitecoreInstaller.Framework.Linguistics;
-
   public abstract class Precondition<T> : IPrecondition where T : PipelineEventArgs
   {
     protected Precondition()
     {
       ErrorMessage = string.Empty;
-      Name = new Sentence(this.GetType().Name);
+      Name = new Sentence(GetType().Name);
     }
 
     public Sentence Name { get; private set; }
@@ -20,7 +19,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
       if (args is T == false)
         throw new ArgumentException("args must be of type:" + typeof(T) + ". Was:" + args.GetType());
 
-      return this.InnerEvaluate(this, args as T);
+      return InnerEvaluate(this, args as T);
     }
     public abstract bool InnerEvaluate(object sender, T args);
 

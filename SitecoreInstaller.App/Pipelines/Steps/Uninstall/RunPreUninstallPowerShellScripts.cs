@@ -10,10 +10,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
   {
     protected override string MethodName
     {
-      get
-      {
-        return "Pre-Uninstall";
-      }
+      get { return "Pre-Uninstall"; }
     }
   }
 }

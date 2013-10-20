@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SitecoreInstaller.App.Pipelines.Preconditions;
+using SitecoreInstaller.App.Pipelines.Steps;
+using SitecoreInstaller.App.Pipelines.Steps.Install;
+using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  using SitecoreInstaller.App.Pipelines.Preconditions;
-  using SitecoreInstaller.App.Pipelines.Steps;
-  using SitecoreInstaller.App.Pipelines.Steps.Install;
-  using SitecoreInstaller.Domain.Pipelines;
-
   public class ReAttachPipeline : Pipeline<PipelineEventArgs>
   {
     public ReAttachPipeline()

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  using System.IO;
-  using SitecoreInstaller.Domain.BuildLibrary;
-
   public class CopyLicensefile : Step<PipelineEventArgs>
   {
     protected override void InnerInvoke(object sender, PipelineEventArgs args)

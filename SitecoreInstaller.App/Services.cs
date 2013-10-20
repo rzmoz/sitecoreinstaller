@@ -9,12 +9,12 @@ using SitecoreInstaller.Domain.Website;
 using SitecoreInstaller.Framework.Configuration;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.Sys;
+using System.Threading.Tasks;
+using SitecoreInstaller.App.Pipelines;
+using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App
 {
-  using System.Threading.Tasks;
-  using Pipelines;
-  using Domain.Pipelines;
 
   public static class Services
   {

@@ -1,19 +1,18 @@
-﻿namespace SitecoreInstaller.App
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+
+using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Domain.Database;
+using SitecoreInstaller.Domain.WebServer;
+using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Domain;
+using SitecoreInstaller.Framework.Sys;
+
+namespace SitecoreInstaller.App
 {
-  using System;
-  using System.Collections.Generic;
-  using System.IO;
-  using System.Linq;
-  using System.Runtime.Serialization;
-
-  using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Domain.Database;
-  using SitecoreInstaller.Domain.WebServer;
-  using SitecoreInstaller.Domain.Website;
-  using SitecoreInstaller.Framework.IO;
-  using SitecoreInstaller.Domain;
-  using SitecoreInstaller.Framework.Sys;
-
   /// <summary>
   /// Not thread safe!
   /// </summary>

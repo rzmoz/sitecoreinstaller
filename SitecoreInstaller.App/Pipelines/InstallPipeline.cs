@@ -1,11 +1,10 @@
-﻿using SitecoreInstaller.Domain.Pipelines;
+﻿using SitecoreInstaller.App.Pipelines.Preconditions;
+using SitecoreInstaller.App.Pipelines.Steps;
+using SitecoreInstaller.App.Pipelines.Steps.Install;
+using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  using Preconditions;
-  using Steps;
-  using Steps.Install;
-
   public class InstallPipeline : Pipeline<PipelineEventArgs>
   {
     public InstallPipeline()

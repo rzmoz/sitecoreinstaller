@@ -1,9 +1,8 @@
 ﻿using SitecoreInstaller.App.Pipelines.Steps.DatabaseSettings;
+using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  using SitecoreInstaller.Domain.Pipelines;
-
   public class TestSqlSettingsPipeline : Pipeline<PipelineEventArgs>
   {
     public TestSqlSettingsPipeline()

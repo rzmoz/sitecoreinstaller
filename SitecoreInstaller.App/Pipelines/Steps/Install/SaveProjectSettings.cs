@@ -14,7 +14,6 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
       projectConfig.Properties.License = args.ProjectSettings.BuildLibrarySelections.SelectedLicense.ToString();
       projectConfig.Properties.Modules = args.ProjectSettings.BuildLibrarySelections.SelectedModules.Select(module => module.ToString()).ToList();
       projectConfig.Save();
-
     }
   }
 }

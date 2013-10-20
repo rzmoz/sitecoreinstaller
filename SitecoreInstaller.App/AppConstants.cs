@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SitecoreInstaller.App
 {
-    internal static class AppConstants
-    {
-        internal const string UserPreferencesFileName = "Preferences.config";
-        internal const string SourcesConfigFileName = "Sources.config";
-    }
+  internal static class AppConstants
+  {
+    internal const string UserPreferencesFileName = "Preferences.config";
+    internal const string SourcesConfigFileName = "Sources.config";
+  }
 }

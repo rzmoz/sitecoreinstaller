@@ -1,12 +1,12 @@
-﻿namespace SitecoreInstaller.App.Pipelines
-{
-  using SitecoreInstaller.App.Pipelines.Preconditions;
-  using SitecoreInstaller.App.Pipelines.Steps;
-  using SitecoreInstaller.App.Pipelines.Steps.Archiving;
-  using SitecoreInstaller.App.Pipelines.Steps.Install;
-  using SitecoreInstaller.App.Pipelines.Steps.Uninstall;
-  using SitecoreInstaller.Domain.Pipelines;
+﻿using SitecoreInstaller.App.Pipelines.Preconditions;
+using SitecoreInstaller.App.Pipelines.Steps;
+using SitecoreInstaller.App.Pipelines.Steps.Archiving;
+using SitecoreInstaller.App.Pipelines.Steps.Install;
+using SitecoreInstaller.App.Pipelines.Steps.Uninstall;
+using SitecoreInstaller.Domain.Pipelines;
 
+namespace SitecoreInstaller.App.Pipelines
+{
   public class ArchivePipeline : Pipeline<ArchiveEventArgs>
   {
     public ArchivePipeline()

@@ -1,7 +1,7 @@
-﻿namespace SitecoreInstaller.App.Pipelines.Preconditions
-{
-  using System.IO;
+﻿using System.IO;
 
+namespace SitecoreInstaller.App.Pipelines.Preconditions
+{
   public class CheckProjectExists : Precondition<PipelineEventArgs>
   {
     public override bool InnerEvaluate(object sender, PipelineEventArgs args)

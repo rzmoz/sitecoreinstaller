@@ -1,11 +1,10 @@
 ﻿using SitecoreInstaller.Domain.Pipelines;
+using SitecoreInstaller.App.Pipelines.Preconditions;
+using SitecoreInstaller.App.Pipelines.Steps;
+using SitecoreInstaller.App.Pipelines.Steps.Nothing;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  using SitecoreInstaller.App.Pipelines.Preconditions;
-  using SitecoreInstaller.App.Pipelines.Steps;
-  using SitecoreInstaller.App.Pipelines.Steps.Nothing;
-
   public class DoNothingPipeline : Pipeline<DoNothingEventArgs>
   {
     public DoNothingPipeline()

@@ -2,7 +2,6 @@
 {
   public class CheckProjectNameIsSet : Precondition<PipelineEventArgs>
   {
-
     public override bool InnerEvaluate(object sender, PipelineEventArgs args)
     {
       if (args.ProjectSettings.ProjectNameIsSet)

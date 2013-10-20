@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using SitecoreInstaller.App.Pipelines.Preconditions;
+using SitecoreInstaller.Domain;
+using SitecoreInstaller.Domain.Database;
+using SitecoreInstaller.Domain.Website;
+using SitecoreInstaller.Framework.Sys;
+using SitecoreInstaller.Framework.Xml;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-    using System.IO;
-
-    using SitecoreInstaller.App.Pipelines.Preconditions;
-    using SitecoreInstaller.Domain;
-    using SitecoreInstaller.Domain.Database;
-    using SitecoreInstaller.Domain.Pipelines;
-    using SitecoreInstaller.Domain.Website;
-    using SitecoreInstaller.Framework.Sys;
-    using SitecoreInstaller.Framework.Xml;
-
     public class SetConnectionStrings : Step<PipelineEventArgs>
     {
         public SetConnectionStrings()

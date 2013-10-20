@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
+﻿namespace SitecoreInstaller.App.Pipelines.Steps.Archiving
 {
   public class CleanProjectForArchiving : Step<PipelineEventArgs>
+  {
+    protected override void InnerInvoke(object sender, PipelineEventArgs args)
     {
-        protected override void InnerInvoke(object sender, PipelineEventArgs args)
-        {
-            Services.Projects.CleanProjectForArchiving(args.ProjectSettings.ProjectFolder);
-        }
+      Services.Projects.CleanProjectForArchiving(args.ProjectSettings.ProjectFolder);
     }
+  }
 }

@@ -1,9 +1,8 @@
 ﻿using System.Linq;
+using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  using SitecoreInstaller.Domain.BuildLibrary;
-
   public class CopyModuleFiles : Step<PipelineEventArgs>
   {
     protected override void InnerInvoke(object sender, PipelineEventArgs args)

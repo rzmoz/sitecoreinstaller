@@ -1,10 +1,9 @@
 ﻿using SitecoreInstaller.Domain.Pipelines;
+using SitecoreInstaller.App.Pipelines.Preconditions;
+using SitecoreInstaller.App.Pipelines.Steps.Uninstall;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  using SitecoreInstaller.App.Pipelines.Preconditions;
-  using SitecoreInstaller.App.Pipelines.Steps.Uninstall;
-
   public class UninstallPipeline : Pipeline<CleanupEventArgs>
   {
     public UninstallPipeline()

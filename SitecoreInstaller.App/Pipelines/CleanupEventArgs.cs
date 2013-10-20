@@ -4,7 +4,7 @@
   {
     public CleanupEventArgs()
     {
-      this.DeepClean = true;
+      DeepClean = true;
     }
 
     public bool DeepClean { get; set; }

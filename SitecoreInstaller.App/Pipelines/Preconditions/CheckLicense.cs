@@ -1,11 +1,9 @@
 ﻿using System;
+using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-  using SitecoreInstaller.Domain.BuildLibrary;
-
-  using SitecoreInstaller.Framework.Diagnostics;
-
   public class CheckLicense : Precondition<PipelineEventArgs>
   {
     public override bool InnerEvaluate(object sender, PipelineEventArgs args)
