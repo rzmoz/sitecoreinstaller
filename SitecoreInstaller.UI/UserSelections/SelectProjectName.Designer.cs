@@ -42,7 +42,7 @@
       this.cbxProjectName.Size = new System.Drawing.Size(400, 21);
       this.cbxProjectName.TabIndex = 1;
       this.cbxProjectName.SelectedIndexChanged += new System.EventHandler(this.cbxProjectName_SelectedIndexChanged);
-      this.cbxProjectName.TextUpdate += new System.EventHandler(this.cbxProjectName_TextUpdate);
+      this.cbxProjectName.TextChanged += cbxProjectName_TextChanged;
       // 
       // lblProjectName
       // 
@@ -67,6 +67,8 @@
       this.PerformLayout();
 
         }
+
+        
 
         #endregion
 

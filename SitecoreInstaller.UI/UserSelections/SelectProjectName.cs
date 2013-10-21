@@ -57,7 +57,7 @@ namespace SitecoreInstaller.UI.UserSelections
       UiServices.ProjectSettings.ProjectName = cbxProjectName.Text;
     }
 
-    private void cbxProjectName_TextUpdate(object sender, EventArgs e)
+    void cbxProjectName_TextChanged(object sender, System.EventArgs e)
     {
       UiServices.ProjectSettings.ProjectName = cbxProjectName.Text;
       if (ProjectNameChanged != null)

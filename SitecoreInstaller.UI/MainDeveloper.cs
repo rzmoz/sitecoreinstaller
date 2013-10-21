@@ -19,6 +19,7 @@ namespace SitecoreInstaller.UI
     public void Init()
     {
       selectProjectName1.ProjectNameChanged += selectProjectName1_ProjectNameChanged;
+      
       selectProjectName1.Init();
       selectProjectName1_ProjectNameChanged(null, selectProjectName1.ProjectName);
       selectSitecore1.Init();
