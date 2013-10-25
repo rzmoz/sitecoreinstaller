@@ -1,4 +1,6 @@
-﻿namespace SitecoreInstaller.UI.ListBoxes
+﻿using SitecoreInstaller.Framework.Sys;
+
+namespace SitecoreInstaller.UI.ListBoxes
 {
   using System;
   using System.Collections.Generic;
@@ -42,27 +44,29 @@
     {
       if (ListBox == null)
         return;
-
-      SourceEntry selectedItem = null;
-      if (ListBox.DataSource != null && ListBox.SelectedIndex > -1)
+      this.CrossThreadSafe(() =>
       {
-        _items = ((IEnumerable<SourceEntry>)ListBox.DataSource).ToList();
-        selectedItem = _items[ListBox.SelectedIndex];
-        _items = ListDataSource.ToList();
-      }
+        SourceEntry selectedItem = null;
+        if (ListBox.DataSource != null && ListBox.SelectedIndex > -1)
+        {
+          _items = ((IEnumerable<SourceEntry>)ListBox.DataSource).ToList();
+          selectedItem = _items[ListBox.SelectedIndex];
+          _items = ListDataSource.ToList();
+        }
 
-      ListBox.DataSource = ListDataSource;
-      ListBox.Format += DirectoryInfo_Format;
-      ListBox.DisplayMember = "key";
-      ListBox.ValueMember = "sourcename";
+        ListBox.DataSource = ListDataSource;
+        ListBox.Format += DirectoryInfo_Format;
+        ListBox.DisplayMember = "key";
+        ListBox.ValueMember = "sourcename";
 
-      if (selectedItem != null)
-      {
-        var selectedIndex = _items.IndexOf(selectedItem);
-        if (selectedIndex < 0)
-          selectedIndex = ((IEnumerable<SourceEntry>)ListBox.DataSource).Count() - 1;
-        ListBox.SelectedIndex = selectedIndex;
-      }
+        if (selectedItem != null)
+        {
+          var selectedIndex = _items.IndexOf(selectedItem);
+          if (selectedIndex < 0)
+            selectedIndex = ((IEnumerable<SourceEntry>)ListBox.DataSource).Count() - 1;
+          ListBox.SelectedIndex = selectedIndex;
+        }  
+      });
     }
   }
 }

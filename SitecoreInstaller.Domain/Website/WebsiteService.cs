@@ -118,6 +118,19 @@ namespace SitecoreInstaller.Domain.Website
       Log.This.Info("Module copied to website");
     }
 
+    public void CopyStandAloneScPackagesToWebsite(ProjectFolder projectFolder, BuildLibraryFile file, InstallType installType)
+    {
+      Log.This.Info("Copying stand alone sitecore package to website...");
+
+      if (file.File.IsSitecorePackage())
+      {
+        file.File.CopyTo(projectFolder.Data.Packages, true);
+      }
+
+
+      Log.This.Info("Stand alone sitecore package copied to website");
+    }
+
     public void TransformConfigFiles(IEnumerable<FileInfo> configDeltas, FileInfo webConfig, FileInfo connectionStrings)
     {
       webConfig.Refresh();
@@ -236,6 +249,26 @@ namespace SitecoreInstaller.Domain.Website
         {
           this.InstallPackage(baseUrl, update);
         }
+      }
+    }
+
+    public void InstallPackages(string baseUrl, IEnumerable<BuildLibraryFile> standAloneScPackages)
+    {
+      if (standAloneScPackages == null)
+        return;
+      standAloneScPackages = standAloneScPackages.ToList();
+
+      if (standAloneScPackages.Any() == false)
+        return;
+
+      //warm up site to make sure run time service is up and running
+      WakeUpSite(baseUrl);
+      Log.This.Info("Installing packages...");
+
+      foreach (var standAloneScPackage in standAloneScPackages)
+      {
+        if (standAloneScPackage.File.IsSitecorePackage())
+          this.InstallPackage(baseUrl, standAloneScPackage.File);
       }
     }
 

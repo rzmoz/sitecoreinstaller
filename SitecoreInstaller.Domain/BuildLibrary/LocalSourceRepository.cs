@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-  using System.Threading.Tasks;
-  using SitecoreInstaller.Framework.Diagnostics;
-
   public class LocalSourceRepository : ISourceRepository
   {
     private WindowsFileSystemSource _localBuildLibrary;
