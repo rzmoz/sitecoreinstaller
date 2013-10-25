@@ -4,7 +4,8 @@
 <Sources xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
   <Manifests>
     <!--<Manifest Enabled="true" Name="RAR" Parameters="C:\BuildLibraryExternal" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />-->
-    <!--<Manifest Enabled="false" Name="SALES" Parameters="\\fil1dk1.dk.sitecore.net\DATA2\Sitecore\SitecoreInstallerBuildLibrary\Common" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />-->
+    <Manifest Enabled="true" Name="SalesDK" Parameters="\\fil1dk1.dk.sitecore.net\data2\Sitecore\SitecoreInstallerBuildLibrary\SitecoreDK" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
+    <Manifest Enabled="true" Name="Sales" Parameters="\\fil1dk1.dk.sitecore.net\data2\Sitecore\SitecoreInstallerBuildLibrary\Common" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
   </Manifests>
   <ExternalSources>
     <ExternalSource Type="HttpGet" Parameters="http://sitecoreinstaller.bitbucket.org/sources.debug.config" xdt:Transform="Insert" />

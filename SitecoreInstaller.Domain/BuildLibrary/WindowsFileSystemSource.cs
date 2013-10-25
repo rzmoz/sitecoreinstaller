@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using SitecoreInstaller.Framework.Configuration;
+using System.Threading.Tasks;
 using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-  using System.Threading.Tasks;
-  using SitecoreInstaller.Framework.Diagnostics;
+
 
   public class WindowsFileSystemSource : ISource
   {
@@ -136,12 +134,15 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       return _repositories[sourceType];
     }
 
-    public async Task UpdateAsync()
+    public void Update()
     {
       if (Updating != null)
         Updating(this, new EventArgs());
 
-      await Task.WhenAll(_repositories.Values.Select(v => v.Update(Name)));
+      foreach (var repoSource in _repositories.Values)
+      {
+        repoSource.Update(Name);
+      }
 
       if (Updated != null)
         Updated(this, new EventArgs());

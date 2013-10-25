@@ -19,9 +19,9 @@ namespace SitecoreInstallerConsole.Runners
     {
       this.CmdLine = new CmdLine();
       
-      Task.WaitAll(Services.InitAsync());
+      Services.Init();
       Log.This.EntryLogged += LogEntryLogged;
-      Services.BuildLibrary.UpdateAsync();
+      Services.BuildLibrary.Update();
     }
 
     protected void LogEntryLogged(object sender, GenericEventArgs<LogEntry> e)

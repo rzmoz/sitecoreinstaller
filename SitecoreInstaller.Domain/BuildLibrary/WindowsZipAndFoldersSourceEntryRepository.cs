@@ -37,31 +37,28 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       }
     }
 
-    public override Task Update(string sourceName)
+    public override void Update(string sourceName)
     {
       //Log.This.Debug("Updating '{0}'s from {1}", SourceType, sourceName);
 
       Entries.Clear();
       if (Directory.Exists(Root.FullName) == false)
-        return Task.Factory.StartNew(() => { });
+        return;
 
-      return Task.Factory.StartNew(() =>
+      foreach (var dir in Root.GetDirectories())
       {
-        foreach (var dir in Root.GetDirectories())
-        {
-          //Log.This.Debug("Adding '{0}' from directory", dir.FullName);
-          Entries.Add(dir.Name.ToLower(), new SourceEntry(dir.Name, sourceName));
-        }
+        //Log.This.Debug("Adding '{0}' from directory", dir.FullName);
+        Entries.Add(dir.Name.ToLower(), new SourceEntry(dir.Name, sourceName));
+      }
 
-        foreach (var zipFile in Root.GetFiles("*.zip"))
-        {
-          var cleanedName = zipFile.NameWithoutExtension();
-          if (Entries.ContainsKey(cleanedName.ToLower()))
-            continue;
-          //Log.This.Debug("Adding '{0}' from zip file", cleanedName);
-          Entries.Add(cleanedName.ToLower(), new SourceEntry(cleanedName, sourceName));
-        }
-      });
+      foreach (var zipFile in Root.GetFiles("*.zip"))
+      {
+        var cleanedName = zipFile.NameWithoutExtension();
+        if (Entries.ContainsKey(cleanedName.ToLower()))
+          continue;
+        //Log.This.Debug("Adding '{0}' from zip file", cleanedName);
+        Entries.Add(cleanedName.ToLower(), new SourceEntry(cleanedName, sourceName));
+      }
     }
 
     public override BuildLibraryResource Get(SourceEntry sourceEntry)

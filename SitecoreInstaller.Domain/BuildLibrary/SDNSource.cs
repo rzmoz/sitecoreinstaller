@@ -39,11 +39,11 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       return from sourceEntry in sourceEntries select Get(sourceEntry, sourceType);
     }
 
-    public async Task UpdateAsync()
+    public void Update()
     {
       Log.This.Info("Initializing from {0}", Parameters);
       //dummy implementation
-      await Task.Delay(1);
+      throw new NotImplementedException();
     }
     
     public bool Contains(string name, SourceType sourceType)

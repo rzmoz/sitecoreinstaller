@@ -24,7 +24,7 @@ namespace SitecoreInstaller
 
       await Task.Delay(TimeSpan.FromSeconds(1));//just to make sure splash screen is open long enough to be readable
       await Services.LoadUserPreferencesAsync();
-      await Services.InitAsync();
+      Services.Init();
 
       Init();
       

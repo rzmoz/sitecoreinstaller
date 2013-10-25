@@ -102,7 +102,7 @@ namespace SitecoreInstaller.UI
           Framework.Diagnostics.Log.This.Reset();
           return true;
         case Keys.R | Keys.Control:
-          Services.BuildLibrary.UpdateAsync();
+          Services.BuildLibrary.Update();
           return true;
         case Keys.P | Keys.Control | Keys.Shift:
           ViewportStack.OpenOrCloseDependingOnCurrentState(userPreferences1);
@@ -159,7 +159,7 @@ namespace SitecoreInstaller.UI
 
     void PipelineWorker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
     {
-      Services.BuildLibrary.UpdateAsync();
+      Services.BuildLibrary.Update();
     }
     void PipelineWorker_PreconditionNotMet(object sender, GenericEventArgs<string> e)
     {

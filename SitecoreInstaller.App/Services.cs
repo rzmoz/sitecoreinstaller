@@ -43,7 +43,7 @@ namespace SitecoreInstaller.App
     {
       await Task.Factory.StartNew(LoadUserPreferences);
     }
-    public static async Task InitAsync()
+    public static void Init()
     {
       //init before initializing build library
       SourceManifests.UpdateLocal();
@@ -69,7 +69,7 @@ namespace SitecoreInstaller.App
         ((LocalSourceRepository)BuildLibrary).Init(localBuildLibrary, SourceManifests.Enabled.Select(Create));
       }
 
-      BuildLibrary.UpdateAsync();
+      BuildLibrary.Update();
       _buildLibrariesInitialized = true;
     }
 

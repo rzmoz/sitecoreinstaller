@@ -28,7 +28,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public abstract BuildLibraryResource Get(SourceEntry sourceEntry);
 
-    public abstract Task Update(string sourceName);
+    public abstract void Update(string sourceName);
 
     public IEnumerator<SourceEntry> GetEnumerator()
     {
