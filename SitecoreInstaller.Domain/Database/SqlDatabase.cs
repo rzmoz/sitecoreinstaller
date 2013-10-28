@@ -75,7 +75,7 @@ namespace SitecoreInstaller.Domain.Database
             int dbPrefixIndex = -1;
             foreach (var dbNameDelimiter in _physicalDatabaseNameDelimiter)
             {
-                dbPrefixIndex = physicalName.LastIndexOf(dbNameDelimiter);
+                dbPrefixIndex = physicalName.IndexOf(dbNameDelimiter);
                 if (dbPrefixIndex > -1)
                     break;
             }
