@@ -49,7 +49,6 @@ namespace SitecoreInstaller.UI
       ParentForm.Height = Styles.MainForm.HeightDeveloper;
       Services.UserPreferences.Properties.AdvancedView = true;
       Services.UserPreferences.Save();
-      ProjectSettingsUpdated(this, new GenericEventArgs<ProjectSettings>(new ProjectSettings()));
     }
 
     public override bool ProcessKeyPress(Keys keyData)
