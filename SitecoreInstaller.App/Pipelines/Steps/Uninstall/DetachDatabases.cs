@@ -16,11 +16,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
       var connectionStrings = args.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
       connectionStrings.InitFromFile();
 
-      var mongoDatabases = Services.Mongo.GetDatabases(connectionStrings);
-      foreach (var mongoDatabase in mongoDatabases)
-      {
-        mongoDatabase.Drop();
-      }
+      Services.Mongo.DropDatabases(connectionStrings);
     }
   }
 }

@@ -338,7 +338,7 @@ namespace SitecoreInstaller.Domain.Website
       {
         response = TheWww.CallUrlOnce(url);
       })
-      .WithPingMessage("Status code: '{0}' | Status description: '{1}'", response.StatusCode, response.StatusDescription)
+      .WithPing(() => Log.This.Debug("Status code: '{0}' | Status description: '{1}'", response.StatusCode, response.StatusDescription))
       .Until(() => response.StatusCode == HttpStatusCode.OK || response.StatusDescription.StartsWith("Done"));
 
       if (!succeeded)

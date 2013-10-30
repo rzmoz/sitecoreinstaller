@@ -26,7 +26,8 @@ namespace SitecoreInstaller.Framework.Web
       {
         response = null;
         response = CallUrlOnce(url);
-      }).Until(() => (response != null && response.StatusCode == HttpStatusCode.OK), maxRetries);
+      }).WithPing(() => Log.This.Info(response.StatusDescription))
+      .Until(() => (response != null && response.StatusCode == HttpStatusCode.OK), maxRetries);
 
       if (!succeeded)
         Log.This.Error("'{0}' never responded OK.", url.ToString());

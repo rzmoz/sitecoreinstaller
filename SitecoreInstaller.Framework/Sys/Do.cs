@@ -30,11 +30,11 @@ namespace SitecoreInstaller.Framework.Sys
     /// <summary>
     /// Used for adding ping and give message, so we know something is proccessing. Can be used for outputting state we're waiting for for debugging purposes
     /// </summary>
-    public Do WithPingMessage(string format, params object[] args)
+    public Do WithPing(Action pingAction)
     {
-      Action action = () => Log.This.Debug(format, args);
-      return new Do(Action, action);
+      return new Do(Action, pingAction);
     }
+    
 
     public bool Until(Func<bool> predicate)
     {
