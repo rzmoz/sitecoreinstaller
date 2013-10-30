@@ -132,10 +132,12 @@
     <Compile Include="Sys\CommandPrompt.cs" />
     <Compile Include="Sys\CommandPromptResult.cs" />
     <Compile Include="Sys\ControlExtensions.cs" />
+    <Compile Include="Sys\Do.cs" />
     <Compile Include="Sys\EnumClass.cs" />
     <Compile Include="Sys\EnumerableExtensions.cs" />
     <Compile Include="Sys\EnumExtensions.cs" />
     <Compile Include="Sys\GenericEventArgs.cs" />
+    <Compile Include="Sys\Invoke.cs" />
     <Compile Include="Sys\Observable.cs" />
     <Compile Include="Sys\SourceFactory.cs" />
     <Compile Include="Sys\StringExtensions.cs" />
@@ -155,6 +157,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Retryer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

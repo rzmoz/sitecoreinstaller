@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Threading;
+using Microsoft.PowerShell.Cim;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.Sys;
 
@@ -10,25 +11,25 @@ namespace SitecoreInstaller.Framework.Web
 
   public class TheWww
   {
-    public static void DownloadFile(Uri uri,FileInfo targetFile, int timeoutInMs = 5000)
+    public static void DownloadFile(Uri uri, FileInfo targetFile, int timeoutInMs = 5000)
     {
       var wc = new WebClient();
       wc.DownloadFile(uri, targetFile.FullName);
     }
-
-
+    
     public static void CallUrl(Uri url, int retryCount = 100)
     {
-      for (var tryCount = 1; tryCount <= retryCount; tryCount++)
+      const int maxRetries = 50;
+
+      HttpWebResponse response = null;
+      var succeeded = Do.This(() =>
       {
-        var response = CallUrlOnce(url);
-        if (response != null && response.StatusCode == HttpStatusCode.OK)
-        {
-          Log.This.Debug("'{0}' responded: '{1}'", url.ToString(), response.StatusDescription);
-          return;
-        }
-      }
-      Log.This.Error("'{0}' never responded OK.", url.ToString());
+        response = null;
+        response = CallUrlOnce(url);
+      }).Until(() => (response.StatusCode == HttpStatusCode.OK), maxRetries);
+
+      if (!succeeded)
+        Log.This.Error("'{0}' never responded OK.", url.ToString());
     }
 
     public static void CallUrlOnceNoWait(Uri uri)
@@ -42,7 +43,7 @@ namespace SitecoreInstaller.Framework.Web
       {
         var webRequest = (HttpWebRequest)WebRequest.Create(url.ToString());
         webRequest.AllowAutoRedirect = false;
-        webRequest.Timeout = (1000 * 60 * 30); //30 minutes in miliseconds
+        webRequest.Timeout = (int)TimeSpan.FromMinutes(30).TotalMilliseconds;
         return (HttpWebResponse)webRequest.GetResponse();
       }
       catch (WebException we)

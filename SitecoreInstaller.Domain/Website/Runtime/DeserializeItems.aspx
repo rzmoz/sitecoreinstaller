@@ -9,7 +9,7 @@
   
   protected void Page_Load(object sender, EventArgs e)
   {
-    var serializationFolder = new DirectoryInfo(PathUtils.Root);
+    var serializationFolder = new DirectoryInfo(Sitecore.Data.Serialization.PathUtils.Root);
 
     if (serializationFolder.Exists == false)
       return;

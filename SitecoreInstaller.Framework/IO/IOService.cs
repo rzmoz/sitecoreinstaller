@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Security;
-using System.Threading;
 using System.Threading.Tasks;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.IO
 {
@@ -59,12 +59,11 @@ namespace SitecoreInstaller.Framework.IO
 
     public static void DeleteWithLog(this DirectoryInfo folder, OnFail onFail = OnFail.LogError)
     {
-      const int retries = 15;
-
+      const int maxTries = 15;
       if (folder.Exists() == false)
         return;
 
-      for (var tryCount = 1; tryCount <= retries; tryCount++)
+      var succeeded = Do.This(() =>
       {
         try
         {
@@ -72,32 +71,23 @@ namespace SitecoreInstaller.Framework.IO
           Log.This.Debug("Folder deleted: '{0}'", folder.FullName);
         }
         catch (DirectoryNotFoundException)
-        {
-          //happens when the files are released and deleted between retries
-          break;
-        }
+        {/*happens when the files are released and deleted between retries */       }
         catch (UnauthorizedAccessException e)
-        {
-          Log.This.Debug("Waiting for release of file handles due to UnauthorizedAccessException...{0}", e.ToString());
-          Task.WaitAll(Task.Delay(1000));
-        }
+        { Log.This.Debug("Waiting for release of file handles due to UnauthorizedAccessException...{0}", e.ToString()); }
         catch (IOException e)
-        {
-          Log.This.Debug("Waiting for release of file handles due to IOException...{0}", e.ToString());
-          Task.WaitAll(Task.Delay(1000));
-        }
+        { Log.This.Debug("Waiting for release of file handles due to IOException...{0}", e.ToString()); }
         catch (SecurityException e)
-        {
-          Log.This.Debug("Waiting for release of file handles due to SecurityException...{0}", e.ToString());
-          Task.WaitAll(Task.Delay(1000));
-        }
+        { Log.This.Debug("Waiting for release of file handles due to SecurityException...{0}", e.ToString()); }
+      }).Until(() => !folder.Exists(), maxTries);
+
+      if (!succeeded)
+      {
+        if (onFail == OnFail.Ignore)
+          return;
+
+        if (folder.Exists())
+          Log.This.Error("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
       }
-
-      if (onFail == OnFail.Ignore)
-        return;
-
-      if (folder.Exists())
-        Log.This.Error("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
     }
 
     public static void ConsolidateIdenticalSubfolders(this DirectoryInfo rootFolder)

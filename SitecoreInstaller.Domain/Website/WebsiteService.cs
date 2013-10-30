@@ -8,6 +8,7 @@ using System.Web;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.Sys;
 using SitecoreInstaller.Framework.Web;
 using SitecoreInstaller.Framework.Xml;
 
@@ -332,18 +333,18 @@ namespace SitecoreInstaller.Domain.Website
 
     private void ExecuteInstallPackageAction(Uri url)
     {
-      HttpWebResponse response;
-      do
+      HttpWebResponse response = null;
+      var succeeded = Do.This(() =>
       {
         response = TheWww.CallUrlOnce(url);
-        if (response == null)
-        {
-          Log.This.Error("Faild to install {0}", url);
-          return;
-        }
-        Task.WaitAll(Task.Delay(1000));
+      })
+      .WithPingMessage("Status code: '{0}' | Status description: '{1}'", response.StatusCode, response.StatusDescription)
+      .Until(() => response.StatusCode == HttpStatusCode.OK || response.StatusDescription.StartsWith("Done"));
+
+      if (!succeeded)
+      {
+        Log.This.Error("Faild to install {0}", url);
       }
-      while (response.StatusCode != HttpStatusCode.OK && response.StatusDescription.StartsWith("Done") == false);
     }
   }
 }

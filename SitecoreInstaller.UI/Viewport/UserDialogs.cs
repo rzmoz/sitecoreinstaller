@@ -15,7 +15,8 @@ namespace SitecoreInstaller.UI.Viewport
   {
     public void MakeFullPublishDialog(PipelineApplicationEventArgs args)
     {
-      args.AbortPipeline = !UserAccept("Do you want make a full publish? This will make a full publish for all languages from Master to Web and can take a while if the site is large");
+      args.AbortPipeline = !UserAccept("Do you want to publish the site?\r\nThis will initiate a full publish for all items in all languages from Master to Web");
+      args.AbortReason = "Users decided not to do a full publish";
     }
 
     public void DeleteProjectDialog(CleanupEventArgs args)
@@ -54,13 +55,13 @@ namespace SitecoreInstaller.UI.Viewport
       var keysString = sourceEntries.ToDelimiteredString(';');
       keysString = Environment.NewLine + keysString.Replace(";", Environment.NewLine);
 
-      return this.UserAccept("Do you want to remove {0}", keysString);
+      return UserAccept("Do you want to remove {0}?", keysString);
     }
 
     public bool RemoveBuildLibraryResource(SourceEntry sourceEntry)
     {
       if (sourceEntry == null) { throw new ArgumentNullException("sourceEntry"); }
-      return this.UserAccept("Do you want to remove {0}", sourceEntry.Key);
+      return UserAccept("Do you want to remove {0}?", sourceEntry.Key);
     }
 
     public bool AddSitecore(out string fileName)
@@ -96,7 +97,7 @@ namespace SitecoreInstaller.UI.Viewport
     }
     public bool UserAccept(string question, params string[] arguments)
     {
-      var result = MessageBox.Show(string.Format(question, arguments) + "?", "Are you sure?",
+      var result = MessageBox.Show(string.Format(question, arguments), "Are you sure?",
                           MessageBoxButtons.YesNo,
                           MessageBoxIcon.Question);
 

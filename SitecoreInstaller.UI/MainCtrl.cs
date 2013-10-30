@@ -104,7 +104,7 @@ namespace SitecoreInstaller.UI
         case Keys.R | Keys.Control:
           Services.BuildLibrary.Update();
           return true;
-        case Keys.P | Keys.Control | Keys.Shift:
+        case Keys.P | Keys.Alt | Keys.Shift:
           ViewportStack.OpenOrCloseDependingOnCurrentState(userPreferences1);
           return true;
       }
