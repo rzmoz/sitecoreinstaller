@@ -31,9 +31,7 @@ namespace SitecoreInstaller.UI.UserSelections
     {
       get
       {
-        var sitecores = Services.BuildLibrary.List(SourceType.Sitecore).ToList();
-        sitecores.Sort();
-        sitecores.Reverse();
+        var sitecores = Services.BuildLibrary.List(SourceType.Sitecore).OrderByDescending(sc => sc).ToList();
         return sitecores;
       }
     }
@@ -48,7 +46,7 @@ namespace SitecoreInstaller.UI.UserSelections
           return;
         }
         lblSitecore.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
-        lblSitecore.Text = string.Format("Sitecore:");  
+        lblSitecore.Text = string.Format("Sitecore:");
       });
     }
 

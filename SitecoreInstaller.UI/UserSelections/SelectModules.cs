@@ -35,8 +35,8 @@ namespace SitecoreInstaller.UI.UserSelections
     {
       get
       {
-        var modules = Services.BuildLibrary.List(SourceType.Module).ToList();
-        modules.Sort();
+        var modules = Services.BuildLibrary.List(SourceType.Module).OrderBy(module => module).ToList();
+
         return modules;
       }
     }

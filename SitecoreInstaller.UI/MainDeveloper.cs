@@ -59,6 +59,9 @@ namespace SitecoreInstaller.UI
 
       switch (keyData)
       {
+        case Keys.L | Keys.Control | Keys.Alt:
+          Services.Website.OpenLogsInBareTail(UiServices.ProjectSettings.ProjectFolder.Data.Logs);
+          return true;
         case Keys.D | Keys.Control | Keys.Shift:
           selectProjectName1.ProjectName = string.Empty;
           ViewportStack.Show("SitecoreInstaller.UI.MainSimple");

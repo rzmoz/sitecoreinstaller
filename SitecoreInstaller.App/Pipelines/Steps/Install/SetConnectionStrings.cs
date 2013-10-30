@@ -30,15 +30,15 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
       }
 
       var sqlDelta = Services.Sql.GenerateConnectionStringsDelta(args.ProjectSettings.Sql, args.ProjectSettings.DatabaseNames, connectionStrings);
-      var transform = new XmlTransform();
-      transform.Transform(connectionStrings.File, sqlDelta);
+
+      XmlTransform.Transform(connectionStrings.File, sqlDelta);
 
       //mongo
       connectionStrings.InitFromFile();
 
       var mongoDelta = Services.Mongo.GenerateConnectionStringsDelta(args.ProjectSettings.Mongo, connectionStrings, args.ProjectSettings.ProjectName);
 
-      transform.Transform(connectionStrings.File, mongoDelta);
+      XmlTransform.Transform(connectionStrings.File, mongoDelta);
 
       //WFFM Sql-Dataprovider connection string set
       connectionStrings.InitFromFile();

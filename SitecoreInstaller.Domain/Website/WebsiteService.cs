@@ -137,7 +137,7 @@ namespace SitecoreInstaller.Domain.Website
     {
       webConfig.Refresh();
       connectionStrings.Refresh();
-      var transform = new XmlTransform();
+      
 
       var deltas = configDeltas.ToList();
 
@@ -145,14 +145,14 @@ namespace SitecoreInstaller.Domain.Website
       {
         foreach (var configDelta in deltas.Where(file => FileTypes.ConfigDelta.IsType(file)).Where(file => file.Name.ToLowerInvariant().StartsWith("web")))
         {
-          transform.Transform(webConfig, File.ReadAllText(configDelta.FullName));
+          XmlTransform.Transform(webConfig, File.ReadAllText(configDelta.FullName));
         }
       }
       if (connectionStrings.Exists)
       {
         foreach (var configDelta in deltas.Where(file => FileTypes.ConfigDelta.IsType(file)).Where(file => file.Name.ToLowerInvariant().StartsWith("connectionstrings")))
         {
-          transform.Transform(connectionStrings, File.ReadAllText(configDelta.FullName));
+          XmlTransform.Transform(connectionStrings, File.ReadAllText(configDelta.FullName));
         }
       }
     }
@@ -227,6 +227,19 @@ namespace SitecoreInstaller.Domain.Website
       }
 
       runtimeServicesFolder.DeleteWithLog();
+    }
+
+    public void OpenLogsInBareTail(DirectoryInfo logsDir)
+    {
+      if (logsDir == null)
+        return;
+      logsDir.Refresh();
+      if (logsDir.Exists == false)
+        return;
+
+      var logFiles = logsDir.GetFiles("log.*.txt");
+
+      BareTail.OpenLogs(logFiles);
     }
 
     public void InstallPackages(string baseUrl, IEnumerable<BuildLibraryDirectory> modules)

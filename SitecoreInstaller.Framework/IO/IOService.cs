@@ -108,8 +108,7 @@ namespace SitecoreInstaller.Framework.IO
 
       if (rootFolder.ParentHasIdenticalName())
       {
-        var robocopy = new Robocopy();
-        robocopy.Move(rootFolder, rootFolder.Parent);
+        Robocopy.Move(rootFolder, rootFolder.Parent);
       }
     }
 
@@ -200,8 +199,7 @@ namespace SitecoreInstaller.Framework.IO
       {
         Log.This.Debug("Fast copy failed - falling back to use robocopy\r\n{0}", e.ToString());
         target.DeleteIfExists();
-        var robocopy = new Robocopy();
-        robocopy.Copy(source, target, dirCopyOptions);
+        Robocopy.Copy(source, target, dirCopyOptions);
       }
     }
 

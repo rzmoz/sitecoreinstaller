@@ -35,9 +35,7 @@ namespace SitecoreInstaller.UI.UserSelections
     {
       get
       {
-        var licenses = Services.BuildLibrary.List(SourceType.License).ToList();
-        licenses.Sort();
-        licenses.Reverse();
+        var licenses = Services.BuildLibrary.List(SourceType.License).OrderByDescending(license => license).ToList();
         return licenses;
       }
     }
@@ -71,7 +69,7 @@ namespace SitecoreInstaller.UI.UserSelections
           return;
         }
         lblLicenses.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
-        lblLicenses.Text = string.Format("License:");  
+        lblLicenses.Text = string.Format("License:");
       });
     }
 

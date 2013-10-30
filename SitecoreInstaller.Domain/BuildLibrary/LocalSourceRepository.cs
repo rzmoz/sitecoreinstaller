@@ -79,7 +79,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       Log.This.Info("Copying '{0}'", sourceEntry.Key);
       resource.CopyToTargetDir(BuildLibraryMode.Local);
 
-      Log.This.Info("Extracting '{0}'", sourceEntry.Key);
       resource = resource.Unpack();
 
       Log.This.Info("Updating buildlibrary");

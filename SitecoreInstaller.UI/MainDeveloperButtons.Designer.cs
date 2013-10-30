@@ -38,6 +38,7 @@
       this.btnUninstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnReinstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnInstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
+      this.btnOpenLogFiles = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.SuspendLayout();
       // 
       // btnPublishSite
@@ -54,10 +55,10 @@
       this.btnPublishSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnPublishSite.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
       this.btnPublishSite.ForeColor = System.Drawing.Color.White;
-      this.btnPublishSite.Location = new System.Drawing.Point(0, 350);
+      this.btnPublishSite.Location = new System.Drawing.Point(0, 400);
       this.btnPublishSite.Name = "btnPublishSite";
       this.btnPublishSite.Size = new System.Drawing.Size(231, 50);
-      this.btnPublishSite.TabIndex = 7;
+      this.btnPublishSite.TabIndex = 8;
       this.btnPublishSite.Text = "Publish Site";
       this.btnPublishSite.UseVisualStyleBackColor = false;
       this.btnPublishSite.Click += new System.EventHandler(this.btnPublishSite_Click);
@@ -216,11 +217,34 @@
       this.btnInstall.UseVisualStyleBackColor = false;
       this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
       // 
+      // btnOpenLogFiles
+      // 
+      this.btnOpenLogFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnOpenLogFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
+      this.btnOpenLogFiles.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+      this.btnOpenLogFiles.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.btnOpenLogFiles.DrawBottomDivider = false;
+      this.btnOpenLogFiles.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnOpenLogFiles.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(155)))), ((int)(((byte)(189)))));
+      this.btnOpenLogFiles.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(193)))), ((int)(((byte)(222)))));
+      this.btnOpenLogFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnOpenLogFiles.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+      this.btnOpenLogFiles.ForeColor = System.Drawing.Color.White;
+      this.btnOpenLogFiles.Location = new System.Drawing.Point(0, 350);
+      this.btnOpenLogFiles.Name = "btnOpenLogFiles";
+      this.btnOpenLogFiles.Size = new System.Drawing.Size(231, 50);
+      this.btnOpenLogFiles.TabIndex = 7;
+      this.btnOpenLogFiles.Text = "Open Log Files";
+      this.btnOpenLogFiles.UseVisualStyleBackColor = false;
+      this.btnOpenLogFiles.Click += new System.EventHandler(this.btnOpenLogFiles_Click);
+      // 
       // MainDeveloperButtons
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.btnPublishSite);
+      this.Controls.Add(this.btnOpenLogFiles);
       this.Controls.Add(this.btnOpenProjectFolder);
       this.Controls.Add(this.btnOpenWebsite);
       this.Controls.Add(this.btnOpenSitecore);
@@ -229,7 +253,7 @@
       this.Controls.Add(this.btnReinstall);
       this.Controls.Add(this.btnInstall);
       this.Name = "MainDeveloperButtons";
-      this.Size = new System.Drawing.Size(231, 454);
+      this.Size = new System.Drawing.Size(231, 579);
       this.ResumeLayout(false);
 
     }
@@ -245,5 +269,6 @@
     private Forms.SIMainDevActionButton btnOpenProjectFolder;
     private System.Windows.Forms.ToolTip toolTip1;
     private Forms.SIMainDevActionButton btnPublishSite;
+    private Forms.SIMainDevActionButton btnOpenLogFiles;
   }
 }

@@ -58,8 +58,7 @@ namespace SitecoreInstaller.Framework.Web
     {
       const string openBrowserFormat = @"""start"" {0}";
       var command = string.Format(openBrowserFormat, url);
-      var cmd = new CommandPrompt();
-      cmd.Run(command);
+      CommandPrompt.Run(command);
     }
   }
 }
