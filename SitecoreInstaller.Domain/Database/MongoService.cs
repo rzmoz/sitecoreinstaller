@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MongoDB.Driver;
-using MongoDB.Driver.Internal;
 using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.Database
@@ -26,21 +22,13 @@ namespace SitecoreInstaller.Domain.Database
       return connectionStringDelta;
     }
 
-    public MongoServer GetServer(MongoUrl monguUrl)
-    {
-      var client = new MongoClient(monguUrl);
-      return client.GetServer();
-    }
 
     public void EnsureDatabases(ConnectionStringsFile connectionStrings)
     {
       foreach (var mongoEntry in connectionStrings.Where(entry => entry.ConnectionString is MongoConnectionString))
       {
         var mongoUrl = new MongoUrl(mongoEntry.ConnectionString.Value);
-        var server = GetServer(mongoUrl);
-
-        var dbSettings = new MongoDatabaseSettings();
-        var db = new MongoDatabase(server, mongoUrl.DatabaseName, dbSettings);
+        var db = mongoUrl.ToMongoDatabase();
         const string tempCollectionName = "SitecoreInstallerTempCollection";
         db.CreateCollection(tempCollectionName);
         db.DropCollection(tempCollectionName);
@@ -50,16 +38,11 @@ namespace SitecoreInstaller.Domain.Database
     {
       foreach (var mongoEntry in connectionStrings.Where(entry => entry.ConnectionString is MongoConnectionString))
       {
-        var mongoUrlBuilder = new MongoUrlBuilder(mongoEntry.ConnectionString.Value)
-        {
-          ConnectTimeout = TimeSpan.FromSeconds(3)
-        };
-        var mongoUrl = new MongoUrl(mongoUrlBuilder.ToString());
+        var mongoUrl = mongoEntry.ConnectionString.Value.ToMongoUrl(3);
         try
         {
-          var server = GetServer(mongoUrl);
-          var dbSettings = new MongoDatabaseSettings();
-          new MongoDatabase(server, mongoUrl.DatabaseName, dbSettings).Drop();
+          var db = mongoUrl.ToMongoDatabase();
+          db.Drop();
         }
         catch (MongoConnectionException)
         {

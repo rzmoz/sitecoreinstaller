@@ -186,6 +186,7 @@
     <Compile Include="Database\ConnectionStringFormats.cs" />
     <Compile Include="Database\IConnectionString.cs" />
     <Compile Include="Database\MongoConnectionString.cs" />
+    <Compile Include="Database\MongoExtensions.cs" />
     <Compile Include="Database\MongoService.cs" />
     <Compile Include="Database\MongoSettings.cs" />
     <Compile Include="Database\MsSqlConnectionString.cs" />
