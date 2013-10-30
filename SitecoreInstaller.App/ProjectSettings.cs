@@ -48,8 +48,8 @@ namespace SitecoreInstaller.App
     void ProjectNameUpdated(object sender, GenericEventArgs<string> e)
     {
       ResolveDependentPaths();
-      if (this.Updated != null)
-        this.Updated(sender, e);
+      if (Updated != null)
+        Updated(sender, e);
     }
 
     public bool ProjectNameIsSet { get { return !string.IsNullOrEmpty(ProjectName); } }

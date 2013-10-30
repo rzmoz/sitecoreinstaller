@@ -45,7 +45,7 @@ namespace SitecoreInstaller.UI
       base.OnShow();
       selectProjectName1.UpdateList();
       selectProjectName1.FocusTextBox();
-      this.ParentForm.Height = Styles.MainForm.HeightDeveloper;
+      ParentForm.Height = Styles.MainForm.HeightDeveloper;
       Services.UserPreferences.Properties.AdvancedView = true;
       Services.UserPreferences.Save();
     }
@@ -64,7 +64,7 @@ namespace SitecoreInstaller.UI
           return true;
         case Keys.C | Keys.Control:
           selectProjectName1.ProjectName = string.Empty;
-          this.BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
+          BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
           return true;
         case Keys.B | Keys.Control | Keys.Shift:
           if (selectProjectName1.ProjectName.Length == 0)

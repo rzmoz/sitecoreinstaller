@@ -1,31 +1,28 @@
-﻿namespace SitecoreInstaller.UI.UserSelections
-{
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
-  using System.Windows.Forms;
-  using SitecoreInstaller.App;
-  using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Framework.Sys;
-  using SitecoreInstaller.UI.ListBoxes;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using SitecoreInstaller.App;
+using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Framework.Sys;
+using SitecoreInstaller.UI.ListBoxes;
 
+namespace SitecoreInstaller.UI.UserSelections
+{
   public partial class SelectModules : SourceEntryCheckedListBox
   {
     public SelectModules()
     {
-      this.InitializeComponent();
+      InitializeComponent();
     }
 
     public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<BuildLibrarySelections> e)
     {
-      this.CrossThreadSafe(() =>
+      for (var i = 0; i < chkModules.Items.Count; i++)
       {
-        for (var i = 0; i < chkModules.Items.Count; i++)
-        {
-          var isChecked = e.Arg.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)chkModules.Items[i]).Key);
-          chkModules.SetItemChecked(i, isChecked);
-        }  
-      });
+        var isChecked = e.Arg.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)chkModules.Items[i]).Key);
+        chkModules.SetItemChecked(i, isChecked);
+      }
     }
 
     protected override CheckedListBox ListBox

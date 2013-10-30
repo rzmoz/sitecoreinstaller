@@ -1,11 +1,10 @@
-﻿namespace SitecoreInstaller.UI.ListBoxes
+﻿using System.Linq;
+using System.Windows.Forms;
+using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Framework.Sys;
+
+namespace SitecoreInstaller.UI.ListBoxes
 {
-  using System.Linq;
-  using System.Windows.Forms;
-
-  using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Framework.Sys;
-
   public abstract class SourceEntryComboBox : SourceEntryListControl<ComboBox>
   {
     public override void Init()
@@ -16,7 +15,6 @@
       ListBox.BackColor = Styles.ListBoxes.ForeColor;
       ListBox.SelectedIndex = ListBox.Items.Count - 1; //select last item
     }
-
 
     public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<BuildLibrarySelections> e)
     {

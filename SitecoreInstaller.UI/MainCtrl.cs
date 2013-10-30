@@ -67,6 +67,7 @@ namespace SitecoreInstaller.UI
     private void InitMainDeveloper()
     {
       ViewportStack.Register(mainDeveloper1);
+      
       mainDeveloper1.Init();
       BuildLibrarySelectionsUpdated += mainDeveloper1.BuildLibrarySelectionsUpdated;
     }

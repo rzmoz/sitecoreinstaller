@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using SitecoreInstaller.App;
+using SitecoreInstaller.App.Pipelines;
+using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.Simple
 {
-  using SitecoreInstaller.App;
-  using SitecoreInstaller.App.Pipelines;
-  using SitecoreInstaller.UI.Viewport;
-
   public partial class InstallCtrl : SIUserControl
   {
     public InstallCtrl()
@@ -42,10 +35,10 @@ namespace SitecoreInstaller.UI.Simple
       switch (keyData)
       {
         case Keys.Escape:
-          this.btnBack_Click(this, new EventArgs());
+          btnBack_Click(this, new EventArgs());
           return true;
         case Keys.B | Keys.Control | Keys.Shift:
-          this.btnInstall_Click(this, new EventArgs());
+          btnInstall_Click(this, new EventArgs());
           return true;
       }
       return false;
