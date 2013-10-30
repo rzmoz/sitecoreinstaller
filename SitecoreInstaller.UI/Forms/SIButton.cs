@@ -1,4 +1,6 @@
-﻿namespace SitecoreInstaller.UI.Forms
+﻿using System.Drawing;
+
+namespace SitecoreInstaller.UI.Forms
 {
   using System.Windows.Forms;
   using SitecoreInstaller.Framework.Sys;
@@ -7,15 +9,28 @@
   {
     public SIButton()
     {
-      this.Cursor = Cursors.Hand;
-      this.FlatStyle = FlatStyle.Flat;
-      this.FlatAppearance.BorderSize = 1;
-      this.FlatAppearance.BorderColor = Styles.Fonts.DarkBg.Colors.Text;
-      this.Font = Styles.Fonts.LblRegular;
-      this.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
+      Cursor = Cursors.Hand;
+      FlatStyle = FlatStyle.Flat;
+      FlatAppearance.BorderSize = 1;
+      FlatAppearance.BorderColor = Styles.Fonts.DarkBg.Colors.Text;
+      Font = Styles.Fonts.LblRegular;
+      ForeColor = Styles.Fonts.DarkBg.Colors.Text;
+      BottomDividerColor = Styles.Controls.BackColor;
     }
 
     protected ToolTip ToolTip { get; private set; }
+
+    public bool DrawBottomDivider { get; set; }
+    public Color BottomDividerColor { get; set; }
+    protected override void OnPaint(PaintEventArgs e)
+    {
+      base.OnPaint(e);
+
+      if (!DrawBottomDivider)
+        return;
+      var pen = new Pen(BottomDividerColor) { Width = 1 };
+      e.Graphics.DrawLine(pen, 0, Height - 1, Width, Height - 1);
+    }
 
     public void Init(ToolTip toolTip)
     {

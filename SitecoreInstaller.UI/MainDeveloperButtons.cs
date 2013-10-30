@@ -25,11 +25,12 @@ namespace SitecoreInstaller.UI
       toolTip1.SetToolTip(btnUninstall, "CTRL + SHIFT + U");
       toolTip1.SetToolTip(btnReinstall, "CTRL + SHIFT + R");
       toolTip1.SetToolTip(btnArchive, "CTRL + SHIFT + A");
-
+      btnArchive.DrawBottomDivider = true;
+      
       toolTip1.SetToolTip(btnOpenSitecore, "CTRL + SHIFT + O");
       toolTip1.SetToolTip(btnOpenWebsite, "CTRL + O");
-
       toolTip1.SetToolTip(btnOpenProjectFolder, "CTRL + ALT + O");
+      btnOpenProjectFolder.DrawBottomDivider = true;
     }
 
     private void TriggerKeyboardShortcut(Keys keys)

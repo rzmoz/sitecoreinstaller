@@ -6,17 +6,17 @@ namespace SitecoreInstaller.Framework.IO
 {
   public class Robocopy : CommandPrompt
   {
-    private const string _FileName = @"Robocopy";
-    private const string _SourceDestinationFormat = _FileName + @" ""{0}"" ""{1}"" /NP ";
-    private const string _IncludeSubfoldersSwitch = " /e ";
-    private const string _MoveSwitch = " /move ";
+    private const string _fileName = @"Robocopy";
+    private const string _sourceDestinationFormat = _fileName + @" ""{0}"" ""{1}"" /NP ";
+    private const string _includeSubfoldersSwitch = " /e ";
+    private const string _moveSwitch = " /move ";
 
     private void Run(DirectoryInfo source, DirectoryInfo target, string switches)
     {
       if (source == null) { throw new ArgumentNullException("source"); }
       if (target == null) { throw new ArgumentNullException("target"); }
 
-      var command = string.Format(_SourceDestinationFormat, source.FullName, target.FullName);
+      var command = string.Format(_sourceDestinationFormat, source.FullName, target.FullName);
       command += switches;
       Run(command);
     }
@@ -25,19 +25,19 @@ namespace SitecoreInstaller.Framework.IO
     {
       var switches = string.Empty;
       if (dirCopyOptions == DirCopyOptions.IncludeSubDirectories)
-        switches = _IncludeSubfoldersSwitch;
+        switches = _includeSubfoldersSwitch;
       Run(source, target, switches);
     }
     public void Move(DirectoryInfo source, DirectoryInfo target)
     {
-      Run(source, target, _IncludeSubfoldersSwitch + _MoveSwitch);
+      Run(source, target, _includeSubfoldersSwitch + _moveSwitch);
       source.Refresh();
       if (source.Exists)
         source.Delete(true);
     }
     public void Move(FileInfo file, DirectoryInfo target)
     {
-      Run(file.Directory, target, file.Name + _MoveSwitch);
+      Run(file.Directory, target, file.Name + _moveSwitch);
     }
   }
 }
