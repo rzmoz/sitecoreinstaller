@@ -135,7 +135,6 @@
     <Compile Include="Pipelines\InstallPipeline.cs" />
     <Compile Include="Pipelines\DoNothingPipeline.cs" />
     <Compile Include="Pipelines\PipelineService.cs" />
-    <Compile Include="Pipelines\Preconditions\CheckConnectionstringsAreSet.cs" />
     <Compile Include="Pipelines\Preconditions\CheckLicense.cs" />
     <Compile Include="Pipelines\Preconditions\CheckProjectExists.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSitecore.cs" />

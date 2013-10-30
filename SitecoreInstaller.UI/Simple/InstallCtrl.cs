@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
 using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Domain.Projects;
 using SitecoreInstaller.Framework.Sys;
 using SitecoreInstaller.UI.Viewport;
 
@@ -27,8 +28,8 @@ namespace SitecoreInstaller.UI.Simple
       tbxProjectName.Text = string.Empty;
       tbxProjectName.Focus();
 
-      selectSitecore1.BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
-      selectLicense1.BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
+      selectSitecore1.BuildLibrarySelectionsUpdated(this, new GenericEventArgs<ProjectSettings>(new ProjectSettings()));
+      selectLicense1.BuildLibrarySelectionsUpdated(this, new GenericEventArgs<ProjectSettings>(new ProjectSettings()));
     }
 
     public override bool ProcessKeyPress(Keys keyData)

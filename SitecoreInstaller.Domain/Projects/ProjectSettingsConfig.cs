@@ -1,17 +1,18 @@
-﻿namespace SitecoreInstaller.Domain.Projects
-{
-  using System.Collections.Generic;
-  using System.Xml.Serialization;
-  using SitecoreInstaller.Framework.Configuration;
+﻿using System.Collections.Generic;
+using System.Xml.Serialization;
+using SitecoreInstaller.Framework.Configuration;
 
+namespace SitecoreInstaller.Domain.Projects
+{
   [XmlRoot(ElementName = "ProjectSettings", IsNullable = false)]
   public class ProjectSettingsConfig : IConfig
   {
     public ProjectSettingsConfig()
     {
-      this.Sitecore = string.Empty;
-      this.License = string.Empty;
-      this.Modules = new List<string>();
+      Sitecore = string.Empty;
+      License = string.Empty;
+      Modules = new List<string>();
+      InstallType = InstallType.Full;
     }
 
     public string Sitecore { get; set; }
@@ -20,5 +21,7 @@
 
     [XmlArrayItem(ElementName = "Module", IsNullable = false)]
     public List<string> Modules { get; set; }
+
+    public InstallType InstallType { get; set; }
   }
 }

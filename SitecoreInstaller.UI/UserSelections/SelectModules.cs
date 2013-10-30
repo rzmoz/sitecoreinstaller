@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Domain.Projects;
 using SitecoreInstaller.Framework.Sys;
 using SitecoreInstaller.UI.ListBoxes;
 
@@ -16,11 +17,11 @@ namespace SitecoreInstaller.UI.UserSelections
       InitializeComponent();
     }
 
-    public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<BuildLibrarySelections> e)
+    public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<ProjectSettings> e)
     {
       for (var i = 0; i < chkModules.Items.Count; i++)
       {
-        var isChecked = e.Arg.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)chkModules.Items[i]).Key);
+        var isChecked = e.Arg.BuildLibrarySelections.SelectedModules.Select(module => module.Key).ContainsCaseInsensitive(((SourceEntry)chkModules.Items[i]).Key);
         chkModules.SetItemChecked(i, isChecked);
       }
     }

@@ -12,50 +12,48 @@ using SitecoreInstaller.Framework.Xml;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-    public class SetConnectionStrings : Step<PipelineApplicationEventArgs>
+  public class SetConnectionStrings : Step<PipelineApplicationEventArgs>
+  {
+    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
     {
-        public SetConnectionStrings()
-        {
-            AddPrecondition<CheckConnectionstringsAreSet>();
-        }
+      if (args.ProjectSettings.InstallType == InstallType.Client)
+        return;
 
-        protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
-        {
-            var connectionStrings = args.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
+      var connectionStrings = args.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
 
-            connectionStrings.InitFromFile();
+      connectionStrings.InitFromFile();
 
-            if (args.ProjectSettings.InstallType == InstallType.Full)
-            {
-                var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
-                args.ProjectSettings.DatabaseNames = databases.Select(db => db.LogicalName).AsUniqueStrings().Select(name => new ConnectionStringName(args.ProjectSettings.ProjectName, name));
-            }
+      if (args.ProjectSettings.InstallType == InstallType.Full)
+      {
+        var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
+        args.ProjectSettings.DatabaseNames = databases.Select(db => db.LogicalName).AsUniqueStrings().Select(name => new ConnectionStringName(args.ProjectSettings.ProjectName, name));
+      }
 
-            var sqlDelta = Services.Sql.GenerateConnectionStringsDelta(args.ProjectSettings.Sql, args.ProjectSettings.DatabaseNames, connectionStrings);
-            var transform = new XmlTransform();
-            transform.Transform(connectionStrings.File, sqlDelta);
+      var sqlDelta = Services.Sql.GenerateConnectionStringsDelta(args.ProjectSettings.Sql, args.ProjectSettings.DatabaseNames, connectionStrings);
+      var transform = new XmlTransform();
+      transform.Transform(connectionStrings.File, sqlDelta);
 
-            //mongo
-            connectionStrings.InitFromFile();
+      //mongo
+      connectionStrings.InitFromFile();
 
-            var mongoDelta = Services.Mongo.GenerateConnectionStringsDelta(args.ProjectSettings.Mongo, connectionStrings, args.ProjectSettings.ProjectName);
-            
-            transform.Transform(connectionStrings.File, mongoDelta);
+      var mongoDelta = Services.Mongo.GenerateConnectionStringsDelta(args.ProjectSettings.Mongo, connectionStrings, args.ProjectSettings.ProjectName);
 
-            //WFFM Sql-Dataprovider connection string set
-            connectionStrings.InitFromFile();
+      transform.Transform(connectionStrings.File, mongoDelta);
 
-            var webFormsConnectionString = connectionStrings["webforms"];
+      //WFFM Sql-Dataprovider connection string set
+      connectionStrings.InitFromFile();
 
-            if (webFormsConnectionString == null)
-                return;
+      var webFormsConnectionString = connectionStrings["webforms"];
 
-            if (File.Exists(args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile.FullName) == false)
-                return;
+      if (webFormsConnectionString == null)
+        return;
 
-            var formsConfigFile = new WffmConfigFile(args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile);
-            if (formsConfigFile.DataProviderType == DataProviderType.Sql)
-                Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString.Value, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmSqlDataproviderConfigFile);
-        }
+      if (File.Exists(args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile.FullName) == false)
+        return;
+
+      var formsConfigFile = new WffmConfigFile(args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmConfigFile);
+      if (formsConfigFile.DataProviderType == DataProviderType.Sql)
+        Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString.Value, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmSqlDataproviderConfigFile);
     }
+  }
 }

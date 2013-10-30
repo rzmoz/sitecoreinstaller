@@ -25,6 +25,7 @@ namespace SitecoreInstaller.UI
       selectSitecore1.Init();
       selectLicense1.Init();
       selectModules1.Init();
+      selectClientInstall1.Init();
       mainDeveloperButtons1.Init();
     }
 
@@ -33,7 +34,7 @@ namespace SitecoreInstaller.UI
       mainDeveloperButtons1.Enabled = !string.IsNullOrEmpty(projectName);
     }
 
-    public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<BuildLibrarySelections> e)
+    public void ProjectSettingsUpdated(object sender, GenericEventArgs<ProjectSettings> e)
     {
       selectSitecore1.BuildLibrarySelectionsUpdated(sender, e);
       selectLicense1.BuildLibrarySelectionsUpdated(sender, e);
@@ -48,7 +49,7 @@ namespace SitecoreInstaller.UI
       ParentForm.Height = Styles.MainForm.HeightDeveloper;
       Services.UserPreferences.Properties.AdvancedView = true;
       Services.UserPreferences.Save();
-      BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
+      ProjectSettingsUpdated(this, new GenericEventArgs<ProjectSettings>(new ProjectSettings()));
     }
 
     public override bool ProcessKeyPress(Keys keyData)
@@ -65,7 +66,8 @@ namespace SitecoreInstaller.UI
           return true;
         case Keys.C | Keys.Control:
           selectProjectName1.ProjectName = string.Empty;
-          BuildLibrarySelectionsUpdated(this, new GenericEventArgs<BuildLibrarySelections>(new BuildLibrarySelections()));
+          selectClientInstall1.Clear();
+          ProjectSettingsUpdated(this, new GenericEventArgs<ProjectSettings>(new ProjectSettings()));
           return true;
         case Keys.B | Keys.Control | Keys.Shift:
           if (selectProjectName1.ProjectName.Length == 0)

@@ -12,8 +12,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
       var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
       foreach (var sqlDatabase in databases)
         sqlDatabase.Detach(args.ProjectSettings.Sql);
-
-
+      
       var connectionStrings = args.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
       connectionStrings.InitFromFile();
 

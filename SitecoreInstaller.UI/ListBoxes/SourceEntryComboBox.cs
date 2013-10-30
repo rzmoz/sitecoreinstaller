@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
+using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Sys;
 
@@ -16,9 +17,9 @@ namespace SitecoreInstaller.UI.ListBoxes
       ListBox.SelectedIndex = ListBox.Items.Count - 1; //select last item
     }
 
-    public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<BuildLibrarySelections> e)
+    public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<ProjectSettings> e)
     {
-      var relevanteSourceentry = GetRelevantSourceEntry(e.Arg);
+      var relevanteSourceentry = GetRelevantSourceEntry(e.Arg.BuildLibrarySelections);
       for (var i = 0; i < ListBox.Items.Count; i++)
       {
         if (((SourceEntry)ListBox.Items[i]).Key == relevanteSourceentry.Key)

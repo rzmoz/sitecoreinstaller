@@ -16,7 +16,7 @@ namespace SitecoreInstaller.Framework.Web
       var wc = new WebClient();
       wc.DownloadFile(uri, targetFile.FullName);
     }
-    
+
     public static void CallUrl(Uri url, int retryCount = 100)
     {
       const int maxRetries = 50;
@@ -26,7 +26,7 @@ namespace SitecoreInstaller.Framework.Web
       {
         response = null;
         response = CallUrlOnce(url);
-      }).Until(() => (response.StatusCode == HttpStatusCode.OK), maxRetries);
+      }).Until(() => (response != null && response.StatusCode == HttpStatusCode.OK), maxRetries);
 
       if (!succeeded)
         Log.This.Error("'{0}' never responded OK.", url.ToString());

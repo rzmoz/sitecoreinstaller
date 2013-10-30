@@ -208,7 +208,7 @@
       this.btnPublishSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnPublishSite.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
       this.btnPublishSite.ForeColor = System.Drawing.Color.White;
-      this.btnPublishSite.Location = new System.Drawing.Point(1, 350);
+      this.btnPublishSite.Location = new System.Drawing.Point(0, 350);
       this.btnPublishSite.Name = "btnPublishSite";
       this.btnPublishSite.Size = new System.Drawing.Size(231, 50);
       this.btnPublishSite.TabIndex = 7;

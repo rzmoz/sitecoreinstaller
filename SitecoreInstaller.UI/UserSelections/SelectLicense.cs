@@ -1,36 +1,35 @@
-﻿using SitecoreInstaller.Framework.Sys;
+﻿using System;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
+using System.Collections.Generic;
+using SitecoreInstaller.App;
+using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.UI.ListBoxes;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.UI.UserSelections
 {
-  using System;
-  using System.Drawing;
-  using System.Linq;
-  using System.Windows.Forms;
-  using System.Collections.Generic;
-  using SitecoreInstaller.App;
-  using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.UI.ListBoxes;
-
   public partial class SelectLicense : SourceEntryComboBox
   {
     public SelectLicense()
     {
-      this.InitializeComponent();
+      InitializeComponent();
     }
 
     private void SelectLicense_Load(object sender, EventArgs e)
     {
-      this.cbxLicenses_SelectedIndexChanged(this, EventArgs.Empty);
+      cbxLicenses_SelectedIndexChanged(this, EventArgs.Empty);
     }
 
     public string LicenseText
     {
-      get { return this.lblLicenses.Text; }
+      get { return lblLicenses.Text; }
     }
 
     protected override ComboBox ListBox
     {
-      get { return this.cbxLicenses; }
+      get { return cbxLicenses; }
     }
     protected override IEnumerable<SourceEntry> ListDataSource
     {

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SitecoreInstaller.App;
+using SitecoreInstaller.Domain.Pipelines;
+using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
 {
-  using SitecoreInstaller.App;
-  using SitecoreInstaller.Domain.Pipelines;
-  using SitecoreInstaller.UI.Viewport;
-
   public static class UiServices
   {
     static UiServices()

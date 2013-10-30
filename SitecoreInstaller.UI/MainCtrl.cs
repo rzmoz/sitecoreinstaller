@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
 using SitecoreInstaller.App.Pipelines.Steps.Nothing;
+using SitecoreInstaller.Domain;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Sys;
 using SitecoreInstaller.Framework.Web;
@@ -19,7 +20,7 @@ namespace SitecoreInstaller.UI
       InitializeComponent();
     }
 
-    private event EventHandler<GenericEventArgs<BuildLibrarySelections>> BuildLibrarySelectionsUpdated;
+    private event EventHandler<GenericEventArgs<ProjectSettings>> ProjectSettingsUpdated;
 
     public void Init()
     {
@@ -33,13 +34,13 @@ namespace SitecoreInstaller.UI
       InitMainSimple();
       InitMainDeveloper();
       Services.UserPreferences.Load();
-      
+
       if (Services.UserPreferences.Properties.AdvancedView)
         ViewportStack.Show(mainDeveloper1);
       else
         ViewportStack.Show(mainSimple1);
     }
-    
+
     private void InitSdnLogin()
     {
       ViewportStack.Register(sdnLogin1);
@@ -68,9 +69,9 @@ namespace SitecoreInstaller.UI
     private void InitMainDeveloper()
     {
       ViewportStack.Register(mainDeveloper1);
-      
+
       mainDeveloper1.Init();
-      BuildLibrarySelectionsUpdated += mainDeveloper1.BuildLibrarySelectionsUpdated;
+      ProjectSettingsUpdated += mainDeveloper1.ProjectSettingsUpdated;
     }
 
     private void InitLog()
@@ -136,13 +137,15 @@ namespace SitecoreInstaller.UI
         UiServices.ProjectSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseString(projectConfig.Properties.Sitecore);
         UiServices.ProjectSettings.BuildLibrarySelections.SelectedLicense = SourceEntry.ParseString(projectConfig.Properties.License);
         UiServices.ProjectSettings.BuildLibrarySelections.SelectedModules = projectConfig.Properties.Modules.Select(SourceEntry.ParseString);
+        UiServices.ProjectSettings.InstallType = projectConfig.Properties.InstallType;
 
-        if (BuildLibrarySelectionsUpdated != null)
-          BuildLibrarySelectionsUpdated(sender, new GenericEventArgs<BuildLibrarySelections>(UiServices.ProjectSettings.BuildLibrarySelections));
+        if (ProjectSettingsUpdated != null)
+          ProjectSettingsUpdated(sender, new GenericEventArgs<ProjectSettings>(UiServices.ProjectSettings));
       }
       else
       {
         UiServices.ProjectSettings.BuildLibrarySelections = new BuildLibrarySelections();
+        UiServices.ProjectSettings.InstallType = InstallType.Full;
       }
     }
 
