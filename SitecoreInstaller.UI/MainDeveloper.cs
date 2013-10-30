@@ -75,7 +75,7 @@ namespace SitecoreInstaller.UI
             UiServices.Dialogs.Information("Please enter project name");
             return true;
           }
-          UpdateBuildLibrarySelections();
+          UpdateProjectSettings();
           Services.Pipelines.Run<InstallPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
           return true;
         case Keys.P | Keys.Control | Keys.Shift:
@@ -85,11 +85,14 @@ namespace SitecoreInstaller.UI
           Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.DeleteProjectDialog);
           return true;
         case Keys.R | Keys.Control | Keys.Shift:
-          UpdateBuildLibrarySelections();
+          //we make sure the install type is not changed on reinstall! That would mess things up
+          var installType = UiServices.ProjectSettings.InstallType;
+          UpdateProjectSettings();
+          UiServices.ProjectSettings.InstallType = installType;
           Services.Pipelines.Run<ReinstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings);
           return true;
         case Keys.A | Keys.Control | Keys.Shift:
-          UpdateBuildLibrarySelections();
+          UpdateProjectSettings();
           Services.Pipelines.Run<ArchivePipeline, ArchiveEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.SetArchiveName);
           return true;
         case Keys.O | Keys.Control:
@@ -113,11 +116,12 @@ namespace SitecoreInstaller.UI
       return false;
     }
 
-    private void UpdateBuildLibrarySelections()
+    private void UpdateProjectSettings()
     {
       UiServices.ProjectSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
       UiServices.ProjectSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
       UiServices.ProjectSettings.BuildLibrarySelections.SelectedModules = selectModules1.SelectedModules;
+      UiServices.ProjectSettings.InstallType= selectClientInstall1.SelectedInstallType;
     }
   }
 }

@@ -30,6 +30,7 @@
     {
       this.components = new System.ComponentModel.Container();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.btnPublishSite = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnOpenProjectFolder = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnOpenWebsite = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnOpenSitecore = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
@@ -37,8 +38,29 @@
       this.btnUninstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnReinstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.btnInstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
-      this.btnPublishSite = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
       this.SuspendLayout();
+      // 
+      // btnPublishSite
+      // 
+      this.btnPublishSite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnPublishSite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
+      this.btnPublishSite.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+      this.btnPublishSite.Cursor = System.Windows.Forms.Cursors.Hand;
+      this.btnPublishSite.DrawBottomDivider = false;
+      this.btnPublishSite.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+      this.btnPublishSite.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(155)))), ((int)(((byte)(189)))));
+      this.btnPublishSite.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(193)))), ((int)(((byte)(222)))));
+      this.btnPublishSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnPublishSite.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+      this.btnPublishSite.ForeColor = System.Drawing.Color.White;
+      this.btnPublishSite.Location = new System.Drawing.Point(0, 350);
+      this.btnPublishSite.Name = "btnPublishSite";
+      this.btnPublishSite.Size = new System.Drawing.Size(231, 50);
+      this.btnPublishSite.TabIndex = 7;
+      this.btnPublishSite.Text = "Publish Site";
+      this.btnPublishSite.UseVisualStyleBackColor = false;
+      this.btnPublishSite.Click += new System.EventHandler(this.btnPublishSite_Click);
       // 
       // btnOpenProjectFolder
       // 
@@ -168,7 +190,7 @@
       this.btnReinstall.Name = "btnReinstall";
       this.btnReinstall.Size = new System.Drawing.Size(231, 50);
       this.btnReinstall.TabIndex = 1;
-      this.btnReinstall.Text = "Publish Site";
+      this.btnReinstall.Text = "Reinstall";
       this.btnReinstall.UseVisualStyleBackColor = false;
       this.btnReinstall.Click += new System.EventHandler(this.btnReinstall_Click);
       // 
@@ -193,28 +215,6 @@
       this.btnInstall.Text = "Install";
       this.btnInstall.UseVisualStyleBackColor = false;
       this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
-      // 
-      // btnPublishSite
-      // 
-      this.btnPublishSite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnPublishSite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
-      this.btnPublishSite.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-      this.btnPublishSite.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.btnPublishSite.DrawBottomDivider = false;
-      this.btnPublishSite.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-      this.btnPublishSite.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(155)))), ((int)(((byte)(189)))));
-      this.btnPublishSite.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(193)))), ((int)(((byte)(222)))));
-      this.btnPublishSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnPublishSite.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-      this.btnPublishSite.ForeColor = System.Drawing.Color.White;
-      this.btnPublishSite.Location = new System.Drawing.Point(0, 350);
-      this.btnPublishSite.Name = "btnPublishSite";
-      this.btnPublishSite.Size = new System.Drawing.Size(231, 50);
-      this.btnPublishSite.TabIndex = 7;
-      this.btnPublishSite.Text = "Publish Site";
-      this.btnPublishSite.UseVisualStyleBackColor = false;
-      this.btnPublishSite.Click += new System.EventHandler(this.btnPublishSite_Click);
       // 
       // MainDeveloperButtons
       // 

@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using SitecoreInstaller.App;
 using SitecoreInstaller.Domain;
 
 namespace SitecoreInstaller.UI.UserSelections
@@ -38,6 +30,11 @@ namespace SitecoreInstaller.UI.UserSelections
       }
     }
 
+    public InstallType SelectedInstallType
+    {
+      get { return radInstallTypeClient.Checked ? InstallType.Client : InstallType.Full; }
+    }
+
     public void Clear()
     {
       radInstallTypeFull.Checked = true;
@@ -45,12 +42,12 @@ namespace SitecoreInstaller.UI.UserSelections
 
     private void radInstallTypeFull_CheckedChanged(object sender, EventArgs e)
     {
-      UiServices.ProjectSettings.InstallType = radInstallTypeClient.Checked ? InstallType.Client : InstallType.Full;
+      UiServices.ProjectSettings.InstallType = SelectedInstallType;
     }
 
     private void radInstallTypeClient_CheckedChanged(object sender, EventArgs e)
     {
-      UiServices.ProjectSettings.InstallType = radInstallTypeClient.Checked ? InstallType.Client : InstallType.Full;
+      UiServices.ProjectSettings.InstallType = SelectedInstallType;
     }
   }
 }
