@@ -11,7 +11,7 @@
     //set context
     Sitecore.Context.SetActiveSite("shell");
     
-    Log.Info("Publishing site from SitecoreInstaller publisher", this);
+    Log.Info("<SitecoreInstaller> Publishing full site in all languages", this);
 
     using (new Sitecore.SecurityModel.SecurityDisabler())
     {
@@ -34,7 +34,7 @@
 
         publisher.Options.Deep = true;
 
-        Log.Info("Publishing everything in:" + language, this);
+        Log.Info("<SitecoreInstaller> Publishing everything in:" + language, this);
 
         publisher.Publish();
       }

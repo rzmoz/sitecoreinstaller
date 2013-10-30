@@ -2,6 +2,7 @@
 <%@ Import Namespace="System.IO" %>
 <%@ Import Namespace="Sitecore.Data.Engines" %>
 <%@ Import Namespace="Sitecore.Data.Proxies" %>
+<%@ Import Namespace="Sitecore.Diagnostics" %>
 <%@ Import Namespace="Sitecore.Install" %>
 <%@ Import Namespace="Sitecore.SecurityModel" %>
 <%@ Import Namespace="Sitecore.Install.Metadata" %>
@@ -30,6 +31,7 @@
     packageName = HttpUtility.UrlDecode(packageName);
     var filename = Path.Combine(PackageFolder.FullName, packageName);
 
+    Log.Info("<SitecoreInstaller> Installing package: " + packageName, this);
 
     Sitecore.Context.SetActiveSite("shell");
     using (new SecurityDisabler())
@@ -96,7 +98,6 @@
     catch (Sitecore.Jobs.AsyncUI.InvalidContextException)
     {
     }
-
   }
 
 
