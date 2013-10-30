@@ -33,7 +33,7 @@
     {
       this.pnlUserSelections = new System.Windows.Forms.Panel();
       this.selectModules1 = new SitecoreInstaller.UI.UserSelections.SelectModules();
-      this.selectClientInstall1 = new SitecoreInstaller.UI.UserSelections.SelectClientInstall();
+      this.selectClientInstall1 = new SitecoreInstaller.UI.UserSelections.SelectInstallType();
       this.selectProjectName1 = new SitecoreInstaller.UI.UserSelections.SelectProjectName();
       this.selectSitecore1 = new SitecoreInstaller.UI.UserSelections.SelectSitecore();
       this.selectLicense1 = new SitecoreInstaller.UI.UserSelections.SelectLicense();
@@ -134,7 +134,7 @@
     private SelectLicense selectLicense1;
     private SelectModules selectModules1;
     private MainDeveloperButtons mainDeveloperButtons1;
-    private SelectClientInstall selectClientInstall1;
+    private SelectInstallType selectClientInstall1;
 
   }
 }

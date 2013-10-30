@@ -289,11 +289,11 @@
       <DependentUpon>UninstallCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="UiServices.cs" />
-    <Compile Include="UserSelections\SelectClientInstall.cs">
+    <Compile Include="UserSelections\SelectInstallType.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserSelections\SelectClientInstall.Designer.cs">
-      <DependentUpon>SelectClientInstall.cs</DependentUpon>
+    <Compile Include="UserSelections\SelectInstallType.Designer.cs">
+      <DependentUpon>SelectInstallType.cs</DependentUpon>
     </Compile>
     <Compile Include="Viewport\UserDialogs.cs" />
     <Compile Include="UserSelections\SelectLicense.cs">
@@ -437,8 +437,8 @@
     <EmbeddedResource Include="Simple\UninstallCtrl.resx">
       <DependentUpon>UninstallCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserSelections\SelectClientInstall.resx">
-      <DependentUpon>SelectClientInstall.cs</DependentUpon>
+    <EmbeddedResource Include="UserSelections\SelectInstallType.resx">
+      <DependentUpon>SelectInstallType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserSelections\SelectLicense.resx">
       <DependentUpon>SelectLicense.cs</DependentUpon>

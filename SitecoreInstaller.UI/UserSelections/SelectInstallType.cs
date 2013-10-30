@@ -12,17 +12,17 @@ using SitecoreInstaller.Domain;
 
 namespace SitecoreInstaller.UI.UserSelections
 {
-  public partial class SelectClientInstall : UserControl
+  public partial class SelectInstallType : UserControl
   {
-    public SelectClientInstall()
+    public SelectInstallType()
     {
       InitializeComponent();
-      toolTip1.SetToolTip(chkClientInstall, "Database actions are ignored. ConnectionStrings must be set with connection strings deltas");
     }
 
     public void Init()
     {
       UiServices.ProjectSettings.Updated += ProjectSettings_Updated;
+      Clear();
     }
 
     void ProjectSettings_Updated(object sender, Framework.Sys.GenericEventArgs<string> e)
@@ -30,22 +30,27 @@ namespace SitecoreInstaller.UI.UserSelections
       switch (UiServices.ProjectSettings.InstallType)
       {
         case InstallType.Full:
-          chkClientInstall.CheckState = CheckState.Unchecked;
+          radInstallTypeFull.Checked = true;
           break;
         case InstallType.Client:
-          chkClientInstall.CheckState = CheckState.Checked;
+          radInstallTypeClient.Checked = true;
           break;
       }
     }
 
     public void Clear()
     {
-      chkClientInstall.CheckState = CheckState.Unchecked;
+      radInstallTypeFull.Checked = true;
     }
 
-    private void chkClientInstall_CheckedChanged(object sender, EventArgs e)
+    private void radInstallTypeFull_CheckedChanged(object sender, EventArgs e)
     {
-      UiServices.ProjectSettings.InstallType = chkClientInstall.Checked ? InstallType.Client : InstallType.Full;
+      UiServices.ProjectSettings.InstallType = radInstallTypeClient.Checked ? InstallType.Client : InstallType.Full;
+    }
+
+    private void radInstallTypeClient_CheckedChanged(object sender, EventArgs e)
+    {
+      UiServices.ProjectSettings.InstallType = radInstallTypeClient.Checked ? InstallType.Client : InstallType.Full;
     }
   }
 }
