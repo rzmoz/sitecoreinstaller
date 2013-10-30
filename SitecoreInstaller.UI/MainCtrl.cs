@@ -33,12 +33,13 @@ namespace SitecoreInstaller.UI
       InitMainSimple();
       InitMainDeveloper();
       Services.UserPreferences.Load();
+      
       if (Services.UserPreferences.Properties.AdvancedView)
         ViewportStack.Show(mainDeveloper1);
       else
         ViewportStack.Show(mainSimple1);
     }
-
+    
     private void InitSdnLogin()
     {
       ViewportStack.Register(sdnLogin1);

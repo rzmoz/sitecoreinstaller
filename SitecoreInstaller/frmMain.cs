@@ -15,26 +15,30 @@ namespace SitecoreInstaller
       InitializeComponent();
     }
 
+
     protected async override void OnLoad(EventArgs e)
     {
       base.OnLoad(e);
+
+
       CenterToScreen();
       splashScreen1.Show();
       splashScreen1.BringToFront();
 
-      await Task.Delay(TimeSpan.FromSeconds(1));//just to make sure splash screen is open long enough to be readable
-      await Services.LoadUserPreferencesAsync();
+      await Task.Delay(TimeSpan.FromSeconds(0.5));//just to make sure splash screen is open long enough to be readable
+      await Task.Factory.StartNew(Services.LoadUserPreferences);
+
       Services.Init();
 
       Init();
-      
+
       splashScreen1.Hide();
       splashScreen1.SendToBack();
       splashScreen1.Stop();
 
-      await Task.Factory.StartNew(() => Services.SourceManifests.UpdateExternalAsync());
+      await Task.Factory.StartNew(Services.SourceManifests.UpdateExternal);
     }
-
+    
     public void Init()
     {
       mainCtrl1.Init();
@@ -75,5 +79,6 @@ namespace SitecoreInstaller
         return true;
       return base.ProcessCmdKey(ref msg, keyData);
     }
+
   }
 }

@@ -29,7 +29,7 @@
       _manifests = LoadManifests(SourceFile, GetLocalManifests).ToList();
     }
 
-    public void UpdateExternalAsync()
+    public void UpdateExternal()
     {
       var externalManifests = LoadManifests(SourceFile, GetExternalManifests).ToList();
       if (externalManifests.Count > 0)

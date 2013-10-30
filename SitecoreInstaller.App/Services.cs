@@ -39,10 +39,6 @@ namespace SitecoreInstaller.App
         InitBuildLibrary();
     }
 
-    public static async Task LoadUserPreferencesAsync()
-    {
-      await Task.Factory.StartNew(LoadUserPreferences);
-    }
     public static void Init()
     {
       //init before initializing build library
@@ -73,7 +69,7 @@ namespace SitecoreInstaller.App
       _buildLibrariesInitialized = true;
     }
 
-    private static void LoadUserPreferences()
+    public static void LoadUserPreferences()
     {
       UserPreferences = new ConfigFile<UserPreferencesConfig>(new FileInfo(AppConstants.UserPreferencesFileName));
       UserPreferences.Updated += UserPreferences_Updated;
