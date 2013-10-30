@@ -113,7 +113,8 @@
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckNothing.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />
-    <Compile Include="Pipelines\PipelineEventArgs.cs" />
+    <Compile Include="Pipelines\PipelineApplicationEventArgs.cs" />
+    <Compile Include="Pipelines\PublishPipeline.cs" />
     <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Archiving\StartApplication.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveToArchiveFolder.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Pipelines\Steps\Nothing\DoNothingEventArgs.cs" />
     <Compile Include="Pipelines\Steps\PowerShellScriptStep.cs" />
     <Compile Include="Pipelines\Steps\DatabaseSettings\VerifySqlConnection.cs" />
+    <Compile Include="Pipelines\Steps\Publishing\PublishSite.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPostUninstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPreUninstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\WarmUpSite.cs" />
@@ -155,8 +157,8 @@
     <Compile Include="Pipelines\Steps\Install\SaveProjectSettings.cs" />
     <Compile Include="Pipelines\Steps\Install\SetConnectionStrings.cs" />
     <Compile Include="Pipelines\Steps\Install\SetDataFolder.cs" />
-    <Compile Include="Pipelines\Steps\Nothing\DoNothing.cs" />
-    <Compile Include="Pipelines\Steps\Nothing\DoNothingForAWhile.cs" />
+    <Compile Include="Pipelines\Steps\Nothing\DoNothingStep1.cs" />
+    <Compile Include="Pipelines\Steps\Nothing\DoNothingStep2.cs" />
     <Compile Include="Pipelines\Steps\Step.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\DeleteIisSiteAndAppPool.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\DeleteProject.cs" />

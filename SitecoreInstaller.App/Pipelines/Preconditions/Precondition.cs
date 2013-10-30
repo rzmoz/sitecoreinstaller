@@ -4,7 +4,7 @@ using SitecoreInstaller.Framework.Linguistics;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-  public abstract class Precondition<T> : IPrecondition where T : PipelineEventArgs
+  public abstract class Precondition<T> : IPrecondition where T : PipelineApplicationEventArgs
   {
     protected Precondition()
     {

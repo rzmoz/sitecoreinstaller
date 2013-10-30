@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Linguistics;
 
-  public abstract class Step<T> : IStep where T : PipelineEventArgs
+  public abstract class Step<T> : IStep where T : PipelineApplicationEventArgs
   {
     private readonly IList<IPrecondition> _preconditions;
     public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }

@@ -1,18 +1,23 @@
-﻿namespace SitecoreInstaller.UI.Viewport
-{
-  using System;
-  using System.Collections.Generic;
-  using System.Diagnostics;
-  using System.Drawing;
-  using System.Reflection;
-  using System.Windows.Forms;
-  using SitecoreInstaller.App;
-  using SitecoreInstaller.App.Pipelines;
-  using SitecoreInstaller.Domain.BuildLibrary;
-  using SitecoreInstaller.Framework.Sys;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Reflection;
+using System.Windows.Forms;
+using SitecoreInstaller.App;
+using SitecoreInstaller.App.Pipelines;
+using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Framework.Sys;
 
+namespace SitecoreInstaller.UI.Viewport
+{
   public class UserDialogs
   {
+    public void MakeFullPublishDialog(PipelineApplicationEventArgs args)
+    {
+      args.AbortPipeline = !UserAccept("Do you want make a full publish? This will make a full publish for all languages from Master to Web and can take a while if the site is large");
+    }
+
     public void DeleteProjectDialog(CleanupEventArgs args)
     {
       args.DeepClean = !UserAccept("Do you want to keep the files for '{0}'? Saying no will delete everything permanently.", args.ProjectSettings.ProjectName);

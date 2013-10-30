@@ -3,9 +3,9 @@ using SitecoreInstaller.Domain;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-  public class CheckConnectionstringsAreSet : Precondition<PipelineEventArgs>
+  public class CheckConnectionstringsAreSet : Precondition<PipelineApplicationEventArgs>
   {
-    public override bool InnerEvaluate(object sender, PipelineEventArgs args)
+    public override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
     {
       if (args.ProjectSettings.InstallType == InstallType.Full)
         return true;

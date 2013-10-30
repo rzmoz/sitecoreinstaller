@@ -9,7 +9,7 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  public class ReAttachPipeline : Pipeline<PipelineEventArgs>
+  public class ReAttachPipeline : Pipeline<PipelineApplicationEventArgs>
   {
     public ReAttachPipeline()
     {

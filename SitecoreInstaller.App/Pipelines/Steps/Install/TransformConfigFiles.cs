@@ -8,9 +8,9 @@ using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class TransformConfigFiles : Step<PipelineEventArgs>
+  public class TransformConfigFiles : Step<PipelineApplicationEventArgs>
   {
-    protected override void InnerInvoke(object sender, PipelineEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
     {
       var deltaFiles = args.ProjectSettings.ProjectFolder.Directory.GetFiles(FileTypes.ConfigDelta);
       var webConfig = args.ProjectSettings.ProjectFolder.Website.CombineTo<FileInfo>("web.config");

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class AddSitenameToHostFile : Step<PipelineEventArgs>
+  public class AddSitenameToHostFile : Step<PipelineApplicationEventArgs>
   {
-    protected override void InnerInvoke(object sender, PipelineEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
     {
       Services.IisManagement.HostFile.AddHostName(args.ProjectSettings.Iis.Url);
     }

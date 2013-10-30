@@ -7,9 +7,9 @@ using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class CopySitecore : Step<PipelineEventArgs>
+  public class CopySitecore : Step<PipelineApplicationEventArgs>
   {
-    protected override void InnerInvoke(object sender, PipelineEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
     {
       var selectedSitecore = Services.BuildLibrary.Get(args.ProjectSettings.BuildLibrarySelections.SelectedSitecore, SourceType.Sitecore);
       if (selectedSitecore is BuildLibraryDirectory == false)

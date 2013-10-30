@@ -1,8 +1,8 @@
 ﻿namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-  public class CheckProjectNameIsSet : Precondition<PipelineEventArgs>
+  public class CheckProjectNameIsSet : Precondition<PipelineApplicationEventArgs>
   {
-    public override bool InnerEvaluate(object sender, PipelineEventArgs args)
+    public override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
     {
       if (args.ProjectSettings.ProjectNameIsSet)
         return true;

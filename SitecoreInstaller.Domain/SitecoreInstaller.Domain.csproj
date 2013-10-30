@@ -197,11 +197,13 @@
     <Compile Include="Pipelines\IPrecondition.cs" />
     <Compile Include="Pipelines\IStep.cs" />
     <Compile Include="Pipelines\Pipeline.cs" />
+    <Compile Include="Pipelines\PipelineEventArgs.cs" />
     <Compile Include="ProjectFolder.cs" />
     <Compile Include="Projects\ProjectSettingsConfig.cs" />
     <Compile Include="WebServer\PowerShellScriptService.cs" />
     <Compile Include="WebsiteFolder.cs" />
     <Compile Include="Website\DataProviderType.cs" />
+    <Compile Include="Website\PublishType.cs" />
     <Compile Include="Website\WffmConfigFile.cs" />
     <Compile Include="Database\SqlService.cs" />
     <Compile Include="Database\SqlSettings.cs" />
@@ -244,6 +246,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Website\Runtime\PublishSite.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Website\Runtime\AdminLogin.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>

@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 {
-  public class DoNothingEventArgs : PipelineEventArgs
+  public class DoNothingEventArgs : PipelineApplicationEventArgs
   {
     public DoNothingEventArgs()
     {

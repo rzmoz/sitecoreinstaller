@@ -15,14 +15,15 @@ namespace SitecoreInstaller.Domain.Website
 {
   public class WebsiteService
   {
-    private const string _InstallerPath = "temp/SitecoreInstaller";
-    private const string _KeepAlivePingPath = "/sitecore/service/keepalive.aspx";
+    private const string _installerPath = "temp/SitecoreInstaller";
+    private const string _keepAlivePingPath = "/sitecore/service/keepalive.aspx";
 
-    private const string _AdminLoginName = "AdminLogin.aspx";
-    private const string _InstallPackageServiceName = "InstallPackageService.aspx";
-    private const string _InstallPackageStatusName = "InstallPackageStatus.aspx";
-    private const string _DeserializeItemsName = "DeserializeItems.aspx";
-    private const string _PostInstallServiceName = "PostInstallService.aspx";
+    private const string _adminLoginName = "AdminLogin.aspx";
+    private const string _installPackageServiceName = "InstallPackageService.aspx";
+    private const string _installPackageStatusName = "InstallPackageStatus.aspx";
+    private const string _deserializeItemsName = "DeserializeItems.aspx";
+    private const string _publishSiteName = "PublishSite.aspx";
+    private const string _postInstallServiceName = "PostInstallService.aspx";
 
     public void SetDataFolder(DataFolder dataFolder, FileInfo dataFolderConfigFile)
     {
@@ -178,10 +179,10 @@ namespace SitecoreInstaller.Domain.Website
       }
 
       //copy admin login
-      var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
-      WebsiteResource.AdminLogin.WriteToDir(runtimeServicesFolder, _AdminLoginName);
+      var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_installerPath);
+      WebsiteResource.AdminLogin.WriteToDir(runtimeServicesFolder, _adminLoginName);
 
-      TheWww.OpenInBrowser(baseUrl.ToUri(_InstallerPath, _AdminLoginName));
+      TheWww.OpenInBrowser(baseUrl.ToUri(_installerPath, _adminLoginName));
     }
 
     public void OpenFrontend(string baseUrl)
@@ -201,13 +202,14 @@ namespace SitecoreInstaller.Domain.Website
     {
       Log.This.Info("Installing runtime services...");
 
-      var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
+      var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_installerPath);
 
       runtimeServicesFolder.CreateIfNotExists();
 
-      WebsiteResource.InstallPackageService.WriteToDir(runtimeServicesFolder, _InstallPackageServiceName);
-      WebsiteResource.InstallPackageStatusService.WriteToDir(runtimeServicesFolder, _InstallPackageStatusName);
-      WebsiteResource.DeserializeItems.WriteToDir(runtimeServicesFolder, _DeserializeItemsName);
+      WebsiteResource.InstallPackageService.WriteToDir(runtimeServicesFolder, _installPackageServiceName);
+      WebsiteResource.InstallPackageStatusService.WriteToDir(runtimeServicesFolder, _installPackageStatusName);
+      WebsiteResource.DeserializeItems.WriteToDir(runtimeServicesFolder, _deserializeItemsName);
+      WebsiteResource.PublishSite.WriteToDir(runtimeServicesFolder, _publishSiteName);
 
       Log.This.Info("Runtime services installed");
     }
@@ -215,7 +217,7 @@ namespace SitecoreInstaller.Domain.Website
     public void DeleteRuntimeServices(DirectoryInfo websiteFolder)
     {
       //delete runtime services
-      var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
+      var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_installerPath);
 
       if (runtimeServicesFolder.Exists == false)
       {
@@ -243,11 +245,11 @@ namespace SitecoreInstaller.Domain.Website
       {
         foreach (var package in module.Directory.GetFiles(FileTypes.SitecorePackage))
         {
-          this.InstallPackage(baseUrl, package);
+          InstallPackage(baseUrl, package);
         }
         foreach (var update in module.Directory.GetFiles(FileTypes.SitecoreUpdate))
         {
-          this.InstallPackage(baseUrl, update);
+          InstallPackage(baseUrl, update);
         }
       }
     }
@@ -268,7 +270,7 @@ namespace SitecoreInstaller.Domain.Website
       foreach (var standAloneScPackage in standAloneScPackages)
       {
         if (standAloneScPackage.File.IsSitecorePackage())
-          this.InstallPackage(baseUrl, standAloneScPackage.File);
+          InstallPackage(baseUrl, standAloneScPackage.File);
       }
     }
 
@@ -279,39 +281,47 @@ namespace SitecoreInstaller.Domain.Website
 
       const string installFormatPattern = "Action={0}&PackageName={1}";
 
-      var callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern, "Install", packageName));
-      this.ExecuteInstallPackageAction(callingUri);
+      var callingUri = baseUrl.ToUri(_installerPath, _installPackageServiceName, "?" + string.Format(installFormatPattern, "Install", packageName));
+      ExecuteInstallPackageAction(callingUri);
 
       Log.This.Info("Executing post installation steps for '{0}'...", HttpUtility.UrlDecode(packageName));
 
-      callingUri = baseUrl.ToUri(_InstallerPath, _InstallPackageServiceName, "?" + string.Format(installFormatPattern, "PostInstall", packageName));
-      this.ExecuteInstallPackageAction(callingUri);
+      callingUri = baseUrl.ToUri(_installerPath, _installPackageServiceName, "?" + string.Format(installFormatPattern, "PostInstall", packageName));
+      ExecuteInstallPackageAction(callingUri);
 
       Log.This.Info("'{0}' is installed", package);
+    }
+
+    public void PublishSite(string baseUrl, PublishType publishType = PublishType.Full)
+    {
+      WakeUpSite(baseUrl);
+      Log.This.Info("Publishing site: {0}...", publishType);
+      var callingUri = baseUrl.ToUri(_installerPath, _publishSiteName);
+      TheWww.CallUrl(callingUri);
     }
 
     public void DeserializeItems(string baseUrl)
     {
       Log.This.Info("Deserializing items...");
-      var callingUri = baseUrl.ToUri(_InstallerPath, _DeserializeItemsName);
+      var callingUri = baseUrl.ToUri(_installerPath, _deserializeItemsName);
       TheWww.CallUrl(callingUri);
     }
 
     public void ExecutePostInstallSteps(string baseUrl, DirectoryInfo websiteFolder)
     {
       //warm up site to make sure run time service is up and running
-      var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_InstallerPath);
-      WebsiteResource.PostInstallService.WriteToDir(runtimeServicesFolder, _PostInstallServiceName);
+      var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_installerPath);
+      WebsiteResource.PostInstallService.WriteToDir(runtimeServicesFolder, _postInstallServiceName);
       WakeUpSite(baseUrl);
       Log.This.Info("Executing post install steps...");
-      var callingUri = baseUrl.ToUri(_InstallerPath, _PostInstallServiceName);
+      var callingUri = baseUrl.ToUri(_installerPath, _postInstallServiceName);
       TheWww.CallUrl(callingUri);
     }
 
     public void WakeUpSite(string siteBaseUrl)
     {
       Log.This.Info("Waking up site...");
-      TheWww.CallUrl(siteBaseUrl.ToUri(_KeepAlivePingPath));
+      TheWww.CallUrl(siteBaseUrl.ToUri(_keepAlivePingPath));
     }
 
     public void CreateWffmConfigFile(string connectionString, FileInfo wffmConfigFile)

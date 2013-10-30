@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using SitecoreInstaller.Framework.Diagnostics;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-  using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.Sys;
-
   /// <summary>
   /// Use as decorator for classes that have methods with StepAttributes
   /// </summary>
   /// <typeparam name="T"></typeparam>
   public class PipelineRunner<T, TK> : IPipelineRunner
     where T : class,IPipeline
-    where TK : EventArgs
+    where TK : PipelineEventArgs
   {
     public event EventHandler<PipelineInfoEventArgs> AllStepsExecuting;
     public event EventHandler<PipelineInfoEventArgs> AllStepsExecuted;
@@ -39,9 +39,15 @@ namespace SitecoreInstaller.Domain.Pipelines
     public string ExecuteAllText { get; private set; }
 
 
-    public void ExecuateAllSteps(object sender, EventArgs e)
+    public void ExecuateAllSteps(object sender, DoWorkEventArgs e)
     {
-      if (PreconditionsAreMet(Pipeline.Preconditions, Pipeline.Args))
+      if (Pipeline.Args.AbortPipeline)
+      {
+        Log.This.Info("Aborting pipeline: {0}", Pipeline.Args.AbortReason);
+        Log.This.Flush();
+        //we don't break completely out of this method as we still want to clean up listeners
+      }
+      else if (PreconditionsAreMet(Pipeline.Preconditions, Pipeline.Args))
       {
         if (AllStepsExecuting != null)
           AllStepsExecuting(sender, new PipelineInfoEventArgs(Pipeline));
@@ -73,7 +79,7 @@ namespace SitecoreInstaller.Domain.Pipelines
       AllStepsExecuted = null;
     }
 
-    private bool PreconditionsAreMet(IEnumerable<IPrecondition> preconditions, EventArgs args)
+    private bool PreconditionsAreMet(IEnumerable<IPrecondition> preconditions, PipelineEventArgs args)
     {
       foreach (var precondition in preconditions)
       {
@@ -96,11 +102,22 @@ namespace SitecoreInstaller.Domain.Pipelines
       return true;
     }
 
-    private void InnerExecuteAllSteps(object sender, EventArgs args)
+    private void InnerExecuteAllSteps(object sender, EventArgs e)
     {
+      var args = e as PipelineEventArgs;
+      if (args == null)
+        throw new ArgumentException("e must be of type :" + typeof(PipelineEventArgs));
+
       var totalCount = Pipeline.Steps.Count();
       foreach (var step in Pipeline.Steps)
       {
+        if (args.AbortPipeline)
+        {
+          Log.This.Info("Aborting pipeline: {0}", args.AbortReason);
+          Log.This.Flush();
+          break;//we don't execute more steps if pipeline is to be aborted
+        }
+
         var infoArgs = new PipelineStepInfoEventArgs(step.Order, totalCount, step.Name.ActiveForm);
         if (StepExecuting != null)
           StepExecuting(step, infoArgs);

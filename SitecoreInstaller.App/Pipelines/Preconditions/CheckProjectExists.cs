@@ -2,9 +2,9 @@
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-  public class CheckProjectExists : Precondition<PipelineEventArgs>
+  public class CheckProjectExists : Precondition<PipelineApplicationEventArgs>
   {
-    public override bool InnerEvaluate(object sender, PipelineEventArgs args)
+    public override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
     {
       if (Directory.Exists(args.ProjectSettings.ProjectFolder.FullName))
         return true;

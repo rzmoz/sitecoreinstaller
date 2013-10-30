@@ -25,6 +25,7 @@ namespace SitecoreInstaller.Tests.Framework.Linguistics
     [TestCase("Execute", "Executing")]
     [TestCase("Update", "Updating")]
     [TestCase("Move", "Moving")]
+    [TestCase("Make", "Making")]
 
     //duplicate last consonant and add ing
     [TestCase("Set", "Setting")]

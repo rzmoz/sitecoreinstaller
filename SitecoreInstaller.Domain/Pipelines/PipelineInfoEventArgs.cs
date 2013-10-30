@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-  using SitecoreInstaller.Framework.Diagnostics;
-
   public class PipelineInfoEventArgs : EventArgs
   {
     public PipelineInfoEventArgs(IPipeline pipeline, params LogEntry[] entries)

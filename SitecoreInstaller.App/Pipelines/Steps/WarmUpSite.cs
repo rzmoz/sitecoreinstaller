@@ -4,9 +4,9 @@
   using SitecoreInstaller.Framework.Diagnostics;
   using SitecoreInstaller.Framework.Web;
 
-  public class WarmUpSite : Step<PipelineEventArgs>
+  public class WarmUpSite : Step<PipelineApplicationEventArgs>
   {
-    protected override void InnerInvoke(object sender, PipelineEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
     {
       try
       {

@@ -13,8 +13,8 @@ namespace SitecoreInstaller.App.Pipelines
       AddPrecondition<CheckNothing>();
 
       //Init steps
-      AddStep<DoNothing>();
-      AddStep<DoNothingForAWhile>();
+      AddStep<DoNothingStep1>();
+      AddStep<DoNothingStep2>();
       AddStep<WarmUpSite>();
     }
   }

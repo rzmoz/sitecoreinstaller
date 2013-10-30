@@ -6,7 +6,7 @@
   using SitecoreInstaller.Domain.Pipelines;
   using SitecoreInstaller.Framework.Linguistics;
 
-  public class InstallerServiceMock : Pipeline<PipelineEventArgs>
+  public class InstallerServiceMock : Pipeline<PipelineApplicationEventArgs>
   {
     public class EmptyStep : IStep
     {

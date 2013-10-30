@@ -44,7 +44,7 @@ namespace SitecoreInstaller.UI.Settings
         private void btnTestMongoSettings_Click(object sender, EventArgs e)
         {
             btnSave_Click(sender, e);
-            Services.Pipelines.Run<TestMongoSettingsPipeline, PipelineEventArgs>(UiServices.ProjectSettings);
+            Services.Pipelines.Run<TestMongoSettingsPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
         }
     }
 }

@@ -3,9 +3,9 @@ using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class CopyModuleFiles : Step<PipelineEventArgs>
+  public class CopyModuleFiles : Step<PipelineApplicationEventArgs>
   {
-    protected override void InnerInvoke(object sender, PipelineEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
     {
       var selectedModules = (from module in args.ProjectSettings.BuildLibrarySelections.SelectedModules
                             select Services.BuildLibrary.Get(module, SourceType.Module)).ToList();

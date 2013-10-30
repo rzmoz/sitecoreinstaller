@@ -72,8 +72,11 @@ namespace SitecoreInstaller.UI
             UiServices.Dialogs.Information("Please enter project name");
             return true;
           }
-          this.UpdateBuildLibrarySelections();
-          Services.Pipelines.Run<InstallPipeline, PipelineEventArgs>(UiServices.ProjectSettings);
+          UpdateBuildLibrarySelections();
+          Services.Pipelines.Run<InstallPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+          return true;
+        case Keys.P | Keys.Control | Keys.Shift:
+          Services.Pipelines.Run<PublishPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.MakeFullPublishDialog);
           return true;
         case Keys.U | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.DeleteProjectDialog);

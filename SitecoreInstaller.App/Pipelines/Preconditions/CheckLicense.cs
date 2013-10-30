@@ -4,9 +4,9 @@ using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
-  public class CheckLicense : Precondition<PipelineEventArgs>
+  public class CheckLicense : Precondition<PipelineApplicationEventArgs>
   {
-    public override bool InnerEvaluate(object sender, PipelineEventArgs args)
+    public override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
     {
       if (args.ProjectSettings.BuildLibrarySelections.SelectedLicense == null)
       {

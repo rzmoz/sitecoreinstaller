@@ -8,7 +8,7 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  public class TestMongoSettingsPipeline : Pipeline<PipelineEventArgs>
+  public class TestMongoSettingsPipeline : Pipeline<PipelineApplicationEventArgs>
   {
     public TestMongoSettingsPipeline()
     {

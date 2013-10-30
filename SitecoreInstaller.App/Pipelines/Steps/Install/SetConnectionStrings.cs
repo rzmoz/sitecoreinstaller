@@ -12,14 +12,14 @@ using SitecoreInstaller.Framework.Xml;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-    public class SetConnectionStrings : Step<PipelineEventArgs>
+    public class SetConnectionStrings : Step<PipelineApplicationEventArgs>
     {
         public SetConnectionStrings()
         {
             AddPrecondition<CheckConnectionstringsAreSet>();
         }
 
-        protected override void InnerInvoke(object sender, PipelineEventArgs args)
+        protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
             var connectionStrings = args.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
 

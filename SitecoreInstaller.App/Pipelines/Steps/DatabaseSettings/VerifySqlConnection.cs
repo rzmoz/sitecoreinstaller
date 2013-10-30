@@ -1,8 +1,8 @@
 ﻿namespace SitecoreInstaller.App.Pipelines.Steps.DatabaseSettings
 {
-  public class VerifySqlConnection : Step<PipelineEventArgs>
+  public class VerifySqlConnection : Step<PipelineApplicationEventArgs>
   {
-    protected override void InnerInvoke(object sender, PipelineEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
     {
       args.ProjectSettings.Sql.TestConnection();
     }

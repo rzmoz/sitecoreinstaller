@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using SitecoreInstaller.Framework.Linguistics;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-  using SitecoreInstaller.Framework.Linguistics;
-
-  public abstract class Pipeline<T> : IPipeline where T : EventArgs, new()
+  public abstract class Pipeline<T> : IPipeline where T : PipelineEventArgs, new()
   {
     private readonly IList<IPrecondition> _preconditions;
     private readonly IList<IStep> _steps;
@@ -75,7 +74,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
     public IEnumerable<IPrecondition> Preconditions { get { return _preconditions; } }
 
-    public EventArgs Args { get; set; }
+    public PipelineEventArgs Args { get; set; }
 
     public Sentence Name { get; private set; }
 

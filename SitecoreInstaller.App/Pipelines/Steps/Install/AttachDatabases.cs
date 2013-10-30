@@ -3,9 +3,9 @@ using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class AttachDatabases : Step<PipelineEventArgs>
+  public class AttachDatabases : Step<PipelineApplicationEventArgs>
   {
-    protected override void InnerInvoke(object sender, PipelineEventArgs args)
+    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
     {
       if (args.ProjectSettings.InstallType == InstallType.Client)
         return;

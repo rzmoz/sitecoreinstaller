@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Net;
+using System.Threading;
+using SitecoreInstaller.Framework.Diagnostics;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.Web
 {
-  using System.IO;
-  using System.Net;
-  using System.Threading;
-  using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.Sys;
 
   public class TheWww
   {

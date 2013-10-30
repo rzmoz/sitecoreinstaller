@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.App.Pipelines
 {
-  public class CleanupEventArgs : PipelineEventArgs
+  public class CleanupEventArgs : PipelineApplicationEventArgs
   {
     public CleanupEventArgs()
     {

@@ -5,7 +5,7 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  public class InstallPipeline : Pipeline<PipelineEventArgs>
+  public class InstallPipeline : Pipeline<PipelineApplicationEventArgs>
   {
     public InstallPipeline()
     {
