@@ -31,6 +31,8 @@ namespace SitecoreInstaller.UI
       toolTip1.SetToolTip(btnOpenWebsite, "CTRL + O");
       toolTip1.SetToolTip(btnOpenProjectFolder, "CTRL + ALT + O");
       btnOpenProjectFolder.DrawBottomDivider = true;
+      toolTip1.SetToolTip(btnPublishSite, "CTRL + SHIFT + P");
+      btnPublishSite.DrawBottomDivider = true;
     }
 
     private void TriggerKeyboardShortcut(Keys keys)
@@ -76,6 +78,11 @@ namespace SitecoreInstaller.UI
     private void btnOpenProjectFolder_Click(object sender, EventArgs e)
     {
       TriggerKeyboardShortcut(Keys.O | Keys.Control | Keys.Alt);
+    }
+
+    private void btnPublishSite_Click(object sender, EventArgs e)
+    {
+      TriggerKeyboardShortcut(Keys.P | Keys.Control | Keys.Shift);
     }
   }
 }
