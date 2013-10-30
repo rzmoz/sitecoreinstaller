@@ -27,7 +27,9 @@ namespace SitecoreInstaller.UI.ListBoxes
           return;
         }
       }
-      ListBox.SelectedIndex = ListBox.Items.Count - 1;
+
+      if (ListBox.Items.Count > 0)
+        ListBox.SelectedIndex = 0;
     }
 
     protected abstract SourceEntry GetRelevantSourceEntry(BuildLibrarySelections buildLibrarySelections);

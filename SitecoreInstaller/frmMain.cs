@@ -19,19 +19,19 @@ namespace SitecoreInstaller
     protected async override void OnLoad(EventArgs e)
     {
       base.OnLoad(e);
-
-
+      
       CenterToScreen();
+      
       splashScreen1.Show();
       splashScreen1.BringToFront();
-
-      await Task.Delay(TimeSpan.FromSeconds(0.5));//just to make sure splash screen is open long enough to be readable
-      await Task.Factory.StartNew(Services.LoadUserPreferences);
-
+      
+      Services.LoadUserPreferences();
       Services.Init();
 
       Init();
-
+      //awaits must be place after init methods, since it messes with the ui thread.
+      await Task.Delay(TimeSpan.FromSeconds(0.5));//just to make sure splash screen is open long enough to be readable
+      
       splashScreen1.Hide();
       splashScreen1.SendToBack();
       splashScreen1.Stop();

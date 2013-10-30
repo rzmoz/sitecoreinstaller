@@ -38,6 +38,7 @@ namespace SitecoreInstaller.UI.UserSelections
       {
         var licenses = Services.BuildLibrary.List(SourceType.License).ToList();
         licenses.Sort();
+        licenses.Reverse();
         return licenses;
       }
     }
