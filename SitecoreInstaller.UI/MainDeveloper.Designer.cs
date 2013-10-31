@@ -32,11 +32,11 @@
     private void InitializeComponent()
     {
       this.pnlUserSelections = new System.Windows.Forms.Panel();
-      this.selectModules1 = new SitecoreInstaller.UI.UserSelections.SelectModules();
-      this.selectClientInstall1 = new SitecoreInstaller.UI.UserSelections.SelectInstallType();
       this.selectProjectName1 = new SitecoreInstaller.UI.UserSelections.SelectProjectName();
       this.selectSitecore1 = new SitecoreInstaller.UI.UserSelections.SelectSitecore();
       this.selectLicense1 = new SitecoreInstaller.UI.UserSelections.SelectLicense();
+      this.selectClientInstall1 = new SitecoreInstaller.UI.UserSelections.SelectInstallType();
+      this.selectModules1 = new SitecoreInstaller.UI.UserSelections.SelectModules();
       this.mainDeveloperButtons1 = new SitecoreInstaller.UI.MainDeveloperButtons();
       this.pnlUserSelections.SuspendLayout();
       this.SuspendLayout();
@@ -46,34 +46,15 @@
       this.pnlUserSelections.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.pnlUserSelections.Controls.Add(this.selectModules1);
-      this.pnlUserSelections.Controls.Add(this.selectClientInstall1);
       this.pnlUserSelections.Controls.Add(this.selectProjectName1);
       this.pnlUserSelections.Controls.Add(this.selectSitecore1);
       this.pnlUserSelections.Controls.Add(this.selectLicense1);
+      this.pnlUserSelections.Controls.Add(this.selectClientInstall1);
+      this.pnlUserSelections.Controls.Add(this.selectModules1);
       this.pnlUserSelections.Location = new System.Drawing.Point(3, 3);
       this.pnlUserSelections.Name = "pnlUserSelections";
       this.pnlUserSelections.Size = new System.Drawing.Size(436, 467);
       this.pnlUserSelections.TabIndex = 8;
-      // 
-      // selectModules1
-      // 
-      this.selectModules1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.selectModules1.Location = new System.Drawing.Point(12, 177);
-      this.selectModules1.Name = "selectModules1";
-      this.selectModules1.Size = new System.Drawing.Size(410, 287);
-      this.selectModules1.TabIndex = 12;
-      // 
-      // selectClientInstall1
-      // 
-      this.selectClientInstall1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.selectClientInstall1.Location = new System.Drawing.Point(12, 140);
-      this.selectClientInstall1.Name = "selectClientInstall1";
-      this.selectClientInstall1.Size = new System.Drawing.Size(410, 42);
-      this.selectClientInstall1.TabIndex = 11;
       // 
       // selectProjectName1
       // 
@@ -103,6 +84,25 @@
       this.selectLicense1.Name = "selectLicense1";
       this.selectLicense1.Size = new System.Drawing.Size(410, 50);
       this.selectLicense1.TabIndex = 10;
+      // 
+      // selectClientInstall1
+      // 
+      this.selectClientInstall1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.selectClientInstall1.Location = new System.Drawing.Point(12, 418);
+      this.selectClientInstall1.Name = "selectClientInstall1";
+      this.selectClientInstall1.Size = new System.Drawing.Size(410, 42);
+      this.selectClientInstall1.TabIndex = 12;
+      // 
+      // selectModules1
+      // 
+      this.selectModules1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.selectModules1.Location = new System.Drawing.Point(12, 135);
+      this.selectModules1.Name = "selectModules1";
+      this.selectModules1.Size = new System.Drawing.Size(410, 308);
+      this.selectModules1.TabIndex = 11;
       // 
       // mainDeveloperButtons1
       // 
