@@ -119,6 +119,7 @@
     <Compile Include="Pipelines\Steps\Archiving\StartApplication.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveToArchiveFolder.cs" />
     <Compile Include="Pipelines\Steps\DatabaseSettings\VerifyMongoDbConnection.cs" />
+    <Compile Include="Pipelines\Steps\Install\Copy64BitAssemblies.cs" />
     <Compile Include="Pipelines\Steps\Install\DeserializeItems.cs" />
     <Compile Include="Pipelines\Steps\Install\RunPreInstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\Install\ConfigureFinishingTasks.cs" />
