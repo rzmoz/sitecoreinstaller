@@ -10,6 +10,12 @@ namespace SitecoreInstaller.Domain.BuildLibrary
   {
     private readonly Func<BuildLibraryResource> _unpack;
 
+    internal BuildLibraryFile(FileInfo fileInfo, BuildLibraryFileCopyOptions buildLibraryFileCopyOptions)
+      : this(fileInfo, BuildLibraryMode.External)
+    {
+      BuildLibraryFileCopyOptions = buildLibraryFileCopyOptions;
+    }
+
     internal BuildLibraryFile(FileInfo fileInfo)
       : this(fileInfo, BuildLibraryMode.External)
     {
@@ -19,7 +25,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       : base(buildLibraryMode)
     {
       File = fileInfo;
-
+      BuildLibraryFileCopyOptions = BuildLibraryFileCopyOptions.JustCopy;
       if (fileInfo.IsZipfile() && !fileInfo.IsSitecorePackage())
         _unpack = UnpackZipFile;//regular zip files
       else
@@ -32,6 +38,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       set { FileSystemInfo = value; }
     }
 
+    public BuildLibraryFileCopyOptions BuildLibraryFileCopyOptions { get; private set; }
+
     protected override void CopyToTargetDir()
     {
       if (TargetDirectory == null)
@@ -43,6 +51,10 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
       newFile.Directory.CreateIfNotExists();
       File.CopyTo(newFile.FullName);
+
+      if (BuildLibraryFileCopyOptions == BuildLibraryFileCopyOptions.DeleteAfterCopy)
+        File.Delete();
+
       File = newFile;
     }
 

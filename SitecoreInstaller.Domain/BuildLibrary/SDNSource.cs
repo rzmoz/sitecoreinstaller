@@ -52,7 +52,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
       Curl.Download(response.ResourceUri, targetFile);
 
-      return new BuildLibraryFile(targetFile, BuildLibraryMode.External);
+      return new BuildLibraryFile(targetFile, BuildLibraryFileCopyOptions.DeleteAfterCopy);
     }
 
     private BuildLibraryResponse CallRest(string url)
