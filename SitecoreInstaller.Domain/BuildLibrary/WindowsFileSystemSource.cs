@@ -8,8 +8,6 @@ using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-
-
   public class WindowsFileSystemSource : ISource
   {
     private readonly IDictionary<SourceType, WindowsSourceEntryRepository> _repositories;
@@ -80,6 +78,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       return from sourceEntry in sourceEntries select Get(sourceEntry, sourceType);
     }
 
+
+
     public BuildLibraryFile Add(string file, SourceType sourceType)
     {
       var buildLibraryResourceFactory = new BuildLibraryResourceFactory();
@@ -133,6 +133,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     {
       return _repositories[sourceType];
     }
+
 
     public void Update()
     {

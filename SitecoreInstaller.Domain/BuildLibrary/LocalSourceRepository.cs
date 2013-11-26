@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
@@ -108,5 +109,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       if (Updated != null)
         Updated(this, new EventArgs());
     }
+
   }
 }

@@ -133,6 +133,15 @@
     <Reference Include="MongoDB.Driver">
       <HintPath>..\packages\mongocsharpdriver.1.8.2\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\packages\ServiceStack.Common.3.9.70\lib\net35\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\packages\ServiceStack.Common.3.9.70\lib\net35\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\3rdPartyAssemblies\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
@@ -140,6 +149,9 @@
     <Reference Include="Sitecore.Update">
       <HintPath>..\3rdPartyAssemblies\Sitecore.Update.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="SitecoreInstaller.Services.ServiceModel">
+      <HintPath>..\3rdPartyAssemblies\SitecoreInstaller.Services.ServiceModel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using SitecoreInstaller.Framework.Diagnostics;
+using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-    using SitecoreInstaller.Framework.Diagnostics;
-    using SitecoreInstaller.Framework.IO;
-
     public abstract class BuildLibraryResource
     {
         protected BuildLibraryResource(BuildLibraryMode buildLibraryMode)
         {
-
             Mode = buildLibraryMode;
         }
 
