@@ -1,13 +1,11 @@
 ﻿using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.IO;
 using System.IO;
-
+using System;
+using SitecoreInstaller.Framework.Archiving;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-  using System;
-  using SitecoreInstaller.Framework.Archiving;
-
   public class BuildLibraryFile : BuildLibraryResource
   {
     private readonly Func<BuildLibraryResource> _unpack;

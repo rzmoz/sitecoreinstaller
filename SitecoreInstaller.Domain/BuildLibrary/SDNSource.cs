@@ -6,6 +6,8 @@ using System.Web;
 using ServiceStack.ServiceClient.Web;
 using ServiceStack.Text;
 using SitecoreInstaller.Framework.Diagnostics;
+using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.Web;
 using SitecoreInstaller.Services.ServiceModel;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
@@ -40,7 +42,24 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public BuildLibraryResource Get(SourceEntry sourceEntry, SourceType sourceType)
     {
-      return null;
+      var resource = sourceType.ToString();
+      if (sourceType != SourceType.Sitecore)
+        resource += "s";
+
+      var url = string.Format("/{0}/{1}", resource, sourceEntry);
+      var response = CallRest(url);
+      var targetFile = new FileInfo(Path.Combine(Path.GetTempPath(), sourceEntry.Key + ".zip"));
+
+      Curl.Download(response.ResourceUri, targetFile);
+
+      return new BuildLibraryFile(targetFile, BuildLibraryMode.External);
+    }
+
+    private BuildLibraryResponse CallRest(string url)
+    {
+      var baseUrl = string.Format(_urlFormat, Parameters);
+      var client = new JsonServiceClient(baseUrl);
+      return client.Get<BuildLibraryResponse>(url);
     }
 
     public IEnumerable<BuildLibraryResource> Get(IEnumerable<SourceEntry> sourceEntries, SourceType sourceType)
@@ -50,10 +69,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public void Update()
     {
-      var baseUrl = string.Format(_urlFormat, Parameters);
-      var client = new JsonServiceClient(baseUrl);
-      var response = client.Get<BuildLibraryResponse>("/list");
-
+      var response = CallRest("/list");
       lock (_fileLock)
       {
         TempFile.Refresh();

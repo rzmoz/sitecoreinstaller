@@ -2,13 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-  using System.Threading.Tasks;
-
   public abstract class WindowsSourceEntryRepository : IEnumerable<SourceEntry>
   {
     protected IDictionary<string, SourceEntry> Entries { get; private set; }

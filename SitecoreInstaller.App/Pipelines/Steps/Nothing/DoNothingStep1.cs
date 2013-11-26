@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Net;
 using SitecoreInstaller.Framework.Diagnostics;
+using SitecoreInstaller.Framework.Web;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 {
@@ -8,9 +11,6 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
   {
     protected override void InnerInvoke(object sender, DoNothingEventArgs args)
     {
-      Log.This.Info("Set abort pipeline to true");
-      args.AbortPipeline = true;
-      args.AbortReason = "To test if abort works";
     }
   }
 }

@@ -144,7 +144,7 @@
     <Compile Include="Sys\SourceFactory.cs" />
     <Compile Include="Sys\StringExtensions.cs" />
     <Compile Include="Sys\TypeExtensions.cs" />
-    <Compile Include="Web\SdnBrowser.cs" />
+    <Compile Include="Web\Curl.cs" />
     <Compile Include="Web\TheWww.cs" />
     <Compile Include="Web\Url.cs" />
     <Compile Include="Web\WebExtensions.cs" />

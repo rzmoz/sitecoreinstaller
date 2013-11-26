@@ -15,7 +15,6 @@ namespace SitecoreInstaller.App.Pipelines
       //Init steps
       AddStep<DoNothingStep1>();
       AddStep<DoNothingStep2>();
-      AddStep<WarmUpSite>();
     }
   }
 }
