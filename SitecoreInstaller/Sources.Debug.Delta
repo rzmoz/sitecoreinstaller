@@ -3,12 +3,11 @@
 
 <Sources xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
   <Manifests>
-    <!--<Manifest Enabled="true" Name="RAR" Parameters="C:\BuildLibraryExternal" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />-->
-    <Manifest Enabled="false" Name="SalesDK" Parameters="\\fil1dk1.dk.sitecore.net\data2\Sitecore\SitecoreInstallerBuildLibrary\SitecoreDK" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
-    <Manifest Enabled="false" Name="Sales" Parameters="\\fil1dk1.dk.sitecore.net\data2\Sitecore\SitecoreInstallerBuildLibrary\Common" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
-    <Manifest Enabled="true" Name="SDN" Parameters="sitecoreinstaller.trafficmanager.net" Type="SitecoreInstaller.Domain.BuildLibrary.SdnSource, SitecoreInstaller.Domain" xdt:Transform="Insert" />
+    <!--<Manifest xdt:Transform="Insert" Enabled="true" Name="RAR" Parameters="C:\BuildLibraryExternal" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain"/>-->
+    <Manifest xdt:Transform="Insert" Enabled="false" Name="SalesDK" Parameters="\\fil1dk1.dk.sitecore.net\data2\Sitecore\SitecoreInstallerBuildLibrary\SitecoreDK" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain"/>
+    <Manifest xdt:Transform="Insert" Enabled="false" Name="Sales" Parameters="\\fil1dk1.dk.sitecore.net\data2\Sitecore\SitecoreInstallerBuildLibrary\Common" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" />
   </Manifests>
   <ExternalSources>
-    <ExternalSource Type="HttpGet" Parameters="http://sitecoreinstaller.bitbucket.org/sources.debug.config" xdt:Transform="Insert" />
+    <ExternalSource xdt:Transform="Insert" Type="HttpGet" Parameters="http://sitecoreinstaller.bitbucket.org/sources.debug.config" />
   </ExternalSources>
 </Sources>

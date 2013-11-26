@@ -2,43 +2,57 @@
 
 namespace SitecoreInstaller.UI.Settings
 {
-    using App;
-    using App.Pipelines;
-    using Framework.Sys;
+  using App;
+  using App.Pipelines;
+  using Framework.Sys;
 
-    public partial class SqlSettings : UserSettingsCtrl
+  public partial class SqlSettings : UserSettingsCtrl
+  {
+    public SqlSettings()
     {
-        public SqlSettings()
-        {
-            InitializeComponent();
-        }
-
-        public override void Init()
-        {
-            Services.UserPreferences.Updated += UserPreferences_Updated;
-            Label = "Sql Settings";
-        }
-
-        private void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
-        {
-            tbxInstanceName.Text = e.Arg.SqlInstanceName;
-            tbxLogin.Text = e.Arg.SqlLogin;
-            tbxPassword.Text = e.Arg.SqlPassword;
-        }
-
-        protected override void btnSave_Click(object sender, EventArgs e)
-        {
-            Services.UserPreferences.Properties.SqlInstanceName = tbxInstanceName.Text;
-            Services.UserPreferences.Properties.SqlLogin = tbxLogin.Text;
-            Services.UserPreferences.Properties.SqlPassword = tbxPassword.Text;
-
-            Services.UserPreferences.Save();
-        }
-
-        private void btnTestSqlSettings_Click(object sender, EventArgs e)
-        {
-            btnSave_Click(sender, e);
-            Services.Pipelines.Run<TestSqlSettingsPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
-        }
+      InitializeComponent();
     }
+
+    public override void Init()
+    {
+      Services.UserPreferences.Updated += UserPreferences_Updated;
+      Label = "Sql Settings";
+    }
+
+    private void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
+    {
+      chkUseIntegratedSecurity.Checked = e.Arg.UseIntegratedSecurity;
+      tbxInstanceName.Text = e.Arg.SqlInstanceName;
+      tbxLogin.Text = e.Arg.SqlLogin;
+      tbxPassword.Text = e.Arg.SqlPassword;
+    }
+
+    protected override void btnSave_Click(object sender, EventArgs e)
+    {
+      Services.UserPreferences.Properties.SqlInstanceName = tbxInstanceName.Text;
+      Services.UserPreferences.Properties.SqlLogin = tbxLogin.Text;
+      Services.UserPreferences.Properties.SqlPassword = tbxPassword.Text;
+      Services.UserPreferences.Properties.UseIntegratedSecurity = chkUseIntegratedSecurity.Checked;
+
+      Services.UserPreferences.Save();
+    }
+
+    private void btnTestSqlSettings_Click(object sender, EventArgs e)
+    {
+      btnSave_Click(sender, e);
+      Services.Pipelines.Run<TestSqlSettingsPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+    }
+
+    private void chkUseIntegratedSecurity_CheckedChanged(object sender, EventArgs e)
+    {
+      var useIntegratedSecurity = chkUseIntegratedSecurity.Checked;
+
+      lblInstanceName.Enabled = !useIntegratedSecurity;
+      tbxInstanceName.Enabled = !useIntegratedSecurity;
+      lblLogin.Enabled = !useIntegratedSecurity;
+      tbxLogin.Enabled = !useIntegratedSecurity;
+      lblPassword.Enabled = !useIntegratedSecurity;
+      tbxPassword.Enabled = !useIntegratedSecurity;
+    }
+  }
 }
