@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 using ServiceStack.ServiceClient.Web;
 using ServiceStack.Text;
@@ -62,6 +61,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
           TempFile.Delete();
         File.WriteAllText(TempFile.FullName, response.Content);
       }
+
       UpdateInMemoryList();
     }
 
