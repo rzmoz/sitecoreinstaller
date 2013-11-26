@@ -126,5 +126,4 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       }
     }
   }
-
 }
