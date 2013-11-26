@@ -1,1 +1,1 @@
-# SitecoreInstaller supports rapid installation of Sitecore and modules.
+# SitecoreInstaller. The easiest way to install Sitecore
