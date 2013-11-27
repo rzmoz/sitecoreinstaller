@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using ServiceStack.ServiceClient.Web;
 using ServiceStack.Text;
+using Sitecore.Tasks;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.IO;
 using SitecoreInstaller.Framework.Web;
@@ -23,7 +24,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     public SdnSource(string name)
     {
       Name = name ?? GetType().Name + Guid.NewGuid();
-      _buidLibraryList = new BuildLibraryList();
       var tempFilePath = string.Format(_tempListfileFormat, Path.GetTempPath());
       TempListFile = new FileInfo(tempFilePath);
     }
@@ -69,7 +69,9 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public void Update()
     {
-      GetListFromRestService();
+      TempListFile.Refresh();
+      if (!TempListFile.Exists)
+        GetListFromRestService();
       UpdateInMemoryList();
     }
 
@@ -126,10 +128,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     private void UpdateInMemoryList()
     {
       TempListFile.Refresh();
-      if (TempListFile.Exists)
-        return;
-
-      GetListFromRestService();
+      if (!TempListFile.Exists)
+        GetListFromRestService();
 
       lock (_fileLock)
       {
@@ -145,6 +145,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
           Log.This.Error(e.ToString());
         }
       }
+      //fire and forget the download of an updated file so it's downloaded for next usage
+      System.Threading.Tasks.Task.Factory.StartNew(GetListFromRestService); 
     }
   }
 }
