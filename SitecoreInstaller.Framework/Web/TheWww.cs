@@ -11,6 +11,12 @@ namespace SitecoreInstaller.Framework.Web
 
   public class TheWww
   {
+    /// <summary>
+    /// Far small to medium files => use Curl.Download for larger files (1MB+)
+    /// </summary>
+    /// <param name="uri"></param>
+    /// <param name="targetFile"></param>
+    /// <param name="timeoutInMs"></param>
     public static void DownloadFile(Uri uri, FileInfo targetFile, int timeoutInMs = 5000)
     {
       var wc = new WebClient();

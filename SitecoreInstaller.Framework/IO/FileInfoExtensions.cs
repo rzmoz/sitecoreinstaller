@@ -23,6 +23,17 @@ namespace SitecoreInstaller.Framework.IO
       return file.Exists;
     }
 
+    public static bool TryDelete(this FileInfo file)
+    {
+      if (file == null)
+        return false;
+      file.Refresh();
+      if(file.Exists)
+        file.Delete();
+      file.Refresh();
+      return !file.Exists;
+    }
+
     public static bool IsZipfile(this FileInfo file)
     {
       if (file == null)

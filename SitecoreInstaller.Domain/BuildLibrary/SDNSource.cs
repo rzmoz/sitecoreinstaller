@@ -25,7 +25,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       Name = name ?? GetType().Name + Guid.NewGuid();
       _buidLibraryList = new BuildLibraryList();
       var tempFilePath = string.Format(_tempListfileFormat, Path.GetTempPath());
-      TempFile = new FileInfo(tempFilePath);
+      TempListFile = new FileInfo(tempFilePath);
     }
 
     public event EventHandler<EventArgs> Updating;
@@ -69,16 +69,18 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public void Update()
     {
+      GetListFromRestService();
+      UpdateInMemoryList();
+    }
+
+    private void GetListFromRestService()
+    {
       var response = CallRest("/list");
       lock (_fileLock)
       {
-        TempFile.Refresh();
-        if (TempFile.Exists)
-          TempFile.Delete();
-        File.WriteAllText(TempFile.FullName, response.Content);
+        TempListFile.TryDelete();
+        File.WriteAllText(TempListFile.FullName, response.Content);
       }
-
-      UpdateInMemoryList();
     }
 
     public bool Contains(string name, SourceType sourceType)
@@ -91,7 +93,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     public void Delete(SourceEntry sourceEntry, SourceType sourceType) { throw new NotImplementedException(); }
     public void Delete(IEnumerable<SourceEntry> keys, SourceType sourceType) { throw new NotImplementedException(); }
 
-    private static FileInfo TempFile { get; set; }
+    private static FileInfo TempListFile { get; set; }
 
     private IEnumerable<string> GetList(SourceType sourceType, bool forceUpdate = false)
     {
@@ -123,14 +125,17 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     private void UpdateInMemoryList()
     {
-      TempFile.Refresh();
-      if (!TempFile.Exists)
+      TempListFile.Refresh();
+      if (TempListFile.Exists)
         return;
+
+      GetListFromRestService();
+
       lock (_fileLock)
       {
         try
         {
-          string listContent = File.ReadAllText(TempFile.FullName);
+          string listContent = File.ReadAllText(TempListFile.FullName);
 
           _buidLibraryList = listContent.FromJson<BuildLibraryList>();
           _buidLibraryList.CleanEntries(CleanEntriesForDisplay);
@@ -143,3 +148,4 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     }
   }
 }
+

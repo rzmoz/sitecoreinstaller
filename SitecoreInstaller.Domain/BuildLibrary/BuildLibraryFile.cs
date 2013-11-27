@@ -53,7 +53,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       File.CopyTo(newFile.FullName);
 
       if (BuildLibraryFileCopyOptions == BuildLibraryFileCopyOptions.DeleteAfterCopy)
-        File.Delete();
+        File.TryDelete();
 
       File = newFile;
     }

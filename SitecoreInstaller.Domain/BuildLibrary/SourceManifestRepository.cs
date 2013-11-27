@@ -1,4 +1,6 @@
-﻿namespace SitecoreInstaller.Domain.BuildLibrary
+﻿using SitecoreInstaller.Framework.IO;
+
+namespace SitecoreInstaller.Domain.BuildLibrary
 {
   using System;
   using System.Collections;
@@ -14,9 +16,9 @@
   {
     private List<SourceManifest> _manifests;
     private static readonly object _manifestsLock = new object();
-
+    private static readonly object _fileLock = new object();
+    private const string _tempExternalManifestsFormat = @"{0}\sitecoreinstaller.external.manifest.{1}.tmp";
     public event EventHandler ExternalManifestsLoaded;
-
 
     public SourceManifestRepository(FileInfo sourceFile)
     {
@@ -67,10 +69,20 @@
         switch (source.Type)
         {
           case ExternalSourcetype.HttpGet:
-            var file = DownloadExternalSourceFile(source);
-            if (file != null)
-              files.Add(file);
+            var file = new FileInfo(string.Format(_tempExternalManifestsFormat, Path.GetTempPath(), source.GetHashCode()));
+            if (!file.Exists)
+            {
+              var externalSource = source;
+              Task.Factory.StartNew(() => DownloadExternalSourceFile(externalSource));
+            }
+            else
+            {
+              lock(_fileLock)
+                files.Add(file);
+            }
             break;
+          default:
+            throw new NotSupportedException("source type is not supported:" + source.Type);
         }
       }
 
@@ -82,19 +94,19 @@
       return manifests.Distinct();
     }
 
-    private static FileInfo DownloadExternalSourceFile(ExternalSource source)
+    private static void DownloadExternalSourceFile(ExternalSource source)
     {
-      var sourceFile = new FileInfo(Path.GetTempFileName());
-      try
+      var sourceFile = new FileInfo(string.Format(_tempExternalManifestsFormat, Path.GetTempPath(), source.GetHashCode()));
+      lock (_fileLock)
       {
-        TheWww.DownloadFile(source.Uri, sourceFile);
-        return sourceFile;
-      }
-      catch (WebException e)
-      {
-        sourceFile.Delete();
-        Framework.Diagnostics.Log.This.Warning("Failed getting external source file from {0}{1}{2}", source.Uri, Environment.NewLine, e.Message);
-        return null;
+        try
+        {
+          TheWww.DownloadFile(source.Uri, sourceFile);
+        }
+        catch (Exception)
+        {
+          sourceFile.TryDelete();
+        }
       }
     }
 
@@ -104,7 +116,6 @@
     {
       get { return _manifests.Where(x => x.Enabled); }
     }
-
 
     public SourceManifest Get(string name)
     {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SitecoreInstaller.Framework.Diagnostics;
+using SitecoreInstaller.Framework.IO;
 using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.Web
@@ -14,6 +15,11 @@ namespace SitecoreInstaller.Framework.Web
     private const string _FileName = @"curl.exe  -s -S"; //with only show errors switches
     private const string _DownloadFormat = @" -o ""{0}"" ""{1}""";
 
+    /// <summary>
+    /// Do not use for files smaller than 1KB!
+    /// </summary>
+    /// <param name="fullyQualifiedUrl"></param>
+    /// <param name="targetFile"></param>
     public static void Download(string fullyQualifiedUrl, FileInfo targetFile)
     {
       Log.This.Info("Downloading: " + targetFile.Name);
@@ -31,9 +37,7 @@ namespace SitecoreInstaller.Framework.Web
         Log.This.Error("Failed to download:{0}", fullyQualifiedUrl);
         return;
       }
-      targetFile.Refresh();
-      if (targetFile.Exists)
-        targetFile.Delete();
+      targetFile.TryDelete();
 
       tempFile.MoveTo(targetFile.FullName);
     }
