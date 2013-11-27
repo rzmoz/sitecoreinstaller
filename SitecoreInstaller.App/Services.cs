@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 
 using SitecoreInstaller.Domain.BuildLibrary;
@@ -9,7 +10,6 @@ using SitecoreInstaller.Domain.Website;
 using SitecoreInstaller.Framework.Configuration;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.Sys;
-using System.Threading.Tasks;
 using SitecoreInstaller.App.Pipelines;
 using SitecoreInstaller.Domain.Pipelines;
 
@@ -18,8 +18,6 @@ namespace SitecoreInstaller.App
 
   public static class Services
   {
-    private static bool _buildLibrariesInitialized = false;
-
     static Services()
     {
       Pipelines = new PipelineService();
@@ -28,15 +26,9 @@ namespace SitecoreInstaller.App
       IisManagement = new IisManagementService();
       PipelineWorker = new PipelineWorker();
       SourceManifests = new SourceManifestRepository(new FileInfo(AppConstants.SourcesConfigFileName));
-      SourceManifests.ExternalManifestsLoaded += SourceManifests_ExternalManifestsLoaded;
+      SourceManifests.ManifestsUpdated += InitBuildLibrary;
       Sql = new SqlService();
       Mongo = new MongoService();
-    }
-
-    static void SourceManifests_ExternalManifestsLoaded(object sender, System.EventArgs e)
-    {
-      if (_buildLibrariesInitialized)
-        InitBuildLibrary();
     }
 
     public static void Init()
@@ -44,12 +36,12 @@ namespace SitecoreInstaller.App
       //init before initializing build library
       SourceManifests.UpdateLocal();
 
-      InitBuildLibrary();
+      InitBuildLibrary(null, EventArgs.Empty);
 
       InitProjects();
     }
 
-    private static void InitBuildLibrary()
+    private static void InitBuildLibrary(object sender, EventArgs e)
     {
       Log.This.Debug("Initializing Build library");
       var localBuildLibrary = new WindowsFileSystemSource(string.Empty)
@@ -66,7 +58,6 @@ namespace SitecoreInstaller.App
       }
 
       BuildLibrary.Update();
-      _buildLibrariesInitialized = true;
     }
 
     public static void LoadUserPreferences()
@@ -84,7 +75,7 @@ namespace SitecoreInstaller.App
     static void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
     {
       InitProjects();
-      InitBuildLibrary();
+      InitBuildLibrary(sender, e);
     }
 
     private static void InitProjects()

@@ -7,7 +7,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
   using System.Linq;
   using System.Collections.Generic;
   using System.IO;
-  using System.Net;
   using System.Threading.Tasks;
   using Framework.Configuration;
   using Framework.Web;
@@ -18,7 +17,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
     private static readonly object _manifestsLock = new object();
     private static readonly object _fileLock = new object();
     private const string _tempExternalManifestsFormat = @"{0}\sitecoreinstaller.external.manifest.{1}.tmp";
-    public event EventHandler ExternalManifestsLoaded;
+    public event EventHandler ManifestsUpdated;
 
     public SourceManifestRepository(FileInfo sourceFile)
     {
@@ -28,23 +27,27 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
     public void UpdateLocal()
     {
-      _manifests = LoadManifests(SourceFile, GetLocalManifests).ToList();
+      var localManifests = LoadManifests(SourceFile, GetLocalManifests).ToList();
+      AddManifests(localManifests);
     }
 
     public void UpdateExternal()
     {
-      var externalManifests = LoadManifests(SourceFile, GetExternalManifests).ToList();
-      if (externalManifests.Count > 0)
+      var externalManifests = GetExternalManifests(SourceFile);
+      AddManifests(externalManifests);
+    }
+
+    private void AddManifests(IEnumerable<SourceManifest> manifests)
+    {
+      if (manifests == null)
+        return;
+      
+      lock (_manifestsLock)
       {
-        var localManifests = LoadManifests(SourceFile, GetLocalManifests).ToList();
-        var joinedManifests = localManifests.Concat(externalManifests.Distinct()).ToList();
-        lock (_manifestsLock)
-        {
-          _manifests = joinedManifests;
-        }
-        if (ExternalManifestsLoaded != null)
-          ExternalManifestsLoaded(this, EventArgs.Empty);
+        _manifests = _manifests.Concat(manifests.Distinct()).ToList();
       }
+      if (ManifestsUpdated != null)
+        ManifestsUpdated(this, EventArgs.Empty);
     }
 
     private IEnumerable<SourceManifest> LoadManifests(FileInfo sourceFile, Func<ConfigFile<SourceManifestConfig>, IEnumerable<SourceManifest>> getManifestsFunc)
@@ -61,6 +64,10 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       return sources.Properties.Manifests;
     }
 
+    private IEnumerable<SourceManifest> GetExternalManifests(FileInfo sources)
+    {
+      return GetExternalManifests(new ConfigFile<SourceManifestConfig>(sources));
+    }
     private IEnumerable<SourceManifest> GetExternalManifests(ConfigFile<SourceManifestConfig> sources)
     {
       var files = new List<FileInfo>();
@@ -70,20 +77,16 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         {
           case ExternalSourcetype.HttpGet:
             var file = new FileInfo(string.Format(_tempExternalManifestsFormat, Path.GetTempPath(), source.GetHashCode()));
-            if (!file.Exists)
-            {
-              var externalSource = source;
-              Task.Factory.StartNew(() => DownloadExternalSourceFile(externalSource));
-            }
-            else
-            {
-              lock(_fileLock)
+            if (file.Exists)
+              lock (_fileLock)
                 files.Add(file);
-            }
             break;
           default:
             throw new NotSupportedException("source type is not supported:" + source.Type);
         }
+        //always download file to have an updated list ready for next usage
+        var externalSource = source;
+        Task.Factory.StartNew(() => DownloadExternalSourceFile(externalSource));
       }
 
       var manifests = new List<SourceManifest>();
@@ -94,7 +97,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       return manifests.Distinct();
     }
 
-    private static void DownloadExternalSourceFile(ExternalSource source)
+    private void DownloadExternalSourceFile(ExternalSource source)
     {
       var sourceFile = new FileInfo(string.Format(_tempExternalManifestsFormat, Path.GetTempPath(), source.GetHashCode()));
       lock (_fileLock)
@@ -102,6 +105,8 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         try
         {
           TheWww.DownloadFile(source.Uri, sourceFile);
+          var manifests = LoadManifests(sourceFile, GetLocalManifests);
+          AddManifests(manifests);
         }
         catch (Exception)
         {
