@@ -19,7 +19,6 @@ namespace SitecoreInstaller.App
 
     public string IisSitePostfix { get; set; }
 
-    public bool UseIntegratedSecurity { get; set; }
     public string SqlInstanceName { get; set; }
     public string SqlLogin { get; set; }
     public string SqlPassword { get; set; }

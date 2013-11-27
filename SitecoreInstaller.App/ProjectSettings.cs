@@ -35,7 +35,6 @@ namespace SitecoreInstaller.App
     {
       _userPreferences = userPreferences;
       SetSystemPaths();
-      Sql.UseIntegratedSecurity = userPreferences.UseIntegratedSecurity;
       Sql.InstanceName = userPreferences.SqlInstanceName;
       Sql.Login = userPreferences.SqlLogin;
       Sql.Password = userPreferences.SqlPassword;

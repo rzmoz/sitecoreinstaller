@@ -23,7 +23,12 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
       _sources = new Dictionary<string, ISource> { { _localBuildLibrary.Name, _localBuildLibrary } };
       foreach (var source in sources)
-        _sources.Add(source.Name, source);
+      {
+        if (_sources.ContainsKey(source.Name))
+          _sources[source.Name] = source;
+        else
+          _sources.Add(source.Name, source);
+      }
     }
 
     public BuildLibraryFile Add(string file, SourceType sourceType)

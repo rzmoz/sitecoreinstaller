@@ -7,7 +7,6 @@
     <!-- Should start with dot but not a requirement-->
     <IisSitePostfix></IisSitePostfix>
 
-    <UseIntegratedSecurity>true</UseIntegratedSecurity>
     <SqlInstanceName>(local)</SqlInstanceName>
     <SqlLogin>sa</SqlLogin>
     <SqlPassword>sa</SqlPassword>

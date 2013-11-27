@@ -10,8 +10,7 @@
     public string Login { get; set; }
     public string Password { get; set; }
     public string InstanceName { get; set; }
-    public bool UseIntegratedSecurity { get; set; }
-
+    
     public MsSqlConnectionString ConnectionString
     {
       get

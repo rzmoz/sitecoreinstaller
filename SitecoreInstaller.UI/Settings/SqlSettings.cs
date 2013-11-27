@@ -21,7 +21,6 @@ namespace SitecoreInstaller.UI.Settings
 
     private void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
     {
-      chkUseIntegratedSecurity.Checked = e.Arg.UseIntegratedSecurity;
       tbxInstanceName.Text = e.Arg.SqlInstanceName;
       tbxLogin.Text = e.Arg.SqlLogin;
       tbxPassword.Text = e.Arg.SqlPassword;
@@ -32,7 +31,6 @@ namespace SitecoreInstaller.UI.Settings
       Services.UserPreferences.Properties.SqlInstanceName = tbxInstanceName.Text;
       Services.UserPreferences.Properties.SqlLogin = tbxLogin.Text;
       Services.UserPreferences.Properties.SqlPassword = tbxPassword.Text;
-      Services.UserPreferences.Properties.UseIntegratedSecurity = chkUseIntegratedSecurity.Checked;
 
       Services.UserPreferences.Save();
     }
@@ -41,18 +39,6 @@ namespace SitecoreInstaller.UI.Settings
     {
       btnSave_Click(sender, e);
       Services.Pipelines.Run<TestSqlSettingsPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
-    }
-
-    private void chkUseIntegratedSecurity_CheckedChanged(object sender, EventArgs e)
-    {
-      var useIntegratedSecurity = chkUseIntegratedSecurity.Checked;
-
-      lblInstanceName.Enabled = !useIntegratedSecurity;
-      tbxInstanceName.Enabled = !useIntegratedSecurity;
-      lblLogin.Enabled = !useIntegratedSecurity;
-      tbxLogin.Enabled = !useIntegratedSecurity;
-      lblPassword.Enabled = !useIntegratedSecurity;
-      tbxPassword.Enabled = !useIntegratedSecurity;
     }
   }
 }
