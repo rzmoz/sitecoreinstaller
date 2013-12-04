@@ -1,17 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SitecoreInstaller.Framework.Test.IO
+using FluentAssertions;
+using NUnit.Framework;
+using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.Sys;
+namespace SitecoreInstaller.Tests.Framework.IO
 {
-    using NUnit.Framework;
-
-    using SitecoreInstaller.Framework.IO;
+    
 
     [TestFixture]
     public class StringExtensionsUT
     {
+        [Test]
+        public void Replace_IgnoreCase_RaplceWorksWithCaseIgnore()
+        {
+            var fullstring = "Lorem Ipsum Dolor SIT amet, consectetur adipiscing elit.";
+
+            var replaced = fullstring.ReplaceCaseInsensitive(" dOLOR sit AMET", "Haloo");
+
+            replaced.Should().Be("Lorem IpsumHaloo, consectetur adipiscing elit.");
+        }
+
         [Test]
         public void CleanIllegalFileNameChars_RemoveIllegalCharactersFromFilename_FilenameIsClean()
         {

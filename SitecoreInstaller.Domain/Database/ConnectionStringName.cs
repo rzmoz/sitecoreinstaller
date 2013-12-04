@@ -8,7 +8,7 @@ namespace SitecoreInstaller.Domain.Database
     public class ConnectionStringName
     {
 
-        private const char _Delimiter = '_';
+        private const char _delimiter = '_';
 
         public ConnectionStringName()
             : this(string.Empty, string.Empty)
@@ -20,7 +20,7 @@ namespace SitecoreInstaller.Domain.Database
             if (databaseName == null)
                 throw new ArgumentNullException("databaseName");
 
-            var delimiterIndex = databaseName.LastIndexOf(_Delimiter);
+            var delimiterIndex = databaseName.LastIndexOf(_delimiter);
             if (delimiterIndex < 0)
             {
                 ProjectPart = string.Empty;
@@ -46,7 +46,7 @@ namespace SitecoreInstaller.Domain.Database
         {
             if (string.IsNullOrEmpty(ProjectPart))
                 return DatabasePart;
-            return ProjectPart + _Delimiter + DatabasePart;
+            return ProjectPart + _delimiter + DatabasePart;
         }
     }
 }

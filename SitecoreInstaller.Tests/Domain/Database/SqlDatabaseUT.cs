@@ -1,26 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.IO;
 using FluentAssertions;
-using System.Text;
+using NUnit.Framework;
+using SitecoreInstaller.Domain.Database;
 
-namespace SitecoreInstaller.Domain.Test.Database
+namespace SitecoreInstaller.Tests.Domain.Database
 {
-    using System.IO;
-
-    using NUnit.Framework;
-
-    using SitecoreInstaller.Domain.Database;
-  
     [TestFixture]
     public class SqlDatabaseUT
     {
         private SqlDatabase _database;
         
-        [TestFixtureSetUp]
-        public void FixtureSetup()
+        [Test]
+        [TestCase("SiteSetter.Sitecore.Web", "Web")]
+        [TestCase("SiteSetter_Sitecore_Web", "Web")]
+        [TestCase("Andes.Reporting.Secondary", "Reporting_Secondary")]
+        [TestCase("Andes_Reporting_Secondary", "Reporting_Secondary")]
+        public void LogicalName_DetermineLogicalName_LogicalNameDoesntTakeTheWordSitecoreIntoAccount(string physicalDbName, string expectedLogicalName)
         {
-            
+            const string projectName = "MyProject";
+            var db = new SqlDatabase(new DirectoryInfo("."), physicalDbName, projectName);
+
+            db.LogicalName.Should().Be(expectedLogicalName);
+            db.Name.Should().Be(string.Format("{0}_{1}", projectName, expectedLogicalName));
         }
+
 
         [Test]
         public void Ctor_PathResolving_PathsAreResolved()
@@ -35,7 +38,7 @@ namespace SitecoreInstaller.Domain.Test.Database
             _database.PhysicalName.Should().BeEquivalentTo(physicalDatbaseName);
             _database.LogicalName.Should().BeEquivalentTo("Core");
             _database.DatafileFullPath.Should().BeEquivalentTo(path + "\\" + physicalDatbaseName + ".mdf");
-            _database.LogFileFullPath.Should().BeEquivalentTo(path + "\\" + physicalDatbaseName+ ".ldf");
+            _database.LogFileFullPath.Should().BeEquivalentTo(path + "\\" + physicalDatbaseName + ".ldf");
         }
     }
 }

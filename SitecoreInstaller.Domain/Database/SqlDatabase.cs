@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Domain.Database
 {
@@ -34,11 +34,11 @@ namespace SitecoreInstaller.Domain.Database
             {
                 var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString.Value)));
                 var files = new StringCollection { DatafileFullPath, LogFileFullPath };
-                
-                sqlServer.AttachDatabase(Name,files);
-               
-                sqlServer.Databases[Name].SetOwner(sqlSettings.Login,true);
-                
+
+                sqlServer.AttachDatabase(Name, files);
+
+                sqlServer.Databases[Name].SetOwner(sqlSettings.Login, true);
+
                 Log.This.Info("Database {0} attached", Name);
             }
             catch (SqlServerManagementException ex)
@@ -54,7 +54,7 @@ namespace SitecoreInstaller.Domain.Database
             {
                 var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString.Value)));
                 sqlServer.KillAllProcesses(Name);
-                sqlServer.DetachDatabase(Name,false);
+                sqlServer.DetachDatabase(Name, false);
                 Log.This.Info("Database {0} detached", Name);
             }
             catch (SqlServerManagementException ex)
@@ -80,7 +80,17 @@ namespace SitecoreInstaller.Domain.Database
                     break;
             }
             if (dbPrefixIndex > -1)
-                return physicalName.Remove(0, dbPrefixIndex + 1);
+                physicalName = physicalName.Remove(0, dbPrefixIndex + 1);//remove first part of name
+            return CleanForSitecoreName(physicalName);//remove any sitecore words from the rest of the name
+        }
+
+        private string CleanForSitecoreName(string physicalName)
+        {
+            foreach (var delimiter in _physicalDatabaseNameDelimiter)
+            {
+                physicalName = physicalName.Remove("sitecore" + delimiter);
+                physicalName = physicalName.Replace(delimiter, '_');
+            }
             return physicalName;
         }
     }
