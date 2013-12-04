@@ -110,11 +110,13 @@
     <Compile Include="Pipelines\ArchiveEventArgs.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\CleanupEventArgs.cs" />
+    <Compile Include="Pipelines\MinorChecks\RecycleApplication.cs" />
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckNothing.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />
     <Compile Include="Pipelines\PipelineApplicationEventArgs.cs" />
     <Compile Include="Pipelines\PublishPipeline.cs" />
+    <Compile Include="Pipelines\RecycleApplicationPipeline.cs" />
     <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Archiving\StartApplication.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveToArchiveFolder.cs" />

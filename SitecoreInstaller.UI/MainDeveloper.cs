@@ -83,6 +83,9 @@ namespace SitecoreInstaller.UI
         case Keys.P | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<PublishPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.MakeFullPublishDialog);
           return true;
+        case Keys.R | Keys.Control | Keys.Alt:
+          Services.Pipelines.Run<RecycleApplicationPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+          return true;
         case Keys.U | Keys.Control | Keys.Shift:
           Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.DeleteProjectDialog);
           return true;

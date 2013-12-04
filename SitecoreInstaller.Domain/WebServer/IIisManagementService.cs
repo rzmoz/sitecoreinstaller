@@ -17,6 +17,7 @@ namespace SitecoreInstaller.Domain.WebServer
         /// </summary>
         void DeleteApplication(string applicationName);
 
+        void RecycleApplication(string applicationName);
         void StartApplication(string applicationName);
         void StopApplication(string applicationName);
 
