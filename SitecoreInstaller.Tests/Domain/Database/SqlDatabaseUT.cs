@@ -37,7 +37,7 @@ namespace SitecoreInstaller.Tests.Domain.Database
             _database.Name.Should().BeEquivalentTo(projectName + "_Core");
             _database.PhysicalName.Should().BeEquivalentTo(physicalDatbaseName);
             _database.LogicalName.Should().BeEquivalentTo("Core");
-            _database.DatafileFullPath.Should().BeEquivalentTo(path + "\\" + physicalDatbaseName + ".mdf");
+            _database.DataFileFullPath.Should().BeEquivalentTo(path + "\\" + physicalDatbaseName + ".mdf");
             _database.LogFileFullPath.Should().BeEquivalentTo(path + "\\" + physicalDatbaseName + ".ldf");
         }
     }

@@ -21,7 +21,7 @@ namespace SitecoreInstaller.Domain.Database
 
         public SqlDatabase(DirectoryInfo folder, string physicalDatabaseName, string projectName)
         {
-            DatafileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + FileTypes.DatabaseDataFile.Extension;
+            DataFileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + FileTypes.DatabaseDataFile.Extension;
             LogFileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + FileTypes.DatabaseLogFile.Extension;
             PhysicalName = physicalDatabaseName;
             LogicalName = GetLogicalDatabaseName(physicalDatabaseName);
@@ -33,7 +33,7 @@ namespace SitecoreInstaller.Domain.Database
             try
             {
                 var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString.Value)));
-                var files = new StringCollection { DatafileFullPath, LogFileFullPath };
+                var files = new StringCollection { DataFileFullPath, LogFileFullPath };
 
                 sqlServer.AttachDatabase(Name, files);
 
@@ -65,7 +65,7 @@ namespace SitecoreInstaller.Domain.Database
         }
 
         public string Name { get; private set; }
-        public string DatafileFullPath { get; private set; }
+        public string DataFileFullPath { get; private set; }
         public string LogFileFullPath { get; private set; }
         public string PhysicalName { get; private set; }
         public string LogicalName { get; private set; }
