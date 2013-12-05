@@ -16,6 +16,7 @@ namespace SitecoreInstaller.App.Pipelines
         {
             //Init preconditions
             AddPrecondition<CheckProjectNameIsSet>();
+            AddPrecondition<CheckProjectExists>();
 
             //Init steps
             AddStep<RecycleApplication>();
