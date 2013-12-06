@@ -70,14 +70,29 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         public void Update()
         {
             TempListFile.Refresh();
+            DeleteTempFileIfCorrupted();
             if (!TempListFile.Exists)
                 GetListFromRestService();
             UpdateInMemoryList();
         }
 
+        private void DeleteTempFileIfCorrupted()
+        {
+            lock (_fileLock)
+            {
+                var content = File.ReadAllText(TempListFile.FullName);
+                if (content.Trim().Length == 0)
+                    TempListFile.Delete();
+            }
+        }
+
         private void GetListFromRestService()
         {
             var response = CallRest("/list");
+
+            //we don't write anything is the response is empty
+            if (response.Content.Trim().Length == 0)
+                return;
             lock (_fileLock)
             {
                 TempListFile.TryDelete();
