@@ -1,12 +1,11 @@
 ﻿using System;
 using System.IO;
 using Microsoft.Web.Administration;
+using System.Diagnostics;
+using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.WebServer
 {
-    using System.Diagnostics;
-    using SitecoreInstaller.Framework.Diagnostics;
-
     public class IisManagementService : IIisManagementService
     {
         public IisManagementService()
