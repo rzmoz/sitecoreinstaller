@@ -30,7 +30,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
       Sitecore = Root.CombineTo<DirectoryInfo>(_SitecoreFolderName);
     }
 
-    public void Create()
+    public void CreateIfNotExists()
     {
       Root.CreateIfNotExists();
       Modules.CreateIfNotExists();

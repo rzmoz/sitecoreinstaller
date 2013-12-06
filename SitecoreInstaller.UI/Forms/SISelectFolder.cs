@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.UI.Forms
 {
@@ -28,7 +29,13 @@ namespace SitecoreInstaller.UI.Forms
     public new string Text
     {
       get { return tbxFolder.Text; }
-      set { tbxFolder.Text = value; }
+        set
+        {
+            this.CrossThreadSafe(() =>
+            {
+                tbxFolder.Text = value;    
+            });
+        }
     }
 
     private void btnBrowse_Click(object sender, EventArgs e)

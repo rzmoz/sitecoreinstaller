@@ -1,4 +1,5 @@
 ﻿using SitecoreInstaller.App.Pipelines.Steps.Databases;
+using SitecoreInstaller.App.Pipelines.Steps.InitialSetup;
 using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
@@ -8,6 +9,7 @@ namespace SitecoreInstaller.App.Pipelines
         public InitialSetupPipeline()
         {
             AddStep<AddUserToSqlServerAsSysAdmin>();
+            AddStep<DetermineLocalBuildLibraryFolder>();
         }
     }
 }

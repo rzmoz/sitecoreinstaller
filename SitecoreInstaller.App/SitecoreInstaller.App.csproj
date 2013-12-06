@@ -112,6 +112,7 @@
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\CleanupEventArgs.cs" />
     <Compile Include="Pipelines\Steps\Databases\AddUserToSqlServerAsSysAdmin.cs" />
+    <Compile Include="Pipelines\Steps\InitialSetup\DetermineLocalBuildLibraryFolder.cs" />
     <Compile Include="Pipelines\Steps\Maintenance\RecycleApplication.cs" />
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckNothing.cs" />
