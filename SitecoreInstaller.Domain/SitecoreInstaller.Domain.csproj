@@ -187,6 +187,7 @@
     <Compile Include="BuildLibrary\SourceManifestRepository.cs" />
     <Compile Include="BuildLibrary\SourceManifestConfig.cs" />
     <Compile Include="BuildLibrary\SourceType.cs" />
+    <Compile Include="BuildLibrary\VoidBuildLibraryResource.cs" />
     <Compile Include="BuildLibrary\WindowsLicenseFileSourceEntryRepository.cs" />
     <Compile Include="BuildLibrary\WindowsSourceEntryRepository.cs" />
     <Compile Include="BuildLibrary\WindowsFileSystemSource.cs" />

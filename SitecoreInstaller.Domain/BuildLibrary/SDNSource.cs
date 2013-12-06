@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using ServiceStack.ServiceClient.Web;
 using ServiceStack.Text;
@@ -48,6 +49,10 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             var url = string.Format("/{0}/{1}", resource, sourceEntry);
             var response = CallRest(url);
+
+            if (response.Content.Trim().Length == 0)
+                return new VoidBuildLibraryResource();
+
             var targetFile = new FileInfo(Path.Combine(Path.GetTempPath(), sourceEntry.Key + ".zip"));
 
             Curl.Download(response.ResourceUri, targetFile);
@@ -59,7 +64,15 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         {
             var baseUrl = string.Format(_urlFormat, Parameters);
             var client = new JsonServiceClient(baseUrl);
-            return client.Get<BuildLibraryResponse>(url);
+            try
+            {
+                return client.Get<BuildLibraryResponse>(url);
+            }
+            catch (WebException e)
+            {
+                Log.This.Error(e.ToString());
+                return new BuildLibraryResponse();
+            }
         }
 
         public IEnumerable<BuildLibraryResource> Get(IEnumerable<SourceEntry> sourceEntries, SourceType sourceType)
@@ -93,6 +106,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
             //we don't write anything is the response is empty
             if (response.Content.Trim().Length == 0)
                 return;
+
             lock (_fileLock)
             {
                 TempListFile.TryDelete();
