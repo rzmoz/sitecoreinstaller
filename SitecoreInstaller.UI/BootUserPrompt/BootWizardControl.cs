@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SitecoreInstaller.App;
+using SitecoreInstaller.App.Pipelines;
 using SitecoreInstaller.Framework.Sys;
 using SitecoreInstaller.UI.Forms;
 using SitecoreInstaller.UI.Viewport;
@@ -22,6 +24,30 @@ namespace SitecoreInstaller.UI.BootUserPrompt
             InitializeComponent();
         }
 
+        private void Finish()
+        {
+            _wizardFinished = true;
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            BackColor = Styles.Controls.BackColor;
+            InitButtons(btnAdvancedSetup, btnFullyAutomated);
+        }
+
+        private void InitButtons(params Button[] buttons)
+        {
+            Parallel.ForEach(buttons, button =>
+            {
+                button.BackColor = Styles.Navigation.Level1.BackColor;
+                button.ForeColor = Styles.Navigation.Level1.ForeColor;
+                button.FlatAppearance.BorderSize = 3;
+                button.FlatAppearance.BorderColor = Styles.Navigation.Level1.ForeColor;
+                button.Font = Styles.Fonts.H1;
+            });
+        }
+
+
         public Task InitAsync()
         {
             return Task.Factory.StartNew(() =>
@@ -34,9 +60,18 @@ namespace SitecoreInstaller.UI.BootUserPrompt
             });
         }
 
-        private void siButton1_Click(object sender, EventArgs e)
+        private void btnAdvancedSetup_Click(object sender, EventArgs e)
         {
-            _wizardFinished = true;
+            Finish();
         }
+
+        private void btnFullyAutomated_Click(object sender, EventArgs e)
+        {
+            Services.UserPreferences.Properties.ResetToDefaultSettings();
+            Services.UserPreferences.Save();
+            Services.Pipelines.Run<InitialSetupPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+            Finish();
+        }
+
     }
 }

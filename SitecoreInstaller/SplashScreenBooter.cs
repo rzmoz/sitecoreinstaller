@@ -14,7 +14,7 @@ namespace SitecoreInstaller
         {
         }
 
-        protected override Task TemplateInitAsync()
+        public override Task InitAsync()
         {
             return Task.Delay(TimeSpan.FromSeconds(0.5));//just to make sure splash screen is open long enough to be readable
         }

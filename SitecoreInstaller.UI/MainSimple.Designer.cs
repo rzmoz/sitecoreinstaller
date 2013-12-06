@@ -61,7 +61,7 @@
       this.btnOpenSite.Cursor = System.Windows.Forms.Cursors.Hand;
       this.btnOpenSite.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.btnOpenSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnOpenSite.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnOpenSite.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnOpenSite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
       this.btnOpenSite.Location = new System.Drawing.Point(348, 92);
       this.btnOpenSite.Name = "btnOpenSite";

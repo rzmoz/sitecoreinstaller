@@ -14,7 +14,7 @@
     <SqlLogin xdt:Transform="Replace">sc</SqlLogin>
     <SqlPassword xdt:Transform="Replace">1234</SqlPassword>
     
-    <AdvancedView xdt:Transform="Replace">true</AdvancedView>
+    <AdvancedView xdt:Transform="Replace">false</AdvancedView>
 
     <PromptForUserSettings xdt:Transform="Replace">true</PromptForUserSettings>
 </UserPreferences>

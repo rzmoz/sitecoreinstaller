@@ -14,21 +14,9 @@ namespace SitecoreInstaller
         {
             Control = control;
         }
-        protected SIUserControl Control { get; private set; }
+        public SIUserControl Control { get; private set; }
 
-        public Task InitAsync()
-        {
-            Control.BringToFront();
-            Control.Show();
-            return TemplateInitAsync();
-        }
+        public abstract Task InitAsync();
 
-        protected abstract Task TemplateInitAsync();
-
-        public void Cleanup()
-        {
-            Control.SendToBack();
-            Control.Hide();
-        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller
 {
@@ -23,22 +24,33 @@ namespace SitecoreInstaller
 
             Services.LoadUserPreferences();
 
-            Booter booter = null;
-            if (Services.UserPreferences.Properties.PromptForUserSettings)
-                booter = new BootWizardBooter(bootWizardControl1);
-            else
-                booter = new SplashScreenBooter(splashScreen1);
+            var booter = CreateBooter();
+            ViewportStack.Register(booter.Control);
+            ViewportStack.Show(booter.Control);
             Task bootTask = booter.InitAsync();
 
             Services.Init();
 
-            Init(); //awaits must be place after init methods, since it messes with the ui thread.
+            Init();
+            /****************************************************************************
+             awaits must be placed after this.Init(), since it messes with the ui thread.
+            *****************************************************************************/
 
             await bootTask;
-            
+            ViewportStack.Hide(booter.Control);
+            ViewportStack.UnRegister(booter.Control);
+
             mainCtrl1.BringToFront();
 
             await Task.Factory.StartNew(Services.SourceManifests.UpdateExternal);
+        }
+
+        private Booter CreateBooter()
+        {
+            if (Services.UserPreferences.Properties.PromptForUserSettings)
+                return new BootWizardBooter(bootWizardControl1);
+            else
+                return new SplashScreenBooter(splashScreen1);
         }
 
         public void Init()
