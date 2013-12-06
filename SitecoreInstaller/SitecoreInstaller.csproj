@@ -188,15 +188,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SplashScreenBooter.cs" />
-    <ConfigTransformDelta Include="Preferences.Delta" />
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Preferences.Debug.Delta">
-      <DependentUpon>Preferences.Delta</DependentUpon>
+    <None Include="Preferences.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Preferences.Source" />
     <None Include="Sources.Debug.Delta">
       <DependentUpon>Sources.Delta</DependentUpon>
     </None>

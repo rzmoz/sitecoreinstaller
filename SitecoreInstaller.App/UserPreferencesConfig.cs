@@ -9,9 +9,23 @@ namespace SitecoreInstaller.App
     {
         public void ResetToDefaultSettings()
         {
+            ProjectsFolder = @"c:\inetpub\sitecoreinstallerwwwroot";
+            LocalBuildLibrary = @"c:\BuildLibrary";
+            IisSitePostfix = string.Empty;
+
             SqlInstanceName = ".";
             SqlLogin = "sc";
             SqlPassword = "1234";
+
+            MongoEndpoint = @"localhost";
+            MongoPort = 27017;
+            MongoUsername = string.Empty;
+            MongoPassword = string.Empty;
+
+            AdvancedView = false;
+            PromptForUserSettings = true;
+
+            LicenseExpirationPeriodInDays = 14;
         }
 
         public string ProjectsFolder { get; set; }
