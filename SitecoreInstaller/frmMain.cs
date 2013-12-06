@@ -15,7 +15,6 @@ namespace SitecoreInstaller
             InitializeComponent();
         }
 
-
         protected async override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -24,19 +23,20 @@ namespace SitecoreInstaller
 
             Services.LoadUserPreferences();
 
-            splashScreen1.Show();
-            splashScreen1.BringToFront();
-
+            Booter booter = null;
+            if (Services.UserPreferences.Properties.PromptForUserSettings)
+                booter = new BootWizardBooter(bootWizardControl1);
+            else
+                booter = new SplashScreenBooter(splashScreen1);
+            Task bootTask = booter.InitAsync();
 
             Services.Init();
 
-            Init();
-            //awaits must be place after init methods, since it messes with the ui thread.
-            await Task.Delay(TimeSpan.FromSeconds(0.5));//just to make sure splash screen is open long enough to be readable
+            Init(); //awaits must be place after init methods, since it messes with the ui thread.
 
-            splashScreen1.Hide();
-            splashScreen1.SendToBack();
-            splashScreen1.Stop();
+            await bootTask;
+            
+            mainCtrl1.BringToFront();
 
             await Task.Factory.StartNew(Services.SourceManifests.UpdateExternal);
         }

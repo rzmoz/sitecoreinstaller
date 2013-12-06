@@ -85,6 +85,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BootUserPrompt\BootWizardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BootUserPrompt\BootWizardControl.Designer.cs">
+      <DependentUpon>BootWizardControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FirstRun\StepWizard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -349,6 +355,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BootUserPrompt\BootWizardControl.resx">
+      <DependentUpon>BootWizardControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FirstRun\StepWizard.resx">
       <DependentUpon>StepWizard.cs</DependentUpon>
     </EmbeddedResource>
