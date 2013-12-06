@@ -1,4 +1,4 @@
-﻿namespace SitecoreInstaller.App.Pipelines.Steps.DatabaseSettings
+﻿namespace SitecoreInstaller.App.Pipelines.Steps.Databases
 {
   public class VerifyMongoDbConnection : Step<PipelineApplicationEventArgs>
   {

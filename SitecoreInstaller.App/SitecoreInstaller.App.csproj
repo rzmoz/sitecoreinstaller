@@ -107,9 +107,11 @@
   <ItemGroup>
     <Compile Include="DialogIcons.cs" />
     <Compile Include="DialogButtons.cs" />
+    <Compile Include="Pipelines\Steps\Databases\AddDefaltUserToSqlServerAsSysadminPipeline.cs" />
     <Compile Include="Pipelines\ArchiveEventArgs.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\CleanupEventArgs.cs" />
+    <Compile Include="Pipelines\Steps\Databases\AddUserToSqlServerAsSysAdmin.cs" />
     <Compile Include="Pipelines\Steps\Maintenance\RecycleApplication.cs" />
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckNothing.cs" />
@@ -120,7 +122,7 @@
     <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
     <Compile Include="Pipelines\Steps\Archiving\StartApplication.cs" />
     <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveToArchiveFolder.cs" />
-    <Compile Include="Pipelines\Steps\DatabaseSettings\VerifyMongoDbConnection.cs" />
+    <Compile Include="Pipelines\Steps\Databases\VerifyMongoDbConnection.cs" />
     <Compile Include="Pipelines\Steps\Install\Copy64BitAssemblies.cs" />
     <Compile Include="Pipelines\Steps\Install\DeserializeItems.cs" />
     <Compile Include="Pipelines\Steps\Install\RunPreInstallPowerShellScripts.cs" />
@@ -130,7 +132,7 @@
     <Compile Include="Pipelines\Steps\Install\TransformConfigFiles.cs" />
     <Compile Include="Pipelines\Steps\Nothing\DoNothingEventArgs.cs" />
     <Compile Include="Pipelines\Steps\PowerShellScriptStep.cs" />
-    <Compile Include="Pipelines\Steps\DatabaseSettings\VerifySqlConnection.cs" />
+    <Compile Include="Pipelines\Steps\Databases\VerifySqlConnection.cs" />
     <Compile Include="Pipelines\Steps\Publishing\PublishSite.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPostUninstallPowerShellScripts.cs" />
     <Compile Include="Pipelines\Steps\Uninstall\RunPreUninstallPowerShellScripts.cs" />

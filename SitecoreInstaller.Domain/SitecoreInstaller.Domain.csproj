@@ -123,6 +123,9 @@
       <HintPath>..\3rdPartyAssemblies\Microsoft.SqlServer.Smo.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3rdPartyAssemblies\Microsoft.Web.Administration.dll</HintPath>

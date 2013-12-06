@@ -6,11 +6,10 @@ using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 {
-  public class DoNothingStep2 : Step<DoNothingEventArgs>
-  {
-    protected override void InnerInvoke(object sender, DoNothingEventArgs args)
+    public class DoNothingStep2 : Step<DoNothingEventArgs>
     {
-      Log.This.Info("This should not be logged if pipeline was aborted");
+        protected override void InnerInvoke(object sender, DoNothingEventArgs args)
+        {
+        }
     }
-  }
 }

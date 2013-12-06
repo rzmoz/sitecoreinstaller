@@ -1,4 +1,4 @@
-﻿using SitecoreInstaller.App.Pipelines.Steps.DatabaseSettings;
+﻿using SitecoreInstaller.App.Pipelines.Steps.Databases;
 using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines

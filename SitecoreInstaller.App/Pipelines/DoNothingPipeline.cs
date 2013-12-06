@@ -1,7 +1,7 @@
-﻿using SitecoreInstaller.Domain.Pipelines;
+﻿
 using SitecoreInstaller.App.Pipelines.Preconditions;
-using SitecoreInstaller.App.Pipelines.Steps;
 using SitecoreInstaller.App.Pipelines.Steps.Nothing;
+using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {

@@ -17,6 +17,26 @@ namespace SitecoreInstaller.Domain.Database
 
     public class SqlService
     {
+        public void AddUserAsSysadmin(SqlSettings sqlSettings)
+        {
+            var sqlServer = new Server(new ServerConnection(new SqlConnection("Server=.;Trusted_Connection=True;")));
+
+            var existingUser = sqlServer.Logins[sqlSettings.Login];
+            if (existingUser != null)
+                existingUser.Drop();
+
+            var login = new Login(sqlServer, sqlSettings.Login)
+            {
+                PasswordExpirationEnabled = false,
+                PasswordPolicyEnforced = false,
+                LoginType = LoginType.SqlLogin
+            };
+
+            login.Create(sqlSettings.Password);
+            login.AddToRole("sysadmin");
+        }
+
+
         public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, IEnumerable<ConnectionStringName> databaseNames, IEnumerable<ConnectionStringEntry> existingEntries)
         {
             Log.This.Info("Generating connection string delta...");

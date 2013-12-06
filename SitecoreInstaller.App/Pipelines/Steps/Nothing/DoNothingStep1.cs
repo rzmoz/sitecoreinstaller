@@ -11,6 +11,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
   {
     protected override void InnerInvoke(object sender, DoNothingEventArgs args)
     {
+        
     }
   }
 }
