@@ -110,7 +110,7 @@
     <Compile Include="Pipelines\ArchiveEventArgs.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\CleanupEventArgs.cs" />
-    <Compile Include="Pipelines\MinorChecks\RecycleApplication.cs" />
+    <Compile Include="Pipelines\Steps\Maintenance\RecycleApplication.cs" />
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckNothing.cs" />
     <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />
