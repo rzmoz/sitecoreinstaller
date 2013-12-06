@@ -107,7 +107,7 @@
   <ItemGroup>
     <Compile Include="DialogIcons.cs" />
     <Compile Include="DialogButtons.cs" />
-    <Compile Include="Pipelines\Steps\Databases\AddDefaltUserToSqlServerAsSysadminPipeline.cs" />
+    <Compile Include="Pipelines\InitialSetupPipeline.cs" />
     <Compile Include="Pipelines\ArchiveEventArgs.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\CleanupEventArgs.cs" />
