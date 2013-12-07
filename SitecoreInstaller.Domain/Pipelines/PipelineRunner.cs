@@ -30,7 +30,7 @@ namespace SitecoreInstaller.Domain.Pipelines
     {
       if (pipeline == null) throw new ArgumentNullException("pipeline");
 
-      Log.This.Reset();
+      Log.ToApp.Reset();
       ExecuteAllText = executeAllText;
       PreProcessors = preProcessors ?? Enumerable.Empty<Action<TK>>();
       Pipeline = pipeline;
@@ -43,27 +43,27 @@ namespace SitecoreInstaller.Domain.Pipelines
     {
       if (Pipeline.Args.AbortPipeline)
       {
-        Log.This.Info("Aborting pipeline: {0}", Pipeline.Args.AbortReason);
-        Log.This.Flush();
+        Log.ToApp.Info("Aborting pipeline: {0}", Pipeline.Args.AbortReason);
+        Log.ToApp.Flush();
         //we don't break completely out of this method as we still want to clean up listeners
       }
       else if (PreconditionsAreMet(Pipeline.Preconditions, Pipeline.Args))
       {
         if (AllStepsExecuting != null)
           AllStepsExecuting(sender, new PipelineInfoEventArgs(Pipeline));
-        Log.This.Info("Executing pre processors");
+        Log.ToApp.Info("Executing pre processors");
         foreach (var preProcessor in PreProcessors)
         {
           preProcessor(Pipeline.Args as TK);
         }
-        Log.This.Info("Pre processors executed");
+        Log.ToApp.Info("Pre processors executed");
 
         var elapsed = Profiler.This(InnerExecuteAllSteps, this, Pipeline.Args);
-        Log.This.Profile(Pipeline.Name.ToString(), elapsed);
+        Log.ToApp.Profile(Pipeline.Name.ToString(), elapsed);
 
-        Log.This.Flush();
+        Log.ToApp.Flush();
 
-        var issues = from entry in Log.This.Entries
+        var issues = from entry in Log.ToApp.Entries
                      where entry.LogType == LogType.Warning ||
                      entry.LogType == LogType.Error
                      select entry;
@@ -83,16 +83,16 @@ namespace SitecoreInstaller.Domain.Pipelines
     {
       foreach (var precondition in preconditions)
       {
-        Log.This.Info("Evaluating precondition: {0}", precondition.Name.ActiveForm);
+        Log.ToApp.Info("Evaluating precondition: {0}", precondition.Name.ActiveForm);
         if (precondition.Evaluate(this, args))
         {
-          Log.This.Info("Precondition met: {0}", precondition.Name.ActiveForm);
+          Log.ToApp.Info("Precondition met: {0}", precondition.Name.ActiveForm);
         }
         else
         {
-          Log.This.Error("Precondition NOT met: {0}", precondition.Name.ActiveForm);
+          Log.ToApp.Error("Precondition NOT met: {0}", precondition.Name.ActiveForm);
           if (string.IsNullOrEmpty(precondition.ErrorMessage) == false)
-            Log.This.Error(precondition.ErrorMessage);
+            Log.ToApp.Error(precondition.ErrorMessage);
           if (PreconditionNotMet != null)
             PreconditionNotMet(Pipeline, new GenericEventArgs<string>(precondition.ErrorMessage));
           return false;
@@ -113,8 +113,8 @@ namespace SitecoreInstaller.Domain.Pipelines
       {
         if (args.AbortPipeline)
         {
-          Log.This.Info("Aborting pipeline: {0}", args.AbortReason);
-          Log.This.Flush();
+          Log.ToApp.Info("Aborting pipeline: {0}", args.AbortReason);
+          Log.ToApp.Flush();
           break;//we don't execute more steps if pipeline is to be aborted
         }
 
@@ -124,9 +124,9 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         if (PreconditionsAreMet(step.Preconditions, args))
         {
-          Log.This.Info(step.Name.ActiveForm);
+          Log.ToApp.Info(step.Name.ActiveForm);
           var elapsed = Profiler.This(step.Invoke, sender, args);
-          Log.This.Profile(step.Name.ActiveForm, elapsed);
+          Log.ToApp.Profile(step.Name.ActiveForm, elapsed);
         }
         else
           break;

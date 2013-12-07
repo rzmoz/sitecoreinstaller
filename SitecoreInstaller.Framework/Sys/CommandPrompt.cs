@@ -13,7 +13,7 @@ namespace SitecoreInstaller.Framework.Sys
 
     public static CommandPromptResult Run(string commandString)
     {
-      Diagnostics.Log.This.Debug("Command prompt invoked: {0}", commandString);
+      Diagnostics.Log.ToApp.Debug("Command prompt invoked: {0}", commandString);
 
       var si = new ProcessStartInfo("cmd.exe", "/c " + commandString)
       {
@@ -35,10 +35,10 @@ namespace SitecoreInstaller.Framework.Sys
           StandardError = console.StandardError.ReadToEnd()
         };
 
-        Diagnostics.Log.This.Debug(result.StandardOutput);
+        Diagnostics.Log.ToApp.Debug(result.StandardOutput);
 
         if (result.StandardError.Length > 0)
-          Diagnostics.Log.This.Error(result.StandardError);
+          Diagnostics.Log.ToApp.Error(result.StandardError);
 
         console.Close();
         return result;

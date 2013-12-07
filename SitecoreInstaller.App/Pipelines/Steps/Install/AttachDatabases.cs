@@ -13,7 +13,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
       var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
       foreach (var sqlDatabase in databases)
       {
-        Log.This.Info("Attaching {0}...", sqlDatabase.Name);
+        Log.ToApp.Info("Attaching {0}...", sqlDatabase.Name);
         sqlDatabase.Attach(args.ProjectSettings.Sql);
       }
     }

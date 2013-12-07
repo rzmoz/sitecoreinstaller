@@ -15,19 +15,19 @@ namespace SitecoreInstaller.Domain.WebServer
 
         public void CreateApplication(IisSettings iisSettings, DirectoryInfo siteDirectory, DirectoryInfo iisLogFilesDirectory)
         {
-            Log.This.Debug("Creating application in iis: {0}", iisSettings.Name);
+            Log.ToApp.Debug("Creating application in iis: {0}", iisSettings.Name);
 
             using (var iisManager = new ServerManager())
             {
                 if (iisManager.ApplicationPools[iisSettings.Name] != null)
                 {
-                    Log.This.Error("Application pool already exist in iis: {0}", iisSettings.Name);
+                    Log.ToApp.Error("Application pool already exist in iis: {0}", iisSettings.Name);
                     return;
                 }
 
                 if (iisManager.Sites[iisSettings.Name] != null)
                 {
-                    Log.This.Error("Site already exist in iis: {0}", iisSettings.Name);
+                    Log.ToApp.Error("Site already exist in iis: {0}", iisSettings.Name);
                     return;
                 }
             }
@@ -42,13 +42,13 @@ namespace SitecoreInstaller.Domain.WebServer
             {
                 if (iisManager.Sites[applicationName] == null)
                 {
-                    Log.This.Warning("Site not found in iis: {0}", applicationName);
+                    Log.ToApp.Warning("Site not found in iis: {0}", applicationName);
                     return;
                 }
 
                 if (iisManager.ApplicationPools[applicationName] == null)
                 {
-                    Log.This.Error("Application pool not found in iis: {0}", applicationName);
+                    Log.ToApp.Error("Application pool not found in iis: {0}", applicationName);
                     return;
                 }
             }
@@ -65,13 +65,13 @@ namespace SitecoreInstaller.Domain.WebServer
             {
                 if (iisManager.ApplicationPools[applicationName] == null)
                 {
-                    Log.This.Warning("Application pool not found: {0}", applicationName);
+                    Log.ToApp.Warning("Application pool not found: {0}", applicationName);
                     return;
                 }
 
                 iisManager.ApplicationPools[applicationName].Recycle();
                 iisManager.CommitChanges();
-                Log.This.Info("Application pool recycled from iis: {0}", applicationName);
+                Log.ToApp.Info("Application pool recycled from iis: {0}", applicationName);
             }
         }
 
@@ -81,7 +81,7 @@ namespace SitecoreInstaller.Domain.WebServer
             {
                 if (iisManager.ApplicationPools[applicationName] == null)
                 {
-                    Log.This.Warning("Application pool not found: {0}", applicationName);
+                    Log.ToApp.Warning("Application pool not found: {0}", applicationName);
                     return;
                 }
                 foreach (var workerProcess in iisManager.ApplicationPools[applicationName].WorkerProcesses)
@@ -91,7 +91,7 @@ namespace SitecoreInstaller.Domain.WebServer
 
                 iisManager.ApplicationPools[applicationName].Delete();
                 iisManager.CommitChanges();
-                Log.This.Info("Application pool deleted from iis: {0}", applicationName);
+                Log.ToApp.Info("Application pool deleted from iis: {0}", applicationName);
             }
         }
 
@@ -101,7 +101,7 @@ namespace SitecoreInstaller.Domain.WebServer
             {
                 iisManager.Sites[applicationName].Delete();
                 iisManager.CommitChanges();
-                Log.This.Info("Site deleted from iis: " + applicationName);
+                Log.ToApp.Info("Site deleted from iis: " + applicationName);
             }
         }
 
@@ -110,29 +110,29 @@ namespace SitecoreInstaller.Domain.WebServer
             using (var iisManager = new ServerManager())
             {
                 if (iisManager.ApplicationPools[applicationName] == null)
-                    Log.This.Error("Application pool not found: " + applicationName);
+                    Log.ToApp.Error("Application pool not found: " + applicationName);
                 else
                 {
                     if (iisManager.ApplicationPools[applicationName].State == ObjectState.Stopped)
                     {
                         iisManager.ApplicationPools[applicationName].Start();
-                        Log.This.Info("Application pool started: " + applicationName);
+                        Log.ToApp.Info("Application pool started: " + applicationName);
                     }
                     else
-                        Log.This.Warning("Application pool already started: " + applicationName);
+                        Log.ToApp.Warning("Application pool already started: " + applicationName);
                 }
 
                 if (iisManager.Sites[applicationName] == null)
-                    Log.This.Error("Site not found: " + applicationName);
+                    Log.ToApp.Error("Site not found: " + applicationName);
                 else
                 {
                     if (iisManager.Sites[applicationName].State == ObjectState.Stopped)
                     {
                         iisManager.Sites[applicationName].Start();
-                        Log.This.Info("Site started: " + applicationName);
+                        Log.ToApp.Info("Site started: " + applicationName);
                     }
                     else
-                        Log.This.Warning("Site already started: " + applicationName);
+                        Log.ToApp.Warning("Site already started: " + applicationName);
                 }
             }
         }
@@ -142,31 +142,31 @@ namespace SitecoreInstaller.Domain.WebServer
             using (var iisManager = new ServerManager())
             {
                 if (iisManager.ApplicationPools[applicationName] == null)
-                    Log.This.Warning("Application pool not found: " + applicationName);
+                    Log.ToApp.Warning("Application pool not found: " + applicationName);
                 else
                 {
                     if (iisManager.ApplicationPools[applicationName].State == ObjectState.Started)
                     {
                         iisManager.ApplicationPools[applicationName].Stop();
-                        Log.This.Info("Application pool stopped: " + applicationName);
+                        Log.ToApp.Info("Application pool stopped: " + applicationName);
                     }
                     else
-                        Log.This.Warning("Application pool already stopped: " + applicationName);
+                        Log.ToApp.Warning("Application pool already stopped: " + applicationName);
                 }
 
                 var site = iisManager.Sites[applicationName];
 
                 if (site == null)
-                    Log.This.Warning("Site not found: " + applicationName);
+                    Log.ToApp.Warning("Site not found: " + applicationName);
                 else
                 {
                     if (site.State == ObjectState.Started)
                     {
                         site.Stop();
-                        Log.This.Info("Site stopped: " + applicationName);
+                        Log.ToApp.Info("Site stopped: " + applicationName);
                     }
                     else
-                        Log.This.Warning("Site already stopped: " + applicationName);
+                        Log.ToApp.Warning("Site already stopped: " + applicationName);
                 }
             }
         }
@@ -196,7 +196,7 @@ namespace SitecoreInstaller.Domain.WebServer
 
         private void CreateAppPool(IisSettings iisSettings)
         {
-            Log.This.Info("Creating application pool '{0}'", iisSettings.Name);
+            Log.ToApp.Info("Creating application pool '{0}'", iisSettings.Name);
 
             using (var iisManager = new ServerManager())
             {
@@ -208,11 +208,11 @@ namespace SitecoreInstaller.Domain.WebServer
                 appPool.ProcessModel.IdentityType = iisSettings.ProcessModelIdentityType;
                 iisManager.CommitChanges();
 
-                Log.This.Debug("App pool runtime version set to {0}", appPool.ManagedRuntimeVersion);
-                Log.This.Debug("App pool pipeline mode set to {0}", appPool.ManagedPipelineMode);
-                Log.This.Debug("App pool identity set to {0}", appPool.ProcessModel.IdentityType);
+                Log.ToApp.Debug("App pool runtime version set to {0}", appPool.ManagedRuntimeVersion);
+                Log.ToApp.Debug("App pool pipeline mode set to {0}", appPool.ManagedPipelineMode);
+                Log.ToApp.Debug("App pool identity set to {0}", appPool.ProcessModel.IdentityType);
 
-                Log.This.Info("Application pool created");
+                Log.ToApp.Info("Application pool created");
             }
         }
 
@@ -220,8 +220,8 @@ namespace SitecoreInstaller.Domain.WebServer
         {
             using (var iisManager = new ServerManager())
             {
-                Log.This.Info("Creating site in iis '{0}'", iisSettings.Name);
-                Log.This.Debug("Site home directory set to '{0}'", siteDirectory.FullName);
+                Log.ToApp.Info("Creating site in iis '{0}'", iisSettings.Name);
+                Log.ToApp.Debug("Site home directory set to '{0}'", siteDirectory.FullName);
                 var bindingInformation = string.Format(_BindingInformationFormat, iisSettings.Url);
                 var site = iisManager.Sites.Add(iisSettings.Name, "http", bindingInformation, siteDirectory.FullName);
                 site.ApplicationDefaults.ApplicationPoolName = iisSettings.Name;
@@ -229,7 +229,7 @@ namespace SitecoreInstaller.Domain.WebServer
                 iisManager.CommitChanges();
             }
 
-            Log.This.Info("Site created");
+            Log.ToApp.Info("Site created");
         }
 
         private const string _BindingInformationFormat = "*:80:{0}";

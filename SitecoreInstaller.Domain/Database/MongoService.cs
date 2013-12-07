@@ -18,7 +18,7 @@ namespace SitecoreInstaller.Domain.Database
       }
 
       var connectionStringDelta = string.Format(ConnectionStringFormats.ConnectionStringDotConfigDelta, connectionStringEntries);
-      Log.This.Debug(connectionStringDelta);
+      Log.ToApp.Debug(connectionStringDelta);
       return connectionStringDelta;
     }
 
@@ -46,7 +46,7 @@ namespace SitecoreInstaller.Domain.Database
         }
         catch (MongoConnectionException)
         {
-          Log.This.Error("Couldn't drop mongo db: '{0}'", mongoUrl.DatabaseName);
+          Log.ToApp.Error("Couldn't drop mongo db: '{0}'", mongoUrl.DatabaseName);
         }
       }
     }

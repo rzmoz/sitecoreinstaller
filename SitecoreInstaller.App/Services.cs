@@ -43,7 +43,7 @@ namespace SitecoreInstaller.App
 
         private static void InitBuildLibrary(object sender, EventArgs e)
         {
-            Log.This.Debug("Initializing Build library");
+            Log.ToApp.Debug("Initializing Build library");
             var localBuildLibrary = new WindowsFileSystemSource(string.Empty)
             {
                 Parameters = UserPreferences.Properties.LocalBuildLibrary
@@ -82,7 +82,7 @@ namespace SitecoreInstaller.App
 
         private static void InitProjects()
         {
-            Log.This.Info("Initiallizing Projects");
+            Log.ToApp.Info("Initiallizing Projects");
             Projects = new ProjectsService(UserPreferences.Properties.ProjectsFolder);
         }
 

@@ -110,6 +110,7 @@
     <Compile Include="Diagnostics\LogEntry.cs" />
     <Compile Include="Diagnostics\LogStatus.cs" />
     <Compile Include="Diagnostics\LogType.cs" />
+    <Compile Include="Diagnostics\SimpleBufferedFileLog.cs" />
     <Compile Include="IO\DirCopyOptions.cs" />
     <Compile Include="IO\DirectoryInfoExtensions.cs" />
     <Compile Include="IO\FileInfoExtensions.cs" />

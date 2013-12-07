@@ -39,12 +39,12 @@ namespace SitecoreInstaller.Domain.Database
 
                 sqlServer.Databases[Name].SetOwner(sqlSettings.Login, true);
 
-                Log.This.Info("Database {0} attached", Name);
+                Log.ToApp.Info("Database {0} attached", Name);
             }
             catch (SqlServerManagementException ex)
             {
-                Log.This.Error(ex.Message);
-                Log.This.Debug(ex.ToString());
+                Log.ToApp.Error(ex.Message);
+                Log.ToApp.Debug(ex.ToString());
             }
         }
 
@@ -55,12 +55,12 @@ namespace SitecoreInstaller.Domain.Database
                 var sqlServer = new Server(new ServerConnection(new SqlConnection(sqlSettings.ConnectionString.Value)));
                 sqlServer.KillAllProcesses(Name);
                 sqlServer.DetachDatabase(Name, false);
-                Log.This.Info("Database {0} detached", Name);
+                Log.ToApp.Info("Database {0} detached", Name);
             }
             catch (SqlServerManagementException ex)
             {
-                Log.This.Error(ex.Message);
-                Log.This.Debug(ex.ToString());
+                Log.ToApp.Error(ex.Message);
+                Log.ToApp.Debug(ex.ToString());
             }
         }
 

@@ -23,7 +23,7 @@ namespace SitecoreInstaller.Framework.Web
       }
       catch (UriFormatException e)
       {
-        Log.This.Error(e.ToString());
+        Log.ToApp.Error(e.ToString());
         throw;
       }
     }

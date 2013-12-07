@@ -33,9 +33,9 @@ namespace SitecoreInstaller.UI.Log
                     { LogType.Profiling, Color.Green }
                 };
       chkFollowLogTrail.Checked = true;
-      Log.This.Flush();
-      Log.This.EntryLogged += EntryLogged;
-      Log.This.LogCleared += Clear;
+      Log.ToApp.Flush();
+      Log.ToApp.EntryLogged += EntryLogged;
+      Log.ToApp.LogCleared += Clear;
     }
 
     private void EntryLogged(object sender, GenericEventArgs<LogEntry> e)
@@ -70,7 +70,7 @@ namespace SitecoreInstaller.UI.Log
 
     private void btnClear_Click(object sender, EventArgs e)
     {
-      Log.This.Reset();
+      Log.ToApp.Reset();
     }
   }
 }

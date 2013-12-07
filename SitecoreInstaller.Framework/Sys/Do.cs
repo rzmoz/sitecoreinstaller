@@ -68,7 +68,7 @@ namespace SitecoreInstaller.Framework.Sys
         }
         catch (Exception e)
         {
-          Log.This.Debug("Ping message failed in retryer:{0}", e);
+          Log.ToApp.Debug("Ping message failed in retryer:{0}", e);
         }
 
         if (Invoke != Invoke.Once)
@@ -78,7 +78,7 @@ namespace SitecoreInstaller.Framework.Sys
             Action.Invoke();
           }
           catch (Exception e)
-          { Log.This.Debug("Exception was thrown during invoking of action but this is ok, as we're waiting for state to change:\r\n{0}", e.ToString()); }
+          { Log.ToApp.Debug("Exception was thrown during invoking of action but this is ok, as we're waiting for state to change:\r\n{0}", e.ToString()); }
         }
 
         Task.WaitAll(Task.Delay(250));

@@ -22,8 +22,8 @@ namespace SitecoreInstaller.Framework.Web
     /// <param name="targetFile"></param>
     public static void Download(string fullyQualifiedUrl, FileInfo targetFile)
     {
-      Log.This.Info("Downloading: " + targetFile.Name);
-      Log.This.Debug("Downloading: " + fullyQualifiedUrl);
+      Log.ToApp.Info("Downloading: " + targetFile.Name);
+      Log.ToApp.Debug("Downloading: " + fullyQualifiedUrl);
       var tempFile = new FileInfo(Path.GetTempFileName());
       var cmd = _FileName + string.Format(_DownloadFormat, tempFile, fullyQualifiedUrl.Replace(" ", "%20"));
 
@@ -34,7 +34,7 @@ namespace SitecoreInstaller.Framework.Web
       if (tempFile.Length < 1024)
       {
         tempFile.Delete();
-        Log.This.Error("Failed to download:{0}", fullyQualifiedUrl);
+        Log.ToApp.Error("Failed to download:{0}", fullyQualifiedUrl);
         return;
       }
       targetFile.TryDelete();
