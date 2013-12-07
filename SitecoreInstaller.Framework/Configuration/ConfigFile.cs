@@ -44,7 +44,7 @@ namespace SitecoreInstaller.Framework.Configuration
             }
             catch (Exception e)
             {
-                Log.ToApp.Error("Failed to load: {0}\r\n{1}", Path.FullName, e.ToString());
+                Log.ToDebugFile.Error("Failed to load: {0}\r\n{1}", Path.FullName, e.ToString());
             }
 
             if (Updated != null)
