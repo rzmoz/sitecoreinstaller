@@ -57,6 +57,8 @@ namespace SitecoreInstaller.UI.BootUserPrompt
                 {
                     Task.Delay(TimeSpan.FromSeconds(1));
                 }
+                Services.UserPreferences.Properties.PromptForUserSettings = false;
+                Services.UserPreferences.Save();
             });
         }
 
