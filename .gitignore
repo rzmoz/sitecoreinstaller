@@ -6,4 +6,4 @@ packages/*
 */obj/*
 *.user
 *.suo
-SitecoreInstaller/*.config
+SitecoreInstaller/sources.config
