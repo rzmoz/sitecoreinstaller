@@ -34,21 +34,28 @@ namespace SitecoreInstaller.Domain.Database
 
         public void AddUserAsSysadmin(SqlSettings sqlSettings)
         {
-            var sqlServer = GetSqlServerTrustedConnection();
-
-            var existingUser = sqlServer.Logins[sqlSettings.Login];
-            if (existingUser != null)
-                existingUser.Drop();
-
-            var login = new Login(sqlServer, sqlSettings.Login)
+            try
             {
-                PasswordExpirationEnabled = false,
-                PasswordPolicyEnforced = false,
-                LoginType = LoginType.SqlLogin
-            };
+                var sqlServer = GetSqlServerTrustedConnection();
 
-            login.Create(sqlSettings.Password);
-            login.AddToRole("sysadmin");
+                var existingUser = sqlServer.Logins[sqlSettings.Login];
+                if (existingUser != null)
+                    existingUser.Drop();
+
+                var login = new Login(sqlServer, sqlSettings.Login)
+                {
+                    PasswordExpirationEnabled = false,
+                    PasswordPolicyEnforced = false,
+                    LoginType = LoginType.SqlLogin
+                };
+
+                login.Create(sqlSettings.Password);
+                login.AddToRole("sysadmin");
+            }
+            catch (SqlException e)
+            {
+                Log.ToApp.Warning("Couldn't add user as sysadmin to sql server\r\n{0}", e);
+            }
         }
 
 
