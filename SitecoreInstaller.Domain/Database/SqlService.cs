@@ -17,9 +17,24 @@ namespace SitecoreInstaller.Domain.Database
 
     public class SqlService
     {
-        public void AddUserAsSysadmin(SqlSettings sqlSettings)
+        public void EnableMixedAuthenticationMode()
+        {
+            var sqlServer = GetSqlServerTrustedConnection();
+            if (sqlServer.Settings.LoginMode == ServerLoginMode.Mixed)
+                return;
+            sqlServer.Settings.LoginMode = ServerLoginMode.Mixed;
+            sqlServer.Alter();
+        }
+
+        private static Server GetSqlServerTrustedConnection()
         {
             var sqlServer = new Server(new ServerConnection(new SqlConnection("Server=.;Trusted_Connection=True;")));
+            return sqlServer;
+        }
+
+        public void AddUserAsSysadmin(SqlSettings sqlSettings)
+        {
+            var sqlServer = GetSqlServerTrustedConnection();
 
             var existingUser = sqlServer.Logins[sqlSettings.Login];
             if (existingUser != null)

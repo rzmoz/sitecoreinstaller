@@ -12,8 +12,6 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
   {
     protected override void InnerInvoke(object sender, DoNothingEventArgs args)
     {
-        var drives = DriveInfo.GetDrives();
-
         Task.WaitAll(Task.Delay(TimeSpan.FromSeconds(5)));
     }
   }

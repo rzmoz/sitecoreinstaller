@@ -103,6 +103,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Databases\SqlServerPrompt.cs" />
     <Compile Include="Diagnostics\BareTail.cs" />
     <Compile Include="Diagnostics\ILog.cs" />
     <Compile Include="Diagnostics\InMemoryBufferedLog.cs" />
