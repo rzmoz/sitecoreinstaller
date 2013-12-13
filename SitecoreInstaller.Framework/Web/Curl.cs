@@ -12,8 +12,8 @@ namespace SitecoreInstaller.Framework.Web
 {
   public static class Curl
   {
-    private const string _FileName = @"curl.exe  -s -S"; //with only show errors switches
-    private const string _DownloadFormat = @" -o ""{0}"" ""{1}""";
+    private const string _fileName = @"curl.exe  -s -S"; //with only show errors switches
+    private const string _downloadFormat = @" -o ""{0}"" ""{1}""";
 
     /// <summary>
     /// Do not use for files smaller than 1KB!
@@ -25,7 +25,7 @@ namespace SitecoreInstaller.Framework.Web
       Log.ToApp.Info("Downloading: " + targetFile.Name);
       Log.ToApp.Debug("Downloading: " + fullyQualifiedUrl);
       var tempFile = new FileInfo(Path.GetTempFileName());
-      var cmd = _FileName + string.Format(_DownloadFormat, tempFile, fullyQualifiedUrl.Replace(" ", "%20"));
+      var cmd = _fileName + string.Format(_downloadFormat, tempFile, fullyQualifiedUrl.Replace(" ", "%20"));
 
       CommandPrompt.Run(cmd);
 

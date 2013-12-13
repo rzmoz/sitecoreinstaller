@@ -20,12 +20,10 @@ namespace SitecoreInstaller.Framework.Diagnostics
 
         void _inMemoryLog_LogCleared(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         void _inMemoryLog_EntryLogged(object sender, GenericEventArgs<LogEntry> e)
         {
-            throw new NotImplementedException();
         }
 
         public event EventHandler<GenericEventArgs<LogEntry>> EntryLogged;
