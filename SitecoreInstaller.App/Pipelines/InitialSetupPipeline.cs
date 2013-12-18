@@ -8,6 +8,7 @@ namespace SitecoreInstaller.App.Pipelines
     {
         public InitialSetupPipeline()
         {
+            AddStep<TryStartSqlServer>();
             AddStep<AddUserToSqlServerAsSysAdmin>();
             AddStep<EnableMixedAuthenticationMode>();
             AddStep<VerifySqlConnection>();

@@ -42,6 +42,11 @@ namespace SitecoreInstaller.Framework.Diagnostics
         public IEnumerable<LogEntry> Entries { get { return _inMemoryLog.Entries; } }
         public LogStatus Status { get { return _inMemoryLog.Status; } }
 
+        public void As(LogType logType, string message, params object[] parameters)
+        {
+            _inMemoryLog.As(logType, message, parameters);
+        }
+
         public void Debug(string message, params object[] parameters)
         {
             _inMemoryLog.Debug(message, parameters);

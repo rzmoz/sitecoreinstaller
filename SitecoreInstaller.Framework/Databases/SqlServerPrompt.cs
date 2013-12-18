@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.Databases
@@ -13,15 +14,17 @@ namespace SitecoreInstaller.Framework.Databases
         private const string _startSwitch = @" start ";
         private const string _stopSwitch = @" stop ";
 
-        public static void StartServer(string instanceName)
+        public static CommandPromptResult  StartServer(string instanceName, LogType logErrorAs = LogType.Error)
         {
             if (instanceName == null) throw new ArgumentNullException("instanceName");
-            CommandPrompt.Run(_commandFormat, _startSwitch, instanceName);
+            var cmd = string.Format(_commandFormat, _startSwitch, instanceName);
+            return CommandPrompt.Run(cmd, logErrorAs);
         }
-        public static void StopServer(string instanceName)
+        public static CommandPromptResult StopServer(string instanceName, LogType logErrorAs = LogType.Error)
         {
             if (instanceName == null) throw new ArgumentNullException("instanceName");
-            CommandPrompt.Run(_commandFormat, _stopSwitch, instanceName);
+            var cmd = string.Format(_commandFormat, _stopSwitch, instanceName);
+            return CommandPrompt.Run(cmd, logErrorAs);
         }
     }
 }

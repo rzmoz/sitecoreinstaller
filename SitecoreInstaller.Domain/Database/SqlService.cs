@@ -20,7 +20,6 @@ namespace SitecoreInstaller.Domain.Database
         private SqlConnection TrustedConnection
         {
             get { return new SqlConnection("Server=.;Trusted_Connection=True;"); }
-
         }
 
         public void EnableMixedAuthenticationMode()
@@ -32,6 +31,37 @@ namespace SitecoreInstaller.Domain.Database
             sqlServer.Alter();
             using (var connection = TrustedConnection)
                 RestartServer(connection);
+        }
+        public bool IsStarted()
+        {
+            try
+            {
+                var sqlServer = GetSqlServerTrustedConnection();
+                sqlServer.Refresh();//verify that server is up and running
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public void TryStartDefaultSqlService()
+        {
+            Log.ToApp.Debug("Trying to start default MSSQLSERVER service");
+            var msSqlResult = SqlServerPrompt.StartServer("MSSQLSERVER", LogType.Null);
+            var sqlExpressResult = SqlServerPrompt.StartServer("SQLEXPRESS", LogType.Null);
+
+            Log.ToApp.Debug(msSqlResult.StandardOutput);
+            Log.ToApp.Debug(sqlExpressResult.StandardOutput);
+
+            var logType = LogType.Debug;
+
+            if (msSqlResult.HasErrors && sqlExpressResult.HasErrors)
+                logType = LogType.Error;
+
+            Log.ToApp.As(logType, msSqlResult.StandardError);
+            Log.ToApp.As(logType, sqlExpressResult.StandardError);
         }
 
         public void RestartServer(SqlConnection connection)
@@ -47,6 +77,22 @@ namespace SitecoreInstaller.Domain.Database
         private Server GetSqlServerTrustedConnection()
         {
             var sqlServer = new Server(new ServerConnection(TrustedConnection));
+
+            var connectionEstablished = false;
+            Do.This(() =>
+            {
+                try
+                {
+                    sqlServer.Refresh();
+                    connectionEstablished = true;
+                }
+                catch (FailedOperationException)
+                {
+                    Log.ToApp.Debug("Failed to establish a connection:" + sqlServer.ConnectionContext.ConnectionString);
+                }
+
+            }).Until(() => connectionEstablished, TimeSpan.FromSeconds(10), 10);
+
             return sqlServer;
         }
 
@@ -61,7 +107,7 @@ namespace SitecoreInstaller.Domain.Database
                 {
                     existingUser.Drop();
                 }
-                    
+
 
                 var login = new Login(sqlServer, sqlSettings.Login)
                 {
@@ -72,6 +118,7 @@ namespace SitecoreInstaller.Domain.Database
 
                 login.Create(sqlSettings.Password);
                 login.AddToRole("sysadmin");
+
             }
             catch (SqlException e)
             {
