@@ -16,7 +16,7 @@ namespace SitecoreInstaller
         {
         }
 
-        public override Task InitAsync()
+        public override Task<bool> InitAsync()
         {
             var wizardcontrol = Control as BootWizardControl;
             if (wizardcontrol == null)

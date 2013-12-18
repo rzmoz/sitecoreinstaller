@@ -19,9 +19,13 @@ namespace SitecoreInstaller.UI.BootUserPrompt
     {
         //http://msdn.microsoft.com/en-us/library/x13ttww7.aspx
         private volatile bool _wizardFinished;
+
+        private volatile bool _showUserPreferences;
+
         public BootWizardControl()
         {
             InitializeComponent();
+            _showUserPreferences = false;
         }
 
         private void Finish()
@@ -48,7 +52,7 @@ namespace SitecoreInstaller.UI.BootUserPrompt
         }
 
 
-        public Task InitAsync()
+        public Task<bool> InitAsync()
         {
             return Task.Factory.StartNew(() =>
             {
@@ -59,11 +63,13 @@ namespace SitecoreInstaller.UI.BootUserPrompt
                 }
                 Services.UserPreferences.Properties.PromptForUserSettings = false;
                 Services.UserPreferences.Save();
+                return _showUserPreferences;
             });
         }
 
         private void btnAdvancedSetup_Click(object sender, EventArgs e)
         {
+            _showUserPreferences = true;
             Finish();
         }
 

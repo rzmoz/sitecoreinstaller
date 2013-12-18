@@ -16,7 +16,7 @@ namespace SitecoreInstaller
         }
         public SIUserControl Control { get; private set; }
 
-        public abstract Task InitAsync();
+        public abstract Task<bool> InitAsync();
 
     }
 }

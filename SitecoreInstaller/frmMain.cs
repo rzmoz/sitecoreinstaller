@@ -27,7 +27,7 @@ namespace SitecoreInstaller
             var booter = CreateBooter();
             ViewportStack.Register(booter.Control);
             ViewportStack.Show(booter.Control);
-            Task bootTask = booter.InitAsync();
+            Task<bool> bootTask = booter.InitAsync();
 
             Services.Init();
 
@@ -41,6 +41,8 @@ namespace SitecoreInstaller
             ViewportStack.UnRegister(booter.Control);
 
             mainCtrl1.BringToFront();
+            if (bootTask.Result)
+                mainCtrl1.ShowUserPreferences();
 
             await Task.Factory.StartNew(Services.SourceManifests.UpdateExternal);
         }

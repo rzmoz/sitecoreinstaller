@@ -14,9 +14,13 @@ namespace SitecoreInstaller
         {
         }
 
-        public override Task InitAsync()
+        public override Task<bool> InitAsync()
         {
-            return Task.Delay(TimeSpan.FromSeconds(0.5));//just to make sure splash screen is open long enough to be readable
+            return Task.Factory.StartNew(() =>
+            {
+                Task.WaitAll(Task.Delay(TimeSpan.FromSeconds(0.5)));//just to make sure splash screen is open long enough to be readable
+                return false;
+            });
         }
     }
 }
