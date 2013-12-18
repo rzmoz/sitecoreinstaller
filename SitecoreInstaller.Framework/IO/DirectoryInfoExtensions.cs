@@ -34,6 +34,13 @@ namespace SitecoreInstaller.Framework.IO
         {
             return folder.Directory.Combine(paths);
         }
+        public static DirectoryInfo Combine(this DirectoryInfo directoryInfo, params string[] subFolders)
+        {
+            var subFoldersString = Path.Combine(subFolders);
+            var combinedString = Path.Combine(directoryInfo.FullName, subFoldersString);
+            return _fileSystemInfoFactory.Create<DirectoryInfo>(combinedString);
+        }
+
         public static T Combine<T>(this DirectoryInfo directoryInfo, params T[] paths) where T : FileSystemInfo
         {
             var combinedString = CombineToString(directoryInfo, paths);

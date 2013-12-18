@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.InitialSetup
 {
@@ -14,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.InitialSetup
                 return;
 
             //we only regard fixed drives as potential targets for local drives
-            var potentialDrives = DriveInfo.GetDrives().Where(drive => drive.DriveType == DriveType.Fixed);
+            var potentialDrives = DriveInfo.GetDrives().Where(drive => drive.DriveType == DriveType.Fixed).OrderBy(drive => drive.Name);
 
             var existingFolderFound = false;
             foreach (var potentialDrive in potentialDrives)
@@ -28,7 +29,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.InitialSetup
 
             if (!existingFolderFound)
             {
-                Services.UserPreferences.Properties.LocalBuildLibrary = Path.Combine(@"C:\", _buildLibraryFolderName);
+                Services.UserPreferences.Properties.LocalBuildLibrary = potentialDrives.First().RootDirectory.Combine(_buildLibraryFolderName).FullName;
                 new BuildLibraryFolders(Services.UserPreferences.Properties.LocalBuildLibrary).CreateIfNotExists();
             }
 
