@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using SitecoreInstaller.Framework.Databases;
 using SitecoreInstaller.Framework.IO;
 using SitecoreInstaller.Framework.Sys;
 
@@ -17,6 +17,12 @@ namespace SitecoreInstaller.Domain.Database
 
     public class SqlService
     {
+        private SqlConnection TrustedConnection
+        {
+            get { return new SqlConnection("Server=.;Trusted_Connection=True;"); }
+
+        }
+
         public void EnableMixedAuthenticationMode()
         {
             var sqlServer = GetSqlServerTrustedConnection();
@@ -24,11 +30,23 @@ namespace SitecoreInstaller.Domain.Database
                 return;
             sqlServer.Settings.LoginMode = ServerLoginMode.Mixed;
             sqlServer.Alter();
+            using (var connection = TrustedConnection)
+                RestartServer(connection);
         }
 
-        private static Server GetSqlServerTrustedConnection()
+        public void RestartServer(SqlConnection connection)
         {
-            var sqlServer = new Server(new ServerConnection(new SqlConnection("Server=.;Trusted_Connection=True;")));
+            const string cmd = "SELECT @@servername";
+            var command = new SqlCommand(cmd, connection);
+            command.Connection.Open();
+            var instanceName = command.ExecuteScalar().ToString();
+            SqlServerPrompt.StopServer(instanceName);
+            SqlServerPrompt.StartServer(instanceName);
+        }
+
+        private Server GetSqlServerTrustedConnection()
+        {
+            var sqlServer = new Server(new ServerConnection(TrustedConnection));
             return sqlServer;
         }
 
