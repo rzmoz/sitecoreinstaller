@@ -10,8 +10,8 @@ namespace SitecoreInstaller.Framework.Databases
     public static class SqlServerPrompt
     {
         private const string _commandFormat = @"net {0} ""SQL SERVER ({1})""";
-        private const string _startSwitch = @" stop ";
-        private const string _stopSwitch = @" start ";
+        private const string _startSwitch = @" start ";
+        private const string _stopSwitch = @" stop ";
 
         public static void StartServer(string instanceName)
         {

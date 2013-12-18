@@ -10,6 +10,7 @@ namespace SitecoreInstaller.App.Pipelines
         {
             AddStep<AddUserToSqlServerAsSysAdmin>();
             AddStep<EnableMixedAuthenticationMode>();
+            AddStep<VerifySqlConnection>();
             AddStep<DetermineLocalBuildLibraryFolder>();
         }
     }

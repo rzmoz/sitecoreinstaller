@@ -36,7 +36,7 @@ namespace SitecoreInstaller.Domain.Database
 
         public void RestartServer(SqlConnection connection)
         {
-            const string cmd = "SELECT @@servername";
+            const string cmd = "SELECT @@servicename";
             var command = new SqlCommand(cmd, connection);
             command.Connection.Open();
             var instanceName = command.ExecuteScalar().ToString();
@@ -58,7 +58,10 @@ namespace SitecoreInstaller.Domain.Database
 
                 var existingUser = sqlServer.Logins[sqlSettings.Login];
                 if (existingUser != null)
+                {
                     existingUser.Drop();
+                }
+                    
 
                 var login = new Login(sqlServer, sqlSettings.Login)
                 {
