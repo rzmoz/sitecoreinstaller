@@ -102,7 +102,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
                     logAs = Error;
                     break;
                 case LogType.Null:
-                    logAs = Error;
+                    logAs = Null;
                     break;
                 default:
                     throw new NotSupportedException(logType + " not supported");
