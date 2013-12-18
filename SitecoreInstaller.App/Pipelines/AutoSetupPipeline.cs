@@ -4,9 +4,9 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-    public class InitialSetupPipeline : Pipeline<PipelineApplicationEventArgs>
+    public class AutoSetupPipeline : Pipeline<PipelineApplicationEventArgs>
     {
-        public InitialSetupPipeline()
+        public AutoSetupPipeline()
         {
             AddStep<TryStartSqlServer>();
             AddStep<AddUserToSqlServerAsSysAdmin>();

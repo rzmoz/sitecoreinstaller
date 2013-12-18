@@ -215,6 +215,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SdnResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Settings\AutoSetupSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\AutoSetupSettings.Designer.cs">
+      <DependentUpon>AutoSetupSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SettingsResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SettingsResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings\SqlSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -232,11 +243,6 @@
     </Compile>
     <Compile Include="Settings\MongoSettings.Designer.cs">
       <DependentUpon>MongoSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\SettingsResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SettingsResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings\SourcesSettings.cs">
       <SubType>UserControl</SubType>
@@ -407,6 +413,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SdnResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Settings\AutoSetupSettings.resx">
+      <DependentUpon>AutoSetupSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings\SqlSettings.resx">
       <DependentUpon>SqlSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -501,8 +510,8 @@
     <Content Include="Settings\Images\back.png" />
     <Content Include="Settings\Images\Folders.png" />
     <Content Include="Settings\Images\Folders_Active.png" />
-    <Content Include="Settings\Images\Sources.png" />
-    <Content Include="Settings\Images\Sources_Active.png" />
+    <Content Include="Settings\Images\SetupWizard.png" />
+    <Content Include="Settings\Images\SetupWizard_Active.png" />
     <Content Include="Settings\Images\Sql.png" />
     <Content Include="Settings\Images\Sql_Active.png" />
     <Content Include="Simple\Images\Install.png" />

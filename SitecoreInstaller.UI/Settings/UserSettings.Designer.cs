@@ -37,6 +37,7 @@
             this.sourcesSettings1 = new SitecoreInstaller.UI.Settings.SourcesSettings();
             this.foldersSettings1 = new SitecoreInstaller.UI.Settings.FoldersSettings();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.autoSetupSettings1 = new SitecoreInstaller.UI.Settings.AutoSetupSettings();
             this.pnlButtons.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.SuspendLayout();
@@ -52,8 +53,10 @@
             // 
             // btnBack
             // 
+            this.btnBack.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
             this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBack.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnBack.DrawBottomDivider = false;
             this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Segoe UI", 8F);
@@ -67,6 +70,7 @@
             // 
             // pnlContent
             // 
+            this.pnlContent.Controls.Add(this.autoSetupSettings1);
             this.pnlContent.Controls.Add(this.mongoSettings1);
             this.pnlContent.Controls.Add(this._sqlSettings1);
             this.pnlContent.Controls.Add(this.sourcesSettings1);
@@ -113,6 +117,15 @@
             this.foldersSettings1.Size = new System.Drawing.Size(487, 386);
             this.foldersSettings1.TabIndex = 4;
             // 
+            // autoSetupSettings1
+            // 
+            this.autoSetupSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.autoSetupSettings1.Label = "Header";
+            this.autoSetupSettings1.Location = new System.Drawing.Point(0, 0);
+            this.autoSetupSettings1.Name = "autoSetupSettings1";
+            this.autoSetupSettings1.Size = new System.Drawing.Size(487, 386);
+            this.autoSetupSettings1.TabIndex = 6;
+            // 
             // UserSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,5 +150,6 @@
     private FoldersSettings foldersSettings1;
     private System.Windows.Forms.ToolTip toolTip1;
     private MongoSettings mongoSettings1;
+    private AutoSetupSettings autoSetupSettings1;
   }
 }

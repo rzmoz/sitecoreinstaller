@@ -71,7 +71,7 @@ namespace SitecoreInstaller.UI.BootUserPrompt
         {
             Services.UserPreferences.Properties.ResetToDefaultSettings();
             Services.UserPreferences.Save();
-            Services.Pipelines.Run<InitialSetupPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+            Services.Pipelines.Run<AutoSetupPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
             Finish();
         }
 
