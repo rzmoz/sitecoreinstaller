@@ -99,9 +99,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Framework\Sys\Security\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SitecoreInstaller.App\SitecoreInstaller.App.csproj">
       <Project>{687bab97-4f30-4a9c-bf18-197c6a241ef4}</Project>

@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
+using FluentAssertions;
+using NUnit.Framework;
 using SitecoreInstaller.Framework.IO;
-namespace SitecoreInstaller.App.Test.IO
+
+namespace SitecoreInstaller.Tests.Framework.IO
 {
-    using FluentAssertions;
-
-    using NUnit.Framework;
-
-    using SitecoreInstaller.Framework.Sys;
-
-    using global::System.IO;
-
     [TestFixture]
     public class DirectoryInfoExtenstionsUT
     {

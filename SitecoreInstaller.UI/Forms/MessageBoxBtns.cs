@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.UI.Forms
 {
-  public enum MessageBoxBtns
-  {
-    Ok,
-    YesNo
-  }
+    public enum MessageBoxBtns
+    {
+        Ok,
+        YesNo
+    }
 }

@@ -11,7 +11,7 @@
         public string RunPowerShellFunction(string method, KeyValuePair<string, object> arg, FileInfo script)
         {
             if (method == null) { throw new ArgumentNullException("method"); }
-            if (script == null) { throw new ArgumentNullException("scriptPath"); }
+            if (script == null) { throw new ArgumentNullException("script"); }
 
 
             if (File.Exists(script.FullName) == false)

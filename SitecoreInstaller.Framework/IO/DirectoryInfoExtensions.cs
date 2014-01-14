@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using SitecoreInstaller.Framework.Diagnostics;
+using System;
+using System.Security.AccessControl;
 
 namespace SitecoreInstaller.Framework.IO
 {
-    using SitecoreInstaller.Framework.Diagnostics;
-
-    using global::System;
-    using global::System.Security.AccessControl;
-
     public static class DirectoryInfoExtensions
     {
         private static readonly FileSystemInfoFactory _fileSystemInfoFactory;
@@ -34,6 +32,7 @@ namespace SitecoreInstaller.Framework.IO
         {
             return folder.Directory.Combine(paths);
         }
+
         public static DirectoryInfo Combine(this DirectoryInfo directoryInfo, params string[] subFolders)
         {
             var subFoldersString = Path.Combine(subFolders);
@@ -132,6 +131,7 @@ namespace SitecoreInstaller.Framework.IO
         {
             directoryInfos.CopyTo(target.Directory);
         }
+
         public static void CopyTo(this IEnumerable<DirectoryInfo> directoryInfos, DirectoryInfo target)
         {
             foreach (var dir in directoryInfos)
@@ -145,6 +145,7 @@ namespace SitecoreInstaller.Framework.IO
         {
             folder.Directory.GrantFullControl(username);
         }
+
         public static void GrantFullControl(this DirectoryInfo dir, string username)
         {
             if (Directory.Exists(dir.FullName) == false)
@@ -162,8 +163,8 @@ namespace SitecoreInstaller.Framework.IO
                                     AccessControlType.Allow));
 
             dir.SetAccessControl(directorySecurity);
-
         }
+
         static void CanonicalizeDacl(NativeObjectSecurity objectSecurity)
         {
             if (objectSecurity == null) { throw new ArgumentNullException("objectSecurity"); }

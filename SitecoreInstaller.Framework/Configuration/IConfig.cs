@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Framework.Configuration
 {
-  public interface IConfig
-  {
-  }
+    public interface IConfig
+    {
+    }
 }

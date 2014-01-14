@@ -5,16 +5,16 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  public class DoNothingPipeline : Pipeline<DoNothingEventArgs>
-  {
-    public DoNothingPipeline()
+    public class DoNothingPipeline : Pipeline<DoNothingEventArgs>
     {
-      //Init preconditions
-      AddPrecondition<CheckNothing>();
+        public DoNothingPipeline()
+        {
+            //Init preconditions
+            AddPrecondition<CheckNothing>();
 
-      //Init steps
-      AddStep<DoNothingStep1>();
-      AddStep<DoNothingStep2>();
+            //Init steps
+            AddStep<DoNothingStep1>();
+            AddStep<DoNothingStep2>();
+        }
     }
-  }
 }

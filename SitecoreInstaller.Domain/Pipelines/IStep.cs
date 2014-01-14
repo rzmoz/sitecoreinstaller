@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using SitecoreInstaller.Framework.Linguistics;
 
 namespace SitecoreInstaller.Domain.Pipelines
 {
-  using SitecoreInstaller.Framework.Linguistics;
+    public interface IStep
+    {
+        Sentence Name { get; }
 
-  public interface IStep
-  {
-    Sentence Name { get; }
+        event EventHandler<EventArgs> StepInvoking;
+        event EventHandler<EventArgs> StepInvoked;
 
-    event EventHandler<EventArgs> StepInvoking;
-    event EventHandler<EventArgs> StepInvoked;
-
-    int Order { get; set; }
-    IEnumerable<IPrecondition> Preconditions { get; }
-    void Invoke(object sender, EventArgs e);
-  }
+        int Order { get; set; }
+        IEnumerable<IPrecondition> Preconditions { get; }
+        void Invoke(object sender, EventArgs e);
+    }
 }

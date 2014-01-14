@@ -2,13 +2,12 @@
 using System.Xml;
 using System.Xml.Serialization;
 using System;
+using SitecoreInstaller.Framework.Diagnostics;
+using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.Configuration
 {
-    using Diagnostics;
-    using IO;
-    using Sys;
-
     public sealed class ConfigFile<T> where T : IConfig, new()
     {
         public event EventHandler<GenericEventArgs<T>> Updated;

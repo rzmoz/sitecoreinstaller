@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SitecoreInstaller.Framework.Sys;
+using System.Threading;
 
 namespace SitecoreInstaller.Framework.Diagnostics
 {
-    using Sys;
-
-    using System.Threading;
-
     public class InMemoryBufferedLog : ILog
     {
         private readonly IList<LogEntry> _entries;
         private readonly Queue<LogEntry> _notifyBuffer;
 
-        private const int _FlushInterval = 250;
+        private const int _flushInterval = 250;
 
         public event EventHandler<GenericEventArgs<LogEntry>> EntryLogged;
         public event EventHandler LogCleared;
@@ -24,7 +22,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
         public InMemoryBufferedLog()
         {
             _entries = new List<LogEntry>(50000);
-            _notifyBuffer = new Queue<LogEntry>(_FlushInterval * 10);//initial size of log should be proportional to how often it is flushed
+            _notifyBuffer = new Queue<LogEntry>(_flushInterval * 10);//initial size of log should be proportional to how often it is flushed
             _logStatus = new Observable<LogStatus>();
             _logStatus.Updated += _logStatus_Updated;
             _logStatus.Value = LogStatus.NoProblems;
@@ -61,7 +59,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
                 _notifyBuffer.Clear();
                 _logStatus.Value = LogStatus.NoProblems;
             }
-            _flushTimer = new Timer(FlushLogBuffer, null, 0, _FlushInterval);
+            _flushTimer = new Timer(FlushLogBuffer, null, 0, _flushInterval);
 
             if (LogCleared != null)
                 LogCleared(this, EventArgs.Empty);

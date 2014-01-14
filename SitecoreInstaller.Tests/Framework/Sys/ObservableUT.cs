@@ -6,31 +6,31 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Tests.Framework.Sys
 {
-  using FluentAssertions;
-  using NUnit.Framework;
-  using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.Sys;
+    using FluentAssertions;
+    using NUnit.Framework;
+    using SitecoreInstaller.Framework.Diagnostics;
+    using SitecoreInstaller.Framework.Sys;
 
-  [TestFixture]
-  public class ObservableUT
-  {
-    private Observable<LogStatus> _primitiveObservable;
-
-    [SetUp]
-    public void Setup()
+    [TestFixture]
+    public class ObservableUT
     {
-      _primitiveObservable = new Observable<LogStatus>();
-    }
+        private Observable<LogStatus> _primitiveObservable;
 
-    [Test]
-    public void Updated_TriggerEvent_EventIsFired()
-    {
-      _primitiveObservable.MonitorEvents();
-      
-      _primitiveObservable.Value = LogStatus.Errors;
+        [SetUp]
+        public void Setup()
+        {
+            _primitiveObservable = new Observable<LogStatus>();
+        }
 
-      _primitiveObservable.ShouldRaise("Updating");
-      _primitiveObservable.ShouldRaise("Updated");
+        [Test]
+        public void Updated_TriggerEvent_EventIsFired()
+        {
+            _primitiveObservable.MonitorEvents();
+
+            _primitiveObservable.Value = LogStatus.Errors;
+
+            _primitiveObservable.ShouldRaise("Updating");
+            _primitiveObservable.ShouldRaise("Updated");
+        }
     }
-  }
 }

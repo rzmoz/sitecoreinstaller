@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class CreateIisSiteAndAppPool : Step<PipelineApplicationEventArgs>
-  {
-    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
+    public class CreateIisSiteAndAppPool : Step<PipelineApplicationEventArgs>
     {
-      Services.IisManagement.CreateApplication(args.ProjectSettings.Iis, args.ProjectSettings.ProjectFolder.Website.Directory, args.ProjectSettings.ProjectFolder.IisLogFiles);
+        protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
+        {
+            Services.IisManagement.CreateApplication(args.ProjectSettings.Iis, args.ProjectSettings.ProjectFolder.Website.Directory, args.ProjectSettings.ProjectFolder.IisLogFiles);
+        }
     }
-  }
 }

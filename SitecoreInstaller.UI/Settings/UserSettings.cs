@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
+﻿using SitecoreInstaller.UI.Navigation;
+using SitecoreInstaller.UI.Viewport;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI.Settings
 {
-    using SitecoreInstaller.UI.Navigation;
-    using SitecoreInstaller.UI.Viewport;
+
 
     public partial class UserSettings : SIUserControl
     {

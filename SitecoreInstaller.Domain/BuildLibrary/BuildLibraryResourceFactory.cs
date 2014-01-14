@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Xml;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-    using System.IO;
-    using System.Xml;
-
     public class BuildLibraryResourceFactory
     {
         public BuildLibraryFile CreateFile(string path)

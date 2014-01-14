@@ -222,7 +222,7 @@ namespace SitecoreInstaller.Domain.WebServer
             {
                 Log.ToApp.Info("Creating site in iis '{0}'", iisSettings.Name);
                 Log.ToApp.Debug("Site home directory set to '{0}'", siteDirectory.FullName);
-                var bindingInformation = string.Format(_BindingInformationFormat, iisSettings.Url);
+                var bindingInformation = string.Format(_bindingInformationFormat, iisSettings.Url);
                 var site = iisManager.Sites.Add(iisSettings.Name, "http", bindingInformation, siteDirectory.FullName);
                 site.ApplicationDefaults.ApplicationPoolName = iisSettings.Name;
                 site.LogFile.Directory = iisLogFilesDirectory.FullName;
@@ -232,6 +232,6 @@ namespace SitecoreInstaller.Domain.WebServer
             Log.ToApp.Info("Site created");
         }
 
-        private const string _BindingInformationFormat = "*:80:{0}";
+        private const string _bindingInformationFormat = "*:80:{0}";
     }
 }

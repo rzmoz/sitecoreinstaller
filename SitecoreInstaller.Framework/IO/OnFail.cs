@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Framework.IO
 {
-  public enum OnFail
-  {
-    LogError,
-    Ignore
-  }
+    public enum OnFail
+    {
+        LogError,
+        Ignore
+    }
 }

@@ -8,23 +8,23 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  public class ReinstallPipeline : Pipeline<CleanupEventArgs>
-  {
-    public ReinstallPipeline()
+    public class ReinstallPipeline : Pipeline<CleanupEventArgs>
     {
-      var installPipeline = new InstallPipeline();
-      var uninstallPipeline = new UninstallPipeline();
+        public ReinstallPipeline()
+        {
+            var installPipeline = new InstallPipeline();
+            var uninstallPipeline = new UninstallPipeline();
 
-      //Init preconditions
-      AddPreconditions(installPipeline.Preconditions);
-      RemovePrecondition<CheckProjectDoesNotExist>();
-      RemovePrecondition<CheckBinding>();
-      AddPrecondition<CheckProjectExists>();
+            //Init preconditions
+            AddPreconditions(installPipeline.Preconditions);
+            RemovePrecondition<CheckProjectDoesNotExist>();
+            RemovePrecondition<CheckBinding>();
+            AddPrecondition<CheckProjectExists>();
 
-      //Init steps
-      AddStep<SaveProjectSettings>();
-      AddSteps(uninstallPipeline.Steps);
-      AddSteps(installPipeline.Steps);
+            //Init steps
+            AddStep<SaveProjectSettings>();
+            AddSteps(uninstallPipeline.Steps);
+            AddSteps(installPipeline.Steps);
+        }
     }
-  }
 }

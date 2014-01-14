@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using NUnit.Framework;
+using SitecoreInstaller.Framework.Sys;
 
-namespace SitecoreInstaller.App.Test.Sys
+namespace SitecoreInstaller.Tests.Framework.Sys
 {
-    using NUnit.Framework;
-
-    using SitecoreInstaller.Framework.Sys;
-
     [TestFixture]
     public class TypeExtensionsUT
     {

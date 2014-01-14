@@ -12,12 +12,13 @@
             if (fileSystemInfo.Extension.Length == 0)
                 return fileSystemInfo.Name;
 
-            if(fileSystemInfo is DirectoryInfo)
+            if (fileSystemInfo is DirectoryInfo)
                 return fileSystemInfo.Name;
 
             var extensionIndex = fileSystemInfo.Name.LastIndexOf(fileSystemInfo.Extension);
             return fileSystemInfo.Name.Remove(extensionIndex);
         }
+
         public static string FullNameWithoutExtension(this FileSystemInfo fileSystemInfo)
         {
             if (fileSystemInfo == null)
@@ -32,6 +33,7 @@
             var extensionIndex = fileSystemInfo.FullName.LastIndexOf(fileSystemInfo.Extension);
             return fileSystemInfo.FullName.Remove(extensionIndex);
         }
+
         public static bool ExistsInDir(this FileSystemInfo fileSystemInfo, DirectoryInfo dir)
         {
             if (dir == null)
@@ -40,7 +42,8 @@
                 return false;
             return File.Exists(Path.Combine(dir.FullName, fileSystemInfo.Name));
         }
-        public static bool Exists(this FileSystemInfo fileSystemInfo )
+
+        public static bool Exists(this FileSystemInfo fileSystemInfo)
         {
             if (fileSystemInfo == null)
                 return false;

@@ -10,23 +10,23 @@ using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI.Settings
 {
-  public partial class UserSettingsCtrl : UserControl
-  {
-    public UserSettingsCtrl()
+    public partial class UserSettingsCtrl : UserControl
     {
-      InitializeComponent();
-    }
+        public UserSettingsCtrl()
+        {
+            InitializeComponent();
+        }
 
-    public string Label
-    {
-      get { return this.lblHeader.Text; }
-      set { this.lblHeader.Text = value; }
-    }
+        public string Label
+        {
+            get { return this.lblHeader.Text; }
+            set { this.lblHeader.Text = value; }
+        }
 
-    public virtual void Init(){}
+        public virtual void Init() { }
 
-    protected virtual void btnSave_Click(object sender, EventArgs e)
-    {
+        protected virtual void btnSave_Click(object sender, EventArgs e)
+        {
+        }
     }
-  }
 }

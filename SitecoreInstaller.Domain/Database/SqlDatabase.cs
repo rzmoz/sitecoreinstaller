@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SitecoreInstaller.Framework.Diagnostics;
+using SitecoreInstaller.Framework.IO;
 using SitecoreInstaller.Framework.Sys;
+using System.Collections.Specialized;
+using System.Data.SqlClient;
+using System.IO;
+using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.Smo;
+
 
 namespace SitecoreInstaller.Domain.Database
 {
-    using System.Collections.Specialized;
-    using System.Data.SqlClient;
-    using System.IO;
-
-    using Microsoft.SqlServer.Management.Common;
-    using Microsoft.SqlServer.Management.Smo;
-
-    using Framework.Diagnostics;
-    using Framework.IO;
-
     public class SqlDatabase
     {
         private readonly char[] _physicalDatabaseNameDelimiter = { '.', '_' };

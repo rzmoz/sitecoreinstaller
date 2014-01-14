@@ -1,12 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
+using Ionic.Zip;
 
 namespace SitecoreInstaller.Framework.IO
 {
-    using System.Collections.Generic;
-    using Ionic.Zip;
-
     public static class FileInfoExtensions
     {
         public static FileInfo ToFileInfo(this string path)
@@ -39,7 +38,6 @@ namespace SitecoreInstaller.Framework.IO
             {
                 return false;
             }
-
         }
 
         public static bool IsZipfile(this FileInfo file)
@@ -105,6 +103,7 @@ namespace SitecoreInstaller.Framework.IO
                 file.CopyTo(target, overwrite);
             }
         }
+
         public static void CopyTo(this IEnumerable<FileInfo> files, DirectoryInfo target, bool overwrite)
         {
             foreach (var file in files)

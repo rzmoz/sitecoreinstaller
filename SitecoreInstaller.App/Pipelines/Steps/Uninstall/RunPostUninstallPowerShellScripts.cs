@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Uninstall
 {
-  public class RunPostUninstallPowerShellScripts : PowerShellScriptStep
-  {
-    protected override string MethodName
+    public class RunPostUninstallPowerShellScripts : PowerShellScriptStep
     {
-      get { return "Post-Uninstall"; }
+        protected override string MethodName
+        {
+            get { return "Post-Uninstall"; }
+        }
     }
-  }
 }

@@ -5,26 +5,26 @@ using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.Diagnostics
 {
-  public static class BareTail
-  {
-    private const string _fileName = @"baretail.exe";
-
-    public static void OpenLogs(params FileInfo[] logFiles)
+    public static class BareTail
     {
-      if (logFiles == null)
-        return;
-      if (logFiles.Length == 0)
-        return;
+        private const string _fileName = @"baretail.exe";
 
-      var sortedLogFiles = logFiles.OrderByDescending(logFile => logFile.Name.GetNumbers());
-      
-      var logFileNames = string.Empty;
-      foreach (var logFile in sortedLogFiles)
-      {
-        logFileNames += string.Format(@" ""{0}""", logFile.FullName);
-      }
+        public static void OpenLogs(params FileInfo[] logFiles)
+        {
+            if (logFiles == null)
+                return;
+            if (logFiles.Length == 0)
+                return;
 
-      ExternalProcess.Run(_fileName, logFileNames);
+            var sortedLogFiles = logFiles.OrderByDescending(logFile => logFile.Name.GetNumbers());
+
+            var logFileNames = string.Empty;
+            foreach (var logFile in sortedLogFiles)
+            {
+                logFileNames += string.Format(@" ""{0}""", logFile.FullName);
+            }
+
+            ExternalProcess.Run(_fileName, logFileNames);
+        }
     }
-  }
 }

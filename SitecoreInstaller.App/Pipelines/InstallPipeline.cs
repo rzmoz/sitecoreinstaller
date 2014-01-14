@@ -5,40 +5,40 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  public class InstallPipeline : Pipeline<PipelineApplicationEventArgs>
-  {
-    public InstallPipeline()
+    public class InstallPipeline : Pipeline<PipelineApplicationEventArgs>
     {
-      //Init preconditions
-      AddPrecondition<CheckProjectNameIsSet>();
-      AddPrecondition<CheckProjectDoesNotExist>();
-      AddPrecondition<CheckSitecore>();
-      AddPrecondition<CheckBinding>();
-      AddPrecondition<CheckSqlConnection>();
-      AddPrecondition<CheckLicense>();
-      AddPrecondition<CheckWritePermissionToHostFile>();
+        public InstallPipeline()
+        {
+            //Init preconditions
+            AddPrecondition<CheckProjectNameIsSet>();
+            AddPrecondition<CheckProjectDoesNotExist>();
+            AddPrecondition<CheckSitecore>();
+            AddPrecondition<CheckBinding>();
+            AddPrecondition<CheckSqlConnection>();
+            AddPrecondition<CheckLicense>();
+            AddPrecondition<CheckWritePermissionToHostFile>();
 
-      //Init steps
-      AddStep<CreateProjectFolder>();
-      AddStep<GrantPermissions>();
-      AddStep<SaveProjectSettings>();
-      AddStep<RunPreInstallPowerShellScripts>();
-      AddStep<CopySitecore>();
-      AddStep<Copy64BitAssemblies>();
-      AddStep<CopyLicensefile>();
-      AddStep<SetDataFolder>();
-      AddStep<CopyModuleFiles>();
-      AddStep<SetConnectionStrings>();
-      AddStep<TransformConfigFiles>();
-      AddStep<AttachDatabases>();
-      AddStep<AddSitenameToHostFile>();
-      AddStep<CreateIisSiteAndAppPool>();
-      AddStep<InstallRuntimeServices>();
-      AddStep<InstallPackages>();
-      AddStep<ConfigureFinishingTasks>();
-      AddStep<DeserializeItems>();
-      AddStep<RunPostInstallPowerShellScripts>();
-      AddStep<WarmUpSite>();
+            //Init steps
+            AddStep<CreateProjectFolder>();
+            AddStep<GrantPermissions>();
+            AddStep<SaveProjectSettings>();
+            AddStep<RunPreInstallPowerShellScripts>();
+            AddStep<CopySitecore>();
+            AddStep<Copy64BitAssemblies>();
+            AddStep<CopyLicensefile>();
+            AddStep<SetDataFolder>();
+            AddStep<CopyModuleFiles>();
+            AddStep<SetConnectionStrings>();
+            AddStep<TransformConfigFiles>();
+            AddStep<AttachDatabases>();
+            AddStep<AddSitenameToHostFile>();
+            AddStep<CreateIisSiteAndAppPool>();
+            AddStep<InstallRuntimeServices>();
+            AddStep<InstallPackages>();
+            AddStep<ConfigureFinishingTasks>();
+            AddStep<DeserializeItems>();
+            AddStep<RunPostInstallPowerShellScripts>();
+            AddStep<WarmUpSite>();
+        }
     }
-  }
 }

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.UI.Forms
 {
-  using System.Windows.Forms;
+    using System.Windows.Forms;
 
-  public class SITextBox : TextBox
-  {
-    public SITextBox()
+    public class SITextBox : TextBox
     {
+        public SITextBox()
+        {
+        }
     }
-  }
 }

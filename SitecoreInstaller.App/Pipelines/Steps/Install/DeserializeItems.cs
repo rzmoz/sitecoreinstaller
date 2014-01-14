@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class DeserializeItems : Step<PipelineApplicationEventArgs>
-  {
-    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
+    public class DeserializeItems : Step<PipelineApplicationEventArgs>
     {
-      Services.Website.DeserializeItems(args.ProjectSettings.Iis.Url);
+        protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
+        {
+            Services.Website.DeserializeItems(args.ProjectSettings.Iis.Url);
+        }
     }
-  }
 }

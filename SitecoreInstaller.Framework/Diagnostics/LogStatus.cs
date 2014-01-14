@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.Framework.Diagnostics
 {
-  public enum LogStatus
+    public enum LogStatus
     {
         NoProblems,
         Warnings,

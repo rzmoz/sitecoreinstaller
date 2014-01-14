@@ -1,43 +1,42 @@
-﻿using System.Linq;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.UI.ListBoxes
 {
-  public abstract class SourceEntryComboBox : SourceEntryListControl<ComboBox>
-  {
-    public override void Init()
+    public abstract class SourceEntryComboBox : SourceEntryListControl<ComboBox>
     {
-      base.Init();
-      ListBox.FlatStyle = Styles.ListBoxes.FlatStyle;
-      ListBox.BackColor = Styles.ListBoxes.BackColor;
-      ListBox.BackColor = Styles.ListBoxes.ForeColor;
-      ListBox.SelectedIndex = ListBox.Items.Count - 1; //select last item
-    }
-
-    public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<ProjectSettings> e)
-    {
-      var relevanteSourceentry = GetRelevantSourceEntry(e.Arg.BuildLibrarySelections);
-      for (var i = 0; i < ListBox.Items.Count; i++)
-      {
-        if (((SourceEntry)ListBox.Items[i]).Key == relevanteSourceentry.Key)
+        public override void Init()
         {
-          ListBox.SelectedIndex = i;
-          return;
+            base.Init();
+            ListBox.FlatStyle = Styles.ListBoxes.FlatStyle;
+            ListBox.BackColor = Styles.ListBoxes.BackColor;
+            ListBox.BackColor = Styles.ListBoxes.ForeColor;
+            ListBox.SelectedIndex = ListBox.Items.Count - 1; //select last item
         }
-      }
 
-      if (ListBox.Items.Count > 0)
-        ListBox.SelectedIndex = 0;
+        public void BuildLibrarySelectionsUpdated(object sender, GenericEventArgs<ProjectSettings> e)
+        {
+            var relevanteSourceentry = GetRelevantSourceEntry(e.Arg.BuildLibrarySelections);
+            for (var i = 0; i < ListBox.Items.Count; i++)
+            {
+                if (((SourceEntry)ListBox.Items[i]).Key == relevanteSourceentry.Key)
+                {
+                    ListBox.SelectedIndex = i;
+                    return;
+                }
+            }
+
+            if (ListBox.Items.Count > 0)
+                ListBox.SelectedIndex = 0;
+        }
+
+        protected abstract SourceEntry GetRelevantSourceEntry(BuildLibrarySelections buildLibrarySelections);
+
+        public SourceEntry SelectedItem
+        {
+            get { return (SourceEntry)ListBox.SelectedItem; }
+        }
     }
-
-    protected abstract SourceEntry GetRelevantSourceEntry(BuildLibrarySelections buildLibrarySelections);
-
-    public SourceEntry SelectedItem
-    {
-      get { return (SourceEntry)ListBox.SelectedItem; }
-    }
-  }
 }

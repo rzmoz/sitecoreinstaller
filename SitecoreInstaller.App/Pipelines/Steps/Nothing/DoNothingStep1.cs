@@ -8,11 +8,11 @@ using SitecoreInstaller.Framework.Web;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 {
-  public class DoNothingStep1 : Step<DoNothingEventArgs>
-  {
-    protected override void InnerInvoke(object sender, DoNothingEventArgs args)
+    public class DoNothingStep1 : Step<DoNothingEventArgs>
     {
-        Task.WaitAll(Task.Delay(TimeSpan.FromSeconds(5)));
+        protected override void InnerInvoke(object sender, DoNothingEventArgs args)
+        {
+            Task.WaitAll(Task.Delay(TimeSpan.FromSeconds(5)));
+        }
     }
-  }
 }

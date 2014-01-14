@@ -1,46 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
+using NUnit.Framework;
+using SitecoreInstaller.Framework.IO;
 
-namespace SitecoreInstaller.App.Test.IO
+namespace SitecoreInstaller.Tests.Framework.IO
 {
-    using NUnit.Framework;
-
-    using SitecoreInstaller.Framework.IO;
-
-    using global::System.IO;
-
     [TestFixture]
     public class FileSystemInfoExtensionsUT
     {
-        private const string _Extension = ".zip";
-        private const string _TestNameWithDotInName= "test.dot";
-        private const string _TestNameWithoutDotInName = "test";
+        private const string _extension = ".zip";
+        private const string _testNameWithDotInName = "test.dot";
+        private const string _testNameWithoutDotInName = "test";
 
         [Test]
         public void NameWithoutDotsInName_StripFromFileInfoWithDotsInName_NameWithoutDotsInName()
         {
-            var input = new FileInfo(_TestNameWithDotInName + _Extension);
-            Assert.AreEqual(_TestNameWithDotInName, input.NameWithoutExtension());
+            var input = new FileInfo(_testNameWithDotInName + _extension);
+            Assert.AreEqual(_testNameWithDotInName, input.NameWithoutExtension());
         }
         [Test]
         public void NameWithoutDotsInName_StripFromFileInfoWithoutDotsInName_NameWithoutDotsInName()
         {
-            var input = new FileInfo(_TestNameWithoutDotInName + _Extension);
-            Assert.AreEqual(_TestNameWithoutDotInName, input.NameWithoutExtension());
+            var input = new FileInfo(_testNameWithoutDotInName + _extension);
+            Assert.AreEqual(_testNameWithoutDotInName, input.NameWithoutExtension());
         }
         [Test]
         public void NameWithoutDotsInName_StripFromDirectoryInfoWithDotsInName_NameWithoutDotsInName()
         {
-            var input = new DirectoryInfo(_TestNameWithDotInName);
-            Assert.AreEqual(_TestNameWithDotInName, input.NameWithoutExtension());
+            var input = new DirectoryInfo(_testNameWithDotInName);
+            Assert.AreEqual(_testNameWithDotInName, input.NameWithoutExtension());
         }
         [Test]
         public void NameWithoutDotsInName_StripFromDirectoryInfoWithoutDotsInName_NameWithoutDotsInName()
         {
-            var input = new DirectoryInfo(_TestNameWithoutDotInName);
-            Assert.AreEqual(_TestNameWithoutDotInName, input.NameWithoutExtension());
+            var input = new DirectoryInfo(_testNameWithoutDotInName);
+            Assert.AreEqual(_testNameWithoutDotInName, input.NameWithoutExtension());
         }
     }
 }

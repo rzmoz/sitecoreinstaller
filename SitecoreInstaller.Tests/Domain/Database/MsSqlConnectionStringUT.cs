@@ -19,7 +19,7 @@ namespace SitecoreInstaller.Tests.Domain.Database
         [TestCase(MockConnectionStrings.MsSql.ConnectionToASQLServerInstance)]
         public void IsValid_CheckConnectionStringFormat_ValueIsValid(string connectionString)
         {
-            var conStr = new MsSqlConnectionString {Value = connectionString};
+            var conStr = new MsSqlConnectionString { Value = connectionString };
 
             conStr.IsValid().Should().BeTrue();
         }

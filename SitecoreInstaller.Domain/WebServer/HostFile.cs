@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
+using System.Security;
+using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.WebServer
 {
-    using System.Security;
-
-    using SitecoreInstaller.Framework.Diagnostics;
-    using SitecoreInstaller.Framework.Sys;
-
     public class HostFile
     {
         private static readonly FileInfo _hostFile = new FileInfo(@"C:\Windows\System32\drivers\etc\hosts");
+
+        private const string _hostFileEntryFormat = _localHostIpAddress + " {0}";
+        private const string _localHostIpAddress = "127.0.0.1";
 
         public bool HasWritePermissions()
         {
@@ -88,7 +85,7 @@ namespace SitecoreInstaller.Domain.WebServer
                     {
                         var content = fileReader.ReadToEnd();
                         addNewline = !content.EndsWith(Environment.NewLine);
-                            
+
                     }
                     finally
                     {
@@ -103,10 +100,10 @@ namespace SitecoreInstaller.Domain.WebServer
             }
 
             //we add newline, if file doesn't end with newline to make sure new entry is on it's own line
-            if(addNewline)
+            if (addNewline)
                 WriteLineToHostfile("");
 
-            var hostFileEntry = string.Format(_HostFileEntryFormat, hostFileIisSiteName);
+            var hostFileEntry = string.Format(_hostFileEntryFormat, hostFileIisSiteName);
             WriteLineToHostfile(hostFileEntry);
         }
 
@@ -114,7 +111,7 @@ namespace SitecoreInstaller.Domain.WebServer
         {
             using (var fileWriter = _hostFile.AppendText())
             {
-                
+
                 fileWriter.WriteLine(line);
                 fileWriter.Close();
                 Log.ToApp.Debug("'{0}' written to host file", line);
@@ -128,13 +125,13 @@ namespace SitecoreInstaller.Domain.WebServer
             line = line.Trim();
             if (line.Length == 0)
                 return false;
-            if (line.StartsWith(_LocalHostIpAddress) == false)
+            if (line.StartsWith(_localHostIpAddress) == false)
                 return false;
 
-            if (line.Length <= _LocalHostIpAddress.Length)
+            if (line.Length <= _localHostIpAddress.Length)
                 return false;
             //assumes line format is IP-address, space and host name
-            line = line.Remove(0, _LocalHostIpAddress.Length);
+            line = line.Remove(0, _localHostIpAddress.Length);
             line = line.Trim();
             return line.Equals(hostFileIisSiteName.Trim());
         }
@@ -165,8 +162,5 @@ namespace SitecoreInstaller.Domain.WebServer
             File.Copy(tempFile, _hostFile.FullName);
             File.Delete(tempFile);
         }
-
-        private const string _HostFileEntryFormat = _LocalHostIpAddress + " {0}";
-        private const string _LocalHostIpAddress = "127.0.0.1";
     }
 }

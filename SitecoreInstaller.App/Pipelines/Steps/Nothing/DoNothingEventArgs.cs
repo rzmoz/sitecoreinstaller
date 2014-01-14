@@ -1,12 +1,12 @@
 ﻿namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
 {
-  public class DoNothingEventArgs : PipelineApplicationEventArgs
-  {
-    public DoNothingEventArgs()
+    public class DoNothingEventArgs : PipelineApplicationEventArgs
     {
-      Wait = 1000;
-    }
+        public DoNothingEventArgs()
+        {
+            Wait = 1000;
+        }
 
-    public int Wait { get; set; }
-  }
+        public int Wait { get; set; }
+    }
 }

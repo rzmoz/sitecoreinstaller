@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SitecoreInstaller.Framework.Test.Diagnostics
+﻿namespace SitecoreInstaller.Tests.Framework.Diagnostics
 {
-    using NUnit.Framework;
-
-    using SitecoreInstaller.Framework.Diagnostics;
     /*
     [TestFixture]
     public class LogUT

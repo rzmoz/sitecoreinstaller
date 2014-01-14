@@ -4,16 +4,16 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  public class PublishPipeline : Pipeline<PipelineApplicationEventArgs>
-  {
-    public PublishPipeline()
+    public class PublishPipeline : Pipeline<PipelineApplicationEventArgs>
     {
-      //Init preconditions
-      AddPrecondition<CheckProjectNameIsSet>();
-      AddPrecondition<CheckProjectExists>();
+        public PublishPipeline()
+        {
+            //Init preconditions
+            AddPrecondition<CheckProjectNameIsSet>();
+            AddPrecondition<CheckProjectExists>();
 
-      //Init steps
-      AddStep<PublishSite>();
+            //Init steps
+            AddStep<PublishSite>();
+        }
     }
-  }
 }

@@ -1,10 +1,9 @@
-﻿namespace SitecoreInstaller.Domain.Database
+﻿using System;
+using System.Data.SqlClient;
+using SitecoreInstaller.Framework.Diagnostics;
+
+namespace SitecoreInstaller.Domain.Database
 {
-    using System;
-    using System.Data.SqlClient;
-
-    using Framework.Diagnostics;
-
     public class SqlSettings
     {
         public string Login { get; set; }

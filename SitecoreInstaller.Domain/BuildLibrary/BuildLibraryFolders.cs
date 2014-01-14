@@ -1,46 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
+using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-  using System.IO;
-
-  using SitecoreInstaller.Framework.Diagnostics;
-  using SitecoreInstaller.Framework.IO;
-
-  public class BuildLibraryFolders
-  {
-    private const string _SitecoreFolderName = "Sitecore";
-    private const string _LicenseFolderName = "Licenses";
-    private const string _ModuleFolderName = "Modules";
-
-    public BuildLibraryFolders(string rootPath)
-      : this(new DirectoryInfo(rootPath))
-    { }
-
-    public BuildLibraryFolders(DirectoryInfo root)
+    public class BuildLibraryFolders
     {
-      if (root == null) { throw new ArgumentNullException("root"); }
-      Root = root;
+        private const string _sitecoreFolderName = "Sitecore";
+        private const string _licenseFolderName = "Licenses";
+        private const string _moduleFolderName = "Modules";
 
-      Modules = Root.CombineTo<DirectoryInfo>(_ModuleFolderName);
-      Licenses = Root.CombineTo<DirectoryInfo>(_LicenseFolderName);
-      Sitecore = Root.CombineTo<DirectoryInfo>(_SitecoreFolderName);
+        public BuildLibraryFolders(string rootPath)
+            : this(new DirectoryInfo(rootPath))
+        { }
+
+        public BuildLibraryFolders(DirectoryInfo root)
+        {
+            if (root == null) { throw new ArgumentNullException("root"); }
+            Root = root;
+
+            Modules = Root.CombineTo<DirectoryInfo>(_moduleFolderName);
+            Licenses = Root.CombineTo<DirectoryInfo>(_licenseFolderName);
+            Sitecore = Root.CombineTo<DirectoryInfo>(_sitecoreFolderName);
+        }
+
+        public void CreateIfNotExists()
+        {
+            Root.CreateIfNotExists();
+            Modules.CreateIfNotExists();
+            Licenses.CreateIfNotExists();
+            Sitecore.CreateIfNotExists();
+        }
+
+        public DirectoryInfo Root { get; private set; }
+        public DirectoryInfo Modules { get; private set; }
+        public DirectoryInfo Licenses { get; private set; }
+        public DirectoryInfo Sitecore { get; private set; }
     }
-
-    public void CreateIfNotExists()
-    {
-      Root.CreateIfNotExists();
-      Modules.CreateIfNotExists();
-      Licenses.CreateIfNotExists();
-      Sitecore.CreateIfNotExists();
-    }
-
-    public DirectoryInfo Root { get; private set; }
-    public DirectoryInfo Modules { get; private set; }
-    public DirectoryInfo Licenses { get; private set; }
-    public DirectoryInfo Sitecore { get; private set; }
-  }
 }

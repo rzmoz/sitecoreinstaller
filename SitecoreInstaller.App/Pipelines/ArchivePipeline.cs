@@ -7,26 +7,26 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  public class ArchivePipeline : Pipeline<ArchiveEventArgs>
-  {
-    public ArchivePipeline()
+    public class ArchivePipeline : Pipeline<ArchiveEventArgs>
     {
-      //Init preconditions
-      AddPrecondition<CheckProjectNameIsSet>();
-      AddPrecondition<CheckWritePermissionToHostFile>();
-      AddPrecondition<CheckProjectExists>();
-      AddPrecondition<CheckSqlConnection>();
+        public ArchivePipeline()
+        {
+            //Init preconditions
+            AddPrecondition<CheckProjectNameIsSet>();
+            AddPrecondition<CheckWritePermissionToHostFile>();
+            AddPrecondition<CheckProjectExists>();
+            AddPrecondition<CheckSqlConnection>();
 
-      //Init steps
-      AddStep<StopApplication>();
-      AddStep<DetachDatabases>();
-      AddStep<CleanProjectForArchiving>();
-      AddStep<ZipAndMoveToArchiveFolder>();
-      AddStep<SaveProjectSettings>();
-      AddStep<CopyLicensefile>();
-      AddStep<AttachDatabases>();
-      AddStep<StartApplication>();
-      AddStep<WarmUpSite>();
+            //Init steps
+            AddStep<StopApplication>();
+            AddStep<DetachDatabases>();
+            AddStep<CleanProjectForArchiving>();
+            AddStep<ZipAndMoveToArchiveFolder>();
+            AddStep<SaveProjectSettings>();
+            AddStep<CopyLicensefile>();
+            AddStep<AttachDatabases>();
+            AddStep<StartApplication>();
+            AddStep<WarmUpSite>();
+        }
     }
-  }
 }

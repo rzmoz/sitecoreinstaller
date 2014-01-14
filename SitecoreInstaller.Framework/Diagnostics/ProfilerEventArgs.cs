@@ -1,7 +1,7 @@
-﻿namespace SitecoreInstaller.Framework.Diagnostics
-{
-    using global::System;
+﻿using System;
 
+namespace SitecoreInstaller.Framework.Diagnostics
+{
     public class ProfilerEventArgs : EventArgs
     {
         public ProfilerEventArgs(string taskName, TimeSpan elapsed)
@@ -13,5 +13,4 @@
         public string TaskName { get; private set; }
         public TimeSpan Elapsed { get; private set; }
     }
-
 }

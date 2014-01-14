@@ -7,12 +7,12 @@ using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Publishing
 {
-  public class PublishSite : Step<PipelineApplicationEventArgs>
-  {
-    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
+    public class PublishSite : Step<PipelineApplicationEventArgs>
     {
-      Services.Website.InstallRuntimeServices(args.ProjectSettings.ProjectFolder.Website);
-      Services.Website.PublishSite(args.ProjectSettings.Iis.Url);
+        protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
+        {
+            Services.Website.InstallRuntimeServices(args.ProjectSettings.ProjectFolder.Website);
+            Services.Website.PublishSite(args.ProjectSettings.Iis.Url);
+        }
     }
-  }
 }

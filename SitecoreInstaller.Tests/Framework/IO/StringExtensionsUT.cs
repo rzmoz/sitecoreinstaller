@@ -5,8 +5,6 @@ using SitecoreInstaller.Framework.IO;
 using SitecoreInstaller.Framework.Sys;
 namespace SitecoreInstaller.Tests.Framework.IO
 {
-    
-
     [TestFixture]
     public class StringExtensionsUT
     {

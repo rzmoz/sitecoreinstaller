@@ -5,15 +5,15 @@ using System.Linq;
 using SitecoreInstaller.Framework.Databases;
 using SitecoreInstaller.Framework.IO;
 using SitecoreInstaller.Framework.Sys;
+using System.Data.SqlClient;
+using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.Database
 {
-    using System.Data.SqlClient;
-
     using Microsoft.SqlServer.Management.Common;
     using Microsoft.SqlServer.Management.Smo;
 
-    using Framework.Diagnostics;
+    
 
     public class SqlService
     {

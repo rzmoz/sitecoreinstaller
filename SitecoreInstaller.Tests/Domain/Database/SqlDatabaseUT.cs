@@ -9,7 +9,7 @@ namespace SitecoreInstaller.Tests.Domain.Database
     public class SqlDatabaseUT
     {
         private SqlDatabase _database;
-        
+
         [Test]
         [TestCase("SiteSetter.Sitecore.Web", "Web")]
         [TestCase("SiteSetter_Sitecore_Web", "Web")]

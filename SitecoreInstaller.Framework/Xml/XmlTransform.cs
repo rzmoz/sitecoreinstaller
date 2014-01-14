@@ -4,29 +4,29 @@ using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.Xml
 {
-  public static class XmlTransform
-  {
-    private const string _FileName = "SitecoreInstaller.XmlTransform.exe";
-    private const string _TransformFormat = _FileName + @" -source ""{0}"" -delta ""{1}"" -output ""{2}""";
-
-    public static bool Transform(FileInfo existingFile, string transformationXml)
+    public static class XmlTransform
     {
-      if (existingFile.Exists() == false)
-        return false;
+        private const string _fileName = "SitecoreInstaller.XmlTransform.exe";
+        private const string _transformFormat = _fileName + @" -source ""{0}"" -delta ""{1}"" -output ""{2}""";
 
-      var output = existingFile;
-      var source = output.WithNewExtension("Source");
-      var delta = output.WithNewExtension("Delta");
+        public static bool Transform(FileInfo existingFile, string transformationXml)
+        {
+            if (existingFile.Exists() == false)
+                return false;
 
-      transformationXml.WriteToDisk(delta);
-      output.CopyTo(source.FullName, true);
+            var output = existingFile;
+            var source = output.WithNewExtension("Source");
+            var delta = output.WithNewExtension("Delta");
 
-      var result = CommandPrompt.Run(_TransformFormat, source.FullName, delta.FullName, output.FullName);
-      
-      source.Delete();
-      delta.Delete();
+            transformationXml.WriteToDisk(delta);
+            output.CopyTo(source.FullName, true);
 
-      return string.IsNullOrEmpty(result.StandardError);
+            var result = CommandPrompt.Run(_transformFormat, source.FullName, delta.FullName, output.FullName);
+
+            source.Delete();
+            delta.Delete();
+
+            return string.IsNullOrEmpty(result.StandardError);
+        }
     }
-  }
 }

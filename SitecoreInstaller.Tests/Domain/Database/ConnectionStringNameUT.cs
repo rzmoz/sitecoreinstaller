@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using FluentAssertions;
+using NUnit.Framework;
+using SitecoreInstaller.Domain.Database;
 
-namespace SitecoreInstaller.Domain.Test.Database
+namespace SitecoreInstaller.Tests.Domain.Database
 {
-    using FluentAssertions;
-
-    using NUnit.Framework;
-
-    using SitecoreInstaller.Domain.Database;
-
     [TestFixture]
     public class ConnectionStringNameUT
     {

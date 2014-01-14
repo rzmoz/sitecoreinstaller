@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.Diagnostics;
 
 namespace SitecoreInstaller.Domain.Projects
 {
-    using Framework.Diagnostics;
-
     public class ProjectsService
     {
         private readonly DirectoryInfo _projectsFolder;

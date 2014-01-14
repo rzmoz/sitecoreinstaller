@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using MongoDB.Driver.Linq;
 using SitecoreInstaller.UI.BootUserPrompt;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller
 {

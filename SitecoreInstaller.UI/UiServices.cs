@@ -9,15 +9,15 @@ using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
 {
-  public static class UiServices
-  {
-    static UiServices()
+    public static class UiServices
     {
-      ProjectSettings = new ProjectSettings();
-      Dialogs = new UserDialogs();
-    }
+        static UiServices()
+        {
+            ProjectSettings = new ProjectSettings();
+            Dialogs = new UserDialogs();
+        }
 
-    public static ProjectSettings ProjectSettings { get; private set; }
-    public static UserDialogs Dialogs { get; private set; }
-  }
+        public static ProjectSettings ProjectSettings { get; private set; }
+        public static UserDialogs Dialogs { get; private set; }
+    }
 }

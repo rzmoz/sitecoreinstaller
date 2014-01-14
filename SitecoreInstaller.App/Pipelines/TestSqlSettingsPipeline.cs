@@ -3,11 +3,11 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  public class TestSqlSettingsPipeline : Pipeline<PipelineApplicationEventArgs>
-  {
-    public TestSqlSettingsPipeline()
+    public class TestSqlSettingsPipeline : Pipeline<PipelineApplicationEventArgs>
     {
-      AddStep<VerifySqlConnection>();
+        public TestSqlSettingsPipeline()
+        {
+            AddStep<VerifySqlConnection>();
+        }
     }
-  }
 }

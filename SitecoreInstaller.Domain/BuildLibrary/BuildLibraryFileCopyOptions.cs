@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-  public enum BuildLibraryFileCopyOptions
-  {
-    JustCopy,
-    DeleteAfterCopy
-  }
+    public enum BuildLibraryFileCopyOptions
+    {
+        JustCopy,
+        DeleteAfterCopy
+    }
 }

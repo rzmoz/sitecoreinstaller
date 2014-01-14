@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SitecoreInstaller.UI.Forms
 {
-  using System.Windows.Forms;
+    using System.Windows.Forms;
 
-  public class SILabel : Label
-  {
-    public SILabel()
+    public class SILabel : Label
     {
-      this.Font = Styles.Fonts.LblRegular;
-      this.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
+        public SILabel()
+        {
+            this.Font = Styles.Fonts.LblRegular;
+            this.ForeColor = Styles.Fonts.DarkBg.Colors.Text;
+        }
     }
-  }
 }

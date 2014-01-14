@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI.Forms
 {
-  public partial class SIDialog : UserControl
-  {
-    public SIDialog()
+    public partial class SIDialog : UserControl
     {
-      InitializeComponent();
+        public SIDialog()
+        {
+            InitializeComponent();
+        }
     }
-  }
 }

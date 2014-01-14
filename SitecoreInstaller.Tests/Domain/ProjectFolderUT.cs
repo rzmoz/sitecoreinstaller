@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
+using NUnit.Framework;
+using SitecoreInstaller.Domain;
 
-namespace SitecoreInstaller.Domain.Test.Website
+namespace SitecoreInstaller.Tests.Domain
 {
-    using System.IO;
-
-    using NUnit.Framework;
-
-    using SitecoreInstaller.Domain.Website;
-
     [TestFixture]
     public class ProjectFolderUT
     {
@@ -29,7 +22,7 @@ namespace SitecoreInstaller.Domain.Test.Website
             Assert.AreEqual(_ProjectFolder, projectFolder.FullName);
         }
 
-            
+
         [Test]
         public void ctor_ResolvePaths_WebsiteFolderIsSet()
         {
@@ -37,7 +30,7 @@ namespace SitecoreInstaller.Domain.Test.Website
 
             Assert.AreEqual(_ProjectFolder + @"\Website", projectFolder.Website.FullName);
         }
-        
+
         [Test]
         public void ctor_ResolvePaths_DatabaseFolderIsSet()
         {
@@ -84,5 +77,5 @@ namespace SitecoreInstaller.Domain.Test.Website
 
             Assert.AreEqual(_ProjectFolder + @"\Data\Packages", projectFolder.Data.Packages.FullName);
         }
-        }
+    }
 }

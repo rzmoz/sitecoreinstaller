@@ -7,14 +7,14 @@ using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-  public class CopyLicensefile : Step<PipelineApplicationEventArgs>
-  {
-    protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
+    public class CopyLicensefile : Step<PipelineApplicationEventArgs>
     {
-      var license = Services.BuildLibrary.Get(args.ProjectSettings.BuildLibrarySelections.SelectedLicense, SourceType.License);
-      if (license is BuildLibraryFile == false)
-        throw new DirectoryNotFoundException("license was not of type BuildLibraryFile. Was:" + license.GetType());
-      Services.Website.CopyLicenseFileToDataFolder(license as BuildLibraryFile, args.ProjectSettings.ProjectFolder.Data, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.LicenseConfigFile);
+        protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
+        {
+            var license = Services.BuildLibrary.Get(args.ProjectSettings.BuildLibrarySelections.SelectedLicense, SourceType.License);
+            if (license is BuildLibraryFile == false)
+                throw new DirectoryNotFoundException("license was not of type BuildLibraryFile. Was:" + license.GetType());
+            Services.Website.CopyLicenseFileToDataFolder(license as BuildLibraryFile, args.ProjectSettings.ProjectFolder.Data, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.LicenseConfigFile);
+        }
     }
-  }
 }

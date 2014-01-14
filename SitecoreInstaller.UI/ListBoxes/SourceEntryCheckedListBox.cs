@@ -6,7 +6,7 @@
     {
         public override void Init()
         {
-          ListBox.Font = Styles.Fonts.LblRegular;
+            ListBox.Font = Styles.Fonts.LblRegular;
 
             base.Init();
             if (ListBox.Items.Count > 0)

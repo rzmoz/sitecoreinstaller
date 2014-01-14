@@ -9,15 +9,15 @@ using SitecoreInstaller.Domain.Database;
 
 namespace SitecoreInstaller.Tests.Domain.Database
 {
-  [TestFixture]
-  public class MongoSettingsUT
-  {
-    [Test]
-    public void TestConnection_Verification_ConnectionShouldFail()
+    [TestFixture]
+    public class MongoSettingsUT
     {
-      var settings = new MongoSettings {Endpoint = "ThisEndPointMustNotExistIfTestShouldPass"};
-      var isValid = settings.TestConnection();
-      isValid.Should().BeFalse();
+        [Test]
+        public void TestConnection_Verification_ConnectionShouldFail()
+        {
+            var settings = new MongoSettings { Endpoint = "ThisEndPointMustNotExistIfTestShouldPass" };
+            var isValid = settings.TestConnection();
+            isValid.Should().BeFalse();
+        }
     }
-  }
 }

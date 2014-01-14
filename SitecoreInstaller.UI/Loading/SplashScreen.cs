@@ -11,39 +11,39 @@ using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.Loading
 {
-  public partial class SplashScreen : SIUserControl
-  {
-    public SplashScreen()
+    public partial class SplashScreen : SIUserControl
     {
-      InitializeComponent();
+        public SplashScreen()
+        {
+            InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            BackColor = Styles.Controls.BackColor;
+            timer1.Start();
+            timer1.Interval = 30;
+            lblTitle.Width = Width;
+            lblTitle.Height = Height;
+        }
+
+        public void Stop()
+        {
+            timer1.Stop();
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //if we reached right side, then we go back
+            var rightProximity = Width - picLogo.Right;
+            var leftProximity = picLogo.Left;
+
+            if (rightProximity < 50 || leftProximity < 50)
+                _movePicOffSet = _movePicOffSet * -1;
+
+            picLogo.Left += _movePicOffSet;
+        }
+
+        private int _movePicOffSet = 3;
     }
-
-    protected override void OnLoad(EventArgs e)
-    {
-      base.OnLoad(e);
-      BackColor = Styles.Controls.BackColor;
-      timer1.Start();
-      timer1.Interval = 30;
-      lblTitle.Width = Width;
-      lblTitle.Height = Height;
-    }
-
-    public void Stop()
-    {
-      timer1.Stop();
-    }
-    private void timer1_Tick(object sender, EventArgs e)
-    {
-      //if we reached right side, then we go back
-      var rightProximity = Width - picLogo.Right;
-      var leftProximity = picLogo.Left;
-
-      if (rightProximity < 50 || leftProximity < 50)
-        movePicOffSet = movePicOffSet * -1;
-
-      picLogo.Left += movePicOffSet;
-    }
-
-    private int movePicOffSet = 3;
-  }
 }

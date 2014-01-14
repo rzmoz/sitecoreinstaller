@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Xml.Linq;
+using NUnit.Framework;
+using SitecoreInstaller.Domain.Website;
 
-namespace SitecoreInstaller.Domain.Test.Website
+namespace SitecoreInstaller.Tests.Domain.Website
 {
-    using System.Xml.Linq;
-
-    using NUnit.Framework;
-
-    using SitecoreInstaller.Domain.Website;
-    using SitecoreInstaller.Tests.Domain.Website;
-
-  [TestFixture]
+    [TestFixture]
     public class WffmConfigFileUT
     {
         [TestFixtureSetUp]

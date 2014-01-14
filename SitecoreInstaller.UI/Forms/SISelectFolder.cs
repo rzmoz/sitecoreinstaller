@@ -11,38 +11,36 @@ using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.UI.Forms
 {
-  using SitecoreInstaller.App;
-
-  public partial class SISelectFolder : UserControl
-  {
-    public SISelectFolder()
+    public partial class SISelectFolder : UserControl
     {
-      InitializeComponent();
-    }
-
-    public string Title
-    {
-      get { return lblTitle.Text; }
-      set { lblTitle.Text = value; }
-    }
-
-    public new string Text
-    {
-      get { return tbxFolder.Text; }
-        set
+        public SISelectFolder()
         {
-            this.CrossThreadSafe(() =>
+            InitializeComponent();
+        }
+
+        public string Title
+        {
+            get { return lblTitle.Text; }
+            set { lblTitle.Text = value; }
+        }
+
+        public new string Text
+        {
+            get { return tbxFolder.Text; }
+            set
             {
-                tbxFolder.Text = value;    
-            });
+                this.CrossThreadSafe(() =>
+                {
+                    tbxFolder.Text = value;
+                });
+            }
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            string selectedFolder;
+            if (UiServices.Dialogs.ChooseFolder(out selectedFolder, this.tbxFolder.Text))
+                tbxFolder.Text = selectedFolder;
         }
     }
-
-    private void btnBrowse_Click(object sender, EventArgs e)
-    {
-      string selectedFolder;
-      if (UiServices.Dialogs.ChooseFolder(out selectedFolder, this.tbxFolder.Text))
-        tbxFolder.Text = selectedFolder;
-    }
-  }
 }

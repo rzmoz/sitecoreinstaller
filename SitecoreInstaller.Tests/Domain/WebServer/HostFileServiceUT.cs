@@ -1,13 +1,10 @@
-﻿namespace SitecoreInstaller.Domain.Test.WebServer
+﻿using System.IO;
+using FluentAssertions;
+using NUnit.Framework;
+using SitecoreInstaller.Domain.WebServer;
+
+namespace SitecoreInstaller.Tests.Domain.WebServer
 {
-    using System.IO;
-
-    using FluentAssertions;
-
-    using NUnit.Framework;
-
-    using SitecoreInstaller.Domain.WebServer;
-
     [TestFixture]
     public class HostFileServiceUT
     {
@@ -21,15 +18,15 @@
 
         [TestCase("test", "127.0.0.1\ttest")]//tab separated
         [TestCase("test", "127.0.0.1  test")]//multiple space between ip address and host name
-        [TestCase("test","127.0.0.1 test")]//ideal match
+        [TestCase("test", "127.0.0.1 test")]//ideal match
         public void LineIsHostFileName_HostNameMatch_IsMatch(string hostFileIisSiteName, string line)
         {
             var lineIsNotHostFileName = _hostFile.LineIsHostFileName(hostFileIisSiteName, line);
 
             Assert.IsTrue(lineIsNotHostFileName);
         }
-        
-        [TestCase("test","127.0.0.1 testX")]//has additional suffix
+
+        [TestCase("test", "127.0.0.1 testX")]//has additional suffix
         [TestCase("test", "127.0.0.1 Xtest")]//has additional prefix
         [TestCase("test", "127.0.0.1 XtestX")]//has additional pre- and suffix
         [TestCase("test", "")]//empty line
@@ -44,7 +41,7 @@
         [Test]
         public void LineIsHostFileName_HostNameMatchFromProductionSample_IsNotMatch()
         {
-            using(var reader = new StringReader(Production_Sample_HostFile))
+            using (var reader = new StringReader(Production_Sample_HostFile))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)

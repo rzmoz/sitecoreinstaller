@@ -4,54 +4,54 @@ using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.Linguistics
 {
-  public class Sentence
-  {
-    private readonly IList<Word> _words;
-
-    public Sentence(string sentence)
+    public class Sentence
     {
-      if (string.IsNullOrEmpty(sentence))
-        _words = new List<Word>();
-      else
-        _words = sentence.TokenizeWhenCharIsUpper().Select(str => new Word(str)).ToList();
+        private readonly IList<Word> _words;
 
-      ParseToActiveForm();
-    }
-
-    private void ParseToActiveForm()
-    {
-      var activeSentence = new List<string>();
-
-      if (_words.Any())
-      {
-        var lastWordWasAnd = true;
-        var lastWordWasMadeActive = false;
-        foreach (var word in _words)
+        public Sentence(string sentence)
         {
-          if (lastWordWasAnd)
-          {
-            activeSentence.Add(word.Activeform);
-            lastWordWasAnd = false;
-            lastWordWasMadeActive = true;
-          }
-          else
-          {
-            activeSentence.Add(word.Original);
-            if (lastWordWasMadeActive)
-              lastWordWasAnd = word.Original.ToLower() == "and";
-            lastWordWasMadeActive = false;
-          }
+            if (string.IsNullOrEmpty(sentence))
+                _words = new List<Word>();
+            else
+                _words = sentence.TokenizeWhenCharIsUpper().Select(str => new Word(str)).ToList();
+
+            ParseToActiveForm();
         }
-      }
 
-      ActiveForm = activeSentence.ToDelimiteredString();
+        private void ParseToActiveForm()
+        {
+            var activeSentence = new List<string>();
+
+            if (_words.Any())
+            {
+                var lastWordWasAnd = true;
+                var lastWordWasMadeActive = false;
+                foreach (var word in _words)
+                {
+                    if (lastWordWasAnd)
+                    {
+                        activeSentence.Add(word.Activeform);
+                        lastWordWasAnd = false;
+                        lastWordWasMadeActive = true;
+                    }
+                    else
+                    {
+                        activeSentence.Add(word.Original);
+                        if (lastWordWasMadeActive)
+                            lastWordWasAnd = word.Original.ToLower() == "and";
+                        lastWordWasMadeActive = false;
+                    }
+                }
+            }
+
+            ActiveForm = activeSentence.ToDelimiteredString();
+        }
+
+        public string ActiveForm { get; private set; }
+
+        public override string ToString()
+        {
+            return _words.ToDelimiteredString();
+        }
     }
-
-    public string ActiveForm { get; private set; }
-
-    public override string ToString()
-    {
-      return _words.ToDelimiteredString();
-    }
-  }
 }

@@ -9,20 +9,20 @@ using SitecoreInstaller.Domain.Pipelines;
 
 namespace SitecoreInstaller.App.Pipelines
 {
-  public class ReAttachPipeline : Pipeline<PipelineApplicationEventArgs>
-  {
-    public ReAttachPipeline()
+    public class ReAttachPipeline : Pipeline<PipelineApplicationEventArgs>
     {
-      //Init preconditions
-      AddPrecondition<CheckProjectNameIsSet>();
-      AddPrecondition<CheckWritePermissionToHostFile>();
-      AddPrecondition<CheckSqlConnection>();
+        public ReAttachPipeline()
+        {
+            //Init preconditions
+            AddPrecondition<CheckProjectNameIsSet>();
+            AddPrecondition<CheckWritePermissionToHostFile>();
+            AddPrecondition<CheckSqlConnection>();
 
-      //Init steps
-      AddStep<AttachDatabases>();
-      AddStep<AddSitenameToHostFile>();
-      AddStep<CreateIisSiteAndAppPool>();
-      AddStep<WarmUpSite>();
+            //Init steps
+            AddStep<AttachDatabases>();
+            AddStep<AddSitenameToHostFile>();
+            AddStep<CreateIisSiteAndAppPool>();
+            AddStep<WarmUpSite>();
+        }
     }
-  }
 }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-  public interface ISourceRepository
+    public interface ISourceRepository
     {
         event EventHandler<EventArgs> Updating;
         event EventHandler<EventArgs> Updated;

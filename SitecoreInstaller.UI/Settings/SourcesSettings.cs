@@ -10,15 +10,15 @@ using System.Windows.Forms;
 
 namespace SitecoreInstaller.UI.Settings
 {
-  public partial class SourcesSettings : UserSettingsCtrl
-  {
-    public SourcesSettings()
+    public partial class SourcesSettings : UserSettingsCtrl
     {
-      InitializeComponent();
+        public SourcesSettings()
+        {
+            InitializeComponent();
+        }
+        public override void Init()
+        {
+            Label = "Sources settings";
+        }
     }
-    public override void Init()
-    {
-      Label = "Sources settings";
-    }
-  }
 }
