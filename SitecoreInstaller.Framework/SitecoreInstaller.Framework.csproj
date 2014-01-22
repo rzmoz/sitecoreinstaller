@@ -72,6 +72,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharp.Basics">
+      <HintPath>..\packages\CSharp.Basics.1.1.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -131,17 +134,10 @@
     <Compile Include="Sys\CommandPrompt.cs" />
     <Compile Include="Sys\CommandPromptResult.cs" />
     <Compile Include="Sys\ControlExtensions.cs" />
-    <Compile Include="Sys\Do.cs" />
-    <Compile Include="Sys\DoTimespanStop.cs" />
-    <Compile Include="Sys\DoTriesStop.cs" />
     <Compile Include="Sys\EnumClass.cs" />
     <Compile Include="Sys\EnumerableExtensions.cs" />
     <Compile Include="Sys\EnumExtensions.cs" />
     <Compile Include="Sys\ExternalProcess.cs" />
-    <Compile Include="Sys\GenericEventArgs.cs" />
-    <Compile Include="Sys\Invoke.cs" />
-    <Compile Include="Sys\IUntil.cs" />
-    <Compile Include="Sys\Observable.cs" />
     <Compile Include="Sys\RegularExpressions.cs" />
     <Compile Include="Sys\SourceFactory.cs" />
     <Compile Include="Sys\StringExtensions.cs" />

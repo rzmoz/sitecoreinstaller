@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using SitecoreInstaller.Framework.Sys;
+using CSharp.Basics.Sys;
 using System.Threading;
 
 namespace SitecoreInstaller.Framework.Diagnostics

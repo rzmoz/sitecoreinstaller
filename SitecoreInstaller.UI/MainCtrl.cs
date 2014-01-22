@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using CSharp.Basics.Sys;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
 using SitecoreInstaller.App.Pipelines.Steps.Nothing;

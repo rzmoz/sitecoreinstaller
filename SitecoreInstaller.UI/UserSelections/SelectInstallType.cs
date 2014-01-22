@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CSharp.Basics.Sys;
 using SitecoreInstaller.Domain;
 
 namespace SitecoreInstaller.UI.UserSelections
@@ -17,7 +18,7 @@ namespace SitecoreInstaller.UI.UserSelections
             Clear();
         }
 
-        void ProjectSettings_Updated(object sender, Framework.Sys.GenericEventArgs<string> e)
+        void ProjectSettings_Updated(object sender, GenericEventArgs<string> e)
         {
             switch (UiServices.ProjectSettings.InstallType)
             {

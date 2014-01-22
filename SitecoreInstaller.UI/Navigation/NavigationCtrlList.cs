@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 using System.Windows.Forms;
+using CSharp.Basics.Sys;
 using SitecoreInstaller.Framework.Sys;
 using SitecoreInstaller.UI.Forms;
 
@@ -46,8 +47,8 @@ namespace SitecoreInstaller.UI.Navigation
 
         public void Add(NavButton button)
         {
-            button.Click += this.control_Click;
-            button.Activated += this.ButtonActivated;
+            button.Click += control_Click;
+            button.Activated += ButtonActivated;
             _root.Controls.Add(button);
             Init();
         }

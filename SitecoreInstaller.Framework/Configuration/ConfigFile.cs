@@ -2,6 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 using System;
+using CSharp.Basics.Sys;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.IO;
 using SitecoreInstaller.Framework.Sys;

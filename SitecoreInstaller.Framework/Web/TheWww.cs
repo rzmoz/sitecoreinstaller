@@ -2,7 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Threading;
-using Microsoft.PowerShell.Cim;
+using CSharp.Basics.Sys;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.Sys;
 

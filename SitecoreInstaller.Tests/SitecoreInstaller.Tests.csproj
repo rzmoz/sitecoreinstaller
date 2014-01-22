@@ -81,7 +81,6 @@
     <Compile Include="Framework\Linguistics\SentenceUT.cs" />
     <Compile Include="Framework\Linguistics\WordUT.cs" />
     <Compile Include="Framework\Scripting\PowerShellRunnerUT.cs" />
-    <Compile Include="Framework\Sys\ObservableUT.cs" />
     <Compile Include="Framework\Sys\StringExtensionsUT.cs" />
     <Compile Include="Framework\Sys\TypeExtensionsUT.cs" />
     <Compile Include="Framework\Web\WebExtensionsUT.cs" />

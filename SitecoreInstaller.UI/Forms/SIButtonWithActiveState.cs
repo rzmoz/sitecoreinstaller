@@ -1,10 +1,9 @@
 ﻿using System;
+using CSharp.Basics.Sys;
+using System.Drawing;
 
 namespace SitecoreInstaller.UI.Forms
 {
-    using System.Drawing;
-    using SitecoreInstaller.Framework.Sys;
-
     public class SIButtonWithActiveState : SIButton
     {
         private readonly Color InitColor = Color.Chartreuse; //this color equals not set - hope no one uses this color ever!

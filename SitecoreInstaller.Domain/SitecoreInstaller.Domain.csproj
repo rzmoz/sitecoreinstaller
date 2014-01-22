@@ -105,6 +105,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharp.Basics">
+      <HintPath>..\packages\CSharp.Basics.1.1.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>..\3rdPartyAssemblies\Ionic.Zip.dll</HintPath>
     </Reference>
