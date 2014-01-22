@@ -93,9 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archiving\SevenZip.cs" />
-    <Compile Include="CmdArgs\CmdLine.cs" />
-    <Compile Include="CmdArgs\CmdLineException.cs" />
-    <Compile Include="CmdArgs\CmdLineParameter.cs" />
     <Compile Include="Configuration\ConfigFile.cs" />
     <Compile Include="Configuration\IConfig.cs" />
     <Compile Include="Configuration\Resources.Designer.cs">

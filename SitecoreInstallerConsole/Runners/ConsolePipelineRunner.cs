@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using CSharp.Basics.ConsoleApp;
 using SitecoreInstaller.App;
-using System.Threading.Tasks;
-using SitecoreInstaller.Framework.CmdArgs;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.Sys;
 
@@ -16,7 +12,7 @@ namespace SitecoreInstallerConsole.Runners
 
         protected ConsolePipelineRunner()
         {
-            this.CmdLine = new CmdLine();
+            CmdLine = new CmdLine();
 
             Services.Init();
             Log.ToApp.EntryLogged += LogEntryLogged;

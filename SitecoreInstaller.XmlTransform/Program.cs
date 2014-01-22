@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using CSharp.Basics.ConsoleApp;
 using Microsoft.Web.Publishing.Tasks;
-using SitecoreInstaller.Framework.CmdArgs;
 
 namespace SitecoreInstaller.XmlTransform
 {

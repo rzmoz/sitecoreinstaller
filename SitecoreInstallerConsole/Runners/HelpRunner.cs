@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using CSharp.Basics.ConsoleApp;
+using SitecoreInstaller.App;
 
 namespace SitecoreInstallerConsole.Runners
 {
-    using SitecoreInstaller.App;
-    using SitecoreInstaller.Framework.CmdArgs;
-
     public class HelpRunner : ConsolePipelineRunner
     {
         private readonly CmdLine _cmdLine;
@@ -15,7 +11,7 @@ namespace SitecoreInstallerConsole.Runners
         public HelpRunner(string[] args)
         {
             _args = args;
-            this._cmdLine = new CmdLine();
+            _cmdLine = new CmdLine();
         }
 
         public override void Run(ProjectSettings projectSettings)

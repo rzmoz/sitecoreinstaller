@@ -1,4 +1,4 @@
-﻿using SitecoreInstaller.Framework.CmdArgs;
+﻿using CSharp.Basics.ConsoleApp;
 
 namespace SitecoreInstallerConsole
 {
