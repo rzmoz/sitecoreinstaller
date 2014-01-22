@@ -1,4 +1,5 @@
-﻿using SitecoreInstaller.App;
+﻿using CSharp.Basics.Forms;
+using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Sys;
 using System;

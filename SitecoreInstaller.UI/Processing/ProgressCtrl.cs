@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using CSharp.Basics.Forms;
 using CSharp.Basics.Sys;
 using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.Pipelines;

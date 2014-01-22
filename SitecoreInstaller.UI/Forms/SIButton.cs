@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using CSharp.Basics.Forms;
 
 namespace SitecoreInstaller.UI.Forms
 {
