@@ -84,7 +84,7 @@ namespace SitecoreInstaller.UI.Log
 
         private void ShowHideLogViewerButton_Click(object sender, EventArgs e)
         {
-            var visible = ViewportStack.OpenOrCloseDependingOnCurrentState(LogViewer);
+            var visible = UiServices.ViewportStack.OpenOrCloseDependingOnCurrentState(LogViewer);
             if (visible)
                 base.SetToolTip(_toolTipWhenVisible);
             else

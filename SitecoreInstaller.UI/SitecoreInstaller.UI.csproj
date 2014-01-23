@@ -70,11 +70,13 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharp.Basics">
-      <HintPath>..\packages\CSharp.Basics.1.1.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+    <Reference Include="CSharp.Basics, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.1.7.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
-    <Reference Include="CSharp.Basics.Forms">
-      <HintPath>..\packages\CSharp.Basics.Forms.1.1.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
+    <Reference Include="CSharp.Basics.Forms, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.Forms.1.12.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -346,11 +348,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Styles.cs" />
-    <Compile Include="Viewport\IListExtensionsForBetterStack.cs" />
-    <Compile Include="Viewport\SIUsercontrol.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Viewport\ViewportStack.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>

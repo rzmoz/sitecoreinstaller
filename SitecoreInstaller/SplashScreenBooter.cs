@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller
 {
     internal class SplashScreenBooter : Booter
     {
-        public SplashScreenBooter(SIUserControl control)
+        public SplashScreenBooter(BasicsUserControl control)
             : base(control)
         {
         }

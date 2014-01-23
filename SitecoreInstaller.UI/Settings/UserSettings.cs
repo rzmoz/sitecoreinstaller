@@ -1,4 +1,5 @@
-﻿using SitecoreInstaller.UI.Navigation;
+﻿using CSharp.Basics.Forms.Viewport;
+using SitecoreInstaller.UI.Navigation;
 using SitecoreInstaller.UI.Viewport;
 using System;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace SitecoreInstaller.UI.Settings
 {
 
 
-    public partial class UserSettings : SIUserControl
+    public partial class UserSettings : BasicsUserControl
     {
         private NavigationCtrlList _navList;
 
@@ -20,7 +21,7 @@ namespace SitecoreInstaller.UI.Settings
         public override bool ProcessKeyPress(Keys keyData)
         {
             //we only activate key board shortcuts, if we're visible
-            if (ViewportStack.IsVisible(this) == false)
+            if (UiServices.ViewportStack.IsVisible(this) == false)
                 return false;
 
             switch (keyData)
@@ -56,7 +57,7 @@ namespace SitecoreInstaller.UI.Settings
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            ViewportStack.Hide(this);
+            UiServices.ViewportStack.Hide(this);
         }
     }
 }

@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
-using SitecoreInstaller.Framework.Sys;
-using SitecoreInstaller.UI.Forms;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.BootUserPrompt
 {
-    public partial class BootWizardControl : SIUserControl
+    public partial class BootWizardControl : BasicsUserControl
     {
         //http://msdn.microsoft.com/en-us/library/x13ttww7.aspx
         private volatile bool _wizardFinished;

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
+using CSharp.Basics.Forms.Viewport;
 using CSharp.Basics.Sys;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
@@ -10,7 +11,7 @@ using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
 {
-    public partial class MainDeveloper : SIUserControl
+    public partial class MainDeveloper : BasicsUserControl
     {
         public MainDeveloper()
         {
@@ -55,7 +56,7 @@ namespace SitecoreInstaller.UI
         public override bool ProcessKeyPress(Keys keyData)
         {
             //we only activate key board shortcuts, if we're visible
-            if (ViewportStack.IsVisible(this) == false)
+            if (UiServices.ViewportStack.IsVisible(this) == false)
                 return false;
 
             switch (keyData)
@@ -65,7 +66,7 @@ namespace SitecoreInstaller.UI
                     return true;
                 case Keys.D | Keys.Control | Keys.Shift:
                     selectProjectName1.ProjectName = string.Empty;
-                    ViewportStack.Show("SitecoreInstaller.UI.MainSimple");
+                    UiServices.ViewportStack.Show("SitecoreInstaller.UI.MainSimple");
                     return true;
                 case Keys.C | Keys.Control:
                     selectProjectName1.ProjectName = string.Empty;

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 using CSharp.Basics.Forms;
+using CSharp.Basics.Forms.Viewport;
 using CSharp.Basics.Sys;
 
 namespace SitecoreInstaller.UI.Log
@@ -10,10 +10,8 @@ namespace SitecoreInstaller.UI.Log
     using App;
     using Domain.Pipelines;
     using Framework.Diagnostics;
-    using Framework.Sys;
-    using Viewport;
 
-    public partial class LogViewer : SIUserControl
+    public partial class LogViewer : BasicsUserControl
     {
         private IDictionary<LogType, Color> _colors;
 

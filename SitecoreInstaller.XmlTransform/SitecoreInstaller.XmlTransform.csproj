@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharp.Basics">
-      <HintPath>..\packages\CSharp.Basics.1.0.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+    <Reference Include="CSharp.Basics, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.1.7.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Publishing.Tasks">
       <HintPath>..\3rdPartyAssemblies\Microsoft.Web.Publishing.Tasks.Dll</HintPath>

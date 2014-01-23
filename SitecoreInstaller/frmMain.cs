@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using CSharp.Basics.Forms.Viewport;
+using SitecoreInstaller.UI;
 using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller
@@ -25,8 +27,8 @@ namespace SitecoreInstaller
             Services.LoadUserPreferences();
 
             var booter = CreateBooter();
-            ViewportStack.Register(booter.Control);
-            ViewportStack.Show(booter.Control);
+            UiServices.ViewportStack.Register(booter.Control);
+            UiServices.ViewportStack.Show(booter.Control);
             Task<bool> bootTask = booter.InitAsync();
 
             Services.Init();
@@ -37,8 +39,8 @@ namespace SitecoreInstaller
             *****************************************************************************/
 
             await bootTask;
-            ViewportStack.Hide(booter.Control);
-            ViewportStack.UnRegister(booter.Control);
+            UiServices.ViewportStack.Hide(booter.Control);
+            UiServices.ViewportStack.UnRegister(booter.Control);
 
             mainCtrl1.BringToFront();
             if (bootTask.Result)

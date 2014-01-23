@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using CSharp.Basics.Forms;
+using CSharp.Basics.Forms.Viewport;
 using CSharp.Basics.Sys;
 using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.Pipelines;
@@ -10,7 +11,7 @@ using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.Processing
 {
-    public partial class ProgressCtrl : SIUserControl
+    public partial class ProgressCtrl : BasicsUserControl
     {
         public ProgressCtrl()
         {
@@ -30,14 +31,14 @@ namespace SitecoreInstaller.UI.Processing
 
         private void siButton1_Click(object sender, EventArgs e)
         {
-            ViewportStack.Hide(this);
+            UiServices.ViewportStack.Hide(this);
         }
 
         public void Starting(object sender, PipelineInfoEventArgs e)
         {
             this.CrossThreadSafe(() =>
             {
-                ViewportStack.Show(this);
+                UiServices.ViewportStack.Show(this);
                 imgStatus.Hide();
                 lblTitle.Text = e.PipelineName;
                 picWaitAnimation.Show();
@@ -101,7 +102,7 @@ namespace SitecoreInstaller.UI.Processing
         private void imgStatus_Click(object sender, EventArgs e)
         {
             //I don't really like this. Thought the coupling is loose, it's still there. The progress control is referencing the logviwer control :-/
-            ViewportStack.Show("SitecoreInstaller.UI.Log.LogViewer");
+            UiServices.ViewportStack.Show("SitecoreInstaller.UI.Log.LogViewer");
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SitecoreInstaller.UI.Viewport;
+﻿using CSharp.Basics.Forms.Viewport;
 
 namespace SitecoreInstaller.UI.Forms
 {
@@ -18,9 +13,9 @@ namespace SitecoreInstaller.UI.Forms
         protected string ToolTipWhenVisible { get; set; }
         protected string ToolTipWhenNotVisible { get; set; }
 
-        protected bool OpenOrCloseControlDependingOnCurrentState(SIUserControl control)
+        protected bool OpenOrCloseControlDependingOnCurrentState(BasicsUserControl control)
         {
-            var visible = ViewportStack.OpenOrCloseDependingOnCurrentState(control);
+            var visible = UiServices.ViewportStack.OpenOrCloseDependingOnCurrentState(control);
             if (visible)
                 this.ToolTipTextActive = ToolTipWhenVisible;
             else

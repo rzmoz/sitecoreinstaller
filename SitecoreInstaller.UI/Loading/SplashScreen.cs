@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.Loading
 {
-    public partial class SplashScreen : SIUserControl
+    public partial class SplashScreen : BasicsUserControl
     {
         public SplashScreen()
         {

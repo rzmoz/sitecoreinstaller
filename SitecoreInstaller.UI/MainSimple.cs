@@ -2,13 +2,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.App;
 using SitecoreInstaller.UI.Simple;
 using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
 {
-    public partial class MainSimple : SIUserControl
+    public partial class MainSimple : BasicsUserControl
     {
         public MainSimple()
         {
@@ -49,13 +50,13 @@ namespace SitecoreInstaller.UI
         public override bool ProcessKeyPress(Keys keyData)
         {
             //we only activate keyboard shortcuts, if we're visible
-            if (ViewportStack.IsVisible(this) == false)
+            if (UiServices.ViewportStack.IsVisible(this) == false)
                 return false;
 
             switch (keyData)
             {
                 case Keys.D | Keys.Control | Keys.Shift:
-                    ViewportStack.Show("SitecoreInstaller.UI.MainDeveloper");
+                    UiServices.ViewportStack.Show("SitecoreInstaller.UI.MainDeveloper");
                     return true;
                 case Keys.B | Keys.Control | Keys.Shift:
                     btnInstall_Click(this, new EventArgs());
@@ -99,17 +100,17 @@ namespace SitecoreInstaller.UI
 
         private void btnOpenSite_Click(object sender, EventArgs e)
         {
-            ViewportStack.Show(openSiteCtrl1);
+            UiServices.ViewportStack.Show(openSiteCtrl1);
         }
 
         private void btnInstall_Click(object sender, EventArgs e)
         {
-            ViewportStack.Show(installCtrl1);
+            UiServices.ViewportStack.Show(installCtrl1);
         }
 
         private void btnUninstall_Click(object sender, EventArgs e)
         {
-            ViewportStack.Show(uninstallCtrl1);
+            UiServices.ViewportStack.Show(uninstallCtrl1);
         }
     }
 }

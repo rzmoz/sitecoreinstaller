@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
@@ -32,11 +33,11 @@ namespace SitecoreInstaller.UI
         private void TriggerKeyboardShortcut(Keys keys)
         {
             var parentSiCtrl = Parent;
-            while (parentSiCtrl is SIUserControl == false)
+            while (parentSiCtrl is BasicsUserControl == false)
             {
                 parentSiCtrl = parentSiCtrl.Parent;
             }
-            (parentSiCtrl as SIUserControl).ProcessKeyPress(keys);
+            (parentSiCtrl as BasicsUserControl).ProcessKeyPress(keys);
         }
 
         private void btnInstall_Click(object sender, EventArgs e)

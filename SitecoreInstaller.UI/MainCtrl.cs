@@ -26,7 +26,7 @@ namespace SitecoreInstaller.UI
 
         public void ShowUserPreferences()
         {
-            ViewportStack.Show(userPreferences1);
+            UiServices.ViewportStack.Show(userPreferences1);
         }
 
         public void Init()
@@ -43,14 +43,14 @@ namespace SitecoreInstaller.UI
             Services.UserPreferences.Load();
 
             if (Services.UserPreferences.Properties.AdvancedView)
-                ViewportStack.Show(mainDeveloper1);
+                UiServices.ViewportStack.Show(mainDeveloper1);
             else
-                ViewportStack.Show(mainSimple1);
+                UiServices.ViewportStack.Show(mainSimple1);
         }
 
         private void InitSdnLogin()
         {
-            ViewportStack.Register(sdnLogin1);
+            UiServices.ViewportStack.Register(sdnLogin1);
             sdnLogin1.Init();
             btnSdn.Init(sdnLogin1, toolTip1);
         }
@@ -62,20 +62,20 @@ namespace SitecoreInstaller.UI
 
         private void InitUserPreferences()
         {
-            ViewportStack.Register(userPreferences1);
+            UiServices.ViewportStack.Register(userPreferences1);
             userPreferences1.Init();
             showHideSettingsButton1.Init(userPreferences1, toolTip1);
         }
 
         private void InitMainSimple()
         {
-            ViewportStack.Register(mainSimple1);
+            UiServices.ViewportStack.Register(mainSimple1);
             mainSimple1.Init();
         }
 
         private void InitMainDeveloper()
         {
-            ViewportStack.Register(mainDeveloper1);
+            UiServices.ViewportStack.Register(mainDeveloper1);
 
             mainDeveloper1.Init();
             ProjectSettingsUpdated += mainDeveloper1.ProjectSettingsUpdated;
@@ -84,7 +84,7 @@ namespace SitecoreInstaller.UI
         private void InitLog()
         {
             logViewer1.Init();
-            ViewportStack.Register(logViewer1);
+            UiServices.ViewportStack.Register(logViewer1);
             showHideLogViewerButton1.Init(logViewer1, toolTip1);
         }
 
@@ -94,7 +94,7 @@ namespace SitecoreInstaller.UI
             switch (keyData)
             {
                 case Keys.L | Keys.Control | Keys.Shift:
-                    ViewportStack.OpenOrCloseDependingOnCurrentState(logViewer1);
+                    UiServices.ViewportStack.OpenOrCloseDependingOnCurrentState(logViewer1);
                     return true;
             }
 
@@ -115,11 +115,11 @@ namespace SitecoreInstaller.UI
                     Services.BuildLibrary.Update();
                     return true;
                 case Keys.P | Keys.Alt | Keys.Shift:
-                    ViewportStack.OpenOrCloseDependingOnCurrentState(userPreferences1);
+                    UiServices.ViewportStack.OpenOrCloseDependingOnCurrentState(userPreferences1);
                     return true;
             }
 
-            var activeMainCtrl = ViewportStack.ActiveCtrl;
+            var activeMainCtrl = UiServices.ViewportStack.ActiveCtrl;
             if (activeMainCtrl == null)
                 return false;
 
