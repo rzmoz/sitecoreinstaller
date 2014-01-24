@@ -32,7 +32,12 @@ namespace SitecoreInstaller.Framework.Web
             {
                 response = null;
                 response = CallUrlOnce(url);
-            }).WithPing(() => Log.ToApp.Info(response.StatusDescription))
+            }).WithPing(() =>
+            {
+                if (response == null)
+                    return;
+                Log.ToApp.Info(response.StatusDescription);
+            })
             .Until(() => (response != null && response.StatusCode == HttpStatusCode.OK), maxRetries);
 
             if (!succeeded)
