@@ -23,7 +23,7 @@ namespace SitecoreInstaller.App.Pipelines
             AddStep<CleanProjectForArchiving>();
             AddStep<ZipAndMoveToArchiveFolder>();
             AddStep<SaveProjectSettings>();
-            AddStep<CopyLicensefile>();
+            AddStep<CopyLicenseFile>();
             AddStep<AttachDatabases>();
             AddStep<StartApplication>();
             AddStep<WarmUpSite>();

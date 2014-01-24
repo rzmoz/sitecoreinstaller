@@ -178,6 +178,7 @@
     <Compile Include="Pipelines\Steps\Uninstall\StopApplication.cs" />
     <Compile Include="Pipelines\TestMongoSettingsPipeline.cs" />
     <Compile Include="Pipelines\TestSqlSettingsPipeline.cs" />
+    <Compile Include="Pipelines\UpdateLicenseFilePipeline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services.cs" />
     <Compile Include="ProjectSettings.cs" />

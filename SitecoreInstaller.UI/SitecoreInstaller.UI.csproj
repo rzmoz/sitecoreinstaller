@@ -190,6 +190,11 @@
     <Compile Include="MainDeveloperButtons.Designer.cs">
       <DependentUpon>MainDeveloperButtons.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="MainSimple.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -405,6 +410,10 @@
     <EmbeddedResource Include="MainDeveloperButtons.resx">
       <DependentUpon>MainDeveloperButtons.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainSimple.resx">
       <DependentUpon>MainSimple.cs</DependentUpon>
     </EmbeddedResource>
@@ -516,6 +525,7 @@
     <None Include="Processing\Images\Status_Ok.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Arrow.png" />
     <Content Include="Navigation\Images\InstallNewSitecore.png" />
     <Content Include="Navigation\Images\InstallNewSitecore_Active.png" />
     <Content Include="Navigation\Images\MySitecores.png" />

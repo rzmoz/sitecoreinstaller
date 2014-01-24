@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
 using CSharp.Basics.Sys;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
+using SitecoreInstaller.App.Pipelines.Steps.Install;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Sys;
 using SitecoreInstaller.UI.Viewport;
@@ -63,6 +65,10 @@ namespace SitecoreInstaller.UI
             {
                 case Keys.L | Keys.Control | Keys.Alt:
                     Services.Website.OpenLogsInBareTail(UiServices.ProjectSettings.ProjectFolder.Data.Logs);
+                    return true;
+                case Keys.L | Keys.Control | Keys.Shift:
+                    UpdateProjectSettings();
+                    Services.Pipelines.Run<UpdateLicenseFilePipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
                     return true;
                 case Keys.D | Keys.Control | Keys.Shift:
                     selectProjectName1.ProjectName = string.Empty;

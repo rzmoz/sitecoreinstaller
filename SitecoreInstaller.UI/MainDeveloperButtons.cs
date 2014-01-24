@@ -89,5 +89,10 @@ namespace SitecoreInstaller.UI
         {
             TriggerKeyboardShortcut(Keys.R | Keys.Control | Keys.Alt);
         }
+
+        private void btnUpdateLicensefile_Click(object sender, EventArgs e)
+        {
+            TriggerKeyboardShortcut(Keys.L | Keys.Control | Keys.Shift);
+        }
     }
 }

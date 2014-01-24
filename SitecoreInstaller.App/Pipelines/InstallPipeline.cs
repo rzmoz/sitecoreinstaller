@@ -25,7 +25,7 @@ namespace SitecoreInstaller.App.Pipelines
             AddStep<RunPreInstallPowerShellScripts>();
             AddStep<CopySitecore>();
             AddStep<Copy64BitAssemblies>();
-            AddStep<CopyLicensefile>();
+            AddStep<CopyLicenseFile>();
             AddStep<SetDataFolder>();
             AddStep<CopyModuleFiles>();
             AddStep<SetConnectionStrings>();

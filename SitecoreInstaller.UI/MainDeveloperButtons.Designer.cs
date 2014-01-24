@@ -30,7 +30,9 @@
     {
             this.components = new System.ComponentModel.Container();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnRecycleSite = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
             this.btnPublishSite = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
+            this.btnOpenLogFiles = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
             this.btnOpenProjectFolder = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
             this.btnOpenWebsite = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
             this.btnOpenSitecore = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
@@ -38,9 +40,30 @@
             this.btnUninstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
             this.btnReinstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
             this.btnInstall = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
-            this.btnOpenLogFiles = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
-            this.btnRecycleSite = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
+            this.btnUpdateLicensefile = new SitecoreInstaller.UI.Forms.SIMainDevActionButton();
             this.SuspendLayout();
+            // 
+            // btnRecycleSite
+            // 
+            this.btnRecycleSite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRecycleSite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
+            this.btnRecycleSite.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.btnRecycleSite.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRecycleSite.DrawBottomDivider = false;
+            this.btnRecycleSite.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnRecycleSite.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(155)))), ((int)(((byte)(189)))));
+            this.btnRecycleSite.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(193)))), ((int)(((byte)(222)))));
+            this.btnRecycleSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRecycleSite.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnRecycleSite.ForeColor = System.Drawing.Color.White;
+            this.btnRecycleSite.Location = new System.Drawing.Point(0, 360);
+            this.btnRecycleSite.Name = "btnRecycleSite";
+            this.btnRecycleSite.Size = new System.Drawing.Size(231, 40);
+            this.btnRecycleSite.TabIndex = 9;
+            this.btnRecycleSite.Text = "Recycle Site";
+            this.btnRecycleSite.UseVisualStyleBackColor = false;
+            this.btnRecycleSite.Click += new System.EventHandler(this.btnRecycleSite_Click);
             // 
             // btnPublishSite
             // 
@@ -56,13 +79,35 @@
             this.btnPublishSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPublishSite.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnPublishSite.ForeColor = System.Drawing.Color.White;
-            this.btnPublishSite.Location = new System.Drawing.Point(0, 400);
+            this.btnPublishSite.Location = new System.Drawing.Point(0, 320);
             this.btnPublishSite.Name = "btnPublishSite";
-            this.btnPublishSite.Size = new System.Drawing.Size(231, 50);
+            this.btnPublishSite.Size = new System.Drawing.Size(231, 40);
             this.btnPublishSite.TabIndex = 8;
             this.btnPublishSite.Text = "Publish Site";
             this.btnPublishSite.UseVisualStyleBackColor = false;
             this.btnPublishSite.Click += new System.EventHandler(this.btnPublishSite_Click);
+            // 
+            // btnOpenLogFiles
+            // 
+            this.btnOpenLogFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenLogFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
+            this.btnOpenLogFiles.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.btnOpenLogFiles.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOpenLogFiles.DrawBottomDivider = false;
+            this.btnOpenLogFiles.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnOpenLogFiles.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(155)))), ((int)(((byte)(189)))));
+            this.btnOpenLogFiles.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(193)))), ((int)(((byte)(222)))));
+            this.btnOpenLogFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenLogFiles.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnOpenLogFiles.ForeColor = System.Drawing.Color.White;
+            this.btnOpenLogFiles.Location = new System.Drawing.Point(0, 280);
+            this.btnOpenLogFiles.Name = "btnOpenLogFiles";
+            this.btnOpenLogFiles.Size = new System.Drawing.Size(231, 40);
+            this.btnOpenLogFiles.TabIndex = 7;
+            this.btnOpenLogFiles.Text = "Open Log Files";
+            this.btnOpenLogFiles.UseVisualStyleBackColor = false;
+            this.btnOpenLogFiles.Click += new System.EventHandler(this.btnOpenLogFiles_Click);
             // 
             // btnOpenProjectFolder
             // 
@@ -78,9 +123,9 @@
             this.btnOpenProjectFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenProjectFolder.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnOpenProjectFolder.ForeColor = System.Drawing.Color.White;
-            this.btnOpenProjectFolder.Location = new System.Drawing.Point(0, 300);
+            this.btnOpenProjectFolder.Location = new System.Drawing.Point(0, 240);
             this.btnOpenProjectFolder.Name = "btnOpenProjectFolder";
-            this.btnOpenProjectFolder.Size = new System.Drawing.Size(231, 50);
+            this.btnOpenProjectFolder.Size = new System.Drawing.Size(231, 40);
             this.btnOpenProjectFolder.TabIndex = 6;
             this.btnOpenProjectFolder.Text = "Open Project Folder";
             this.btnOpenProjectFolder.UseVisualStyleBackColor = false;
@@ -100,9 +145,9 @@
             this.btnOpenWebsite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenWebsite.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnOpenWebsite.ForeColor = System.Drawing.Color.White;
-            this.btnOpenWebsite.Location = new System.Drawing.Point(0, 250);
+            this.btnOpenWebsite.Location = new System.Drawing.Point(0, 200);
             this.btnOpenWebsite.Name = "btnOpenWebsite";
-            this.btnOpenWebsite.Size = new System.Drawing.Size(231, 50);
+            this.btnOpenWebsite.Size = new System.Drawing.Size(231, 40);
             this.btnOpenWebsite.TabIndex = 5;
             this.btnOpenWebsite.Text = "Open Website";
             this.btnOpenWebsite.UseVisualStyleBackColor = false;
@@ -122,9 +167,9 @@
             this.btnOpenSitecore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSitecore.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnOpenSitecore.ForeColor = System.Drawing.Color.White;
-            this.btnOpenSitecore.Location = new System.Drawing.Point(0, 200);
+            this.btnOpenSitecore.Location = new System.Drawing.Point(0, 160);
             this.btnOpenSitecore.Name = "btnOpenSitecore";
-            this.btnOpenSitecore.Size = new System.Drawing.Size(231, 50);
+            this.btnOpenSitecore.Size = new System.Drawing.Size(231, 40);
             this.btnOpenSitecore.TabIndex = 4;
             this.btnOpenSitecore.Text = "Open Sitecore";
             this.btnOpenSitecore.UseVisualStyleBackColor = false;
@@ -144,9 +189,9 @@
             this.btnArchive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnArchive.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnArchive.ForeColor = System.Drawing.Color.White;
-            this.btnArchive.Location = new System.Drawing.Point(0, 150);
+            this.btnArchive.Location = new System.Drawing.Point(0, 120);
             this.btnArchive.Name = "btnArchive";
-            this.btnArchive.Size = new System.Drawing.Size(231, 50);
+            this.btnArchive.Size = new System.Drawing.Size(231, 40);
             this.btnArchive.TabIndex = 3;
             this.btnArchive.Text = "Archive";
             this.btnArchive.UseVisualStyleBackColor = false;
@@ -166,9 +211,9 @@
             this.btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUninstall.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnUninstall.ForeColor = System.Drawing.Color.White;
-            this.btnUninstall.Location = new System.Drawing.Point(0, 100);
+            this.btnUninstall.Location = new System.Drawing.Point(0, 80);
             this.btnUninstall.Name = "btnUninstall";
-            this.btnUninstall.Size = new System.Drawing.Size(231, 50);
+            this.btnUninstall.Size = new System.Drawing.Size(231, 40);
             this.btnUninstall.TabIndex = 2;
             this.btnUninstall.Text = "Uninstall";
             this.btnUninstall.UseVisualStyleBackColor = false;
@@ -188,9 +233,9 @@
             this.btnReinstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReinstall.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnReinstall.ForeColor = System.Drawing.Color.White;
-            this.btnReinstall.Location = new System.Drawing.Point(0, 50);
+            this.btnReinstall.Location = new System.Drawing.Point(0, 40);
             this.btnReinstall.Name = "btnReinstall";
-            this.btnReinstall.Size = new System.Drawing.Size(231, 50);
+            this.btnReinstall.Size = new System.Drawing.Size(231, 40);
             this.btnReinstall.TabIndex = 1;
             this.btnReinstall.Text = "Reinstall";
             this.btnReinstall.UseVisualStyleBackColor = false;
@@ -212,60 +257,39 @@
             this.btnInstall.ForeColor = System.Drawing.Color.White;
             this.btnInstall.Location = new System.Drawing.Point(0, 0);
             this.btnInstall.Name = "btnInstall";
-            this.btnInstall.Size = new System.Drawing.Size(231, 50);
+            this.btnInstall.Size = new System.Drawing.Size(231, 40);
             this.btnInstall.TabIndex = 0;
             this.btnInstall.Text = "Install";
             this.btnInstall.UseVisualStyleBackColor = false;
             this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
             // 
-            // btnOpenLogFiles
+            // btnUpdateLicensefile
             // 
-            this.btnOpenLogFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnUpdateLicensefile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenLogFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
-            this.btnOpenLogFiles.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-            this.btnOpenLogFiles.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOpenLogFiles.DrawBottomDivider = false;
-            this.btnOpenLogFiles.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnOpenLogFiles.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(155)))), ((int)(((byte)(189)))));
-            this.btnOpenLogFiles.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(193)))), ((int)(((byte)(222)))));
-            this.btnOpenLogFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenLogFiles.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnOpenLogFiles.ForeColor = System.Drawing.Color.White;
-            this.btnOpenLogFiles.Location = new System.Drawing.Point(0, 350);
-            this.btnOpenLogFiles.Name = "btnOpenLogFiles";
-            this.btnOpenLogFiles.Size = new System.Drawing.Size(231, 50);
-            this.btnOpenLogFiles.TabIndex = 7;
-            this.btnOpenLogFiles.Text = "Open Log Files";
-            this.btnOpenLogFiles.UseVisualStyleBackColor = false;
-            this.btnOpenLogFiles.Click += new System.EventHandler(this.btnOpenLogFiles_Click);
-            // 
-            // btnRecycleSite
-            // 
-            this.btnRecycleSite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRecycleSite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
-            this.btnRecycleSite.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-            this.btnRecycleSite.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRecycleSite.DrawBottomDivider = false;
-            this.btnRecycleSite.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnRecycleSite.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(155)))), ((int)(((byte)(189)))));
-            this.btnRecycleSite.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(193)))), ((int)(((byte)(222)))));
-            this.btnRecycleSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRecycleSite.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnRecycleSite.ForeColor = System.Drawing.Color.White;
-            this.btnRecycleSite.Location = new System.Drawing.Point(0, 450);
-            this.btnRecycleSite.Name = "btnRecycleSite";
-            this.btnRecycleSite.Size = new System.Drawing.Size(231, 50);
-            this.btnRecycleSite.TabIndex = 9;
-            this.btnRecycleSite.Text = "Recycle Site";
-            this.btnRecycleSite.UseVisualStyleBackColor = false;
-            this.btnRecycleSite.Click += new System.EventHandler(this.btnRecycleSite_Click);
+            this.btnUpdateLicensefile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(177)))), ((int)(((byte)(209)))));
+            this.btnUpdateLicensefile.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.btnUpdateLicensefile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdateLicensefile.DrawBottomDivider = false;
+            this.btnUpdateLicensefile.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnUpdateLicensefile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(155)))), ((int)(((byte)(189)))));
+            this.btnUpdateLicensefile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(193)))), ((int)(((byte)(222)))));
+            this.btnUpdateLicensefile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateLicensefile.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnUpdateLicensefile.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateLicensefile.Location = new System.Drawing.Point(0, 400);
+            this.btnUpdateLicensefile.Name = "btnUpdateLicensefile";
+            this.btnUpdateLicensefile.Size = new System.Drawing.Size(231, 40);
+            this.btnUpdateLicensefile.TabIndex = 10;
+            this.btnUpdateLicensefile.Text = "Update License File";
+            this.btnUpdateLicensefile.UseVisualStyleBackColor = false;
+            this.btnUpdateLicensefile.Click += new System.EventHandler(this.btnUpdateLicensefile_Click);
             // 
             // MainDeveloperButtons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnUpdateLicensefile);
             this.Controls.Add(this.btnRecycleSite);
             this.Controls.Add(this.btnPublishSite);
             this.Controls.Add(this.btnOpenLogFiles);
@@ -295,5 +319,6 @@
     private Forms.SIMainDevActionButton btnPublishSite;
     private Forms.SIMainDevActionButton btnOpenLogFiles;
     private Forms.SIMainDevActionButton btnRecycleSite;
+    private Forms.SIMainDevActionButton btnUpdateLicensefile;
   }
 }

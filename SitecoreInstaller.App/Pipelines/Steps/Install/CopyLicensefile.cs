@@ -7,7 +7,7 @@ using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-    public class CopyLicensefile : Step<PipelineApplicationEventArgs>
+    public class CopyLicenseFile : Step<PipelineApplicationEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
