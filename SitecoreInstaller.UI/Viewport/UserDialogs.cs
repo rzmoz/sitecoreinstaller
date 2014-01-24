@@ -64,19 +64,6 @@ namespace SitecoreInstaller.UI.Viewport
             return UserAccept("Do you want to remove {0}?", sourceEntry.Key);
         }
 
-        public bool AddSitecore(out string fileName)
-        {
-            return ChooseFile(out fileName, "Sitecore versions (*.zip)|*.zip");
-        }
-        public bool AddModule(out string fileName)
-        {
-            return ChooseFile(out fileName, "Sitecore modules (*.zip)|*.zip");
-        }
-        public bool AddLicense(out string fileName)
-        {
-            return ChooseFile(out fileName, "Sitecore licenses (*.xml)|*.xml");
-        }
-
         public bool ChooseFile(out string fileName, string filter = "All files (*.*)|*.*")
         {
             var licenseFileDialog = new OpenFileDialog
