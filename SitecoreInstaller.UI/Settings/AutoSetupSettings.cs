@@ -21,7 +21,8 @@ namespace SitecoreInstaller.UI.Settings
 
         public override void Init()
         {
-            this.Label = "Auto Setup";
+            Label = "Auto Setup";
+            SaveButton.Visible = false;
         }
 
         private void btnFullyAutomated_Click(object sender, EventArgs e)

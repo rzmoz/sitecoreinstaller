@@ -113,6 +113,26 @@ namespace SitecoreInstaller.UI.Settings {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Licenses {
+            get {
+                object obj = ResourceManager.GetObject("Licenses", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Licenses_Active {
+            get {
+                object obj = ResourceManager.GetObject("Licenses_Active", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Settings {
             get {
                 object obj = ResourceManager.GetObject("Settings", resourceCulture);

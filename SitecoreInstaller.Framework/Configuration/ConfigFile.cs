@@ -31,7 +31,10 @@ namespace SitecoreInstaller.Framework.Configuration
                 throw new NotSupportedException("Path is not set");
 
             if (!FileExists)
-                throw new IOException("Config file not found. Looking for: " + Path.FullName);
+            {
+                Log.ToApp.Error("Config file not found. Looking for: " + Path.FullName);
+                return;
+            }
 
             try
             {

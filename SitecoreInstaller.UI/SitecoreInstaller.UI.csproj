@@ -74,9 +74,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CSharp.Basics.1.7.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
-    <Reference Include="CSharp.Basics.Forms, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics.Forms, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.Forms.1.12.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.Forms.1.16.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -224,11 +224,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SdnResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Settings\AddLicenseDnDControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Settings\AutoSetupSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Settings\AutoSetupSettings.Designer.cs">
       <DependentUpon>AutoSetupSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\LicensesSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\LicensesSettings.Designer.cs">
+      <DependentUpon>LicensesSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings\SettingsResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -420,6 +429,9 @@
     <EmbeddedResource Include="Settings\AutoSetupSettings.resx">
       <DependentUpon>AutoSetupSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Settings\LicensesSettings.resx">
+      <DependentUpon>LicensesSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings\SqlSettings.resx">
       <DependentUpon>SqlSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -515,6 +527,8 @@
     <Content Include="Settings\Images\back.png" />
     <Content Include="Settings\Images\Folders.png" />
     <Content Include="Settings\Images\Folders_Active.png" />
+    <None Include="Settings\Images\Licenses.png" />
+    <None Include="Settings\Images\Licenses_Active.png" />
     <Content Include="Settings\Images\SetupWizard.png" />
     <Content Include="Settings\Images\SetupWizard_Active.png" />
     <Content Include="Settings\Images\Sql.png" />

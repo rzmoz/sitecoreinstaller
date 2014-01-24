@@ -57,10 +57,17 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         private void ParseContent(XDocument doc)
         {
-            var licenseFile = doc.Descendants("license").Single();
-            Licensee = licenseFile.Element("licensee").Value;
-            var expirationString = licenseFile.Element("expiration").Value;
-            ExpirationDate = DateTime.ParseExact(expirationString, "yyyyMMddThhmmss", null);
+            try
+            {
+                var licenseFile = doc.Descendants("license").Single();
+                Licensee = licenseFile.Element("licensee").Value;
+                var expirationString = licenseFile.Element("expiration").Value;
+                ExpirationDate = DateTime.ParseExact(expirationString, "yyyyMMddThhmmss", null);
+            }
+            catch (InvalidOperationException)
+            {
+                throw new LicenseFileException("File doesn't seem to be a valid license file:  \r\n{0}\r\n", doc);
+            }
         }
 
         public override string ToString()

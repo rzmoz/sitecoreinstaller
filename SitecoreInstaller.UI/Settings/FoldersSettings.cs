@@ -22,7 +22,7 @@ namespace SitecoreInstaller.UI.Settings
 
         public override void Init()
         {
-            this.Label = "Folders settings";
+            Label = "Folders settings";
             Services.UserPreferences.Updated += UserPreferences_Updated;
         }
 

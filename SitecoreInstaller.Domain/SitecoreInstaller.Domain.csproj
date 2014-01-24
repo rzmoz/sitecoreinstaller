@@ -134,11 +134,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3rdPartyAssemblies\Microsoft.Web.Administration.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Bson">
-      <HintPath>..\packages\mongocsharpdriver.1.8.2\lib\net35\MongoDB.Bson.dll</HintPath>
+    <Reference Include="MongoDB.Bson, Version=1.8.3.9, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>..\packages\mongocsharpdriver.1.8.2\lib\net35\MongoDB.Driver.dll</HintPath>
+    <Reference Include="MongoDB.Driver, Version=1.8.3.9, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Common">
       <HintPath>..\packages\ServiceStack.Common.3.9.70\lib\net35\ServiceStack.Common.dll</HintPath>
@@ -185,6 +187,7 @@
     <Compile Include="BuildLibrary\BuildLibraryResourceFactory.cs" />
     <Compile Include="BuildLibrary\ISourceRepository.cs" />
     <Compile Include="BuildLibrary\ISource.cs" />
+    <Compile Include="BuildLibrary\LicenseFileException.cs" />
     <Compile Include="BuildLibrary\LicenseFileSourceEntry.cs" />
     <Compile Include="BuildLibrary\LocalSourceRepository.cs" />
     <Compile Include="BuildLibrary\BuildLibraryMode.cs" />

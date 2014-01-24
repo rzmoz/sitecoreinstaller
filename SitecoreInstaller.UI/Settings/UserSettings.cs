@@ -39,11 +39,39 @@ namespace SitecoreInstaller.UI.Settings
             btnBack.Image = SettingsResources.back;
             btnBack.FlatAppearance.BorderSize = 0;
 
-            _navList = new NavigationCtrlList(pnlButtons, btnBack.Height, toolTip1);
-            _navList.Add(new Level1NavigationButton(_sqlSettings1) { Text = "Sql", Image = SettingsResources.Database, ImageActive = SettingsResources.Database_Active });
-            _navList.Add(new Level1NavigationButton(mongoSettings1) { Text = "Mongo", Image = SettingsResources.Database, ImageActive = SettingsResources.Database_Active });
-            _navList.Add(new Level1NavigationButton(foldersSettings1) { Text = "Folders", Image = SettingsResources.Folders, ImageActive = SettingsResources.Folders_Active });
-            _navList.Add(new Level1NavigationButton(autoSetupSettings1) { Text = "Auto Setup", Image = SettingsResources.SetupWizard, ImageActive = SettingsResources.SetupWizard_Active });
+            _navList = new NavigationCtrlList(pnlButtons, btnBack.Height, toolTip1)
+            {
+                new Level1NavigationButton(sqlSettings1)
+                {
+                    Text = "Sql",
+                    Image = SettingsResources.Database,
+                    ImageActive = SettingsResources.Database_Active
+                },
+                new Level1NavigationButton(mongoSettings1)
+                {
+                    Text = "Mongo",
+                    Image = SettingsResources.Database,
+                    ImageActive = SettingsResources.Database_Active
+                },
+                new Level1NavigationButton(foldersSettings1)
+                {
+                    Text = "Folders",
+                    Image = SettingsResources.Folders,
+                    ImageActive = SettingsResources.Folders_Active
+                },
+                new Level1NavigationButton(licensesSettings1)
+                {
+                    Text = "Licenses",
+                    Image = SettingsResources.Licenses,
+                    ImageActive = SettingsResources.Licenses_Active
+                },
+                new Level1NavigationButton(autoSetupSettings1)
+                {
+                    Text = "Auto Setup",
+                    Image = SettingsResources.SetupWizard,
+                    ImageActive = SettingsResources.SetupWizard_Active
+                }
+            };
             _navList.Init();
             _navList.First().Activate();
 

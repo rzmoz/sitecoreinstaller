@@ -32,12 +32,13 @@
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnBack = new SitecoreInstaller.UI.Forms.SIButton();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.autoSetupSettings1 = new SitecoreInstaller.UI.Settings.AutoSetupSettings();
             this.mongoSettings1 = new SitecoreInstaller.UI.Settings.MongoSettings();
-            this._sqlSettings1 = new SitecoreInstaller.UI.Settings.SqlSettings();
+            this.sqlSettings1 = new SitecoreInstaller.UI.Settings.SqlSettings();
             this.sourcesSettings1 = new SitecoreInstaller.UI.Settings.SourcesSettings();
             this.foldersSettings1 = new SitecoreInstaller.UI.Settings.FoldersSettings();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.autoSetupSettings1 = new SitecoreInstaller.UI.Settings.AutoSetupSettings();
+            this.licensesSettings1 = new SitecoreInstaller.UI.Settings.LicensesSettings();
             this.pnlButtons.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.SuspendLayout();
@@ -72,14 +73,24 @@
             // 
             this.pnlContent.Controls.Add(this.autoSetupSettings1);
             this.pnlContent.Controls.Add(this.mongoSettings1);
-            this.pnlContent.Controls.Add(this._sqlSettings1);
+            this.pnlContent.Controls.Add(this.sqlSettings1);
             this.pnlContent.Controls.Add(this.sourcesSettings1);
             this.pnlContent.Controls.Add(this.foldersSettings1);
+            this.pnlContent.Controls.Add(this.licensesSettings1);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(150, 0);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(487, 386);
             this.pnlContent.TabIndex = 1;
+            // 
+            // autoSetupSettings1
+            // 
+            this.autoSetupSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.autoSetupSettings1.Label = "Header";
+            this.autoSetupSettings1.Location = new System.Drawing.Point(0, 0);
+            this.autoSetupSettings1.Name = "autoSetupSettings1";
+            this.autoSetupSettings1.Size = new System.Drawing.Size(487, 386);
+            this.autoSetupSettings1.TabIndex = 6;
             // 
             // mongoSettings1
             // 
@@ -90,14 +101,14 @@
             this.mongoSettings1.Size = new System.Drawing.Size(487, 386);
             this.mongoSettings1.TabIndex = 5;
             // 
-            // _sqlSettings1
+            // sqlSettings1
             // 
-            this._sqlSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._sqlSettings1.Label = "Sql Settings";
-            this._sqlSettings1.Location = new System.Drawing.Point(0, 0);
-            this._sqlSettings1.Name = "_sqlSettings1";
-            this._sqlSettings1.Size = new System.Drawing.Size(487, 386);
-            this._sqlSettings1.TabIndex = 2;
+            this.sqlSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqlSettings1.Label = "Sql Settings";
+            this.sqlSettings1.Location = new System.Drawing.Point(0, 0);
+            this.sqlSettings1.Name = "sqlSettings1";
+            this.sqlSettings1.Size = new System.Drawing.Size(487, 386);
+            this.sqlSettings1.TabIndex = 2;
             // 
             // sourcesSettings1
             // 
@@ -117,14 +128,14 @@
             this.foldersSettings1.Size = new System.Drawing.Size(487, 386);
             this.foldersSettings1.TabIndex = 4;
             // 
-            // autoSetupSettings1
+            // licensesSettings1
             // 
-            this.autoSetupSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.autoSetupSettings1.Label = "Header";
-            this.autoSetupSettings1.Location = new System.Drawing.Point(0, 0);
-            this.autoSetupSettings1.Name = "autoSetupSettings1";
-            this.autoSetupSettings1.Size = new System.Drawing.Size(487, 386);
-            this.autoSetupSettings1.TabIndex = 6;
+            this.licensesSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.licensesSettings1.Label = "Header";
+            this.licensesSettings1.Location = new System.Drawing.Point(0, 0);
+            this.licensesSettings1.Name = "licensesSettings1";
+            this.licensesSettings1.Size = new System.Drawing.Size(487, 386);
+            this.licensesSettings1.TabIndex = 7;
             // 
             // UserSettings
             // 
@@ -144,12 +155,13 @@
 
     private System.Windows.Forms.Panel pnlButtons;
     private System.Windows.Forms.Panel pnlContent;
-    private SqlSettings _sqlSettings1;
+    private SqlSettings sqlSettings1;
     private SourcesSettings sourcesSettings1;
     private Forms.SIButton btnBack;
     private FoldersSettings foldersSettings1;
     private System.Windows.Forms.ToolTip toolTip1;
     private MongoSettings mongoSettings1;
     private AutoSetupSettings autoSetupSettings1;
+    private LicensesSettings licensesSettings1;
   }
 }
