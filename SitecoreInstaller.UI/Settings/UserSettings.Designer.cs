@@ -30,44 +30,29 @@
     {
             this.components = new System.ComponentModel.Container();
             this.pnlButtons = new System.Windows.Forms.Panel();
-            this.btnBack = new SitecoreInstaller.UI.Forms.SIButton();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.autoSetupSettings1 = new SitecoreInstaller.UI.Settings.AutoSetupSettings();
             this.mongoSettings1 = new SitecoreInstaller.UI.Settings.MongoSettings();
             this.sqlSettings1 = new SitecoreInstaller.UI.Settings.SqlSettings();
             this.sourcesSettings1 = new SitecoreInstaller.UI.Settings.SourcesSettings();
             this.foldersSettings1 = new SitecoreInstaller.UI.Settings.FoldersSettings();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.licensesSettings1 = new SitecoreInstaller.UI.Settings.LicensesSettings();
+            this.btnBack = new SitecoreInstaller.UI.Forms.SIButton();
             this.pnlButtons.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlButtons
             // 
+            this.pnlButtons.AutoScroll = true;
+            this.pnlButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlButtons.Controls.Add(this.btnBack);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlButtons.Location = new System.Drawing.Point(0, 0);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.Size = new System.Drawing.Size(150, 386);
             this.pnlButtons.TabIndex = 0;
-            // 
-            // btnBack
-            // 
-            this.btnBack.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBack.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnBack.DrawBottomDivider = false;
-            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnBack.Location = new System.Drawing.Point(0, 0);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(150, 85);
-            this.btnBack.TabIndex = 0;
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // pnlContent
             // 
@@ -136,6 +121,23 @@
             this.licensesSettings1.Name = "licensesSettings1";
             this.licensesSettings1.Size = new System.Drawing.Size(487, 386);
             this.licensesSettings1.TabIndex = 7;
+            // 
+            // btnBack
+            // 
+            this.btnBack.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBack.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnBack.DrawBottomDivider = false;
+            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnBack.Location = new System.Drawing.Point(0, 0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(150, 85);
+            this.btnBack.TabIndex = 0;
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // UserSettings
             // 

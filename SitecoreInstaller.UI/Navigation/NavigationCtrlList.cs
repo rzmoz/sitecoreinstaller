@@ -103,7 +103,7 @@ namespace SitecoreInstaller.UI.Navigation
 
         public void Init()
         {
-            this.Init(_root.Controls.Cast<Control>());
+            Init(_root.Controls.Cast<Control>());
         }
 
         private void Init(IEnumerable<Control> buttons)
@@ -111,6 +111,7 @@ namespace SitecoreInstaller.UI.Navigation
             var index = 0;
             foreach (var button in buttons.OfType<NavButton>())
             {
+                button.Width = button.Parent.Width;
                 button.Top = index * button.Height + _topOffset;
                 button.Left = button.Level * button.Parent.Width;
                 button.TabIndex = button.Level * 10 + index;
