@@ -6,7 +6,6 @@ using System.Net;
 using System.Web;
 using ServiceStack.ServiceClient.Web;
 using ServiceStack.Text;
-using Sitecore.Tasks;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.IO;
 using SitecoreInstaller.Framework.Web;
@@ -93,6 +92,9 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         {
             lock (_fileLock)
             {
+                TempListFile.Refresh();
+                if (!TempListFile.Exists)
+                    return;
                 var content = File.ReadAllText(TempListFile.FullName);
                 if (content.Trim().Length == 0)
                     TempListFile.Delete();
