@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Domain.Database
     using Microsoft.SqlServer.Management.Common;
     using Microsoft.SqlServer.Management.Smo;
 
-    
+
 
     public class SqlService
     {
@@ -104,23 +104,26 @@ namespace SitecoreInstaller.Domain.Database
                 var sqlServer = GetSqlServerTrustedConnection();
 
                 var existingUser = sqlServer.Logins[sqlSettings.Login];
-                if (existingUser != null)
+                if (existingUser == null)
                 {
-                    existingUser.Drop();
+                    var login = new Login(sqlServer, sqlSettings.Login)
+                    {
+                        PasswordExpirationEnabled = false,
+                        PasswordPolicyEnforced = false,
+                        LoginType = LoginType.SqlLogin
+                    };
+
+                    login.Create(sqlSettings.Password);
+                    login.AddToRole("sysadmin");
                 }
-
-
-                var login = new Login(sqlServer, sqlSettings.Login)
+                else
                 {
-                    PasswordExpirationEnabled = false,
-                    PasswordPolicyEnforced = false,
-                    LoginType = LoginType.SqlLogin
-                };
-
-                login.Create(sqlSettings.Password);
-                login.AddToRole("sysadmin");
-
+                    existingUser.ChangePassword(sqlSettings.Password);
+                    existingUser.AddToRole("sysadmin");
+                }
             }
+            catch (FailedOperationException e)
+            { Log.ToApp.Warning("Couldn't add user as sysadmin to sql server\r\n{0}", e); }
             catch (SqlException e)
             {
                 Log.ToApp.Warning("Couldn't add user as sysadmin to sql server\r\n{0}", e);
