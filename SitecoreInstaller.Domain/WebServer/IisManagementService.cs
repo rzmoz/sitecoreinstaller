@@ -119,7 +119,7 @@ namespace SitecoreInstaller.Domain.WebServer
                         Log.ToApp.Info("Application pool started: " + applicationName);
                     }
                     else
-                        Log.ToApp.Warning("Application pool already started: " + applicationName);
+                        Log.ToApp.Debug("Application pool already started: " + applicationName);
                 }
 
                 if (iisManager.Sites[applicationName] == null)
@@ -132,7 +132,7 @@ namespace SitecoreInstaller.Domain.WebServer
                         Log.ToApp.Info("Site started: " + applicationName);
                     }
                     else
-                        Log.ToApp.Warning("Site already started: " + applicationName);
+                        Log.ToApp.Debug("Site already started: " + applicationName);
                 }
             }
         }
@@ -151,7 +151,7 @@ namespace SitecoreInstaller.Domain.WebServer
                         Log.ToApp.Info("Application pool stopped: " + applicationName);
                     }
                     else
-                        Log.ToApp.Warning("Application pool already stopped: " + applicationName);
+                        Log.ToApp.Debug("Application pool already stopped: " + applicationName);
                 }
 
                 var site = iisManager.Sites[applicationName];
@@ -166,7 +166,7 @@ namespace SitecoreInstaller.Domain.WebServer
                         Log.ToApp.Info("Site stopped: " + applicationName);
                     }
                     else
-                        Log.ToApp.Warning("Site already stopped: " + applicationName);
+                        Log.ToApp.Debug("Site already stopped: " + applicationName);
                 }
             }
         }
