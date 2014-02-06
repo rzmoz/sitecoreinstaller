@@ -12,29 +12,10 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
-            if (args.ProjectSettings.InstallType == InstallType.Client)
-                return;
-
             var connectionStrings = args.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile;
 
-            connectionStrings.InitFromFile();
-
-            if (args.ProjectSettings.InstallType == InstallType.Full)
-            {
-                var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
-                args.ProjectSettings.DatabaseNames = databases.Select(db => db.LogicalName).AsUniqueStrings().Select(name => new ConnectionStringName(args.ProjectSettings.ProjectName, name));
-            }
-
-            var sqlDelta = Services.Sql.GenerateConnectionStringsDelta(args.ProjectSettings.Sql, args.ProjectSettings.DatabaseNames, connectionStrings);
-
-            XmlTransform.Transform(connectionStrings.File, sqlDelta);
-
-            //mongo
-            connectionStrings.InitFromFile();
-
-            var mongoDelta = Services.Mongo.GenerateConnectionStringsDelta(args.ProjectSettings.Mongo, connectionStrings, args.ProjectSettings.ProjectName);
-
-            XmlTransform.Transform(connectionStrings.File, mongoDelta);
+            SetSqlConnectionStrings(args, connectionStrings);
+            SetMongoConnectionStrings(args, connectionStrings);
 
             //WFFM Sql-Dataprovider connection string set
             connectionStrings.InitFromFile();
@@ -51,5 +32,41 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             if (formsConfigFile.DataProviderType == DataProviderType.Sql)
                 Services.Website.CreateWffmConfigFile(webFormsConnectionString.ConnectionString.Value, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.WffmSqlDataproviderConfigFile);
         }
+
+        private static void SetSqlConnectionStrings(PipelineApplicationEventArgs args, ConnectionStringsFile connectionStrings)
+        {
+            if (args.ProjectSettings.Sql.InstallType == DbInstallType.Client)
+                return;
+
+            connectionStrings.InitFromFile();
+
+            var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases,
+                args.ProjectSettings.ProjectName);
+            args.ProjectSettings.DatabaseNames =
+                databases.Select(db => db.LogicalName)
+                    .AsUniqueStrings()
+                    .Select(name => new ConnectionStringName(args.ProjectSettings.ProjectName, name));
+
+
+            var sqlDelta = Services.Sql.GenerateConnectionStringsDelta(args.ProjectSettings.Sql,
+                args.ProjectSettings.DatabaseNames, connectionStrings);
+
+            XmlTransform.Transform(connectionStrings.File, sqlDelta);
+
+        }
+
+        private static void SetMongoConnectionStrings(PipelineApplicationEventArgs args, ConnectionStringsFile connectionStrings)
+        {
+            if (args.ProjectSettings.Mongo.InstallType == DbInstallType.Client)
+                return;
+
+            connectionStrings.InitFromFile();
+
+            var mongoDelta = Services.Mongo.GenerateConnectionStringsDelta(args.ProjectSettings.Mongo, connectionStrings,
+                args.ProjectSettings.ProjectName);
+
+            XmlTransform.Transform(connectionStrings.File, mongoDelta);
+        }
     }
 }
+

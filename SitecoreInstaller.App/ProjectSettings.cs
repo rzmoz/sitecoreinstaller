@@ -60,8 +60,6 @@ namespace SitecoreInstaller.App
       set { _projectName.Value = value; }
     }
 
-    public InstallType InstallType { get; set; }
-
     public BuildLibrarySelections BuildLibrarySelections { get; set; }
     public SqlSettings Sql { get; set; }
     public MongoSettings Mongo { get; set; }
@@ -74,7 +72,6 @@ namespace SitecoreInstaller.App
     {
       _projectName.Reset();
       DatabaseNames = Enumerable.Empty<ConnectionStringName>();
-      InstallType = InstallType.Full;
       Iis = new IisSettings();
       ProjectFolder = new ProjectFolder(new DirectoryInfo(@"K:\"));
       BuildLibrarySelections = new BuildLibrarySelections();

@@ -13,12 +13,14 @@ namespace SitecoreInstaller.Domain.Database
     {
         public MongoSettings()
         {
+            InstallType = DbInstallType.Local;
             Username = string.Empty;
             Password = string.Empty;
             Endpoint = "localhost";
             Port = 27017;
         }
 
+        public DbInstallType InstallType { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Endpoint { get; set; }

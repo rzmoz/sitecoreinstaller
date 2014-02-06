@@ -6,6 +6,9 @@ namespace SitecoreInstaller.Domain.Database
 {
     public class SqlSettings
     {
+
+
+        public DbInstallType InstallType { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string InstanceName { get; set; }
@@ -22,6 +25,7 @@ namespace SitecoreInstaller.Domain.Database
         {
             Login = "sc";
             Password = "1234";
+            InstallType = DbInstallType.Local;
         }
 
         public bool TestConnection()

@@ -99,9 +99,11 @@ namespace SitecoreInstaller.UI
                     return true;
                 case Keys.R | Keys.Control | Keys.Shift:
                     //we make sure the install type is not changed on reinstall! That would mess things up
-                    var installType = UiServices.ProjectSettings.InstallType;
+                    var sqlInstallType = UiServices.ProjectSettings.Sql.InstallType;
+                    var mongoInstallType = UiServices.ProjectSettings.Mongo.InstallType;
                     UpdateProjectSettings();
-                    UiServices.ProjectSettings.InstallType = installType;
+                    UiServices.ProjectSettings.Sql.InstallType = sqlInstallType;
+                    UiServices.ProjectSettings.Mongo.InstallType = mongoInstallType;
                     Services.Pipelines.Run<ReinstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings);
                     return true;
                 case Keys.A | Keys.Control | Keys.Shift:
@@ -134,7 +136,8 @@ namespace SitecoreInstaller.UI
             UiServices.ProjectSettings.BuildLibrarySelections.SelectedSitecore = selectSitecore1.SelectedItem;
             UiServices.ProjectSettings.BuildLibrarySelections.SelectedLicense = selectLicense1.SelectedItem;
             UiServices.ProjectSettings.BuildLibrarySelections.SelectedModules = selectModules1.SelectedModules;
-            UiServices.ProjectSettings.InstallType = selectClientInstall1.SelectedInstallType;
+            UiServices.ProjectSettings.Sql.InstallType = selectClientInstall1.SqlInstallType;
+            UiServices.ProjectSettings.Mongo.InstallType = selectClientInstall1.MongoInstallType;
         }
     }
 }

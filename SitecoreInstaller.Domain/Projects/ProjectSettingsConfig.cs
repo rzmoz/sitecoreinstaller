@@ -12,7 +12,8 @@ namespace SitecoreInstaller.Domain.Projects
             Sitecore = string.Empty;
             License = string.Empty;
             Modules = new List<string>();
-            InstallType = InstallType.Full;
+            SqlInstallType = DbInstallType.Local;
+            MongoInstallType = DbInstallType.Local;
         }
 
         public string Sitecore { get; set; }
@@ -22,6 +23,7 @@ namespace SitecoreInstaller.Domain.Projects
         [XmlArrayItem(ElementName = "Module", IsNullable = false)]
         public List<string> Modules { get; set; }
 
-        public InstallType InstallType { get; set; }
+        public DbInstallType SqlInstallType { get; set; }
+        public DbInstallType MongoInstallType { get; set; }
     }
 }

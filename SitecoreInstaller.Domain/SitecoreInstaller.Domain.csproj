@@ -218,7 +218,7 @@
     <Compile Include="DataFolder.cs" />
     <Compile Include="ExternalSourceType.cs" />
     <Compile Include="IncludeFolder.cs" />
-    <Compile Include="InstallType.cs" />
+    <Compile Include="DbInstallType.cs" />
     <Compile Include="Pipelines\IPrecondition.cs" />
     <Compile Include="Pipelines\IStep.cs" />
     <Compile Include="Pipelines\Pipeline.cs" />

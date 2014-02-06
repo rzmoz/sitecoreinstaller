@@ -7,15 +7,18 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
-            if (args.ProjectSettings.InstallType == InstallType.Client)
-                return;
-
-            var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
-            foreach (var sqlDatabase in databases)
+            //we attach sql databases if it's local
+            if (args.ProjectSettings.Sql.InstallType == DbInstallType.Local)
             {
-                Log.ToApp.Info("Attaching {0}...", sqlDatabase.Name);
-                sqlDatabase.Attach(args.ProjectSettings.Sql);
+                var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
+                foreach (var sqlDatabase in databases)
+                {
+                    Log.ToApp.Info("Attaching {0}...", sqlDatabase.Name);
+                    sqlDatabase.Attach(args.ProjectSettings.Sql);
+                }    
             }
+
+            //mongo databases are created on the fly
         }
     }
 }

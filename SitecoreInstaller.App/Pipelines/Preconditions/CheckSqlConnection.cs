@@ -7,7 +7,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
         public override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
         {
             //we don't verify sql settings on client install
-            if (args.ProjectSettings.InstallType == InstallType.Client)
+            if (args.ProjectSettings.Sql.InstallType == DbInstallType.Client)
                 return true;
 
             if (args.ProjectSettings.Sql.TestConnection())

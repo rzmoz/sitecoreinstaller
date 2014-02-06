@@ -34,7 +34,7 @@ namespace SitecoreInstaller.Domain.Website
             Log.ToApp.Info("Data folder set to '{0}'", dataFolder.FullName);
         }
 
-        public void CopySitecoreToProjectfolder(ProjectFolder projectFolder, BuildLibraryDirectory sitecore, InstallType installType)
+        public void CopySitecoreToProjectfolder(ProjectFolder projectFolder, BuildLibraryDirectory sitecore, DbInstallType sqlInstallType)
         {
             Log.ToApp.Info("Copying '{0}'...", sitecore.Directory.Name);
 
@@ -43,7 +43,7 @@ namespace SitecoreInstaller.Domain.Website
             sitecoreWebsiteFolder.CopyTo(projectFolder.Website, DirCopyOptions.IncludeSubDirectories);
 
             //Copy database folder
-            if (installType == InstallType.Full)
+            if (sqlInstallType == DbInstallType.Local)
             {
                 //TODO: Move database folder name to central location
                 CopyDatabaseFolder("Database", sitecore.Directory, projectFolder);
@@ -71,11 +71,11 @@ namespace SitecoreInstaller.Domain.Website
             sitecoreDatabaseFolder.CopyFlattenedTo(projectfolder.Databases, FileTypes.DatabaseDataFile.GetAllSearchPattern);
         }
 
-        public void CopyModulesToWebsite(ProjectFolder projectFolder, BuildLibraryDirectory module, InstallType installType)
+        public void CopyModulesToWebsite(ProjectFolder projectFolder, BuildLibraryDirectory module, DbInstallType sqlInstallType)
         {
             Log.ToApp.Info("Copying module to website...");
 
-            if (installType == InstallType.Full)
+            if (sqlInstallType == DbInstallType.Local)
             {
                 try
                 {
@@ -121,7 +121,7 @@ namespace SitecoreInstaller.Domain.Website
             Log.ToApp.Info("Module copied to website");
         }
 
-        public void CopyStandAloneScPackagesToWebsite(ProjectFolder projectFolder, BuildLibraryFile file, InstallType installType)
+        public void CopyStandAloneScPackagesToWebsite(ProjectFolder projectFolder, BuildLibraryFile file, DbInstallType sqlInstallType)
         {
             Log.ToApp.Info("Copying stand alone sitecore package to website...");
 

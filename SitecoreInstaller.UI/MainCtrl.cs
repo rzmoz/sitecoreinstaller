@@ -144,7 +144,8 @@ namespace SitecoreInstaller.UI
                 UiServices.ProjectSettings.BuildLibrarySelections.SelectedSitecore = SourceEntry.ParseString(projectConfig.Properties.Sitecore);
                 UiServices.ProjectSettings.BuildLibrarySelections.SelectedLicense = SourceEntry.ParseString(projectConfig.Properties.License);
                 UiServices.ProjectSettings.BuildLibrarySelections.SelectedModules = projectConfig.Properties.Modules.Select(SourceEntry.ParseString);
-                UiServices.ProjectSettings.InstallType = projectConfig.Properties.InstallType;
+                UiServices.ProjectSettings.Sql.InstallType = projectConfig.Properties.SqlInstallType;
+                UiServices.ProjectSettings.Mongo.InstallType = projectConfig.Properties.MongoInstallType;
 
                 if (ProjectSettingsUpdated != null)
                     ProjectSettingsUpdated(sender, new GenericEventArgs<ProjectSettings>(UiServices.ProjectSettings));
@@ -152,7 +153,8 @@ namespace SitecoreInstaller.UI
             else
             {
                 UiServices.ProjectSettings.BuildLibrarySelections = new BuildLibrarySelections();
-                UiServices.ProjectSettings.InstallType = InstallType.Full;
+                UiServices.ProjectSettings.Sql.InstallType = DbInstallType.Local;
+                UiServices.ProjectSettings.Mongo.InstallType = DbInstallType.Local;
             }
         }
 
