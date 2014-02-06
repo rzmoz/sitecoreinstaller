@@ -98,7 +98,7 @@
             // 
             this.selectClientInstall1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.selectClientInstall1.Location = new System.Drawing.Point(12, 414);
+            this.selectClientInstall1.Location = new System.Drawing.Point(12, 429);
             this.selectClientInstall1.Name = "selectClientInstall1";
             this.selectClientInstall1.Size = new System.Drawing.Size(410, 46);
             this.selectClientInstall1.TabIndex = 12;
@@ -110,7 +110,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.selectModules1.Location = new System.Drawing.Point(12, 135);
             this.selectModules1.Name = "selectModules1";
-            this.selectModules1.Size = new System.Drawing.Size(410, 300);
+            this.selectModules1.Size = new System.Drawing.Size(410, 332);
             this.selectModules1.TabIndex = 11;
             // 
             // MainDeveloper
