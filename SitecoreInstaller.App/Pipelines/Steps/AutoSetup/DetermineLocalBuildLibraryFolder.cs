@@ -3,7 +3,7 @@ using System.Linq;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.IO;
 
-namespace SitecoreInstaller.App.Pipelines.Steps.InitialSetup
+namespace SitecoreInstaller.App.Pipelines.Steps.AutoSetup
 {
     public class DetermineLocalBuildLibraryFolder : Step<PipelineApplicationEventArgs>
     {

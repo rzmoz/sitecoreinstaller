@@ -14,14 +14,38 @@ namespace SitecoreInstaller.Domain.Database
     using Microsoft.SqlServer.Management.Common;
     using Microsoft.SqlServer.Management.Smo;
 
-
-
     public class SqlService
     {
-        private SqlConnection TrustedConnection
+        public SqlConnection GetSqlConnection() { return new SqlConnection("Server=.;Trusted_Connection=True;"); }
+        public SqlConnection GetSqlExpresssConnection() { return new SqlConnection(@"Server=.\SQLEXPRESS;Trusted_Connection=True;"); }
+
+        private Func<SqlConnection> GetTrustedConnection = () => new SqlConnection();
+
+        public void DetermineSqlConnection()
         {
-            get { return new SqlConnection("Server=.;Trusted_Connection=True;"); }
+            if (ConnectionWorks(GetSqlConnection()))
+            {
+                GetTrustedConnection = GetSqlConnection;
+                return;
+            }
+            if (ConnectionWorks(GetSqlExpresssConnection()))
+            {
+                GetTrustedConnection = GetSqlExpresssConnection;
+                return;
+            }
         }
+
+        private bool ConnectionWorks(SqlConnection connection)
+        {
+            try
+            {
+                connection.Open();
+                connection.Close();
+                return true;
+            }
+            catch (SqlException) { return false; }
+        }
+
 
         public void EnableMixedAuthenticationMode()
         {
@@ -30,9 +54,10 @@ namespace SitecoreInstaller.Domain.Database
                 return;
             sqlServer.Settings.LoginMode = ServerLoginMode.Mixed;
             sqlServer.Alter();
-            using (var connection = TrustedConnection)
+            using (var connection = GetTrustedConnection())
                 RestartServer(connection);
         }
+
         public bool IsStarted()
         {
             try
@@ -77,7 +102,7 @@ namespace SitecoreInstaller.Domain.Database
 
         private Server GetSqlServerTrustedConnection()
         {
-            var sqlServer = new Server(new ServerConnection(TrustedConnection));
+            var sqlServer = new Server(new ServerConnection(GetTrustedConnection()));
 
             var connectionEstablished = false;
             Do.This(() =>

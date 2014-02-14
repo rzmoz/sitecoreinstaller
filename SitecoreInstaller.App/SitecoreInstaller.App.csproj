@@ -115,10 +115,11 @@
     <Compile Include="Pipelines\ArchiveEventArgs.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\CleanupEventArgs.cs" />
+    <Compile Include="Pipelines\Steps\AutoSetup\DetermineSqlConnection.cs" />
     <Compile Include="Pipelines\Steps\Databases\AddUserToSqlServerAsSysAdmin.cs" />
     <Compile Include="Pipelines\Steps\Databases\EnableMixedAuthenticationMode.cs" />
     <Compile Include="Pipelines\Steps\Databases\TryStartSqlServer.cs" />
-    <Compile Include="Pipelines\Steps\InitialSetup\DetermineLocalBuildLibraryFolder.cs" />
+    <Compile Include="Pipelines\Steps\AutoSetup\DetermineLocalBuildLibraryFolder.cs" />
     <Compile Include="Pipelines\Steps\Maintenance\RecycleApplication.cs" />
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckNothing.cs" />
