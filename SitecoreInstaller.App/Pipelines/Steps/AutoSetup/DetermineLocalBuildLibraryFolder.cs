@@ -25,6 +25,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.AutoSetup
                     continue;
                 Services.UserPreferences.Properties.LocalBuildLibrary = candidateFolder;
                 existingFolderFound = true;
+                break;
             }
 
             if (!existingFolderFound)

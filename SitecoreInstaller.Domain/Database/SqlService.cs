@@ -16,10 +16,10 @@ namespace SitecoreInstaller.Domain.Database
 
     public class SqlService
     {
-        public SqlConnection GetSqlConnection() { return new SqlConnection("Server=.;Trusted_Connection=True;"); }
-        public SqlConnection GetSqlExpresssConnection() { return new SqlConnection(@"Server=.\SQLEXPRESS;Trusted_Connection=True;"); }
+        public SqlConnection GetSqlConnection() { return new SqlConnection("Server=.;Trusted_Connection=True;Connection Timeout=5;"); }
+        public SqlConnection GetSqlExpresssConnection() { return new SqlConnection(@"Server=.\SQLEXPRESS;Trusted_Connection=True;;Connection Timeout=5;"); }
 
-        private Func<SqlConnection> GetTrustedConnection = () => new SqlConnection();
+        private Func<SqlConnection> GetTrustedConnection = () => null;
 
         public void DetermineSqlConnection()
         {
