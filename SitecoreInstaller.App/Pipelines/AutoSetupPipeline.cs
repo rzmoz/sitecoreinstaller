@@ -8,6 +8,7 @@ namespace SitecoreInstaller.App.Pipelines
     {
         public AutoSetupPipeline()
         {
+            AddStep<DetermineSqlConnection>();
             AddStep<TryStartSqlServer>();
             AddStep<DetermineSqlConnection>();
             AddStep<AddUserToSqlServerAsSysAdmin>();

@@ -11,6 +11,9 @@ namespace SitecoreInstaller.App.Pipelines.Steps.AutoSetup
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
+            if (Services.Sql.IsStarted())
+                return;
+
             Services.Sql.DetermineSqlConnection();
         }
     }
