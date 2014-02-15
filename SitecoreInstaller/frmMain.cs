@@ -29,22 +29,21 @@ namespace SitecoreInstaller
             Services.LoadUserPreferences();
 
             var booter = CreateBooter();
+
+            mainCtrl1.BringToFront();
+
             UiServices.ViewportStack.Register(booter.Control);
             UiServices.ViewportStack.Show(booter.Control);
-            Task<bool> bootTask = booter.InitAsync();
-
+            
             Services.Init();
 
             Init();
-            /****************************************************************************
-             awaits must be placed after this.Init(), since it messes with the ui thread.
-            *****************************************************************************/
 
+            Task<bool> bootTask = booter.InitAsync();
             await bootTask;
             UiServices.ViewportStack.Hide(booter.Control);
             UiServices.ViewportStack.UnRegister(booter.Control);
 
-            mainCtrl1.BringToFront();
             if (bootTask.Result)
                 mainCtrl1.ShowUserPreferences();
             if (NeedLicense())
