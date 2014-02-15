@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
 using CSharp.Basics.Sys;
@@ -69,7 +70,7 @@ namespace SitecoreInstaller.UI
                     return true;
                 case Keys.L | Keys.Control | Keys.Shift:
                     UpdateProjectSettings();
-                    Services.Pipelines.Run<UpdateLicenseFilePipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+                    Task.Run(() => Services.Pipelines.RunAsync<UpdateLicenseFilePipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings));
                     return true;
                 case Keys.D | Keys.Control | Keys.Shift:
                     selectProjectName1.ProjectName = string.Empty;
@@ -87,16 +88,16 @@ namespace SitecoreInstaller.UI
                         return true;
                     }
                     UpdateProjectSettings();
-                    Services.Pipelines.Run<InstallPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+                    Task.Run(() => Services.Pipelines.RunAsync<InstallPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings));
                     return true;
                 case Keys.P | Keys.Control | Keys.Shift:
-                    Services.Pipelines.Run<PublishPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.MakeFullPublishDialog);
+                    Task.Run(() => Services.Pipelines.RunAsync<PublishPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.MakeFullPublishDialog));
                     return true;
                 case Keys.R | Keys.Control | Keys.Alt:
-                    Services.Pipelines.Run<RecycleApplicationPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+                    Task.Run(() => Services.Pipelines.RunAsync<RecycleApplicationPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings));
                     return true;
                 case Keys.U | Keys.Control | Keys.Shift:
-                    Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.DeleteProjectDialog);
+                    Task.Run(() => Services.Pipelines.RunAsync<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.DeleteProjectDialog));
                     return true;
                 case Keys.R | Keys.Control | Keys.Shift:
                     //we make sure the install type is not changed on reinstall! That would mess things up
@@ -105,11 +106,11 @@ namespace SitecoreInstaller.UI
                     UpdateProjectSettings();
                     UiServices.ProjectSettings.Sql.InstallType = sqlInstallType;
                     UiServices.ProjectSettings.Mongo.InstallType = mongoInstallType;
-                    Services.Pipelines.Run<ReinstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings);
+                    Task.Run(() => Services.Pipelines.RunAsync<ReinstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings));
                     return true;
                 case Keys.A | Keys.Control | Keys.Shift:
                     UpdateProjectSettings();
-                    Services.Pipelines.Run<ArchivePipeline, ArchiveEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.SetArchiveName);
+                    Task.Run(() => Services.Pipelines.RunAsync<ArchivePipeline, ArchiveEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.SetArchiveName));
                     return true;
                 case Keys.O | Keys.Control:
                     Services.Website.OpenFrontend(UiServices.ProjectSettings.Iis.Url);

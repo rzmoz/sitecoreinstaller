@@ -36,10 +36,10 @@ namespace SitecoreInstaller.UI.Settings
             Services.UserPreferences.Save();
         }
 
-        private void btnTestSqlSettings_Click(object sender, EventArgs e)
+        private async void btnTestSqlSettings_Click(object sender, EventArgs e)
         {
             btnSave_Click(sender, e);
-            Services.Pipelines.Run<TestSqlSettingsPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+            await Services.Pipelines.RunAsync<TestSqlSettingsPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
         }
     }
 }

@@ -16,11 +16,6 @@ namespace SitecoreInstallerConsole
             projectSettings.Init(Services.UserPreferences.Properties);
 
             runner.Run(projectSettings);
-
-            while (Services.PipelineWorker.IsBusy())
-            {
-                Task.WaitAll(Task.Delay(1000));
-            }
         }
     }
 }

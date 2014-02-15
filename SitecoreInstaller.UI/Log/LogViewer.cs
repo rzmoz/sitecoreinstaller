@@ -23,7 +23,7 @@ namespace SitecoreInstaller.UI.Log
         public void Init()
         {
             BackColor = Styles.Controls.BackColor;
-            Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
+            Services.PipelineEngine.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
             _colors = new Dictionary<LogType, Color>
                 {
                     { LogType.Debug, Color.DarkGray },

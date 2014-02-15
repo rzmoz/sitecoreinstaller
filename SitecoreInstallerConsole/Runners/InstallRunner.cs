@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.App.Pipelines;
@@ -20,15 +21,15 @@ namespace SitecoreInstallerConsole.Runners
 
         public override void Run(ProjectSettings projectSettings)
         {
-            this.SetProjectName(projectSettings);
+            SetProjectName(projectSettings);
 
-            this.SetSelectedSitecore(projectSettings);
+            SetSelectedSitecore(projectSettings);
 
-            this.SetSelectedLicense(projectSettings);
+            SetSelectedLicense(projectSettings);
 
-            this.SetSelecteModules(projectSettings);
+            SetSelecteModules(projectSettings);
 
-            Services.Pipelines.Run<InstallPipeline, PipelineApplicationEventArgs>(projectSettings);
+            Task.WaitAll(Services.Pipelines.RunAsync<InstallPipeline, PipelineApplicationEventArgs>(projectSettings));
         }
 
         private void SetSelecteModules(ProjectSettings projectSettings)

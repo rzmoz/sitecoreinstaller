@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharp.Basics.Forms;
 using CSharp.Basics.Sys;
@@ -24,16 +25,19 @@ namespace SitecoreInstaller.UI
 
         private event EventHandler<GenericEventArgs<ProjectSettings>> ProjectSettingsUpdated;
 
-        public void ShowUserPreferences(bool gotoLicenses = false)
+        public void GotoLicenses()
+        {
+            userPreferences1.Navigate("/licenses");
+        }
+
+        public void ShowUserPreferences()
         {
             UiServices.ViewportStack.Show(userPreferences1);
-            if(gotoLicenses)
-                userPreferences1.Navigate("/licenses");
         }
 
         public void Init()
         {
-            InitPipelineWorker();
+            InitPipelineEngine();
             InitProjectSettings();
 
             InitProgress();
@@ -101,14 +105,14 @@ namespace SitecoreInstaller.UI
             }
 
             //can only run if we're not busy running a pipeline
-            if (Services.PipelineWorker.IsBusy())
+            if (Services.PipelineEngine.IsBusy)
                 return false;
 
             //we only handle keypress from here if pipeline is not busy
             switch (keyData)
             {
                 case Keys.N | Keys.Control | Keys.Shift:
-                    Services.Pipelines.Run<DoNothingPipeline, DoNothingEventArgs>(UiServices.ProjectSettings);
+                    Task.Run(() => Services.Pipelines.RunAsync<DoNothingPipeline, DoNothingEventArgs>(UiServices.ProjectSettings));
                     return true;
                 case Keys.C | Keys.Control | Keys.Shift:
                     Framework.Diagnostics.Log.ToApp.Reset();
@@ -165,15 +169,15 @@ namespace SitecoreInstaller.UI
             UiServices.ProjectSettings.Init(e.Arg);
         }
 
-        private void InitPipelineWorker()
+        private void InitPipelineEngine()
         {
-            Services.PipelineWorker.AllStepsExecuting += progressCtrl1.Starting;
-            Services.PipelineWorker.WorkerCompleted += progressCtrl1.Ended;
-            Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
-            Services.PipelineWorker.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
+            Services.PipelineEngine.PipelineStarting+= progressCtrl1.Starting;
+            Services.PipelineEngine.PipelineCompleted += progressCtrl1.Ended;
+            Services.PipelineEngine.PipelineCompleted += PipelineWorker_PipelineCompleted;
+            Services.PipelineEngine.PreconditionNotMet += PipelineWorker_PreconditionNotMet;
         }
 
-        void PipelineWorker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        void PipelineWorker_PipelineCompleted(object sender, EventArgs e)
         {
             Services.BuildLibrary.Update();
         }

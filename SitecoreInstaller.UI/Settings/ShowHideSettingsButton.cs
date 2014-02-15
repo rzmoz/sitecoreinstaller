@@ -33,12 +33,12 @@ namespace SitecoreInstaller.UI.Settings
             if (userSettings == null) { throw new ArgumentNullException("userSettings"); }
             this.UserSettings = userSettings;
             base.Init(toolTip);
-            Services.PipelineWorker.AllStepsExecuting += this.PipelineWorker_AllStepsExecuting;
-            Services.PipelineWorker.WorkerCompleted += this.PipelineWorker_WorkerCompleted;
+            Services.PipelineEngine.AllStepsExecuting += this.PipelineWorker_AllStepsExecuting;
+            Services.PipelineEngine.PipelineCompleted+= this.PipelineWorker_WorkerCompleted;
             this.Activate();
         }
 
-        private void PipelineWorker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void PipelineWorker_WorkerCompleted(object sender, EventArgs e)
         {
             this.Activate();
         }
@@ -50,7 +50,7 @@ namespace SitecoreInstaller.UI.Settings
 
         void ShowHidePreferenecsButton_Click(object sender, EventArgs e)
         {
-            if (Services.PipelineWorker.IsBusy())
+            if (Services.PipelineEngine.IsBusy)
                 return;
             this.OpenOrCloseControlDependingOnCurrentState(this.UserSettings);
             this.Activate();

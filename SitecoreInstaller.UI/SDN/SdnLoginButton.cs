@@ -30,7 +30,7 @@ namespace SitecoreInstaller.UI.SDN
 
         void SdnLoginButton_Click(object sender, EventArgs e)
         {
-            if (Services.PipelineWorker.IsBusy())
+            if (Services.PipelineEngine.IsBusy)
                 return;
 
             this.OpenOrCloseControlDependingOnCurrentState(SdnLogin);

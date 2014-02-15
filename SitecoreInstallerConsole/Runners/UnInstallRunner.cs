@@ -1,4 +1,5 @@
-﻿using SitecoreInstaller.App;
+﻿using System.Threading.Tasks;
+using SitecoreInstaller.App;
 
 namespace SitecoreInstallerConsole.Runners
 {
@@ -16,7 +17,7 @@ namespace SitecoreInstallerConsole.Runners
         {
             var projectName = CmdLine[SitecoreInstallerParameters.UnInstall];
             projectSettings.ProjectName = projectName.Value;
-            Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(projectSettings);
+            Task.WaitAll(Services.Pipelines.RunAsync<UninstallPipeline, CleanupEventArgs>(projectSettings));
         }
     }
 }

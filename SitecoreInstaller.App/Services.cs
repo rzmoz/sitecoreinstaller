@@ -24,7 +24,7 @@ namespace SitecoreInstaller.App
             PowerShellScripts = new PowerShellScriptService();
             Website = new WebsiteService();
             IisManagement = new IisManagementService();
-            PipelineWorker = new PipelineWorker();
+            PipelineEngine = new PipelineRunnerEngine();
             SourceManifests = new SourceManifestRepository(new FileInfo(AppConstants.SourcesConfigFileName));
             SourceManifests.ManifestsUpdated += InitBuildLibrary;
             Sql = new SqlService();
@@ -106,6 +106,6 @@ namespace SitecoreInstaller.App
         public static IIisManagementService IisManagement { get; private set; }
         public static SqlService Sql { get; private set; }
         public static MongoService Mongo { get; private set; }
-        public static PipelineWorker PipelineWorker { get; private set; }
+        public static PipelineRunnerEngine PipelineEngine { get; private set; }
     }
 }

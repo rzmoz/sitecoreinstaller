@@ -58,7 +58,7 @@ namespace SitecoreInstaller.UI.Simple
             UiServices.ViewportStack.Hide(this);
         }
 
-        private void btnInstall_Click(object sender, EventArgs e)
+        private async void btnInstall_Click(object sender, EventArgs e)
         {
             var projectName = tbxProjectName.Text;
 
@@ -77,7 +77,7 @@ namespace SitecoreInstaller.UI.Simple
             UiServices.ProjectSettings.ProjectName = tbxProjectName.Text;
             UiServices.ProjectSettings.BuildLibrarySelections.SelectedSitecore = this.selectSitecore1.SelectedItem;
             UiServices.ProjectSettings.BuildLibrarySelections.SelectedLicense = this.selectLicense1.SelectedItem;
-            Services.Pipelines.Run<InstallPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+            await Services.Pipelines.RunAsync<InstallPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
             UiServices.ViewportStack.Hide(this);
         }
     }

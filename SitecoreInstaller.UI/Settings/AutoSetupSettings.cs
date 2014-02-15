@@ -25,9 +25,9 @@ namespace SitecoreInstaller.UI.Settings
             SaveButton.Visible = false;
         }
 
-        private void btnFullyAutomated_Click(object sender, EventArgs e)
+        private async void btnFullyAutomated_Click(object sender, EventArgs e)
         {
-            Services.Pipelines.Run<AutoSetupPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+            await Services.Pipelines.RunAsync<AutoSetupPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
         }
     }
 }

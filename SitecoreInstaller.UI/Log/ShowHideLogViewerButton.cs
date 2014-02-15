@@ -31,8 +31,8 @@ namespace SitecoreInstaller.UI.Log
 
         void _timer_Tick(object sender, EventArgs e)
         {
-            if (Services.PipelineWorker.IsBusy() == false)
-                PipelineWorker_WorkerCompleted(sender, new RunWorkerCompletedEventArgs(null, null, false));
+            if (Services.PipelineEngine.IsBusy == false)
+                PipelineWorker_WorkerCompleted(sender, EventArgs.Empty);
         }
 
         public LogViewer LogViewer { get; private set; }
@@ -45,12 +45,12 @@ namespace SitecoreInstaller.UI.Log
             SetToolTip(_toolTipWhenNotVisible);
             Framework.Diagnostics.Log.ToApp.LogCleared += This_LogCleared;
             Framework.Diagnostics.Log.ToApp.EntryLogged += This_EntryLogged;
-            Services.PipelineWorker.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
-            Services.PipelineWorker.WorkerCompleted += PipelineWorker_WorkerCompleted;
+            Services.PipelineEngine.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
+            Services.PipelineEngine.PipelineCompleted += PipelineWorker_WorkerCompleted;
             _timer.Start();
         }
 
-        void PipelineWorker_WorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        void PipelineWorker_WorkerCompleted(object sender, EventArgs e)
         {
             if (Framework.Diagnostics.Log.ToApp.Status == LogStatus.NoProblems)
                 Image = LogResources.Log;
@@ -76,7 +76,7 @@ namespace SitecoreInstaller.UI.Log
 
         private void This_LogCleared(object sender, EventArgs e)
         {
-            if (Services.PipelineWorker.IsBusy())
+            if (Services.PipelineEngine.IsBusy)
                 Image = LogResources.Log_active;
             else
                 Image = LogResources.Log;

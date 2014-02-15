@@ -26,7 +26,7 @@ namespace SitecoreInstaller.UI.Processing
         private void ProgressCtrl_Load(object sender, EventArgs e)
         {
             Framework.Diagnostics.Log.ToApp.EntryLogged += UpdateInfo;
-            Services.PipelineWorker.StepExecuting += UpdateStatus;
+            Services.PipelineEngine.StepExecuting += UpdateStatus;
         }
 
         private void siButton1_Click(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace SitecoreInstaller.UI.Processing
             });
         }
 
-        public void Ended(object sender, RunWorkerCompletedEventArgs e)
+        public void Ended(object sender, EventArgs e)
         {
             this.CrossThreadSafe(() =>
             {

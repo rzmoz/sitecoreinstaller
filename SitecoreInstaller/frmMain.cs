@@ -47,8 +47,8 @@ namespace SitecoreInstaller
             mainCtrl1.BringToFront();
             if (bootTask.Result)
                 mainCtrl1.ShowUserPreferences();
-            else if (NeedLicense())
-                mainCtrl1.ShowUserPreferences(true);
+            if (NeedLicense())
+                mainCtrl1.GotoLicenses();
 
             await Task.Factory.StartNew(Services.SourceManifests.UpdateExternal);
         }
@@ -70,9 +70,9 @@ namespace SitecoreInstaller
         {
             mainCtrl1.Init();
 
-            Services.PipelineWorker.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
-            Services.PipelineWorker.StepExecuting += PipelineWorker_StepExecuting;
-            Services.PipelineWorker.AllStepsExecuted += PipelineWorker_AllStepsExecuted;
+            Services.PipelineEngine.AllStepsExecuting += PipelineWorkerOnAllStepsExecuting;
+            Services.PipelineEngine.StepExecuting += PipelineWorker_StepExecuting;
+            Services.PipelineEngine.AllStepsExecuted += PipelineWorker_AllStepsExecuted;
         }
 
         private void PipelineWorkerOnAllStepsExecuting(object sender, PipelineInfoEventArgs pipelineInfoEventArgs)

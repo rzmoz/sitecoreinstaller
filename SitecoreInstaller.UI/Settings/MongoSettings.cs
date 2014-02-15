@@ -42,10 +42,10 @@ namespace SitecoreInstaller.UI.Settings
             Services.UserPreferences.Save();
         }
 
-        private void btnTestMongoSettings_Click(object sender, EventArgs e)
+        private async void btnTestMongoSettings_Click(object sender, EventArgs e)
         {
             btnSave_Click(sender, e);
-            Services.Pipelines.Run<TestMongoSettingsPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+            await Services.Pipelines.RunAsync<TestMongoSettingsPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
         }
     }
 }

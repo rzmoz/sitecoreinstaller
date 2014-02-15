@@ -50,14 +50,14 @@ namespace SitecoreInstaller.UI.Simple
             UiServices.ViewportStack.Hide(this);
         }
 
-        private void btnUninstall_Click(object sender, EventArgs e)
+        private async void btnUninstall_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(selectProjectName1.ProjectName))
             {
                 UiServices.Dialogs.Information("Please select a project");
                 return;
             }
-            Services.Pipelines.Run<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings);
+            await Services.Pipelines.RunAsync<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings);
             UiServices.ViewportStack.Hide(this);
         }
     }

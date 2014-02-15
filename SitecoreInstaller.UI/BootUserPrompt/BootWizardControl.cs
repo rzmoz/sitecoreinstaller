@@ -65,11 +65,11 @@ namespace SitecoreInstaller.UI.BootUserPrompt
             Finish();
         }
 
-        private void btnFullyAutomated_Click(object sender, EventArgs e)
+        private async void btnFullyAutomated_Click(object sender, EventArgs e)
         {
             Services.UserPreferences.Properties.ResetToDefaultSettings();
             Services.UserPreferences.Save();
-            Services.Pipelines.Run<AutoSetupPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+            await Services.Pipelines.RunAsync<AutoSetupPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
             Finish();
         }
 

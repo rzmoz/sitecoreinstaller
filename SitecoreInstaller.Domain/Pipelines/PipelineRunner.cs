@@ -34,9 +34,8 @@ namespace SitecoreInstaller.Domain.Pipelines
         }
 
         public string ExecuteAllText { get; private set; }
-
-
-        public void ExecuateAllSteps(object sender, DoWorkEventArgs e)
+        
+        public void ExecuateAllSteps(object sender, EventArgs e)
         {
             if (Pipeline.Args.AbortPipeline)
             {

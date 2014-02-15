@@ -12,7 +12,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
     {
         protected override void InnerInvoke(object sender, DoNothingEventArgs args)
         {
-            Task.WaitAll(Task.Delay(TimeSpan.FromSeconds(5)));
+            Task.WaitAll(Task.Delay(TimeSpan.FromSeconds(1)));
         }
     }
 }
