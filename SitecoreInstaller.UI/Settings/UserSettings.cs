@@ -33,6 +33,11 @@ namespace SitecoreInstaller.UI.Settings
             return false;
         }
 
+        public void Navigate(string path)
+        {
+            _navList.Activate(path);
+        }
+
         public void Init()
         {
             pnlButtons.BackColor = Styles.Navigation.Level1.BackColor;

@@ -70,7 +70,7 @@
             this.addLicenseDnDControl1.ColorInitial = System.Drawing.Color.White;
             this.addLicenseDnDControl1.ColorOnHoverFileNotOk = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
             this.addLicenseDnDControl1.ColorOnHoverFileOk = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(237)))), ((int)(((byte)(204)))));
-            this.addLicenseDnDControl1.Label = "Drop files here";
+            this.addLicenseDnDControl1.Label = "Drop License file here";
             this.addLicenseDnDControl1.Location = new System.Drawing.Point(7, 118);
             this.addLicenseDnDControl1.Name = "addLicenseDnDControl1";
             this.addLicenseDnDControl1.Size = new System.Drawing.Size(486, 175);

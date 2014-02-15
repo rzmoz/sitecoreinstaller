@@ -24,9 +24,11 @@ namespace SitecoreInstaller.UI
 
         private event EventHandler<GenericEventArgs<ProjectSettings>> ProjectSettingsUpdated;
 
-        public void ShowUserPreferences()
+        public void ShowUserPreferences(bool gotoLicenses = false)
         {
             UiServices.ViewportStack.Show(userPreferences1);
+            if(gotoLicenses)
+                userPreferences1.Navigate("/licenses");
         }
 
         public void Init()

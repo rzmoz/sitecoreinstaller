@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
+using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.UI;
 using SitecoreInstaller.UI.Viewport;
 
@@ -45,10 +47,17 @@ namespace SitecoreInstaller
             mainCtrl1.BringToFront();
             if (bootTask.Result)
                 mainCtrl1.ShowUserPreferences();
+            else if (NeedLicense())
+                mainCtrl1.ShowUserPreferences(true);
 
             await Task.Factory.StartNew(Services.SourceManifests.UpdateExternal);
         }
-
+        private bool NeedLicense()
+        {
+            var licenses = Services.BuildLibrary.List(SourceType.License).Cast<LicenseFileSourceEntry>().Select(entry => entry.LicenseFile).ToList();
+            var hasValidLicense = licenses.Any(license => !license.IsExpired);
+            return !hasValidLicense;
+        }
         private Booter CreateBooter()
         {
             if (Services.UserPreferences.Properties.PromptForUserSettings)

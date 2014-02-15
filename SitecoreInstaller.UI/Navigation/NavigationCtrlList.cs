@@ -22,6 +22,15 @@ namespace SitecoreInstaller.UI.Navigation
             _topOffset = topOffset;
         }
 
+        public void Activate(string path)
+        {
+            var button = this[path];
+            if (button == null)
+                return;
+
+            ButtonActivated(button, new GenericEventArgs<SIButtonWithActiveState>(null));
+        }
+
         public NavButton this[string path]
         {
             get { return this.Get(_root, path); }
@@ -65,7 +74,7 @@ namespace SitecoreInstaller.UI.Navigation
             {
                 return;
             }
-
+            //to prevent endless loop
             if (e.Arg != null && sender == e.Arg)
                 return;
 
