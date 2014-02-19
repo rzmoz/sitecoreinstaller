@@ -1,4 +1,4 @@
-﻿namespace SitecoreInstaller.UI.FirstRun
+﻿namespace SitecoreInstaller.UI.AutoSetup
 {
     partial class StepWizard
     {

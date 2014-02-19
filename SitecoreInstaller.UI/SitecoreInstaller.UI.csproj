@@ -100,13 +100,13 @@
     <Compile Include="BootUserPrompt\BootWizardControl.Designer.cs">
       <DependentUpon>BootWizardControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="FirstRun\StepWizard.cs">
+    <Compile Include="AutoSetup\StepWizard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FirstRun\StepWizard.Designer.cs">
+    <Compile Include="AutoSetup\StepWizard.Designer.cs">
       <DependentUpon>StepWizard.cs</DependentUpon>
     </Compile>
-    <Compile Include="FirstRun\StepWizardStep.cs">
+    <Compile Include="AutoSetup\StepWizardStep.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\MessageBoxBtns.cs" />
@@ -382,7 +382,7 @@
     <EmbeddedResource Include="BootUserPrompt\BootWizardControl.resx">
       <DependentUpon>BootWizardControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FirstRun\StepWizard.resx">
+    <EmbeddedResource Include="AutoSetup\StepWizard.resx">
       <DependentUpon>StepWizard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SIDialog.resx">
