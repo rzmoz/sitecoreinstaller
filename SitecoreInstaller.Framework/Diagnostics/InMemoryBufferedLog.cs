@@ -52,6 +52,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
 
         public void Reset()
         {
+            Flush();
             _entries.Clear();
             lock (_notifyBuffer)
             {
