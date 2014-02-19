@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SitecoreInstaller.Framework.Linguistics;
 
 namespace SitecoreInstaller.Domain.Pipelines
@@ -70,7 +69,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                 if (_steps[i].GetType().FullName == typeof(TK).FullName)
                 {
                     _steps.RemoveAt(i);
-                    this.RemoveStep<TK>();
+                    RemoveStep<TK>();
                     return;
                 }
             }

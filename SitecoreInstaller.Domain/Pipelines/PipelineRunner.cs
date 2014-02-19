@@ -19,21 +19,21 @@ namespace SitecoreInstaller.Domain.Pipelines
         public event EventHandler<PipelineStepInfoEventArgs> StepExecuted;
 
         public event EventHandler<GenericEventArgs<string>> PreconditionNotMet;
-
-
+        
         public IPipeline Pipeline { get; private set; }
+
         public IEnumerable<Action<TK>> PreProcessors { get; private set; }
-        public PipelineRunner(T pipeline, IEnumerable<Action<TK>> preProcessors = null, string executeAllText = "")
+
+        public PipelineRunner(T pipeline, IEnumerable<Action<TK>> preProcessors = null)
         {
             if (pipeline == null) throw new ArgumentNullException("pipeline");
 
             Log.ToApp.Reset();
-            ExecuteAllText = executeAllText;
             PreProcessors = preProcessors ?? Enumerable.Empty<Action<TK>>();
             Pipeline = pipeline;
         }
 
-        public string ExecuteAllText { get; private set; }
+        
         
         public void ExecuateAllSteps(object sender, EventArgs e)
         {
