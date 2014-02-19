@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.App
 {
-  public enum DialogIcons
+  public enum DialogIcon
   {
     Information,
     Error,

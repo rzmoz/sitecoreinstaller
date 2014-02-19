@@ -39,14 +39,24 @@ namespace SitecoreInstaller.UI.Dialog
 
         public Task<bool> UserAcceptAsync(string question, params object[] arguments)
         {
-            return UserDialog.UserAccept(question, arguments);
+            return UserDialog.UserAcceptAsync(question, arguments);
+        }
+
+        public void ModalDialog(DialogIcon dialogIcon, string title, string textFormat, params object[] arguments)
+        {
+            Task.WaitAll(UserDialog.MessageAsync(dialogIcon, title, textFormat, arguments));
+        }
+
+        public void Information(string title, string textFormat = "", params object[] arguments)
+        {
+            Task.WaitAll(UserDialog.MessageAsync(DialogIcon.Information, title, textFormat, arguments));
         }
 
         public Task UserAcceptAsync(DoNothingEventArgs args)
         {
             return Task.Factory.StartNew(() =>
             {
-                var accept = UserDialog.UserAccept("Yes or No");
+                var accept = UserDialog.UserAcceptAsync("Yes or No");
                 Task.WaitAll(accept);
                 args.UserAccepted = accept.Result;
             });
@@ -139,29 +149,13 @@ namespace SitecoreInstaller.UI.Dialog
             return false;
         }
 
-        public void ModalDialog(DialogIcons dialogIcons, string text, string title)
-        {
-            MessageBox.Show(text, title,
-                                MessageBoxButtons.OK,
-                                dialogIcons.ToMessageBoxIcon());
-        }
-
-        public void Information(string text, params object[] arguments)
-        {
-            MessageBox.Show(string.Format(text, arguments), string.Empty,
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-        }
-
         public void About()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.ProductVersion;
 
-            MessageBox.Show("You are running SitecoreInstaller v" + version, "About SitecoreInstaller",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+            Information("You are running SitecoreInstaller v" + version, "About SitecoreInstaller");
         }
         public void OnlineHelp()
         {
@@ -200,22 +194,6 @@ namespace SitecoreInstaller.UI.Dialog
             form.AcceptButton = buttonOk;
             form.ShowDialog();
             return textBox.Text;
-        }
-
-
-    }
-    public static class DialogIconsExtensions
-    {
-        public static MessageBoxIcon ToMessageBoxIcon(this DialogIcons dialogIcons)
-        {
-            switch (dialogIcons)
-            {
-                case DialogIcons.Error:
-                    return MessageBoxIcon.Error;
-                case DialogIcons.Information:
-                    return MessageBoxIcon.Information;
-            }
-            throw new ArgumentException(dialogIcons + " not recognized");
         }
     }
 }

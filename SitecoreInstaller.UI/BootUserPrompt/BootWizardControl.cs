@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
+using CSharp.Basics.Sys.Tasks;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
 
@@ -9,12 +10,12 @@ namespace SitecoreInstaller.UI.BootUserPrompt
 {
     public partial class BootWizardControl : BasicsUserControl
     {
-        private readonly InputTask<bool> _waitForInputTask;
+        private readonly AwaitTask<bool> _waitForInputTask;
 
         public BootWizardControl()
         {
             InitializeComponent();
-            _waitForInputTask = new InputTask<bool>();
+            _waitForInputTask = new AwaitTask<bool>();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -38,7 +39,7 @@ namespace SitecoreInstaller.UI.BootUserPrompt
 
         public Task<bool> InitAsync()
         {
-            return _waitForInputTask.WaitForInputAsync(() =>
+            return _waitForInputTask.AwaitAsync(() =>
             {
                 Services.UserPreferences.Properties.PromptForUserSettings = false;
                 Services.UserPreferences.Save();
@@ -47,7 +48,7 @@ namespace SitecoreInstaller.UI.BootUserPrompt
 
         private void btnAdvancedSetup_Click(object sender, EventArgs e)
         {
-            _waitForInputTask.SetResult(false);
+            _waitForInputTask.IsDone(false);
         }
 
         private async void btnFullyAutomated_Click(object sender, EventArgs e)
@@ -56,8 +57,7 @@ namespace SitecoreInstaller.UI.BootUserPrompt
             Services.UserPreferences.Save();
             UiServices.ViewportStack.Hide(this);
             await Services.Pipelines.RunAsync<AutoSetupPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
-            _waitForInputTask.SetResult(true);
+            _waitForInputTask.IsDone(true);
         }
-
     }
 }

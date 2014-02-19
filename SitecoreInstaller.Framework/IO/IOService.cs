@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security;
 using System.Threading.Tasks;
-using CSharp.Basics.Sys;
+using CSharp.Basics.Sys.Tasks;
 
 namespace SitecoreInstaller.Framework.IO
 {

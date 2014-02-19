@@ -30,12 +30,15 @@
         {
             this.pnlContent = new System.Windows.Forms.Panel();
             this.pnlUserAccept = new System.Windows.Forms.Panel();
+            this.tbxText = new System.Windows.Forms.TextBox();
+            this.pnlModalDialog = new System.Windows.Forms.Panel();
+            this.btnOk = new SitecoreInstaller.UI.Forms.SIButton();
             this.btnAcceptYes = new SitecoreInstaller.UI.Forms.SIButton();
             this.btnAcceptNo = new SitecoreInstaller.UI.Forms.SIButton();
             this.lblTitle = new SitecoreInstaller.UI.Forms.SIH2();
-            this.tbxText = new System.Windows.Forms.TextBox();
             this.pnlContent.SuspendLayout();
             this.pnlUserAccept.SuspendLayout();
+            this.pnlModalDialog.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlContent
@@ -53,12 +56,50 @@
             // 
             this.pnlUserAccept.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlUserAccept.Controls.Add(this.pnlModalDialog);
             this.pnlUserAccept.Controls.Add(this.btnAcceptYes);
             this.pnlUserAccept.Controls.Add(this.btnAcceptNo);
             this.pnlUserAccept.Location = new System.Drawing.Point(0, 149);
             this.pnlUserAccept.Name = "pnlUserAccept";
             this.pnlUserAccept.Size = new System.Drawing.Size(400, 50);
             this.pnlUserAccept.TabIndex = 2;
+            // 
+            // tbxText
+            // 
+            this.tbxText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbxText.Location = new System.Drawing.Point(43, 61);
+            this.tbxText.Multiline = true;
+            this.tbxText.Name = "tbxText";
+            this.tbxText.Size = new System.Drawing.Size(320, 20);
+            this.tbxText.TabIndex = 3;
+            // 
+            // pnlModalDialog
+            // 
+            this.pnlModalDialog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlModalDialog.Controls.Add(this.btnOk);
+            this.pnlModalDialog.Location = new System.Drawing.Point(0, 1);
+            this.pnlModalDialog.Name = "pnlModalDialog";
+            this.pnlModalDialog.Size = new System.Drawing.Size(400, 50);
+            this.pnlModalDialog.TabIndex = 4;
+            // 
+            // btnOk
+            // 
+            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOk.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOk.DrawBottomDivider = false;
+            this.btnOk.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOk.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnOk.Location = new System.Drawing.Point(315, 10);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 30);
+            this.btnOk.TabIndex = 0;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnAcceptYes
             // 
@@ -107,15 +148,6 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "lblTitle";
             // 
-            // tbxText
-            // 
-            this.tbxText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbxText.Location = new System.Drawing.Point(43, 61);
-            this.tbxText.Multiline = true;
-            this.tbxText.Name = "tbxText";
-            this.tbxText.Size = new System.Drawing.Size(320, 20);
-            this.tbxText.TabIndex = 3;
-            // 
             // UserDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,6 +158,7 @@
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();
             this.pnlUserAccept.ResumeLayout(false);
+            this.pnlModalDialog.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -138,5 +171,7 @@
         private Forms.SIButton btnAcceptYes;
         private Forms.SIButton btnAcceptNo;
         private System.Windows.Forms.TextBox tbxText;
+        private System.Windows.Forms.Panel pnlModalDialog;
+        private Forms.SIButton btnOk;
     }
 }
