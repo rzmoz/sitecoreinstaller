@@ -40,7 +40,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
                 if (PipelineStarting != null)
                     PipelineStarting(null, new PipelineInfoEventArgs(runner.Pipeline));
-                runner.ExecuateAllSteps(null, EventArgs.Empty);
+                runner.ExecuateAllSteps();
                 if (PipelineCompleted != null)
                     PipelineCompleted(null, EventArgs.Empty);
                 IsBusy = false;

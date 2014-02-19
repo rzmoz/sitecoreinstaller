@@ -13,7 +13,7 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         event EventHandler<GenericEventArgs<string>> PreconditionNotMet;
 
-        void ExecuateAllSteps(object sender, EventArgs e);
+        void ExecuateAllSteps();
         IPipeline Pipeline { get; }
     }
 }

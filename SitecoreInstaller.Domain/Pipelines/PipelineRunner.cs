@@ -32,10 +32,8 @@ namespace SitecoreInstaller.Domain.Pipelines
             PreProcessors = preProcessors ?? Enumerable.Empty<Action<TK>>();
             Pipeline = pipeline;
         }
-
         
-        
-        public void ExecuateAllSteps(object sender, EventArgs e)
+        public void ExecuateAllSteps()
         {
             if (Pipeline.Args.AbortPipeline)
             {
@@ -46,7 +44,7 @@ namespace SitecoreInstaller.Domain.Pipelines
             else if (PreconditionsAreMet(Pipeline.Preconditions, Pipeline.Args))
             {
                 if (AllStepsExecuting != null)
-                    AllStepsExecuting(sender, new PipelineInfoEventArgs(Pipeline));
+                    AllStepsExecuting(null, new PipelineInfoEventArgs(Pipeline));
                 Log.ToApp.Info("Executing pre processors");
                 foreach (var preProcessor in PreProcessors)
                 {
@@ -65,7 +63,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                              select entry;
 
                 if (AllStepsExecuted != null)
-                    AllStepsExecuted(sender, new PipelineInfoEventArgs(Pipeline, issues.ToArray()));
+                    AllStepsExecuted(null, new PipelineInfoEventArgs(Pipeline, issues.ToArray()));
             }
 
             //we clear listeners here since we don't want old listeners to hang around
