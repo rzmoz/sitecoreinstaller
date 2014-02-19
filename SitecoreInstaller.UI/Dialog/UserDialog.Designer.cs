@@ -29,40 +29,44 @@
         private void InitializeComponent()
         {
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.pnlUserAccept = new System.Windows.Forms.Panel();
+            this.btnYes = new SitecoreInstaller.UI.Forms.SIButton();
             this.tbxText = new System.Windows.Forms.TextBox();
-            this.pnlModalDialog = new System.Windows.Forms.Panel();
-            this.btnOk = new SitecoreInstaller.UI.Forms.SIButton();
-            this.btnAcceptYes = new SitecoreInstaller.UI.Forms.SIButton();
-            this.btnAcceptNo = new SitecoreInstaller.UI.Forms.SIButton();
             this.lblTitle = new SitecoreInstaller.UI.Forms.SIH2();
+            this.btnOk = new SitecoreInstaller.UI.Forms.SIButton();
+            this.btnNo = new SitecoreInstaller.UI.Forms.SIButton();
             this.pnlContent.SuspendLayout();
-            this.pnlUserAccept.SuspendLayout();
-            this.pnlModalDialog.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlContent
             // 
             this.pnlContent.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pnlContent.Controls.Add(this.btnYes);
             this.pnlContent.Controls.Add(this.tbxText);
-            this.pnlContent.Controls.Add(this.pnlUserAccept);
             this.pnlContent.Controls.Add(this.lblTitle);
+            this.pnlContent.Controls.Add(this.btnNo);
+            this.pnlContent.Controls.Add(this.btnOk);
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(400, 200);
             this.pnlContent.TabIndex = 2;
             // 
-            // pnlUserAccept
+            // btnYes
             // 
-            this.pnlUserAccept.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlUserAccept.Controls.Add(this.pnlModalDialog);
-            this.pnlUserAccept.Controls.Add(this.btnAcceptYes);
-            this.pnlUserAccept.Controls.Add(this.btnAcceptNo);
-            this.pnlUserAccept.Location = new System.Drawing.Point(0, 149);
-            this.pnlUserAccept.Name = "pnlUserAccept";
-            this.pnlUserAccept.Size = new System.Drawing.Size(400, 50);
-            this.pnlUserAccept.TabIndex = 2;
+            this.btnYes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnYes.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.btnYes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnYes.DrawBottomDivider = false;
+            this.btnYes.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnYes.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btnYes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnYes.Location = new System.Drawing.Point(230, 157);
+            this.btnYes.Name = "btnYes";
+            this.btnYes.Size = new System.Drawing.Size(75, 30);
+            this.btnYes.TabIndex = 5;
+            this.btnYes.Text = "Yes";
+            this.btnYes.UseVisualStyleBackColor = true;
+            this.btnYes.Click += new System.EventHandler(this.btnYes_Click);
             // 
             // tbxText
             // 
@@ -72,70 +76,6 @@
             this.tbxText.Name = "tbxText";
             this.tbxText.Size = new System.Drawing.Size(320, 20);
             this.tbxText.TabIndex = 3;
-            // 
-            // pnlModalDialog
-            // 
-            this.pnlModalDialog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlModalDialog.Controls.Add(this.btnOk);
-            this.pnlModalDialog.Location = new System.Drawing.Point(0, 1);
-            this.pnlModalDialog.Name = "pnlModalDialog";
-            this.pnlModalDialog.Size = new System.Drawing.Size(400, 50);
-            this.pnlModalDialog.TabIndex = 4;
-            // 
-            // btnOk
-            // 
-            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOk.DrawBottomDivider = false;
-            this.btnOk.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnOk.Location = new System.Drawing.Point(315, 10);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 30);
-            this.btnOk.TabIndex = 0;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
-            // btnAcceptYes
-            // 
-            this.btnAcceptYes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAcceptYes.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-            this.btnAcceptYes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAcceptYes.DrawBottomDivider = false;
-            this.btnAcceptYes.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnAcceptYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAcceptYes.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btnAcceptYes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnAcceptYes.Location = new System.Drawing.Point(230, 10);
-            this.btnAcceptYes.Name = "btnAcceptYes";
-            this.btnAcceptYes.Size = new System.Drawing.Size(75, 30);
-            this.btnAcceptYes.TabIndex = 1;
-            this.btnAcceptYes.Text = "Yes";
-            this.btnAcceptYes.UseVisualStyleBackColor = true;
-            this.btnAcceptYes.Click += new System.EventHandler(this.btnAcceptYes_Click);
-            // 
-            // btnAcceptNo
-            // 
-            this.btnAcceptNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAcceptNo.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-            this.btnAcceptNo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAcceptNo.DrawBottomDivider = false;
-            this.btnAcceptNo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnAcceptNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAcceptNo.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btnAcceptNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnAcceptNo.Location = new System.Drawing.Point(315, 10);
-            this.btnAcceptNo.Name = "btnAcceptNo";
-            this.btnAcceptNo.Size = new System.Drawing.Size(75, 30);
-            this.btnAcceptNo.TabIndex = 0;
-            this.btnAcceptNo.Text = "No";
-            this.btnAcceptNo.UseVisualStyleBackColor = true;
-            this.btnAcceptNo.Click += new System.EventHandler(this.btnAcceptNo_Click);
             // 
             // lblTitle
             // 
@@ -148,6 +88,42 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "lblTitle";
             // 
+            // btnOk
+            // 
+            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOk.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOk.DrawBottomDivider = false;
+            this.btnOk.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOk.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnOk.Location = new System.Drawing.Point(311, 157);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 30);
+            this.btnOk.TabIndex = 6;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // btnNo
+            // 
+            this.btnNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNo.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.btnNo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNo.DrawBottomDivider = false;
+            this.btnNo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNo.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btnNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnNo.Location = new System.Drawing.Point(311, 157);
+            this.btnNo.Name = "btnNo";
+            this.btnNo.Size = new System.Drawing.Size(75, 30);
+            this.btnNo.TabIndex = 4;
+            this.btnNo.Text = "No";
+            this.btnNo.UseVisualStyleBackColor = true;
+            this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
+            // 
             // UserDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -157,8 +133,6 @@
             this.Size = new System.Drawing.Size(400, 200);
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();
-            this.pnlUserAccept.ResumeLayout(false);
-            this.pnlModalDialog.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -167,11 +141,9 @@
 
         private System.Windows.Forms.Panel pnlContent;
         private Forms.SIH2 lblTitle;
-        private System.Windows.Forms.Panel pnlUserAccept;
-        private Forms.SIButton btnAcceptYes;
-        private Forms.SIButton btnAcceptNo;
         private System.Windows.Forms.TextBox tbxText;
-        private System.Windows.Forms.Panel pnlModalDialog;
         private Forms.SIButton btnOk;
+        private Forms.SIButton btnYes;
+        private Forms.SIButton btnNo;
     }
 }

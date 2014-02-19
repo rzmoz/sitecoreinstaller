@@ -56,7 +56,7 @@ namespace SitecoreInstaller.UI.Dialog
         {
             return Task.Factory.StartNew(() =>
             {
-                var accept = UserDialog.UserAcceptAsync("Yes or No");
+                var accept = UserDialog.UserAcceptAsync("Yes or No - sdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdfsdfsdhfo shdfsiodfh sdf");
                 Task.WaitAll(accept);
                 args.UserAccepted = accept.Result;
             });
