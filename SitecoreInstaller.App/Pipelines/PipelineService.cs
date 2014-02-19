@@ -13,7 +13,6 @@ namespace SitecoreInstaller.App.Pipelines
             return Task.Factory.StartNew(() => Run<T, TK>(projectSettings, preProcessors));
         }
 
-
         private void Run<T, TK>(ProjectSettings projectSettings, params Action<TK>[] preProcessors)
             where TK : PipelineEventArgs, new()
             where T : Pipeline<TK>, new()

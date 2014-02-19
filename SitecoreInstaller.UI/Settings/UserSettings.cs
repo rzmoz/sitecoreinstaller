@@ -1,6 +1,5 @@
 ﻿using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.UI.Navigation;
-using SitecoreInstaller.UI.Viewport;
 using System;
 using System.Linq;
 using System.Windows.Forms;

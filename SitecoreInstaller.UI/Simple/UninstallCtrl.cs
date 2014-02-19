@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.Simple
 {

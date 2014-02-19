@@ -12,7 +12,6 @@ using SitecoreInstaller.Domain;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Sys;
 using SitecoreInstaller.Framework.Web;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
 {
@@ -40,12 +39,15 @@ namespace SitecoreInstaller.UI
             InitPipelineEngine();
             InitProjectSettings();
 
+            UiServices.Init(pnlContent.Controls);
+
             InitProgress();
             InitUserPreferences();
             InitSdnLogin();
             InitLog();
             InitMainSimple();
             InitMainDeveloper();
+
             Services.UserPreferences.Load();
 
             if (Services.UserPreferences.Properties.AdvancedView)
@@ -111,6 +113,9 @@ namespace SitecoreInstaller.UI
             //we only handle keypress from here if pipeline is not busy
             switch (keyData)
             {
+                case Keys.T | Keys.Control | Keys.Shift:
+                    UiServices.Dialogs.UserAcceptX("Hello World!");
+                    return true;
                 case Keys.N | Keys.Control | Keys.Shift:
                     Task.Run(() => Services.Pipelines.RunAsync<DoNothingPipeline, DoNothingEventArgs>(UiServices.ProjectSettings));
                     return true;
@@ -171,7 +176,7 @@ namespace SitecoreInstaller.UI
 
         private void InitPipelineEngine()
         {
-            Services.PipelineEngine.PipelineStarting+= progressCtrl1.Starting;
+            Services.PipelineEngine.PipelineStarting += progressCtrl1.Starting;
             Services.PipelineEngine.PipelineCompleted += progressCtrl1.Ended;
             Services.PipelineEngine.PipelineCompleted += PipelineWorker_PipelineCompleted;
             Services.PipelineEngine.PreconditionNotMet += PipelineWorker_PreconditionNotMet;

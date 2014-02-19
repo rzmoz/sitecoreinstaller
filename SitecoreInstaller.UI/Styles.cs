@@ -19,11 +19,25 @@ namespace SitecoreInstaller.UI
             public const int HeightSimple = 450;
         }
 
-        public static class Controls
+        public static class Theme
         {
-            public static readonly Color BackColor = Color.FromArgb(43, 43, 46);
-            public static readonly Color ForeColor = Color.FromArgb(43, 43, 46);
+            public static class Dark
+            {
+                public static class Controls
+                {
+                    public static readonly Color BackColor = Color.FromArgb(43, 43, 46);
+                }
+
+            }
+            public static class Light
+            {
+                public static class Controls
+                {
+                    public static readonly Color BackColor = Color.White;
+                }
+            }
         }
+
 
         public static class Fonts
         {

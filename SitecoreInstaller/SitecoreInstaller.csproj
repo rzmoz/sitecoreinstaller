@@ -116,9 +116,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CSharp.Basics.1.10.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
-    <Reference Include="CSharp.Basics.Forms, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics.Forms, Version=1.19.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.Forms.1.18.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.Forms.1.19.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

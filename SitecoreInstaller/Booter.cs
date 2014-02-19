@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.UI.BootUserPrompt;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller
 {

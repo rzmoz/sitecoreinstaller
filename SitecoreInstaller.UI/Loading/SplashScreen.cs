@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.Loading
 {
@@ -22,7 +21,7 @@ namespace SitecoreInstaller.UI.Loading
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            BackColor = Styles.Controls.BackColor;
+            BackColor = Styles.Theme.Dark.Controls.BackColor;
             timer1.Start();
             timer1.Interval = 30;
             lblTitle.Width = Width;

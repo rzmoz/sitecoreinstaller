@@ -4,7 +4,6 @@ using CSharp.Basics.Forms;
 namespace SitecoreInstaller.UI.Forms
 {
     using System.Windows.Forms;
-    using SitecoreInstaller.Framework.Sys;
 
     public class SIButton : Button
     {
@@ -16,7 +15,7 @@ namespace SitecoreInstaller.UI.Forms
             FlatAppearance.BorderColor = Styles.Fonts.DarkBg.Colors.Text;
             Font = Styles.Fonts.LblRegular;
             ForeColor = Styles.Fonts.DarkBg.Colors.Text;
-            BottomDividerColor = Styles.Controls.BackColor;
+            BottomDividerColor = Styles.Theme.Dark.Controls.BackColor;
         }
 
         protected ToolTip ToolTip { get; private set; }

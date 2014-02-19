@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.Pipelines;
 using SitecoreInstaller.UI.Forms;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.Settings
 {

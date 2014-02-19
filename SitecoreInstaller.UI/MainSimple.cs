@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.App;
 using SitecoreInstaller.UI.Simple;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
 {

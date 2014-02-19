@@ -74,9 +74,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CSharp.Basics.1.10.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
-    <Reference Include="CSharp.Basics.Forms, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics.Forms, Version=1.19.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.Forms.1.18.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.Forms.1.19.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -109,10 +109,10 @@
     <Compile Include="AutoSetup\StepWizardStep.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dialogs\UserDialog.cs">
+    <Compile Include="Dialog\UserDialog.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dialogs\UserDialog.Designer.cs">
+    <Compile Include="Dialog\UserDialog.Designer.cs">
       <DependentUpon>UserDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MessageBoxBtns.cs" />
@@ -336,7 +336,7 @@
     <Compile Include="UserSelections\SelectInstallType.Designer.cs">
       <DependentUpon>SelectInstallType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Viewport\UserDialogs.cs" />
+    <Compile Include="Dialog\UserDialogs.cs" />
     <Compile Include="UserSelections\SelectLicense.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -391,7 +391,7 @@
     <EmbeddedResource Include="AutoSetup\StepWizard.resx">
       <DependentUpon>StepWizard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\UserDialog.resx">
+    <EmbeddedResource Include="Dialog\UserDialog.resx">
       <DependentUpon>UserDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SIDialog.resx">

@@ -6,7 +6,6 @@ using SitecoreInstaller.App;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.Sys;
 using SitecoreInstaller.UI.Forms;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.Log
 {

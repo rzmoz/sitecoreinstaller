@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.Pipelines;
-using SitecoreInstaller.UI.Viewport;
+using SitecoreInstaller.UI.Dialog;
 
 namespace SitecoreInstaller.UI
 {
@@ -15,8 +16,13 @@ namespace SitecoreInstaller.UI
         static UiServices()
         {
             ProjectSettings = new ProjectSettings();
-            Dialogs = new UserDialogs();
             ViewportStack = new ViewportStack();
+            Dialogs = new UserDialogs(null);
+        }
+
+        public static void Init(Control.ControlCollection controlCollection)
+        {
+            Dialogs = new UserDialogs(controlCollection);
         }
 
         public static ProjectSettings ProjectSettings { get; private set; }

@@ -8,7 +8,6 @@ using SitecoreInstaller.App.Pipelines;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Domain.Projects;
 using SitecoreInstaller.Framework.Sys;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.Simple
 {

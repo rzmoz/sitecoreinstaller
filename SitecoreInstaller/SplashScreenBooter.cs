@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharp.Basics.Forms.Viewport;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller
 {

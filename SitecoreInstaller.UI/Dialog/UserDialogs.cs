@@ -3,16 +3,41 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Sys;
 
-namespace SitecoreInstaller.UI.Viewport
+namespace SitecoreInstaller.UI.Dialog
 {
     public class UserDialogs
     {
+        public UserDialog UserDialog { get; private set; }
+
+        public UserDialogs(Control.ControlCollection controlCollection)
+        {
+            UserDialog = new UserDialog();
+            UserDialog.Init();
+            UserDialog.Dock = DockStyle.Fill;
+            UserDialog.TabStop = false;
+            UiServices.ViewportStack.Register(UserDialog);
+            if (controlCollection == null)
+                return;
+            controlCollection.Add(UserDialog);
+        }
+
+        public void UserAcceptX(string question, params object[] arguments)
+        {
+            Task.Run(async () =>
+            {
+                var accept = UserDialog.UserAccept(question, arguments);
+                await accept;
+            });
+        }
+
         public void MakeFullPublishDialog(PipelineApplicationEventArgs args)
         {
             args.AbortPipeline = !UserAccept("Do you want to publish the site?\r\nThis will initiate a full publish for all items in all languages from Master to Web");
@@ -82,7 +107,7 @@ namespace SitecoreInstaller.UI.Viewport
             fileName = string.Empty;
             return false;
         }
-        public bool UserAccept(string question, params string[] arguments)
+        public bool UserAccept(string question, params object[] arguments)
         {
             var result = MessageBox.Show(string.Format(question, arguments), "Are you sure?",
                                 MessageBoxButtons.YesNo,

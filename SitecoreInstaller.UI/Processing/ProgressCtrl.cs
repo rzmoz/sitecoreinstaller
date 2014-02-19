@@ -7,7 +7,6 @@ using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.Pipelines;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.Sys;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI.Processing
 {

@@ -20,7 +20,7 @@ namespace SitecoreInstaller.UI.BootUserPrompt
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            BackColor = Styles.Controls.BackColor;
+            BackColor = Styles.Theme.Dark.Controls.BackColor;
             InitButtons(btnAdvancedSetup, btnFullyAutomated);
         }
 

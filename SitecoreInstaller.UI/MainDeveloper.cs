@@ -11,7 +11,6 @@ using SitecoreInstaller.App.Pipelines;
 using SitecoreInstaller.App.Pipelines.Steps.Install;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Sys;
-using SitecoreInstaller.UI.Viewport;
 
 namespace SitecoreInstaller.UI
 {
