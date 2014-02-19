@@ -6,9 +6,10 @@
     {
         public override void Init()
         {
-            ListBox.Font = Styles.Fonts.LblRegular;
-
             base.Init();
+
+            ListBox.Font = Styles.Fonts.LblRegular;
+            
             if (ListBox.Items.Count > 0)
                 ListBox.SelectedIndex = 0;
         }

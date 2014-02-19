@@ -12,6 +12,7 @@ namespace SitecoreInstaller.UI.ListBoxes
     public class SourceEntryListControl<T> : UserControl where T : ListControl
     {
         private List<SourceEntry> _items;
+
         public virtual void Init()
         {
             if (ListBox == null)

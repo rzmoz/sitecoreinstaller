@@ -11,6 +11,7 @@ namespace SitecoreInstaller.UI.ListBoxes
         public override void Init()
         {
             base.Init();
+            ListBox.Font = Styles.Fonts.LblRegular;
             ListBox.FlatStyle = Styles.ListBoxes.FlatStyle;
             ListBox.BackColor = Styles.ListBoxes.BackColor;
             ListBox.BackColor = Styles.ListBoxes.ForeColor;
