@@ -9,21 +9,14 @@ namespace SitecoreInstaller.UI.BootUserPrompt
 {
     public partial class BootWizardControl : BasicsUserControl
     {
-        //http://msdn.microsoft.com/en-us/library/x13ttww7.aspx
-        private volatile bool _wizardFinished;
-
-        private volatile bool _showUserPreferences;
+        private readonly InputTask<bool> _waitForInputTask;
 
         public BootWizardControl()
         {
             InitializeComponent();
-            _showUserPreferences = false;
+            _waitForInputTask = new InputTask<bool>();
         }
 
-        private void Finish()
-        {
-            _wizardFinished = true;
-        }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -43,26 +36,18 @@ namespace SitecoreInstaller.UI.BootUserPrompt
             });
         }
 
-
         public Task<bool> InitAsync()
         {
-            return Task.Factory.StartNew(() =>
+            return _waitForInputTask.WaitForInputAsync(() =>
             {
-                _wizardFinished = false;
-                while (!_wizardFinished)
-                {
-                    Task.Delay(TimeSpan.FromSeconds(1));
-                }
                 Services.UserPreferences.Properties.PromptForUserSettings = false;
                 Services.UserPreferences.Save();
-                return _showUserPreferences;
             });
         }
 
         private void btnAdvancedSetup_Click(object sender, EventArgs e)
         {
-            _showUserPreferences = true;
-            Finish();
+            _waitForInputTask.SetResult(false);
         }
 
         private async void btnFullyAutomated_Click(object sender, EventArgs e)
@@ -71,7 +56,7 @@ namespace SitecoreInstaller.UI.BootUserPrompt
             Services.UserPreferences.Save();
             UiServices.ViewportStack.Hide(this);
             await Services.Pipelines.RunAsync<AutoSetupPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
-            Finish();
+            _waitForInputTask.SetResult(true);
         }
 
     }
