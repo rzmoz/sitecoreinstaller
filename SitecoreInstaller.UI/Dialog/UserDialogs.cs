@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
+using SitecoreInstaller.App.Pipelines.Steps.Nothing;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Sys;
 
@@ -29,30 +30,57 @@ namespace SitecoreInstaller.UI.Dialog
             controlCollection.Add(UserDialog);
         }
 
-        public void UserAcceptX(string question, params object[] arguments)
+        public bool UserAccept(string question, params object[] arguments)
         {
-            Task.Run(async () =>
+            var accept = UserAcceptAsync(question, arguments);
+            Task.WaitAll(accept);
+            return accept.Result;
+        }
+
+        public Task<bool> UserAcceptAsync(string question, params object[] arguments)
+        {
+            return UserDialog.UserAccept(question, arguments);
+        }
+
+        public Task UserAcceptAsync(DoNothingEventArgs args)
+        {
+            return Task.Factory.StartNew(() =>
             {
-                var accept = UserDialog.UserAccept(question, arguments);
-                await accept;
+                var accept = UserDialog.UserAccept("Yes or No");
+                Task.WaitAll(accept);
+                args.UserAccepted = accept.Result;
             });
         }
 
-        public void MakeFullPublishDialog(PipelineApplicationEventArgs args)
+        public Task MakeFullPublishAsync(PipelineApplicationEventArgs args)
         {
-            args.AbortPipeline = !UserAccept("Do you want to publish the site?\r\nThis will initiate a full publish for all items in all languages from Master to Web");
-            args.AbortReason = "Users decided not to do a full publish";
+            return Task.Factory.StartNew(() =>
+            {
+                var accept = UserAcceptAsync("Do you want to publish the site?\r\nThis will initiate a full publish for all items in all languages from Master to Web");
+                Task.WaitAll(accept);
+                args.AbortPipeline = !accept.Result;
+                args.AbortReason = "Users decided not to do a full publish";
+            });
         }
 
-        public void DeleteProjectDialog(CleanupEventArgs args)
+        public Task DeleteProjectAsync(CleanupEventArgs args)
         {
-            args.DeepClean = !UserAccept("Do you want to keep the files for '{0}'? Saying no will delete everything permanently.", args.ProjectSettings.ProjectName);
+            return Task.Factory.StartNew(() =>
+            {
+                var accept = UserAcceptAsync("Do you want to keep the files for '{0}'? Saying no will delete everything permanently.", args.ProjectSettings.ProjectName);
+                Task.WaitAll(accept);
+                args.DeepClean = accept.Result;
+            });
         }
 
-        public void SetArchiveName(ArchiveEventArgs args)
+
+        public Task SetArchiveName(ArchiveEventArgs args)
         {
-            var defaultName = args.ProjectSettings.ProjectName + "_" + DateTime.Now.ToString("yyyyMMdd");
-            args.ArchiveName = this.InputBox("Archive name", "Please enter archive name", defaultName);
+            return Task.Factory.StartNew(() =>
+            {
+                var defaultName = args.ProjectSettings.ProjectName + "_" + DateTime.Now.ToString("yyyyMMdd");
+                args.ArchiveName = this.InputBox("Archive name", "Please enter archive name", defaultName);
+            });
         }
 
         public bool ChooseFolder(out string selectedFolder, string startPath = "")
@@ -79,14 +107,17 @@ namespace SitecoreInstaller.UI.Dialog
 
             var keysString = sourceEntries.ToDelimiteredString(';');
             keysString = Environment.NewLine + keysString.Replace(";", Environment.NewLine);
-
-            return UserAccept("Do you want to remove {0}?", keysString);
+            var accept = UserAcceptAsync("Do you want to remove {0}?", keysString);
+            Task.WaitAll(accept);
+            return accept.Result;
         }
 
         public bool RemoveBuildLibraryResource(SourceEntry sourceEntry)
         {
             if (sourceEntry == null) { throw new ArgumentNullException("sourceEntry"); }
-            return UserAccept("Do you want to remove {0}?", sourceEntry.Key);
+            var accept = UserAcceptAsync("Do you want to remove {0}?", sourceEntry.Key);
+            Task.WaitAll(accept);
+            return accept.Result;
         }
 
         public bool ChooseFile(out string fileName, string filter = "All files (*.*)|*.*")
@@ -106,14 +137,6 @@ namespace SitecoreInstaller.UI.Dialog
 
             fileName = string.Empty;
             return false;
-        }
-        public bool UserAccept(string question, params object[] arguments)
-        {
-            var result = MessageBox.Show(string.Format(question, arguments), "Are you sure?",
-                                MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question);
-
-            return result == DialogResult.Yes;
         }
 
         public void ModalDialog(DialogIcons dialogIcons, string text, string title)

@@ -90,13 +90,13 @@ namespace SitecoreInstaller.UI
                     Task.Run(() => Services.Pipelines.RunAsync<InstallPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings));
                     return true;
                 case Keys.P | Keys.Control | Keys.Shift:
-                    Task.Run(() => Services.Pipelines.RunAsync<PublishPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.MakeFullPublishDialog));
+                    Task.Run(() => Services.Pipelines.RunAsync<PublishPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.MakeFullPublishAsync));
                     return true;
                 case Keys.R | Keys.Control | Keys.Alt:
                     Task.Run(() => Services.Pipelines.RunAsync<RecycleApplicationPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings));
                     return true;
                 case Keys.U | Keys.Control | Keys.Shift:
-                    Task.Run(() => Services.Pipelines.RunAsync<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.DeleteProjectDialog));
+                    Task.Run(() => Services.Pipelines.RunAsync<UninstallPipeline, CleanupEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.DeleteProjectAsync));
                     return true;
                 case Keys.R | Keys.Control | Keys.Shift:
                     //we make sure the install type is not changed on reinstall! That would mess things up

@@ -113,11 +113,8 @@ namespace SitecoreInstaller.UI
             //we only handle keypress from here if pipeline is not busy
             switch (keyData)
             {
-                case Keys.T | Keys.Control | Keys.Shift:
-                    UiServices.Dialogs.UserAcceptX("Hello World!");
-                    return true;
                 case Keys.N | Keys.Control | Keys.Shift:
-                    Task.Run(() => Services.Pipelines.RunAsync<DoNothingPipeline, DoNothingEventArgs>(UiServices.ProjectSettings));
+                    Task.Run(() => Services.Pipelines.RunAsync<DoNothingPipeline, DoNothingEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.UserAcceptAsync));
                     return true;
                 case Keys.C | Keys.Control | Keys.Shift:
                     Framework.Diagnostics.Log.ToApp.Reset();

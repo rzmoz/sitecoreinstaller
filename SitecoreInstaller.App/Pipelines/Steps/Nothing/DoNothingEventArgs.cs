@@ -8,5 +8,6 @@
         }
 
         public int Wait { get; set; }
+        public bool UserAccepted { get; set; }
     }
 }

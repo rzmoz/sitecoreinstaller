@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using CSharp.Basics.Sys;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.Sys;
@@ -19,20 +20,20 @@ namespace SitecoreInstaller.Domain.Pipelines
         public event EventHandler<PipelineStepInfoEventArgs> StepExecuted;
 
         public event EventHandler<GenericEventArgs<string>> PreconditionNotMet;
-        
+
         public IPipeline Pipeline { get; private set; }
 
-        public IEnumerable<Action<TK>> PreProcessors { get; private set; }
+        public IEnumerable<Func<TK, Task>> PreProcessors { get; private set; }
 
-        public PipelineRunner(T pipeline, IEnumerable<Action<TK>> preProcessors = null)
+        public PipelineRunner(T pipeline, IEnumerable<Func<TK, Task>> preProcessors = null)
         {
             if (pipeline == null) throw new ArgumentNullException("pipeline");
 
             Log.ToApp.Reset();
-            PreProcessors = preProcessors ?? Enumerable.Empty<Action<TK>>();
+            PreProcessors = preProcessors ?? Enumerable.Empty<Func<TK, Task>>();
             Pipeline = pipeline;
         }
-        
+
         public void ExecuateAllSteps()
         {
             if (Pipeline.Args.AbortPipeline)
@@ -48,7 +49,7 @@ namespace SitecoreInstaller.Domain.Pipelines
                 Log.ToApp.Info("Executing pre processors");
                 foreach (var preProcessor in PreProcessors)
                 {
-                    preProcessor(Pipeline.Args as TK);
+                    Task.WaitAll(preProcessor(Pipeline.Args as TK));
                 }
                 Log.ToApp.Info("Pre processors executed");
 

@@ -18,6 +18,9 @@ namespace SitecoreInstaller.UI.Dialog
         public void Init()
         {
             BackColor = Styles.Theme.Light.Controls.BackColor;
+            tbxText.BackColor = Styles.Theme.Light.Controls.BackColor;
+            tbxText.Font = Styles.Fonts.LblRegular;
+            lblTitle.Font = Styles.Fonts.H1;
         }
 
         public Task<bool> UserAccept(string question, params object[] arguments)
@@ -25,7 +28,8 @@ namespace SitecoreInstaller.UI.Dialog
             this.CrossThreadSafe(() =>
             {
                 UiServices.ViewportStack.Show(this);
-                lblText.Text = string.Format(question, arguments) + "?";
+                lblTitle.Text = "Are you sure?";
+                tbxText.Text = string.Format(question, arguments) + "?";
             });
             return _acceptInputTask.WaitForInputAsync(() => { });
         }

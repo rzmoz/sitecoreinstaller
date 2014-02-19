@@ -6,14 +6,14 @@ namespace SitecoreInstaller.App.Pipelines
 {
     public class PipelineService
     {
-        public Task RunAsync<T, TK>(ProjectSettings projectSettings, params Action<TK>[] preProcessors)
+        public Task RunAsync<T, TK>(ProjectSettings projectSettings, params Func<TK, Task>[] preProcessors)
             where TK : PipelineEventArgs, new()
             where T : Pipeline<TK>, new()
         {
             return Task.Factory.StartNew(() => Run<T, TK>(projectSettings, preProcessors));
         }
 
-        private void Run<T, TK>(ProjectSettings projectSettings, params Action<TK>[] preProcessors)
+        private void Run<T, TK>(ProjectSettings projectSettings, params Func<TK, Task>[] preProcessors)
             where TK : PipelineEventArgs, new()
             where T : Pipeline<TK>, new()
         {
@@ -24,7 +24,7 @@ namespace SitecoreInstaller.App.Pipelines
             Services.PipelineEngine.RunPipeline(runner);
         }
 
-        public PipelineRunner<T, TK> Get<T, TK>(ProjectSettings projectSettings, params Action<TK>[] preProcessors)
+        public PipelineRunner<T, TK> Get<T, TK>(ProjectSettings projectSettings, params Func<TK, Task>[] preProcessors)
             where TK : PipelineEventArgs, new()
             where T : Pipeline<TK>, new()
         {

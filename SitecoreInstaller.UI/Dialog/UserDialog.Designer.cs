@@ -32,7 +32,8 @@
             this.pnlUserAccept = new System.Windows.Forms.Panel();
             this.btnAcceptYes = new SitecoreInstaller.UI.Forms.SIButton();
             this.btnAcceptNo = new SitecoreInstaller.UI.Forms.SIButton();
-            this.lblText = new SitecoreInstaller.UI.Forms.SIH2();
+            this.lblTitle = new SitecoreInstaller.UI.Forms.SIH2();
+            this.tbxText = new System.Windows.Forms.TextBox();
             this.pnlContent.SuspendLayout();
             this.pnlUserAccept.SuspendLayout();
             this.SuspendLayout();
@@ -40,8 +41,9 @@
             // pnlContent
             // 
             this.pnlContent.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pnlContent.Controls.Add(this.tbxText);
             this.pnlContent.Controls.Add(this.pnlUserAccept);
-            this.pnlContent.Controls.Add(this.lblText);
+            this.pnlContent.Controls.Add(this.lblTitle);
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(400, 200);
@@ -94,16 +96,25 @@
             this.btnAcceptNo.UseVisualStyleBackColor = true;
             this.btnAcceptNo.Click += new System.EventHandler(this.btnAcceptNo_Click);
             // 
-            // lblText
+            // lblTitle
             // 
-            this.lblText.AutoSize = true;
-            this.lblText.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.lblText.Location = new System.Drawing.Point(39, 39);
-            this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(55, 19);
-            this.lblText.TabIndex = 0;
-            this.lblText.Text = "lblText";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.lblTitle.Location = new System.Drawing.Point(39, 34);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(55, 19);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "lblTitle";
+            // 
+            // tbxText
+            // 
+            this.tbxText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbxText.Location = new System.Drawing.Point(43, 61);
+            this.tbxText.Multiline = true;
+            this.tbxText.Name = "tbxText";
+            this.tbxText.Size = new System.Drawing.Size(320, 20);
+            this.tbxText.TabIndex = 3;
             // 
             // UserDialog
             // 
@@ -122,9 +133,10 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlContent;
-        private Forms.SIH2 lblText;
+        private Forms.SIH2 lblTitle;
         private System.Windows.Forms.Panel pnlUserAccept;
         private Forms.SIButton btnAcceptYes;
         private Forms.SIButton btnAcceptNo;
+        private System.Windows.Forms.TextBox tbxText;
     }
 }
