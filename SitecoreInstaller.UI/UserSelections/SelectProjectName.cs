@@ -1,4 +1,5 @@
-﻿using CSharp.Basics.Forms;
+﻿using System.Linq;
+using CSharp.Basics.Forms;
 using SitecoreInstaller.Framework.Sys;
 using System;
 using System.Windows.Forms;
@@ -44,7 +45,7 @@ namespace SitecoreInstaller.UI.UserSelections
             this.CrossThreadSafe(() =>
             {
                 cbxProjectName.Items.Clear();
-                var existingProjects = Services.Projects.GetExistingProjects();
+                var existingProjects = Services.Projects.GetExistingProjects().OrderBy(name => name).ToList();
                 foreach (var existingProject in existingProjects)
                 {
                     cbxProjectName.Items.Add(existingProject);

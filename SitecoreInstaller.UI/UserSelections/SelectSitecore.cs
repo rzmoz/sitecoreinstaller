@@ -33,7 +33,7 @@ namespace SitecoreInstaller.UI.UserSelections
         {
             get
             {
-                var sitecores = Services.BuildLibrary.List(SourceType.Sitecore).OrderByDescending(sc => sc).ToList();
+                var sitecores = Services.BuildLibrary.List(SourceType.Sitecore).OrderBy(sc => sc).ToList();
                 return sitecores;
             }
         }

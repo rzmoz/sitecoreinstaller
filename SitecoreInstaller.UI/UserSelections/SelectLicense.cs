@@ -36,7 +36,7 @@ namespace SitecoreInstaller.UI.UserSelections
         {
             get
             {
-                var licenses = Services.BuildLibrary.List(SourceType.License).OrderByDescending(license => license).ToList();
+                var licenses = Services.BuildLibrary.List(SourceType.License).OrderBy(license => license).ToList();
                 return licenses;
             }
         }
