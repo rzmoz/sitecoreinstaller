@@ -156,7 +156,6 @@
     <Compile Include="Pipelines\Preconditions\Precondition.cs" />
     <Compile Include="Pipelines\Preconditions\CheckProjectDoesNotExist.cs" />
     <Compile Include="Pipelines\Preconditions\CheckProjectNameIsSet.cs" />
-    <Compile Include="Pipelines\ReAttachPipeline.cs" />
     <Compile Include="Pipelines\ReInstallPipeline.cs" />
     <Compile Include="Pipelines\Steps\Install\AddSitenameToHostFile.cs" />
     <Compile Include="Pipelines\Steps\Install\AttachDatabases.cs" />
