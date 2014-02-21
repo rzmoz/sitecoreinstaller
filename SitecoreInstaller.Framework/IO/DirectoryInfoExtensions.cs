@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web.SessionState;
 using SitecoreInstaller.Framework.Diagnostics;
 using System;
 using System.Security.AccessControl;
@@ -65,14 +66,19 @@ namespace SitecoreInstaller.Framework.IO
             return _fileSystemInfoFactory.Create<T>(combinedString);
         }
 
+        public static IEnumerable<FileInfo> GetFiles(this Folder folder, FileType fileType)
+        {
+            return folder.Directory.GetFiles(fileType.GetAllSearchPattern);
+        }
+
         public static IEnumerable<FileInfo> GetFiles(this DirectoryInfo directory, FileType fileType)
         {
-            return fileType.GetFiles(directory);
+            return directory.GetFiles(fileType.GetAllSearchPattern);
         }
 
         public static IEnumerable<FileInfo> GetFiles(this DirectoryInfo directory, FileType fileType, SearchOption searchOption)
         {
-            return fileType.GetFiles(directory, searchOption);
+            return directory.GetFiles(fileType.GetAllSearchPattern, searchOption);
         }
 
         private static string CombineToString(DirectoryInfo rootDirectory, params FileSystemInfo[] pathTokens)

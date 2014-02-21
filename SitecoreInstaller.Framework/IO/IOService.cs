@@ -22,7 +22,7 @@ namespace SitecoreInstaller.Framework.IO
             Log.ToApp.Debug("Saved string to disk at: {0}", targetFile.FullName);
         }
 
-        public static void WriteToDir(this string content, DirectoryInfo dir, string filename)
+        public static void WriteToDisk(this string content, DirectoryInfo dir, string filename)
         {
             var file = new FileInfo(Path.Combine(dir.FullName, filename));
             WriteToDisk(content, file);

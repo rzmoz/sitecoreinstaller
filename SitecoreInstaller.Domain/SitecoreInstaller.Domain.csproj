@@ -230,6 +230,7 @@
     <Compile Include="WebsiteFolder.cs" />
     <Compile Include="Website\DataProviderType.cs" />
     <Compile Include="Website\PublishType.cs" />
+    <Compile Include="Website\SitecoreSetting.cs" />
     <Compile Include="Website\WffmConfigFile.cs" />
     <Compile Include="Database\SqlService.cs" />
     <Compile Include="Database\SqlSettings.cs" />
@@ -254,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Website\SitecoreSettingsFormat.config" />
     <None Include="Website\WffmDataProviderFormat.config" />
     <None Include="Website\DataFolderFormat.config" />
     <None Include="Website\LicenseFileFormat.config" />

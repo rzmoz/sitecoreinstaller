@@ -32,13 +32,5 @@
         }
 
         public string GetAllSearchPattern { get; private set; }
-        public IEnumerable<FileInfo> GetFiles(DirectoryInfo directory)
-        {
-            return directory.GetFiles(GetAllSearchPattern, SearchOption.TopDirectoryOnly);
-        }
-        public IEnumerable<FileInfo> GetFiles(DirectoryInfo directory, SearchOption searchOption)
-        {
-            return directory.GetFiles(GetAllSearchPattern, searchOption);
-        }
     }
 }

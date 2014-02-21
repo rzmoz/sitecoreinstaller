@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using CSharp.Basics.Sys.Tasks;
+using Sitecore.Pipelines.HttpRequest;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.IO;
@@ -24,6 +25,17 @@ namespace SitecoreInstaller.Domain.Website
         private const string _deserializeItemsName = "DeserializeItems.aspx";
         private const string _publishSiteName = "PublishSite.aspx";
         private const string _postInstallServiceName = "PostInstallService.aspx";
+
+
+        public void SetSitecoreSettings(IEnumerable<SitecoreSetting> settings, FileInfo settingsFile)
+        {
+            var settingString = string.Empty;
+            foreach (var sitecoreSetting in settings)
+            {
+                settingString += sitecoreSetting.ToString();
+            }
+            settingString.WriteToDisk(settingsFile);
+        }
 
         public void SetDataFolder(DataFolder dataFolder, FileInfo dataFolderConfigFile)
         {
@@ -180,7 +192,7 @@ namespace SitecoreInstaller.Domain.Website
 
             //copy admin login
             var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_installerPath);
-            WebsiteResource.AdminLogin.WriteToDir(runtimeServicesFolder, _adminLoginName);
+            WebsiteResource.AdminLogin.WriteToDisk(runtimeServicesFolder, _adminLoginName);
 
             TheWww.OpenInBrowser(baseUrl.ToUri(_installerPath, _adminLoginName));
         }
@@ -206,10 +218,10 @@ namespace SitecoreInstaller.Domain.Website
 
             runtimeServicesFolder.CreateIfNotExists();
 
-            WebsiteResource.InstallPackageService.WriteToDir(runtimeServicesFolder, _installPackageServiceName);
-            WebsiteResource.InstallPackageStatusService.WriteToDir(runtimeServicesFolder, _installPackageStatusName);
-            WebsiteResource.DeserializeItems.WriteToDir(runtimeServicesFolder, _deserializeItemsName);
-            WebsiteResource.PublishSite.WriteToDir(runtimeServicesFolder, _publishSiteName);
+            WebsiteResource.InstallPackageService.WriteToDisk(runtimeServicesFolder, _installPackageServiceName);
+            WebsiteResource.InstallPackageStatusService.WriteToDisk(runtimeServicesFolder, _installPackageStatusName);
+            WebsiteResource.DeserializeItems.WriteToDisk(runtimeServicesFolder, _deserializeItemsName);
+            WebsiteResource.PublishSite.WriteToDisk(runtimeServicesFolder, _publishSiteName);
 
             Log.ToApp.Info("Runtime services installed");
         }
@@ -324,7 +336,7 @@ namespace SitecoreInstaller.Domain.Website
         {
             //warm up site to make sure run time service is up and running
             var runtimeServicesFolder = websiteFolder.CombineTo<DirectoryInfo>(_installerPath);
-            WebsiteResource.PostInstallService.WriteToDir(runtimeServicesFolder, _postInstallServiceName);
+            WebsiteResource.PostInstallService.WriteToDisk(runtimeServicesFolder, _postInstallServiceName);
             WakeUpSite(baseUrl);
             Log.ToApp.Info("Executing post install steps...");
             var callingUri = baseUrl.ToUri(_installerPath, _postInstallServiceName);

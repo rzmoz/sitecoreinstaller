@@ -32,14 +32,16 @@
             this.btnYes = new SitecoreInstaller.UI.Forms.SIButton();
             this.tbxText = new System.Windows.Forms.TextBox();
             this.lblTitle = new SitecoreInstaller.UI.Forms.SIH2();
-            this.btnOk = new SitecoreInstaller.UI.Forms.SIButton();
             this.btnNo = new SitecoreInstaller.UI.Forms.SIButton();
+            this.btnOk = new SitecoreInstaller.UI.Forms.SIButton();
+            this.tbxInput = new SitecoreInstaller.UI.Forms.SITextBox();
             this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlContent
             // 
             this.pnlContent.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pnlContent.Controls.Add(this.tbxInput);
             this.pnlContent.Controls.Add(this.btnYes);
             this.pnlContent.Controls.Add(this.tbxText);
             this.pnlContent.Controls.Add(this.lblTitle);
@@ -88,6 +90,24 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "lblTitle";
             // 
+            // btnNo
+            // 
+            this.btnNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNo.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
+            this.btnNo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNo.DrawBottomDivider = false;
+            this.btnNo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNo.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btnNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
+            this.btnNo.Location = new System.Drawing.Point(311, 157);
+            this.btnNo.Name = "btnNo";
+            this.btnNo.Size = new System.Drawing.Size(75, 30);
+            this.btnNo.TabIndex = 4;
+            this.btnNo.Text = "No";
+            this.btnNo.UseVisualStyleBackColor = true;
+            this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
+            // 
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -106,23 +126,12 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // btnNo
+            // tbxInput
             // 
-            this.btnNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNo.BottomDividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(46)))));
-            this.btnNo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNo.DrawBottomDivider = false;
-            this.btnNo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNo.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btnNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
-            this.btnNo.Location = new System.Drawing.Point(311, 157);
-            this.btnNo.Name = "btnNo";
-            this.btnNo.Size = new System.Drawing.Size(75, 30);
-            this.btnNo.TabIndex = 4;
-            this.btnNo.Text = "No";
-            this.btnNo.UseVisualStyleBackColor = true;
-            this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
+            this.tbxInput.Location = new System.Drawing.Point(43, 88);
+            this.tbxInput.Name = "tbxInput";
+            this.tbxInput.Size = new System.Drawing.Size(320, 20);
+            this.tbxInput.TabIndex = 7;
             // 
             // UserDialog
             // 
@@ -145,5 +154,6 @@
         private Forms.SIButton btnOk;
         private Forms.SIButton btnYes;
         private Forms.SIButton btnNo;
+        private Forms.SITextBox tbxInput;
     }
 }

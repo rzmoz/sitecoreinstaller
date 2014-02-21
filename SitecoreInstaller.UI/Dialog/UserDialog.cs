@@ -10,12 +10,14 @@ namespace SitecoreInstaller.UI.Dialog
 {
     public partial class UserDialog : BasicsUserControl
     {
+        private readonly AwaitTask<string> _userInputAwaitTask;
         private readonly AwaitTask<bool> _userAcceptAwaitTask;
         private readonly AwaitTask _informationAwaitTask;
 
         public UserDialog()
         {
             InitializeComponent();
+            _userInputAwaitTask = new AwaitTask<string>();
             _userAcceptAwaitTask = new AwaitTask<bool>();
             _informationAwaitTask = new AwaitTask();
         }
@@ -56,12 +58,24 @@ namespace SitecoreInstaller.UI.Dialog
             return _informationAwaitTask.AwaitAsync(() => Hide(btnOk));
         }
 
+        public Task<string> UserInputAsync(string title, string text, params object[] arguments)
+        {
+            this.CrossThreadSafe(() =>
+            {
+                UiServices.ViewportStack.Show(this);
+                Show(btnOk);
+                lblTitle.Text = title;
+                tbxText.Text = string.Format(text, arguments);
+            });
+            return _userInputAwaitTask.AwaitAsync(() => Hide(btnOk));
+        }
+
         private void Show(Control ctrl)
         {
             this.CrossThreadSafe(() =>
             {
                 ctrl.BringToFront();
-                ctrl.Visible = true;    
+                ctrl.Visible = true;
             });
         }
         private void Hide(Control ctrl)
@@ -69,7 +83,7 @@ namespace SitecoreInstaller.UI.Dialog
             this.CrossThreadSafe(() =>
             {
                 ctrl.SendToBack();
-                ctrl.Visible = false;    
+                ctrl.Visible = false;
             });
         }
 
@@ -90,6 +104,7 @@ namespace SitecoreInstaller.UI.Dialog
         {
             UiServices.ViewportStack.Hide(this);
             _informationAwaitTask.IsDone();
+            _userInputAwaitTask.IsDone(tbxInput.Text);
         }
 
     }
