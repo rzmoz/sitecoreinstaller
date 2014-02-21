@@ -77,8 +77,8 @@ namespace SitecoreInstaller.Domain.Website
             if (Directory.Exists(sitecoreDatabaseFolder.FullName) == false)
                 return;
 
-            sitecoreDatabaseFolder.CopyFlattenedTo(projectfolder.Databases, FileTypes.DatabaseLogFile.GetAllSearchPattern);
-            sitecoreDatabaseFolder.CopyFlattenedTo(projectfolder.Databases, FileTypes.DatabaseDataFile.GetAllSearchPattern);
+            sitecoreDatabaseFolder.CopyFlattenedTo(projectfolder.Databases, FileTypes.SqlLdf.GetAllSearchPattern);
+            sitecoreDatabaseFolder.CopyFlattenedTo(projectfolder.Databases, FileTypes.SqlMdf.GetAllSearchPattern);
         }
 
         public void CopyModulesToWebsite(ProjectFolder projectFolder, BuildLibraryDirectory module, DbInstallType sqlInstallType)
@@ -92,7 +92,7 @@ namespace SitecoreInstaller.Domain.Website
                     //copy database files to database folder
                     var dbFiles = new[]
           {
-            FileTypes.DatabaseDataFile.GetAllSearchPattern, FileTypes.DatabaseLogFile.GetAllSearchPattern
+            FileTypes.SqlMdf.GetAllSearchPattern, FileTypes.SqlLdf.GetAllSearchPattern
           }.SelectMany(fileExtensions => module.Directory.GetFiles(fileExtensions));
 
                     dbFiles.CopyTo(projectFolder.Databases, true);
@@ -110,10 +110,10 @@ namespace SitecoreInstaller.Domain.Website
             module.Directory.GetFiles(FileTypes.ConfigDelta).CopyTo(projectFolder, true);
 
             //copy config files to App_Config/Include folder
-            module.Directory.GetFiles(FileTypes.SitecoreConfigFile).CopyTo(projectFolder.Website.AppConfig.Include, true);
+            module.Directory.GetFiles(FileTypes.SitecoreConfig).CopyTo(projectFolder.Website.AppConfig.Include, true);
 
             //copy disabled config files to App_Config/Include folder
-            var disabledConfigFiles = module.Directory.GetFiles(FileTypes.DisabledSitecoreConfigFile).ToList();
+            var disabledConfigFiles = module.Directory.GetFiles(FileTypes.DisabledSitecoreConfig).ToList();
             disabledConfigFiles.CopyTo(projectFolder.Website.AppConfig.Include, true);
 
             //copy Sitecore packages to package folder (zip files)

@@ -19,8 +19,8 @@ namespace SitecoreInstaller.Domain.Database
 
         public SqlDatabase(DirectoryInfo folder, string physicalDatabaseName, string projectName)
         {
-            DataFileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + FileTypes.DatabaseDataFile.Extension;
-            LogFileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + FileTypes.DatabaseLogFile.Extension;
+            DataFileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + FileTypes.SqlMdf.Extension;
+            LogFileFullPath = Path.Combine(folder.FullName, physicalDatabaseName) + FileTypes.SqlLdf.Extension;
             PhysicalName = physicalDatabaseName;
             LogicalName = GetLogicalDatabaseName(physicalDatabaseName);
             Name = projectName.Trim() + "_" + LogicalName;
