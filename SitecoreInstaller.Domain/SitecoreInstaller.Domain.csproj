@@ -226,6 +226,7 @@
     <Compile Include="Pipelines\PipelineRunnerEngine.cs" />
     <Compile Include="ProjectFolder.cs" />
     <Compile Include="Projects\ProjectSettingsConfig.cs" />
+    <Compile Include="Projects\SitecoreSettingConfig.cs" />
     <Compile Include="WebServer\PowerShellScriptService.cs" />
     <Compile Include="WebsiteFolder.cs" />
     <Compile Include="Website\DataProviderType.cs" />

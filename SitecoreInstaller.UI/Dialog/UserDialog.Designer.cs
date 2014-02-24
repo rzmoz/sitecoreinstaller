@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.tbxInput = new SitecoreInstaller.UI.Forms.SITextBox();
             this.btnYes = new SitecoreInstaller.UI.Forms.SIButton();
             this.tbxText = new System.Windows.Forms.TextBox();
             this.lblTitle = new SitecoreInstaller.UI.Forms.SIH2();
             this.btnNo = new SitecoreInstaller.UI.Forms.SIButton();
             this.btnOk = new SitecoreInstaller.UI.Forms.SIButton();
-            this.tbxInput = new SitecoreInstaller.UI.Forms.SITextBox();
             this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,14 @@
             this.pnlContent.Size = new System.Drawing.Size(400, 200);
             this.pnlContent.TabIndex = 2;
             // 
+            // tbxInput
+            // 
+            this.tbxInput.Location = new System.Drawing.Point(43, 88);
+            this.tbxInput.Name = "tbxInput";
+            this.tbxInput.Size = new System.Drawing.Size(320, 20);
+            this.tbxInput.TabIndex = 2;
+            this.tbxInput.TabStop = false;
+            // 
             // btnYes
             // 
             this.btnYes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -65,7 +73,7 @@
             this.btnYes.Location = new System.Drawing.Point(230, 157);
             this.btnYes.Name = "btnYes";
             this.btnYes.Size = new System.Drawing.Size(75, 30);
-            this.btnYes.TabIndex = 5;
+            this.btnYes.TabIndex = 0;
             this.btnYes.Text = "Yes";
             this.btnYes.UseVisualStyleBackColor = true;
             this.btnYes.Click += new System.EventHandler(this.btnYes_Click);
@@ -76,8 +84,10 @@
             this.tbxText.Location = new System.Drawing.Point(43, 61);
             this.tbxText.Multiline = true;
             this.tbxText.Name = "tbxText";
+            this.tbxText.ReadOnly = true;
             this.tbxText.Size = new System.Drawing.Size(320, 20);
             this.tbxText.TabIndex = 3;
+            this.tbxText.TabStop = false;
             // 
             // lblTitle
             // 
@@ -103,7 +113,7 @@
             this.btnNo.Location = new System.Drawing.Point(311, 157);
             this.btnNo.Name = "btnNo";
             this.btnNo.Size = new System.Drawing.Size(75, 30);
-            this.btnNo.TabIndex = 4;
+            this.btnNo.TabIndex = 1;
             this.btnNo.Text = "No";
             this.btnNo.UseVisualStyleBackColor = true;
             this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
@@ -125,13 +135,6 @@
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
-            // tbxInput
-            // 
-            this.tbxInput.Location = new System.Drawing.Point(43, 88);
-            this.tbxInput.Name = "tbxInput";
-            this.tbxInput.Size = new System.Drawing.Size(320, 20);
-            this.tbxInput.TabIndex = 7;
             // 
             // UserDialog
             // 

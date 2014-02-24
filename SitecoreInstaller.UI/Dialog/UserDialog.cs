@@ -28,6 +28,7 @@ namespace SitecoreInstaller.UI.Dialog
             tbxText.BackColor = Styles.Theme.Light.Controls.BackColor;
             tbxText.Font = Styles.Fonts.LblRegular;
             lblTitle.Font = Styles.Fonts.H1;
+            Hide(tbxInput);
         }
 
         public Task<bool> UserAcceptAsync(string question, params object[] arguments)
@@ -37,6 +38,7 @@ namespace SitecoreInstaller.UI.Dialog
                 UiServices.ViewportStack.Show(this);
                 Show(btnYes);
                 Show(btnNo);
+                btnYes.Focus();
                 lblTitle.Text = "Are you sure?";
                 tbxText.Text = string.Format(question, arguments) + "?";
             });
@@ -52,6 +54,7 @@ namespace SitecoreInstaller.UI.Dialog
             {
                 UiServices.ViewportStack.Show(this);
                 Show(btnOk);
+                btnOk.Focus();
                 lblTitle.Text = title;
                 tbxText.Text = string.Format(textFormat, arguments);
             });
@@ -63,11 +66,17 @@ namespace SitecoreInstaller.UI.Dialog
             this.CrossThreadSafe(() =>
             {
                 UiServices.ViewportStack.Show(this);
+                Show(tbxInput);
                 Show(btnOk);
+                tbxText.Focus();
                 lblTitle.Text = title;
                 tbxText.Text = string.Format(text, arguments);
             });
-            return _userInputAwaitTask.AwaitAsync(() => Hide(btnOk));
+            return _userInputAwaitTask.AwaitAsync(() =>
+            {
+                Hide(btnOk);
+                Hide(tbxInput);
+            });
         }
 
         private void Show(Control ctrl)

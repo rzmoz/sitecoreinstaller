@@ -45,7 +45,7 @@ namespace SitecoreInstaller.UI.UserSelections
             this.CrossThreadSafe(() =>
             {
                 cbxProjectName.Items.Clear();
-                var existingProjects = Services.Projects.GetExistingProjects().OrderBy(name => name).ToList();
+                var existingProjects = Services.Projects.GetExistingProjects().OrderBy(dir => dir.FullName).ToList();
                 foreach (var existingProject in existingProjects)
                 {
                     cbxProjectName.Items.Add(existingProject);

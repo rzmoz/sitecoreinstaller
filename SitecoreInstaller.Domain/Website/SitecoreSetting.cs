@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SitecoreInstaller.Domain.Website
 {
@@ -12,13 +8,17 @@ namespace SitecoreInstaller.Domain.Website
 
         public string Name { get; private set; }
         public string Value { get; private set; }
+        
+        public SitecoreSetting(string name)
+            : this(name, string.Empty)
+        {
+        }
 
         public SitecoreSetting(string name, string value)
         {
             if (name == null) throw new ArgumentNullException("name");
-            if (value == null) throw new ArgumentNullException("value");
             Name = name;
-            Value = value;
+            Value = value ?? string.Empty;
         }
 
         public override string ToString()

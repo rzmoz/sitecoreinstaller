@@ -79,7 +79,7 @@ namespace SitecoreInstaller.UI.Dialog
             {
                 var accept = UserAcceptAsync("Do you want to keep the files for '{0}'? Saying no will delete everything permanently.", args.ProjectSettings.ProjectName);
                 Task.WaitAll(accept);
-                args.DeepClean = accept.Result;
+                args.DeepClean = !accept.Result;
             });
         }
 

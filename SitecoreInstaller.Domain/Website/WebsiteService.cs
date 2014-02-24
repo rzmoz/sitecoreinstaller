@@ -29,12 +29,14 @@ namespace SitecoreInstaller.Domain.Website
 
         public void SetSitecoreSettings(IEnumerable<SitecoreSetting> settings, FileInfo settingsFile)
         {
-            var settingString = string.Empty;
+            var settingsArg = string.Empty;
             foreach (var sitecoreSetting in settings)
             {
-                settingString += sitecoreSetting.ToString();
+                settingsArg += sitecoreSetting.ToString();
             }
-            settingString.WriteToDisk(settingsFile);
+
+            var settingsString = string.Format(WebsiteResource.SitecoreSettingsFormat, settingsArg);
+            settingsString.WriteToDisk(settingsFile);
         }
 
         public void SetDataFolder(DataFolder dataFolder, FileInfo dataFolderConfigFile)

@@ -30,6 +30,7 @@ namespace SitecoreInstaller.App.Pipelines
             AddStep<CopyModuleFiles>();
             AddStep<SetConnectionStrings>();
             AddStep<TransformConfigFiles>();
+            AddStep<SetSitecoreSettings>();
             AddStep<AttachDatabases>();
             AddStep<AddSitenameToHostFile>();
             AddStep<CreateIisSiteAndAppPool>();

@@ -5,7 +5,6 @@ using System;
 using CSharp.Basics.Sys;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.IO;
-using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.Configuration
 {

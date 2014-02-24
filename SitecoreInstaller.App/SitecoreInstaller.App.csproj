@@ -120,7 +120,7 @@
     <Compile Include="Pipelines\Steps\Databases\EnableMixedAuthenticationMode.cs" />
     <Compile Include="Pipelines\Steps\Databases\TryStartSqlServer.cs" />
     <Compile Include="Pipelines\Steps\AutoSetup\DetermineLocalBuildLibraryFolder.cs" />
-    <Compile Include="Pipelines\Steps\Install\SetCustomSitecoreSettings.cs" />
+    <Compile Include="Pipelines\Steps\Install\SetSitecoreSettings.cs" />
     <Compile Include="Pipelines\Steps\Maintenance\RecycleApplication.cs" />
     <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
     <Compile Include="Pipelines\Preconditions\CheckNothing.cs" />

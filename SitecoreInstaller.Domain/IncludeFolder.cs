@@ -9,7 +9,7 @@ namespace SitecoreInstaller.Domain
 
         //prefix with z to make sure they are evaluated last
 
-        private const string _customSitecoreSettingsConfigFile = "zCustomSitecoreSettings.config";
+        private const string _sitecoreSettingsConfigFile = "zSitecoreSettings.config";
         private const string _licenseConfigFileName = "zLicense.config";
         private const string _dataFolderConfigFileName = "zDataFolder.config";
         private const string _wffmSqlDataproviderConfigFileName = "zFormsSqlDataProvider.config";
@@ -17,13 +17,13 @@ namespace SitecoreInstaller.Domain
         public IncludeFolder(DirectoryInfo directory)
             : base(directory)
         {
-            CustomSitecoreSettingsConfigFile = Directory.CombineTo<FileInfo>(_customSitecoreSettingsConfigFile);
+            SitecoreSettingsConfigFile = Directory.CombineTo<FileInfo>(_sitecoreSettingsConfigFile);
             DataFolderConfigFile = Directory.CombineTo<FileInfo>(_dataFolderConfigFileName);
             LicenseConfigFile = Directory.CombineTo<FileInfo>(_licenseConfigFileName);
             WffmConfigFile = Directory.CombineTo<FileInfo>(_wffmConfigFileName);
             WffmSqlDataproviderConfigFile = Directory.CombineTo<FileInfo>(_wffmSqlDataproviderConfigFileName);
         }
-        public FileInfo CustomSitecoreSettingsConfigFile { get; private set; }
+        public FileInfo SitecoreSettingsConfigFile { get; private set; }
         public FileInfo DataFolderConfigFile { get; private set; }
         public FileInfo LicenseConfigFile { get; private set; }
         public FileInfo WffmConfigFile { get; private set; }

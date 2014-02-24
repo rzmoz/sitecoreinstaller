@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using SitecoreInstaller.Domain.Pipelines;
+using SitecoreInstaller.Domain.Website;
 
 namespace SitecoreInstaller.App.Pipelines
 {
@@ -33,6 +35,7 @@ namespace SitecoreInstaller.App.Pipelines
             if (runner.Pipeline.Args is PipelineApplicationEventArgs == false)
                 throw new TypeLoadException("pipeline args is not " + typeof(PipelineApplicationEventArgs));
             (runner.Pipeline.Args as PipelineApplicationEventArgs).ProjectSettings = projectSettings;
+            (runner.Pipeline.Args as PipelineApplicationEventArgs).ProjectSettings.SitecoreSettings = new[] { new SitecoreSetting("my setting", "some value") };
 
             return runner;
         }
