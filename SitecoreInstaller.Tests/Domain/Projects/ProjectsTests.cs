@@ -9,7 +9,7 @@ using NUnit.Framework;
 using SitecoreInstaller.Domain;
 using SitecoreInstaller.Domain.Projects;
 
-namespace SitecoreInstaller.Tests.Domain
+namespace SitecoreInstaller.Tests.Domain.Projects
 {
     [TestFixture]
     public class ProjectsTests
@@ -30,6 +30,17 @@ namespace SitecoreInstaller.Tests.Domain
   <SqlInstallType>Client</SqlInstallType>
   <MongoInstallType>Client</MongoInstallType>
 </ProjectSettings>";
+
+        private const string _serializedProjectsettingsWithNoSitecoreSettings = @"<?xml version=""1.0""?>
+<ProjectSettings xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <Sitecore>Sitecore 7.2 rev. 140123</Sitecore>
+  <License>Sitecore Corporation A/S (2100-01-01)</License>
+  <Modules />
+  <SqlInstallType>Local</SqlInstallType>
+  <MongoInstallType>Local</MongoInstallType>
+</ProjectSettings>";
+
+
 
         [Test]
         public void XmlSerialize_ClassIsSerializable()
@@ -81,6 +92,30 @@ namespace SitecoreInstaller.Tests.Domain
             settings.SitecoreSettings.Count.Should().Be(1);
             settings.SitecoreSettings.Single().Name.Should().Be("settingName1");
             settings.SitecoreSettings.Single().Value.Should().Be("settingValue1");
+        }
+
+        [Test]
+        public void XmlDeSerialize_MissingSitecoreSettings_ClassIsDeSerializable()
+        {
+
+            ProjectSettingsConfig settings = null;
+            using (var stream = new StringReader(_serializedProjectsettingsWithNoSitecoreSettings))
+            {
+                var ser = new XmlSerializer(typeof(ProjectSettingsConfig));
+                using (var reader = XmlReader.Create(stream))
+                {
+                    settings = (ProjectSettingsConfig)ser.Deserialize(reader);
+
+                }
+                stream.Close();
+            }
+
+            settings.Sitecore.Should().Be("Sitecore 7.2 rev. 140123");
+            settings.License.Should().Be("Sitecore Corporation A/S (2100-01-01)");
+            settings.MongoInstallType.Should().Be(DbInstallType.Local);
+            settings.SqlInstallType.Should().Be(DbInstallType.Local);
+            settings.Modules.Count.Should().Be(0);
+            settings.SitecoreSettings.Count.Should().Be(0);
         }
     }
 }

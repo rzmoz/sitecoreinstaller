@@ -52,8 +52,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
         public static SourceEntry ParseString(string settingsString)
         {
-            if (string.IsNullOrEmpty(settingsString))
-                throw new ArgumentException("settingsString is null or empty");
+            if (settingsString == null) throw new ArgumentNullException("settingsString");
 
             return new SourceEntry(settingsString, string.Empty);
         }

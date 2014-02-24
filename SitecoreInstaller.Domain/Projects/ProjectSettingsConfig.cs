@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
-using SitecoreInstaller.Domain.Website;
 using SitecoreInstaller.Framework.Configuration;
 
 namespace SitecoreInstaller.Domain.Projects
