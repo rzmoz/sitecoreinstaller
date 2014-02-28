@@ -80,12 +80,15 @@
             // 
             // tbxText
             // 
+            this.tbxText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbxText.Location = new System.Drawing.Point(43, 61);
             this.tbxText.Multiline = true;
             this.tbxText.Name = "tbxText";
             this.tbxText.ReadOnly = true;
-            this.tbxText.Size = new System.Drawing.Size(320, 20);
+            this.tbxText.Size = new System.Drawing.Size(320, 82);
             this.tbxText.TabIndex = 3;
             this.tbxText.TabStop = false;
             // 
