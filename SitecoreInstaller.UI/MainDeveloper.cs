@@ -51,7 +51,7 @@ namespace SitecoreInstaller.UI
             base.OnShow();
             selectProjectName1.UpdateList();
             selectProjectName1.FocusTextBox();
-            ParentForm.Height = Styles.MainForm.HeightDeveloper;
+            if (ParentForm != null) ParentForm.Height = Styles.MainForm.HeightDeveloper;
             Services.UserPreferences.Properties.AdvancedView = true;
             Services.UserPreferences.Save();
         }

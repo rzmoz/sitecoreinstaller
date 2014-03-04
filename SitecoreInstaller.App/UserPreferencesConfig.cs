@@ -22,7 +22,7 @@ namespace SitecoreInstaller.App
             MongoUsername = string.Empty;
             MongoPassword = string.Empty;
 
-            AdvancedView = false;
+            AdvancedView = true;
             PromptForUserSettings = true;
 
             LicenseExpirationPeriodInDays = 14;

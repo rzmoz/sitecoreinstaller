@@ -41,7 +41,7 @@ namespace SitecoreInstaller.UI
         {
             base.OnShow();
             btnOpenSite.Text = Services.Projects.GetExistingProjects().Count() + new string(' ', 29);
-            ParentForm.Height = Styles.MainForm.HeightSimple;
+            if (ParentForm != null) ParentForm.Height = Styles.MainForm.HeightSimple;
             Services.UserPreferences.Properties.AdvancedView = false;
             Services.UserPreferences.Save();
         }
