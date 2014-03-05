@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.IO;
 using SitecoreInstaller.Domain.Database;
 using SitecoreInstaller.Framework.Databases;
 
@@ -14,6 +15,10 @@ namespace SitecoreInstaller.Azure.Packaging.Databases
             _sqlServer = new SqlServer();
         }
 
+        public void CreateBacpac(FileInfo targetFile, ConnectionStringEntry entry)
+        {
+            SqlPackage.CreateBacpac(targetFile, entry.ConnectionString.Value);
+        }
         public void PrepDatabaseForBacpac(ConnectionStringEntry entry)
         {
             if (entry == null) throw new ArgumentNullException("entry");

@@ -8,7 +8,7 @@ namespace SitecoreInstaller.Azure.Packaging.Databases
     {
         private const string _fileName = @"sqlpackage.exe";
 
-        private const string _exportSwitchesFormat = @" /tf:"".\{0}.bacpac"" /SourceConnectionString:""{1}"" /action:Export";
+        private const string _exportSwitchesFormat = @" /tf:""{0}.bacpac"" /SourceConnectionString:""{1}"" /action:Export";
 
         public static void CreateBacpac(FileInfo bacpacFile, string connectionString)
         {

@@ -120,6 +120,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CSharp.Basics.Forms.1.24.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql">
+      <HintPath>..\Lib4Azure\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Utilities">
+      <HintPath>..\Lib4Azure\Microsoft.Data.Tools.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dac">
+      <HintPath>..\Lib4Azure\Microsoft.SqlServer.Dac.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dac.Extensions">
+      <HintPath>..\Lib4Azure\Microsoft.SqlServer.Dac.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3rdPartyAssemblies\Microsoft.WindowsAPICodePack.dll</HintPath>

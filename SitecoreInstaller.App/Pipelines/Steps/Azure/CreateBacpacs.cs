@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SitecoreInstaller.Azure;
 using SitecoreInstaller.Domain.Database;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Azure
@@ -11,12 +13,16 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Azure
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
-            var msConnectionStrings = args.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile.Where(con => con.ConnectionString is MsSqlConnectionString).ToList();
+            var entries =
+                args.ProjectSettings.ProjectFolder.Website.AppConfig.ConnectionStringsConfigFile.Where(
+                    con => con.ConnectionString is MsSqlConnectionString).ToList();
 
-            foreach (var connectionString in msConnectionStrings)
+            Parallel.ForEach(entries, (entry) =>
             {
+                var file = new FileInfo(args.ProjectSettings.ProjectName + "_" + entry.Name);
 
-            }
+                AzureServices.Sql.CreateBacpac(file, entry);
+            });
         }
     }
 }
