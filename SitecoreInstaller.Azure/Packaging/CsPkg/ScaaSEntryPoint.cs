@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using CSharp.Basics.Sys;
 using CSharp.Basics.Sys.Tasks;
 using Microsoft.WindowsAzure.ServiceRuntime;
 
@@ -18,7 +19,7 @@ namespace SitecoreInstaller.Azure.Packaging.CsPkg
                 Trace.TraceInformation("ASP.NET Requests Current: " + rc.ToString());
                 if (rc <= 0)
                     break;
-                Wait.For("1s");
+                Wait.For(1.Seconds());
             }
         }
     }
