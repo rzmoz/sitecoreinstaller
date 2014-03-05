@@ -16,10 +16,17 @@ namespace SitecoreInstaller.Domain.Database
 
     public class SqlService
     {
+        private SqlServer _sqlServer;
+
         public SqlConnection GetSqlConnection() { return new SqlConnection("Server=.;Trusted_Connection=True;Connection Timeout=5;"); }
         public SqlConnection GetSqlExpresssConnection() { return new SqlConnection(@"Server=.\SQLEXPRESS;Trusted_Connection=True;;Connection Timeout=5;"); }
 
         private Func<SqlConnection> GetTrustedConnection = () => null;
+
+        public SqlService()
+        {
+            _sqlServer = new SqlServer();
+        }
 
         public void DetermineSqlConnection()
         {
@@ -93,12 +100,12 @@ namespace SitecoreInstaller.Domain.Database
         public void RestartServer(SqlConnection connection)
         {
             const string cmd = "SELECT @@servicename";
-            var command = new SqlCommand(cmd, connection);
-            command.Connection.Open();
-            var instanceName = command.ExecuteScalar().ToString();
+            var instanceName = _sqlServer.ExecuteScalar(cmd, connection);
             SqlServerPrompt.StopServer(instanceName);
             SqlServerPrompt.StartServer(instanceName);
         }
+
+
 
         private Server GetSqlServerTrustedConnection()
         {

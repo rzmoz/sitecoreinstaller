@@ -20,7 +20,7 @@ namespace SitecoreInstaller.Domain.Database
 
             Name = new ConnectionStringName();
             if (entryName != null)
-                Name = new ConnectionStringName(" _" + entryName);
+                Name = new ConnectionStringName(entryName);
 
             ConnectionString = _connectionStringFactory.Create(connectionString);
         }
@@ -34,7 +34,7 @@ namespace SitecoreInstaller.Domain.Database
         public ConnectionStringEntry(MongoSettings settings, ConnectionStringName connectionStringName)
         {
             Name = connectionStringName;
-            ConnectionString=new MongoConnectionString(settings, connectionStringName);
+            ConnectionString = new MongoConnectionString(settings, connectionStringName);
         }
 
         public ConnectionStringName Name { get; set; }
@@ -42,22 +42,22 @@ namespace SitecoreInstaller.Domain.Database
 
         public override string ToString()
         {
-            return string.Format(_ConnectionStringEntryFormat, Name.DatabasePart.ToLowerInvariant(), ConnectionString);
+            return string.Format(_connectionStringEntryFormat, Name.DatabasePart.ToLowerInvariant(), ConnectionString);
         }
         public string ToInsertString()
         {
-            return string.Format(_ConnectionStringInsertEntryFormat, Name.DatabasePart.ToLowerInvariant(), ConnectionString);
+            return string.Format(_connectionStringInsertEntryFormat, Name.DatabasePart.ToLowerInvariant(), ConnectionString);
         }
         public string ToReplaceString()
         {
-            return string.Format(_ConnectionStringReplaceEntryFormat, Name.DatabasePart.ToLowerInvariant(), ConnectionString);
+            return string.Format(_connectionStringReplaceEntryFormat, Name.DatabasePart.ToLowerInvariant(), ConnectionString);
         }
 
-        private const string _ConnectionStringEntryFormat = @"<add name=""{0}"" connectionString=""{1}"" />
+        private const string _connectionStringEntryFormat = @"<add name=""{0}"" connectionString=""{1}"" />
 ";
-        private const string _ConnectionStringInsertEntryFormat = @"<add name=""{0}"" connectionString=""{1}"" xdt:Transform=""Insert"" xdt:Locator=""Match(name)""  />
+        private const string _connectionStringInsertEntryFormat = @"<add name=""{0}"" connectionString=""{1}"" xdt:Transform=""Insert"" xdt:Locator=""Match(name)""  />
 ";
-        private const string _ConnectionStringReplaceEntryFormat = @"<add name=""{0}"" connectionString=""{1}"" xdt:Transform=""Replace"" xdt:Locator=""Match(name)""/>
+        private const string _connectionStringReplaceEntryFormat = @"<add name=""{0}"" connectionString=""{1}"" xdt:Transform=""Replace"" xdt:Locator=""Match(name)""/>
 ";
     }
 }

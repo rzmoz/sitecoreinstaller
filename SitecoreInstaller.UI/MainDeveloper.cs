@@ -64,6 +64,10 @@ namespace SitecoreInstaller.UI
 
             switch (keyData)
             {
+                case Keys.F1 | Keys.Control | Keys.Shift:
+                    UpdateProjectSettings();
+                    Task.Run(() => Services.Pipelines.RunAsync<CreateBacpacsPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings));
+                    return true;
                 case Keys.L | Keys.Control | Keys.Alt:
                     Services.Website.OpenLogsInBareTail(UiServices.ProjectSettings.ProjectFolder.Data.Logs);
                     return true;

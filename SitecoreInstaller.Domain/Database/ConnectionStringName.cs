@@ -7,7 +7,6 @@ namespace SitecoreInstaller.Domain.Database
 {
     public class ConnectionStringName
     {
-
         private const char _delimiter = '_';
 
         public ConnectionStringName()
@@ -29,7 +28,7 @@ namespace SitecoreInstaller.Domain.Database
             else
             {
                 ProjectPart = databaseName.Substring(0, delimiterIndex);
-                DatabasePart = databaseName.Substring(delimiterIndex + 1);    
+                DatabasePart = databaseName.Substring(delimiterIndex + 1);
             }
         }
 

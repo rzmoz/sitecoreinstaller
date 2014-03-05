@@ -219,7 +219,8 @@
   <PropertyGroup>
     <PostBuildEvent>copy $(SolutionDir)3rdPartyAssemblies\7za.exe $(TargetDir)
 copy $(SolutionDir)3rdPartyAssemblies\baretail.exe $(TargetDir)
-copy $(SolutionDir)3rdPartyAssemblies\curl.exe $(TargetDir)</PostBuildEvent>
+copy $(SolutionDir)3rdPartyAssemblies\curl.exe $(TargetDir)
+copy $(SolutionDir)Lib4Azure\SqlPackage.* $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <Import Project="..\packages\ConfigTransform.2.0.4\tools\ConfigTransform.targets" />
