@@ -6,18 +6,14 @@ using SitecoreInstaller.UI;
 
 namespace SitecoreInstaller.Rocks.ContentTrees.Commands
 {
-    /// <summary>Defines the content tree command class.</summary>
     [Command]
     public class OpenInstaller : CommandBase
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OpenInstaller"/> class.
-        /// </summary>
         public OpenInstaller()
         {
-            this.Text = "SitecoreInstall";
-            this.Group = "My Group of Commands";
-            this.SortingValue = 1000;
+            Text = "SitecoreInstaller";
+            Group = "My Group of Commands";
+            SortingValue = 1000;
         }
 
         /// <summary>Defines the method that determines whether the command can execute in its current state.</summary>
@@ -34,8 +30,6 @@ namespace SitecoreInstaller.Rocks.ContentTrees.Commands
             return true;
         }
 
-        /// <summary>Execute the command.</summary>
-        /// <param name="parameter">The parameter.</param>
         public override void Execute(object parameter)
         {
             var context = parameter as ContentTreeContext;
@@ -50,7 +44,7 @@ namespace SitecoreInstaller.Rocks.ContentTrees.Commands
 
             var mainCtrl = new MainCtrl();
 
-            AppHost.OpenToolWindow(mainCtrl, "SitecoreInstaller.Rocks");
+            AppHost.OpenToolWindow(mainCtrl, "SitecoreInstaller");
 
             mainCtrl.Init();
         }
