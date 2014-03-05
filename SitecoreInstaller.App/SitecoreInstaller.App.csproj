@@ -114,10 +114,7 @@
     <Compile Include="Pipelines\ArchiveEventArgs.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\CleanupEventArgs.cs" />
-    <Compile Include="Pipelines\CreateBacPacsPipeline.cs" />
-    <Compile Include="Pipelines\CreateCsPkgPipeline.cs" />
     <Compile Include="Pipelines\Steps\AutoSetup\DetermineSqlConnection.cs" />
-    <Compile Include="Pipelines\Steps\Azure\PrepDatabasesForBacpacFormat.cs" />
     <Compile Include="Pipelines\Steps\Databases\AddUserToSqlServerAsSysAdmin.cs" />
     <Compile Include="Pipelines\Steps\Databases\EnableMixedAuthenticationMode.cs" />
     <Compile Include="Pipelines\Steps\Databases\TryStartSqlServer.cs" />
