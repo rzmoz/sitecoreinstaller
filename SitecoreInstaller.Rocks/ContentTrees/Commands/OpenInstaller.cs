@@ -42,11 +42,7 @@ namespace SitecoreInstaller.Rocks.ContentTrees.Commands
                 return;
             }
 
-            var mainCtrl = new MainCtrl();
-            
-            AppHost.OpenToolWindow(mainCtrl, "SitecoreInstaller");
-
-            mainCtrl.Init();
+            AppHost.OpenDocumentWindow<MainCtrl>("SitecoreInstaller");
         }
     }
 }

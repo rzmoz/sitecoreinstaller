@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharp.Basics">
+      <HintPath>..\packages\CSharp.Basics.2.5.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Publishing.Tasks">
       <HintPath>..\3rdPartyAssemblies\Microsoft.Web.Publishing.Tasks.Dll</HintPath>
     </Reference>
@@ -51,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SitecoreInstaller.Framework\SitecoreInstaller.Framework.csproj">
