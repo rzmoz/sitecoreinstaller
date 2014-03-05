@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSharp.Basics.Sys;
+using CSharp.Basics.Sys.Tasks;
 
 namespace SitecoreInstaller.UI.AutoSetup
 {
@@ -24,7 +26,7 @@ namespace SitecoreInstaller.UI.AutoSetup
             return Task.Factory.StartNew(() =>
             {
                 while (!WizardFinished)
-                    Task.WaitAll(Task.Delay(100));
+                    Wait.For(100.MilliSeconds());
                 return true;
             });
         }

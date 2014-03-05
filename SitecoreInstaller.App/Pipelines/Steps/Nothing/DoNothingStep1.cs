@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using CSharp.Basics.Sys;
+using CSharp.Basics.Sys.Tasks;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.Web;
 
@@ -12,7 +14,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
     {
         protected override void InnerInvoke(object sender, DoNothingEventArgs args)
         {
-            //Task.WaitAll(Task.Delay(TimeSpan.FromSeconds(1)));
+            //Wait.For(1.Seconds());
             Log.ToApp.Info("User selected: " + args.UserAccepted);
         }
     }

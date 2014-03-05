@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
+using CSharp.Basics.Sys;
+using CSharp.Basics.Sys.Tasks;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.UI;
 
@@ -33,7 +35,7 @@ namespace SitecoreInstaller
 
             UiServices.ViewportStack.Register(booter.Control);
             UiServices.ViewportStack.Show(booter.Control);
-            
+
             Services.Init();
 
             Init();
@@ -94,7 +96,7 @@ namespace SitecoreInstaller
             if (!TaskbarManager.IsPlatformSupported)
                 return;
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Indeterminate);
-            Task.WaitAll(Task.Delay(3000));
+            Wait.For(3.Seconds());
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
         }
 

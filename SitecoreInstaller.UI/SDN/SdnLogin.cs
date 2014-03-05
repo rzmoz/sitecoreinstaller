@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
+using CSharp.Basics.Sys;
+using CSharp.Basics.Sys.Tasks;
 
 namespace SitecoreInstaller.UI.SDN
 {
@@ -27,7 +29,7 @@ namespace SitecoreInstaller.UI.SDN
 
             while (browser.Document == null)
             {
-                Task.WaitAll(Task.Delay(100));
+                Wait.For(100.MilliSeconds());
             }
 
             var doc = browser.Document;
