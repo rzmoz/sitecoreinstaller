@@ -14,6 +14,10 @@ namespace SitecoreInstaller.Rocks.ContentTrees.Commands
             Text = "SitecoreInstaller";
             Group = "My Group of Commands";
             SortingValue = 1000;
+
+            Services.LoadUserPreferences();
+            Services.Init();
+            Services.SourceManifests.UpdateExternal();
         }
 
         /// <summary>Defines the method that determines whether the command can execute in its current state.</summary>
@@ -38,12 +42,8 @@ namespace SitecoreInstaller.Rocks.ContentTrees.Commands
                 return;
             }
 
-            Services.LoadUserPreferences();
-            Services.Init();
-            Services.SourceManifests.UpdateExternal();
-
             var mainCtrl = new MainCtrl();
-
+            
             AppHost.OpenToolWindow(mainCtrl, "SitecoreInstaller");
 
             mainCtrl.Init();
