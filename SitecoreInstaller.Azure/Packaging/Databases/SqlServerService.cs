@@ -19,6 +19,7 @@ namespace SitecoreInstaller.Azure.Packaging.Databases
         {
             SqlPackage.CreateBacpac(targetFile, entry.ConnectionString.Value);
         }
+
         public void PrepDatabaseForBacpac(ConnectionStringEntry entry)
         {
             if (entry == null) throw new ArgumentNullException("entry");
