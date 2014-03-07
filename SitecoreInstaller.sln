@@ -152,8 +152,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .
-	EndGlobalSection
-	GlobalSection(NDepend) = preSolution
-		Project = ".\SitecoreInstaller.ndproj"
-	EndGlobalSection
+	EndGlobalSection	
 EndGlobal

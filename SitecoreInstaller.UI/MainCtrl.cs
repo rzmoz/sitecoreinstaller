@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,8 +9,6 @@ using SitecoreInstaller.App.Pipelines;
 using SitecoreInstaller.App.Pipelines.Steps.Nothing;
 using SitecoreInstaller.Domain;
 using SitecoreInstaller.Domain.BuildLibrary;
-using SitecoreInstaller.Framework.Sys;
-using SitecoreInstaller.Framework.Web;
 
 namespace SitecoreInstaller.UI
 {
@@ -36,6 +33,7 @@ namespace SitecoreInstaller.UI
 
         public void Init()
         {
+            UiServices.ViewportStack.Clear();
             InitPipelineEngine();
             InitProjectSettings();
 
@@ -86,6 +84,7 @@ namespace SitecoreInstaller.UI
             UiServices.ViewportStack.Register(mainDeveloper1);
 
             mainDeveloper1.Init();
+            ProjectSettingsUpdated = null;
             ProjectSettingsUpdated += mainDeveloper1.ProjectSettingsUpdated;
         }
 
@@ -136,6 +135,7 @@ namespace SitecoreInstaller.UI
 
         private void InitProjectSettings()
         {
+            Services.UserPreferences.Init();
             Services.UserPreferences.Updated += UserPreferences_Updated;
             UiServices.ProjectSettings.Updated += ProjectSettings_Updated;
 
@@ -173,6 +173,7 @@ namespace SitecoreInstaller.UI
 
         private void InitPipelineEngine()
         {
+            Services.PipelineEngine.Init();
             Services.PipelineEngine.PipelineStarting += progressCtrl1.Starting;
             Services.PipelineEngine.PipelineCompleted += progressCtrl1.Ended;
             Services.PipelineEngine.PipelineCompleted += PipelineWorker_PipelineCompleted;

@@ -25,6 +25,20 @@ namespace SitecoreInstaller.Domain.Pipelines
 
         public bool IsBusy { get; private set; }
 
+        public void Init()
+        {
+            PipelineStarting = null;
+            PipelineCompleted = null;
+
+            AllStepsExecuting = null;
+            AllStepsExecuted = null;
+
+            StepExecuting = null;
+            StepExecuted = null;
+
+            PreconditionNotMet = null;
+        }
+
         public void RunPipeline(IPipelineRunner runner)
         {
             lock (_syncRoot)

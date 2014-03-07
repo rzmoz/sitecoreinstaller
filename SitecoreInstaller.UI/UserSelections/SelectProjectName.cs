@@ -30,9 +30,9 @@ namespace SitecoreInstaller.UI.UserSelections
 
         public void Init()
         {
+            ProjectNameChanged = null;
             cbxProjectName.Font = Styles.Fonts.LblRegular;
             cbxProjectName.Text = string.Empty;
-            UpdateList();
         }
 
         public void FocusTextBox()

@@ -33,6 +33,7 @@ namespace SitecoreInstaller.App
 
         public static void Init()
         {
+            PipelineEngine.Init();
             //init before initializing build library
             SourceManifests.UpdateLocal();
 

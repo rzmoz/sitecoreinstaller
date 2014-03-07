@@ -24,6 +24,11 @@ namespace SitecoreInstaller.Framework.Configuration
         public FileInfo Path { get; set; }
         public bool FileExists { get { return File.Exists(Path.FullName); } }
 
+        public void Init()
+        {
+            Updated = null;
+        }
+
         public void Load()
         {
             if (Path == null)

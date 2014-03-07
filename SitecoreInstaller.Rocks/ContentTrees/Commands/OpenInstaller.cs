@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Sitecore;
 using Sitecore.VisualStudio.Commands;
 using Sitecore.VisualStudio.ContentTrees;
@@ -14,10 +15,6 @@ namespace SitecoreInstaller.Rocks.ContentTrees.Commands
             Text = "SitecoreInstaller";
             Group = "My Group of Commands";
             SortingValue = 1000;
-
-            Services.LoadUserPreferences();
-            Services.Init();
-            Services.SourceManifests.UpdateExternal();
         }
 
         /// <summary>Defines the method that determines whether the command can execute in its current state.</summary>
@@ -41,6 +38,10 @@ namespace SitecoreInstaller.Rocks.ContentTrees.Commands
             {
                 return;
             }
+
+            Services.LoadUserPreferences();
+            Services.Init();
+            Task.Run(() => Services.SourceManifests.UpdateExternal());
 
             var ctrl = AppHost.OpenDocumentWindow<MainCtrl>("SitecoreInstaller");
             ctrl.Init();
