@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -66,14 +67,14 @@ namespace SitecoreInstaller.Tests.Domain.Projects
 
             var serialized = asXsml.ToString();
 
-            serialized.Should().Be(_serializedProjectSettings);
+            serialized.Should().Be(_serializedProjectSettings.Replace("\r\n", Environment.NewLine));
         }
         [Test]
         public void XmlDeSerialize_ClassIsDeSerializable()
         {
 
             ProjectSettingsConfig settings = null;
-            using (var stream = new StringReader(_serializedProjectSettings))
+            using (var stream = new StringReader(_serializedProjectSettings.Replace("\r\n", Environment.NewLine)))
             {
                 var ser = new XmlSerializer(typeof(ProjectSettingsConfig));
                 using (var reader = XmlReader.Create(stream))
