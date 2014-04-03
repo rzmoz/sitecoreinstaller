@@ -7,6 +7,13 @@ namespace SitecoreInstaller.Framework.Sys
 {
     public static class StringExtensions
     {
+        public static string RemoveNewLine(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+            return str.Replace("\r", string.Empty).Replace("\n", string.Empty);
+        }
+
         public static string Remove(this string originalString, string valuetoRemove)
         {
             return originalString.ReplaceCaseInsensitive(valuetoRemove, string.Empty);

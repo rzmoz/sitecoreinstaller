@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,6 +8,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using SitecoreInstaller.Domain;
 using SitecoreInstaller.Domain.Projects;
+using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Tests.Domain.Projects
 {
@@ -40,9 +40,7 @@ namespace SitecoreInstaller.Tests.Domain.Projects
   <SqlInstallType>Local</SqlInstallType>
   <MongoInstallType>Local</MongoInstallType>
 </ProjectSettings>";
-
-
-
+        
         [Test]
         public void XmlSerialize_ClassIsSerializable()
         {
@@ -53,7 +51,7 @@ namespace SitecoreInstaller.Tests.Domain.Projects
                 MongoInstallType = DbInstallType.Client,
                 SqlInstallType = DbInstallType.Client,
                 Modules = new List<string> { "module1" },
-                SitecoreSettings = new List<SitecoreSettingConfig> { new SitecoreSettingConfig() { Name = "settingName1", Value = "settingValue1" } }
+                SitecoreSettings = new List<SitecoreSettingConfig> { new SitecoreSettingConfig { Name = "settingName1", Value = "settingValue1" } }
             };
 
             var asXsml = new StringBuilder();
@@ -67,14 +65,14 @@ namespace SitecoreInstaller.Tests.Domain.Projects
 
             var serialized = asXsml.ToString();
 
-            serialized.Should().Be(_serializedProjectSettings.Replace("\r\n", Environment.NewLine));
+            serialized.RemoveNewLine().Should().Be(_serializedProjectSettings.RemoveNewLine());
         }
         [Test]
         public void XmlDeSerialize_ClassIsDeSerializable()
         {
 
             ProjectSettingsConfig settings = null;
-            using (var stream = new StringReader(_serializedProjectSettings.Replace("\r\n", Environment.NewLine)))
+            using (var stream = new StringReader(_serializedProjectSettings))
             {
                 var ser = new XmlSerializer(typeof(ProjectSettingsConfig));
                 using (var reader = XmlReader.Create(stream))
@@ -118,5 +116,7 @@ namespace SitecoreInstaller.Tests.Domain.Projects
             settings.Modules.Count.Should().Be(0);
             settings.SitecoreSettings.Count.Should().Be(0);
         }
+
+        
     }
 }
