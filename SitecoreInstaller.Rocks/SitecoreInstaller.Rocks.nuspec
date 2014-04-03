@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <title>Sitecore.Rocks.Installer</title>
+        <authors>rzmoz</authors>
+        <owners>rzmoz</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>SitecoreInstaller for Sitecore Rocks!</description>
+        <copyright>Copyright © rzmoz 2014</copyright>
+    </metadata>
+</package>
