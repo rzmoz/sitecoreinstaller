@@ -113,7 +113,7 @@ namespace SitecoreInstaller.UI
             switch (keyData)
             {
                 case Keys.N | Keys.Control | Keys.Shift:
-                    Task.Run(() => Services.Pipelines.RunAsync<DoNothingPipeline, DoNothingEventArgs>(UiServices.ProjectSettings, UiServices.Dialogs.UserAcceptAsync));
+                    Task.Run(() => Services.Pipelines.RunAsync<DoNothingPipeline, DoNothingEventArgs>(UiServices.ProjectSettings));
                     return true;
                 case Keys.C | Keys.Control | Keys.Shift:
                     Framework.Diagnostics.Log.ToApp.Reset();

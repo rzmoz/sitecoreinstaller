@@ -67,6 +67,7 @@
     <Compile Include="Domain\ProjectFolderUT.cs" />
     <Compile Include="Domain\Projects\ProjectsTests.cs" />
     <Compile Include="Domain\WebServer\HostFileServiceUT.cs" />
+    <Compile Include="Domain\Website\ProjectDeltaFileTests.cs" />
     <Compile Include="Domain\Website\SitecoreSettingsTests.cs" />
     <Compile Include="Domain\Website\WebsiteTestResource.Designer.cs">
       <DependentUpon>WebsiteTestResource.resx</DependentUpon>

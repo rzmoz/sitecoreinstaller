@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.Domain.Website;
 using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
@@ -12,11 +11,22 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
-            var deltaFiles = args.ProjectSettings.ProjectFolder.Directory.GetFiles(FileTypes.ConfigDelta);
-            var webConfig = args.ProjectSettings.ProjectFolder.Website.CombineTo<FileInfo>("web.config");
-            var connectionStrings = args.ProjectSettings.ProjectFolder.Website.AppConfig.CombineTo<FileInfo>("ConnectionStrings.config");
+            var selectedModules = (from module in args.ProjectSettings.BuildLibrarySelections.SelectedModules
+                                   select Services.BuildLibrary.Get(module, SourceType.Module)).ToList();
 
-            Services.Website.TransformConfigFiles(deltaFiles, webConfig, connectionStrings);
+            var deltaFiles = new List<ProjectDeltaFile>();
+
+            //get all delta files from modules
+            foreach (var module in selectedModules.OfType<BuildLibraryDirectory>())
+            {
+                var deltaFilesInModule = ((DirectoryInfo)module.FileSystemInfo).GetFiles(FileTypes.ConfigDelta, SearchOption.AllDirectories);
+                foreach (var deltaFileInModule in deltaFilesInModule )
+                {
+                    deltaFiles.Add(new ProjectDeltaFile(module.FileSystemInfo.Name, deltaFileInModule));
+                }
+            }
+
+            Services.Website.TransformConfigFiles(args.ProjectSettings.ProjectFolder, deltaFiles);
         }
     }
 }

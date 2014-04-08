@@ -228,6 +228,8 @@
     <Compile Include="Projects\SitecoreSettingConfig.cs" />
     <Compile Include="WebServer\PowerShellScriptService.cs" />
     <Compile Include="WebsiteFolder.cs" />
+    <Compile Include="Website\ProjectConfigTransformFile.cs" />
+    <Compile Include="Website\ProjectConfigTransforms.cs" />
     <Compile Include="Website\DataProviderType.cs" />
     <Compile Include="Website\PublishType.cs" />
     <Compile Include="Website\SitecoreSetting.cs" />

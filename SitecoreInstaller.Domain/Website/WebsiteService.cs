@@ -109,7 +109,7 @@ namespace SitecoreInstaller.Domain.Website
             module.Directory.GetFiles(FileTypes.PowerShellScript).CopyTo(projectFolder, true);
 
             //copy config delta files to project root folder
-            module.Directory.GetFiles(FileTypes.ConfigDelta).CopyTo(projectFolder, true);
+            //we don't copy delta files to project since we read them directly from the source modules to avoid naming conflicts
 
             //copy config files to App_Config/Include folder
             module.Directory.GetFiles(FileTypes.SitecoreConfig).CopyTo(projectFolder.Website.AppConfig.Include, true);
@@ -146,28 +146,10 @@ namespace SitecoreInstaller.Domain.Website
             Log.ToApp.Info("Stand alone sitecore package copied to website");
         }
 
-        public void TransformConfigFiles(IEnumerable<FileInfo> configDeltas, FileInfo webConfig, FileInfo connectionStrings)
+        public void TransformConfigFiles(ProjectFolder projectFolder, IEnumerable<ProjectDeltaFile> deltas)
         {
-            webConfig.Refresh();
-            connectionStrings.Refresh();
-
-
-            var deltas = configDeltas.ToList();
-
-            if (webConfig.Exists)
-            {
-                foreach (var configDelta in deltas.Where(file => FileTypes.ConfigDelta.IsType(file)).Where(file => file.Name.ToLowerInvariant().StartsWith("web")))
-                {
-                    XmlTransform.Transform(webConfig, File.ReadAllText(configDelta.FullName));
-                }
-            }
-            if (connectionStrings.Exists)
-            {
-                foreach (var configDelta in deltas.Where(file => FileTypes.ConfigDelta.IsType(file)).Where(file => file.Name.ToLowerInvariant().StartsWith("connectionstrings")))
-                {
-                    XmlTransform.Transform(connectionStrings, File.ReadAllText(configDelta.FullName));
-                }
-            }
+            var projectConfigTransforms = new ProjectConfigTransforms(projectFolder, deltas);
+            projectConfigTransforms.Transform();
         }
 
         public void CopyLicenseFileToDataFolder(BuildLibraryFile license, DataFolder dataFolder, FileInfo licenseConfigFile)
