@@ -116,9 +116,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CSharp.Basics.2.5.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
-    <Reference Include="CSharp.Basics.Forms, Version=1.25.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics.Forms, Version=1.27.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.Forms.1.25.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.Forms.1.27.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Tools.Schema.Sql">
       <HintPath>..\Lib4Azure\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>

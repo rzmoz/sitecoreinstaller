@@ -48,7 +48,7 @@ namespace SitecoreInstaller.UI.BootUserPrompt
 
         private void btnAdvancedSetup_Click(object sender, EventArgs e)
         {
-            _waitForInputTask.IsDone(false);
+            _waitForInputTask.IsDone(true);
         }
 
         private async void btnFullyAutomated_Click(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace SitecoreInstaller.UI.BootUserPrompt
             Services.UserPreferences.Save();
             UiServices.ViewportStack.Hide(this);
             await Services.Pipelines.RunAsync<AutoSetupPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
-            _waitForInputTask.IsDone(true);
+            _waitForInputTask.IsDone(false);
         }
     }
 }
