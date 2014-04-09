@@ -22,12 +22,12 @@ namespace SitecoreInstaller.App.Pipelines
             AddStep<CreateProjectFolder>();
             AddStep<GrantPermissions>();
             AddStep<SaveProjectSettings>();
-            AddStep<RunPreInstallPowerShellScripts>();
             AddStep<CopySitecore>();
             AddStep<Copy64BitAssemblies>();
             AddStep<CopyLicenseFile>();
             AddStep<SetDataFolder>();
             AddStep<CopyModuleFiles>();
+            AddStep<RunPreInstallPowerShellScripts>();
             AddStep<SetConnectionStrings>();
             AddStep<TransformConfigFiles>();
             AddStep<SetSitecoreSettings>();
