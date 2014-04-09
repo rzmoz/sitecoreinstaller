@@ -1,4 +1,6 @@
-﻿using SitecoreInstaller.Framework.IO;
+﻿using System.Linq;
+using SitecoreInstaller.Framework.Diagnostics;
+using SitecoreInstaller.Framework.IO;
 
 namespace SitecoreInstaller.App.Pipelines.Steps
 {
@@ -7,6 +9,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
             var scripts = args.ProjectSettings.ProjectFolder.Directory.GetFiles(FileTypes.PowerShellScript);
+            
             Services.PowerShellScripts.RunScripts(scripts, MethodName, "projectSettings", args.ProjectSettings);
         }
         protected abstract string MethodName { get; }

@@ -14,9 +14,8 @@ namespace SitecoreInstaller.App.Pipelines
             AddPrecondition<CheckNothing>();
 
             //Init steps
-            AddStep<TransformConfigFiles>();
-            //AddStep<DoNothingStep1>();
-            //AddStep<DoNothingStep2>();
+            AddStep<RunPreInstallPowerShellScripts>();
+            AddStep<RunPostInstallPowerShellScripts>();
         }
     }
 }

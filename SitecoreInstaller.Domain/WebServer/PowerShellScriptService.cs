@@ -15,9 +15,16 @@ namespace SitecoreInstaller.Domain.WebServer
             {
                 foreach (var script in scripts)
                 {
-                    var result = psr.RunPowerShellFunction("Post-Install", new KeyValuePair<string, object>(argName, arg), script);
+                    Log.ToApp.Debug("Trying to execute '{0}' in '{1}'", methodName, script.FullName);
+                    var result = psr.RunPowerShellFunction(methodName, new KeyValuePair<string, object>(argName, arg),
+                        script);
                     Log.ToApp.Debug(result);
+                    Log.ToApp.Debug("'{0}' in '{1}' was executed", methodName, script.FullName);
                 }
+            }
+            catch (System.Management.Automation.CommandNotFoundException)
+            {
+                Log.ToApp.Debug("Method wasn't found: '{0}'", methodName);
             }
             catch (Exception e)
             {
