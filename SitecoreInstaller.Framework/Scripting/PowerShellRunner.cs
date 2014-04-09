@@ -12,22 +12,20 @@
         {
             if (method == null) { throw new ArgumentNullException("method"); }
             if (script == null) { throw new ArgumentNullException("script"); }
-            
+
+
             if (File.Exists(script.FullName) == false)
                 throw new ArgumentException("Script not found at:" + script.FullName);
 
             using (var ps = PowerShell.Create())
             {
-                /*
                 AddExecutionPolicy(ps);
                 ps.AddScript(". '" + script.FullName + "'");
-                var results1 = ps.Invoke();
+                ps.Invoke();
 
                 ps.Commands.Clear();
 
                 AddExecutionPolicy(ps);
-                 * */
-                ps.AddCommand(File.ReadAllText(script.FullName));
                 ps.AddCommand(method).AddParameter(arg.Key, arg.Value);
 
                 var results = ps.Invoke();
