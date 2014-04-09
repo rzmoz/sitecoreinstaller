@@ -22,12 +22,6 @@ namespace SitecoreInstaller.Tests.Domain.Projects
   <Modules>
     <Module>module1</Module>
   </Modules>
-  <SitecoreSettings>
-    <SitecoreSetting>
-      <Name>settingName1</Name>
-      <Value>settingValue1</Value>
-    </SitecoreSetting>
-  </SitecoreSettings>
   <SqlInstallType>Client</SqlInstallType>
   <MongoInstallType>Client</MongoInstallType>
 </ProjectSettings>";
