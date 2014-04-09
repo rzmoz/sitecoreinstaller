@@ -51,7 +51,6 @@ namespace SitecoreInstaller.Tests.Domain.Projects
                 MongoInstallType = DbInstallType.Client,
                 SqlInstallType = DbInstallType.Client,
                 Modules = new List<string> { "module1" },
-                SitecoreSettings = new List<SitecoreSettingConfig> { new SitecoreSettingConfig { Name = "settingName1", Value = "settingValue1" } }
             };
 
             var asXsml = new StringBuilder();
@@ -88,10 +87,7 @@ namespace SitecoreInstaller.Tests.Domain.Projects
             settings.MongoInstallType.Should().Be(DbInstallType.Client);
             settings.SqlInstallType.Should().Be(DbInstallType.Client);
             settings.Modules.Count.Should().Be(1);
-            settings.SitecoreSettings.Count.Should().Be(1);
-            settings.SitecoreSettings.Single().Name.Should().Be("settingName1");
-            settings.SitecoreSettings.Single().Value.Should().Be("settingValue1");
-        }
+       }
 
         [Test]
         public void XmlDeSerialize_MissingSitecoreSettings_ClassIsDeSerializable()
@@ -114,9 +110,6 @@ namespace SitecoreInstaller.Tests.Domain.Projects
             settings.MongoInstallType.Should().Be(DbInstallType.Local);
             settings.SqlInstallType.Should().Be(DbInstallType.Local);
             settings.Modules.Count.Should().Be(0);
-            settings.SitecoreSettings.Count.Should().Be(0);
         }
-
-        
     }
 }

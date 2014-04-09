@@ -6,13 +6,12 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
-            if (args.ProjectSettings.SitecoreSettings == null)
-                return;
-
-            var sourceSettingsFiles = args.ProjectSettings.ProjectFolder.GetFiles(FileTypes.ConfigDelta);
+            /*
+            var sourceSettingsFiles = args.ProjectSettings.ProjectFolder.GetFiles(FileTypes.SitecoreSettings);
             var targetSettingsFile = args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.SitecoreSettingsConfigFile;
 
             Services.Website.SetSitecoreSettings(args.ProjectSettings.SitecoreSettings, targetSettingsFile);
+             * */
         }
     }
 }

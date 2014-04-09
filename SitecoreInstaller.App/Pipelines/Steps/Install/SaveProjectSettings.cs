@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using SitecoreInstaller.Domain.Projects;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
@@ -13,7 +12,6 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             projectConfig.Properties.Sitecore = args.ProjectSettings.BuildLibrarySelections.SelectedSitecore.ToString();
             projectConfig.Properties.License = args.ProjectSettings.BuildLibrarySelections.SelectedLicense.ToString();
             projectConfig.Properties.Modules = args.ProjectSettings.BuildLibrarySelections.SelectedModules.Select(module => module.ToString()).ToList();
-            projectConfig.Properties.SitecoreSettings = args.ProjectSettings.SitecoreSettings.Select(s => new SitecoreSettingConfig { Name = s.Name, Value = s.Value }).ToList();
             projectConfig.Properties.SqlInstallType = args.ProjectSettings.Sql.InstallType;
             projectConfig.Properties.MongoInstallType = args.ProjectSettings.Mongo.InstallType;
             projectConfig.Save();

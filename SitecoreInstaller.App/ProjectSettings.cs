@@ -7,10 +7,8 @@ using CSharp.Basics.Sys;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Domain.Database;
 using SitecoreInstaller.Domain.WebServer;
-using SitecoreInstaller.Domain.Website;
 using SitecoreInstaller.Framework.IO;
 using SitecoreInstaller.Domain;
-using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.App
 {
@@ -68,13 +66,11 @@ namespace SitecoreInstaller.App
         public ProjectFolder ProjectFolder { get; set; }
 
         public IEnumerable<ConnectionStringName> DatabaseNames { get; set; }
-        public IEnumerable<SitecoreSetting> SitecoreSettings { get; set; }
 
         private void Reset()
         {
             _projectName.Reset();
             DatabaseNames = Enumerable.Empty<ConnectionStringName>();
-            SitecoreSettings = Enumerable.Empty<SitecoreSetting>();
             Iis = new IisSettings();
             ProjectFolder = new ProjectFolder(new DirectoryInfo(@"K:\"));
             BuildLibrarySelections = new BuildLibrarySelections();

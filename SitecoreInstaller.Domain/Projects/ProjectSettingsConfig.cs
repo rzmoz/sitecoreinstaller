@@ -23,9 +23,6 @@ namespace SitecoreInstaller.Domain.Projects
         [XmlArrayItem(ElementName = "Module", IsNullable = false)]
         public List<string> Modules { get; set; }
 
-        [XmlArrayItem(ElementName = "SitecoreSetting", IsNullable = false)]
-        public List<SitecoreSettingConfig> SitecoreSettings { get; set; }
-
         public DbInstallType SqlInstallType { get; set; }
         public DbInstallType MongoInstallType { get; set; }
     }
