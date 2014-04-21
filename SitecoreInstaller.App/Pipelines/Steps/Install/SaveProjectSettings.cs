@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using SitecoreInstaller.Domain.Projects;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {

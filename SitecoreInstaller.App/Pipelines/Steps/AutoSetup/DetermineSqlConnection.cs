@@ -14,7 +14,10 @@ namespace SitecoreInstaller.App.Pipelines.Steps.AutoSetup
             if (Services.Sql.IsStarted())
                 return;
 
-            Services.Sql.DetermineSqlConnection();
+            var connection = Services.Sql.DetermineSqlConnection();
+            args.ProjectSettings.Sql.InstanceName = connection.DataSource;
+            Services.UserPreferences.Properties.SqlInstanceName = args.ProjectSettings.Sql.InstanceName;
+            Services.UserPreferences.Save();
         }
     }
 }

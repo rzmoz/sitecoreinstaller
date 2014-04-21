@@ -1,4 +1,5 @@
 ﻿using System;
+using CSharp.Basics.Forms;
 using CSharp.Basics.Sys;
 
 namespace SitecoreInstaller.UI.Settings
@@ -22,9 +23,12 @@ namespace SitecoreInstaller.UI.Settings
 
         private void UserPreferences_Updated(object sender, GenericEventArgs<UserPreferencesConfig> e)
         {
-            tbxInstanceName.Text = e.Arg.SqlInstanceName;
-            tbxLogin.Text = e.Arg.SqlLogin;
-            tbxPassword.Text = e.Arg.SqlPassword;
+            this.CrossThreadSafe(() =>
+            {
+                tbxInstanceName.Text = e.Arg.SqlInstanceName;
+                tbxLogin.Text = e.Arg.SqlLogin;
+                tbxPassword.Text = e.Arg.SqlPassword;
+            });
         }
 
         protected override void btnSave_Click(object sender, EventArgs e)

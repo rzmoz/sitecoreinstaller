@@ -25,7 +25,7 @@ namespace SitecoreInstaller.App
             AdvancedView = true;
             PromptForUserSettings = true;
 
-            LicenseExpirationPeriodInDays = 14;
+            LicenseExpirationPeriodInDays = 30;
         }
 
         public string ProjectsFolder { get; set; }

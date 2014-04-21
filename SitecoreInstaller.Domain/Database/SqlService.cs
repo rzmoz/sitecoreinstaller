@@ -16,10 +16,10 @@ namespace SitecoreInstaller.Domain.Database
 
     public class SqlService
     {
-        private SqlServer _sqlServer;
+        private readonly SqlServer _sqlServer;
 
-        public SqlConnection GetSqlConnection() { return new SqlConnection("Server=.;Trusted_Connection=True;Connection Timeout=5;"); }
-        public SqlConnection GetSqlExpresssConnection() { return new SqlConnection(@"Server=.\SQLEXPRESS;Trusted_Connection=True;;Connection Timeout=5;"); }
+        private SqlConnection GetSqlConnection() { return new SqlConnection("Server=.;Trusted_Connection=True;Connection Timeout=5;"); }
+        private SqlConnection GetSqlExpresssConnection() { return new SqlConnection(@"Server=.\SQLEXPRESS;Trusted_Connection=True;Connection Timeout=5;"); }
 
         private Func<SqlConnection> GetTrustedConnection = () => null;
 
@@ -28,18 +28,22 @@ namespace SitecoreInstaller.Domain.Database
             _sqlServer = new SqlServer();
         }
 
-        public void DetermineSqlConnection()
+        public SqlConnection DetermineSqlConnection()
         {
             if (ConnectionWorks(GetSqlConnection()))
             {
                 GetTrustedConnection = GetSqlConnection;
-                return;
             }
-            if (ConnectionWorks(GetSqlExpresssConnection()))
+            else if (ConnectionWorks(GetSqlExpresssConnection()))
             {
                 GetTrustedConnection = GetSqlExpresssConnection;
-                return;
+
             }
+            else
+            {
+                throw new SqlServerManagementException("Couldn't determine sql connection. Looked for default instance (.) and SQLexpress");
+            }
+            return GetTrustedConnection();
         }
 
         private bool ConnectionWorks(SqlConnection connection)
