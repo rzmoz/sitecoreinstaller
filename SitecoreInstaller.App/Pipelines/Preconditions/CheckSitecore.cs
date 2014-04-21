@@ -2,7 +2,7 @@
 {
     public class CheckSitecore : Precondition<PipelineApplicationEventArgs>
     {
-        public override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
+        protected override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
         {
             if (args.ProjectSettings.BuildLibrarySelections.SelectedSitecore != null)
                 return true;

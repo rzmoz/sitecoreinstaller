@@ -45,5 +45,10 @@ namespace SitecoreInstaller.UI.Settings
             btnSave_Click(sender, e);
             await Services.Pipelines.RunAsync<TestSqlSettingsPipeline, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
         }
+
+        private async void btnAutoSetInstanceName_Click(object sender, EventArgs e)
+        {
+            await Services.Pipelines.RunAsync<TryAutoSetSqlInstanceName, PipelineApplicationEventArgs>(UiServices.ProjectSettings);
+        }
     }
 }

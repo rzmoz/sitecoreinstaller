@@ -21,7 +21,8 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 
             return InnerEvaluate(this, args as T);
         }
-        public abstract bool InnerEvaluate(object sender, T args);
+
+        protected abstract bool InnerEvaluate(object sender, T args);
 
         public string ErrorMessage { get; set; }
     }

@@ -11,6 +11,7 @@ namespace SitecoreInstaller.App.Pipelines
             AddStep<DetermineSqlConnection>();
             AddStep<TryStartSqlServer>();
             AddStep<DetermineSqlConnection>();
+            AddStep<SaveSqlInstanceNameToPreferences>();
             AddStep<AddUserToSqlServerAsSysAdmin>();
             AddStep<EnableMixedAuthenticationMode>();
             AddStep<VerifySqlConnection>();

@@ -116,6 +116,7 @@
     <Compile Include="Pipelines\CleanupEventArgs.cs" />
     <Compile Include="Pipelines\CreateBacpacsPipeline.cs" />
     <Compile Include="Pipelines\Steps\AutoSetup\DetermineSqlConnection.cs" />
+    <Compile Include="Pipelines\Steps\AutoSetup\SaveSqlInstanceNameToPreferences.cs" />
     <Compile Include="Pipelines\Steps\Azure\CreateBacpacs.cs" />
     <Compile Include="Pipelines\Steps\Azure\PrepDatabases.cs" />
     <Compile Include="Pipelines\Steps\Databases\AddUserToSqlServerAsSysAdmin.cs" />
@@ -181,12 +182,13 @@
     <Compile Include="Pipelines\Steps\Uninstall\StopApplication.cs" />
     <Compile Include="Pipelines\TestMongoSettingsPipeline.cs" />
     <Compile Include="Pipelines\TestSqlSettingsPipeline.cs" />
+    <Compile Include="Pipelines\TryAutoSetSqlInstanceName.cs" />
     <Compile Include="Pipelines\UpdateLicenseFilePipeline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services.cs" />
     <Compile Include="ProjectSettings.cs" />
     <Compile Include="Pipelines\UninstallPipeline.cs" />
-    <Compile Include="AppConstants.cs" />
+    <Compile Include="GlobalFileNames.cs" />
     <Compile Include="UserPreferencesConfig.cs" />
   </ItemGroup>
   <ItemGroup>

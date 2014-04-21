@@ -6,7 +6,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
 {
     public class CheckLicense : Precondition<PipelineApplicationEventArgs>
     {
-        public override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
+        protected override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
         {
             if (args.ProjectSettings.BuildLibrarySelections.SelectedLicense == null)
             {

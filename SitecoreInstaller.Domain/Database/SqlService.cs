@@ -21,14 +21,14 @@ namespace SitecoreInstaller.Domain.Database
         private SqlConnection GetSqlConnection() { return new SqlConnection("Server=.;Trusted_Connection=True;Connection Timeout=5;"); }
         private SqlConnection GetSqlExpresssConnection() { return new SqlConnection(@"Server=.\SQLEXPRESS;Trusted_Connection=True;Connection Timeout=5;"); }
 
-        private Func<SqlConnection> GetTrustedConnection = () => null;
+        public Func<SqlConnection> GetTrustedConnection = () => null;
 
         public SqlService()
         {
             _sqlServer = new SqlServer();
         }
 
-        public SqlConnection DetermineSqlConnection()
+        public void DetermineSqlConnection()
         {
             if (ConnectionWorks(GetSqlConnection()))
             {
@@ -37,13 +37,11 @@ namespace SitecoreInstaller.Domain.Database
             else if (ConnectionWorks(GetSqlExpresssConnection()))
             {
                 GetTrustedConnection = GetSqlExpresssConnection;
-
             }
             else
             {
                 throw new SqlServerManagementException("Couldn't determine sql connection. Looked for default instance (.) and SQLexpress");
             }
-            return GetTrustedConnection();
         }
 
         private bool ConnectionWorks(SqlConnection connection)

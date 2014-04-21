@@ -2,7 +2,7 @@
 {
     public class CheckProjectDoesNotExist : CheckProjectExists
     {
-        public override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
+        protected override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
         {
             if (base.InnerEvaluate(sender, args) == false)
                 return true;

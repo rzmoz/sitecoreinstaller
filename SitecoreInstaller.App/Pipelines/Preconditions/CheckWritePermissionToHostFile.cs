@@ -2,7 +2,7 @@
 {
     public class CheckWritePermissionToHostFile : Precondition<PipelineApplicationEventArgs>
     {
-        public override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
+        protected override bool InnerEvaluate(object sender, PipelineApplicationEventArgs args)
         {
             if (Services.IisManagement.HostFile.HasWritePermissions())
                 return true;

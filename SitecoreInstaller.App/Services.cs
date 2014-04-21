@@ -25,7 +25,7 @@ namespace SitecoreInstaller.App
             Website = new WebsiteService();
             IisManagement = new IisManagementService();
             PipelineEngine = new PipelineRunnerEngine();
-            SourceManifests = new SourceManifestRepository(new FileInfo(AppConstants.SourcesConfigFileName));
+            SourceManifests = new SourceManifestRepository(new FileInfo(GlobalFileNames.SourcesConfigFileName));
             SourceManifests.ManifestsUpdated += InitBuildLibrary;
             Sql = new SqlService();
             Mongo = new MongoService();
@@ -63,10 +63,10 @@ namespace SitecoreInstaller.App
 
         public static void LoadUserPreferences()
         {
-            UserPreferences = new ConfigFile<UserPreferencesConfig>(new FileInfo(AppConstants.UserPreferencesFileName));
+            UserPreferences = new ConfigFile<UserPreferencesConfig>(new FileInfo(GlobalFileNames.UserPreferencesFileName));
             UserPreferences.Updated += UserPreferences_Updated;
 
-            if (File.Exists(AppConstants.UserPreferencesFileName) == false)
+            if (UserPreferences.FileExists == false)
             {
                 UserPreferences.Properties.ResetToDefaultSettings();
                 UserPreferences.Save();
