@@ -13,8 +13,8 @@ namespace SitecoreInstaller.Domain.Projects
             Sitecore = string.Empty;
             License = string.Empty;
             Modules = new List<string>();
-            SqlInstallType = DbInstallType.Local;
-            MongoInstallType = DbInstallType.Local;
+            SqlInstallType = DbInstallType.Auto;
+            MongoInstallType = DbInstallType.Auto;
         }
 
         public string Sitecore { get; set; }

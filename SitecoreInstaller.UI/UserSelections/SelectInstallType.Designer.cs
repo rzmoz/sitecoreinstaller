@@ -67,7 +67,7 @@
             this.radSqlClient.Size = new System.Drawing.Size(51, 17);
             this.radSqlClient.TabIndex = 5;
             this.radSqlClient.TabStop = true;
-            this.radSqlClient.Text = "Client";
+            this.radSqlClient.Text = "Manual";
             this.radSqlClient.UseVisualStyleBackColor = true;
             this.radSqlClient.CheckedChanged += new System.EventHandler(this.radSqlClient_CheckedChanged);
             // 
@@ -80,7 +80,7 @@
             this.radSqlLocal.Size = new System.Drawing.Size(51, 17);
             this.radSqlLocal.TabIndex = 4;
             this.radSqlLocal.TabStop = true;
-            this.radSqlLocal.Text = "Local";
+            this.radSqlLocal.Text = "Auto";
             this.radSqlLocal.UseVisualStyleBackColor = true;
             this.radSqlLocal.CheckedChanged += new System.EventHandler(this.radSqlLocal_CheckedChanged);
             // 
@@ -102,7 +102,7 @@
             this.radMongoClient.Size = new System.Drawing.Size(51, 17);
             this.radMongoClient.TabIndex = 8;
             this.radMongoClient.TabStop = true;
-            this.radMongoClient.Text = "Client";
+            this.radMongoClient.Text = "Manual";
             this.radMongoClient.UseVisualStyleBackColor = true;
             this.radMongoClient.CheckedChanged += new System.EventHandler(this.radMongoClient_CheckedChanged);
             // 
@@ -115,7 +115,7 @@
             this.radMongoLocal.Size = new System.Drawing.Size(51, 17);
             this.radMongoLocal.TabIndex = 7;
             this.radMongoLocal.TabStop = true;
-            this.radMongoLocal.Text = "Local";
+            this.radMongoLocal.Text = "Auto";
             this.radMongoLocal.UseVisualStyleBackColor = true;
             this.radMongoLocal.CheckedChanged += new System.EventHandler(this.radMongoLocal_CheckedChanged);
             // 

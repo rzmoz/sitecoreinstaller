@@ -24,7 +24,7 @@ namespace SitecoreInstaller.Domain.Database
             InstanceName = ".";
             Login = "sc";
             Password = "1234";
-            InstallType = DbInstallType.Local;
+            InstallType = DbInstallType.Auto;
         }
 
         public bool TestConnection()

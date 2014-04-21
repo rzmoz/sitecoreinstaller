@@ -35,7 +35,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
         private static void SetSqlConnectionStrings(PipelineApplicationEventArgs args, ConnectionStringsFile connectionStrings)
         {
-            if (args.ProjectSettings.Sql.InstallType == DbInstallType.Client)
+            if (args.ProjectSettings.Sql.InstallType == DbInstallType.Manual)
                 return;
 
             connectionStrings.InitFromFile();
@@ -57,7 +57,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
 
         private static void SetMongoConnectionStrings(PipelineApplicationEventArgs args, ConnectionStringsFile connectionStrings)
         {
-            if (args.ProjectSettings.Mongo.InstallType == DbInstallType.Client)
+            if (args.ProjectSettings.Mongo.InstallType == DbInstallType.Manual)
                 return;
 
             connectionStrings.InitFromFile();

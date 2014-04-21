@@ -55,7 +55,7 @@ namespace SitecoreInstaller.Domain.Website
             sitecoreWebsiteFolder.CopyTo(projectFolder.Website, DirCopyOptions.IncludeSubDirectories);
 
             //Copy database folder
-            if (sqlInstallType == DbInstallType.Local)
+            if (sqlInstallType == DbInstallType.Auto)
             {
                 //TODO: Move database folder name to central location
                 CopyDatabaseFolder("Database", sitecore.Directory, projectFolder);
@@ -87,7 +87,7 @@ namespace SitecoreInstaller.Domain.Website
         {
             Log.ToApp.Info("Copying module to website...");
 
-            if (sqlInstallType == DbInstallType.Local)
+            if (sqlInstallType == DbInstallType.Auto)
             {
                 try
                 {

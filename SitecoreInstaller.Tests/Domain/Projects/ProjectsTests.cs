@@ -22,8 +22,8 @@ namespace SitecoreInstaller.Tests.Domain.Projects
   <Modules>
     <Module>module1</Module>
   </Modules>
-  <SqlInstallType>Client</SqlInstallType>
-  <MongoInstallType>Client</MongoInstallType>
+  <SqlInstallType>Manual</SqlInstallType>
+  <MongoInstallType>Manual</MongoInstallType>
 </ProjectSettings>";
 
         private const string _serializedProjectsettingsWithNoSitecoreSettings = @"<?xml version=""1.0""?>
@@ -31,8 +31,8 @@ namespace SitecoreInstaller.Tests.Domain.Projects
   <Sitecore>Sitecore 7.2 rev. 140123</Sitecore>
   <License>Sitecore Corporation A/S (2100-01-01)</License>
   <Modules />
-  <SqlInstallType>Local</SqlInstallType>
-  <MongoInstallType>Local</MongoInstallType>
+  <SqlInstallType>Auto</SqlInstallType>
+  <MongoInstallType>Auto</MongoInstallType>
 </ProjectSettings>";
         
         [Test]
@@ -42,8 +42,8 @@ namespace SitecoreInstaller.Tests.Domain.Projects
             {
                 Sitecore = "MySitecore",
                 License = "MyLicense",
-                MongoInstallType = DbInstallType.Client,
-                SqlInstallType = DbInstallType.Client,
+                MongoInstallType = DbInstallType.Manual,
+                SqlInstallType = DbInstallType.Manual,
                 Modules = new List<string> { "module1" },
             };
 
@@ -78,8 +78,8 @@ namespace SitecoreInstaller.Tests.Domain.Projects
 
             settings.Sitecore.Should().Be("MySitecore");
             settings.License.Should().Be("MyLicense");
-            settings.MongoInstallType.Should().Be(DbInstallType.Client);
-            settings.SqlInstallType.Should().Be(DbInstallType.Client);
+            settings.MongoInstallType.Should().Be(DbInstallType.Manual);
+            settings.SqlInstallType.Should().Be(DbInstallType.Manual);
             settings.Modules.Count.Should().Be(1);
        }
 
@@ -101,8 +101,8 @@ namespace SitecoreInstaller.Tests.Domain.Projects
 
             settings.Sitecore.Should().Be("Sitecore 7.2 rev. 140123");
             settings.License.Should().Be("Sitecore Corporation A/S (2100-01-01)");
-            settings.MongoInstallType.Should().Be(DbInstallType.Local);
-            settings.SqlInstallType.Should().Be(DbInstallType.Local);
+            settings.MongoInstallType.Should().Be(DbInstallType.Auto);
+            settings.SqlInstallType.Should().Be(DbInstallType.Auto);
             settings.Modules.Count.Should().Be(0);
         }
     }

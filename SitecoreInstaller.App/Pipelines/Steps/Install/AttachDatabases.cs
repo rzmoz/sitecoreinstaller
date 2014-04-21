@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
             //we attach sql databases if it's local
-            if (args.ProjectSettings.Sql.InstallType == DbInstallType.Local)
+            if (args.ProjectSettings.Sql.InstallType == DbInstallType.Auto)
             {
                 var databases = Services.Sql.GetDatabases(args.ProjectSettings.ProjectFolder.Databases, args.ProjectSettings.ProjectName);
                 foreach (var sqlDatabase in databases)

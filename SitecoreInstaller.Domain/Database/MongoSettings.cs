@@ -13,7 +13,7 @@ namespace SitecoreInstaller.Domain.Database
     {
         public MongoSettings()
         {
-            InstallType = DbInstallType.Local;
+            InstallType = DbInstallType.Auto;
             Username = string.Empty;
             Password = string.Empty;
             Endpoint = "localhost";

@@ -22,19 +22,19 @@ namespace SitecoreInstaller.UI.UserSelections
         {
             switch (UiServices.ProjectSettings.Sql.InstallType)
             {
-                case DbInstallType.Local:
+                case DbInstallType.Auto:
                     radSqlLocal.Checked = true;
                     break;
-                case DbInstallType.Client:
+                case DbInstallType.Manual:
                     radSqlClient.Checked = true;
                     break;
             }
             switch (UiServices.ProjectSettings.Mongo.InstallType)
             {
-                case DbInstallType.Local:
+                case DbInstallType.Auto:
                     radMongoLocal.Checked = true;
                     break;
-                case DbInstallType.Client:
+                case DbInstallType.Manual:
                     radMongoClient.Checked = true;
                     break;
             }
@@ -42,12 +42,12 @@ namespace SitecoreInstaller.UI.UserSelections
 
         public DbInstallType SqlInstallType
         {
-            get { return radSqlClient.Checked ? DbInstallType.Client : DbInstallType.Local; }
+            get { return radSqlClient.Checked ? DbInstallType.Manual : DbInstallType.Auto; }
         }
 
         public DbInstallType MongoInstallType
         {
-            get { return radMongoClient.Checked ? DbInstallType.Client : DbInstallType.Local; }
+            get { return radMongoClient.Checked ? DbInstallType.Manual : DbInstallType.Auto; }
         }
 
         public void Clear()

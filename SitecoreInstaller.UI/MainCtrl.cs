@@ -161,8 +161,8 @@ namespace SitecoreInstaller.UI
             else
             {
                 UiServices.ProjectSettings.BuildLibrarySelections = new BuildLibrarySelections();
-                UiServices.ProjectSettings.Sql.InstallType = DbInstallType.Local;
-                UiServices.ProjectSettings.Mongo.InstallType = DbInstallType.Local;
+                UiServices.ProjectSettings.Sql.InstallType = DbInstallType.Auto;
+                UiServices.ProjectSettings.Mongo.InstallType = DbInstallType.Auto;
             }
         }
 

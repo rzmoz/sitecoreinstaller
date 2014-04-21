@@ -2,7 +2,7 @@
 {
     public enum DbInstallType
     {
-        Local,
-        Client
+        Auto,
+        Manual
     }
 }
