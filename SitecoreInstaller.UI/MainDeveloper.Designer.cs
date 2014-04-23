@@ -110,7 +110,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.selectModules1.Location = new System.Drawing.Point(12, 135);
             this.selectModules1.Name = "selectModules1";
-            this.selectModules1.Size = new System.Drawing.Size(410, 332);
+            this.selectModules1.Size = new System.Drawing.Size(410, 306);
             this.selectModules1.TabIndex = 11;
             // 
             // MainDeveloper
