@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using SitecoreInstaller.Domain.BuildLibrary;
-using SitecoreInstaller.Framework.IO;
+using CSharp.Basics.IO;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.AutoSetup
 {
@@ -30,7 +30,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.AutoSetup
 
             if (!existingFolderFound)
             {
-                Services.UserPreferences.Properties.LocalBuildLibrary = potentialDrives.First().RootDirectory.Combine(_buildLibraryFolderName).FullName;
+                Services.UserPreferences.Properties.LocalBuildLibrary = potentialDrives.First().RootDirectory.CombineTo<DirectoryInfo>(_buildLibraryFolderName).FullName;
                 new BuildLibraryFolders(Services.UserPreferences.Properties.LocalBuildLibrary).CreateIfNotExists();
             }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.IOx;
 using SitecoreInstaller.Framework.Xml;
 
 namespace SitecoreInstaller.Domain.Website

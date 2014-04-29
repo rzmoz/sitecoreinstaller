@@ -72,9 +72,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharp.Basics, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.2.6.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.2.9.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>..\3rdPartyAssemblies\Ionic.Zip.dll</HintPath>
@@ -112,20 +112,18 @@
     <Compile Include="Diagnostics\LogStatus.cs" />
     <Compile Include="Diagnostics\LogType.cs" />
     <Compile Include="Diagnostics\SimpleBufferedFileLog.cs" />
-    <Compile Include="IO\DirCopyOptions.cs" />
-    <Compile Include="IO\DirectoryInfoExtensions.cs" />
-    <Compile Include="IO\FileInfoExtensions.cs" />
-    <Compile Include="IO\FileSystemInfoExtensions.cs" />
-    <Compile Include="IO\FileSystemInfoFactory.cs" />
-    <Compile Include="IO\FileType.cs" />
-    <Compile Include="IO\Folder.cs" />
-    <Compile Include="IO\IOService.cs" />
-    <Compile Include="IO\FileNameExtensions.cs" />
-    <Compile Include="IO\OnFail.cs" />
-    <Compile Include="IO\Robocopy.cs" />
-    <Compile Include="IO\FileTypes.cs" />
+    <Compile Include="IOx\DirectoryInfoExtensions.cs" />
+    <Compile Include="IOx\FileInfoExtensions.cs" />
+    <Compile Include="IOx\FileSystemInfoExtensions.cs" />
+    <Compile Include="IOx\FileSystemInfoFactory.cs" />
+    <Compile Include="IOx\FileType.cs" />
+    <Compile Include="IOx\Folder.cs" />
+    <Compile Include="IOx\FileNameExtensions.cs" />
+    <Compile Include="IOx\OnFail.cs" />
+    <Compile Include="IOx\FileTypes.cs" />
     <Compile Include="Diagnostics\Profiler.cs" />
     <Compile Include="Diagnostics\ProfilerEventArgs.cs" />
+    <Compile Include="IOx\IOService.cs" />
     <Compile Include="Linguistics\LinguisticsExtensions.cs" />
     <Compile Include="Linguistics\Sentence.cs" />
     <Compile Include="Linguistics\Word.cs" />

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using SitecoreInstaller.Framework.Diagnostics;
-using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.IOx;
 
 namespace SitecoreInstaller.App.Pipelines.Steps
 {

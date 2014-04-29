@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using NUnit.Framework;
-using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.IOx;
 using SitecoreInstaller.Framework.Sys;
 namespace SitecoreInstaller.Tests.Framework.IO
 {

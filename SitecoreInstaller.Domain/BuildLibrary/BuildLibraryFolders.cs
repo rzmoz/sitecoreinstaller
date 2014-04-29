@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using SitecoreInstaller.Framework.IO;
+using CSharp.Basics.IO;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {

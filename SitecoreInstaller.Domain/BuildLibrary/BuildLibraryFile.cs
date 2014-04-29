@@ -1,7 +1,8 @@
 ﻿using SitecoreInstaller.Framework.Diagnostics;
-using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.IOx;
 using System.IO;
 using System;
+using CSharp.Basics.IO;
 using SitecoreInstaller.Framework.Archiving;
 
 namespace SitecoreInstaller.Domain.BuildLibrary

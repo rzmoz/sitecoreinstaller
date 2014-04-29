@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Domain.Website;
-using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.IOx;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {

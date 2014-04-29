@@ -1,4 +1,4 @@
-﻿using SitecoreInstaller.Framework.IO;
+﻿using SitecoreInstaller.Framework.IOx;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {

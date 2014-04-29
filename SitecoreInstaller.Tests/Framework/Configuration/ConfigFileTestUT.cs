@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using System.Linq;
-using System;
+using CSharp.Basics.IO;
 using System.Reflection;
 using FluentAssertions;
 using NUnit.Framework;
 using SitecoreInstaller.Framework.Configuration;
-using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.IOx;
 
 namespace SitecoreInstaller.Tests.Framework.Configuration
 {

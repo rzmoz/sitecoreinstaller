@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SitecoreInstaller.Framework.Diagnostics;
-using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.IOx;
 using SitecoreInstaller.Framework.Sys;
 using System.Collections.Specialized;
 using System.Data.SqlClient;

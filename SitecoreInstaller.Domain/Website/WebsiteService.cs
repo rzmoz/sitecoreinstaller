@@ -5,12 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using CSharp.Basics.Sys.Tasks;
-using Sitecore.Pipelines.HttpRequest;
+using CSharp.Basics.IO;
 using SitecoreInstaller.Domain.BuildLibrary;
 using SitecoreInstaller.Framework.Diagnostics;
-using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.IOx;
 using SitecoreInstaller.Framework.Web;
-using SitecoreInstaller.Framework.Xml;
 
 namespace SitecoreInstaller.Domain.Website
 {

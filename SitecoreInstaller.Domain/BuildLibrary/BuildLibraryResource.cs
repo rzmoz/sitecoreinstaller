@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using SitecoreInstaller.Framework.Diagnostics;
-using SitecoreInstaller.Framework.IO;
+using SitecoreInstaller.Framework.IOx;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {

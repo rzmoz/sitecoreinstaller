@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using SitecoreInstaller.Framework.IO;
+﻿using System.IO;
+using CSharp.Basics.IO;
+using SitecoreInstaller.Framework.IOx;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {

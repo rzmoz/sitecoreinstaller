@@ -1,5 +1,6 @@
 ﻿using System.IO;
-using SitecoreInstaller.Framework.IO;
+using CSharp.Basics.IO;
+using SitecoreInstaller.Framework.IOx;
 using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.Framework.Xml

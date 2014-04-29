@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 using System;
 using CSharp.Basics.Sys;
 using SitecoreInstaller.Framework.Diagnostics;
-using SitecoreInstaller.Framework.IO;
+using CSharp.Basics.IO;
 
 namespace SitecoreInstaller.Framework.Configuration
 {
