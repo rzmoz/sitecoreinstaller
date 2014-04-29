@@ -23,6 +23,7 @@ namespace SitecoreInstaller.App
             Pipelines = new PipelineService();
             PowerShellScripts = new PowerShellScriptService();
             Website = new WebsiteService();
+            WwwRoot = new WwwRootServices();
             IisManagement = new IisManagementService();
             PipelineEngine = new PipelineRunnerEngine();
             SourceManifests = new SourceManifestRepository(new FileInfo(GlobalFileNames.SourcesConfigFileName));
@@ -104,6 +105,7 @@ namespace SitecoreInstaller.App
         public static ISourceRepository BuildLibrary { get; private set; }
         public static ProjectsService Projects { get; private set; }
         public static WebsiteService Website { get; private set; }
+        public static WwwRootServices WwwRoot { get; private set; }
         public static IIisManagementService IisManagement { get; private set; }
         public static SqlService Sql { get; private set; }
         public static MongoService Mongo { get; private set; }

@@ -259,6 +259,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Website\WebsiteService.cs" />
+    <Compile Include="Website\WwwRoot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -271,6 +272,7 @@
     <EmbeddedResource Include="Website\WebsiteResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WebsiteResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

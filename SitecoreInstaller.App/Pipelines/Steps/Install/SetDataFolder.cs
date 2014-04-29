@@ -4,7 +4,7 @@
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
-            Services.Website.SetDataFolder(args.ProjectSettings.ProjectFolder.Data, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.DataFolderConfigFile);
+            Services.WwwRoot.SetDataFolder(args.ProjectSettings.ProjectFolder.Data, args.ProjectSettings.ProjectFolder.Website.AppConfig.Include.DataFolderConfigFile);
         }
     }
 }

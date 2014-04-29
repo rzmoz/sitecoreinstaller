@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
@@ -14,7 +10,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             var selectedSitecore = Services.BuildLibrary.Get(args.ProjectSettings.BuildLibrarySelections.SelectedSitecore, SourceType.Sitecore);
             if (selectedSitecore is BuildLibraryDirectory == false)
                 throw new DirectoryNotFoundException("selected Sitecore was not of type BuildLibraryDirectory. Was:" + selectedSitecore.GetType());
-            Services.Website.CopySitecoreToProjectfolder(args.ProjectSettings.ProjectFolder, selectedSitecore as BuildLibraryDirectory, args.ProjectSettings.Sql.InstallType);
+            Services.WwwRoot.CopySitecoreToProjectfolder(args.ProjectSettings.ProjectFolder, selectedSitecore as BuildLibraryDirectory, args.ProjectSettings.Sql.InstallType);
         }
     }
 }

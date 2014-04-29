@@ -20,13 +20,13 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             foreach (var module in selectedModules.OfType<BuildLibraryDirectory>())
             {
                 var deltaFilesInModule = ((DirectoryInfo)module.FileSystemInfo).GetFiles(FileTypes.ConfigDelta, SearchOption.AllDirectories);
-                foreach (var deltaFileInModule in deltaFilesInModule )
+                foreach (var deltaFileInModule in deltaFilesInModule)
                 {
                     deltaFiles.Add(new ProjectDeltaFile(module.FileSystemInfo.Name, deltaFileInModule));
                 }
             }
 
-            Services.Website.TransformConfigFiles(args.ProjectSettings.ProjectFolder, deltaFiles);
+            Services.WwwRoot.TransformConfigFiles(args.ProjectSettings.ProjectFolder, deltaFiles);
         }
     }
 }

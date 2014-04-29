@@ -7,10 +7,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
-            var bin32BitFolder = args.ProjectSettings.ProjectFolder.Website.Directory.Combine(new DirectoryInfo("bin"));
-            var bin64BitFolder = args.ProjectSettings.ProjectFolder.Website.Directory.Combine(new DirectoryInfo("bin_x64"));
-
-            Robocopy.Copy(bin64BitFolder, bin32BitFolder, DirCopyOptions.ExcludeSubDirectories);
+            Services.WwwRoot.Copy64BitAssemblies(args.ProjectSettings.ProjectFolder.Website.Directory);
         }
     }
 }
