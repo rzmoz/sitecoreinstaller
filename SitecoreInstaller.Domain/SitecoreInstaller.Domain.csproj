@@ -259,7 +259,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Website\WebsiteService.cs" />
-    <Compile Include="Website\WwwRoot.cs" />
+    <Compile Include="Website\WwwRootServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
