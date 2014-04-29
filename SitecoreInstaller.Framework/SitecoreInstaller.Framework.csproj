@@ -115,7 +115,6 @@
     <Compile Include="IOx\DirectoryInfoExtensions.cs" />
     <Compile Include="IOx\FileInfoExtensions.cs" />
     <Compile Include="IOx\FileSystemInfoExtensions.cs" />
-    <Compile Include="IOx\FileSystemInfoFactory.cs" />
     <Compile Include="IOx\FileType.cs" />
     <Compile Include="IOx\Folder.cs" />
     <Compile Include="IOx\FileNameExtensions.cs" />
