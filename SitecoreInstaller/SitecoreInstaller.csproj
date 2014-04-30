@@ -112,13 +112,17 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharp.Basics, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics, Version=2.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.2.9.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.2.10.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
-    <Reference Include="CSharp.Basics.Forms, Version=1.27.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics.Forms, Version=1.28.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.Forms.1.27.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.Forms.1.28.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="CSharp.Basics.SevenZip, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.SevenZip.1.3.0.0\lib\net45\CSharp.Basics.SevenZip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Tools.Schema.Sql">
       <HintPath>..\Lib4Azure\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
@@ -216,6 +220,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="7za.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -229,8 +236,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(SolutionDir)3rdPartyAssemblies\7za.exe $(TargetDir)
-copy $(SolutionDir)3rdPartyAssemblies\baretail.exe $(TargetDir)
+    <PostBuildEvent>copy $(SolutionDir)3rdPartyAssemblies\baretail.exe $(TargetDir)
 copy $(SolutionDir)3rdPartyAssemblies\curl.exe $(TargetDir)
 copy $(SolutionDir)Lib4Azure\SqlPackage.* $(TargetDir)</PostBuildEvent>
   </PropertyGroup>

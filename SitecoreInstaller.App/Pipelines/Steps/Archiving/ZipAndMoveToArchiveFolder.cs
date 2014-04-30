@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using CSharp.Basics.IO;
-using SitecoreInstaller.Framework.Archiving;
+using CSharp.Basics.SevenZip;
 using SitecoreInstaller.Framework.Diagnostics;
 using SitecoreInstaller.Framework.IOx;
 
