@@ -99,10 +99,6 @@
       <Project>{7938e4d7-0388-4cad-ac67-1c084de97652}</Project>
       <Name>SitecoreInstaller.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SitecoreInstaller.XmlTransform\SitecoreInstaller.XmlTransform.csproj">
-      <Project>{9b903ddc-08d6-4051-90e4-5b99fcd3100d}</Project>
-      <Name>SitecoreInstaller.XmlTransform</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="SitecoreInstaller.Rocks.nuspec" />

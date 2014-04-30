@@ -23,8 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Tests", "SitecoreInstaller.Tests\SitecoreInstaller.Tests.csproj", "{E97E5E96-1BDC-45DD-83C3-636C9BE46086}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.XmlTransform", "SitecoreInstaller.XmlTransform\SitecoreInstaller.XmlTransform.csproj", "{9B903DDC-08D6-4051-90E4-5B99FCD3100D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D69552EC-9BC8-4801-A4B1-672F8879E037}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -116,16 +114,6 @@ Global
 		{E97E5E96-1BDC-45DD-83C3-636C9BE46086}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E97E5E96-1BDC-45DD-83C3-636C9BE46086}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E97E5E96-1BDC-45DD-83C3-636C9BE46086}.Release|x86.ActiveCfg = Release|Any CPU
-		{9B903DDC-08D6-4051-90E4-5B99FCD3100D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B903DDC-08D6-4051-90E4-5B99FCD3100D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B903DDC-08D6-4051-90E4-5B99FCD3100D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9B903DDC-08D6-4051-90E4-5B99FCD3100D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9B903DDC-08D6-4051-90E4-5B99FCD3100D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9B903DDC-08D6-4051-90E4-5B99FCD3100D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B903DDC-08D6-4051-90E4-5B99FCD3100D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B903DDC-08D6-4051-90E4-5B99FCD3100D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9B903DDC-08D6-4051-90E4-5B99FCD3100D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{9B903DDC-08D6-4051-90E4-5B99FCD3100D}.Release|x86.ActiveCfg = Release|Any CPU
 		{375F8AA6-1DF5-4E65-94CF-F094A82A552E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{375F8AA6-1DF5-4E65-94CF-F094A82A552E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{375F8AA6-1DF5-4E65-94CF-F094A82A552E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -152,5 +140,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .
-	EndGlobalSection	
+	EndGlobalSection
 EndGlobal

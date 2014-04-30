@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using System.Linq;
+using CSharp.Basics.Xdt;
 using SitecoreInstaller.Domain;
 using SitecoreInstaller.Domain.Database;
 using SitecoreInstaller.Domain.Website;
 using SitecoreInstaller.Framework.Sys;
-using SitecoreInstaller.Framework.Xml;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
@@ -51,8 +51,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             var sqlDelta = Services.Sql.GenerateConnectionStringsDelta(args.ProjectSettings.Sql,
                 args.ProjectSettings.DatabaseNames, connectionStrings);
 
-            XmlTransform.Transform(connectionStrings.File, sqlDelta);
-
+            XdtTransform.Transform(connectionStrings.File, sqlDelta);
         }
 
         private static void SetMongoConnectionStrings(PipelineApplicationEventArgs args, ConnectionStringsFile connectionStrings)
@@ -65,7 +64,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             var mongoDelta = Services.Mongo.GenerateConnectionStringsDelta(args.ProjectSettings.Mongo, connectionStrings,
                 args.ProjectSettings.ProjectName);
 
-            XmlTransform.Transform(connectionStrings.File, mongoDelta);
+            XdtTransform.Transform(connectionStrings.File, mongoDelta);
         }
     }
 }

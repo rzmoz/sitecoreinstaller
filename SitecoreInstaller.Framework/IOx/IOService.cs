@@ -11,23 +11,6 @@ namespace SitecoreInstaller.Framework.IOx
 {
     public static class IoService
     {
-        public static void WriteToDisk(this string content, FileInfo targetFile)
-        {
-            if (targetFile == null)
-                return;
-
-            targetFile.Directory.CreateIfNotExists();
-
-            File.WriteAllText(targetFile.FullName, content);
-            Log.ToApp.Debug("Saved string to disk at: {0}", targetFile.FullName);
-        }
-
-        public static void WriteToDisk(this string content, DirectoryInfo dir, string filename)
-        {
-            var file = new FileInfo(Path.Combine(dir.FullName, filename));
-            WriteToDisk(content, file);
-        }
-
         public static IEnumerable<string> GetUniqueFileNames(this DirectoryInfo folder)
         {
             if (Directory.Exists(folder.FullName) == false)

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CSharp.Basics.Xdt;
 using SitecoreInstaller.Framework.IOx;
-using SitecoreInstaller.Framework.Xml;
 
 namespace SitecoreInstaller.Domain.Website
 {
@@ -44,7 +44,7 @@ namespace SitecoreInstaller.Domain.Website
             {
                 var target = ProjectFolder.CombineTo<FileInfo>(delta.GetRelativePath());
                 if (target.Exists)
-                    XmlTransform.Transform(target, File.ReadAllText(delta.File.FullName));
+                    XdtTransform.Transform(target, File.ReadAllText(delta.File.FullName));
             }
         }
 
@@ -71,7 +71,7 @@ namespace SitecoreInstaller.Domain.Website
             if (delta.File.Exists == false)
                 return;
 
-            XmlTransform.Transform(target, File.ReadAllText(delta.File.FullName));
+            XdtTransform.Transform(target, File.ReadAllText(delta.File.FullName));
         }
 
 
