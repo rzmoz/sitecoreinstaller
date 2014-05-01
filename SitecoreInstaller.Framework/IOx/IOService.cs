@@ -72,29 +72,7 @@ namespace SitecoreInstaller.Framework.IOx
                     Log.ToApp.Error("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
             }
         }
-
-        public static void ConsolidateIdenticalSubfolders(this DirectoryInfo rootFolder)
-        {
-            if (rootFolder == null)
-                return;
-            if (rootFolder.Exists() == false)
-                return;
-
-            //if folder has a sub folder with identical name, we move it up one level
-            DirectoryInfo identicalSubFolder;
-
-            if (rootFolder.TryGetIdenticallyNamedSubDir(out identicalSubFolder))
-            {
-                Log.ToApp.Debug("'{0}' contains identical named subfolder. Consolidating...", identicalSubFolder.FullName);
-                ConsolidateIdenticalSubfolders(identicalSubFolder);
-            }
-
-            if (rootFolder.ParentHasIdenticalName())
-            {
-                Robocopy.Move(rootFolder, rootFolder.Parent);
-            }
-        }
-
+        
         public static bool TryBackup(this FileInfo file)
         {
             Log.ToApp.Debug("Trying to backup file: {0}", file.FullName);

@@ -1,23 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web.SessionState;
 using CSharp.Basics.IO;
-using SitecoreInstaller.Framework.Diagnostics;
 using System;
-using System.Security.AccessControl;
 
 namespace SitecoreInstaller.Framework.IOx
 {
     public static class DirectoryInfoExtensions
     {
-        private static readonly FileSystemInfoFactory _fileSystemInfoFactory;
-
-        static DirectoryInfoExtensions()
-        {
-            _fileSystemInfoFactory = new FileSystemInfoFactory();
-        }
-
         public static DirectoryInfo ToDirectoryInfo(this string dir)
         {
             if (dir == null) { throw new ArgumentNullException("dir"); }
@@ -53,32 +42,6 @@ namespace SitecoreInstaller.Framework.IOx
         public static IEnumerable<FileInfo> GetFiles(this DirectoryInfo directory, FileType fileType, SearchOption searchOption)
         {
             return directory.GetFiles(fileType.GetAllSearchPattern, searchOption);
-        }
-
-        public static bool ParentHasIdenticalName(this DirectoryInfo dir)
-        {
-            if (dir == null)
-                return false;
-            if (Directory.Exists(dir.FullName) == false)
-                return false;
-            if (dir.Parent == null)
-                return false;
-            return dir.Name.Equals(dir.Parent.Name);
-        }
-
-        public static bool TryGetIdenticallyNamedSubDir(this DirectoryInfo dir, out DirectoryInfo identicalChild)
-        {
-            identicalChild = null;
-            if (dir == null)
-                return false;
-            if (Directory.Exists(dir.FullName) == false)
-                return false;
-
-            var identicalSubFolders = dir.GetDirectories(dir.Name);
-            var hasIdenticalChild = identicalSubFolders.Any();
-            if (hasIdenticalChild)
-                identicalChild = identicalSubFolders.First();
-            return hasIdenticalChild;
         }
 
         public static void DeleteIfExists(this DirectoryInfo directoryInfo)

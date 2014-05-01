@@ -72,9 +72,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharp.Basics, Version=2.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics, Version=2.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.2.14.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.2.15.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>..\3rdPartyAssemblies\Ionic.Zip.dll</HintPath>
