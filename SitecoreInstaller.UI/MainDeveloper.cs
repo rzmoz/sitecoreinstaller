@@ -1,16 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSharp.Basics.Forms.Viewport;
 using CSharp.Basics.Sys;
 using SitecoreInstaller.App;
 using SitecoreInstaller.App.Pipelines;
-using SitecoreInstaller.App.Pipelines.Steps.Install;
-using SitecoreInstaller.Domain.BuildLibrary;
-using SitecoreInstaller.Framework.Sys;
 
 namespace SitecoreInstaller.UI
 {
