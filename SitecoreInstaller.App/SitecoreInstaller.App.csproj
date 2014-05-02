@@ -125,11 +125,8 @@
     <Compile Include="Pipelines\ArchiveEventArgs.cs" />
     <Compile Include="Pipelines\ArchivePipeline.cs" />
     <Compile Include="Pipelines\CleanupEventArgs.cs" />
-    <Compile Include="Pipelines\CreateBacpacsPipeline.cs" />
     <Compile Include="Pipelines\Steps\AutoSetup\DetermineSqlConnection.cs" />
     <Compile Include="Pipelines\Steps\AutoSetup\SaveSqlInstanceNameToPreferences.cs" />
-    <Compile Include="Pipelines\Steps\Azure\CreateBacpacs.cs" />
-    <Compile Include="Pipelines\Steps\Azure\PrepDatabases.cs" />
     <Compile Include="Pipelines\Steps\Databases\AddUserToSqlServerAsSysAdmin.cs" />
     <Compile Include="Pipelines\Steps\Databases\EnableMixedAuthenticationMode.cs" />
     <Compile Include="Pipelines\Steps\Databases\TryStartSqlServer.cs" />
@@ -203,10 +200,6 @@
     <Compile Include="UserPreferencesConfig.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SitecoreInstaller.Azure\SitecoreInstaller.Azure.csproj">
-      <Project>{A8551E95-C33C-4DD6-B379-F2AC2A397E38}</Project>
-      <Name>SitecoreInstaller.Azure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SitecoreInstaller.Domain\SitecoreInstaller.Domain.csproj">
       <Project>{32B57FF0-1EF1-46C7-979E-F6144E6D4387}</Project>
       <Name>SitecoreInstaller.Domain</Name>
