@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using CSharp.Basics.Curl;
 using CSharp.Basics.IO;
 using ServiceStack.ServiceClient.Web;
 using ServiceStack.Text;
