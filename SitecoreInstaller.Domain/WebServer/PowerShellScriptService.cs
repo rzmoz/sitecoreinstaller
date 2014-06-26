@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using CSharp.Basics;
 using SitecoreInstaller.Framework.Diagnostics;
-using SitecoreInstaller.Framework.Scripting;
 
 namespace SitecoreInstaller.Domain.WebServer
 {
@@ -10,14 +10,14 @@ namespace SitecoreInstaller.Domain.WebServer
     {
         public void RunScripts(IEnumerable<FileInfo> scripts, string methodName, string argName, object arg)
         {
-            var psr = new PowerShellRunner();
+            var psr = new PowerShellConsole();
 
             foreach (var script in scripts)
             {
                 try
                 {
                     Log.ToApp.Debug("Trying to execute '{0}' in '{1}'", methodName, script.FullName);
-                    var result = psr.RunPowerShellFunction(methodName, new KeyValuePair<string, object>(argName, arg),
+                    var result = psr.RunFunction(methodName, new KeyValuePair<string, object>(argName, arg),
                         script);
                     Log.ToApp.Debug(result);
                     Log.ToApp.Debug("'{0}' in '{1}' was executed", methodName, script.FullName);

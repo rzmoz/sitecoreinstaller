@@ -23,12 +23,12 @@ namespace SitecoreInstaller.Domain.Projects
         public void CleanProjectForArchiving(ProjectFolder projectFolder)
         {
             Log.ToApp.Info("Cleaning project for archiving '{0}'", projectFolder.Name);
-            projectFolder.IisLogFiles.Clean(OnFail.Ignore);
-            projectFolder.Data.Viewstate.Clean(OnFail.Ignore);
-            projectFolder.Data.Logs.Clean(OnFail.Ignore);
-            projectFolder.Data.Audit.Clean(OnFail.Ignore);
-            projectFolder.Data.Packages.Clean(OnFail.Ignore);
-            projectFolder.Website.Temp.Clean(OnFail.Ignore);
+            projectFolder.IisLogFiles.Clean();
+            projectFolder.Data.Viewstate.Clean();
+            projectFolder.Data.Logs.Clean();
+            projectFolder.Data.Audit.Clean();
+            projectFolder.Data.Packages.Clean();
+            projectFolder.Website.Temp.Clean();
             projectFolder.ProjectSettingsConfigFile.Path.Delete();
             projectFolder.Data.LicenseFile.Delete();
         }

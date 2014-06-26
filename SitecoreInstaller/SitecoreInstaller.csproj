@@ -112,17 +112,20 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharp.Basics, Version=2.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics, Version=2.53.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.2.15.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
     <Reference Include="CSharp.Basics.Forms, Version=1.28.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CSharp.Basics.Forms.1.28.0.0\lib\net45\CSharp.Basics.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="CSharp.Basics.SevenZip, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics.SevenZip, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.SevenZip.1.4.0.0\lib\net45\CSharp.Basics.SevenZip.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.SevenZip.1.5.0.0\lib\net45\CSharp.Basics.SevenZip.dll</HintPath>
+    </Reference>
+    <Reference Include="Delimon.Win32.IO">
+      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\Delimon.Win32.IO.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Tools.Schema.Sql">
       <HintPath>..\Lib4Azure\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
@@ -144,16 +147,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3rdPartyAssemblies\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Bson, Version=1.9.0.200, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Bson, Version=1.9.1.221, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\mongocsharpdriver.1.9.0\lib\net35\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\packages\mongocsharpdriver.1.9.1\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=1.9.0.200, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Driver, Version=1.9.1.221, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\mongocsharpdriver.1.9.0\lib\net35\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\packages\mongocsharpdriver.1.9.1\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\System.Management.Automation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

@@ -19,7 +19,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Install
             //get all delta files from modules
             foreach (var module in selectedModules.OfType<BuildLibraryDirectory>())
             {
-                var deltaFilesInModule = ((DirectoryInfo)module.FileSystemInfo).GetFiles(FileTypes.ConfigDelta, SearchOption.AllDirectories);
+                var deltaFilesInModule = ((DirectoryInfo)module.FileSystemInfo).GetFiles(FileTypes.ConfigDelta.GetAllSearchPattern, SearchOption.AllDirectories);
                 foreach (var deltaFileInModule in deltaFilesInModule)
                 {
                     deltaFiles.Add(new ProjectDeltaFile(module.FileSystemInfo.Name, deltaFileInModule));

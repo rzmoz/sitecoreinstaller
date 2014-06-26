@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CSharp.Basics.IO;
 using CSharp.Basics.Xdt;
 using SitecoreInstaller.Framework.IOx;
 

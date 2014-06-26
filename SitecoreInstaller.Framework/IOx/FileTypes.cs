@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using CSharp.Basics.IO;
 
 namespace SitecoreInstaller.Framework.IOx
 {

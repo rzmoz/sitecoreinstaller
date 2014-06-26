@@ -8,8 +8,8 @@ namespace SitecoreInstaller.App.Pipelines.Steps
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
-            var scripts = args.ProjectSettings.ProjectFolder.Directory.GetFiles(FileTypes.PowerShellScript);
-            
+            var scripts = args.ProjectSettings.ProjectFolder.Directory.GetFiles(FileTypes.PowerShellScript.GetAllSearchPattern);
+
             Services.PowerShellScripts.RunScripts(scripts, MethodName, "projectSettings", args.ProjectSettings);
         }
         protected abstract string MethodName { get; }

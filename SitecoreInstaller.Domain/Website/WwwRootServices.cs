@@ -62,10 +62,8 @@ namespace SitecoreInstaller.Domain.Website
                 try
                 {
                     //copy database files to database folder
-                    var dbFiles = new[]
-          {
-            FileTypes.SqlMdf.GetAllSearchPattern, FileTypes.SqlLdf.GetAllSearchPattern
-          }.SelectMany(fileExtensions => module.Directory.GetFiles(fileExtensions));
+                    var dbFiles = new[] { FileTypes.SqlMdf.GetAllSearchPattern, FileTypes.SqlLdf.GetAllSearchPattern }
+                        .SelectMany(fileExtensions => module.Directory.GetFiles(fileExtensions));
 
                     dbFiles.CopyTo(projectFolder.Databases, true);
                 }
@@ -85,8 +83,7 @@ namespace SitecoreInstaller.Domain.Website
             module.Directory.GetFiles(FileTypes.SitecoreConfig).CopyTo(projectFolder.Website.AppConfig.Include, true);
 
             //copy disabled config files to App_Config/Include folder
-            var disabledConfigFiles = module.Directory.GetFiles(FileTypes.DisabledSitecoreConfig).ToList();
-            disabledConfigFiles.CopyTo(projectFolder.Website.AppConfig.Include, true);
+            module.Directory.GetFiles(FileTypes.DisabledSitecoreConfig).CopyTo(projectFolder.Website.AppConfig.Include, true);
 
             //copy Sitecore packages to package folder (zip files)
             module.Directory.GetFiles(FileTypes.SitecorePackage).CopyTo(projectFolder.Data.Packages, true);

@@ -55,7 +55,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             var targetFile = new FileInfo(Path.Combine(Path.GetTempPath(), sourceEntry.Key + ".zip"));
 
-            Curl.Download(response.ResourceUri, targetFile);
+            CurlExe.Download(response.ResourceUri, targetFile);
 
             return new BuildLibraryFile(targetFile, BuildLibraryFileCopyOptions.DeleteAfterCopy);
         }

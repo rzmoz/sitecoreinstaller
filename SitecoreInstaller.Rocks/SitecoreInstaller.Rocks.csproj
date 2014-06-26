@@ -101,6 +101,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="SitecoreInstaller.Rocks.nuspec" />
     <None Include="Sources.Config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

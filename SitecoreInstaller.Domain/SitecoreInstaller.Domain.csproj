@@ -105,19 +105,24 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharp.Basics, Version=2.17.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics, Version=2.53.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.2.17.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
-    <Reference Include="CSharp.Basics.Curl">
-      <HintPath>..\packages\CSharp.Basics.Curl.1.0.0.0\lib\net45\CSharp.Basics.Curl.dll</HintPath>
-    </Reference>
-    <Reference Include="CSharp.Basics.SevenZip, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics.Curl, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.SevenZip.1.4.0.0\lib\net45\CSharp.Basics.SevenZip.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.Curl.1.7.0.0\lib\net45\CSharp.Basics.Curl.dll</HintPath>
     </Reference>
-    <Reference Include="CSharp.Basics.Xdt">
-      <HintPath>..\packages\CSharp.Basics.Xdt.1.1.0.0\lib\net45\CSharp.Basics.Xdt.exe</HintPath>
+    <Reference Include="CSharp.Basics.SevenZip, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.SevenZip.1.5.0.0\lib\net45\CSharp.Basics.SevenZip.dll</HintPath>
+    </Reference>
+    <Reference Include="CSharp.Basics.Xdt, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.Xdt.1.2.0.0\lib\net45\CSharp.Basics.Xdt.exe</HintPath>
+    </Reference>
+    <Reference Include="Delimon.Win32.IO">
+      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\Delimon.Win32.IO.dll</HintPath>
     </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>..\3rdPartyAssemblies\Ionic.Zip.dll</HintPath>
@@ -144,16 +149,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3rdPartyAssemblies\Microsoft.Web.Administration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Publishing.Tasks">
-      <HintPath>..\packages\CSharp.Basics.Xdt.1.1.0.0\lib\net45\Microsoft.Web.Publishing.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Bson, Version=1.9.0.200, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Web.Publishing.Tasks, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\mongocsharpdriver.1.9.0\lib\net35\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.Xdt.1.2.0.0\lib\net45\Microsoft.Web.Publishing.Tasks.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=1.9.0.200, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Bson, Version=1.9.1.221, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\mongocsharpdriver.1.9.0\lib\net35\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\packages\mongocsharpdriver.1.9.1\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.9.1.221, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mongocsharpdriver.1.9.1\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Common">
       <HintPath>..\packages\ServiceStack.Common.3.9.70\lib\net35\ServiceStack.Common.dll</HintPath>
@@ -179,8 +185,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\3rdPartyAssemblies\System.Management.Automation.dll</HintPath>
+      <Private>True</Private>
+      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\System.Management.Automation.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />

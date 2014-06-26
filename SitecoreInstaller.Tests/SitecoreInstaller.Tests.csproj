@@ -32,9 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharp.Basics, Version=2.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics, Version=2.53.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.2.15.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+    </Reference>
+    <Reference Include="Delimon.Win32.IO">
+      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\Delimon.Win32.IO.dll</HintPath>
     </Reference>
     <Reference Include="FluentAssertions, Version=3.0.107.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -50,6 +53,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\System.Management.Automation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -88,11 +95,9 @@
     <Compile Include="Framework\Diagnostics\LogUT.cs" />
     <Compile Include="Framework\IO\DirectoryInfoExtenstionsUT.cs" />
     <Compile Include="Framework\IO\FileSystemInfoExtensionsUT.cs" />
-    <Compile Include="Framework\IO\FileTypeUT.cs" />
     <Compile Include="Framework\IO\StringExtensionsUT.cs" />
     <Compile Include="Framework\Linguistics\SentenceUT.cs" />
     <Compile Include="Framework\Linguistics\WordUT.cs" />
-    <Compile Include="Framework\Scripting\PowerShellRunnerUT.cs" />
     <Compile Include="Framework\Sys\StringExtensionsUT.cs" />
     <Compile Include="Framework\Sys\TypeExtensionsUT.cs" />
     <Compile Include="Framework\Web\WebExtensionsUT.cs" />
@@ -103,9 +108,6 @@
     <None Include="Domain\Website\formsSQL.config" />
     <None Include="Domain\Website\formsSQLite.config" />
     <None Include="Framework\Configuration\ConfigFileTest.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Framework\Scripting\Greetings.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
