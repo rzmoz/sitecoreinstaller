@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using CSharp.Basics.Sys;
 using CSharp.Basics.Sys.Tasks;
 using CSharp.Basics.IO;
 using SitecoreInstaller.Domain.BuildLibrary;
@@ -220,11 +221,11 @@ namespace SitecoreInstaller.Domain.Website
                 response = TheWww.CallUrlOnce(url);
             })
             .WithPing(() => Log.ToApp.Debug("Status code: '{0}' | Status description: '{1}'", response.StatusCode, response.StatusDescription))
-            .Until(() => response.StatusCode == HttpStatusCode.OK || response.StatusDescription.StartsWith("Done"), TimeSpan.FromMinutes(20), 10);
+            .Until(() => response.StatusCode == HttpStatusCode.OK || response.StatusDescription.StartsWith("Done"), 20.Minutes(), 10);
 
             if (!succeeded)
             {
-                Log.ToApp.Error("Faild to install {0}", url);
+                Log.ToApp.Error("Failed to install {0}", url);
             }
         }
     }

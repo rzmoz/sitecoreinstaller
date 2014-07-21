@@ -32,12 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharp.Basics, Version=2.53.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharp.Basics, Version=2.54.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.2.54.0.0\lib\net45\CSharp.Basics.dll</HintPath>
     </Reference>
-    <Reference Include="Delimon.Win32.IO">
-      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\Delimon.Win32.IO.dll</HintPath>
+    <Reference Include="Delimon.Win32.IO, Version=4.0.4764.1936, Culture=neutral, PublicKeyToken=6f601db60ebd9657, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.2.54.0.0\lib\net45\Delimon.Win32.IO.dll</HintPath>
     </Reference>
     <Reference Include="FluentAssertions, Version=3.0.107.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -55,7 +56,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\packages\CSharp.Basics.2.53.0.0\lib\net45\System.Management.Automation.dll</HintPath>
+      <HintPath>..\packages\CSharp.Basics.2.54.0.0\lib\net45\System.Management.Automation.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />

@@ -17,12 +17,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
             BuildLibraryFileCopyOptions = buildLibraryFileCopyOptions;
         }
 
-        internal BuildLibraryFile(FileInfo fileInfo)
-            : this(fileInfo, BuildLibraryMode.External)
-        {
-        }
-
-        internal BuildLibraryFile(FileInfo fileInfo, BuildLibraryMode buildLibraryMode)
+        internal BuildLibraryFile(FileInfo fileInfo, BuildLibraryMode buildLibraryMode = BuildLibraryMode.External)
             : base(buildLibraryMode)
         {
             File = fileInfo;
