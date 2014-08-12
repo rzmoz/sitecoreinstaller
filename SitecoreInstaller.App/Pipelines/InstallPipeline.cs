@@ -27,6 +27,7 @@ namespace SitecoreInstaller.App.Pipelines
             AddStep<CopyLicenseFile>();
             AddStep<SetDataFolder>();
             AddStep<CopyModuleFiles>();
+            AddStep<FixReportingDatabseNameWhichIsWronglyNameAnalyticsInSevenPointFive>();
             AddStep<RunPreInstallPowerShellScripts>();
             AddStep<SetConnectionStrings>();
             AddStep<TransformConfigFiles>();

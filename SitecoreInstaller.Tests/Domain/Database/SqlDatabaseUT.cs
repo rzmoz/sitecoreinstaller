@@ -15,6 +15,7 @@ namespace SitecoreInstaller.Tests.Domain.Database
         [TestCase("SiteSetter_Sitecore_Web", "Web")]
         [TestCase("Andes.Reporting.Secondary", "Reporting_Secondary")]
         [TestCase("Andes_Reporting_Secondary", "Reporting_Secondary")]
+        [TestCase("Sitecore.Reporting.Secondary", "Reporting.Secondary")]
         public void LogicalName_DetermineLogicalName_LogicalNameDoesntTakeTheWordSitecoreIntoAccount(string physicalDbName, string expectedLogicalName)
         {
             const string projectName = "MyProject";
