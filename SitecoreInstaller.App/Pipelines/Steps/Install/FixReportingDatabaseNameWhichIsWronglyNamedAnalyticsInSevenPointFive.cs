@@ -6,7 +6,7 @@ using SitecoreInstaller.Domain;
 
 namespace SitecoreInstaller.App.Pipelines.Steps.Install
 {
-    public class FixReportingDatabseNameWhichIsWronglyNameAnalyticsInSevenPointFive : Step<PipelineApplicationEventArgs>
+    public class FixReportingDatabaseNameWhichIsWronglyNamedAnalyticsInSevenPointFive : Step<PipelineApplicationEventArgs>
     {
         protected override void InnerInvoke(object sender, PipelineApplicationEventArgs args)
         {
