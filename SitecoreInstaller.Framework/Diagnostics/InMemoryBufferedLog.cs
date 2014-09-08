@@ -25,7 +25,7 @@ namespace SitecoreInstaller.Framework.Diagnostics
             _logStatus = new Observable<LogStatus>();
             _logStatus.Updated += _logStatus_Updated;
             _logStatus.Value = LogStatus.NoProblems;
-            SetStatus = this.SetStatusWhenHasNoProblems;
+            SetStatus = SetStatusWhenHasNoProblems;
             Reset();
         }
 
@@ -34,13 +34,13 @@ namespace SitecoreInstaller.Framework.Diagnostics
             switch (e.Arg)
             {
                 case LogStatus.NoProblems:
-                    SetStatus = this.SetStatusWhenHasNoProblems;
+                    SetStatus = SetStatusWhenHasNoProblems;
                     break;
                 case LogStatus.Warnings:
-                    SetStatus = this.SetStatusWhenHasWarnings;
+                    SetStatus = SetStatusWhenHasWarnings;
                     break;
                 case LogStatus.Errors:
-                    SetStatus = this.SetStatusWhenHasErrors;
+                    SetStatus = SetStatusWhenHasErrors;
                     break;
             }
         }

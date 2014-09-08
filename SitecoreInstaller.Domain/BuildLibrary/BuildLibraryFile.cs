@@ -66,7 +66,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             try
             {
-                Log.ToApp.Info("Extracting '{0}'", File.Name);
+                Log.As.Info("Extracting '{0}'", File.Name);
                 var zipFile = new SevenZipFile(File);
                 zipFile.ExtractAll(targetDirectory);
             }

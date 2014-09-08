@@ -16,19 +16,18 @@ namespace SitecoreInstaller.Domain.WebServer
             {
                 try
                 {
-                    Log.ToApp.Debug("Trying to execute '{0}' in '{1}'", methodName, script.FullName);
-                    var result = psr.RunFunction(methodName, new KeyValuePair<string, object>(argName, arg),
-                        script);
-                    Log.ToApp.Debug(result);
-                    Log.ToApp.Debug("'{0}' in '{1}' was executed", methodName, script.FullName);
+                    Log.As.Debug("Trying to execute '{0}' in '{1}'", methodName, script.FullName);
+                    var result = psr.RunFunction(methodName, new KeyValuePair<string, object>(argName, arg), script);
+                    Log.As.Debug(result);
+                    Log.As.Debug("'{0}' in '{1}' was executed", methodName, script.FullName);
                 }
                 catch (System.Management.Automation.CommandNotFoundException)
                 {
-                    Log.ToApp.Debug("Method wasn't found: '{0}'", methodName);
+                    Log.As.Debug("Method wasn't found: '{0}'", methodName);
                 }
                 catch (Exception e)
                 {
-                    Log.ToApp.Error(e.ToString());
+                    Log.As.Error(e.ToString());
                 }
             }
         }

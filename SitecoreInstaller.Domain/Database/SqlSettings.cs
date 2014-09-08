@@ -49,8 +49,8 @@ namespace SitecoreInstaller.Domain.Database
             }
             catch (Exception e)
             {
-                Log.ToApp.Debug(e.ToString());
-                Log.ToApp.Error(e.Message);
+                Log.As.Debug(e.ToString());
+                Log.As.Error(e.Message);
                 return false;
             }
         }

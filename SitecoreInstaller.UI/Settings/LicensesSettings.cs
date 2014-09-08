@@ -48,7 +48,7 @@ namespace SitecoreInstaller.UI.Settings
                 }
                 catch (LicenseFileException ex)
                 {
-                    Framework.Diagnostics.Log.ToApp.Error("Couldn't add license file: " + ex);
+                    Framework.Diagnostics.Log.As.Error("Couldn't add license file: " + ex);
                     addLicenseDnDControl1.Label += string.Format("{0} seems to be invalid. See log for details{1}", licenseFile.FullName, Environment.NewLine + Environment.NewLine);
                 }
             }

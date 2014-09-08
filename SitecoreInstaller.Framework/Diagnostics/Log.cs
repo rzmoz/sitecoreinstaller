@@ -7,10 +7,9 @@ namespace SitecoreInstaller.Framework.Diagnostics
     {
         static Log()
         {
-            ToApp = new InMemoryBufferedLog();
-            ToDebugFile = new SimpleBufferedFileLog();
+            As = new InMemoryBufferedLog();
         }
-        public static ILog ToApp { get; private set; }
-        public static ILog ToDebugFile { get; private set; }
+
+        public static ILog As { get; private set; }
     }
 }

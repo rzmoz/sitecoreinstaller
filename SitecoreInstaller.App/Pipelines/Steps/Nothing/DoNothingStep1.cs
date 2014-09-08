@@ -15,7 +15,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps.Nothing
         protected override void InnerInvoke(object sender, DoNothingEventArgs args)
         {
             //Wait.For(1.Seconds());
-            Log.ToApp.Info("User selected: " + args.UserAccepted);
+            Log.As.Info("User selected: " + args.UserAccepted);
         }
     }
 }

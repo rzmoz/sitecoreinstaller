@@ -32,11 +32,11 @@ namespace SitecoreInstaller.Framework.IOx
         public static void CreateWithLog(this DirectoryInfo folder)
         {
             if (Directory.Exists(folder.FullName))
-                Log.ToApp.Debug("Folder already exist: '{0}'", folder.FullName);
+                Log.As.Debug("Folder already exist: '{0}'", folder.FullName);
             else
             {
                 folder.Create();
-                Log.ToApp.Debug("Folder created: '{0}'", folder.FullName);
+                Log.As.Debug("Folder created: '{0}'", folder.FullName);
             }
         }
 
@@ -51,16 +51,16 @@ namespace SitecoreInstaller.Framework.IOx
                 try
                 {
                     folder.Delete(true);
-                    Log.ToApp.Debug("Folder deleted: '{0}'", folder.FullName);
+                    Log.As.Debug("Folder deleted: '{0}'", folder.FullName);
                 }
                 catch (DirectoryNotFoundException)
                 {/*happens when the files are released and deleted between retries */       }
                 catch (UnauthorizedAccessException e)
-                { Log.ToApp.Debug("Waiting for release of file handles due to UnauthorizedAccessException...{0}", e.ToString()); }
+                { Log.As.Debug("Waiting for release of file handles due to UnauthorizedAccessException...{0}", e.ToString()); }
                 catch (IOException e)
-                { Log.ToApp.Debug("Waiting for release of file handles due to IOException...{0}", e.ToString()); }
+                { Log.As.Debug("Waiting for release of file handles due to IOException...{0}", e.ToString()); }
                 catch (SecurityException e)
-                { Log.ToApp.Debug("Waiting for release of file handles due to SecurityException...{0}", e.ToString()); }
+                { Log.As.Debug("Waiting for release of file handles due to SecurityException...{0}", e.ToString()); }
             }).Until(() => !folder.Exists(), maxTries);
 
             if (!succeeded)
@@ -69,17 +69,17 @@ namespace SitecoreInstaller.Framework.IOx
                     return;
 
                 if (folder.Exists())
-                    Log.ToApp.Error("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
+                    Log.As.Error("Gave up waiting. Please delete folder manually: '{0}'", folder.FullName);
             }
         }
         
         public static bool TryBackup(this FileInfo file)
         {
-            Log.ToApp.Debug("Trying to backup file: {0}", file.FullName);
+            Log.As.Debug("Trying to backup file: {0}", file.FullName);
 
             if (!File.Exists(file.FullName))
             {
-                Log.ToApp.Debug("File not found for backup: {0}", file.FullName);
+                Log.As.Debug("File not found for backup: {0}", file.FullName);
                 return false;
             }
 
@@ -91,7 +91,7 @@ namespace SitecoreInstaller.Framework.IOx
             while (File.Exists(backupFileName));
 
             file.CopyTo(backupFileName);
-            Log.ToApp.Debug("Existing file was backed up to :" + backupFileName);
+            Log.As.Debug("Existing file was backed up to :" + backupFileName);
             return true;
         }
 
@@ -111,13 +111,13 @@ namespace SitecoreInstaller.Framework.IOx
             //Log.This.Debug("Getting {0}s", subfoldersDescription);
             if (!rootFolder.Exists)
             {
-                Log.ToApp.Error(subfoldersDescription + " folder not found: {0}", rootFolder.FullName);
+                Log.As.Error(subfoldersDescription + " folder not found: {0}", rootFolder.FullName);
                 yield break;
             }
 
             foreach (var dir in rootFolder.GetDirectories(".", SearchOption.TopDirectoryOnly))
             {
-                Log.ToApp.Debug(subfoldersDescription + "s found: {0}", dir.Name);
+                Log.As.Debug(subfoldersDescription + "s found: {0}", dir.Name);
                 yield return dir;
             }
         }
@@ -128,10 +128,10 @@ namespace SitecoreInstaller.Framework.IOx
         
         public static void CopyFlattenedTo(this DirectoryInfo source, DirectoryInfo target, string searchPattern = "*")
         {
-            Log.ToApp.Debug("Flattening '{0}' files in '{1}'...", searchPattern, target.FullName);
+            Log.As.Debug("Flattening '{0}' files in '{1}'...", searchPattern, target.FullName);
             if (Directory.Exists(source.FullName) == false)
             {
-                Log.ToApp.Debug("Source '{0}' not found. Aborting", source.FullName, target.FullName);
+                Log.As.Debug("Source '{0}' not found. Aborting", source.FullName, target.FullName);
                 return;
             }
 

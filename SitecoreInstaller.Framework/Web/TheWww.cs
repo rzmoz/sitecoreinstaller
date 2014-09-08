@@ -36,12 +36,12 @@ namespace SitecoreInstaller.Framework.Web
             {
                 if (response == null)
                     return;
-                Log.ToApp.Info(response.StatusDescription);
+                Log.As.Info(response.StatusDescription);
             })
             .Until(() => (response != null && response.StatusCode == HttpStatusCode.OK), maxRetries);
 
             if (!succeeded)
-                Log.ToApp.Error("'{0}' never responded OK.", url.ToString());
+                Log.As.Error("'{0}' never responded OK.", url.ToString());
         }
 
         public static void CallUrlOnceNoWait(Uri uri)
@@ -60,7 +60,7 @@ namespace SitecoreInstaller.Framework.Web
             }
             catch (WebException we)
             {
-                Log.ToApp.Debug(we.ToString());
+                Log.As.Debug(we.ToString());
                 return null;
             }
         }

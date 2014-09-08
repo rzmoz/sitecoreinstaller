@@ -39,6 +39,7 @@ namespace SitecoreInstaller.App.Pipelines
             AddStep<InstallPackages>();
             AddStep<ConfigureFinishingTasks>();
             AddStep<DeserializeItems>();
+            AddStep<TransformConfigFiles>();
             AddStep<RunPostInstallPowerShellScripts>();
             AddStep<WarmUpSite>();
         }

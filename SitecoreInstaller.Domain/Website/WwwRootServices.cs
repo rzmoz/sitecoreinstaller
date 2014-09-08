@@ -23,12 +23,12 @@ namespace SitecoreInstaller.Domain.Website
         {
             var configFile = string.Format(WebsiteResource.DataFolderFormat, dataFolder.Directory);
             configFile.WriteToDisk(dataFolderConfigFile);
-            Log.ToApp.Info("Data folder set to '{0}'", dataFolder.FullName);
+            Log.As.Info("Data folder set to '{0}'", dataFolder.FullName);
         }
 
         public void CopySitecoreToProjectfolder(ProjectFolder projectFolder, BuildLibraryDirectory sitecore, DbInstallType sqlInstallType)
         {
-            Log.ToApp.Info("Copying '{0}'...", sitecore.Directory.Name);
+            Log.As.Info("Copying '{0}'...", sitecore.Directory.Name);
 
             //Copy web site folder
             var sitecoreWebsiteFolder = sitecore.Directory.CombineTo<DirectoryInfo>(projectFolder.Website.Name);
@@ -50,12 +50,12 @@ namespace SitecoreInstaller.Domain.Website
             //Copy rest of files as is
             sitecore.Directory.GetFiles().CopyTo(projectFolder, true);
 
-            Log.ToApp.Info("Sitecore copied");
+            Log.As.Info("Sitecore copied");
         }
 
         public void CopyModule(ProjectFolder projectFolder, BuildLibraryDirectory module, DbInstallType sqlInstallType)
         {
-            Log.ToApp.Info("Copying module to website...");
+            Log.As.Info("Copying module to website...");
 
             if (sqlInstallType == DbInstallType.Auto)
             {
@@ -69,7 +69,7 @@ namespace SitecoreInstaller.Domain.Website
                 }
                 catch (IOException e)
                 {
-                    Log.ToApp.Warning(e.ToString());
+                    Log.As.Warning(e.ToString());
                 }
             }
 
@@ -97,12 +97,12 @@ namespace SitecoreInstaller.Domain.Website
             //Copy directories to project folder
             module.Directory.GetDirectories().CopyTo(projectFolder);
 
-            Log.ToApp.Info("Module copied to website");
+            Log.As.Info("Module copied to website");
         }
 
         public void CopyStandAloneScPackage(ProjectFolder projectFolder, BuildLibraryFile file, DbInstallType sqlInstallType)
         {
-            Log.ToApp.Info("Copying stand alone sitecore package to website...");
+            Log.As.Info("Copying stand alone sitecore package to website...");
 
             if (file.File.IsSitecorePackage())
             {
@@ -110,7 +110,7 @@ namespace SitecoreInstaller.Domain.Website
             }
 
 
-            Log.ToApp.Info("Stand alone sitecore package copied to website");
+            Log.As.Info("Stand alone sitecore package copied to website");
         }
 
         private void CopyDatabaseFolder(string sourceDbName, DirectoryInfo sitecore, ProjectFolder projectfolder)

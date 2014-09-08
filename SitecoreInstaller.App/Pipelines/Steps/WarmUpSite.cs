@@ -14,7 +14,7 @@ namespace SitecoreInstaller.App.Pipelines.Steps
             }
             catch (UriFormatException e)
             {
-                Log.ToApp.Debug(e.ToString());
+                Log.As.Debug(e.ToString());
             }
         }
     }

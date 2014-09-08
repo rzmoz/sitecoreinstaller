@@ -15,7 +15,7 @@ namespace SitecoreInstallerConsole.Runners
             CmdLine = new CmdLine();
 
             Services.Init();
-            Log.ToApp.EntryLogged += LogEntryLogged;
+            Log.As.EntryLogged += LogEntryLogged;
             Services.BuildLibrary.Update();
         }
 

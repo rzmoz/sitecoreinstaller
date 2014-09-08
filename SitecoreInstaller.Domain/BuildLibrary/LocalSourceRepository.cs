@@ -82,12 +82,12 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 
             resource.TargetDirectory = _localBuildLibrary.Getfolder(sourceType);
 
-            Log.ToApp.Info("Copying '{0}'", sourceEntry.Key);
+            Log.As.Info("Copying '{0}'", sourceEntry.Key);
             resource.CopyToTargetDir(BuildLibraryMode.Local);
 
             resource = resource.Unpack();
 
-            Log.ToApp.Info("Updating buildlibrary");
+            Log.As.Info("Updating buildlibrary");
             _localBuildLibrary.Update();
 
             if (resource.Mode == BuildLibraryMode.Local)

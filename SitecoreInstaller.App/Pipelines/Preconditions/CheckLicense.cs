@@ -30,7 +30,7 @@ namespace SitecoreInstaller.App.Pipelines.Preconditions
             {
                 var warningMessage = string.Format("Please mind, that the selected license '{0}' epxires in {1} days.", licenseFileSourceEntry.Key, licenseFile.ExpiresIn);
                 ErrorMessage = warningMessage;
-                Log.ToApp.Warning(warningMessage);
+                Log.As.Warning(warningMessage);
             }
 
             return true;

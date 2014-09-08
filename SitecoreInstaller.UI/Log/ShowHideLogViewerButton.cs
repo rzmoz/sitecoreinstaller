@@ -42,8 +42,8 @@ namespace SitecoreInstaller.UI.Log
             LogViewer = logViewer;
             Init(toolTip);
             SetToolTip(_toolTipWhenNotVisible);
-            Framework.Diagnostics.Log.ToApp.LogCleared += This_LogCleared;
-            Framework.Diagnostics.Log.ToApp.EntryLogged += This_EntryLogged;
+            Framework.Diagnostics.Log.As.LogCleared += This_LogCleared;
+            Framework.Diagnostics.Log.As.EntryLogged += This_EntryLogged;
             Services.PipelineEngine.AllStepsExecuting += PipelineWorker_AllStepsExecuting;
             Services.PipelineEngine.PipelineCompleted += PipelineWorker_WorkerCompleted;
             _timer.Start();
@@ -51,7 +51,7 @@ namespace SitecoreInstaller.UI.Log
 
         void PipelineWorker_WorkerCompleted(object sender, EventArgs e)
         {
-            if (Framework.Diagnostics.Log.ToApp.Status == LogStatus.NoProblems)
+            if (Framework.Diagnostics.Log.As.Status == LogStatus.NoProblems)
                 Image = LogResources.Log;
             else
                 Image = LogResources.Log_error;

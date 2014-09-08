@@ -114,7 +114,6 @@
     <Compile Include="Diagnostics\LogEntry.cs" />
     <Compile Include="Diagnostics\LogStatus.cs" />
     <Compile Include="Diagnostics\LogType.cs" />
-    <Compile Include="Diagnostics\SimpleBufferedFileLog.cs" />
     <Compile Include="IOx\FileInfoExtensions.cs" />
     <Compile Include="IOx\FileNameExtensions.cs" />
     <Compile Include="IOx\FileTypes.cs" />

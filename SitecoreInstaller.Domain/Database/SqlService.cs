@@ -84,20 +84,20 @@ namespace SitecoreInstaller.Domain.Database
 
         public void TryStartDefaultSqlService()
         {
-            Log.ToApp.Debug("Trying to start default MSSQLSERVER service");
+            Log.As.Debug("Trying to start default MSSQLSERVER service");
             var msSqlResult = SqlServerPrompt.StartServer("MSSQLSERVER", LogType.Null);
             var sqlExpressResult = SqlServerPrompt.StartServer("SQLEXPRESS", LogType.Null);
 
-            Log.ToApp.Debug(msSqlResult.StandardOutput);
-            Log.ToApp.Debug(sqlExpressResult.StandardOutput);
+            Log.As.Debug(msSqlResult.StandardOutput);
+            Log.As.Debug(sqlExpressResult.StandardOutput);
 
             var logType = LogType.Debug;
 
             if (msSqlResult.HasErrors && sqlExpressResult.HasErrors)
                 logType = LogType.Error;
 
-            Log.ToApp.As(logType, msSqlResult.StandardError);
-            Log.ToApp.As(logType, sqlExpressResult.StandardError);
+            Log.As.As(logType, msSqlResult.StandardError);
+            Log.As.As(logType, sqlExpressResult.StandardError);
         }
 
         public void RestartServer(SqlConnection connection)
@@ -124,7 +124,7 @@ namespace SitecoreInstaller.Domain.Database
                 }
                 catch (FailedOperationException)
                 {
-                    Log.ToApp.Debug("Failed to establish a connection:" + sqlServer.ConnectionContext.ConnectionString);
+                    Log.As.Debug("Failed to establish a connection:" + sqlServer.ConnectionContext.ConnectionString);
                 }
 
             }).Until(() => connectionEstablished, TimeSpan.FromSeconds(10), 10);
@@ -158,17 +158,17 @@ namespace SitecoreInstaller.Domain.Database
                 }
             }
             catch (FailedOperationException e)
-            { Log.ToApp.Warning("Couldn't add user as sysadmin to sql server\r\n{0}", e); }
+            { Log.As.Warning("Couldn't add user as sysadmin to sql server\r\n{0}", e); }
             catch (SqlException e)
             {
-                Log.ToApp.Warning("Couldn't add user as sysadmin to sql server\r\n{0}", e);
+                Log.As.Warning("Couldn't add user as sysadmin to sql server\r\n{0}", e);
             }
         }
 
 
         public string GenerateConnectionStringsDelta(SqlSettings sqlSettings, IEnumerable<ConnectionStringName> databaseNames, IEnumerable<ConnectionStringEntry> existingEntries)
         {
-            Log.ToApp.Info("Generating connection string delta...");
+            Log.As.Info("Generating connection string delta...");
             var existingConnectionStringNames = existingEntries.Select(entry => entry.Name).ToList();
 
             var connectionStringEntries = string.Empty;
@@ -183,7 +183,7 @@ namespace SitecoreInstaller.Domain.Database
             }
 
             var connectionStringDelta = string.Format(ConnectionStringFormats.ConnectionStringDotConfigDelta, connectionStringEntries);
-            Log.ToApp.Debug(connectionStringDelta);
+            Log.As.Debug(connectionStringDelta);
             return connectionStringDelta;
         }
 

@@ -70,7 +70,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
             }
             catch (WebException e)
             {
-                Log.ToApp.Error(e.ToString());
+                Log.As.Error(e.ToString());
                 return new BuildLibraryResponse();
             }
         }
@@ -174,7 +174,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
                 }
                 catch (IOException e)
                 {
-                    Log.ToApp.Error(e.ToString());
+                    Log.As.Error(e.ToString());
                 }
             }
             //fire and forget the download of an updated file so it's downloaded for next usage

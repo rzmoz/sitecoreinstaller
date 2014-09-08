@@ -36,7 +36,7 @@ namespace SitecoreInstaller.Framework.Configuration
 
             if (!FileExists)
             {
-                Log.ToApp.Error("Config file not found. Looking for: " + Path.FullName);
+                Log.As.Error("Config file not found. Looking for: " + Path.FullName);
                 return;
             }
 
@@ -51,7 +51,8 @@ namespace SitecoreInstaller.Framework.Configuration
             }
             catch (Exception e)
             {
-                Log.ToDebugFile.Error("Failed to load: {0}\r\n{1}", Path.FullName, e.ToString());
+                //TODO: Replace with somethin not relying on app being up and running
+                //Log.ToDebugFile.Error("Failed to load: {0}\r\n{1}", Path.FullName, e.ToString());
             }
 
             if (Updated != null)
@@ -76,7 +77,8 @@ namespace SitecoreInstaller.Framework.Configuration
             }
             catch (Exception e)
             {
-                Log.ToDebugFile.Error(e.ToString());
+                //TODO: Replace with somethin not relying on app being up and running
+                //Log.ToDebugFile.Error(e.ToString());
             }
             if (Updated != null)
                 Updated(this, new GenericEventArgs<T>(Properties));

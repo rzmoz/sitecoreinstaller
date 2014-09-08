@@ -85,7 +85,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
             var buildLibraryResourceFactory = new BuildLibraryResourceFactory();
             var buildLibraryFile = buildLibraryResourceFactory.CreateFile(file);
             Add(buildLibraryFile, sourceType);
-            Log.ToApp.Info("{0} was succesfully added", buildLibraryFile.ToString());
+            Log.As.Info("{0} was succesfully added", buildLibraryFile.ToString());
             return buildLibraryFile;
         }
 
