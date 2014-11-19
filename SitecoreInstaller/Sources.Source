@@ -10,8 +10,5 @@
     -->
     <Manifest Enabled="false" Name="Example" Parameters="\\mynetworkdrive\BuildLibrary" Type="SitecoreInstaller.Domain.BuildLibrary.WindowsFileSystemSource, SitecoreInstaller.Domain" />
   </Manifests>
-  <ExternalSources>
-    <!-- external sources can be updated from a central location -->
-    <ExternalSource Type="HttpGet" Parameters="http://sitecoreinstaller.bitbucket.org/sources.config" />
-  </ExternalSources>
+  <ExternalSources />
 </Sources>    
