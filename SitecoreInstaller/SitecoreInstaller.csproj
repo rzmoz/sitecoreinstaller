@@ -218,10 +218,6 @@
       <Project>{7938E4D7-0388-4CAD-AC67-1C084DE97652}</Project>
       <Name>SitecoreInstaller.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SitecoreInstallerConsole\SitecoreInstallerConsole.csproj">
-      <Project>{a6ed8b1e-8afb-4501-90fb-3b2670aa10ec}</Project>
-      <Name>SitecoreInstallerConsole</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="7za.exe">

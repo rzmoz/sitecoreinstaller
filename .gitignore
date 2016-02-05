@@ -9,5 +9,3 @@ packages
 
 NDependOut
 SitecoreInstaller/sources.config
-
-!SitecoreInstaller.Rocks.csproj.user
