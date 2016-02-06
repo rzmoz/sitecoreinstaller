@@ -7,12 +7,33 @@ namespace SitecoreInstaller.Kernel.App.Install
         public InstallPipeline()
         {
             AddBlock("Generate Install Values").AddStep<SetInstallArgsValuesStep>();
-            AddBlock("Prepare wwwroot").AddStep<CreateTargetRootDirStep>();
-            AddBlock("Copy sitecore").AddStep<CopySitecoreStep>();
-            AddBlock("Copy license").AddStep<CopyLicenseFileStep>();
-            AddBlock("Copy modules").AddStep<CopySitecoreModulesStep>()
+
+            AddBlock("Prepare Wwwroot").AddStep<CreateTargetRootDirStep>();
+
+            AddBlock("Copy Sitecore").AddStep<CopySitecoreStep>();
+            AddBlock("Copy Modules").AddStep<CopySitecoreModulesStep>()
                                     .AddStep<CopySitecoreInstallerModulesStep>();
 
+            AddBlock("Copy Runtime Files").AddStep<CopyRuntimeServicesStep>()
+                                        .AddStep<CopyLicenseFileStep>();
+
+            AddBlock("Configure Sitecore").AddStep<SetConnectionStringsStep>()
+                                        .AddStep<SetDataFolderStep>()
+                                        .AddStep<SetSitecoreSettingsStep>();
+
+            AddBlock("Transform config files").AddStep<TransformConfigFilesStep>();
+
+            AddBlock("Configure Website").AddStep<AttachDatabasesStep>()
+                                        .AddStep<AddSitenameToHostfileStep>()
+                                        .AddStep<CreateIisWebsiteStep>();
+
+            AddBlock("Install Packages").AddStep<InstallPackagesStep>();
+
+            AddBlock("Prepare desktop").AddStep<PrepeareDesktopStep>();
+
+            AddBlock("Transform config files").AddStep<TransformConfigFilesStep>();
+
+            AddBlock("Warming up website");
         }
     }
 }
