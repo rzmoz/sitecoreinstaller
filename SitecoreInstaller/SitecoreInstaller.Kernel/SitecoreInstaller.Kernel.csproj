@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\Install\CopyLicenseFileStep.cs" />
     <Compile Include="App\Install\CopySitecoreStep.cs" />
     <Compile Include="App\Install\CreateTargetInstallDirStep.cs" />
     <Compile Include="App\Install\SetInstallArgsValuesStep.cs" />

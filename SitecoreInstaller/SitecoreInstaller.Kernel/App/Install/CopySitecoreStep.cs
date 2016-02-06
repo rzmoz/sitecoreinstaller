@@ -18,27 +18,27 @@ namespace SitecoreInstaller.Kernel.App.Install
 
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {
-            var sitecore = _buildLibrary.GetSitecore(args.ScBase);
+            var sitecore = _buildLibrary.GetSitecore(args.SitecoreName);
 
             Task copyWebsiteFiles = Task.Factory.StartNew(() =>
             {
                 //copy website files
-                sitecore.SourceDir.ToDir("Website")
+                sitecore.ToDir("Website")
                     .CopyTo(args.WwwRoot, DirCopyOptions.IncludeSubDirectories);
                 //copy data folder
-                sitecore.SourceDir.ToDir("Databases")
+                sitecore.ToDir("Databases")
                 .CopyTo(args.TargetRootDir.ToDir("Databases"), DirCopyOptions.IncludeSubDirectories);
             });
 
             Task copyDatabaseFiles = Task.Factory.StartNew(() =>
             {
-                sitecore.SourceDir.ToDir("Data")
+                sitecore.ToDir("Data")
                 .CopyTo(args.WwwRoot.ToDir(@"App_Data"), DirCopyOptions.ExcludeSubDirectories);
             });
 
             Task copyCustomFiles = Task.Factory.StartNew(() =>
              {
-                 sitecore.SourceDir.GetFiles().CopyTo(args.TargetRootDir, FileCopyOptions.OverwriteIfExists);
+                 sitecore.GetFiles().CopyTo(args.TargetRootDir, FileCopyOptions.OverwriteIfExists);
              });
 
             await Task.WhenAll(copyWebsiteFiles, copyDatabaseFiles, copyCustomFiles).ConfigureAwait(false);

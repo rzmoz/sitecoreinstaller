@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CSharp.Basics.IO;
 
 namespace SitecoreInstaller.Kernel.App.Install
@@ -7,7 +8,9 @@ namespace SitecoreInstaller.Kernel.App.Install
     {
         public IoDir TargetRootDir { get; set; }
         public IoDir WwwRoot { get; set; }
-        public string ScBase { get; set; }
+        public string SitecoreName { get; set; }
+        public string LicenseName { get; set; }
+        public IEnumerable<string> ModuleNames { get; set; }
 
         public UserPreferences UserPreferences { get; } = new UserPreferences();
     }

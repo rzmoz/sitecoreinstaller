@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CSharp.Basics.Diagnostics;
+using CSharp.Basics.IO;
+using CSharp.Basics.Pipelines;
+using SitecoreInstaller.Kernel.Domain;
+
+namespace SitecoreInstaller.Kernel.App.Install
+{
+    public class CopyLicenseFileStep : TaskStep<InstallArgs>
+    {
+        private readonly IBuildLibrary _buildLibrary;
+
+        public CopyLicenseFileStep(IBuildLibrary buildLibrary)
+        {
+            _buildLibrary = buildLibrary;
+        }
+
+        public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
+        {
+            var license = _buildLibrary.GetLicense(args.LicenseName);
+            license.CopyTo(args.WwwRoot.ToDir("App_Data"), FileCopyOptions.OverwriteIfExists);
+        }
+    }
+}

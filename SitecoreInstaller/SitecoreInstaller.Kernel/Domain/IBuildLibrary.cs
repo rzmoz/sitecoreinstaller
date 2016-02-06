@@ -1,9 +1,11 @@
-﻿namespace SitecoreInstaller.Kernel.Domain
+﻿using CSharp.Basics.IO;
+
+namespace SitecoreInstaller.Kernel.Domain
 {
     public interface IBuildLibrary
     {
-        IBuildLibraryResource GetSitecore(string name);
-        IBuildLibraryResource GetModule(string name);
-        IBuildLibraryResource GetLicense(string name);
+        IoDir GetSitecore(string name);
+        IoDir GetModule(string name);
+        IoFile GetLicense(string name);
     }
 }
