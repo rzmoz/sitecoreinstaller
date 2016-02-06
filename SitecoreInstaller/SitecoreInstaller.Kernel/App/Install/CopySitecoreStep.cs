@@ -24,7 +24,7 @@ namespace SitecoreInstaller.Kernel.App.Install
             {
                 //copy website files
                 sitecore.SourceDir.ToDir("Website")
-                    .CopyTo(args.TargetRootDir.ToDir("Website"), DirCopyOptions.IncludeSubDirectories);
+                    .CopyTo(args.WwwRoot, DirCopyOptions.IncludeSubDirectories);
                 //copy data folder
                 sitecore.SourceDir.ToDir("Databases")
                 .CopyTo(args.TargetRootDir.ToDir("Databases"), DirCopyOptions.IncludeSubDirectories);
@@ -33,7 +33,7 @@ namespace SitecoreInstaller.Kernel.App.Install
             Task copyDatabaseFiles = Task.Factory.StartNew(() =>
             {
                 sitecore.SourceDir.ToDir("Data")
-                .CopyTo(args.TargetRootDir.ToDir(@"Website\App_Data"), DirCopyOptions.ExcludeSubDirectories);
+                .CopyTo(args.WwwRoot.ToDir(@"App_Data"), DirCopyOptions.ExcludeSubDirectories);
             });
 
             Task copyCustomFiles = Task.Factory.StartNew(() =>
@@ -42,6 +42,12 @@ namespace SitecoreInstaller.Kernel.App.Install
              });
 
             await Task.WhenAll(copyWebsiteFiles, copyDatabaseFiles, copyCustomFiles).ConfigureAwait(false);
+
+            //ensure 64 bit assemblies are used
+            var bin32BitFolder = args.WwwRoot.ToDir("bin");
+            var bin64BitFolder = args.WwwRoot.ToDir("bin_x64");
+
+            bin64BitFolder.CopyTo(bin32BitFolder, DirCopyOptions.ExcludeSubDirectories);
         }
     }
 }
