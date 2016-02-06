@@ -4,6 +4,6 @@ namespace SitecoreInstaller.Kernel.Domain
 {
     public interface IBuildLibraryResource
     {
-        IoDir SourceDir { get; }
+        IoDir Dir { get; }
     }
 }

@@ -55,12 +55,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Install\CopyLicenseFileStep.cs" />
+    <Compile Include="App\Install\CopyModulesStep.cs" />
     <Compile Include="App\Install\CopySitecoreStep.cs" />
     <Compile Include="App\Install\CreateTargetInstallDirStep.cs" />
     <Compile Include="App\Install\SetInstallArgsValuesStep.cs" />
     <Compile Include="App\Install\InstallArgs.cs" />
     <Compile Include="App\Install\InstallPipeline.cs" />
     <Compile Include="App\UserPreferences.cs" />
+    <Compile Include="Domain\BuildLibraryDir.cs" />
+    <Compile Include="Domain\BuildLibraryFile.cs" />
     <Compile Include="Domain\IBuildLibrary.cs" />
     <Compile Include="Domain\IBuildLibraryResource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
