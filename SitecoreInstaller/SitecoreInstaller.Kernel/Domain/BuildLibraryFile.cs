@@ -10,5 +10,6 @@ namespace SitecoreInstaller.Kernel.Domain
     public class BuildLibraryFile : IBuildLibraryResource
     {
         public IoDir Dir { get; }
+        public IoFile File { get; }
     }
 }

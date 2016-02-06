@@ -5,7 +5,7 @@ using CSharp.Basics.Pipelines;
 
 namespace SitecoreInstaller.Kernel.App.Install
 {
-    public class CreateTargetInstallDirStep : TaskStep<InstallArgs>
+    public class CreateTargetRootDirStep : TaskStep<InstallArgs>
     {
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {
