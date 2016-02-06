@@ -2,7 +2,24 @@
   "locked": false,
   "version": 2,
   "targets": {
-    ".NETFramework,Version=v4.5.1": {},
+    ".NETFramework,Version=v4.5.1": {
+      "Autofac/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      },
+      "CSharp.Basics/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Autofac": "1.0.0",
+          "System.Management.Automation": "1.0.0"
+        }
+      },
+      "System.Management.Automation/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      }
+    },
     ".NETPlatform,Version=v5.4": {
       "Microsoft.CSharp/4.0.1-beta-23516": {
         "type": "package",
@@ -239,8 +256,42 @@
         }
       }
     },
-    ".NETFramework,Version=v4.5.1/win7-x86": {},
-    ".NETFramework,Version=v4.5.1/win7-x64": {},
+    ".NETFramework,Version=v4.5.1/win7-x86": {
+      "Autofac/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      },
+      "CSharp.Basics/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Autofac": "1.0.0",
+          "System.Management.Automation": "1.0.0"
+        }
+      },
+      "System.Management.Automation/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      }
+    },
+    ".NETFramework,Version=v4.5.1/win7-x64": {
+      "Autofac/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      },
+      "CSharp.Basics/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Autofac": "1.0.0",
+          "System.Management.Automation": "1.0.0"
+        }
+      },
+      "System.Management.Automation/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      }
+    },
     ".NETPlatform,Version=v5.4/win7-x86": {
       "Microsoft.CSharp/4.0.1-beta-23516": {
         "type": "package",
@@ -727,6 +778,18 @@
     }
   },
   "libraries": {
+    "Autofac/1.0.0": {
+      "type": "project",
+      "path": "../../wrap/Autofac/project.json"
+    },
+    "CSharp.Basics/1.0.0": {
+      "type": "project",
+      "path": "../../wrap/CSharp.Basics/project.json"
+    },
+    "System.Management.Automation/1.0.0": {
+      "type": "project",
+      "path": "../../wrap/System.Management.Automation/project.json"
+    },
     "Microsoft.CSharp/4.0.1-beta-23516": {
       "type": "package",
       "serviceable": true,
@@ -1641,7 +1704,11 @@
   },
   "projectFileDependencyGroups": {
     "": [],
-    ".NETFramework,Version=v4.5.1": [],
+    ".NETFramework,Version=v4.5.1": [
+      "Autofac >= 1.0.0-*",
+      "CSharp.Basics >= 1.0.0-*",
+      "System.Management.Automation >= 1.0.0-*"
+    ],
     ".NETPlatform,Version=v5.4": [
       "Microsoft.CSharp >= 4.0.1-beta-23516",
       "System.Collections >= 4.0.11-beta-23516",

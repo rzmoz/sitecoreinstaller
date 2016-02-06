@@ -7,7 +7,13 @@
   "licenseUrl": "",
 
   "frameworks": {
-    "net451": { },
+    "net451": {
+      "dependencies": {
+        "Autofac": "1.0.0-*",
+        "CSharp.Basics": "1.0.0-*",
+        "System.Management.Automation": "1.0.0-*"
+      }
+    },
     "dotnet5.4": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23516",

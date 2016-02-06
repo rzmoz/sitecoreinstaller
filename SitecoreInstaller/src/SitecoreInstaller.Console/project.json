@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
   "description": "SitecoreInstaller.Consoler Console Application",
   "authors": [ "rzmoz" ],
@@ -11,6 +11,7 @@
   },
 
   "dependencies": {
+    "SitecoreInstaller.Kernel": "1.0.0-*"
   },
 
   "commands": {
@@ -18,7 +19,10 @@
   },
 
   "frameworks": {
-    "dnx451": { },
+    "dnx451": {
+      "dependencies": {
+      }
+    },
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23516",

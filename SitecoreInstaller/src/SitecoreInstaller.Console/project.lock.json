@@ -2,7 +2,33 @@
   "locked": false,
   "version": 2,
   "targets": {
-    "DNX,Version=v4.5.1": {},
+    "DNX,Version=v4.5.1": {
+      "Autofac/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      },
+      "CSharp.Basics/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Autofac": "1.0.0",
+          "System.Management.Automation": "1.0.0"
+        }
+      },
+      "SitecoreInstaller.Kernel/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Autofac": "1.0.0",
+          "CSharp.Basics": "1.0.0",
+          "System.Management.Automation": "1.0.0"
+        }
+      },
+      "System.Management.Automation/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      }
+    },
     "DNXCore,Version=v5.0": {
       "Microsoft.CSharp/4.0.1-beta-23516": {
         "type": "package",
@@ -29,6 +55,17 @@
         },
         "runtime": {
           "lib/dotnet5.4/Microsoft.CSharp.dll": {}
+        }
+      },
+      "SitecoreInstaller.Kernel/1.0.0": {
+        "type": "project",
+        "framework": ".NETPlatform,Version=v5.4",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23516",
+          "System.Collections": "4.0.11-beta-23516",
+          "System.Linq": "4.0.1-beta-23516",
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Threading": "4.0.11-beta-23516"
         }
       },
       "System.Collections/4.0.11-beta-23516": {
@@ -294,8 +331,60 @@
         }
       }
     },
-    "DNX,Version=v4.5.1/win7-x86": {},
-    "DNX,Version=v4.5.1/win7-x64": {},
+    "DNX,Version=v4.5.1/win7-x86": {
+      "Autofac/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      },
+      "CSharp.Basics/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Autofac": "1.0.0",
+          "System.Management.Automation": "1.0.0"
+        }
+      },
+      "SitecoreInstaller.Kernel/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Autofac": "1.0.0",
+          "CSharp.Basics": "1.0.0",
+          "System.Management.Automation": "1.0.0"
+        }
+      },
+      "System.Management.Automation/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      }
+    },
+    "DNX,Version=v4.5.1/win7-x64": {
+      "Autofac/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      },
+      "CSharp.Basics/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Autofac": "1.0.0",
+          "System.Management.Automation": "1.0.0"
+        }
+      },
+      "SitecoreInstaller.Kernel/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Autofac": "1.0.0",
+          "CSharp.Basics": "1.0.0",
+          "System.Management.Automation": "1.0.0"
+        }
+      },
+      "System.Management.Automation/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1"
+      }
+    },
     "DNXCore,Version=v5.0/win7-x86": {
       "Microsoft.CSharp/4.0.1-beta-23516": {
         "type": "package",
@@ -360,6 +449,17 @@
         },
         "runtime": {
           "runtimes/win7/lib/DNXCore50/System.Threading.dll": {}
+        }
+      },
+      "SitecoreInstaller.Kernel/1.0.0": {
+        "type": "project",
+        "framework": ".NETPlatform,Version=v5.4",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23516",
+          "System.Collections": "4.0.11-beta-23516",
+          "System.Linq": "4.0.1-beta-23516",
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Threading": "4.0.11-beta-23516"
         }
       },
       "System.Collections/4.0.11-beta-23516": {
@@ -722,6 +822,17 @@
           "runtimes/win7/lib/DNXCore50/System.Threading.dll": {}
         }
       },
+      "SitecoreInstaller.Kernel/1.0.0": {
+        "type": "project",
+        "framework": ".NETPlatform,Version=v5.4",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23516",
+          "System.Collections": "4.0.11-beta-23516",
+          "System.Linq": "4.0.1-beta-23516",
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Threading": "4.0.11-beta-23516"
+        }
+      },
       "System.Collections/4.0.11-beta-23516": {
         "type": "package",
         "dependencies": {
@@ -1018,6 +1129,22 @@
     }
   },
   "libraries": {
+    "Autofac/1.0.0": {
+      "type": "project",
+      "path": "../../wrap/Autofac/project.json"
+    },
+    "CSharp.Basics/1.0.0": {
+      "type": "project",
+      "path": "../../wrap/CSharp.Basics/project.json"
+    },
+    "SitecoreInstaller.Kernel/1.0.0": {
+      "type": "project",
+      "path": "../SitecoreInstaller.Kernel/project.json"
+    },
+    "System.Management.Automation/1.0.0": {
+      "type": "project",
+      "path": "../../wrap/System.Management.Automation/project.json"
+    },
     "Microsoft.CSharp/4.0.1-beta-23516": {
       "type": "package",
       "serviceable": true,
@@ -2134,7 +2261,9 @@
     }
   },
   "projectFileDependencyGroups": {
-    "": [],
+    "": [
+      "SitecoreInstaller.Kernel >= 1.0.0-*"
+    ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": [
       "Microsoft.CSharp >= 4.0.1-beta-23516",
