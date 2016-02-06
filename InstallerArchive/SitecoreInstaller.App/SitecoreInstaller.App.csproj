@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{687BAB97-4F30-4A9C-BF18-197C6A241EF4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SitecoreInstaller.App</RootNamespace>
+    <AssemblyName>SitecoreInstaller.App</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestEnsures>False</CodeContractsSuggestEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsDisjunctiveRequires>False</CodeContractsDisjunctiveRequires>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>False</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>False</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Pre and Post</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsSQLServerOption />
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSharp.Basics, Version=2.60.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.2.60.0.0\lib\net45\CSharp.Basics.dll</HintPath>
+    </Reference>
+    <Reference Include="CSharp.Basics.SevenZip, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.SevenZip.1.5.0.0\lib\net45\CSharp.Basics.SevenZip.dll</HintPath>
+    </Reference>
+    <Reference Include="CSharp.Basics.Xdt, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.Xdt.1.2.0.0\lib\net45\CSharp.Basics.Xdt.exe</HintPath>
+    </Reference>
+    <Reference Include="Delimon.Win32.IO, Version=4.0.4764.1936, Culture=neutral, PublicKeyToken=6f601db60ebd9657, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.2.60.0.0\lib\net45\Delimon.Win32.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\3rdPartyAssemblies\Microsoft.mshtml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Web.Publishing.Tasks, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSharp.Basics.Xdt.1.2.0.0\lib\net45\Microsoft.Web.Publishing.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=1.9.2.235, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.9.2.235, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\CSharp.Basics.2.60.0.0\lib\net45\System.Management.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DialogIcon.cs" />
+    <Compile Include="DialogButtons.cs" />
+    <Compile Include="Pipelines\AutoSetupPipeline.cs" />
+    <Compile Include="Pipelines\ArchiveEventArgs.cs" />
+    <Compile Include="Pipelines\ArchivePipeline.cs" />
+    <Compile Include="Pipelines\CleanupEventArgs.cs" />
+    <Compile Include="Pipelines\Steps\AutoSetup\DetermineSqlConnection.cs" />
+    <Compile Include="Pipelines\Steps\AutoSetup\SaveSqlInstanceNameToPreferences.cs" />
+    <Compile Include="Pipelines\Steps\Databases\AddUserToSqlServerAsSysAdmin.cs" />
+    <Compile Include="Pipelines\Steps\Databases\EnableMixedAuthenticationMode.cs" />
+    <Compile Include="Pipelines\Steps\Databases\TryStartSqlServer.cs" />
+    <Compile Include="Pipelines\Steps\AutoSetup\DetermineLocalBuildLibraryFolder.cs" />
+    <Compile Include="Pipelines\Steps\Install\FixReportingDatabaseNameWhichIsWronglyNamedAnalyticsInSevenPointFive.cs" />
+    <Compile Include="Pipelines\Steps\Install\SetSitecoreSettings.cs" />
+    <Compile Include="Pipelines\Steps\Maintenance\RecycleApplication.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckBinding.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckNothing.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckSqlConnection.cs" />
+    <Compile Include="Pipelines\PipelineApplicationEventArgs.cs" />
+    <Compile Include="Pipelines\PublishPipeline.cs" />
+    <Compile Include="Pipelines\RecycleApplicationPipeline.cs" />
+    <Compile Include="Pipelines\Steps\Archiving\CleanProjectForArchiving.cs" />
+    <Compile Include="Pipelines\Steps\Archiving\StartApplication.cs" />
+    <Compile Include="Pipelines\Steps\Archiving\ZipAndMoveToArchiveFolder.cs" />
+    <Compile Include="Pipelines\Steps\Databases\VerifyMongoDbConnection.cs" />
+    <Compile Include="Pipelines\Steps\Install\Copy64BitAssemblies.cs" />
+    <Compile Include="Pipelines\Steps\Install\DeserializeItems.cs" />
+    <Compile Include="Pipelines\Steps\Install\RunPreInstallPowerShellScripts.cs" />
+    <Compile Include="Pipelines\Steps\Install\ConfigureFinishingTasks.cs" />
+    <Compile Include="Pipelines\Steps\Install\GrantPermissions.cs" />
+    <Compile Include="Pipelines\Steps\Install\RunPostInstallPowerShellScripts.cs" />
+    <Compile Include="Pipelines\Steps\Install\TransformConfigFiles.cs" />
+    <Compile Include="Pipelines\Steps\Nothing\DoNothingEventArgs.cs" />
+    <Compile Include="Pipelines\Steps\PowerShellScriptStep.cs" />
+    <Compile Include="Pipelines\Steps\Databases\VerifySqlConnection.cs" />
+    <Compile Include="Pipelines\Steps\Publishing\PublishSite.cs" />
+    <Compile Include="Pipelines\Steps\Uninstall\RunPostUninstallPowerShellScripts.cs" />
+    <Compile Include="Pipelines\Steps\Uninstall\RunPreUninstallPowerShellScripts.cs" />
+    <Compile Include="Pipelines\Steps\WarmUpSite.cs" />
+    <Compile Include="Pipelines\InstallPipeline.cs" />
+    <Compile Include="Pipelines\DoNothingPipeline.cs" />
+    <Compile Include="Pipelines\PipelineService.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckLicense.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckProjectExists.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckSitecore.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckWritePermissionToHostFile.cs" />
+    <Compile Include="Pipelines\Preconditions\Precondition.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckProjectDoesNotExist.cs" />
+    <Compile Include="Pipelines\Preconditions\CheckProjectNameIsSet.cs" />
+    <Compile Include="Pipelines\ReInstallPipeline.cs" />
+    <Compile Include="Pipelines\Steps\Install\AddSitenameToHostFile.cs" />
+    <Compile Include="Pipelines\Steps\Install\AttachDatabases.cs" />
+    <Compile Include="Pipelines\Steps\Install\CopyLicensefile.cs" />
+    <Compile Include="Pipelines\Steps\Install\CopyModuleFiles.cs" />
+    <Compile Include="Pipelines\Steps\Install\CopySitecore.cs" />
+    <Compile Include="Pipelines\Steps\Install\CreateIisSiteAndAppPool.cs" />
+    <Compile Include="Pipelines\Steps\Install\CreateProjectFolder.cs" />
+    <Compile Include="Pipelines\Steps\Install\InstallPackages.cs" />
+    <Compile Include="Pipelines\Steps\Install\InstallRuntimeServices.cs" />
+    <Compile Include="Pipelines\Steps\Install\SaveProjectSettings.cs" />
+    <Compile Include="Pipelines\Steps\Install\SetConnectionStrings.cs" />
+    <Compile Include="Pipelines\Steps\Install\SetDataFolder.cs" />
+    <Compile Include="Pipelines\Steps\Nothing\DoNothingStep1.cs" />
+    <Compile Include="Pipelines\Steps\Nothing\DoNothingStep2.cs" />
+    <Compile Include="Pipelines\Steps\Step.cs" />
+    <Compile Include="Pipelines\Steps\Uninstall\DeleteIisSiteAndAppPool.cs" />
+    <Compile Include="Pipelines\Steps\Uninstall\DeleteProject.cs" />
+    <Compile Include="Pipelines\Steps\Uninstall\DeleteSiteFromHostFile.cs" />
+    <Compile Include="Pipelines\Steps\Uninstall\DetachDatabases.cs" />
+    <Compile Include="Pipelines\Steps\Uninstall\StopApplication.cs" />
+    <Compile Include="Pipelines\TestMongoSettingsPipeline.cs" />
+    <Compile Include="Pipelines\TestSqlSettingsPipeline.cs" />
+    <Compile Include="Pipelines\TryAutoSetSqlInstanceName.cs" />
+    <Compile Include="Pipelines\UpdateLicenseFilePipeline.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services.cs" />
+    <Compile Include="ProjectSettings.cs" />
+    <Compile Include="Pipelines\UninstallPipeline.cs" />
+    <Compile Include="GlobalFileNames.cs" />
+    <Compile Include="UserPreferencesConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SitecoreInstaller.Domain\SitecoreInstaller.Domain.csproj">
+      <Project>{32B57FF0-1EF1-46C7-979E-F6144E6D4387}</Project>
+      <Name>SitecoreInstaller.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SitecoreInstaller.Framework\SitecoreInstaller.Framework.csproj">
+      <Project>{4DDD98BC-4F89-4C94-847E-7215486CE358}</Project>
+      <Name>SitecoreInstaller.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="7za.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

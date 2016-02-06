@@ -1,0 +1,11 @@
+# git ignore file
+*_Resharper*
+packages
+!packages/ConfigTransform.2.0.4/
+[Bb]in
+[Oo]bj
+*.user
+*.suo
+
+NDependOut
+SitecoreInstaller/sources.config
