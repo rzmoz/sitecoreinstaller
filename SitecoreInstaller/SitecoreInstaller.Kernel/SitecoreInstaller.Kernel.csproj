@@ -77,11 +77,11 @@
     <Compile Include="App\Install\TransformConfigFilesStep.cs" />
     <Compile Include="App\Install\WarmUpSiteStep.cs" />
     <Compile Include="App\UserPreferences.cs" />
-    <Compile Include="Domain\BuildLibraryDir.cs" />
-    <Compile Include="Domain\BuildLibraryFile.cs" />
+    <Compile Include="Domain\BuildLibrary\BuildLibraryDir.cs" />
+    <Compile Include="Domain\BuildLibrary\BuildLibraryFile.cs" />
     <Compile Include="Domain\FileExtensions.cs" />
-    <Compile Include="Domain\IBuildLibrary.cs" />
-    <Compile Include="Domain\IBuildLibraryResource.cs" />
+    <Compile Include="Domain\BuildLibrary\IBuildLibrary.cs" />
+    <Compile Include="Domain\BuildLibrary\IBuildLibraryResource.cs" />
     <Compile Include="Domain\RegisteredFileTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

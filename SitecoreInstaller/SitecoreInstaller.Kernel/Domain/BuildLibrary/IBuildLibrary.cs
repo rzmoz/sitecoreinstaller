@@ -1,6 +1,6 @@
 ﻿using CSharp.Basics.IO;
 
-namespace SitecoreInstaller.Kernel.Domain
+namespace SitecoreInstaller.Kernel.Domain.BuildLibrary
 {
     public interface IBuildLibrary
     {

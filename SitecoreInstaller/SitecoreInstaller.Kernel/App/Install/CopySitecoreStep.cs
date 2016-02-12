@@ -4,6 +4,7 @@ using CSharp.Basics.Diagnostics;
 using CSharp.Basics.IO;
 using CSharp.Basics.Pipelines;
 using SitecoreInstaller.Kernel.Domain;
+using SitecoreInstaller.Kernel.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.Kernel.App.Install
 {
