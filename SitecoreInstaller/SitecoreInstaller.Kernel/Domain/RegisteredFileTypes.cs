@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using CSharp.Basics.IO;
+using DotNet.Basics.IO;
 
 namespace SitecoreInstaller.Kernel.Domain
 {

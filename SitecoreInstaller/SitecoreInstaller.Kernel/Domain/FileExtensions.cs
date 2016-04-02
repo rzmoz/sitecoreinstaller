@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using CSharp.Basics.IO;
+using DotNet.Basics.IO;
 using Ionic.Zip;
 
 namespace SitecoreInstaller.Kernel.Domain

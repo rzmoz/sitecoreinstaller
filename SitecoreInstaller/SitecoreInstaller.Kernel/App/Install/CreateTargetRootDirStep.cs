@@ -1,7 +1,8 @@
-﻿using System.Threading.Tasks;
-using CSharp.Basics.Diagnostics;
-using CSharp.Basics.IO;
-using CSharp.Basics.Pipelines;
+﻿using System.Security.AccessControl;
+using System.Threading.Tasks;
+using DotNet.Basics.Diagnostics;
+using DotNet.Basics.IO;
+using DotNet.Basics.Pipelines;
 
 namespace SitecoreInstaller.Kernel.App.Install
 {
@@ -10,7 +11,7 @@ namespace SitecoreInstaller.Kernel.App.Install
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {
             args.TargetRootDir.CreateIfNotExists();
-            args.TargetRootDir.GrantFullControl("everyone");
+            args.TargetRootDir.GrantAccess("everyone",FileSystemRights.FullControl);
         }
     }
 }

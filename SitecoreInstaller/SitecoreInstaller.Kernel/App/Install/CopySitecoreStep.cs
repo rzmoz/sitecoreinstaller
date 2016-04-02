@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CSharp.Basics.Diagnostics;
-using CSharp.Basics.IO;
-using CSharp.Basics.Pipelines;
+using DotNet.Basics.Diagnostics;
+using DotNet.Basics.IO;
+using DotNet.Basics.Pipelines;
 using SitecoreInstaller.Kernel.Domain;
 using SitecoreInstaller.Kernel.Domain.BuildLibrary;
 

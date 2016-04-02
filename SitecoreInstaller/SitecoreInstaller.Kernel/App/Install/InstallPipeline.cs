@@ -1,4 +1,4 @@
-﻿using CSharp.Basics.Pipelines;
+﻿using DotNet.Basics.Pipelines;
 
 namespace SitecoreInstaller.Kernel.App.Install
 {

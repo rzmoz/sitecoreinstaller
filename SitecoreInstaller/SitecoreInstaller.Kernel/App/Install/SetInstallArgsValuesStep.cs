@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CSharp.Basics.Diagnostics;
-using CSharp.Basics.Pipelines;
+using DotNet.Basics.Diagnostics;
+using DotNet.Basics.Pipelines;
 
 namespace SitecoreInstaller.Kernel.App.Install
 {

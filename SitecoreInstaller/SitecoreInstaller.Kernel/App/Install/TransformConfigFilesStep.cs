@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharp.Basics.Diagnostics;
-using CSharp.Basics.Pipelines;
+using DotNet.Basics.Diagnostics;
+using DotNet.Basics.Pipelines;
 
 namespace SitecoreInstaller.Kernel.App.Install
 {
