@@ -68,7 +68,7 @@
     <Compile Include="App\Install\CopySitecoreModulesStep.cs" />
     <Compile Include="App\Install\CopySitecoreStep.cs" />
     <Compile Include="App\Install\CreateIisWebsiteStep.cs" />
-    <Compile Include="App\Install\CreateTargetRootDirStep.cs" />
+    <Compile Include="App\Install\CreateInstallDirStep.cs" />
     <Compile Include="App\Install\InstallPackagesStep.cs" />
     <Compile Include="App\Install\PrepeareDesktopStep.cs" />
     <Compile Include="App\Install\SetConnectionStringsStep.cs" />

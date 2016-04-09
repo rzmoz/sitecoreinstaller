@@ -7,9 +7,9 @@
         <authors>rzmoz</authors>
         <owners>rzmoz</owners>
         <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-        <projectUrl>https://github.com/rzmoz/dotnet.basics</projectUrl>
+        <projectUrl>https://github.com/rzmoz/sitecoreinstaller</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Syntactical sugar for .NET</description>
+        <description>Install Sitecore. Fast and easy</description>
     </metadata>
     <files>
     </files>

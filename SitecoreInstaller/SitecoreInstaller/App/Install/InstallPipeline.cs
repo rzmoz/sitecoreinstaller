@@ -8,7 +8,7 @@ namespace SitecoreInstaller.App.Install
         {
             AddBlock("Generate Install Values").AddStep<SetInstallArgsValuesStep>();
 
-            AddBlock("Prepare Wwwroot").AddStep<CreateTargetRootDirStep>();
+            AddBlock("Prepare Wwwroot").AddStep<CreateInstallDirStep>();
 
             AddBlock("Copy Sitecore").AddStep<CopySitecoreStep>();
             AddBlock("Copy Modules").AddStep<CopySitecoreModulesStep>()

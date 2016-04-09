@@ -44,10 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewSitecoreInstallation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="SitecoreInstaller.Cmdlets.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SitecoreInstaller\SitecoreInstaller.csproj">
+      <Project>{29a8ba1d-0269-4d04-beff-e4913e861a6a}</Project>
+      <Name>SitecoreInstaller</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

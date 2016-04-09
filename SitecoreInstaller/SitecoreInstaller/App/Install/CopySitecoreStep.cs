@@ -28,7 +28,7 @@ namespace SitecoreInstaller.App.Install
                     .CopyTo(args.WwwRoot, DirCopyOptions.IncludeSubDirectories);
                 //copy data folder
                 sitecore.ToDir("Databases")
-                .CopyTo(args.TargetRootDir.ToDir("Databases"), DirCopyOptions.IncludeSubDirectories);
+                .CopyTo(args.InstallDir.ToDir("Databases"), DirCopyOptions.IncludeSubDirectories);
             });
 
             Task copyDatabaseFiles = Task.Factory.StartNew(() =>
@@ -39,7 +39,7 @@ namespace SitecoreInstaller.App.Install
 
             Task copyCustomFiles = Task.Factory.StartNew(() =>
              {
-                 sitecore.GetFiles().CopyTo(args.TargetRootDir, FileCopyOptions.OverwriteIfExists);
+                 sitecore.GetFiles().CopyTo(args.InstallDir, FileCopyOptions.OverwriteIfExists);
              });
 
             await Task.WhenAll(copyWebsiteFiles, copyDatabaseFiles, copyCustomFiles).ConfigureAwait(false);

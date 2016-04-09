@@ -30,10 +30,10 @@ namespace SitecoreInstaller.App.Install
                 //copy database files to database folder
                 var dbFiles = new[] { RegisteredFileTypes.SqlMdf.GetAllSearchPattern, RegisteredFileTypes.SqlLdf.GetAllSearchPattern }
                     .SelectMany(fileExtensions => module.Dir.GetFiles(fileExtensions));
-                dbFiles.CopyTo(args.TargetRootDir.ToDir("Databases"), FileCopyOptions.OverwriteIfExists);
+                dbFiles.CopyTo(args.InstallDir.ToDir("Databases"), FileCopyOptions.OverwriteIfExists);
 
                 //copy powershell files
-                module.Dir.GetFiles(RegisteredFileTypes.PowerShellScript.Extension).CopyTo(args.TargetRootDir);
+                module.Dir.GetFiles(RegisteredFileTypes.PowerShellScript.Extension).CopyTo(args.InstallDir);
 
                 //copy config delta files to project root folder
                 //we don't copy delta files to project since we read them directly from the source modules to avoid naming conflicts
@@ -51,10 +51,10 @@ namespace SitecoreInstaller.App.Install
                 module.Dir.GetFiles(RegisteredFileTypes.SitecoreUpdate.Extension).CopyTo(args.WwwRoot.ToDir("App_Data", "packages"), FileCopyOptions.OverwriteIfExists);
 
                 //Copy rest of files
-                Array.FindAll(module.Dir.GetFiles().ToArray(), RegisteredFileTypes.IsNotRegisteredFileType).CopyTo(args.TargetRootDir, FileCopyOptions.OverwriteIfExists);
+                Array.FindAll(module.Dir.GetFiles().ToArray(), RegisteredFileTypes.IsNotRegisteredFileType).CopyTo(args.InstallDir, FileCopyOptions.OverwriteIfExists);
 
                 //Copy directories to project folder
-                module.Dir.GetDirectories().CopyTo(args.TargetRootDir);
+                module.Dir.GetDirectories().CopyTo(args.InstallDir);
             }
 
             
