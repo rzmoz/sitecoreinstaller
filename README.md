@@ -1,1 +1,1 @@
-# SitecoreInstaller. The easiest way to install Sitecore
+# SitecoreInstaller. The simple way to install Sitecore
