@@ -35,5 +35,6 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("3.0.0.0")]
 [assembly: AssemblyFileVersion("3.0.0.0")]
+[assembly: AssemblyInformationalVersion("1.0.0.0")]
 [assembly: InternalsVisibleTo("SitecoreInstaller.Tests")]
 [assembly: CLSCompliant(false)]
