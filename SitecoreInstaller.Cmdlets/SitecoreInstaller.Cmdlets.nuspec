@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+    <metadata>
+        <id>$id$</id>
+        <version>$version$-rc1</version>
+        <title>$title$</title>
+        <authors>rzmoz</authors>
+        <owners>rzmoz</owners>
+        <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+        <projectUrl>https://github.com/rzmoz/sitecoreinstaller</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Install Sitecore. Fast and easy</description>
+    </metadata>
+    <files>
+    </files>
+</package>

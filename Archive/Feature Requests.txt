@@ -1,0 +1,18 @@
+Features:
+Install Mongo Db automatically
+Setup Sql security automatically
+Installation of Sitecore Counters
+Option for cancelling pipeline (cancel button)
+Optional rollback pipeline (if something goes wrong or user cancels)
+Make sources filter on entry names (to support libraries with noise files)
+Save install times for future comparisons
+
+UI:
+Better visualization of sources (are selections local or external etc)
+
+Distribution:
+Make distribution smaller(ILMerge)
+
+Bugs:
+Duplicate manifests generate error
+Integrated Security Tests With user account but installs as network service!
