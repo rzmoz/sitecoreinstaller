@@ -7,9 +7,9 @@
         <authors>rzmoz</authors>
         <owners>rzmoz</owners>
         <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-        <projectUrl>https://github.com/rzmoz/sitecoreinstaller</projectUrl>
+        <projectUrl>https://bitbucket.org/rzmoz/sitecoreinstaller</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Install Sitecore. Fast and simple (if you like powershell :-)</description>
+        <description>Install Sitecore, fast and simple (if you like powershell)</description>
     </metadata>
     <files>
     </files>
