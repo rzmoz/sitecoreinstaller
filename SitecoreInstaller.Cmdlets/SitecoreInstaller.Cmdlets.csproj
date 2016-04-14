@@ -35,7 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DotNet.Basics, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.1.4.0-rc5\lib\net45\DotNet.Basics.dll</HintPath>
+      <HintPath>..\packages\DotNet.Basics.1.4.0-rc6\lib\net45\DotNet.Basics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
