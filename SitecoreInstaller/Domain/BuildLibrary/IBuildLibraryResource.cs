@@ -8,7 +8,6 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         DirectoryInfo Directory { get; }
         string FullName { get; }
         BuildLibraryType BuildLibraryType { get; }
-        IoType IOType { get; }
         FileSystemInfo FileSystemInfo { get; }
     }
 }

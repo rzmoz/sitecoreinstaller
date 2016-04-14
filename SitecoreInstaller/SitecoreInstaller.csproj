@@ -75,7 +75,6 @@
     <Compile Include="App\UserPreferences.cs" />
     <Compile Include="Domain\FileExtensions.cs" />
     <Compile Include="Domain\RegisteredFileTypes.cs" />
-    <Compile Include="Domain\IoType.cs" />
     <Compile Include="Domain\BuildLibrary\IOBuildLibrary.cs" />
     <Compile Include="Domain\BuildLibrary\IBuildLibraryResource.cs" />
     <Compile Include="Domain\BuildLibrary\IBuildLibrary.cs" />

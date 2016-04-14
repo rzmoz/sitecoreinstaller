@@ -26,13 +26,26 @@ namespace SitecoreInstaller.App.Install
             if (sitecore == null)
                 throw new FileNotFoundException($"Sitecore not found:{args.SitecoreName}");
 
-            if (sitecore.IOType == IoType.File)
-                ZipFile.ExtractToDirectory(sitecore.FullName, ((FileInfo)sitecore.FileSystemInfo).Directory.FullName);
+
+            if (sitecore.FileSystemInfo is FileInfo)
+            {
+                await Task.Factory.StartNew(() =>
+                {
+                    var target = ((FileInfo)sitecore.FileSystemInfo).Directory;
+                    logger.Log($"Extracting {sitecore.Name}..");
+                    logger.Log($"Extracting {sitecore.FullName} to {target.FullName }..", LogLevel.Debug);
+                    ZipFile.ExtractToDirectory(sitecore.FullName, target.FullName);
+                });
+            }
 
             sitecore = _buildLibrary.GetSitecore(args.SitecoreName);//get resource as folder
 
-            if (sitecore.IOType != IoType.Dir)
-                throw new ApplicationException("Found sitecore is not directory");
+            if (sitecore.FileSystemInfo is DirectoryInfo)
+            {
+                logger.Log($"Found sitecore at {sitecore} is not directory. Aborting...", LogLevel.Critical);
+                return;
+            }
+
 
             Task copyWebsiteFiles = Task.Factory.StartNew(() =>
             {
