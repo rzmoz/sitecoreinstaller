@@ -1,9 +1,14 @@
-﻿using DotNet.Basics.IO;
+﻿using System.IO;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
     public interface IBuildLibraryResource
     {
-        IoDir Dir { get; }
+        string Name { get; }
+        DirectoryInfo Directory { get; }
+        string FullName { get; }
+        BuildLibraryType BuildLibraryType { get; }
+        IoType IOType { get; }
+        FileSystemInfo FileSystemInfo { get; }
     }
 }

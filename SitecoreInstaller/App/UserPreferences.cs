@@ -1,4 +1,5 @@
-﻿using DotNet.Basics.IO;
+﻿using System.IO;
+using DotNet.Basics.IO;
 
 namespace SitecoreInstaller.App
 {
@@ -18,8 +19,8 @@ namespace SitecoreInstaller.App
             MongoPortNo = "27017";
         }
 
-        public IoDir InstallerTargetRootDir { get; }
-        public IoDir BuildLibraryDir { get; }
+        public DirectoryInfo InstallerTargetRootDir { get; }
+        public DirectoryInfo BuildLibraryDir { get; }
         public string UrlSuffix { get; }
 
         public string SqlInstanceName { get; }

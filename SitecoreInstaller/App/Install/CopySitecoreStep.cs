@@ -4,21 +4,16 @@ using DotNet.Basics.Diagnostics;
 using DotNet.Basics.IO;
 using DotNet.Basics.Pipelines;
 using SitecoreInstaller.Domain;
-using SitecoreInstaller.Domain.BuildLibrary;
+
 
 namespace SitecoreInstaller.App.Install
 {
     public class CopySitecoreStep : TaskStep<InstallArgs>
     {
-        private readonly IBuildLibrary _buildLibrary;
-
-        public CopySitecoreStep(IBuildLibrary buildLibrary)
-        {
-            _buildLibrary = buildLibrary;
-        }
-
+        
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {
+            /*
             var sitecore = _buildLibrary.GetSitecore(args.SitecoreName);
 
             Task copyWebsiteFiles = Task.Factory.StartNew(() =>
@@ -49,6 +44,9 @@ namespace SitecoreInstaller.App.Install
             var bin64BitFolder = args.WwwRoot.ToDir("bin_x64");
 
             bin64BitFolder.CopyTo(bin32BitFolder, DirCopyOptions.ExcludeSubDirectories);
+            */
         }
+ 
+        
     }
 }

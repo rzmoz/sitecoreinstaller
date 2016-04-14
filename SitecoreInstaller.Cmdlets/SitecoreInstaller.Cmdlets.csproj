@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNet.Basics, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNet.Basics.1.4.0-rc5\lib\net45\DotNet.Basics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -44,6 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildLibrary\BuildLibraryCmdlet.cs" />
+    <Compile Include="BuildLibrary\GetLicense.cs" />
+    <Compile Include="BuildLibrary\GetModule.cs" />
+    <Compile Include="BuildLibrary\GetSitecore.cs" />
     <Compile Include="NewSitecoreInstallation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,1 +1,1 @@
-# SitecoreInstaller. The simple way to install Sitecore
+# SitecoreInstaller. Fast and simple (if you like powershell :-)

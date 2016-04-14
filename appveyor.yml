@@ -1,7 +1,7 @@
 #https://www.appveyor.com/docs/appveyor-yml
 environment:
   VERSION_ASSEMBLY: 1.0.0
-  VERSION_METADATA: -alpha
+  VERSION_METADATA: -alpha1
 
 version: "$(VERSION_ASSEMBLY)$(VERSION_METADATA)+{build}"
 
@@ -19,7 +19,7 @@ init:
     #semver 1.0
     if($($env:VERSION_METADATA).length -gt 0) {
         #metadata has content which means we don't have a release
-        $env:VERSION_SEM10 = "$($env:VERSION_ASSEMBLY)$($env:VERSION_METADATA)$($env:APPVEYOR_BUILD_NUMBER)"
+        $env:VERSION_SEM10 = "$($env:VERSION_ASSEMBLY)$($env:VERSION_METADATA)"
     }
     else {
         #release version

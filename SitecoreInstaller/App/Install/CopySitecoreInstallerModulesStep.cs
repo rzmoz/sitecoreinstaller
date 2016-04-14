@@ -8,21 +8,19 @@ using DotNet.Basics.Diagnostics;
 using DotNet.Basics.IO;
 using DotNet.Basics.Pipelines;
 using SitecoreInstaller.Domain;
-using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.App.Install
 {
     public class CopySitecoreInstallerModulesStep : TaskStep<InstallArgs>
     {
-        private readonly IBuildLibrary _buildLibrary;
-
-        public CopySitecoreInstallerModulesStep(IBuildLibrary buildLibrary)
+        public CopySitecoreInstallerModulesStep()
         {
-            _buildLibrary = buildLibrary;
+
         }
 
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {
+            /*
             var modules = args.ModuleNames.Select(moduleName => _buildLibrary.GetModule(moduleName));
 
             foreach (var module in modules.OfType<BuildLibraryDir>())
@@ -56,7 +54,7 @@ namespace SitecoreInstaller.App.Install
                 //Copy directories to project folder
                 module.Dir.GetDirectories().CopyTo(args.InstallDir);
             }
-
+*/
             
         }
     }
