@@ -66,16 +66,16 @@ configuration: release
 
 build:
   parallel: true
-  project: sitecoreinstaller\sitecoreinstaller.sln
+  project: sitecoreinstaller.sln
   verbosity: normal
 
 before_build:
-- cmd: nuget restore sitecoreinstaller\sitecoreinstaller.sln
+- cmd: nuget restore sitecoreinstaller.sln
 
 before_package:
 
 after_build:
-- cmd: nuget pack "sitecoreinstaller\SitecoreInstaller.Cmdlets\SitecoreInstaller.Cmdlets.csproj" -Properties "Configuration=Release;Platform=AnyCPU" -version "%VERSION_SEM10%"
+- cmd: nuget pack "SitecoreInstaller.Cmdlets\SitecoreInstaller.Cmdlets.csproj" -Properties "Configuration=Release;Platform=AnyCPU" -version "%VERSION_SEM10%"
 
 build_script:
 
