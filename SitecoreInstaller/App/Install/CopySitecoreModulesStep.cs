@@ -22,7 +22,7 @@ namespace SitecoreInstaller.App.Install
             Parallel.ForEach(modules, module =>
             {
                 if (module.File.IsSitecorePackage())
-                    module.File.CopyTo(args.WwwRoot.ToDir("App_Data", "packages"));
+                    module.File.CopyTo(args.WebsiteRoot.ToDir("App_Data", "packages"));
             });
             */
         }

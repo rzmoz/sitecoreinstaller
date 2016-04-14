@@ -54,6 +54,21 @@ namespace SitecoreInstaller.Domain.BuildLibrary
             return null;//return nul if nothing found
         }
 
+        public IBuildLibraryResource GetSitecore(string name)
+        {
+            return Get(name, BuildLibraryType.Sitecore);
+        }
+
+        public IBuildLibraryResource GetLicense(string name)
+        {
+            return Get(name, BuildLibraryType.LicenseFile);
+        }
+
+        public IBuildLibraryResource GetModule(string name)
+        {
+            return Get(name, BuildLibraryType.Module);
+        }
+
         public IEnumerable<IBuildLibraryResource> Get(string[] names, BuildLibraryType buildLibraryType)
         {
             return names.Select(name => Get(name, buildLibraryType)).Where(res => res != null);

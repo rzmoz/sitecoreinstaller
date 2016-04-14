@@ -7,11 +7,11 @@ namespace SitecoreInstaller.App
     {
         public UserPreferences()
         {
-            InstallerTargetRootDir = @"c:\inetpub\wwwroot\sitecoreinstaller".ToDir();
+            InstallerTargetRootDir = @"c:\inetpub\wwwroot".ToDir();
             BuildLibraryDir = @"c:\BuildLibrary".ToDir();
             UrlSuffix = @".sc.rar";
 
-            SqlInstanceName = @".\sqlexpress";
+            SqlInstanceName = @"lt-rar2";
             SqlLogin = "sc";
             SqlPassword = "1234";
 

@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,7 +67,6 @@
     <Compile Include="App\Install\PrepeareDesktopStep.cs" />
     <Compile Include="App\Install\SetConnectionStringsStep.cs" />
     <Compile Include="App\Install\SetDataFolderStep.cs" />
-    <Compile Include="App\Install\SetInstallArgsValuesStep.cs" />
     <Compile Include="App\Install\InstallArgs.cs" />
     <Compile Include="App\Install\InstallPipeline.cs" />
     <Compile Include="App\Install\SetSitecoreSettingsStep.cs" />
