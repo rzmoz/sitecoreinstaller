@@ -11,7 +11,7 @@ namespace SitecoreInstaller.Domain.BuildLibrary
         private readonly DirectoryInfo _rootdir;
         private const string _sitecoresFolderName = "Sitecores";
         private const string _licensesFoldeName = "Licenses";
-        private const string _modulesFolderName = "Modlues";
+        private const string _modulesFolderName = "Modules";
 
         public IOBuildLibrary(DirectoryInfo rootdir = null)
         {
