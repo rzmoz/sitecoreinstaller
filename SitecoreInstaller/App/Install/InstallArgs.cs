@@ -12,5 +12,10 @@ namespace SitecoreInstaller.App.Install
         public FileSystemInfo[] Modules { get; set; }
 
         public UserPreferences UserPreferences { get; } = new UserPreferences();
+
+        public static InstallArgs Create(string projectName, string version, string license, string[] modules)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

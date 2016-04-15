@@ -15,6 +15,7 @@ namespace SitecoreInstaller.App.Install
             AddBlock("Copy Runtime Files").AddStep<CopyRuntimeServicesStep>()
                                         .AddStep<CopyLicenseFileStep>();
 
+            /*
             AddBlock("Configure Sitecore").AddStep<SetConnectionStringsStep>()
                                         .AddStep<SetDataFolderStep>()
                                         .AddStep<SetSitecoreSettingsStep>();
@@ -32,6 +33,7 @@ namespace SitecoreInstaller.App.Install
             AddBlock("Transform config files").AddStep<TransformConfigFilesStep>();
 
             AddBlock("Warming up website");
+            */
         }
     }
 }

@@ -3,7 +3,6 @@ using DotNet.Basics.Diagnostics;
 using DotNet.Basics.IO;
 using DotNet.Basics.Pipelines;
 
-
 namespace SitecoreInstaller.App.Install
 {
     public class CopyLicenseFileStep : TaskStep<InstallArgs>

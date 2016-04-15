@@ -73,7 +73,7 @@
     <Compile Include="App\Install\TransformConfigFilesStep.cs" />
     <Compile Include="App\Install\WarmUpSiteStep.cs" />
     <Compile Include="App\UserPreferences.cs" />
-    <Compile Include="Domain\FileExtensions.cs" />
+    <Compile Include="Domain\FileInfoExtensions.cs" />
     <Compile Include="Domain\RegisteredFileTypes.cs" />
     <Compile Include="Domain\BuildLibrary\IOBuildLibrary.cs" />
     <Compile Include="Domain\BuildLibrary\IBuildLibraryResource.cs" />

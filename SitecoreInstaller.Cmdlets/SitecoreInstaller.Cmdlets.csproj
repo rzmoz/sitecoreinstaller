@@ -53,11 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildLibrary\BuildLibraryCmdlet.cs" />
-    <Compile Include="BuildLibrary\GetScLicense.cs" />
-    <Compile Include="BuildLibrary\GetScModule.cs" />
-    <Compile Include="BuildLibrary\GetScSitecore.cs" />
-    <Compile Include="NewSitecoreInstallation.cs" />
+    <Compile Include="BuildLibrary\GetSiLicense.cs" />
+    <Compile Include="BuildLibrary\GetSiModule.cs" />
+    <Compile Include="BuildLibrary\GetSiSitecore.cs" />
+    <Compile Include="NewSiDeployment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiCmdlet.cs" />
+    <Compile Include="SiRegistrations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

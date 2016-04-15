@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Management.Automation;
 using DotNet.Basics.Collections;
 using DotNet.Basics.IO;
 using DotNet.Basics.Sys;
@@ -8,7 +7,7 @@ using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.Cmdlets.BuildLibrary
 {
-    public abstract class BuildLibraryCmdlet : Cmdlet
+    public abstract class BuildLibraryCmdlet : SiCmdlet
     {
         protected IEnumerable<IBuildLibraryResource> GetFromBuildLibrary(string[] names, BuildLibraryType buildLibraryType, string blRootPath)
         {

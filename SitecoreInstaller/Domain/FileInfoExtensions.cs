@@ -4,7 +4,7 @@ using DotNet.Basics.IO;
 
 namespace SitecoreInstaller.Domain
 {
-    public static class FileExtensions
+    public static class FileInfoExtensions
     {
         public static bool IsZipfile(this FileInfo file)
         {

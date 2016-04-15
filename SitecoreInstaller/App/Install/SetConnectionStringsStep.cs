@@ -13,7 +13,6 @@ namespace SitecoreInstaller.App.Install
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {
             throw new NotImplementedException();
-
         }
     }
 }
