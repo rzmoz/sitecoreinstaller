@@ -7,9 +7,9 @@ namespace SitecoreInstaller.App.Install
     {
         public DirectoryInfo InstallDir { get; set; }
         public DirectoryInfo WebsiteRoot { get; set; }
-        public string SitecoreName { get; set; }
-        public string LicenseName { get; set; }
-        public string[] ModuleNames { get; set; }
+        public DirectoryInfo Sitecore { get; set; }
+        public FileInfo License { get; set; }
+        public FileSystemInfo[] Modules { get; set; }
 
         public UserPreferences UserPreferences { get; } = new UserPreferences();
     }

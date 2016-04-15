@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using DotNet.Basics.IO;
-using System.IO.Compression;
 
 namespace SitecoreInstaller.Domain
 {
@@ -14,7 +12,7 @@ namespace SitecoreInstaller.Domain
                 return false;
             if (!file.Exists())
                 return false;
-            return file.Extension.EndsWith("zip", StringComparison.OrdinalIgnoreCase);
+            return RegisteredFileTypes.ZipArchive.IsType(file);
         }
 
         public static bool IsSitecorePackage(this FileInfo file)

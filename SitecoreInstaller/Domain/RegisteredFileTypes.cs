@@ -13,6 +13,9 @@ namespace SitecoreInstaller.Domain
         {
             _knownFileTypes = new HashSet<string>();
 
+            ZipArchive = new FileType("Zip Archive", ".zip");
+            _knownFileTypes.Add(SqlMdf.Extension.ToLower());
+
             SqlMdf = new FileType("SqlMdf", ".mdf");
             _knownFileTypes.Add(SqlMdf.Extension.ToLower());
 
@@ -47,6 +50,7 @@ namespace SitecoreInstaller.Domain
             return _knownFileTypes.All(knownFileType => !file.Name.ToLowerInvariant().EndsWith(knownFileType));
         }
 
+        public static FileType ZipArchive { get; }
         public static FileType SqlMdf { get; }
         public static FileType SqlLdf { get; }
         public static FileType SitecoreConfig { get; }

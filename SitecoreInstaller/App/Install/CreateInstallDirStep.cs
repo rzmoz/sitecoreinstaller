@@ -8,13 +8,13 @@ namespace SitecoreInstaller.App.Install
 {
     public class CreateInstallDirStep : TaskStep<InstallArgs>
     {
-        public override Task RunAsync(InstallArgs args, IDiagnostics logger)
+        public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {
-            return Task.Factory.StartNew(() =>
+            await Task.Run(() =>
             {
                 args.InstallDir.CreateIfNotExists();
                 args.InstallDir.GrantAccess("everyone", FileSystemRights.FullControl);
-            });
+            }).ConfigureAwait(false);
         }
     }
 }

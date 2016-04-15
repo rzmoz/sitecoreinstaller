@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using DotNet.Basics.Diagnostics;
 using DotNet.Basics.IO;
@@ -16,29 +13,20 @@ namespace SitecoreInstaller.App.Install
 {
     public class CopySitecoreModulesStep : TaskStep<InstallArgs>
     {
-        private readonly IBuildLibrary _buildLibrary;
-
-        public CopySitecoreModulesStep(IBuildLibrary buildLibrary)
-        {
-            _buildLibrary = buildLibrary;
-        }
-
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {
-            var modules = _buildLibrary.GetModules(args.ModuleNames);
-
-            var tasks = modules.Select(m => m.FileSystemInfo as FileInfo).Select(m =>
-            {
-                return Task.Factory.StartNew(() =>
+            //copy sitecore package files to 
+            await Task.WhenAll(args.Modules.Select(m => m as FileInfo).Select(m =>
                 {
-                    if (m == null)
-                        return;
-                    if (m.IsSitecorePackage() == false)
-                        return;
-                    m.CopyTo(args.WebsiteRoot.ToDir("App_Data", "packages"));
-                });
-            });
-            await Task.WhenAll(tasks.ToArray()).ConfigureAwait(false);
+                    return Task.Run(() =>
+                    {
+                        if (m == null)
+                            return;
+                        if (m.IsSitecorePackage() == false)
+                            return;
+                        m.CopyTo(args.WebsiteRoot.ToDir("App_Data", "packages"));
+                    });
+                })).ConfigureAwait(false);
         }
     }
 }

@@ -1,14 +1,11 @@
-﻿using System.IO;
-using DotNet.Basics.IO;
-
-namespace SitecoreInstaller.App
+﻿namespace SitecoreInstaller.App
 {
     public class UserPreferences
     {
         public UserPreferences()
         {
-            InstallerTargetRootDir = @"c:\inetpub\wwwroot".ToDir();
-            BuildLibraryDir = @"c:\BuildLibrary".ToDir();
+            InstallerTargetRootDir = @"c:\inetpub\wwwroot";
+            BuildLibraryDir = @"c:\BuildLibrary";
             UrlSuffix = @".sc.rar";
 
             SqlInstanceName = @"lt-rar2";
@@ -19,8 +16,8 @@ namespace SitecoreInstaller.App
             MongoPortNo = "27017";
         }
 
-        public DirectoryInfo InstallerTargetRootDir { get; }
-        public DirectoryInfo BuildLibraryDir { get; }
+        public string InstallerTargetRootDir { get; }
+        public string BuildLibraryDir { get; }
         public string UrlSuffix { get; }
 
         public string SqlInstanceName { get; }

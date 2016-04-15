@@ -82,10 +82,33 @@
     <Compile Include="Domain\BuildLibrary\BuildLibraryFileResource.cs" />
     <Compile Include="Domain\BuildLibrary\BuildLibraryResource.cs" />
     <Compile Include="Domain\BuildLibrary\BuildLibraryType.cs" />
+    <Compile Include="Domain\RuntimeServices\RuntimeServiceNames.cs" />
+    <Compile Include="Domain\RuntimeServices\RuntimeServiceResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RuntimeServiceResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\SitecoreVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Domain\RuntimeServices\AdminLogin.aspx" />
+    <Content Include="Domain\RuntimeServices\DeserializeItems.aspx" />
+    <Content Include="Domain\RuntimeServices\InstallPackageService.aspx" />
+    <Content Include="Domain\RuntimeServices\InstallPackageStatusService.aspx" />
+    <Content Include="Domain\RuntimeServices\PostInstallService.aspx" />
+    <Content Include="Domain\RuntimeServices\PublishSiteService.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Domain\RuntimeServices\RuntimeServiceResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RuntimeServiceResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
