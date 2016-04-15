@@ -3,13 +3,13 @@ using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.Cmdlets.BuildLibrary
 {
-    [Cmdlet(VerbsCommon.Get, "Sitecore")]
-    public class GetSitecore : BuildLibraryCmdlet
+    [Cmdlet(VerbsCommon.Get, "ScModule")]
+    public class GetScModule : BuildLibraryCmdlet
     {
         [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true)]
-        [Alias("V")]
+        [Alias("M")]
         [ValidateNotNullOrEmpty]
-        public string[] Version { get; set; }
+        public string[] Module { get; set; }
 
         [Parameter(Position = 2, Mandatory = false)]
         [Alias("P", "PSPath", "BuildLibraryRootPath")]
@@ -17,8 +17,7 @@ namespace SitecoreInstaller.Cmdlets.BuildLibrary
 
         protected override void ProcessRecord()
         {
-            base.ProcessRecord();
-            GetFromBuildLibrary(Version, BuildLibraryType.Sitecore, Path);
+            GetFromBuildLibrary(Module, BuildLibraryType.Module, Path);
         }
     }
 }

@@ -1,11 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
 using DotNet.Basics.Diagnostics;
 using DotNet.Basics.IO;
 using DotNet.Basics.Pipelines;
-using SitecoreInstaller.Domain;
 using SitecoreInstaller.Domain.BuildLibrary;
 
 
