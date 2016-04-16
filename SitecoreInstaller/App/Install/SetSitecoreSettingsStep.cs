@@ -8,7 +8,7 @@ using DotNet.Basics.Pipelines;
 
 namespace SitecoreInstaller.App.Install
 {
-    public class SetSitecoreSettingsStep : TaskStep<InstallArgs>
+    public class SetSitecoreSettingsStep : PipelineStep<InstallArgs>
     {
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {

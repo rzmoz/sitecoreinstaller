@@ -6,7 +6,7 @@ using SitecoreInstaller.Domain.RuntimeServices;
 
 namespace SitecoreInstaller.App.Install
 {
-    public class CopyRuntimeServicesStep : TaskStep<InstallArgs>
+    public class CopyRuntimeServicesStep : PipelineStep<InstallArgs>
     {
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {

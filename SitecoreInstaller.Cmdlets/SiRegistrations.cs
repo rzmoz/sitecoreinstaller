@@ -1,14 +1,18 @@
-﻿using DotNet.Basics.Ioc;
+﻿using DotNet.Basics.Diagnostics;
+using DotNet.Basics.Ioc;
+using DotNet.Basics.Pipelines;
 using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.Cmdlets
 {
-    public class SiRegistrations : IDotNetRegistrations
+    public class SiRegistrations : IIocRegistrations
     {
-        public void RegisterIn(IDotNetContainer container)
+        public void RegisterIn(IocContainer container)
         {
-            container.BindType<IBuildLibrary, IOBuildLibrary>();
+            container.Register<EventDiagnostics>();
+            container.RegisterSingleton<PipelineRunner>(new PipelineRunner(container));
+            container.Register<IBuildLibrary, IOBuildLibrary>();
         }
     }
 }

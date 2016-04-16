@@ -1,5 +1,5 @@
 ﻿using System.Management.Automation;
-
+using DotNet.Basics.Diagnostics;
 using DotNet.Basics.Pipelines;
 using SitecoreInstaller.App.Install;
 
@@ -35,10 +35,15 @@ namespace SitecoreInstaller.Cmdlets
 
         protected override void ProcessRecord()
         {
-            var args = InstallArgs.Create(Name, Version, License, Module);
-            var pipelineRunner = new TaskPipelineRunner();
-            
 
+            var args = InstallArgs.Create(Name, Version, License, Module);
+
+            var runResult = PipelineRunner.RunAsync<InstallPipeline, InstallArgs>(args).Result;
+
+            if (runResult.Success)
+                WriteInformation("Sitecore installation finished without errors", new string[0]);
+            else
+                WriteWarning("Sitecore installation finished with errors. Check log for details");
         }
 
         protected override void EndProcessing()

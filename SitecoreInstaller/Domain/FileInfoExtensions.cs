@@ -12,7 +12,7 @@ namespace SitecoreInstaller.Domain
                 return false;
             if (!file.Exists())
                 return false;
-            return RegisteredFileTypes.ZipArchive.IsType(file);
+            return file.IsFileType(RegisteredFileTypes.ZipArchive);
         }
 
         public static bool IsSitecorePackage(this FileInfo file)

@@ -5,7 +5,7 @@ using DotNet.Basics.Pipelines;
 
 namespace SitecoreInstaller.App.Install
 {
-    public class CopyLicenseFileStep : TaskStep<InstallArgs>
+    public class CopyLicenseFileStep : PipelineStep<InstallArgs>
     {
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {

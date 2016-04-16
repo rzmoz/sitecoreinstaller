@@ -9,7 +9,7 @@ using SitecoreInstaller.Domain;
 
 namespace SitecoreInstaller.App.Install
 {
-    public class CopySitecoreModulesStep : TaskStep<InstallArgs>
+    public class CopySitecoreModulesStep : PipelineStep<InstallArgs>
     {
         public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
         {

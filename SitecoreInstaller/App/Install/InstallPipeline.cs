@@ -2,7 +2,7 @@
 
 namespace SitecoreInstaller.App.Install
 {
-    public class InstallPipeline : TaskPipeline<InstallArgs>
+    public class InstallPipeline : Pipeline<InstallArgs>
     {
         public InstallPipeline()
         {
