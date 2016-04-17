@@ -21,27 +21,37 @@ namespace SitecoreInstaller.Cmdlets
 
         private void Logger_LogLogged(object sender, LogEntry e)
         {
-            switch (e.Level)
+            Log(e.Message, e.Level, e.Exception);
+        }
+
+        protected void Log(string message, LogLevel logLevel = LogLevel.Info, Exception e = null)
+        {
+            switch (logLevel)
             {
                 case LogLevel.Critical:
                 case LogLevel.Error:
-                    WriteError(new ErrorRecord(e.Exception, e.GetHashCode().ToString(), ErrorCategory.FromStdErr, e.Message));
-                    break;
                 case LogLevel.Warning:
+                    //we only write to warning as all real erros should be handled in code outside cmdlets / PS
                     WriteWarning(e.Message);
                     break;
                 case LogLevel.Info:
-                    WriteInformation(e.Message, new string[] { });
+                    WriteInformation(new HostInformationMessage
+                    {
+                        Message = e.Message,
+                        NoNewLine = false
+                    }, new[] { "PSHOST" });
                     break;
                 case LogLevel.Debug:
                     WriteVerbose(e.Message);
                     WriteDebug(e.Message);
                     break;
                 default:
-                    throw new NotSupportedException($"LogLevel not supportd: {e.Level}");
+                    throw new NotSupportedException($"LogLevel not supportd: {logLevel}");
             }
         }
 
-        protected PipelineRunner PipelineRunner { get; }
+
+        protected PipelineRunner PipelineRunner
+        { get; }
     }
 }

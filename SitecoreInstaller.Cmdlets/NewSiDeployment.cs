@@ -39,9 +39,9 @@ namespace SitecoreInstaller.Cmdlets
             var runResult = PipelineRunner.RunAsync<InstallPipeline, InstallArgs>(args).Result;
 
             if (runResult.Success)
-                WriteInformation("Sitecore installation finished without errors", new string[0]);
+                Log("Sitecore installation finished without errors");
             else
-                WriteWarning("Sitecore installation finished with errors. Check log for details");
+                Log("Sitecore installation finished with errors. Check log for details", LogLevel.Warning);
         }
 
         protected override void EndProcessing()
