@@ -35,7 +35,6 @@ namespace SitecoreInstaller.Cmdlets
 
         protected override void ProcessRecord()
         {
-
             var args = InstallArgs.Create(Name, Version, License, Module);
 
             var runResult = PipelineRunner.RunAsync<InstallPipeline, InstallArgs>(args).Result;
