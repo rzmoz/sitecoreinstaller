@@ -13,9 +13,7 @@ namespace SitecoreInstaller.Cmdlets
 
         protected SiCmdlet()
         {
-            _container = new IocContainer();
-            new SiRegistrations().RegisterIn(_container);
-
+            _container = new IocContainer(new SiRegistrations());
             _logger = new EventDiagnostics();
             _logger.LogLogged += Logger_LogLogged;
             PipelineRunner = new PipelineRunner(_logger);
