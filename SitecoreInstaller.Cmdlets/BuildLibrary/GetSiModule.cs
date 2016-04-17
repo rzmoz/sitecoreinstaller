@@ -3,7 +3,7 @@ using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.Cmdlets.BuildLibrary
 {
-    [Cmdlet(VerbsCommon.Get, "SiModule")]
+    [Cmdlet(VerbsCommon.Get, "SIModule")]
     public class GetSiModule : BuildLibraryCmdlet
     {
         [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true)]

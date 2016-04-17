@@ -5,7 +5,7 @@ using SitecoreInstaller.App.Install;
 
 namespace SitecoreInstaller.Cmdlets
 {
-    [Cmdlet(VerbsCommon.New, "SI-Deployment")]
+    [Cmdlet(VerbsCommon.New, "SIDeployment")]
     public class NewSiDeployment : SiCmdlet
     {
         [Alias("ProjectName")]
@@ -23,9 +23,8 @@ namespace SitecoreInstaller.Cmdlets
         [ValidateNotNullOrEmpty]
         public string License { get; set; }
 
-        [Parameter(Position = 3, Mandatory = true)]
+        [Parameter(Position = 3)]
         [Alias("M")]
-        [ValidateNotNullOrEmpty]
         public string[] Module { get; set; }
 
         protected override void BeginProcessing()

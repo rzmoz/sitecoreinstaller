@@ -3,7 +3,7 @@ using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.Cmdlets.BuildLibrary
 {
-    [Cmdlet(VerbsCommon.Get, "SiSitecore")]
+    [Cmdlet(VerbsCommon.Get, "SISitecore")]
     public class GetSiSitecore : BuildLibraryCmdlet
     {
         [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true)]
