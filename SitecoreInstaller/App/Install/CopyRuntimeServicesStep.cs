@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
-using DotNet.Basics.Diagnostics;
 using DotNet.Basics.IO;
 using DotNet.Basics.Pipelines;
+using Microsoft.Extensions.Logging;
 using SitecoreInstaller.Domain.RuntimeServices;
 
 namespace SitecoreInstaller.App.Install
 {
     public class CopyRuntimeServicesStep : PipelineStep<InstallArgs>
     {
-        public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
+        public override async Task RunAsync(InstallArgs args, ILogger logger)
         {
             var targetDir = args.WebsiteRoot.ToDir("temp", "sitecoreinstaller");
             await Task.WhenAll(

@@ -3,28 +3,30 @@ using System.Management.Automation;
 using DotNet.Basics.Diagnostics;
 using DotNet.Basics.Ioc;
 using DotNet.Basics.Pipelines;
+using Microsoft.Extensions.Logging;
 
 namespace SitecoreInstaller.Cmdlets
 {
     public abstract class SiCmdlet : Cmdlet
     {
         private readonly IocContainer _container;
-        private readonly EventDiagnostics _logger;
+        private readonly ILogger _logger;
 
         protected SiCmdlet()
         {
             _container = new IocContainer(new SiRegistrations());
-            _logger = new EventDiagnostics();
-            _logger.LogLogged += Logger_LogLogged;
+            var eventLogger = new EventLogger();
+            eventLogger.EntryLogged += EventLogger_EntryLogged;
+            _logger = eventLogger;
             PipelineRunner = new PipelineRunner(_logger);
         }
 
-        private void Logger_LogLogged(object sender, LogEntry e)
+        private void EventLogger_EntryLogged(object sender, LogEntry e)
         {
             Log(e.Message, e.Level, e.Exception);
         }
-
-        protected void Log(string message, LogLevel logLevel = LogLevel.Info, Exception e = null)
+        
+        protected void Log(string message, LogLevel logLevel = LogLevel.Information, Exception e = null)
         {
             switch (logLevel)
             {
@@ -34,15 +36,17 @@ namespace SitecoreInstaller.Cmdlets
                     //we only write to warning as all real erros should be handled in code outside cmdlets / PS
                     WriteWarning(e.Message);
                     break;
-                case LogLevel.Info:
+                case LogLevel.Information:
                     WriteInformation(new HostInformationMessage
                     {
                         Message = e.Message,
                         NoNewLine = false
                     }, new[] { "PSHOST" });
                     break;
-                case LogLevel.Debug:
+                case LogLevel.Verbose:
                     WriteVerbose(e.Message);
+                    break;
+                case LogLevel.Debug:
                     WriteDebug(e.Message);
                     break;
                 default:

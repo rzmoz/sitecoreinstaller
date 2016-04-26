@@ -1,6 +1,5 @@
 ﻿using System.Management.Automation;
-using DotNet.Basics.Diagnostics;
-using DotNet.Basics.Pipelines;
+using Microsoft.Extensions.Logging;
 using SitecoreInstaller.App.Install;
 
 namespace SitecoreInstaller.Cmdlets

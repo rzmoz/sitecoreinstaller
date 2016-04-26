@@ -1,7 +1,6 @@
 ﻿using DotNet.Basics.Diagnostics;
 using DotNet.Basics.Ioc;
 using DotNet.Basics.Pipelines;
-using SitecoreInstaller.App;
 using SitecoreInstaller.Domain.BuildLibrary;
 
 namespace SitecoreInstaller.Cmdlets
@@ -10,7 +9,7 @@ namespace SitecoreInstaller.Cmdlets
     {
         public void RegisterIn(IocContainer container)
         {
-            container.Register<EventDiagnostics>();
+            container.Register<EventLogger>();
             container.RegisterSingleton<PipelineRunner>(new PipelineRunner(container));
             container.Register<IBuildLibrary, IOBuildLibrary>();
         }

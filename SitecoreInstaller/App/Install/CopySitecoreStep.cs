@@ -1,14 +1,14 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using DotNet.Basics.Diagnostics;
 using DotNet.Basics.IO;
 using DotNet.Basics.Pipelines;
+using Microsoft.Extensions.Logging;
 
 namespace SitecoreInstaller.App.Install
 {
     public class CopySitecoreStep : PipelineStep<InstallArgs>
     {
-        public override async Task RunAsync(InstallArgs args, IDiagnostics logger)
+        public override async Task RunAsync(InstallArgs args, ILogger logger)
         {
             if (args.Sitecore.Exists() == false)
                 throw new FileNotFoundException($"Sitecore not found:{args.Sitecore.FullName}");
