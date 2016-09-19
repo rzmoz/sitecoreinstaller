@@ -1,29 +1,22 @@
 ﻿using System;
-using System.IO;
+using DotNet.Basics.IO;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-    public abstract class BuildLibraryResource<T> : IBuildLibraryResource where T : FileSystemInfo
+    public abstract class BuildLibraryResource<T> : IBuildLibraryResource where T : Path
     {
-        protected BuildLibraryResource(T fsi, BuildLibraryType buildLibraryType)
+        protected BuildLibraryResource(T path, BuildLibraryType buildLibraryType)
         {
-            if (fsi == null) throw new ArgumentNullException(nameof(fsi));
-            FileSystemInfo = fsi;
+            if (path == null) throw new ArgumentNullException(nameof(path));
+            Path = path;
             BuildLibraryType = buildLibraryType;
-
-            var fi = fsi as FileInfo;
-            if (fi != null)
-                Directory = fi.Directory;
-
-            var di = fsi as DirectoryInfo;
-            if (di != null)
-                Directory = di;
+            Directory = path.Directory;
         }
 
-        public string Name => FileSystemInfo.Name;
-        public DirectoryInfo Directory { get; }
-        public string FullName => FileSystemInfo.FullName;
+        public string Name => Path.Name;
+        public DirPath Directory { get; }
+        public string FullName => Path.FullName;
         public BuildLibraryType BuildLibraryType { get; }
-        public FileSystemInfo FileSystemInfo { get; }
+        public Path Path { get; }
     }
 }

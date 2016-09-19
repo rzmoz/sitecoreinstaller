@@ -1,18 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Cmdlets", "SitecoreInstaller.Cmdlets\SitecoreInstaller.Cmdlets.csproj", "{DFCC298A-3652-4E71-86EF-3CE58B13C7B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller", "SitecoreInstaller\SitecoreInstaller.csproj", "{29A8BA1D-0269-4D04-BEFF-E4913E861A6A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{565D8A31-7038-463D-8D3B-DEB08A78DB0D}"
-	ProjectSection(SolutionItems) = preProject
-		appveyor.yml = appveyor.yml
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Tests", "SitecoreInstaller.Tests\SitecoreInstaller.Tests.csproj", "{C409A184-E5A0-4ABF-BF99-A2E9E2592BE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F4C2AEB-E85F-43C5-9AB8-F71CF6574BC6}"
+	ProjectSection(SolutionItems) = preProject
+		release.params.json = release.params.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

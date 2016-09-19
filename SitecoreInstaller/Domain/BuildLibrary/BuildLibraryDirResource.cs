@@ -1,10 +1,11 @@
 ﻿using System.IO;
+using DotNet.Basics.IO;
 
 namespace SitecoreInstaller.Domain.BuildLibrary
 {
-    public class BuildLibraryDirResource : BuildLibraryResource<DirectoryInfo>
+    public class BuildLibraryDirResource : BuildLibraryResource<DirPath>
     {
-        public BuildLibraryDirResource(DirectoryInfo dir, BuildLibraryType buildLibraryType) : base(dir, buildLibraryType)
+        public BuildLibraryDirResource(DirPath dir, BuildLibraryType buildLibraryType) : base(dir, buildLibraryType)
         {
         }
     }

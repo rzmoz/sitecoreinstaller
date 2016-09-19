@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using DotNet.Basics.Pipelines;
-using Microsoft.Extensions.Logging;
 
 namespace SitecoreInstaller.App.Install
 {
     public class InstallPackagesStep : PipelineStep<InstallArgs>
     {
-        public override Task RunAsync(InstallArgs args, ILogger logger)
+        protected override async Task InnerRunAsync(InstallArgs args, CancellationToken ct)
         {
             throw new NotImplementedException();
         }

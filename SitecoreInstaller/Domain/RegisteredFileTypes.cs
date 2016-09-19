@@ -45,7 +45,7 @@ namespace SitecoreInstaller.Domain
         }
 
 
-        public static bool IsNotRegisteredFileType(FileInfo file)
+        public static bool IsNotRegisteredFileType(FilePath file)
         {
             return _knownFileTypes.All(knownFileType => !file.Name.ToLowerInvariant().EndsWith(knownFileType));
         }

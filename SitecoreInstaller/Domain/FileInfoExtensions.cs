@@ -6,7 +6,7 @@ namespace SitecoreInstaller.Domain
 {
     public static class FileInfoExtensions
     {
-        public static bool IsZipfile(this FileInfo file)
+        public static bool IsZipfile(this FilePath file)
         {
             if (file == null)
                 return false;
@@ -15,7 +15,7 @@ namespace SitecoreInstaller.Domain
             return file.IsFileType(RegisteredFileTypes.ZipArchive);
         }
 
-        public static bool IsSitecorePackage(this FileInfo file)
+        public static bool IsSitecorePackage(this FilePath file)
         {
             if (!file.Exists())
                 return false;

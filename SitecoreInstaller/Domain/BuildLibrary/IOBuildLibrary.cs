@@ -8,12 +8,12 @@ namespace SitecoreInstaller.Domain.BuildLibrary
 {
     public class IOBuildLibrary : IBuildLibrary
     {
-        private readonly DirectoryInfo _rootdir;
+        private readonly DirPath _rootdir;
         private const string _sitecoresFolderName = "Sitecores";
         private const string _licensesFoldeName = "Licenses";
         private const string _modulesFolderName = "Modules";
 
-        public IOBuildLibrary(DirectoryInfo rootdir = null)
+        public IOBuildLibrary(DirPath rootdir = null)
         {
             var userDir = Environment.GetEnvironmentVariable("HOMEPATH").ToDir();
             _rootdir = rootdir ?? userDir.ToDir("BuildLibrary");
@@ -45,10 +45,10 @@ namespace SitecoreInstaller.Domain.BuildLibrary
                 name = $"Sitecore {name}";//append sitecore if only version is provided
 
             //we look for dirs first
-            DirectoryInfo lookingForDir = _rootdir.ToDir(typeFolderName, name);
+            var lookingForDir = _rootdir.ToDir(typeFolderName, name);
             if (lookingForDir.Exists())
                 return new BuildLibraryDirResource(lookingForDir, buildLibraryType);
-            FileInfo lookingForFile = _rootdir.ToFile(typeFolderName, name + ".zip");
+            var lookingForFile = _rootdir.ToFile(typeFolderName, name + ".zip");
             if (lookingForFile.Exists())
                 return new BuildLibraryFileResource(lookingForFile, buildLibraryType);
             return null;//return nul if nothing found

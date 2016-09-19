@@ -1,23 +1,25 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using DotNet.Basics.IO;
 using DotNet.Basics.Pipelines;
-using Microsoft.Extensions.Logging;
 using SitecoreInstaller.Domain.RuntimeServices;
 
 namespace SitecoreInstaller.App.Install
 {
     public class CopyRuntimeServicesStep : PipelineStep<InstallArgs>
     {
-        public override async Task RunAsync(InstallArgs args, ILogger logger)
+        protected override async Task InnerRunAsync(InstallArgs args, CancellationToken ct)
         {
             var targetDir = args.WebsiteRoot.ToDir("temp", "sitecoreinstaller");
+            targetDir.CreateIfNotExists();
+
             await Task.WhenAll(
-                            Task.Run(() => { RuntimeServiceResources.AdminLogin.WriteToDisk(targetDir, RuntimeServiceNames.AdminLogin); }),
-                            Task.Run(() => { RuntimeServiceResources.DeserializeItems.WriteToDisk(targetDir, RuntimeServiceNames.DeserializeItems); }),
-                            Task.Run(() => { RuntimeServiceResources.InstallPackageService.WriteToDisk(targetDir, RuntimeServiceNames.InstallPackageService); }),
-                            Task.Run(() => { RuntimeServiceResources.InstallPackageStatusService.WriteToDisk(targetDir, RuntimeServiceNames.InstallPackageStatusService); }),
-                            Task.Run(() => { RuntimeServiceResources.PostInstallService.WriteToDisk(targetDir, RuntimeServiceNames.PostInstallService); }),
-                            Task.Run(() => { RuntimeServiceResources.PublishSiteService.WriteToDisk(targetDir, RuntimeServiceNames.PublishSiteService); })
+                            Task.Run(() => { RuntimeServiceResources.AdminLogin.WriteAllText(targetDir, RuntimeServiceNames.AdminLogin); }),
+                            Task.Run(() => { RuntimeServiceResources.DeserializeItems.WriteAllText(targetDir, RuntimeServiceNames.DeserializeItems); }),
+                            Task.Run(() => { RuntimeServiceResources.InstallPackageService.WriteAllText(targetDir, RuntimeServiceNames.InstallPackageService); }),
+                            Task.Run(() => { RuntimeServiceResources.InstallPackageStatusService.WriteAllText(targetDir, RuntimeServiceNames.InstallPackageStatusService); }),
+                            Task.Run(() => { RuntimeServiceResources.PostInstallService.WriteAllText(targetDir, RuntimeServiceNames.PostInstallService); }),
+                            Task.Run(() => { RuntimeServiceResources.PublishSiteService.WriteAllText(targetDir, RuntimeServiceNames.PublishSiteService); })
                             ).ConfigureAwait(false);
         }
     }

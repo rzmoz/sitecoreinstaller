@@ -1,5 +1,4 @@
 ﻿using System.Management.Automation;
-using Microsoft.Extensions.Logging;
 using SitecoreInstaller.App.Install;
 
 namespace SitecoreInstaller.Cmdlets
@@ -13,17 +12,14 @@ namespace SitecoreInstaller.Cmdlets
         public string Name { get; set; }
 
         [Parameter(Position = 1, Mandatory = true)]
-        [Alias("V")]
         [ValidateNotNullOrEmpty]
         public string Version { get; set; }
 
         [Parameter(Position = 2, Mandatory = true)]
-        [Alias("L")]
         [ValidateNotNullOrEmpty]
         public string License { get; set; }
 
         [Parameter(Position = 3)]
-        [Alias("M")]
         public string[] Module { get; set; }
 
         protected override void BeginProcessing()
@@ -35,12 +31,7 @@ namespace SitecoreInstaller.Cmdlets
         {
             var args = InstallArgs.Create(Name, Version, License, Module);
 
-            var runResult = PipelineRunner.RunAsync<InstallPipeline, InstallArgs>(args).Result;
-
-            if (runResult.Success)
-                Log("Sitecore installation finished without errors");
-            else
-                Log("Sitecore installation finished with errors. Check log for details", LogLevel.Warning);
+            //var runResult = PipelineRunner.RunAsync<InstallPipeline, InstallArgs>(args).Result;
         }
 
         protected override void EndProcessing()
