@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DFCC298A-3652-4E71-86EF-3CE58B13C7B5}</ProjectGuid>
+    <ProjectGuid>{1084F91F-C524-4CED-8792-734572A0770B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SitecoreInstaller.Cmdlets</RootNamespace>
-    <AssemblyName>SitecoreInstaller.Cmdlets</AssemblyName>
+    <RootNamespace>SitecoreInstaller.Runtime</RootNamespace>
+    <AssemblyName>SitecoreInstaller.Runtime</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,10 +45,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Management.Automation.dll.10.0.10586.0\lib\net40\System.Management.Automation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,27 +53,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildLibrary\BuildLibraryCmdlet.cs" />
-    <Compile Include="BuildLibrary\GetSiLicense.cs" />
-    <Compile Include="BuildLibrary\GetSiModule.cs" />
-    <Compile Include="BuildLibrary\GetSiSitecore.cs" />
-    <Compile Include="NewSiDeployment.cs" />
+    <Compile Include="Install\AddSitenameToHostfileStep.cs" />
+    <Compile Include="Install\AttachDatabasesStep.cs" />
+    <Compile Include="Install\CopyLicenseFileStep.cs" />
+    <Compile Include="Install\CopyRuntimeServicesStep.cs" />
+    <Compile Include="Install\CopySitecoreInstallerModulesStep.cs" />
+    <Compile Include="Install\CopySitecoreModulesStep.cs" />
+    <Compile Include="Install\CopySitecoreStep.cs" />
+    <Compile Include="Install\CreateIisWebsiteStep.cs" />
+    <Compile Include="Install\CreateInstallDirStep.cs" />
+    <Compile Include="Install\InstallArgs.cs" />
+    <Compile Include="Install\InstallPackagesStep.cs" />
+    <Compile Include="Install\InstallPipeline.cs" />
+    <Compile Include="Install\PrepareDesktopStep.cs" />
+    <Compile Include="Install\SetConnectionStringsStep.cs" />
+    <Compile Include="Install\SetDataFolderStep.cs" />
+    <Compile Include="Install\SetSitecoreSettingsStep.cs" />
+    <Compile Include="Install\TransformConfigFilesStep.cs" />
+    <Compile Include="Install\WarmUpSiteStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SiCmdlet.cs" />
+    <Compile Include="RuntimeBootstrapper.cs" />
+    <Compile Include="SiRegistrations.cs" />
+    <Compile Include="UserPreferences.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="SitecoreInstaller.Cmdlets.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SitecoreInstaller.Runtime\SitecoreInstaller.Runtime.csproj">
-      <Project>{1084f91f-c524-4ced-8792-734572a0770b}</Project>
-      <Name>SitecoreInstaller.Runtime</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SitecoreInstaller\SitecoreInstaller.csproj">
       <Project>{29a8ba1d-0269-4d04-beff-e4913e861a6a}</Project>
       <Name>SitecoreInstaller</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

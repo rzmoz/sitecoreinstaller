@@ -1,5 +1,5 @@
 ﻿using System.Management.Automation;
-using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.BuildLibrary;
 
 namespace SitecoreInstaller.Cmdlets.BuildLibrary
 {
@@ -7,12 +7,11 @@ namespace SitecoreInstaller.Cmdlets.BuildLibrary
     public class GetSiModule : BuildLibraryCmdlet
     {
         [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true)]
-        [Alias("M")]
         [ValidateNotNullOrEmpty]
         public string[] Module { get; set; }
 
         [Parameter(Position = 2, Mandatory = false)]
-        [Alias("P", "PSPath", "BuildLibraryRootPath")]
+        [Alias("PSPath", "BuildLibraryRootPath")]
         public string Path { get; set; }
 
         protected override void ProcessRecord()

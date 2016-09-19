@@ -3,7 +3,7 @@ using System.Linq;
 using DotNet.Basics.Collections;
 using DotNet.Basics.IO;
 using DotNet.Basics.Sys;
-using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.BuildLibrary;
 
 namespace SitecoreInstaller.Cmdlets.BuildLibrary
 {

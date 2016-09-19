@@ -1,5 +1,5 @@
 ﻿using System.Management.Automation;
-using SitecoreInstaller.App.Install;
+using SitecoreInstaller.Runtime.Install;
 
 namespace SitecoreInstaller.Cmdlets
 {

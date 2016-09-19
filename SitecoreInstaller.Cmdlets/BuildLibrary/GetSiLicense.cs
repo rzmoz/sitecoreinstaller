@@ -1,5 +1,5 @@
 ﻿using System.Management.Automation;
-using SitecoreInstaller.Domain.BuildLibrary;
+using SitecoreInstaller.BuildLibrary;
 
 namespace SitecoreInstaller.Cmdlets.BuildLibrary
 {

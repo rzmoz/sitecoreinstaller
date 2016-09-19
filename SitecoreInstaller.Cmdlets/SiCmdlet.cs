@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Management.Automation;
-using DotNet.Basics.Ioc;
-using DotNet.Basics.Pipelines;
+using SitecoreInstaller.Runtime;
 
 namespace SitecoreInstaller.Cmdlets
 {
     public abstract class SiCmdlet : Cmdlet
     {
+        private RuntimeBootstrapper _bootstrapper;
+
         protected SiCmdlet()
         {
-            var container = new SimpleContainer();
-            container.Register(new SiRegistrations());
+            _bootstrapper = new RuntimeBootstrapper();
         }
 
         protected void Log()
         {
-
             throw new NotImplementedException();
         }
     }
