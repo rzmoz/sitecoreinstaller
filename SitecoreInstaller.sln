@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SitecoreInstaller.Hosting", "SitecoreInstaller.Hosting\SitecoreInstaller.Hosting.xproj", "{976DA1AD-4F28-4444-9711-A7E4F42F0D9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Hosting", "SitecoreInstaller.Hosting\SitecoreInstaller.Hosting.csproj", "{E092DAD5-0130-4EEF-AA05-3C8DF8585ADF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{976DA1AD-4F28-4444-9711-A7E4F42F0D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{976DA1AD-4F28-4444-9711-A7E4F42F0D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{976DA1AD-4F28-4444-9711-A7E4F42F0D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{976DA1AD-4F28-4444-9711-A7E4F42F0D9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E092DAD5-0130-4EEF-AA05-3C8DF8585ADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E092DAD5-0130-4EEF-AA05-3C8DF8585ADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E092DAD5-0130-4EEF-AA05-3C8DF8585ADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E092DAD5-0130-4EEF-AA05-3C8DF8585ADF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

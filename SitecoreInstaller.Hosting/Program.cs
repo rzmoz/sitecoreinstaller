@@ -1,24 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.Owin.Hosting;
+using NLog;
 
 namespace SitecoreInstaller.Hosting
 {
-    public class Program
+    class Program
     {
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseKestrel(options =>
-                {
-                    options.AddServerHeader = false;
-                })
-                .UseStartup<Startup>()
-                .Build();
+        private const string _defaultPort = "7919";
 
-            host.Run();
+        static void Main(string[] args)
+        {
+            int portNumber = int.Parse(args.FirstOrDefault() ?? _defaultPort);
+
+            string baseAddress = $"http://localhost:{portNumber}/";
+
+            var @namespace = typeof(Program).Namespace;
+
+            using (WebApp.Start<WebApiInit>(url: baseAddress))
+            {
+                var logger = LogManager.GetLogger(@namespace);
+                logger.Info($"{@namespace} is listening on port {portNumber}...");
+                Console.ReadKey();
+            }
         }
     }
 }
