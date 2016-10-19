@@ -2,6 +2,7 @@
 using DotNet.Basics.Ioc;
 using SitecoreInstaller.BuildLibrary;
 using SitecoreInstaller.PreflightChecks;
+using SitecoreInstaller.Website;
 using SitecoreInstaller.WebServer;
 
 namespace SitecoreInstaller.Runtime
@@ -20,6 +21,9 @@ namespace SitecoreInstaller.Runtime
 
             //build lib
             builder.RegisterType<LocalBuildLibrary>().As<IPreflightCheck>().AsSelf().SingleInstance();
+
+            //web site registrations
+            builder.RegisterType<WebsiteService>().As<IPreflightCheck>().AsSelf().SingleInstance();
         }
     }
 }

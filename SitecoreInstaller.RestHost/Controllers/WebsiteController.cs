@@ -3,12 +3,20 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Newtonsoft.Json;
+using SitecoreInstaller.Website;
 
 namespace SitecoreInstaller.RestHost.Controllers
 {
-    [RoutePrefix("api/projects")]
-    public class ProjectsController : ApiController
+    [RoutePrefix("api/sites")]
+    public class WebsiteController : ApiController
     {
+        private readonly WebsiteService _websiteService;
+
+        public WebsiteController(WebsiteService websiteService)
+        {
+            _websiteService = websiteService;
+        }
+
         [Route("")]
         [HttpPut]
         public async Task<HttpResponseMessage> NewSitecoreDeployment()
@@ -17,12 +25,20 @@ namespace SitecoreInstaller.RestHost.Controllers
             try
             {
                 var settings = JsonConvert.DeserializeObject<ProjectSettings>(settingsJson);
+                _websiteService.InitProjectDir(settings.Name);
                 return Request.CreateResponse(HttpStatusCode.Accepted, settings);
             }
             catch (JsonReaderException e)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
             }
+        }
+        [Route("{name}")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteSitecoreDeployment(string name)
+        {
+            var success = _websiteService.DeleteProjectDir(name);
+            return Request.CreateResponse(success ? HttpStatusCode.OK : HttpStatusCode.Conflict);
         }
     }
 }

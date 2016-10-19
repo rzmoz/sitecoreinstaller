@@ -8,8 +8,8 @@ namespace SitecoreInstaller
         {
         }
 
-        public DirPath AppData => Add(nameof(AppData));
-        public AppConfigDir AppConfig => new AppConfigDir(Add(nameof(AppConfig)));
-        public DirPath Temp => Add(nameof(Temp));
+        public DirPath App_Data => Add(nameof(App_Data));
+        public AppConfigDir App_Config => new AppConfigDir(Add(nameof(App_Config)));
+        public DirPath Temp => Add(nameof(Temp).ToLowerInvariant());
     }
 }
