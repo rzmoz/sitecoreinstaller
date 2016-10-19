@@ -42,7 +42,7 @@ namespace SitecoreInstaller.RestHost
             {
             }
 
-            logger.Info($"Starting {runtime.AppName} on port {portNumber}...");
+            logger.Info($"Starting {runtime.AppName}...");
 
             string baseAddress = $"http://localhost:{portNumber}/";
 
@@ -53,7 +53,7 @@ namespace SitecoreInstaller.RestHost
                 webapiInit.Configuration(appBuilder, runtime, logger);
             }))
             {
-                logger.Info($"{runtime.AppName} is listening...");
+                logger.Info($"{runtime.AppName} is listening on port {portNumber}...");
                 Console.ReadKey();
             }
         }
