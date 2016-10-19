@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstallerTests", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Runtime", "SitecoreInstaller.Runtime\SitecoreInstaller.Runtime.csproj", "{8DD43563-2938-4E40-9AB4-9DECA852623E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Console", "SitecoreInstaller.Console\SitecoreInstaller.Console.csproj", "{DA733D89-584D-49B8-9C20-B801C2A8B398}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationInterfaces", "ApplicationInterfaces", "{9ED7BA92-2B9A-46B2-8D70-671DABB9487A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.RestApi", "SitecoreInstaller.RestApi\SitecoreInstaller.RestApi.csproj", "{484A47F8-CD04-4F51-A307-7DED0F71F6F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,15 +31,15 @@ Global
 		{8DD43563-2938-4E40-9AB4-9DECA852623E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DD43563-2938-4E40-9AB4-9DECA852623E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DD43563-2938-4E40-9AB4-9DECA852623E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA733D89-584D-49B8-9C20-B801C2A8B398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA733D89-584D-49B8-9C20-B801C2A8B398}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA733D89-584D-49B8-9C20-B801C2A8B398}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA733D89-584D-49B8-9C20-B801C2A8B398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{484A47F8-CD04-4F51-A307-7DED0F71F6F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{484A47F8-CD04-4F51-A307-7DED0F71F6F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{484A47F8-CD04-4F51-A307-7DED0F71F6F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{484A47F8-CD04-4F51-A307-7DED0F71F6F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{DA733D89-584D-49B8-9C20-B801C2A8B398} = {9ED7BA92-2B9A-46B2-8D70-671DABB9487A}
+		{484A47F8-CD04-4F51-A307-7DED0F71F6F9} = {9ED7BA92-2B9A-46B2-8D70-671DABB9487A}
 	EndGlobalSection
 EndGlobal

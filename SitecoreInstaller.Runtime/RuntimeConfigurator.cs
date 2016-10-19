@@ -19,10 +19,12 @@ namespace SitecoreInstaller.Runtime
         public RuntimeConfigurator(Type host)
         {
             Host = host;
-            _logger = LogManager.GetLogger(host.Namespace);
+            AppName = host.Namespace;
+            _logger = LogManager.GetLogger(AppName);
         }
 
         public Type Host { get; }
+        public string AppName { get; }
 
         public void Init(Action<NLogConfigurator> configureLog)
         {
