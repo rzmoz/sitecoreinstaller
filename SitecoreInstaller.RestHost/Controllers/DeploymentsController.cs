@@ -9,13 +9,13 @@ using SitecoreInstaller.Pipelines.UnInstall;
 
 namespace SitecoreInstaller.RestHost.Controllers
 {
-    [RoutePrefix("api/sites")]
-    public class WebsiteController : ApiController
+    [RoutePrefix("api/deployments")]
+    public class DeploymentsController : ApiController
     {
         private readonly InstallPipeline _installPipeline;
         private readonly UnInstallPipeline _unInstallPipeline;
 
-        public WebsiteController(InstallPipeline installPipeline, UnInstallPipeline unInstallPipeline)
+        public DeploymentsController(InstallPipeline installPipeline, UnInstallPipeline unInstallPipeline)
         {
             _installPipeline = installPipeline;
             _unInstallPipeline = unInstallPipeline;

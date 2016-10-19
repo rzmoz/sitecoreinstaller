@@ -104,7 +104,8 @@
   <ItemGroup>
     <Compile Include="Controllers\BuildLibraryController.cs" />
     <Compile Include="Controllers\IisManagementController.cs" />
-    <Compile Include="Controllers\WebsiteController.cs" />
+    <Compile Include="Controllers\DeploymentsController.cs" />
+    <Compile Include="Controllers\SitesController.cs" />
     <Compile Include="GlobalExceptionHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
