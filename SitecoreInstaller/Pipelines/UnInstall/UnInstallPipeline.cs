@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using DotNet.Basics.Sys;
 using DotNet.Basics.Tasks.Pipelines;
 
 namespace SitecoreInstaller.Pipelines.UnInstall

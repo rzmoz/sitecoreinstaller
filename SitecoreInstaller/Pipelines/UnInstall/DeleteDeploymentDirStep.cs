@@ -9,7 +9,7 @@ namespace SitecoreInstaller.Pipelines.UnInstall
     {
         private readonly DeploymentsService _deploymentsService;
 
-        public DeleteDeploymentDirStep(DeploymentsService deploymentsService) : base(null)
+        public DeleteDeploymentDirStep(DeploymentsService deploymentsService)
         {
             _deploymentsService = deploymentsService;
         }

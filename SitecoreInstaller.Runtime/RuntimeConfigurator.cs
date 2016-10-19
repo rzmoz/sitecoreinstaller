@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Management.Automation.Runspaces;
 using Autofac;
+using DotNet.Basics;
 using DotNet.Basics.AppSettings;
 using DotNet.Basics.Ioc;
 using DotNet.Basics.NLog;
+using DotNet.Basics.Sys;
 using Newtonsoft.Json;
 using NLog;
 using SitecoreInstaller.PreflightChecks;
@@ -28,10 +31,11 @@ namespace SitecoreInstaller.Runtime
 
         public bool Init(Action<NLogConfigurator> configureLog, Action<IocBuilder> iocRegistrations = null)
         {
+            //ensure all low level dotnet.basics events are logged
+            DebugOut.Out += _logger.Debug;
+
             var initStatus = InitLogging(configureLog);
-
             initStatus = initStatus && LogAppInitializing();
-
             initStatus = initStatus && InitContainer(iocRegistrations);
             initStatus = initStatus && InitAppSettings();
             initStatus = initStatus && RunPreflightChecks();

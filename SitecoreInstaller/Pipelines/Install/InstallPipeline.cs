@@ -8,7 +8,8 @@ namespace SitecoreInstaller.Pipelines.Install
     {
         public InstallPipeline(IContainer container) : base(container)
         {
-            this.AddStep<InitdeploymentDirStep>();
+            this.AddStep<InitDeploymentDirStep>();
+            this.AddStep<CopySitecoreStep>();
         }
     }
 }

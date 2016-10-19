@@ -10,6 +10,10 @@ namespace SitecoreInstaller.Website
 {
     public class WebsiteService : IPreflightCheck
     {
+
+
+
+
         public PreflightCheckResult Assert()
         {
             return new PreflightCheckResult();

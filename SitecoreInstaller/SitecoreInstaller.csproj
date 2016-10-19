@@ -34,12 +34,12 @@
       <HintPath>..\packages\Autofac.4.1.1\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DotNet.Basics, Version=5.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.5.1.2\lib\net46\DotNet.Basics.dll</HintPath>
+    <Reference Include="DotNet.Basics, Version=5.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNet.Basics.5.1.5\lib\net46\DotNet.Basics.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DotNet.Basics.NLog, Version=5.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.NLog.5.1.2\lib\net461\DotNet.Basics.NLog.dll</HintPath>
+    <Reference Include="DotNet.Basics.NLog, Version=5.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNet.Basics.NLog.5.1.5\lib\net461\DotNet.Basics.NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Administration, Version=7.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -76,7 +76,8 @@
     <Compile Include="BuildLibrary\Sitecore.cs" />
     <Compile Include="Deployments\DeploymentsService.cs" />
     <Compile Include="EnvironmentSettings.cs" />
-    <Compile Include="Pipelines\Install\InitdeploymentDirStep.cs" />
+    <Compile Include="Pipelines\Install\CopySitecoreStep.cs" />
+    <Compile Include="Pipelines\Install\InitDeploymentDirStep.cs" />
     <Compile Include="Pipelines\Install\InstallPipeline.cs" />
     <Compile Include="Pipelines\UnInstall\DeleteDeploymentDirStep.cs" />
     <Compile Include="Pipelines\UnInstall\UnInstallArgs.cs" />
