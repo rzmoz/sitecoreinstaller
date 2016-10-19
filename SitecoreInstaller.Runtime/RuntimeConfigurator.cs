@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Management.Automation.Runspaces;
 using Autofac;
 using DotNet.Basics;
 using DotNet.Basics.AppSettings;
 using DotNet.Basics.Ioc;
 using DotNet.Basics.NLog;
-using DotNet.Basics.Sys;
 using Newtonsoft.Json;
 using NLog;
 using SitecoreInstaller.PreflightChecks;
