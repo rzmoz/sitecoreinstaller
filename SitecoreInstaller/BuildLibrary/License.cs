@@ -4,7 +4,7 @@ namespace SitecoreInstaller.BuildLibrary
 {
     public class License : BuildLibraryResource
     {
-        public License(DirPath dir) : base(dir)
+        public License(FilePath path) : base(path)
         {
         }
     }

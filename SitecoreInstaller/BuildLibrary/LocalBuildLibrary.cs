@@ -45,37 +45,34 @@ namespace SitecoreInstaller.BuildLibrary
             _logger.Trace($"{nameof(LocalBuildLibrary)} initialized to: {Root.FullName}");
         }
 
-        public IReadOnlyCollection<Sitecore> GetSitecores()
+        public IEnumerable<Sitecore> GetSitecores()
         {
-            return Sitecores.EnumerateDirectories().Select(dir => new Sitecore(dir)).ToList();
+            return Sitecores.EnumerateDirectories().Select(dir => new Sitecore(dir));
         }
 
-        public IReadOnlyCollection<License> GetLicenses()
+        public IEnumerable<License> GetLicenses()
         {
-            return Licenses.EnumerateDirectories().Select(dir => new License(dir)).ToList();
+            return Licenses.EnumerateFiles().Select(file => new License(file));
         }
 
-        public IReadOnlyCollection<Module> GetModules()
+        public IEnumerable<Module> GetModules()
         {
-            return Modules.EnumerateDirectories().Select(dir => new Module(dir)).ToList();
+            return Modules.EnumerateDirectories().Select(dir => new Module(dir));
         }
 
         public Sitecore GetSitecore(string name)
         {
-            var res = new Sitecore(Sitecores.Add(name));
-            return res.Dir.Exists() ? res : null;
+            return (Sitecore)Get(() => new Sitecore(Sitecores.Add(name)));
         }
 
         public License GetLicense(string name)
         {
-            var res = new License(Licenses.Add(name));
-            return res.Dir.Exists() ? res : null;
+            return (License)Get(() => new License(Licenses.ToFile(name)));
         }
 
         public Module GetModule(string name)
         {
-            var res = new Module(Modules.Add(name));
-            return res.Dir.Exists() ? res : null;
+            return (Module)Get(() => new Module(Modules.Add(name)));
         }
 
         public PreflightCheckResult Assert()
@@ -88,6 +85,12 @@ namespace SitecoreInstaller.BuildLibrary
                 else
                     issues.Add($"{nameof(LocalBuildLibrary)} not found at: {Root.FullName}");
             });
+        }
+
+        private BuildLibraryResource Get(Func<BuildLibraryResource> getRes)
+        {
+            var res = getRes();
+            return res.Path.Exists() ? res : null;
         }
     }
 }

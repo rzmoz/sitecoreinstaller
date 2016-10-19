@@ -67,10 +67,10 @@ namespace SitecoreInstaller.RestHost.Controllers
                 return request.CreateResponse(HttpStatusCode.NoContent);
             return request.CreateResponse(HttpStatusCode.OK, res);
         }
-        private HttpResponseMessage GetBuildLibraryResourcesResponse(HttpRequestMessage request, Func<LocalBuildLibrary, IReadOnlyCollection<BuildLibraryResource>> getFunc)
+        private HttpResponseMessage GetBuildLibraryResourcesResponse(HttpRequestMessage request, Func<LocalBuildLibrary, IEnumerable<BuildLibraryResource>> getFunc)
         {
             var resources = getFunc(_buildLibrary);
-            return request.CreateResponse(HttpStatusCode.OK, resources.Select(res => res.Dir.Name));
+            return request.CreateResponse(HttpStatusCode.OK, resources.Select(res => res.Path.Name));
         }
     }
 }

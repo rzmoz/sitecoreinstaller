@@ -4,7 +4,7 @@ namespace SitecoreInstaller.BuildLibrary
 {
     public class Sitecore : BuildLibraryResource
     {
-        public Sitecore(DirPath dir) : base(dir)
+        public Sitecore(DirPath path) : base(path)
         {
         }
     }

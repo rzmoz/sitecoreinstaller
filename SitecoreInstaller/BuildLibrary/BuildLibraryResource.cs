@@ -4,13 +4,13 @@ namespace SitecoreInstaller.BuildLibrary
 {
     public abstract class BuildLibraryResource
     {
-        protected BuildLibraryResource(DirPath dir)
+        protected BuildLibraryResource(PathInfo path)
         {
-            Dir = dir;
-            Name = dir.Name;
+            Path = path;
+            Name = path.Name;
         }
 
         public string Name { get; }
-        public DirPath Dir { get; }
+        public PathInfo Path { get; }
     }
 }
