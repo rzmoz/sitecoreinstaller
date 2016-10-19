@@ -26,21 +26,21 @@ namespace SitecoreInstaller.Runtime
         public Type Host { get; }
         public string AppName { get; }
 
-        public void Init(Action<NLogConfigurator> configureLog)
+        public void Init(Action<NLogConfigurator> configureLog, Action<IocBuilder> iocRegistrations = null)
         {
 
             var initStatus = InitLogging(configureLog);
 
             initStatus = initStatus && LogAppInitializing();
 
-            initStatus = initStatus && InitContainer();
+            initStatus = initStatus && InitContainer(iocRegistrations);
             initStatus = initStatus && InitAppSettings();
             initStatus = initStatus && RunPreflightChecks();
 
             LogAppInitialized(initStatus);
         }
 
-        private bool InitContainer()
+        private bool InitContainer(Action<IocBuilder> iocRegistrations)
         {
             return InitArea("IocContainer", (errorMsgs) =>
             {
@@ -48,6 +48,7 @@ namespace SitecoreInstaller.Runtime
                 {
                     var builder = new IocBuilder();
                     builder.Register(new SitecoreInstallerRegistrations());
+                    iocRegistrations?.Invoke(builder);
                     Container = builder.Build();
                 }
                 catch (Exception e)

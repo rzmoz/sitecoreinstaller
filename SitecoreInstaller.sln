@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstallerTests", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Runtime", "SitecoreInstaller.Runtime\SitecoreInstaller.Runtime.csproj", "{8DD43563-2938-4E40-9AB4-9DECA852623E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationInterfaces", "ApplicationInterfaces", "{9ED7BA92-2B9A-46B2-8D70-671DABB9487A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{9ED7BA92-2B9A-46B2-8D70-671DABB9487A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.RestApi", "SitecoreInstaller.RestApi\SitecoreInstaller.RestApi.csproj", "{484A47F8-CD04-4F51-A307-7DED0F71F6F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.RestHost", "SitecoreInstaller.RestHost\SitecoreInstaller.RestHost.csproj", "{484A47F8-CD04-4F51-A307-7DED0F71F6F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
