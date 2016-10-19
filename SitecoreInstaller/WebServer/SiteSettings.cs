@@ -12,6 +12,8 @@ namespace SitecoreInstaller.WebServer
             if (name == null) throw new ArgumentNullException(nameof(name));
             Name = name;
             Url = string.Empty;
+            SiteRoot = @"c:\inetpub\sciroot".ToDir(name);
+            IisLogFilesDir = SiteRoot.Add("IisLogFiles");
         }
 
         public string Name { get; set; }
