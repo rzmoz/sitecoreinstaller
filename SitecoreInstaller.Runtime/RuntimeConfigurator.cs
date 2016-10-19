@@ -26,9 +26,8 @@ namespace SitecoreInstaller.Runtime
         public Type Host { get; }
         public string AppName { get; }
 
-        public void Init(Action<NLogConfigurator> configureLog, Action<IocBuilder> iocRegistrations = null)
+        public bool Init(Action<NLogConfigurator> configureLog, Action<IocBuilder> iocRegistrations = null)
         {
-
             var initStatus = InitLogging(configureLog);
 
             initStatus = initStatus && LogAppInitializing();
@@ -38,6 +37,8 @@ namespace SitecoreInstaller.Runtime
             initStatus = initStatus && RunPreflightChecks();
 
             LogAppInitialized(initStatus);
+
+            return initStatus;
         }
 
         private bool InitContainer(Action<IocBuilder> iocRegistrations)
@@ -115,6 +116,8 @@ namespace SitecoreInstaller.Runtime
             _logger.Info($"{Host.Namespace} initializing...");
             _logger.Info($"UTC Time: {DateTime.UtcNow}");
             _logger.Info($"Host Version: {FileVersionInfo.GetVersionInfo(Host.Assembly.Location).FileVersion}");
+            _logger.Info($"Running as: {System.Security.Principal.WindowsIdentity.GetCurrent().Name}");
+
             return true;
         }
 

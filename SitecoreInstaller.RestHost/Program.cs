@@ -11,27 +11,35 @@ namespace SitecoreInstaller.RestHost
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             var appName = typeof(Program).Namespace;
 
             var runtime = new RuntimeConfigurator(typeof(Program));
             var logger = LogManager.GetLogger(appName);
-            runtime.Init(logConf =>
-                {
-                    var console = new ColoredConsoleTarget
-                    {
-                        Layout = "${message}"
-                    };
-                    console.AddDefaultLogColors();
+            var initResult = runtime.Init(logConf =>
+                  {
+                      var console = new ColoredConsoleTarget
+                      {
+                          Layout = "${message}"
+                      };
+                      console.AddDefaultLogColors();
 
-                    logConf.AddTarget(console.AsBuffered());
+                      logConf.AddTarget(console);
 
-                    logConf.AddTarget(new MethodCallTarget
-                    {
-                        MethodName = $"{typeof(Program).FullName}, {typeof(Program).Assembly.FullName}"
-                    }, "*", LogLevel.Fatal);
-                }, builder => builder.RegisterApiControllers(Assembly.GetExecutingAssembly()));
+                      logConf.AddTarget(new MethodCallTarget
+                      {
+                          MethodName = $"{typeof(Program).FullName}, {typeof(Program).Assembly.FullName}"
+                      }, "*", LogLevel.Fatal);
+                  }, builder => builder.RegisterApiControllers(Assembly.GetExecutingAssembly()));
+            if (initResult == false)
+            {
+                Console.WriteLine($"Press key to exit");
+                Console.ReadKey();
+                return 1;
+            }
+
+
 
             var portNumber = 7919;
             try
@@ -55,6 +63,7 @@ namespace SitecoreInstaller.RestHost
             {
                 logger.Info($"{runtime.AppName} is listening on port {portNumber}...");
                 Console.ReadKey();
+                return 0;
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using DotNet.Basics.Collections;
 using DotNet.Basics.IO;
 using Microsoft.Web.Administration;
@@ -106,7 +107,22 @@ namespace SitecoreInstaller.WebServer
 
         public PreflightCheckResult Assert()
         {
-            return new PreflightCheckResult();
+            return new PreflightCheckResult(issues =>
+            {
+                try
+                {
+                    using (var mng = new IisManager(new IisApplicationSettings(string.Empty)))
+                    {
+                        //verify connection
+                        mng.ServerManager.CommitChanges();
+                        _logger.Debug($"Connection to Iis Management Services established");
+                    }
+                }
+                catch (Exception e)
+                {
+                    issues.Add(e.ToString());
+                }
+            });
         }
 
         private void CreateSite(ServerManager iisManager, SiteSettings sitesettings, AppPoolSettings appPoolSettings)

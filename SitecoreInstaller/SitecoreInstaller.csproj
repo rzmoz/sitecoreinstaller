@@ -68,6 +68,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildLibrary\BuildLibraryResource.cs" />
+    <Compile Include="BuildLibrary\License.cs" />
+    <Compile Include="BuildLibrary\LocalBuildLibrary.cs" />
+    <Compile Include="BuildLibrary\Module.cs" />
+    <Compile Include="BuildLibrary\Sitecore.cs" />
     <Compile Include="PreflightChecks\IPreflightCheck.cs" />
     <Compile Include="PreflightChecks\PreflightCheckResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
