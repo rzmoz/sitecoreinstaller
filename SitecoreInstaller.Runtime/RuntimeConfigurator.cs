@@ -26,27 +26,29 @@ namespace SitecoreInstaller.Runtime
 
         public void Init(Action<NLogConfigurator> configureLog)
         {
-            InitLogging(configureLog);
 
-            LogAppInitializing();
+            var initStatus = InitLogging(configureLog);
 
-            InitContainer();
-            InitAppSettings();
-            RunPreflightChecks();
+            initStatus = initStatus && LogAppInitializing();
 
-            LogAppInitialized();
+            initStatus = initStatus && InitContainer();
+            initStatus = initStatus && InitAppSettings();
+            initStatus = initStatus && RunPreflightChecks();
+
+            LogAppInitialized(initStatus);
         }
 
-        private void InitContainer()
+        private bool InitContainer()
         {
             _logger.Trace($"Initializing IocContainer...");
             var builder = new IocBuilder();
             builder.Register(new SitecoreInstallerRegistrations());
             Container = builder.Build();
             _logger.Trace($"IocContainer Initialized");
+            return true;
         }
 
-        private void InitAppSettings()
+        private bool InitAppSettings()
         {
             _logger.Trace($"Verifying App Settings...");
             var appSettingsResult = Container.VerifyRequiredAppSettingKeysAreConfigured();
@@ -59,42 +61,46 @@ namespace SitecoreInstaller.Runtime
 
                 _logger.Fatal($"App settings not configured properly. Application will not run properly. Aborting...");
             }
+            return appSettingsResult.AllGood;
         }
 
-        private void RunPreflightChecks()
+        private bool RunPreflightChecks()
         {
-            _logger.Trace($"Running preflight checks...");
+            _logger.Trace($"Running Preflight checks...");
             var allGood = true;
             var preflightChecks = Container.Resolve<IEnumerable<IPreflightCheck>>().ToList();
             foreach (var preflightCheck in preflightChecks)
             {
                 var result = preflightCheck.Assert();
                 if (result.IsReady)
-                    _logger.Trace($"Preflight check {preflightCheck.GetType().Name} completed sucesfully");
+                    _logger.Trace($"Preflight check {preflightCheck.GetType().Name} completed successfully");
                 else
                 {
                     allGood = false;
-                    _logger.Error($"Preflight check {preflightCheck.GetType().Name} failed: {JsonConvert.SerializeObject(result.Issues)}");
+                    _logger.Error($"Preflight check {preflightCheck.GetType().Name} failed:\r\n{JsonConvert.SerializeObject(result.Issues)}");
                 }
             }
-            if (allGood == false)
-            {
+            if (allGood)
+                _logger.Trace($"Preflight checks completed successfully");
+            else
                 _logger.Fatal($"Preflight checks failed. Aborting...");
-            }
+
+            return allGood;
         }
 
-        private static void InitLogging(Action<NLogConfigurator> configureLog)
+        private static bool InitLogging(Action<NLogConfigurator> configureLog)
         {
             using (var logConfigurator = new NLogConfigurator())
             {
                 configureLog(logConfigurator);
                 logConfigurator.Build();
+                return true;
             }
         }
 
         public IContainer Container { get; private set; }
 
-        private void LogAppInitializing()
+        private bool LogAppInitializing()
         {
             _logger.Trace("------------------------------------------------------------------------------------------------------");
             _logger.Trace(@"
@@ -109,13 +115,15 @@ namespace SitecoreInstaller.Runtime
             _logger.Trace($"{Host.Namespace} initializing...");
             _logger.Info($"UTC Time: {DateTime.UtcNow}");
             _logger.Info($"Host Version: {FileVersionInfo.GetVersionInfo(Host.Assembly.Location).FileVersion}");
+            return true;
         }
 
-        private void LogAppInitialized()
+        private void LogAppInitialized(bool appInitialized)
         {
-            _logger.Trace($"{Host.Namespace} initialized");
+            _logger.Trace(appInitialized
+                ? $"{Host.Namespace} initialized"
+                : $"Initialization of {Host.Namespace} failed");
             _logger.Trace("------------------------------------------------------------------------------------------------------");
         }
-
     }
 }

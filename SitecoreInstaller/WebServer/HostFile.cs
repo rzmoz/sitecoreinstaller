@@ -170,7 +170,7 @@ namespace SitecoreInstaller.WebServer
                 if (Exists == false)
                     issues.Add($"Host file not found at: {_hostFile.FullName}");
                 if (HasWritePermissions() == false)
-                    issues.Add($"sitecoreInstaller does not have write permissions to host file. Run with elevated privileges (Run as administrator) to allow updates to your host file");
+                    issues.Add($"SitecoreInstaller does not have write permissions to host file at {_hostFile.FullName}. Run with elevated privileges (Run as administrator) to allow updates to your host file");
             });
         }
     }
