@@ -50,7 +50,7 @@ namespace SitecoreInstaller.Runtime
                     var builder = new IocBuilder();
                     builder.Register(new SitecoreInstallerRegistrations());
                     iocRegistrations?.Invoke(builder);
-                    Container = builder.Build();
+                    Container = builder.Container;
                 }
                 catch (Exception e)
                 {

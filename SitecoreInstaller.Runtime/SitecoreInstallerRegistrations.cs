@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using DotNet.Basics.Ioc;
 using SitecoreInstaller.BuildLibrary;
+using SitecoreInstaller.Pipelines.Install;
+using SitecoreInstaller.Pipelines.UnInstall;
 using SitecoreInstaller.PreflightChecks;
 using SitecoreInstaller.Website;
 using SitecoreInstaller.WebServer;
@@ -9,7 +11,7 @@ namespace SitecoreInstaller.Runtime
 {
     public class SitecoreInstallerRegistrations : IIocRegistrations
     {
-        public void RegisterIn(ContainerBuilder builder)
+        public void RegisterIn(IocBuilder builder)
         {
             //environment registrations
             builder.RegisterType<EnvironmentSettings>().AsSelf().SingleInstance();
@@ -24,6 +26,10 @@ namespace SitecoreInstaller.Runtime
 
             //web site registrations
             builder.RegisterType<WebsiteService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+
+            //pipelines
+            builder.Register(c => new InstallPipeline(builder.Container)).AsSelf().SingleInstance();
+            builder.Register(c => new UnInstallPipeline(builder.Container)).AsSelf().SingleInstance();
         }
     }
 }

@@ -2,19 +2,23 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using DotNet.Basics.Sys;
 using Newtonsoft.Json;
-using SitecoreInstaller.Website;
+using SitecoreInstaller.Pipelines.Install;
+using SitecoreInstaller.Pipelines.UnInstall;
 
 namespace SitecoreInstaller.RestHost.Controllers
 {
     [RoutePrefix("api/sites")]
     public class WebsiteController : ApiController
     {
-        private readonly WebsiteService _websiteService;
+        private readonly InstallPipeline _installPipeline;
+        private readonly UnInstallPipeline _unInstallPipeline;
 
-        public WebsiteController(WebsiteService websiteService)
+        public WebsiteController(InstallPipeline installPipeline, UnInstallPipeline unInstallPipeline)
         {
-            _websiteService = websiteService;
+            _installPipeline = installPipeline;
+            _unInstallPipeline = unInstallPipeline;
         }
 
         [Route("")]
@@ -25,7 +29,7 @@ namespace SitecoreInstaller.RestHost.Controllers
             try
             {
                 var settings = JsonConvert.DeserializeObject<ProjectSettings>(settingsJson);
-                _websiteService.InitProjectDir(settings.Name);
+                await _installPipeline.RunAsync(new EventArgs<ProjectSettings>(settings)).ConfigureAwait(false);
                 return Request.CreateResponse(HttpStatusCode.Accepted, settings);
             }
             catch (JsonReaderException e)
@@ -33,12 +37,13 @@ namespace SitecoreInstaller.RestHost.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
             }
         }
+
         [Route("{name}")]
         [HttpDelete]
-        public HttpResponseMessage DeleteSitecoreDeployment(string name)
+        public async Task<HttpResponseMessage> DeleteSitecoreDeployment(string name)
         {
-            var success = _websiteService.DeleteProjectDir(name);
-            return Request.CreateResponse(success ? HttpStatusCode.OK : HttpStatusCode.Conflict);
+            var args = await _unInstallPipeline.RunAsync(new UnInstallArgs { Name = name }).ConfigureAwait(false);
+            return Request.CreateResponse(args.WasDeleted ? HttpStatusCode.OK : HttpStatusCode.Conflict);
         }
     }
 }
