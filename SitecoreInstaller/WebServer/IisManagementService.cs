@@ -12,11 +12,8 @@ namespace SitecoreInstaller.WebServer
 
         public IisManagementService()
         {
-            HostFile = new HostFile();
             _logger = LogManager.GetLogger(nameof(IisManagementService));
         }
-
-        public HostFile HostFile { get; private set; }
 
         public void CreateApplication(IisApplicationSettings settings)
         {
