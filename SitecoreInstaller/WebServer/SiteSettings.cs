@@ -14,10 +14,12 @@ namespace SitecoreInstaller.WebServer
             Url = string.Empty;
             SiteRoot = @"c:\inetpub\sciroot".ToDir(name);
             IisLogFilesDir = SiteRoot.Add("IisLogFiles");
+            BindingProtocol = "http";
         }
 
         public string Name { get; set; }
         public string Url { get; set; }
+        public string BindingProtocol { get; set; }
         public string BindingInformation => string.Format(_bindingInformationFormat, Url);
         public DirPath SiteRoot { get; set; }
         public DirPath IisLogFilesDir { get; set; }

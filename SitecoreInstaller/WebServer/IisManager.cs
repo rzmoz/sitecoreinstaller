@@ -6,7 +6,6 @@ namespace SitecoreInstaller.WebServer
     public class IisManager : IDisposable
     {
         private readonly IisApplicationSettings _settings;
-        
 
         public IisManager(IisApplicationSettings settings)
         {
@@ -15,7 +14,7 @@ namespace SitecoreInstaller.WebServer
         }
 
         public ServerManager ServerManager { get; }
-
+        
         public void AppPool(Action<ApplicationPool> appPoolAction)
         {
             appPoolAction(ServerManager.ApplicationPools[_settings.AppPoolSettings.Name]);

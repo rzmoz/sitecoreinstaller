@@ -109,20 +109,19 @@ namespace SitecoreInstaller.WebServer
             return new PreflightCheckResult();
         }
 
-
-        public void CreateSite(ServerManager iisManager, SiteSettings sitesettings, AppPoolSettings appPoolSettings)
+        private void CreateSite(ServerManager iisManager, SiteSettings sitesettings, AppPoolSettings appPoolSettings)
         {
-            var site = iisManager.Sites.Add(sitesettings.Name, "http", sitesettings.BindingInformation, sitesettings.SiteRoot.FullName);
+            var site = iisManager.Sites.Add(sitesettings.Name, sitesettings.BindingProtocol, sitesettings.BindingInformation, sitesettings.SiteRoot.FullName);
             site.ApplicationDefaults.ApplicationPoolName = appPoolSettings.Name;
             site.LogFile.Directory = sitesettings.IisLogFilesDir.FullName;
 
             _logger.Debug($"Site home directory set to '{sitesettings.SiteRoot.FullName}'");
             _logger.Debug($"Site log dir set to '{sitesettings.IisLogFilesDir.FullName}'");
-            _logger.Debug($"Site App Pool set to '{appPoolSettings.Name}'");
+            _logger.Debug($"Site App Pool set to '{site.ApplicationDefaults.ApplicationPoolName}'");
             _logger.Debug($"Iis Site created: {sitesettings.Name}");
         }
 
-        public void CreateAppPool(ServerManager iisManager, AppPoolSettings settings)
+        private void CreateAppPool(ServerManager iisManager, AppPoolSettings settings)
         {
             var appPool = iisManager.ApplicationPools.Add(settings.Name);
             appPool.ManagedRuntimeVersion = settings.ManagedRuntimeVersion;
@@ -130,7 +129,6 @@ namespace SitecoreInstaller.WebServer
             appPool.Enable32BitAppOnWin64 = settings.Enable32BitAppOnWin64;
             appPool.ProcessModel.PingingEnabled = settings.PingEnabled;
             appPool.ProcessModel.IdentityType = settings.ProcessModelIdentityType;
-
 
             _logger.Debug("App pool runtime version set to {0}", appPool.ManagedRuntimeVersion);
             _logger.Debug("App pool pipeline mode set to {0}", appPool.ManagedPipelineMode);
