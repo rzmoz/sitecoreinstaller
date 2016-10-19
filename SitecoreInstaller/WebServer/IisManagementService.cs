@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using DotNet.Basics.Collections;
 using DotNet.Basics.IO;
 using Microsoft.Web.Administration;
@@ -12,14 +11,17 @@ namespace SitecoreInstaller.WebServer
     public class IisManagementService : IPreflightCheck
     {
         private readonly ILogger _logger;
+        private readonly IisApplicationSettingsFactory _iisApplicationSettingsFactory;
 
-        public IisManagementService()
+        public IisManagementService(IisApplicationSettingsFactory iisApplicationSettingsFactory)
         {
+            _iisApplicationSettingsFactory = iisApplicationSettingsFactory;
             _logger = LogManager.GetLogger(nameof(IisManagementService));
         }
 
-        public void CreateApplication(IisApplicationSettings settings)
+        public void CreateApplication(string name)
         {
+            var settings = _iisApplicationSettingsFactory.Create(name);
             _logger.Trace($"Creating Iis Application: {settings.Name}...");
             using (var iisManager = new IisManager(settings))
             {
@@ -32,8 +34,9 @@ namespace SitecoreInstaller.WebServer
             _logger.Trace($"Iis Application created: {settings.Name}");
         }
 
-        public void DeleteApplication(IisApplicationSettings settings)
+        public void DeleteApplication(string name)
         {
+            var settings = _iisApplicationSettingsFactory.Create(name);
             _logger.Trace($"Deleting Iis Application: {settings.Name}...");
             using (var iisManager = new IisManager(settings))
             {
@@ -52,16 +55,18 @@ namespace SitecoreInstaller.WebServer
             _logger.Trace($"Iis Application deleted: {settings.Name}");
         }
 
-        public void RecycleApplication(IisApplicationSettings settings)
+        public void RecycleApplication(string name)
         {
+            var settings = _iisApplicationSettingsFactory.Create(name);
             using (var iisManager = new IisManager(settings))
             {
                 iisManager.AppPool(appPool => appPool?.Recycle());
             }
         }
 
-        public void StartApplication(IisApplicationSettings settings)
+        public void StartApplication(string name)
         {
+            var settings = _iisApplicationSettingsFactory.Create(name);
             using (var iisManager = new IisManager(settings))
             {
                 iisManager.AppPool(appPool => appPool?.Start());
@@ -72,8 +77,9 @@ namespace SitecoreInstaller.WebServer
             _logger.Trace($"Iis Application started: {settings.Name}");
         }
 
-        public void StopApplication(IisApplicationSettings settings)
+        public void StopApplication(string name)
         {
+            var settings = _iisApplicationSettingsFactory.Create(name);
             using (var iisManager = new IisManager(settings))
             {
                 iisManager.Site(site => site?.Stop());

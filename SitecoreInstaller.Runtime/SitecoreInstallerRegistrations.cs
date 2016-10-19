@@ -10,12 +10,16 @@ namespace SitecoreInstaller.Runtime
     {
         public void RegisterIn(ContainerBuilder builder)
         {
+            //environment registrations
+            builder.RegisterType<EnvironmentSettings>().AsSelf().SingleInstance();
+
             //web server registrations
             builder.RegisterType<HostFile>().As<IPreflightCheck>().AsSelf().SingleInstance();
             builder.RegisterType<IisManagementService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<IisApplicationSettingsFactory>().AsSelf().SingleInstance();
 
             //build lib
-            builder.RegisterType<LocalBuildLibrary>().UsingConstructor().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<LocalBuildLibrary>().As<IPreflightCheck>().AsSelf().SingleInstance();
         }
     }
 }

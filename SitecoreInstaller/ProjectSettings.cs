@@ -1,4 +1,4 @@
-﻿namespace SitecoreInstaller.Projects
+﻿namespace SitecoreInstaller
 {
     public class ProjectSettings
     {

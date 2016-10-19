@@ -14,18 +14,13 @@ namespace SitecoreInstaller.BuildLibrary
         private const string _modulesDirName = "Modules";
         private readonly ILogger _logger;
 
-        public LocalBuildLibrary()
-            : this(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToDir("SiBuildLibrary"))
+        public LocalBuildLibrary(EnvironmentSettings environmentSettings)
         {
-        }
-
-        public LocalBuildLibrary(DirPath root)
-        {
-            if (root == null) throw new ArgumentNullException(nameof(root));
-            Root = root;
-            Sitecores = root.Add(_sitecoresDirName);
-            Licenses = root.Add(_licensesDirName);
-            Modules = root.Add(_modulesDirName);
+            if (environmentSettings == null) throw new ArgumentNullException(nameof(environmentSettings));
+            Root = environmentSettings.BuildLibraryRootDir.ToDir();
+            Sitecores = Root.Add(_sitecoresDirName);
+            Licenses = Root.Add(_licensesDirName);
+            Modules = Root.Add(_modulesDirName);
             _logger = LogManager.GetLogger(nameof(LocalBuildLibrary));
         }
 

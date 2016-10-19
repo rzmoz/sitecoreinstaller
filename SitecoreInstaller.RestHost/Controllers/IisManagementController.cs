@@ -23,7 +23,7 @@ namespace SitecoreInstaller.RestHost.Controllers
         {
             try
             {
-                _iisManagementService.CreateApplication(new IisApplicationSettings(name));
+                _iisManagementService.CreateApplication(name);
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
             catch (COMException e)
@@ -36,7 +36,7 @@ namespace SitecoreInstaller.RestHost.Controllers
         [HttpDelete]
         public HttpResponseMessage DeleteApplication(string name)
         {
-            _iisManagementService.DeleteApplication(new IisApplicationSettings(name));
+            _iisManagementService.DeleteApplication(name);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
