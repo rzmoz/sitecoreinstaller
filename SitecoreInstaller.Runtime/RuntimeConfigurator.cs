@@ -40,52 +40,49 @@ namespace SitecoreInstaller.Runtime
 
         private bool InitContainer()
         {
-            _logger.Trace($"Initializing IocContainer...");
-            var builder = new IocBuilder();
-            builder.Register(new SitecoreInstallerRegistrations());
-            Container = builder.Build();
-            _logger.Trace($"IocContainer Initialized");
-            return true;
+            return InitArea("IocContainer", (errorMsgs) =>
+            {
+                try
+                {
+                    var builder = new IocBuilder();
+                    builder.Register(new SitecoreInstallerRegistrations());
+                    Container = builder.Build();
+                }
+                catch (Exception e)
+                {
+                    errorMsgs.Add(e.ToString());
+                }
+            });
         }
 
         private bool InitAppSettings()
         {
-            _logger.Trace($"Verifying App Settings...");
-            var appSettingsResult = Container.VerifyRequiredAppSettingKeysAreConfigured();
-            if (appSettingsResult.AllGood)
-                _logger.Trace($"App Settings verified");
-            else
+            return InitArea("App Settings", (errorMsgs) =>
             {
-                foreach (var missingKey in appSettingsResult.MissingKeys)
-                    _logger.Error($"Required key is not configured: {missingKey}");
-
-                _logger.Fatal($"App settings not configured properly. Application will not run properly. Aborting...");
-            }
-            return appSettingsResult.AllGood;
+                var appsettings = Container.GetAppSettings();
+                foreach (var appsetting in appsettings)
+                {
+                    _logger.Debug($"Running Preflight check: {appsetting.GetType().Name}");
+                    var assert = appsetting.Verify();
+                    if (assert == false)
+                        errorMsgs.Add($"Required key is not configured: {appsetting.Key}");
+                }
+            });
         }
 
         private bool RunPreflightChecks()
         {
-            _logger.Trace($"Running Preflight checks...");
-            var allGood = true;
-            var preflightChecks = Container.Resolve<IEnumerable<IPreflightCheck>>().ToList();
-            foreach (var preflightCheck in preflightChecks)
+            return InitArea("Preflight Checks", (errorMsgs) =>
             {
-                var result = preflightCheck.Assert();
-                if (result.IsReady)
-                    _logger.Trace($"Preflight check {preflightCheck.GetType().Name} completed successfully");
-                else
+                var preflightChecks = Container.Resolve<IEnumerable<IPreflightCheck>>().ToList();
+                foreach (var preflightCheck in preflightChecks)
                 {
-                    allGood = false;
-                    _logger.Error($"Preflight check {preflightCheck.GetType().Name} failed:\r\n{JsonConvert.SerializeObject(result.Issues)}");
+                    _logger.Debug($"Running Preflight check: {preflightCheck.GetType().Name}");
+                    var result = preflightCheck.Assert();
+                    if (result.IsReady == false)
+                        errorMsgs.Add($"Preflight check {preflightCheck.GetType().Name} failed:\r\n{JsonConvert.SerializeObject(result.Issues)}");
                 }
-            }
-            if (allGood)
-                _logger.Trace($"Preflight checks completed successfully");
-            else
-                _logger.Fatal($"Preflight checks failed. Aborting...");
-
-            return allGood;
+            }, "Running", "Ran");
         }
 
         private static bool InitLogging(Action<NLogConfigurator> configureLog)
@@ -112,7 +109,7 @@ namespace SitecoreInstaller.Runtime
 
 ");
             _logger.Trace("------------------------------------------------------------------------------------------------------");
-            _logger.Trace($"{Host.Namespace} initializing...");
+            _logger.Info($"{Host.Namespace} initializing...");
             _logger.Info($"UTC Time: {DateTime.UtcNow}");
             _logger.Info($"Host Version: {FileVersionInfo.GetVersionInfo(Host.Assembly.Location).FileVersion}");
             return true;
@@ -120,10 +117,28 @@ namespace SitecoreInstaller.Runtime
 
         private void LogAppInitialized(bool appInitialized)
         {
-            _logger.Trace(appInitialized
+            _logger.Info(appInitialized
                 ? $"{Host.Namespace} initialized"
                 : $"Initialization of {Host.Namespace} failed");
             _logger.Trace("------------------------------------------------------------------------------------------------------");
+        }
+
+        private bool InitArea(string areaName, Action<IList<string>> initFunc, string startingVerb = "Initializing", string endedVerb = "Initialized")
+        {
+            _logger.Trace($"{startingVerb} {areaName}...");
+            var errorMessages = new List<string>();
+            initFunc(errorMessages);
+            var success = errorMessages.Count == 0;
+            if (success)
+                _logger.Trace($"{areaName} {endedVerb} successfully");
+            else
+            {
+                foreach (var errorMessage in errorMessages)
+                    _logger.Error(errorMessage);
+
+                _logger.Fatal($"{startingVerb} of {areaName} failed. Application will not run properly. Aborting...");
+            }
+            return success;
         }
     }
 }
