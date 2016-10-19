@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfigDir.cs" />
+    <Compile Include="AppDataDir.cs" />
     <Compile Include="BuildLibrary\BuildLibraryResource.cs" />
     <Compile Include="BuildLibrary\License.cs" />
     <Compile Include="BuildLibrary\LocalBuildLibrary.cs" />
@@ -76,7 +77,7 @@
     <Compile Include="BuildLibrary\Sitecore.cs" />
     <Compile Include="Deployments\DeploymentsService.cs" />
     <Compile Include="EnvironmentSettings.cs" />
-    <Compile Include="Pipelines\Install\CopySitecoreStep.cs" />
+    <Compile Include="Pipelines\Install\CopyDeploymentFilesStep.cs" />
     <Compile Include="Pipelines\Install\InitDeploymentDirStep.cs" />
     <Compile Include="Pipelines\Install\InstallPipeline.cs" />
     <Compile Include="Pipelines\UnInstall\DeleteDeploymentDirStep.cs" />

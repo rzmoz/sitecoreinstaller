@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.AccessControl;
 using System.Threading.Tasks;
 using DotNet.Basics.IO;
@@ -32,28 +34,48 @@ namespace SitecoreInstaller.Deployments
             _logger.Trace($"{nameof(DeploymentsService)} initialized to: {Root.FullName}");
         }
 
+        public void CopyModules(IEnumerable<Module> modules, string deploymentName)
+        {
+            var deploymentDir = new DeploymentDir(Root.Add(deploymentName));
+
+            Parallel.ForEach(modules.Where(m => m.Path.IsFolder == false), m =>
+            {
+                _logger.Debug($"Copying module {m.Name} for {deploymentName}...");
+                m.Path.ToFile().CopyTo(deploymentDir.Website.App_Data.Packages);
+                _logger.Debug($"Module {m.Name} for {deploymentName} copied to {deploymentDir.Website.App_Data.Packages.ToFile(m.Name)}");
+            });
+        }
+
+        public void CopyLicenseFile(License license, string deploymentName)
+        {
+            var deploymentDir = new DeploymentDir(Root.Add(deploymentName));
+            _logger.Debug($"Copying license file {license.Name} for {deploymentName}...");
+            license.Path.CopyTo(deploymentDir.Website.App_Data.LicenseXml);
+            _logger.Debug($"License file for {deploymentName} copied to {deploymentDir.Website.App_Data.LicenseXml}");
+        }
         public void CopySitecore(Sitecore sitecore, string deploymentName)
         {
             var deploymentDir = new DeploymentDir(Root.Add(deploymentName));
-            _logger.Trace($"Copying {sitecore.Name} for {deploymentName}...");
+            _logger.Debug($"Copying {sitecore.Name} for {deploymentName}...");
             Parallel.Invoke(() =>
             {
                 //copy sitecore
-                _logger.Trace($"Copying Sitecore {sitecore.Name} to {deploymentDir.Website}");
+                _logger.Debug($"Copying {sitecore.Name} for {deploymentName}");
                 sitecore.Website.CopyTo(deploymentDir.Website, includeSubfolders: true);
-                _logger.Trace($"Sitecore {sitecore.Name} copied");
+                _logger.Trace($"Sitecore {sitecore.Name} copied to {deploymentDir.Website}");
             }, () =>
              {
                  //copy databases
-                 _logger.Trace($"Copying Databases for {deploymentName} to {deploymentDir.Databases}");
+                 _logger.Debug($"Copying Databases for {deploymentName}");
                  sitecore.Databases.CopyTo(deploymentDir.Databases, includeSubfolders: true);
-                 _logger.Trace($"Databases for {deploymentName} copied");
+                 FixReportingDatabaseFileNames(deploymentDir);
+                 _logger.Debug($"Databases for {deploymentName} copied to {deploymentDir.Databases}");
              }, () =>
              {
                  //copy data
-                 _logger.Trace($"Copying Data for {deploymentName} to {deploymentDir.Website.App_Data}");
+                 _logger.Debug($"Copying Data for {deploymentName}");
                  sitecore.Data.CopyTo(deploymentDir.Website.App_Data, includeSubfolders: true);
-                 _logger.Trace($"Data for {deploymentName} copied");
+                 _logger.Debug($"Data for {deploymentName} copied to {deploymentDir.Website.App_Data}");
              });
 
             _logger.Trace($"{sitecore.Name} for {deploymentName} copied");
@@ -87,6 +109,17 @@ namespace SitecoreInstaller.Deployments
                 _logger.Error($"Failed to delete Deployment dir: {deploymentDir.FullName}");
 
             return success;
+        }
+
+        private void FixReportingDatabaseFileNames(DeploymentDir deploymentDir)
+        {
+            var analyticsFiles = deploymentDir.Databases.GetFiles("Sitecore.Analytics.*", true);
+
+            foreach (var analyticsFile in analyticsFiles)
+            {
+                _logger.Trace($"Fixing reporting database filename for: {analyticsFile.FullName}");
+                analyticsFile.MoveTo(analyticsFile.Directory.ToFile("Sitecore.Reporting" + analyticsFile.Extension));
+            }
         }
 
         public PreflightCheckResult Assert()

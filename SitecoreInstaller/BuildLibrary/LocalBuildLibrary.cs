@@ -52,7 +52,7 @@ namespace SitecoreInstaller.BuildLibrary
 
         public IEnumerable<Module> GetModules()
         {
-            return Modules.EnumerateDirectories().Select(dir => new Module(dir));
+            return Modules.EnumeratePaths().Select(path => new Module(path));
         }
 
         public Sitecore GetSitecore(string name)
@@ -67,7 +67,7 @@ namespace SitecoreInstaller.BuildLibrary
 
         public Module GetModule(string name)
         {
-            return (Module)Get(() => new Module(Modules.Add(name)));
+            return (Module)Get(() => new Module(Modules.FullName.ToPath(name)));
         }
 
         public PreflightCheckResult Assert()
