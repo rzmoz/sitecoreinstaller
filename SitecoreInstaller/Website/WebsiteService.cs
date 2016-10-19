@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.AccessControl;
 using DotNet.Basics.IO;
 using DotNet.Basics.Sys;
 using DotNet.Basics.Tasks.Repeating;
@@ -35,6 +36,7 @@ namespace SitecoreInstaller.Website
             projectDir.Website.App_Config.CreateIfNotExists();
             projectDir.Website.App_Data.CreateIfNotExists();
             projectDir.Website.Temp.CreateIfNotExists();
+            projectDir.GrantAccess("everyone", FileSystemRights.FullControl);
         }
 
         public bool DeleteProjectDir(string siteName)
@@ -46,8 +48,6 @@ namespace SitecoreInstaller.Website
                 {
                     o.RetryDelay = 500.MilliSeconds();
                     o.MaxTries = 10;
-
-
                 })
                 .Until(() => projectDir.Exists() == false);
 
