@@ -1,4 +1,5 @@
 ﻿using System;
+using DotNet.Basics.IO;
 using Microsoft.Web.Administration;
 using NLog;
 using SitecoreInstaller.PreflightChecks;
@@ -25,6 +26,8 @@ namespace SitecoreInstaller.WebServer
                 iisManager.CreateSite(settings.SiteSettings, settings.AppPoolSettings);
                 iisManager.CommitChanges();
             }
+            settings.SiteSettings.SiteRoot.CreateIfNotExists();
+            settings.SiteSettings.IisLogFilesDir.CreateIfNotExists();
         }
 
         public void DeleteApplication(IisApplicationSettings settings)
@@ -35,6 +38,8 @@ namespace SitecoreInstaller.WebServer
                 iisManager.DeleteAppPool(settings.AppPoolSettings);
                 iisManager.CommitChanges();
             }
+            settings.SiteSettings.SiteRoot.DeleteIfExists();
+            settings.SiteSettings.IisLogFilesDir.DeleteIfExists();
         }
 
         public void RecycleApplication(string applicationName)

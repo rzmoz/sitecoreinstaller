@@ -8,7 +8,7 @@ namespace SitecoreInstaller.RestHost.Controllers
     [RoutePrefix("api/iis")]
     public class IisManagementController : ApiController
     {
-        private IisManagementService _iisManagementService;
+        private readonly IisManagementService _iisManagementService;
 
         public IisManagementController(IisManagementService iisManagementService)
         {
@@ -20,6 +20,13 @@ namespace SitecoreInstaller.RestHost.Controllers
         public HttpResponseMessage CreateApplication(string name)
         {
             _iisManagementService.CreateApplication(new IisApplicationSettings(name));
+            return Request.CreateResponse(HttpStatusCode.OK, name);
+        }
+        [Route("{name}")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteApplication(string name)
+        {
+            _iisManagementService.DeleteApplication(new IisApplicationSettings(name));
             return Request.CreateResponse(HttpStatusCode.OK, name);
         }
     }
