@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller
 {
-    public class ProjectSettings
+    public class DeploymentSettings
     {
         public string Name { get; set; }
         public string Sitecore { get; set; }

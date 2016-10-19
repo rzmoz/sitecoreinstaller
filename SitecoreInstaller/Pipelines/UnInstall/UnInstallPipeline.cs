@@ -8,7 +8,7 @@ namespace SitecoreInstaller.Pipelines.UnInstall
     {
         public UnInstallPipeline(IContainer container) : base(container)
         {
-            AddStep<DeleteProjectDirStep>();
+            AddStep<DeleteDeploymentDirStep>();
         }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace SitecoreInstaller
 {
-    public class ProjectDir : DirPath
+    public class DeploymentDir : DirPath
     {
-        public ProjectDir(DirPath fullPath) : base(fullPath.FullName)
+        public DeploymentDir(DirPath fullPath) : base(fullPath.FullName)
         {
         }
 

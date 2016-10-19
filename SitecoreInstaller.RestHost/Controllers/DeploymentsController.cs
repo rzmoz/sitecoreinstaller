@@ -28,8 +28,8 @@ namespace SitecoreInstaller.RestHost.Controllers
             var settingsJson = await Request.Content.ReadAsStringAsync().ConfigureAwait(false);
             try
             {
-                var settings = JsonConvert.DeserializeObject<ProjectSettings>(settingsJson);
-                await _installPipeline.RunAsync(new EventArgs<ProjectSettings>(settings)).ConfigureAwait(false);
+                var settings = JsonConvert.DeserializeObject<DeploymentSettings>(settingsJson);
+                await _installPipeline.RunAsync(new EventArgs<DeploymentSettings>(settings)).ConfigureAwait(false);
                 return Request.CreateResponse(HttpStatusCode.Accepted, settings);
             }
             catch (JsonReaderException e)
