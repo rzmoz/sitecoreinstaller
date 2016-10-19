@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 using Autofac.Integration.WebApi;
 using NLog;
 using Owin;
@@ -17,6 +18,8 @@ namespace SitecoreInstaller.RestHost
             config.MapHttpAttributeRoutes();
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
             config.DependencyResolver = new AutofacWebApiDependencyResolver(runtime.Container);
+            config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
+
             appBuilder.UseWebApi(config);
 
             logger.Debug($"{nameof(config.IncludeErrorDetailPolicy)}: {config.IncludeErrorDetailPolicy }");

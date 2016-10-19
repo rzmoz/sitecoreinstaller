@@ -39,7 +39,9 @@ namespace SitecoreInstaller.BuildLibrary
             if (Root.Exists())
                 return;
 
-            Root.CreateIfNotExists();
+            Sitecores.CreateIfNotExists();
+            Licenses.CreateIfNotExists();
+            Modules.CreateIfNotExists();
             _logger.Trace($"{nameof(LocalBuildLibrary)} initialized to: {Root.FullName}");
         }
 

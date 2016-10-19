@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Web.Http;
 using SitecoreInstaller.WebServer;
 
@@ -19,15 +21,23 @@ namespace SitecoreInstaller.RestHost.Controllers
         [HttpPut]
         public HttpResponseMessage CreateApplication(string name)
         {
-            _iisManagementService.CreateApplication(new IisApplicationSettings(name));
-            return Request.CreateResponse(HttpStatusCode.OK, name);
+            try
+            {
+                _iisManagementService.CreateApplication(new IisApplicationSettings(name));
+                return Request.CreateResponse(HttpStatusCode.Created);
+            }
+            catch (COMException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.Conflict, $"Application already exists: {name}");
+            }
         }
+
         [Route("{name}")]
         [HttpDelete]
         public HttpResponseMessage DeleteApplication(string name)
         {
             _iisManagementService.DeleteApplication(new IisApplicationSettings(name));
-            return Request.CreateResponse(HttpStatusCode.OK, name);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }
