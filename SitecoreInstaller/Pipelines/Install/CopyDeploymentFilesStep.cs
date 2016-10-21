@@ -22,7 +22,7 @@ namespace SitecoreInstaller.Pipelines.Install
         protected override async Task InnerRunAsync(EventArgs<DeploymentSettings> args, CancellationToken ct)
         {
             var sitecore = _buildLibrary.GetSitecore(args.Value.Sitecore);
-            //_deploymentsService.CopySitecore(sitecore, args.Value.Name);
+            _deploymentsService.CopySitecore(sitecore, args.Value.Name);
             var license = _buildLibrary.GetLicense(args.Value.License);
             _deploymentsService.CopyLicenseFile(license, args.Value.Name);
             var modules = (from module in args.Value.Modules select _buildLibrary.GetModule(module)).ToList();

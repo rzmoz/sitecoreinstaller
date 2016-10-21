@@ -37,13 +37,22 @@ namespace SitecoreInstaller.Deployments
         public void CopyModules(IEnumerable<Module> modules, string deploymentName)
         {
             var deploymentDir = new DeploymentDir(Root.Add(deploymentName));
+            modules = modules.ToList();
 
+            //copy standalone sc modules
             Parallel.ForEach(modules.Where(m => m.Path.IsFolder == false), m =>
             {
                 _logger.Debug($"Copying module {m.Name} for {deploymentName}...");
                 m.Path.ToFile().CopyTo(deploymentDir.Website.App_Data.Packages);
                 _logger.Debug($"Module {m.Name} for {deploymentName} copied to {deploymentDir.Website.App_Data.Packages.ToFile(m.Name)}");
             });
+
+            foreach (var m in modules.Where(m => m.Path.IsFolder))
+            {
+                _logger.Debug($"Copying module {m.Name} for {deploymentName}...");
+
+                _logger.Debug($"Module {m.Name} for {deploymentName} copied to {deploymentDir.Website}");
+            }
         }
 
         public void CopyLicenseFile(License license, string deploymentName)
