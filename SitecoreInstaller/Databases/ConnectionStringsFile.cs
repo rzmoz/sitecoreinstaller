@@ -11,6 +11,7 @@ namespace SitecoreInstaller.Databases
     public class ConnectionStringsFile : IEnumerable<ConnectionStringEntry>
     {
         private readonly StringKeyDictionary<ConnectionStringEntry> _entries;
+        private ConnectionStringEntryFactory _connectionStringEntryFactory = new ConnectionStringEntryFactory();
 
         public ConnectionStringsFile()
         {
@@ -71,9 +72,9 @@ namespace SitecoreInstaller.Databases
             var entryElements = connectionStrings.Descendants("add");
             foreach (var entryElement in entryElements)
             {
-                var name = entryElement.Attribute("name").Value;
-                var connectionString = entryElement.Attribute("connectionString").Value;
-                _entries.Add(name.ToLower(), new ConnectionStringEntry(name, connectionString));
+                var name = entryElement.Attribute("name")?.Value;
+                var connectionString = entryElement.Attribute("connectionString")?.Value;
+                _entries.Add(name?.ToLower(), _connectionStringEntryFactory.Create(name, connectionString));
             }
         }
 

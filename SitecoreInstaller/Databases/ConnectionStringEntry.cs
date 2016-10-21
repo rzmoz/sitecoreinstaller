@@ -4,22 +4,15 @@ namespace SitecoreInstaller.Databases
 {
     public class ConnectionStringEntry
     {
-        private readonly ConnectionStringFactory _connectionStringFactory = new ConnectionStringFactory();
-
-        public ConnectionStringEntry()
-            : this(string.Empty, string.Empty)
-        {
-        }
-
-        public ConnectionStringEntry(string entryName, string connectionString)
+        public ConnectionStringEntry(string entryName, IConnectionString connectionString, DbType dbType)
         {
             if (connectionString == null) throw new ArgumentNullException(nameof(connectionString));
 
             Name = new ConnectionStringName();
             if (entryName != null)
                 Name = new ConnectionStringName(entryName);
-
-            ConnectionString = _connectionStringFactory.Create(connectionString);
+            DbType = dbType;
+            ConnectionString = connectionString;
         }
 
         public ConnectionStringEntry(SqlSettings parameters, ConnectionStringName connectionStringName)
@@ -34,8 +27,9 @@ namespace SitecoreInstaller.Databases
             ConnectionString = new MongoConnectionString(settings, connectionStringName);
         }
 
-        public ConnectionStringName Name { get; set; }
-        public IConnectionString ConnectionString { get; set; }
+        public DbType DbType { get; }
+        public ConnectionStringName Name { get; }
+        public IConnectionString ConnectionString { get; }
 
         public override string ToString()
         {

@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.Databases
 {
-    public class SqlConnectionString : BaseConnectionString
+    public class SqlConnectionString : SitecoreInstallerConnectionString
     {
         private const string _connectionStringFormat = "user id={0};password={1};Data Source={2};Database={3}";
 

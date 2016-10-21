@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace SitecoreInstaller.Databases
 {
-    public class MongoConnectionString : BaseConnectionString
+    public class MongoConnectionString : SitecoreInstallerConnectionString
     {
         private const string _protocol = @"mongodb://";
         private const string _connectionStringFormat = "mongodb://{0}:{1}";

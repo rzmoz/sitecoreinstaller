@@ -1,6 +1,6 @@
 ﻿namespace SitecoreInstaller.Databases
 {
-    public abstract class BaseConnectionString : IConnectionString
+    public abstract class SitecoreInstallerConnectionString : IConnectionString
     {
         public string Value { get; set; }
         public virtual bool IsValid()
