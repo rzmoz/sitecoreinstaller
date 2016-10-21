@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using Autofac;
 using Autofac.Integration.WebApi;
@@ -14,12 +15,7 @@ namespace SitecoreInstaller.RestHost
     {
         static int Main(string[] args)
         {
-            var portNumber = 7919;
-            try
-            {
-                portNumber = int.Parse(args[0]);
-            }
-            catch (IndexOutOfRangeException) { }
+            var portNumber = int.Parse(args.Take(1).FirstOrDefault() ?? "7919");
 
             var runtime = new RuntimeConfigurator();
 
@@ -43,11 +39,11 @@ namespace SitecoreInstaller.RestHost
             {
                 Layout = "${message}"
             }.AddLogColor(LogLevel.Debug, ConsoleOutputColor.DarkGray)
-                    .AddLogColor(LogLevel.Trace, ConsoleOutputColor.Cyan)
-                    .AddLogColor(LogLevel.Info, ConsoleOutputColor.White)
-                    .AddLogColor(LogLevel.Warn, ConsoleOutputColor.Yellow)
-                    .AddLogColor(LogLevel.Error, ConsoleOutputColor.Red)
-                    .AddLogColor(LogLevel.Fatal, ConsoleOutputColor.White, ConsoleOutputColor.DarkRed));
+              .AddLogColor(LogLevel.Trace, ConsoleOutputColor.Cyan)
+              .AddLogColor(LogLevel.Info, ConsoleOutputColor.White)
+              .AddLogColor(LogLevel.Warn, ConsoleOutputColor.Yellow)
+              .AddLogColor(LogLevel.Error, ConsoleOutputColor.Red)
+              .AddLogColor(LogLevel.Fatal, ConsoleOutputColor.White, ConsoleOutputColor.DarkRed));
 
             logConf.AddTarget(new MethodCallTarget
             {
