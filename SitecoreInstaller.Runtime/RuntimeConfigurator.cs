@@ -17,15 +17,23 @@ namespace SitecoreInstaller.Runtime
     {
         private readonly ILogger _logger;
 
-        public RuntimeConfigurator(Type host)
+        public RuntimeConfigurator(string hostName = null)
         {
-            
-            _logger = LogManager.GetCurrentClassLogger();
+            HostName = hostName;
+            if (HostName == null)
+            {
+                var frame = new StackFrame(1);
+                var method = frame.GetMethod();
+                var type = method.DeclaringType;
+                HostName = type?.Namespace ?? "Host";
+            }
+            _logger = LogManager.GetLogger(HostName);
         }
 
-        
+        public string HostName { get; }
 
-        public bool Init(Action<NLogConfigurator> configureLog, Action<IocBuilder> iocRegistrations = null)
+        public bool Init(Action<NLogConfigurator> configureLog, Action<IContainer, ILogger> startHostAction,
+            Action<IocBuilder> iocRegistrations = null)
         {
             //ensure all low level dotnet.basics events are logged
             DebugOut.Out += _logger.Debug;
@@ -38,7 +46,27 @@ namespace SitecoreInstaller.Runtime
 
             LogAppInitialized(initStatus);
 
-            return initStatus;
+            if (initStatus == false)
+                return false;
+
+            return StartHost(startHostAction);
+        }
+
+        private bool StartHost(Action<IContainer, ILogger> startHostAction)
+        {
+            _logger.Debug($"Host:{HostName} starting...");
+
+            try
+            {
+                startHostAction(Container, _logger);
+                _logger.Info($"Host:{HostName} started");
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.Fatal(e);
+                return false;
+            }
         }
 
         private bool InitContainer(Action<IocBuilder> iocRegistrations)

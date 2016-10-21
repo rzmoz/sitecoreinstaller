@@ -2,26 +2,25 @@
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
+using Autofac;
 using Autofac.Integration.WebApi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NLog;
 using Owin;
-using SitecoreInstaller.Runtime;
 
 namespace SitecoreInstaller.RestHost
 {
     public class WebApiInit
     {
-        public void Configuration(IAppBuilder appBuilder, RuntimeConfigurator runtime, ILogger logger)
+        public void Configuration(IAppBuilder appBuilder, IContainer container, ILogger logger)
         {
             // Configure Web API for self-host. 
             var config = new HttpConfiguration();
-            logger.Debug("Initalizing WebApi...");
-
+            
             config.MapHttpAttributeRoutes();
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
-            config.DependencyResolver = new AutofacWebApiDependencyResolver(runtime.Container);
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
 
             appBuilder.UseWebApi(config);
@@ -47,8 +46,6 @@ namespace SitecoreInstaller.RestHost
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/plain"));
 
             config.EnsureInitialized();
-
-            logger.Debug("WebApi initialized");
         }
     }
 }
