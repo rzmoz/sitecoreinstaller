@@ -1,4 +1,7 @@
-﻿namespace SitecoreInstaller.Databases
+﻿using DotNet.Basics.Sys;
+using MongoDB.Driver;
+
+namespace SitecoreInstaller.Databases
 {
     public class MongoConnectionString : BaseConnectionString
     {
@@ -24,7 +27,15 @@
 
             if (string.IsNullOrEmpty(dbName) == false)
                 Value += "/" + dbName;
+
+            var mongoUrlBuilder = new MongoUrlBuilder(Value)
+            {
+                ConnectTimeout = 3.Seconds()
+            };
+            MongoUrl = new MongoUrl(mongoUrlBuilder.ToString());
         }
+
+        public MongoUrl MongoUrl { get; }
 
         public void SetProjectName(string projectName)
         {

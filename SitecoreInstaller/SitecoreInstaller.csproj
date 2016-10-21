@@ -124,8 +124,8 @@
     <Compile Include="Databases\DatabaseNamesExtensions.cs" />
     <Compile Include="Databases\IConnectionString.cs" />
     <Compile Include="Databases\MongoConnectionString.cs" />
-    <Compile Include="Databases\MongoExtensions.cs" />
-    <Compile Include="Databases\MongoService.cs" />
+    <Compile Include="Databases\MongoDbConnector.cs" />
+    <Compile Include="Databases\MongoDbExtensions.cs" />
     <Compile Include="Databases\MongoSettings.cs" />
     <Compile Include="Databases\SqlConnectionExtensions.cs" />
     <Compile Include="Databases\SqlConnectionString.cs" />
