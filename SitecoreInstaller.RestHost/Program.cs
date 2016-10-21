@@ -13,19 +13,21 @@ namespace SitecoreInstaller.RestHost
     {
         static int Main(string[] args)
         {
-            var appName = typeof(Program).Namespace;
+            var hostName = typeof(Program).Namespace;
 
             var runtime = new RuntimeConfigurator(typeof(Program));
-            var logger = LogManager.GetLogger(appName);
+            var logger = LogManager.GetLogger(hostName);
             var initResult = runtime.Init(logConf =>
                   {
-                      var console = new ColoredConsoleTarget
+                      logConf.AddTarget(new ColoredConsoleTarget
                       {
                           Layout = "${message}"
-                      };
-                      console.AddDefaultLogColors();
-
-                      logConf.AddTarget(console);
+                      }.AddLogColor(LogLevel.Debug, ConsoleOutputColor.DarkGray)
+                  .AddLogColor(LogLevel.Trace, ConsoleOutputColor.Cyan)
+                  .AddLogColor(LogLevel.Info, ConsoleOutputColor.White)
+                  .AddLogColor(LogLevel.Warn, ConsoleOutputColor.Yellow)
+                  .AddLogColor(LogLevel.Error, ConsoleOutputColor.Red)
+                  .AddLogColor(LogLevel.Fatal, ConsoleOutputColor.White, ConsoleOutputColor.DarkRed));
 
                       logConf.AddTarget(new MethodCallTarget
                       {
@@ -50,7 +52,7 @@ namespace SitecoreInstaller.RestHost
             {
             }
 
-            logger.Info($"Starting {runtime.AppName}...");
+            logger.Debug($"{hostName} starting...");
 
             string baseAddress = $"http://localhost:{portNumber}/";
 
@@ -61,7 +63,9 @@ namespace SitecoreInstaller.RestHost
                 webapiInit.Configuration(appBuilder, runtime, logger);
             }))
             {
-                logger.Info($"{runtime.AppName} is listening on port {portNumber}...");
+                logger.Trace($"{hostName} is listening on {baseAddress}");
+                logger.Info($"{hostName} started");
+
                 Console.ReadKey();
                 return 0;
             }

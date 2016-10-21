@@ -168,7 +168,7 @@ namespace SitecoreInstaller.WebServer
             return new PreflightCheckResult(issues =>
             {
                 if (Exists)
-                    _logger.Debug($"Hostfile found at: {_hostFile.FullName}");
+                    _logger.Trace($"Hostfile found at: {_hostFile.FullName}");
                 else
                     issues.Add($"Host file not found at: {_hostFile.FullName}");
 

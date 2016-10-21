@@ -76,7 +76,7 @@ namespace SitecoreInstaller.BuildLibrary
             return new PreflightCheckResult(issues =>
             {
                 if (Root.Exists())
-                    _logger.Debug($"{nameof(LocalBuildLibrary)} found at: {Root.FullName}");
+                    _logger.Trace($"{nameof(LocalBuildLibrary)} found at: {Root.FullName}");
                 else
                     issues.Add($"{nameof(LocalBuildLibrary)} not found at: {Root.FullName}");
             });

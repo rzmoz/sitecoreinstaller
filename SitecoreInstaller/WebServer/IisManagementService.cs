@@ -121,7 +121,7 @@ namespace SitecoreInstaller.WebServer
                     {
                         //verify connection
                         mng.ServerManager.CommitChanges();
-                        _logger.Debug($"Connection to Iis Management Services established");
+                        _logger.Trace($"Connection to Iis Management Services established");
                     }
                 }
                 catch (Exception e)

@@ -137,7 +137,7 @@ namespace SitecoreInstaller.Deployments
             return new PreflightCheckResult(issues =>
             {
                 if (Root.Exists())
-                    _logger.Debug($"Deployments root dir found at: {Root.FullName}");
+                    _logger.Trace($"Deployments root dir found at: {Root.FullName}");
                 else
                     issues.Add($"Deployments root dir not found at: {Root.FullName}");
             });

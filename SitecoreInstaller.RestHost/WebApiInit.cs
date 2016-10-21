@@ -17,7 +17,7 @@ namespace SitecoreInstaller.RestHost
         {
             // Configure Web API for self-host. 
             var config = new HttpConfiguration();
-            logger.Trace("Initalizing WebApi...");
+            logger.Debug("Initalizing WebApi...");
 
             config.MapHttpAttributeRoutes();
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
@@ -26,8 +26,8 @@ namespace SitecoreInstaller.RestHost
 
             appBuilder.UseWebApi(config);
 
-            logger.Debug($"{nameof(config.IncludeErrorDetailPolicy)}: {config.IncludeErrorDetailPolicy }");
-            logger.Debug($"{nameof(config.DependencyResolver)}: {config.DependencyResolver.GetType().FullName}");
+            logger.Trace($"{nameof(config.IncludeErrorDetailPolicy)}: {config.IncludeErrorDetailPolicy }");
+            logger.Trace($"{nameof(config.DependencyResolver)}: {config.DependencyResolver.GetType().FullName}");
 
             // Json settings
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Include;
@@ -48,7 +48,7 @@ namespace SitecoreInstaller.RestHost
 
             config.EnsureInitialized();
 
-            logger.Trace("WebApi initialized");
+            logger.Debug("WebApi initialized");
         }
     }
 }
