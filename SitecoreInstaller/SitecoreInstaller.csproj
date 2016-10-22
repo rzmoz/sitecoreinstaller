@@ -34,12 +34,12 @@
       <HintPath>..\packages\Autofac.4.1.1\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DotNet.Basics, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.5.3.0\lib\net45\DotNet.Basics.dll</HintPath>
+    <Reference Include="DotNet.Basics, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNet.Basics.5.3.1\lib\net45\DotNet.Basics.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DotNet.Basics.NLog, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.NLog.5.3.0\lib\net45\DotNet.Basics.NLog.dll</HintPath>
+    <Reference Include="DotNet.Basics.NLog, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNet.Basics.NLog.5.3.1\lib\net45\DotNet.Basics.NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -115,25 +115,17 @@
     <Compile Include="BuildLibrary\LocalBuildLibrary.cs" />
     <Compile Include="BuildLibrary\Module.cs" />
     <Compile Include="BuildLibrary\Sitecore.cs" />
-    <Compile Include="Databases\SitecoreInstallerConnectionString.cs" />
-    <Compile Include="Databases\ConnectionStringEntry.cs" />
-    <Compile Include="Databases\ConnectionStringEntryFactory.cs" />
-    <Compile Include="Databases\ConnectionStringFormats.cs" />
-    <Compile Include="Databases\ConnectionStringName.cs" />
-    <Compile Include="Databases\ConnectionStringsFile.cs" />
-    <Compile Include="Databases\DatabaseNamesExtensions.cs" />
+    <Compile Include="Databases\DbConnectionStringsFactory.cs" />
+    <Compile Include="Databases\DbConnectionStringsFileProvider.cs" />
     <Compile Include="Databases\DbType.cs" />
-    <Compile Include="Databases\IConnectionString.cs" />
-    <Compile Include="Databases\MongoConnectionString.cs" />
-    <Compile Include="Databases\MongoDbConnector.cs" />
-    <Compile Include="Databases\MongoDbExtensions.cs" />
-    <Compile Include="Databases\MongoSettings.cs" />
-    <Compile Include="Databases\SqlConnectionExtensions.cs" />
-    <Compile Include="Databases\SqlConnectionString.cs" />
-    <Compile Include="Databases\SqlDatabase.cs" />
-    <Compile Include="Databases\SqlServerPrompt.cs" />
-    <Compile Include="Databases\SqlService.cs" />
-    <Compile Include="Databases\SqlSettings.cs" />
+    <Compile Include="Databases\DbConnectionString.cs" />
+    <Compile Include="Databases\DbService.cs" />
+    <Compile Include="Databases\MongoDbConnectionString.cs" />
+    <Compile Include="Databases\MongoDbService.cs" />
+    <Compile Include="Databases\SqlDbConnectionString.cs" />
+    <Compile Include="Databases\SqlDbService.cs" />
+    <Compile Include="Databases\SqlDbTrustedConnectionString.cs" />
+    <Compile Include="Databases\UnknownDbConnectionString.cs" />
     <Compile Include="Deployments\DeploymentsService.cs" />
     <Compile Include="EnvironmentSettings.cs" />
     <Compile Include="FileTypes.cs" />

@@ -4,6 +4,7 @@ using DotNet.Basics.Ioc;
 using DotNet.Basics.Tasks.Pipelines;
 using NLog;
 using SitecoreInstaller.BuildLibrary;
+using SitecoreInstaller.Databases;
 using SitecoreInstaller.Deployments;
 using SitecoreInstaller.Pipelines.Install;
 using SitecoreInstaller.Pipelines.UnInstall;
@@ -24,6 +25,10 @@ namespace SitecoreInstaller.Runtime
             builder.RegisterType<HostFile>().As<IPreflightCheck>().AsSelf().SingleInstance();
             builder.RegisterType<IisManagementService>().As<IPreflightCheck>().AsSelf().SingleInstance();
             builder.RegisterType<IisApplicationSettingsFactory>().AsSelf().SingleInstance();
+
+            //database servers
+            builder.RegisterType<SqlDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            //builder.RegisterType<MongoDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
 
             //build lib
             builder.RegisterType<LocalBuildLibrary>().As<IPreflightCheck>().AsSelf().SingleInstance();

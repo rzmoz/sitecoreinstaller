@@ -9,7 +9,7 @@ namespace SitecoreInstaller.PreflightChecks
         {
             Issues = new List<string>();
         }
-        public PreflightCheckResult(Action<IList<string>> addIssues)
+        public PreflightCheckResult(Action<List<string>> addIssues)
         {
             var issues = new List<string>();
             addIssues(issues);
