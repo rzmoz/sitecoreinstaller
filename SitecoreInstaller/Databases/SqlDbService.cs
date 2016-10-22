@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using DotNet.Basics.Sys;
 
 namespace SitecoreInstaller.Databases
 {
@@ -26,31 +25,16 @@ namespace SitecoreInstaller.Databases
                 }
         }
 
-        protected override IEnumerable<string> AssertWindowsServiceName()
+        protected override IEnumerable<string> GetWindowsServiceNameCandidates()
         {
-            var lookingFor = TrySetSqlWindowsServiceName("MSSQLSERVER");
-            if (WindowsServiceName == null)
-                lookingFor += "|" + TrySetSqlWindowsServiceName("SQLEXPRESS");
-
-            if (WindowsServiceName == null)
-                yield return $"Sql Server Windows Service not found. Was looking for {lookingFor}";
+            yield return "MSSQLSERVER";
+            yield return "SQLEXPRESS";
         }
 
-        protected override IEnumerable<string> AssertInstanceName()
+        protected override IEnumerable<string> GetInstanceNameCandidates()
         {
-            if (ConnectionEstablished("."))
-                InstanceName = ".";
-            else if (ConnectionEstablished(@".\SQLEXPRESS"))
-                InstanceName = @".\SQLEXPRESS";
-            else
-                yield return @"Failed to connect to Sql Server. Tried . and .\SQLEXPRESS";
-        }
-
-        private string TrySetSqlWindowsServiceName(string serviceName)
-        {
-            if (WindowsServices.Exists(serviceName))
-                WindowsServiceName = serviceName;
-            return serviceName;
+            yield return ".";
+            yield return @".\SQLEXPRESS";
         }
     }
 }

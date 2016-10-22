@@ -28,7 +28,7 @@ namespace SitecoreInstaller.Runtime
 
             //database servers
             builder.RegisterType<SqlDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
-            //builder.RegisterType<MongoDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<MongoDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
 
             //build lib
             builder.RegisterType<LocalBuildLibrary>().As<IPreflightCheck>().AsSelf().SingleInstance();

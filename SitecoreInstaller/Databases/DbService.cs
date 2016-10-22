@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DotNet.Basics.Sys;
+using Newtonsoft.Json;
 using NLog;
 using SitecoreInstaller.PreflightChecks;
 
@@ -32,26 +33,50 @@ namespace SitecoreInstaller.Databases
             return new PreflightCheckResult(issues =>
             {
                 if (WindowsServiceName == null)
-                    issues.AddRange(AssertWindowsServiceName());
+                {
+                    foreach (var serviceName in GetWindowsServiceNameCandidates())
+                    {
+                        if (WindowsServices.Exists(serviceName))
+                        {
+                            WindowsServiceName = serviceName;
+                            break;
+                        }
+                    }
+                    if (WindowsServiceName == null)
+                    {
+                        issues.Add($"{dbType} Server Windows Service not found. Was looking for {JsonConvert.SerializeObject(GetWindowsServiceNameCandidates())}");
+                        return;
+                    }
+                }
 
                 //if windows service is found but not running and couldn't be started
-                if (WindowsServiceName != null)
-                    if (IsWindowsServiceRunning == false)
-                        if (StartWindowsService() == false)
-                            issues.Add($"Failed to start Database Windows Service: {WindowsServiceName}");
+                if (IsWindowsServiceRunning == false)
+                    if (StartWindowsService() == false)
+                        issues.Add($"Failed to start Database Windows Service: {WindowsServiceName}");
+
                 if (IsWindowsServiceRunning)
                     _logger.Trace($"{dbType } Server Windows Service is running: {WindowsServiceName}");
 
-                if (InstanceName == null)
-                    issues.AddRange(AssertInstanceName());
+                if (InstanceName != null)
+                    return;
 
+                foreach (var instanceName in GetInstanceNameCandidates())
+                {
+                    if (ConnectionEstablished(instanceName))
+                    {
+                        InstanceName = instanceName;
+                        break;
+                    }
+                }
                 if (InstanceName != null && ConnectionEstablished(InstanceName))
                     _logger.Trace($"{dbType} Server connection is established: {InstanceName}");
+                else
+                    issues.Add($"Failed to connect to {dbType} Server. Tried {JsonConvert.SerializeObject(GetInstanceNameCandidates())}");
             });
         }
 
-        protected abstract IEnumerable<string> AssertWindowsServiceName();
-        protected abstract IEnumerable<string> AssertInstanceName();
+        protected abstract IEnumerable<string> GetWindowsServiceNameCandidates();
+        protected abstract IEnumerable<string> GetInstanceNameCandidates();
 
         public bool StartWindowsService()
         {

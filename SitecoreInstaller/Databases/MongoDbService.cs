@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SitecoreInstaller.PreflightChecks;
+﻿using System.Collections.Generic;
 
 namespace SitecoreInstaller.Databases
 {
@@ -8,17 +6,17 @@ namespace SitecoreInstaller.Databases
     {
         protected override bool ConnectionEstablished(string instanceName)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
-        protected override IEnumerable<string> AssertInstanceName()
+        protected override IEnumerable<string> GetWindowsServiceNameCandidates()
         {
-            throw new NotImplementedException();
+            yield return "mongoDB";
         }
 
-        protected override IEnumerable<string> AssertWindowsServiceName()
+        protected override IEnumerable<string> GetInstanceNameCandidates()
         {
-            throw new NotImplementedException();
+            yield return "mongo";
         }
     }
 }
