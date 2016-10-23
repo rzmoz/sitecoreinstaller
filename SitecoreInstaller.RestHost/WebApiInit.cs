@@ -13,17 +13,17 @@ namespace SitecoreInstaller.RestHost
 {
     public class WebApiInit
     {
-        public void Configuration(IAppBuilder appBuilder, IContainer container, ILogger logger)
+        public void Init(IAppBuilder appBuilder, IContainer container, ILogger logger)
         {
+            logger.Debug("Initalizing WebApi...");
+
             // Configure Web API for self-host. 
             var config = new HttpConfiguration();
-            
+
             config.MapHttpAttributeRoutes();
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
-
-            appBuilder.UseWebApi(config);
 
             logger.Trace($"{nameof(config.IncludeErrorDetailPolicy)}: {config.IncludeErrorDetailPolicy }");
             logger.Trace($"{nameof(config.DependencyResolver)}: {config.DependencyResolver.GetType().FullName}");
@@ -46,6 +46,8 @@ namespace SitecoreInstaller.RestHost
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/plain"));
 
             config.EnsureInitialized();
+            appBuilder.UseWebApi(config);
+            logger.Debug("WebApi initialized");
         }
     }
 }

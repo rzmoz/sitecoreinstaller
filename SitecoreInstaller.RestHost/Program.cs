@@ -16,7 +16,6 @@ namespace SitecoreInstaller.RestHost
         {
             //starting host
             var runtime = new RuntimeConfigurator();
-            runtime.Logger.Debug($"Host:{runtime.HostName} starting...");
 
             var initResult = runtime.Init(ConfigureLog, builder => builder.RegisterApiControllers(typeof(Program).Assembly));
 
@@ -26,20 +25,38 @@ namespace SitecoreInstaller.RestHost
                 return 1;
             }
 
+
+            runtime.Logger.Debug($"Host: {runtime.HostName} starting...");
+
             // Start OWIN host 
             var portNumber = int.Parse(args.Take(1).FirstOrDefault() ?? "7919");
             string baseAddress = $"http://localhost:{portNumber}/";
-            using (WebApp.Start(baseAddress, appBuilder =>
+
+            IDisposable host = null;
+            try
             {
-                var webapiInit = new WebApiInit();
-                runtime.Logger.Debug("Initalizing WebApi...");
-                webapiInit.Configuration(appBuilder, runtime.Container, runtime.Logger);
+                host = WebApp.Start(baseAddress, appBuilder =>
+                {
+                    var webapiInit = new WebApiInit();
+                    webapiInit.Init(appBuilder, runtime.Container, runtime.Logger);
+
+                });
                 runtime.Logger.Trace($"WebApi is listening on {baseAddress}");
-                runtime.Logger.Debug("WebApi initialized");
-                runtime.Logger.Info($"Host:{runtime.HostName} started");
+                runtime.Logger.Info($"Host: {runtime.HostName} started");
+                Console.WriteLine(@"Press key to quit...");
                 Console.ReadKey();
-            }))
                 return 0;
+            }
+            catch (TargetInvocationException e)
+            {
+                runtime.Logger.Fatal($"Failed to start host: {runtime.HostName}. Aborting: {e}");
+                Console.ReadKey();
+                return 1;
+            }
+            finally
+            {
+                host?.Dispose();
+            }
         }
 
         private static void ConfigureLog(NLogConfigurator logConf)
