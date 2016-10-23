@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using DotNet.Basics.Sys;
+using MongoDB.Driver;
 
 namespace SitecoreInstaller.Databases
 {
@@ -6,7 +10,16 @@ namespace SitecoreInstaller.Databases
     {
         protected override bool ConnectionEstablished(string instanceName)
         {
-            return false;
+            try
+            {
+                var client = new MongoClient(new MongoUrl($"mongodb://{instanceName}/"));
+                client.ListDatabases(new CancellationTokenSource(1.Seconds()).Token);
+                return true;
+            }
+            catch (OperationCanceledException)
+            {
+                return false;
+            }
         }
 
         protected override IEnumerable<string> GetWindowsServiceNameCandidates()
@@ -16,7 +29,7 @@ namespace SitecoreInstaller.Databases
 
         protected override IEnumerable<string> GetInstanceNameCandidates()
         {
-            yield return "mongo";
+            yield return "localhost:27017";
         }
     }
 }

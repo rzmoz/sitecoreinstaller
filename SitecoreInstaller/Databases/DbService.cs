@@ -20,14 +20,14 @@ namespace SitecoreInstaller.Databases
 
         public string InstanceName { get; protected set; }
         public string WindowsServiceName { get; protected set; }
-        public bool IsRunning => ConnectionEstablished(InstanceName);
-        public bool IsWindowsServiceRunning => WindowsServices.IsRunning(WindowsServiceName);
+        public bool IsConnected => ConnectionEstablished(InstanceName);
+        public bool IsWindowsServiceRunning => WindowsServices.Is(WindowsServiceName, WindowsServiceStatus.Running);
+        public bool IsWindowsServiceStopped => WindowsServices.Is(WindowsServiceName, WindowsServiceStatus.Stopped);
 
         protected abstract bool ConnectionEstablished(string instanceName);
 
         public PreflightCheckResult Assert()
         {
-
             var dbType = GetType().Name.Replace(nameof(DbService), "");
 
             return new PreflightCheckResult(issues =>
@@ -51,8 +51,14 @@ namespace SitecoreInstaller.Databases
 
                 //if windows service is found but not running and couldn't be started
                 if (IsWindowsServiceRunning == false)
-                    if (StartWindowsService() == false)
+                {
+                    _logger.Debug($"Starting {dbType} Database Windows Service: {WindowsServiceName}...");
+                    if (StartWindowsService() == false && IsWindowsServiceRunning == false)
+                    {
                         issues.Add($"Failed to start Database Windows Service: {WindowsServiceName}");
+                        return;
+                    }
+                }
 
                 if (IsWindowsServiceRunning)
                     _logger.Trace($"{dbType } Server Windows Service is running: {WindowsServiceName}");
@@ -80,12 +86,12 @@ namespace SitecoreInstaller.Databases
 
         public bool StartWindowsService()
         {
-            if (IsRunning)
+            if (IsWindowsServiceRunning)
                 return true;
             try
             {
                 WindowsServices.Start(WindowsServiceName);
-                return IsRunning == false;
+                return IsWindowsServiceRunning;
             }
             catch (Exception e)
             {
@@ -96,12 +102,12 @@ namespace SitecoreInstaller.Databases
 
         public bool StopWindowsService()
         {
-            if (IsRunning == false)
+            if (IsWindowsServiceStopped)
                 return true;
             try
             {
                 WindowsServices.Stop(WindowsServiceName);
-                return IsRunning == false;
+                return IsWindowsServiceStopped;
             }
             catch (Exception e)
             {
@@ -112,12 +118,8 @@ namespace SitecoreInstaller.Databases
 
         public bool RestartWindowsService()
         {
-            bool restarted = true;
-
-            if (IsRunning)
-                restarted = StopWindowsService();
-
-            return restarted && StartWindowsService();
+            WindowsServices.Restart(WindowsServiceName);
+            return IsWindowsServiceRunning;
         }
     }
 }
