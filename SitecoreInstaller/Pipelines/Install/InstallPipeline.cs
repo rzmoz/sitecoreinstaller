@@ -10,6 +10,7 @@ namespace SitecoreInstaller.Pipelines.Install
         {
             AddStep<InitDeploymentDirStep>();
             AddStep<CopyDeploymentFilesStep>();
+            AddStep<SetConnectionStringsStep>();
         }
     }
 }

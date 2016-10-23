@@ -124,7 +124,6 @@
     <Compile Include="BuildLibrary\Module.cs" />
     <Compile Include="BuildLibrary\Sitecore.cs" />
     <Compile Include="Databases\DbConnectionStringsFactory.cs" />
-    <Compile Include="Databases\DbConnectionStringsFileProvider.cs" />
     <Compile Include="Databases\DbType.cs" />
     <Compile Include="Databases\DbConnectionString.cs" />
     <Compile Include="Databases\DbService.cs" />
@@ -145,6 +144,7 @@
     <Compile Include="Pipelines\Install\CopyDeploymentFilesStep.cs" />
     <Compile Include="Pipelines\Install\InitDeploymentDirStep.cs" />
     <Compile Include="Pipelines\Install\InstallPipeline.cs" />
+    <Compile Include="Pipelines\Install\SetConnectionStringsStep.cs" />
     <Compile Include="Pipelines\UnInstall\DeleteDeploymentDirStep.cs" />
     <Compile Include="Pipelines\UnInstall\UnInstallArgs.cs" />
     <Compile Include="Pipelines\UnInstall\UnInstallPipeline.cs" />
