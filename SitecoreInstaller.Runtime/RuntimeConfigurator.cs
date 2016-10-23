@@ -15,8 +15,6 @@ namespace SitecoreInstaller.Runtime
 {
     public class RuntimeConfigurator
     {
-        private readonly ILogger _logger;
-
         public RuntimeConfigurator(string hostName = null)
         {
             HostName = hostName;
@@ -27,16 +25,18 @@ namespace SitecoreInstaller.Runtime
                 var type = method.DeclaringType;
                 HostName = type?.Namespace ?? "Host";
             }
-            _logger = LogManager.GetLogger(HostName);
+            Logger = LogManager.GetLogger(HostName);
+
         }
 
         public string HostName { get; }
+        public ILogger Logger { get; }
 
-        public bool Init(Action<NLogConfigurator> configureLog, Action<IContainer, ILogger> startHostAction,
+        public bool Init(Action<NLogConfigurator> configureLog,
             Action<IocBuilder> iocRegistrations = null)
         {
             //ensure all low level dotnet.basics events are logged
-            DebugOut.Out += _logger.Debug;
+            DebugOut.Out += Logger.Debug;
 
             var initStatus = InitLogging(configureLog);
             initStatus = initStatus && LogAppInitializing();
@@ -46,25 +46,22 @@ namespace SitecoreInstaller.Runtime
 
             LogAppInitialized(initStatus);
 
-            if (initStatus == false)
-                return false;
-
-            return StartHost(startHostAction);
+            return initStatus;
         }
 
         private bool StartHost(Action<IContainer, ILogger> startHostAction)
         {
-            _logger.Debug($"Host:{HostName} starting...");
+            Logger.Debug($"Host:{HostName} starting...");
 
             try
             {
-                startHostAction(Container, _logger);
-                _logger.Info($"Host:{HostName} started");
+                startHostAction(Container, Logger);
+                Logger.Info($"Host:{HostName} started");
                 return true;
             }
             catch (Exception e)
             {
-                _logger.Fatal(e);
+                Logger.Fatal(e);
                 return false;
             }
         }
@@ -94,7 +91,7 @@ namespace SitecoreInstaller.Runtime
                 var appsettings = Container.GetAppSettings();
                 foreach (var appsetting in appsettings)
                 {
-                    _logger.Debug($"Running Preflight check: {appsetting.GetType().Name}");
+                    Logger.Debug($"Running Preflight check: {appsetting.GetType().Name}");
                     var assert = appsetting.Verify();
                     if (assert == false)
                         errorMsgs.Add($"Required key is not configured: {appsetting.Key}");
@@ -109,10 +106,10 @@ namespace SitecoreInstaller.Runtime
                 var preflightChecks = Container.Resolve<IEnumerable<IPreflightCheck>>().ToList();
                 foreach (var preflightCheck in preflightChecks)
                 {
-                    _logger.Debug($"Preflight check: {preflightCheck.GetType().Name} started..");
+                    Logger.Debug($"Preflight check: {preflightCheck.GetType().Name} started..");
                     var result = preflightCheck.Assert();
                     if (result.IsReady)
-                        _logger.Debug($"Preflight check: {preflightCheck.GetType().Name} finished");
+                        Logger.Debug($"Preflight check: {preflightCheck.GetType().Name} finished");
                     else
                         errorMsgs.Add($"Preflight check {preflightCheck.GetType().Name} failed:\r\n{JsonConvert.SerializeObject(result.Issues)}");
                 }
@@ -133,8 +130,8 @@ namespace SitecoreInstaller.Runtime
 
         private bool LogAppInitializing()
         {
-            _logger.Trace("------------------------------------------------------------------------------------------------------");
-            _logger.Trace(@"
+            Logger.Trace("------------------------------------------------------------------------------------------------------");
+            Logger.Trace(@"
               ____  _ _                          ___           _        _ _           
              / ___|(_) |_ ___  ___ ___  _ __ ___|_ _|_ __  ___| |_ __ _| | | ___ _ __ 
              \___ \| | __/ _ \/ __/ _ \| '__/ _ \| || '_ \/ __| __/ _` | | |/ _ \ '__|
@@ -142,37 +139,37 @@ namespace SitecoreInstaller.Runtime
              |____/|_|\__\___|\___\___/|_|  \___|___|_| |_|___/\__\__,_|_|_|\___|_|
 
 ");
-            _logger.Trace("------------------------------------------------------------------------------------------------------");
-            _logger.Debug($"Runtime initializing...");
-            _logger.Trace($"UTC Time: {DateTime.UtcNow}");
-            _logger.Trace($"Host Version: {FileVersionInfo.GetVersionInfo(typeof(RuntimeConfigurator).Assembly.Location).FileVersion}");
-            _logger.Trace($"Running as: {System.Security.Principal.WindowsIdentity.GetCurrent().Name}");
+            Logger.Trace("------------------------------------------------------------------------------------------------------");
+            Logger.Debug($"Runtime initializing...");
+            Logger.Trace($"UTC Time: {DateTime.UtcNow}");
+            Logger.Trace($"Host Version: {FileVersionInfo.GetVersionInfo(typeof(RuntimeConfigurator).Assembly.Location).FileVersion}");
+            Logger.Trace($"Running as: {System.Security.Principal.WindowsIdentity.GetCurrent().Name}");
 
             return true;
         }
 
         private void LogAppInitialized(bool appInitialized)
         {
-            _logger.Info(appInitialized
+            Logger.Info(appInitialized
                 ? $"Runtime initialized"
                 : $"Runtime initialization failed");
-            _logger.Trace("------------------------------------------------------------------------------------------------------");
+            Logger.Trace("------------------------------------------------------------------------------------------------------");
         }
 
         private bool InitArea(string areaName, Action<IList<string>> initFunc, string startingVerb = "initializing", string endedVerb = "Initialized")
         {
-            _logger.Debug($"{areaName} {startingVerb}...");
+            Logger.Debug($"{areaName} {startingVerb}...");
             var errorMessages = new List<string>();
             initFunc(errorMessages);
             var success = errorMessages.Count == 0;
             if (success)
-                _logger.Debug($"{areaName} {endedVerb}");
+                Logger.Debug($"{areaName} {endedVerb}");
             else
             {
                 foreach (var errorMessage in errorMessages)
-                    _logger.Error(errorMessage);
+                    Logger.Error(errorMessage);
 
-                _logger.Fatal($"{startingVerb} of {areaName} failed. Application will not run properly. Aborting...");
+                Logger.Fatal($"{startingVerb} of {areaName} failed. Application will not run properly. Aborting...");
             }
             return success;
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Autofac;
 using Autofac.Integration.WebApi;
 using DotNet.Basics.NLog;
 using Microsoft.Owin.Hosting;
@@ -15,22 +14,32 @@ namespace SitecoreInstaller.RestHost
     {
         static int Main(string[] args)
         {
-            var portNumber = int.Parse(args.Take(1).FirstOrDefault() ?? "7919");
-
+            //starting host
             var runtime = new RuntimeConfigurator();
+            runtime.Logger.Debug($"Host:{runtime.HostName} starting...");
 
-            var initResult = runtime.Init(ConfigureLog, (c, l) => StartHost(c, l, portNumber),
-                builder => builder.RegisterApiControllers(Assembly.GetExecutingAssembly()));
+            var initResult = runtime.Init(ConfigureLog, builder => builder.RegisterApiControllers(typeof(Program).Assembly));
 
-            if (initResult)
+            if (initResult == false)
             {
-                Console.ReadKey();
-                return 0;
+                runtime.Logger.Fatal($"Runtime failed to inititialize. Aborting...");
+                return 1;
             }
 
-            Console.WriteLine("Press key to exit");
-            Console.ReadKey();
-            return 1;
+            // Start OWIN host 
+            var portNumber = int.Parse(args.Take(1).FirstOrDefault() ?? "7919");
+            string baseAddress = $"http://localhost:{portNumber}/";
+            using (WebApp.Start(baseAddress, appBuilder =>
+            {
+                var webapiInit = new WebApiInit();
+                runtime.Logger.Debug("Initalizing WebApi...");
+                webapiInit.Configuration(appBuilder, runtime.Container, runtime.Logger);
+                runtime.Logger.Trace($"WebApi is listening on {baseAddress}");
+                runtime.Logger.Debug("WebApi initialized");
+                runtime.Logger.Info($"Host:{runtime.HostName} started");
+                Console.ReadKey();
+            }))
+                return 0;
         }
 
         private static void ConfigureLog(NLogConfigurator logConf)
@@ -49,22 +58,6 @@ namespace SitecoreInstaller.RestHost
             {
                 MethodName = $"{typeof(Program).FullName}, {typeof(Program).Assembly.FullName}"
             }, "*", LogLevel.Fatal);
-        }
-
-        private static void StartHost(IContainer container, ILogger logger, int portNumber)
-        {
-            string baseAddress = $"http://localhost:{portNumber}/";
-
-            // Start OWIN host 
-            using (WebApp.Start(baseAddress, appBuilder =>
-            {
-
-                var webapiInit = new WebApiInit();
-                logger.Debug("Initalizing WebApi...");
-                webapiInit.Configuration(appBuilder, container, logger);
-                logger.Trace($"WebApi is listening on {baseAddress}");
-                logger.Debug("WebApi initialized");
-            }));
         }
 
         public static void LogMethod(string level, string message)

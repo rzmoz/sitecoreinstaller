@@ -25,6 +25,7 @@ namespace SitecoreInstaller.Deployments
         }
 
         public DirPath Root { get; }
+        public DeploymentDir DeploymentDir(string deploymentName) => new DeploymentDir(Root.Add(deploymentName));
 
         public void Init()
         {
@@ -34,9 +35,24 @@ namespace SitecoreInstaller.Deployments
             _logger.Trace($"{nameof(DeploymentsService)} initialized to: {Root.FullName}");
         }
 
+        public void CopyRuntimeServices(string deploymentName)
+        {
+            var runtimeServicesDir = DeploymentDir(deploymentName).Website.Temp.RuntimeServices;
+            runtimeServicesDir.CreateIfNotExists();
+            Parallel.Invoke(
+                () => DeploymentsResources.AdminLogin.WriteAllText(runtimeServicesDir.AdminLogin),
+                () => DeploymentsResources.DeserializeItems.WriteAllText(runtimeServicesDir.DeserializeItems),
+                () => DeploymentsResources.InstallPackageService.WriteAllText(runtimeServicesDir.InstallPackageService),
+                () => DeploymentsResources.InstallPackageStatusService.WriteAllText(runtimeServicesDir.InstallPackageStatusService),
+                () => DeploymentsResources.PostInstallService.WriteAllText(runtimeServicesDir.PostInstallService),
+                () => DeploymentsResources.PublishSite.WriteAllText(runtimeServicesDir.PublishSite));
+
+            _logger.Trace($"Runtime services installed to {runtimeServicesDir }");
+        }
+
         public void CopyModules(IEnumerable<Module> modules, string deploymentName)
         {
-            var deploymentDir = new DeploymentDir(Root.Add(deploymentName));
+            var deploymentDir = DeploymentDir(deploymentName);
             modules = modules.ToList();
 
             //copy standalone sc modules
@@ -50,21 +66,22 @@ namespace SitecoreInstaller.Deployments
             foreach (var m in modules.Where(m => m.Path.IsFolder))
             {
                 _logger.Debug($"Copying module {m.Name} for {deploymentName}...");
-
+                //TODO: Coply custom module files
                 _logger.Debug($"Module {m.Name} for {deploymentName} copied to {deploymentDir.Website}");
             }
         }
 
         public void CopyLicenseFile(License license, string deploymentName)
         {
-            var deploymentDir = new DeploymentDir(Root.Add(deploymentName));
+            var deploymentDir = DeploymentDir(deploymentName);
             _logger.Debug($"Copying license file {license.Name} for {deploymentName}...");
             license.Path.CopyTo(deploymentDir.Website.App_Data.LicenseXml);
             _logger.Debug($"License file for {deploymentName} copied to {deploymentDir.Website.App_Data.LicenseXml}");
         }
-        public void CopySitecore(Sitecore sitecore, string deploymentName)
+
+        public void CopySitecore(BuildLibrary.Sitecore sitecore, string deploymentName)
         {
-            var deploymentDir = new DeploymentDir(Root.Add(deploymentName));
+            var deploymentDir = DeploymentDir(deploymentName);
             _logger.Debug($"Copying {sitecore.Name} for {deploymentName}...");
             Parallel.Invoke(() =>
             {
@@ -92,7 +109,7 @@ namespace SitecoreInstaller.Deployments
 
         public void InitDeploymentDir(string deploymentName)
         {
-            var deploymentDir = new DeploymentDir(Root.Add(deploymentName));
+            var deploymentDir = DeploymentDir(deploymentName);
             deploymentDir.Databases.CreateIfNotExists();
             deploymentDir.Website.App_Config.CreateIfNotExists();
             deploymentDir.Website.App_Data.CreateIfNotExists();
@@ -102,7 +119,7 @@ namespace SitecoreInstaller.Deployments
 
         public bool DeleteDeploymentDir(string deploymentName)
         {
-            var deploymentDir = new DeploymentDir(Root.Add(deploymentName));
+            var deploymentDir = DeploymentDir(deploymentName);
 
             var success = Repeat.Task(() => deploymentDir.DeleteIfExists())
                 .WithOptions(o =>

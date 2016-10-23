@@ -15,9 +15,10 @@ namespace SitecoreInstaller.Pipelines.Install
             _deploymentsService = deploymentsService;
         }
 
-        protected override async Task InnerRunAsync(EventArgs<DeploymentSettings> args, CancellationToken ct)
+        protected override Task InnerRunAsync(EventArgs<DeploymentSettings> args, CancellationToken ct)
         {
             _deploymentsService.InitDeploymentDir(args.Value.Name);
+            return Task.CompletedTask;
         }
     }
 }

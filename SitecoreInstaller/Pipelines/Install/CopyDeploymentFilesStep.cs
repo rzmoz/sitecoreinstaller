@@ -19,7 +19,7 @@ namespace SitecoreInstaller.Pipelines.Install
             _buildLibrary = buildLibrary;
         }
 
-        protected override async Task InnerRunAsync(EventArgs<DeploymentSettings> args, CancellationToken ct)
+        protected override Task InnerRunAsync(EventArgs<DeploymentSettings> args, CancellationToken ct)
         {
             var sitecore = _buildLibrary.GetSitecore(args.Value.Sitecore);
             _deploymentsService.CopySitecore(sitecore, args.Value.Name);
@@ -27,6 +27,8 @@ namespace SitecoreInstaller.Pipelines.Install
             _deploymentsService.CopyLicenseFile(license, args.Value.Name);
             var modules = (from module in args.Value.Modules select _buildLibrary.GetModule(module)).ToList();
             _deploymentsService.CopyModules(modules, args.Value.Name);
+            _deploymentsService.CopyRuntimeServices(args.Value.Name);
+            return Task.CompletedTask;
         }
     }
 }
