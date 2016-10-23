@@ -26,7 +26,8 @@ namespace SitecoreInstaller.Runtime
             builder.RegisterType<IisManagementService>().As<IPreflightCheck>().AsSelf().SingleInstance();
             builder.RegisterType<IisApplicationSettingsFactory>().AsSelf().SingleInstance();
 
-            //database servers
+            //databases
+            builder.RegisterType<ConnectionStringsConfigFormatter>().AsSelf().SingleInstance();
             builder.RegisterType<SqlDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
             builder.RegisterType<MongoDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
 

@@ -4,14 +4,13 @@ namespace SitecoreInstaller.Databases
 {
     public class SqlDbTrustedConnectionString : SqlDbConnectionString
     {
-        public SqlDbTrustedConnectionString(string name, string serverName) : base(name, new SqlConnectionStringBuilder
+        public SqlDbTrustedConnectionString(string name, string databaseName, string serverName) : base(name, new SqlConnectionStringBuilder
         {
             ConnectTimeout = 5,
             InitialCatalog = serverName,
-            DataSource = name,
+            DataSource = databaseName,
             IntegratedSecurity = true
         })
-        {
-        }
+        { }
     }
 }

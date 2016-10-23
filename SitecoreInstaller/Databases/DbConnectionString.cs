@@ -4,12 +4,11 @@ namespace SitecoreInstaller.Databases
 {
     public abstract class DbConnectionString
     {
-        
         protected DbConnectionString(string name, string value, DbType dbType)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
             if (value == null) throw new ArgumentNullException(nameof(value));
-            Name = name;
+            Name = name.ToLowerInvariant();
             Value = value;
             DbType = dbType;
         }
