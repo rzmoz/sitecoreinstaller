@@ -75,7 +75,7 @@ namespace SitecoreInstaller.Deployments
         {
             var deploymentDir = DeploymentDir(deploymentName);
             _logger.Debug($"Copying license file {license.Name} for {deploymentName}...");
-            license.Path.CopyTo(deploymentDir.Website.App_Data.LicenseXml);
+            license.Path.ToFile().CopyTo(deploymentDir.Website.App_Data.LicenseXml);
             _logger.Debug($"License file for {deploymentName} copied to {deploymentDir.Website.App_Data.LicenseXml}");
         }
 
