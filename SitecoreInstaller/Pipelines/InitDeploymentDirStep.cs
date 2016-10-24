@@ -13,8 +13,8 @@ namespace SitecoreInstaller.Pipelines
         {
             _deploymentsService = deploymentsService;
         }
-
-        protected override Task InnerRunAsync(SitecoreInstallerEventArgs args, CancellationToken ct)
+        
+        protected override Task RunImpAsync(SitecoreInstallerEventArgs args, CancellationToken ct)
         {
             args.DeploymentDir = _deploymentsService.InitDeploymentDir(args.Name);
             return Task.CompletedTask;

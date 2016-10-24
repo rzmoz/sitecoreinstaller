@@ -17,8 +17,8 @@ namespace SitecoreInstaller.Pipelines.Install
             _dbConnectionStringsFactory = dbConnectionStringsFactory;
             _connectionStringsConfigFormatter = connectionStringsConfigFormatter;
         }
-
-        protected override Task InnerRunAsync(InstallArgs args, CancellationToken ct)
+        
+        protected override Task RunImpAsync(InstallArgs args, CancellationToken ct)
         {
             var existing = _dbConnectionStringsFactory.Create(args.DeploymentDir.Website.App_Config.ConnectionStringsConfig).ToList();
             var databaseFilePairs = _dbConnectionStringsFactory.Create(args.Name, args.DeploymentDir.Databases).ToList();

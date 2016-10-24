@@ -15,7 +15,7 @@ namespace SitecoreInstaller.Pipelines.UnInstall
             _dbService = dbService;
         }
 
-        protected override Task InnerRunAsync(UnInstallArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(UnInstallArgs args, CancellationToken ct)
         {
             _dbService.DropCollections(args.ConnectionStrings.OfType<MongoDbConnectionString>());
             return Task.CompletedTask;

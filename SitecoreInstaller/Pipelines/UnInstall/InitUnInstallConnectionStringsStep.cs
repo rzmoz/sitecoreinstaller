@@ -14,8 +14,8 @@ namespace SitecoreInstaller.Pipelines.UnInstall
         {
             _dbConnectionStringsFactory = dbConnectionStringsFactory;
         }
-
-        protected override Task InnerRunAsync(UnInstallArgs args, CancellationToken ct)
+        
+        protected override Task RunImpAsync(UnInstallArgs args, CancellationToken ct)
         {
             args.ConnectionStrings = _dbConnectionStringsFactory.Create(args.DeploymentDir.Website.App_Config.ConnectionStringsConfig).ToList();
 

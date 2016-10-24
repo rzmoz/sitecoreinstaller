@@ -20,8 +20,8 @@ namespace SitecoreInstaller.Pipelines.Install
             _buildLibrary = buildLibrary;
             _websiteService = websiteService;
         }
-
-        protected override Task InnerRunAsync(InstallArgs args, CancellationToken ct)
+        
+        protected override Task RunImpAsync(InstallArgs args, CancellationToken ct)
         {
             var sitecore = _buildLibrary.GetSitecore(args.Sitecore);
             _deploymentsService.CopySitecore(sitecore, args.Name);
@@ -30,6 +30,7 @@ namespace SitecoreInstaller.Pipelines.Install
             var modules = (from module in args.Modules select _buildLibrary.GetModule(module)).ToList();
             _deploymentsService.CopyModules(modules, args.Name);
             _websiteService.FixReportingDatabaseFileNames(args.DeploymentDir);
+
             return Task.CompletedTask;
         }
     }

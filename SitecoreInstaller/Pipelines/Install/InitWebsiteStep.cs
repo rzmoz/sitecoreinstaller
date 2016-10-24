@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines.Install
             _websiteService = websiteService;
         }
 
-        protected override Task InnerRunAsync(InstallArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(InstallArgs args, CancellationToken ct)
         {
             Parallel.Invoke(
                 () => _websiteService.InitDataFolderConfig(args.DeploymentDir),
