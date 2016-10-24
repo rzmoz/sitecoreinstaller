@@ -19,9 +19,14 @@ namespace SitecoreInstaller.Databases
         {
             var entries = new StringBuilder();
             foreach (var dbConnectionString in connectionStrings)
-                entries.AppendLine(string.Format(_connectionStringEntryFormat, dbConnectionString.Name.ToLowerInvariant(), dbConnectionString.Value));
+                entries.AppendLine(ToConfigFileString(dbConnectionString));
 
             return string.Format(_connectionStringDotConfigFormat, entries.ToString());
+        }
+
+        public string ToConfigFileString(DbConnectionString dbConnectionString)
+        {
+            return string.Format(_connectionStringEntryFormat, dbConnectionString.Name.ToLowerInvariant(), dbConnectionString.Value);
         }
     }
 }

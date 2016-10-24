@@ -5,7 +5,6 @@ using System.Linq;
 using System.Xml.Linq;
 using DotNet.Basics.Collections;
 using DotNet.Basics.IO;
-using DotNet.Basics.Sys;
 using MongoDB.Driver;
 using NLog;
 
@@ -24,8 +23,8 @@ namespace SitecoreInstaller.Databases
             _logger = LogManager.GetLogger(nameof(DbConnectionStringsFactory));
         }
 
-        public IEnumerable<DbConnectionString> Create(string projectName, IEnumerable<DbConnectionString> fromCleanSitecore,
-            IEnumerable<DbConnectionString> fromDatabasesFolder)
+        public IEnumerable<DbConnectionString> MergeWithDatabaseFilePairs(string projectName, IEnumerable<DbConnectionString> fromCleanSitecore,
+            IEnumerable<SqlDatabaseFilePair> dbFilePairs)
         {
             var updatedEntries = new StringKeyDictionary<DbConnectionString>(DictionaryKeyMode.IgnoreKeyCase);
 
@@ -33,23 +32,23 @@ namespace SitecoreInstaller.Databases
                 updatedEntries[dbConnectionString.Name] = dbConnectionString;
 
             //update with constrs from files
-            foreach (var dbConnectionString in fromDatabasesFolder)
-                updatedEntries[dbConnectionString.Name] = dbConnectionString;
+            foreach (var dbFilePair in dbFilePairs)
+                updatedEntries[dbFilePair.Name.ConnectionStringName] = new SqlDbTrustedConnectionString(dbFilePair.Name.ConnectionStringName, dbFilePair.Name.FullName, _sqlDbService.InstanceName);
 
             //update mongo constrs with project names
             foreach (var mongoDbString in updatedEntries.Where(entry => entry.Value.DbType == DbType.Mongo).ToList())
-                updatedEntries[mongoDbString.Key] = new MongoDbConnectionString(mongoDbString.Key, new MongoUrl($"mongodb://{_mongoDbService.InstanceName}/{projectName}_{mongoDbString.Key}"));
+            {
+                var dbName = $"{projectName}_{mongoDbString.Key}";
+                updatedEntries[mongoDbString.Key] = new MongoDbConnectionString(mongoDbString.Key, new MongoUrl($"mongodb://{_mongoDbService.InstanceName}/{dbName }"));
+            }
 
             return updatedEntries.Values;
         }
-        
-        public IEnumerable<DbConnectionString> Create(string projectName, DirPath databasesDir)
+
+        public IEnumerable<SqlDatabaseFilePair> Create(string projectName, DirPath databasesDir)
         {
             foreach (var dbFile in databasesDir.EnumerateFiles(FileTypes.SqlMdf.GetAllSearchPattern))
-            {
-                var name = dbFile.NameWithoutExtension.RemovePrefix("sitecore.");
-                yield return new SqlDbTrustedConnectionString(name, $"{projectName}_{name}", _sqlDbService.InstanceName);
-            }
+                yield return new SqlDatabaseFilePair(projectName, dbFile);
         }
 
         public IEnumerable<DbConnectionString> Create(FilePath connectionStringsConfig)

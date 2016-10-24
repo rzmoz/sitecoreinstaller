@@ -86,22 +86,25 @@ namespace SitecoreInstaller.Deployments
             Parallel.Invoke(() =>
             {
                 //copy sitecore
-                _logger.Debug($"Copying {sitecore.Name} for {deploymentName}");
-                sitecore.Website.CopyTo(deploymentDir.Website, includeSubfolders: true);
-                _logger.Trace($"Sitecore {sitecore.Name} copied to {deploymentDir.Website}");
+                var target = deploymentDir.Website;
+                _logger.Debug($"Copying Website for {deploymentName} to {target }");
+                sitecore.Website.CopyTo(target, includeSubfolders: true);
+                _logger.Trace($"Sitecore copied to {target }");
             }, () =>
              {
                  //copy databases
-                 _logger.Debug($"Copying Databases for {deploymentName}");
-                 sitecore.Databases.CopyTo(deploymentDir.Databases, includeSubfolders: true);
+                 var target = deploymentDir.Databases;
+                 _logger.Debug($"Copying Databases for {deploymentName} to {target }");
+                 sitecore.Databases.CopyTo(target, includeSubfolders: true);
                  FixReportingDatabaseFileNames(deploymentDir);
-                 _logger.Debug($"Databases for {deploymentName} copied to {deploymentDir.Databases}");
+                 _logger.Trace($"Databases copied to {target }");
              }, () =>
              {
                  //copy data
-                 _logger.Debug($"Copying Data for {deploymentName}");
-                 sitecore.Data.CopyTo(deploymentDir.Website.App_Data, includeSubfolders: true);
-                 _logger.Debug($"Data for {deploymentName} copied to {deploymentDir.Website.App_Data}");
+                 var target = deploymentDir.Website.App_Data;
+                 _logger.Debug($"Copying Data for {deploymentName} to {target }");
+                 sitecore.Data.CopyTo(target, includeSubfolders: true);
+                 _logger.Trace($"Data copied to {target }");
              });
 
             _logger.Trace($"{sitecore.Name} for {deploymentName} copied");

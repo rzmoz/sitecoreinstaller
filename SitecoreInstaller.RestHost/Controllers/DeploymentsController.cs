@@ -25,12 +25,12 @@ namespace SitecoreInstaller.RestHost.Controllers
         [HttpPut]
         public async Task<HttpResponseMessage> NewSitecoreDeployment()
         {
-            var settingsJson = await Request.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var argsJson = await Request.Content.ReadAsStringAsync().ConfigureAwait(false);
             try
             {
-                var settings = JsonConvert.DeserializeObject<DeploymentSettings>(settingsJson);
-                await _installPipeline.RunAsync(new EventArgs<DeploymentSettings>(settings)).ConfigureAwait(false);
-                return Request.CreateResponse(HttpStatusCode.Accepted, settings);
+                var installArgs = JsonConvert.DeserializeObject<InstallEventArgs>(argsJson);
+                await _installPipeline.RunAsync(installArgs).ConfigureAwait(false);
+                return Request.CreateResponse(HttpStatusCode.Accepted, installArgs);
             }
             catch (JsonReaderException e)
             {

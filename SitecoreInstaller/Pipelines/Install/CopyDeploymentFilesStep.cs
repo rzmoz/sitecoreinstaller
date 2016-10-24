@@ -1,14 +1,13 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using DotNet.Basics.Sys;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.BuildLibrary;
 using SitecoreInstaller.Deployments;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
-    public class CopyDeploymentFilesStep : PipelineStep<EventArgs<DeploymentSettings>>
+    public class CopyDeploymentFilesStep : PipelineStep<InstallEventArgs>
     {
         private readonly DeploymentsService _deploymentsService;
         private readonly LocalBuildLibrary _buildLibrary;
@@ -19,15 +18,15 @@ namespace SitecoreInstaller.Pipelines.Install
             _buildLibrary = buildLibrary;
         }
 
-        protected override Task InnerRunAsync(EventArgs<DeploymentSettings> args, CancellationToken ct)
+        protected override Task InnerRunAsync(InstallEventArgs args, CancellationToken ct)
         {
-            var sitecore = _buildLibrary.GetSitecore(args.Value.Sitecore);
-            _deploymentsService.CopySitecore(sitecore, args.Value.Name);
-            var license = _buildLibrary.GetLicense(args.Value.License);
-            _deploymentsService.CopyLicenseFile(license, args.Value.Name);
-            var modules = (from module in args.Value.Modules select _buildLibrary.GetModule(module)).ToList();
-            _deploymentsService.CopyModules(modules, args.Value.Name);
-            _deploymentsService.CopyRuntimeServices(args.Value.Name);
+            var sitecore = _buildLibrary.GetSitecore(args.Sitecore);
+            _deploymentsService.CopySitecore(sitecore, args.Name);
+            var license = _buildLibrary.GetLicense(args.License);
+            _deploymentsService.CopyLicenseFile(license, args.Name);
+            var modules = (from module in args.Modules select _buildLibrary.GetModule(module)).ToList();
+            _deploymentsService.CopyModules(modules, args.Name);
+            _deploymentsService.CopyRuntimeServices(args.Name);
             return Task.CompletedTask;
         }
     }

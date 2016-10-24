@@ -6,7 +6,7 @@ namespace SitecoreInstaller.Databases
     public class SqlDbConnectionString : DbConnectionString
     {
         public SqlDbConnectionString(string name, SqlConnectionStringBuilder builder)
-            : base(name, builder.ConnectionString, DbType.Sql)
+            : base(name, builder.InitialCatalog, builder.ConnectionString, DbType.Sql)
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
         }

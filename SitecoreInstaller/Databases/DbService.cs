@@ -9,14 +9,14 @@ namespace SitecoreInstaller.Databases
 {
     public abstract class DbService : IPreflightCheck
     {
-        private readonly ILogger _logger;
-
         protected DbService(string instanceName = null, string windowsServiceName = null)
         {
             InstanceName = instanceName;
             WindowsServiceName = windowsServiceName;
-            _logger = LogManager.GetLogger(GetType().Namespace);
+            Logger = LogManager.GetLogger(GetType().Namespace);
         }
+
+        protected ILogger Logger { get; }
 
         public string InstanceName { get; protected set; }
         public string WindowsServiceName { get; protected set; }
@@ -52,7 +52,7 @@ namespace SitecoreInstaller.Databases
                 //if windows service is found but not running and couldn't be started
                 if (IsWindowsServiceRunning == false)
                 {
-                    _logger.Debug($"Starting {dbType} Database Windows Service: {WindowsServiceName}...");
+                    Logger.Debug($"Starting {dbType} Database Windows Service: {WindowsServiceName}...");
                     if (StartWindowsService() == false && IsWindowsServiceRunning == false)
                     {
                         issues.Add($"Failed to start Database Windows Service: {WindowsServiceName}");
@@ -61,7 +61,7 @@ namespace SitecoreInstaller.Databases
                 }
 
                 if (IsWindowsServiceRunning)
-                    _logger.Trace($"{dbType } Server Windows Service is running: {WindowsServiceName}");
+                    Logger.Trace($"{dbType } Server Windows Service is running: {WindowsServiceName}");
 
                 if (InstanceName != null)
                     return;
@@ -75,7 +75,7 @@ namespace SitecoreInstaller.Databases
                     }
                 }
                 if (InstanceName != null && ConnectionEstablished(InstanceName))
-                    _logger.Trace($"{dbType} Server connection is established: {InstanceName}");
+                    Logger.Trace($"{dbType} Server connection is established: {InstanceName}");
                 else
                     issues.Add($"Failed to connect to {dbType} Server. Tried {JsonConvert.SerializeObject(GetInstanceNameCandidates())}");
             });
@@ -95,7 +95,7 @@ namespace SitecoreInstaller.Databases
             }
             catch (Exception e)
             {
-                _logger.Warn(e);
+                Logger.Warn(e);
                 return false;
             }
         }
@@ -111,7 +111,7 @@ namespace SitecoreInstaller.Databases
             }
             catch (Exception e)
             {
-                _logger.Warn(e);
+                Logger.Warn(e);
                 return false;
             }
         }
