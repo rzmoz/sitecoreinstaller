@@ -5,18 +5,19 @@ using SitecoreInstaller.WebServer;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
-    public class AddSitenameToHostFileStep : PipelineStep<InstallArgs>
+    public class AddSiteToHostFileStep : PipelineStep<InstallArgs>
     {
         private readonly HostFile _hostFile;
 
-        public AddSitenameToHostFileStep(HostFile hostFile)
+        public AddSiteToHostFileStep(HostFile hostFile)
         {
             _hostFile = hostFile;
         }
 
         protected override Task RunImpAsync(InstallArgs args, CancellationToken ct)
         {
-            throw new System.NotImplementedException();
+            _hostFile.AddHostName(args.DeploymentUrl);
+            return Task.CompletedTask;
         }
     }
 }

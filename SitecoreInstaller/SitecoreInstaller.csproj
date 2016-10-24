@@ -141,7 +141,7 @@
     <Compile Include="FileTypes.cs" />
     <Compile Include="IncludeDir.cs" />
     <Compile Include="Pipelines\DeploymentDirPipeline.cs" />
-    <Compile Include="Pipelines\Install\AddSitenameToHostFileStep.cs" />
+    <Compile Include="Pipelines\Install\AddSiteToHostFileStep.cs" />
     <Compile Include="Pipelines\Install\AttachSqlhDatabasesStep.cs" />
     <Compile Include="Pipelines\Install\CopyDeploymentFilesStep.cs" />
     <Compile Include="Pipelines\InitDeploymentDirStep.cs" />
@@ -154,6 +154,7 @@
     <Compile Include="Pipelines\UnInstall\DetachSqlDatabasesStep.cs" />
     <Compile Include="Pipelines\UnInstall\DropMongoDatabasesStep.cs" />
     <Compile Include="Pipelines\UnInstall\InitUnInstallConnectionStringsStep.cs" />
+    <Compile Include="Pipelines\UnInstall\RemoveSiteFromHostFileStep.cs" />
     <Compile Include="Pipelines\UnInstall\UnInstallArgs.cs" />
     <Compile Include="Pipelines\UnInstall\UnInstallPipeline.cs" />
     <Compile Include="PreflightChecks\IPreflightCheck.cs" />

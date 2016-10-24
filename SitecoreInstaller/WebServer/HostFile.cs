@@ -106,12 +106,16 @@ namespace SitecoreInstaller.WebServer
 
             var hostFileEntry = string.Format(_hostFileEntryFormat, hostFileIisSiteName);
             WriteLineToHostfile(hostFileEntry);
+
+            _logger.Trace($"Entry added to hostfile: {hostFileEntry}");
         }
 
         public void RemoveHostName(string hostName)
         {
             var hostFileIisSiteName = hostName.ToLowerInvariant();
             var tempFile = Path.GetTempFileName();
+
+            string deletedEntry = null;
 
             using (var sr = new StreamReader(_hostFile.FullName))
             {
@@ -125,7 +129,8 @@ namespace SitecoreInstaller.WebServer
                             sw.WriteLine(line);
                         else
                         {
-                            _logger.Debug($"Entry deleted from host file: {line}");
+                            deletedEntry = line;
+                            _logger.Debug($"Entry for deletion detected : {line}");
                         }
                     }
                 }
@@ -133,6 +138,11 @@ namespace SitecoreInstaller.WebServer
             File.Delete(_hostFile.FullName);
             File.Copy(tempFile, _hostFile.FullName);
             File.Delete(tempFile);
+
+            if (deletedEntry == null)
+                _logger.Error($"Hostname {hostName} not found in host file!");
+            else
+                _logger.Trace($"Hostname {deletedEntry} removed from hostfile");
         }
 
         private void WriteLineToHostfile(string line)

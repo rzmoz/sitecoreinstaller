@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Deployments;
 
 namespace SitecoreInstaller.Pipelines.Install
@@ -7,10 +8,16 @@ namespace SitecoreInstaller.Pipelines.Install
     {
         public InstallPipeline(IContainer container, DeploymentsService deploymentsService) : base(container, deploymentsService)
         {
-            AddStep<CopyDeploymentFilesStep>();
-            AddStep<InitInstallConnectionStringsStep>();
-            AddStep<InitWebsiteStep>();
-            AddStep<AttachSqlhDatabasesStep>();
+            /*AddStep<CopyDeploymentFilesStep>();
+            var installBlock = AddBlock("Install Block");
+            installBlock.AddBlock("Databases Block", BlockRunType.Sequential)
+                .AddStep<InitInstallConnectionStringsStep>()
+                .AddStep<AttachSqlhDatabasesStep>();
+            installBlock.AddBlock("Website Block")
+                .AddStep<InitWebsiteStep>()
+                .AddStep<AddSiteToHostFileStep>();
+                */
+            AddStep<AddSiteToHostFileStep>();
         }
     }
 }

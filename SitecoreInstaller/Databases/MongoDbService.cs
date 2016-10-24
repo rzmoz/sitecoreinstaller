@@ -39,6 +39,7 @@ namespace SitecoreInstaller.Databases
 
         protected override IEnumerable<string> GetInstanceNameCandidates()
         {
+            //TODO:Get from user settings
             yield return "localhost:27017";
         }
 

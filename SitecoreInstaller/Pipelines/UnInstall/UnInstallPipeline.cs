@@ -7,11 +7,12 @@ namespace SitecoreInstaller.Pipelines.UnInstall
     {
         public UnInstallPipeline(IContainer container, DeploymentsService deploymentsService) : base(container, deploymentsService)
         {
-            AddStep<InitUnInstallConnectionStringsStep>();
+            /*AddStep<InitUnInstallConnectionStringsStep>();
             AddBlock("Cleanup Databases")
                 .AddStep<DetachSqlDatabasesStep>()
                 .AddStep<DropMongoDatabasesStep>();
-            AddStep<DeleteDeploymentDirStep>();
+            AddStep<DeleteDeploymentDirStep>();*/
+            AddStep<RemoveSiteFromHostFileStep>();
         }
     }
 }
