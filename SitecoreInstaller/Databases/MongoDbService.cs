@@ -43,6 +43,10 @@ namespace SitecoreInstaller.Databases
             yield return "localhost:27017";
         }
 
+        protected override void CustomAssert(List<string> issues)
+        {
+        }
+        
         private MongoClient GetClient(string instanceName) => new MongoClient(new MongoUrl($"mongodb://{instanceName}/"));
     }
 }

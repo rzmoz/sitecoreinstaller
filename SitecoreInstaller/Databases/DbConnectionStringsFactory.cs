@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 using DotNet.Basics.Collections;
 using DotNet.Basics.IO;
+using DotNet.Basics.Sys;
 using MongoDB.Driver;
 using NLog;
 
@@ -33,7 +34,15 @@ namespace SitecoreInstaller.Databases
 
             //update with constrs from files
             foreach (var dbFilePair in dbFilePairs)
-                updatedEntries[dbFilePair.Name.ConnectionStringName.ToLowerInvariant()] = new SqlDbTrustedConnectionString(dbFilePair.Name.ConnectionStringName, dbFilePair.Name.FullName, _sqlDbService.InstanceName);
+                updatedEntries[dbFilePair.Name.ConnectionStringName.ToLowerInvariant()] = 
+                    new SqlDbConnectionString(dbFilePair.Name.ConnectionStringName,new SqlConnectionStringBuilder
+                    {
+                        ConnectTimeout = (int)5.Seconds().TotalMilliseconds,
+                        InitialCatalog = dbFilePair.Name.FullName,
+                        DataSource = _sqlDbService.InstanceName,
+                        UserID = "sa",
+                        Password = "1234"
+                    });
 
             //update mongo constrs with project names
             foreach (var mongoDbString in updatedEntries.Where(entry => entry.Value.DbType == DbType.Mongo).ToList())

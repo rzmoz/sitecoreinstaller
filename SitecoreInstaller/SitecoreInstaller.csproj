@@ -134,7 +134,6 @@
     <Compile Include="Databases\SqlDatabaseFilePair.cs" />
     <Compile Include="Databases\SqlDbConnectionString.cs" />
     <Compile Include="Databases\SqlDbService.cs" />
-    <Compile Include="Databases\SqlDbTrustedConnectionString.cs" />
     <Compile Include="Databases\UnknownDbConnectionString.cs" />
     <Compile Include="Deployments\DeploymentsService.cs" />
     <Compile Include="EnvironmentSettings.cs" />

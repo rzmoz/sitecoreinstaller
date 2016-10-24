@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data.SqlClient;
-using DotNet.Basics.IO;
+using System.Security;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 
@@ -16,7 +16,7 @@ namespace SitecoreInstaller.Databases
         {
             var connectionString = string.Format(_trustedServerConStrFormat, InstanceName);
             var sqlServer = new Server(new ServerConnection(new SqlConnection(connectionString)));
-            
+
             foreach (var sqlDbFilePair in sqlDatabaseFilePairs)
             {
                 try
@@ -72,6 +72,72 @@ namespace SitecoreInstaller.Databases
             //TODO:Get from user settings
             yield return ".";
             yield return @".\SQLEXPRESS";
+        }
+
+        protected override void CustomAssert(List<string> issues)
+        {
+            //ensure mixed login Mode
+            var sqlServer = GetTrustedServer(InstanceName);
+            if (sqlServer.Settings.LoginMode != ServerLoginMode.Mixed)
+            {
+                Logger.Debug($"Setting Mixed mode loging for Sql Service {WindowsServiceName}");
+                sqlServer.Settings.LoginMode = ServerLoginMode.Mixed;
+                sqlServer.Alter();
+                RestartWindowsService();
+            }
+            if (sqlServer.Settings.LoginMode == ServerLoginMode.Mixed)
+                Logger.Trace($"Sql Server Mixed mode is set on {WindowsServiceName}");
+            else
+                issues.Add($"Setting Sql Server mixed mode failed. Sql database connections will not work");
+
+            //TODO: get from user settings
+            EnsureUserIsSysadmin("sa", "1234", issues);
+
+        }
+
+        private void EnsureUserIsSysadmin(string username, string password, List<string> issues)
+        {
+            var role = "sysadmin";
+            try
+            {
+                var sqlServer = GetTrustedServer(InstanceName);
+
+                var existingUser = sqlServer.Logins[username];
+                if (existingUser == null)
+                {
+                    Logger.Debug($"Adding {username} Sql User to {role} role");
+                    var login = new Login(sqlServer, password)
+                    {
+                        PasswordExpirationEnabled = false,
+                        PasswordPolicyEnforced = false,
+                        LoginType = LoginType.SqlLogin
+                    };
+
+                    login.Create(password);
+                    login.AddToRole(role);
+                    Logger.Trace($"{username} Sql User to {role} role added");
+                }
+                else
+                {
+                    Logger.Debug($"Updating password for {username} Sql User");
+                    existingUser.ChangePassword(password);
+                    if (username != "sa")//special service principal is already sysadmin
+                        existingUser.AddToRole(role);
+                    Logger.Trace($"Password updated for {username} Sql User");
+                }
+            }
+            catch (Exception e)
+            { issues.Add($"Couldn't add user to role: {role}\r\n{e}"); }
+        }
+
+        private Server GetTrustedServer(string instanceName)
+        {
+            return new Server(new ServerConnection(GetTrustedSqlConnection(instanceName)));
+        }
+        private SqlConnection GetTrustedSqlConnection(string instanceName)
+        {
+            var connectionString = string.Format(_trustedServerConStrFormat, instanceName);
+            return new SqlConnection(connectionString);
         }
     }
 }

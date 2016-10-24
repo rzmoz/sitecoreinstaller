@@ -27,6 +27,7 @@ namespace SitecoreInstaller.Databases
         protected abstract bool ConnectionEstablished(string instanceName);
         protected abstract IEnumerable<string> GetWindowsServiceNameCandidates();
         protected abstract IEnumerable<string> GetInstanceNameCandidates();
+        protected abstract void CustomAssert(List<string> issues);
 
         protected void WorkOnConnectionStrings<T>(Func<IEnumerable<T>> getEnumerator, Action<T> action, string startingVerb, string endedVerb) where T : DbConnectionString
         {
@@ -94,7 +95,10 @@ namespace SitecoreInstaller.Databases
                     }
                 }
                 if (InstanceName != null && ConnectionEstablished(InstanceName))
+                {
                     Logger.Trace($"{dbType} Server connection is established: {InstanceName}");
+                    CustomAssert(issues);
+                }
                 else
                     issues.Add($"Failed to connect to {dbType} Server. Tried {JsonConvert.SerializeObject(GetInstanceNameCandidates())}");
             });

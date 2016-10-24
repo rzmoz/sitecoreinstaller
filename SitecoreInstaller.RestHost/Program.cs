@@ -20,9 +20,10 @@ namespace SitecoreInstaller.RestHost
             if (runtime.Init(ConfigureLog, builder => builder.RegisterApiControllers(typeof(Program).Assembly)) == false)
             {
                 runtime.Logger.Fatal($"Runtime failed to inititialize. Aborting...");
+                Console.ReadKey();
                 return 1;
             }
-            
+
             // Start OWIN host 
             IDisposable host = null;
             try
