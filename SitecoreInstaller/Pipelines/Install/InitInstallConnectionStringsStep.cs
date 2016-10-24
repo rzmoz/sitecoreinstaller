@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DotNet.Basics.IO;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Databases;
 
@@ -9,10 +10,12 @@ namespace SitecoreInstaller.Pipelines.Install
     public class InitInstallConnectionStringsStep : PipelineStep<InstallArgs>
     {
         private readonly DbConnectionStringsFactory _dbConnectionStringsFactory;
+        private readonly ConnectionStringsConfigFormatter _connectionStringsConfigFormatter;
 
-        public InitInstallConnectionStringsStep(DbConnectionStringsFactory dbConnectionStringsFactory)
+        public InitInstallConnectionStringsStep(DbConnectionStringsFactory dbConnectionStringsFactory, ConnectionStringsConfigFormatter connectionStringsConfigFormatter)
         {
             _dbConnectionStringsFactory = dbConnectionStringsFactory;
+            _connectionStringsConfigFormatter = connectionStringsConfigFormatter;
         }
 
         protected override Task InnerRunAsync(InstallArgs args, CancellationToken ct)
@@ -25,6 +28,10 @@ namespace SitecoreInstaller.Pipelines.Install
 
             args.ConnectionStrings = mergedConnectionStrings;
             args.SqlDatabaseFiles = databaseFilePairs;
+
+            //write connectionstrings to connectionstrings.config
+            var connectionStringsDotConfigContent = _connectionStringsConfigFormatter.ToConfigFileString(args.ConnectionStrings);
+            connectionStringsDotConfigContent.WriteAllText(args.DeploymentDir.Website.App_Config.ConnectionStringsConfig, overwrite: true);
 
             return Task.CompletedTask;
         }

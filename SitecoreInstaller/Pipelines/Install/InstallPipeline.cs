@@ -11,8 +11,9 @@ namespace SitecoreInstaller.Pipelines.Install
             AddStep((args, ct) => new InitDeploymentDirStep(deploymentsService).RunAsync(args, ct));
             AddStep<CopyDeploymentFilesStep>();
             AddStep<InitInstallConnectionStringsStep>();
-            AddStep<WriteUpdatedConnectionStringsToConnectionStringsConfigStep>();
+            AddStep<InitWebsiteStep>();
             AddStep<AttachSqlhDatabasesStep>();
+            
         }
     }
 }

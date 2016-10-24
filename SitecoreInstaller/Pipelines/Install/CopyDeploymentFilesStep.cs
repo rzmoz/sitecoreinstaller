@@ -26,7 +26,6 @@ namespace SitecoreInstaller.Pipelines.Install
             _deploymentsService.CopyLicenseFile(license, args.Name);
             var modules = (from module in args.Modules select _buildLibrary.GetModule(module)).ToList();
             _deploymentsService.CopyModules(modules, args.Name);
-            _deploymentsService.CopyRuntimeServices(args.Name);
             return Task.CompletedTask;
         }
     }

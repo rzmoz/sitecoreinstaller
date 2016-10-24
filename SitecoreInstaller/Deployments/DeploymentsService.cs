@@ -35,21 +35,6 @@ namespace SitecoreInstaller.Deployments
             _logger.Trace($"{nameof(DeploymentsService)} initialized to: {Root.FullName}");
         }
 
-        public void CopyRuntimeServices(string deploymentName)
-        {
-            var runtimeServicesDir = GetDeploymentDir(deploymentName).Website.Temp.RuntimeServices;
-            runtimeServicesDir.CreateIfNotExists();
-            Parallel.Invoke(
-                () => DeploymentsResources.AdminLogin.WriteAllText(runtimeServicesDir.AdminLogin),
-                () => DeploymentsResources.DeserializeItems.WriteAllText(runtimeServicesDir.DeserializeItems),
-                () => DeploymentsResources.InstallPackageService.WriteAllText(runtimeServicesDir.InstallPackageService),
-                () => DeploymentsResources.InstallPackageStatusService.WriteAllText(runtimeServicesDir.InstallPackageStatusService),
-                () => DeploymentsResources.PostInstallService.WriteAllText(runtimeServicesDir.PostInstallService),
-                () => DeploymentsResources.PublishSite.WriteAllText(runtimeServicesDir.PublishSite));
-
-            _logger.Trace($"Runtime services installed to {runtimeServicesDir }");
-        }
-
         public void CopyModules(IEnumerable<Module> modules, string deploymentName)
         {
             var deploymentDir = GetDeploymentDir(deploymentName);
@@ -96,7 +81,6 @@ namespace SitecoreInstaller.Deployments
                  var target = deploymentDir.Databases;
                  _logger.Debug($"Copying Databases for {deploymentName} to {target }");
                  sitecore.Databases.CopyTo(target, includeSubfolders: true);
-                 FixReportingDatabaseFileNames(deploymentDir);
                  _logger.Trace($"Databases copied to {target }");
              }, () =>
              {
@@ -138,17 +122,6 @@ namespace SitecoreInstaller.Deployments
                 _logger.Error($"Failed to delete Deployment dir: {deploymentDir.FullName}");
 
             return success;
-        }
-
-        private void FixReportingDatabaseFileNames(DeploymentDir deploymentDir)
-        {
-            var analyticsFiles = deploymentDir.Databases.GetFiles("Sitecore.Analytics.*", true);
-
-            foreach (var analyticsFile in analyticsFiles)
-            {
-                _logger.Trace($"Fixing reporting database filename for: {analyticsFile.FullName}");
-                analyticsFile.MoveTo(analyticsFile.Directory.ToFile("Sitecore.Reporting" + analyticsFile.Extension));
-            }
         }
 
         public PreflightCheckResult Assert()

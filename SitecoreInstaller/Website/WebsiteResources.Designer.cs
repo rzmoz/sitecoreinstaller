@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SitecoreInstaller.Deployments {
+namespace SitecoreInstaller.Website {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace SitecoreInstaller.Deployments {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class DeploymentsResources {
+    internal class WebsiteResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal DeploymentsResources() {
+        internal WebsiteResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace SitecoreInstaller.Deployments {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SitecoreInstaller.Deployments.DeploymentsResources", typeof(DeploymentsResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SitecoreInstaller.Website.WebsiteResources", typeof(WebsiteResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

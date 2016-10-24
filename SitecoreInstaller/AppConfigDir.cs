@@ -8,7 +8,7 @@ namespace SitecoreInstaller
         {
         }
 
-        public DirPath Include => Add(nameof(Include));
+        public IncludeDir Include => new IncludeDir(Add(nameof(Include)));
         public FilePath ConnectionStringsConfig => this.ToFile("ConnectionStrings.config");
     }
 }

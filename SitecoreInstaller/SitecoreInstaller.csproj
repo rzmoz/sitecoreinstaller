@@ -136,21 +136,17 @@
     <Compile Include="Databases\SqlDbService.cs" />
     <Compile Include="Databases\SqlDbTrustedConnectionString.cs" />
     <Compile Include="Databases\UnknownDbConnectionString.cs" />
-    <Compile Include="Deployments\DeploymentsResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DeploymentsResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Deployments\DeploymentsService.cs" />
     <Compile Include="EnvironmentSettings.cs" />
     <Compile Include="FileTypes.cs" />
+    <Compile Include="IncludeDir.cs" />
     <Compile Include="Pipelines\Install\AttachSqlhDatabasesStep.cs" />
     <Compile Include="Pipelines\Install\CopyDeploymentFilesStep.cs" />
     <Compile Include="Pipelines\InitDeploymentDirStep.cs" />
+    <Compile Include="Pipelines\Install\InitWebsiteStep.cs" />
     <Compile Include="Pipelines\Install\InstallArgs.cs" />
     <Compile Include="Pipelines\Install\InstallPipeline.cs" />
     <Compile Include="Pipelines\Install\InitInstallConnectionStringsStep.cs" />
-    <Compile Include="Pipelines\Install\WriteUpdatedConnectionStringsToConnectionStringsConfigStep.cs" />
     <Compile Include="Pipelines\SitecoreInstallerEventArgs.cs" />
     <Compile Include="Pipelines\UnInstall\DeleteDeploymentDirStep.cs" />
     <Compile Include="Pipelines\UnInstall\DetachSqlDatabasesStep.cs" />
@@ -174,35 +170,40 @@
     <Compile Include="WebServer\SiteSettings.cs" />
     <Compile Include="WebServer\WebServerException.cs" />
     <Compile Include="WebsiteDir.cs" />
+    <Compile Include="Website\WebsiteResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebsiteResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Website\WebsiteService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Deployments\AdminLogin.aspx">
+    <Content Include="Website\AdminLogin.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Deployments\DeserializeItems.aspx">
+    <Content Include="Website\DeserializeItems.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Deployments\InstallPackageService.aspx">
+    <Content Include="Website\InstallPackageService.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Deployments\InstallPackageStatusService.aspx">
+    <Content Include="Website\InstallPackageStatusService.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Deployments\PostInstallService.aspx">
+    <Content Include="Website\PostInstallService.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Deployments\PublishSite.aspx">
+    <Content Include="Website\PublishSite.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Deployments\DeploymentsResources.resx">
+    <EmbeddedResource Include="Website\WebsiteResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DeploymentsResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>WebsiteResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
