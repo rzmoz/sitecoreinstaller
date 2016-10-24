@@ -38,16 +38,16 @@ namespace SitecoreInstaller.Databases
             var sqlServer = new Server(new ServerConnection(new SqlConnection(connectionString)));
             foreach (var conStr in sqlDbConnectionStrings)
             {
+                Logger.Trace($"Sql database {conStr.Name} detaching...");
                 try
                 {
                     sqlServer.KillAllProcesses(conStr.DatabaseName);
                     sqlServer.DetachDatabase(conStr.DatabaseName, false);
-                    Logger.Debug($"{conStr.Name} detached from {InstanceName}");
-                    Logger.Trace($"Databases detached");
+                    Logger.Trace($"Sql Database {conStr.Name} detached");
                 }
                 catch (Exception e)
                 {
-                    Logger.Error($"{conStr.Name} failed to detach: {e}");
+                    Logger.Error($"Sql Database {conStr.Name} failed to detach: {e}");
                 }
             }
         }
