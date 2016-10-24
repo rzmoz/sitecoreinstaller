@@ -34,8 +34,8 @@
       <HintPath>..\packages\Autofac.4.1.1\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DotNet.Basics, Version=5.3.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.5.3.8\lib\net45\DotNet.Basics.dll</HintPath>
+    <Reference Include="DotNet.Basics, Version=5.3.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNet.Basics.5.3.9\lib\net45\DotNet.Basics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DotNet.Basics.NLog, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -145,18 +145,21 @@
     <Compile Include="Pipelines\Install\AttachSqlhDatabasesStep.cs" />
     <Compile Include="Pipelines\Install\CopyDeploymentFilesStep.cs" />
     <Compile Include="Pipelines\InitDeploymentDirStep.cs" />
+    <Compile Include="Pipelines\Install\CreateWebsiteAndAppPoolStep.cs" />
     <Compile Include="Pipelines\Install\InitWebsiteStep.cs" />
     <Compile Include="Pipelines\Install\InstallArgs.cs" />
     <Compile Include="Pipelines\Install\InstallPipeline.cs" />
     <Compile Include="Pipelines\Install\InitInstallConnectionStringsStep.cs" />
     <Compile Include="Pipelines\SitecoreInstallerEventArgs.cs" />
     <Compile Include="Pipelines\UnInstall\DeleteDeploymentDirStep.cs" />
+    <Compile Include="Pipelines\UnInstall\DeleteWebsiteAndAppPoolStep.cs" />
     <Compile Include="Pipelines\UnInstall\DetachSqlDatabasesStep.cs" />
     <Compile Include="Pipelines\UnInstall\DropMongoDatabasesStep.cs" />
     <Compile Include="Pipelines\UnInstall\InitUnInstallConnectionStringsStep.cs" />
     <Compile Include="Pipelines\UnInstall\RemoveSiteFromHostFileStep.cs" />
     <Compile Include="Pipelines\UnInstall\UnInstallArgs.cs" />
     <Compile Include="Pipelines\UnInstall\UnInstallPipeline.cs" />
+    <Compile Include="Pipelines\WakeupSiteStep.cs" />
     <Compile Include="PreflightChecks\IPreflightCheck.cs" />
     <Compile Include="PreflightChecks\PreflightCheckResult.cs" />
     <Compile Include="DeploymentDir.cs" />

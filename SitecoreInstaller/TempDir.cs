@@ -8,6 +8,7 @@ namespace SitecoreInstaller
         {
         }
 
+        //TODO: Get prefix from user settings
         public RuntimeServicesDir RuntimeServices => new RuntimeServicesDir(Add("SI" + nameof(RuntimeServices)));
     }
 }

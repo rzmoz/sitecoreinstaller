@@ -41,7 +41,9 @@ namespace SitecoreInstaller.Runtime
             builder.RegisterType<DeploymentsService>().As<IPreflightCheck>().AsSelf().SingleInstance();
 
             //pipelines
-            builder.Register(c => new InstallPipeline(builder.Container, builder.Container.Resolve<DeploymentsService>())).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
+            builder.Register(c => new InstallPipeline(builder.Container,
+                builder.Container.Resolve<DeploymentsService>(),
+                builder.Container.Resolve<WebsiteService>())).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
             builder.Register(c => new UnInstallPipeline(builder.Container, builder.Container.Resolve<DeploymentsService>())).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
         }
 

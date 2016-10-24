@@ -19,9 +19,9 @@ namespace SitecoreInstaller.WebServer
             _logger = LogManager.GetLogger(nameof(IisManagementService));
         }
 
-        public void CreateApplication(string name)
+        public void CreateApplication(string name, DeploymentDir deploymentDir)
         {
-            var settings = _iisApplicationSettingsFactory.Create(name);
+            var settings = _iisApplicationSettingsFactory.Create(name, deploymentDir);
             _logger.Trace($"Creating Iis Application: {settings.Name}...");
             using (var iisManager = new IisManager(settings))
             {
@@ -49,9 +49,7 @@ namespace SitecoreInstaller.WebServer
                     _logger.Debug($"App pool deleted: {settings.AppPoolSettings.Name}");
                 });
             }
-            settings.SiteSettings.SiteRoot.DeleteIfExists();
-            _logger.Debug($"{nameof(settings.SiteSettings.SiteRoot)} deleted: {settings.SiteSettings.SiteRoot.FullName}");
-            settings.SiteSettings.IisLogFilesDir.DeleteIfExists();
+            
             _logger.Trace($"Iis Application deleted: {settings.Name}");
         }
 

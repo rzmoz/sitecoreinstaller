@@ -1,21 +1,12 @@
-﻿using DotNet.Basics.IO;
-
-namespace SitecoreInstaller.WebServer
+﻿namespace SitecoreInstaller.WebServer
 {
     public class IisApplicationSettingsFactory
     {
-        private readonly EnvironmentSettings _environmentSettings;
-
-        public IisApplicationSettingsFactory(EnvironmentSettings environmentSettings)
-        {
-            _environmentSettings = environmentSettings;
-        }
-
-        public IisApplicationSettings Create(string name)
+        public IisApplicationSettings Create(string name, DeploymentDir deploymentDir = null)
         {
             var settings = new IisApplicationSettings(name);
-            settings.SiteSettings.SiteRoot = _environmentSettings.SitesRootDir.ToDir(name);
-            settings.SiteSettings.IisLogFilesDir = settings.SiteSettings.SiteRoot.Add("IisLogFiles");
+            settings.SiteSettings.SiteRoot = deploymentDir?.Website;
+            settings.SiteSettings.IisLogFilesDir = deploymentDir?.Add("IisLogFiles");
             return settings;
         }
     }

@@ -98,9 +98,10 @@ namespace SitecoreInstaller.Deployments
         {
             var deploymentDir = GetDeploymentDir(deploymentName);
             deploymentDir.Databases.CreateIfNotExists();
-            deploymentDir.Website.App_Config.CreateIfNotExists();
-            deploymentDir.Website.App_Data.CreateIfNotExists();
-            deploymentDir.Website.Temp.CreateIfNotExists();
+            deploymentDir.Website.App_Config.Include.CreateIfNotExists();
+            deploymentDir.Website.App_Data.Packages.CreateIfNotExists();
+            deploymentDir.Website.Temp.RuntimeServices.CreateIfNotExists();
+            deploymentDir.Website.Bin.CreateIfNotExists();
             deploymentDir.GrantAccess("everyone", FileSystemRights.FullControl);
             return deploymentDir;
         }

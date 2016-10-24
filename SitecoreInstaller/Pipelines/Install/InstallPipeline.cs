@@ -1,23 +1,24 @@
 ﻿using Autofac;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Deployments;
+using SitecoreInstaller.Website;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
     public class InstallPipeline : DeploymentDirPipeline<InstallArgs>
     {
-        public InstallPipeline(IContainer container, DeploymentsService deploymentsService) : base(container, deploymentsService)
+        public InstallPipeline(IContainer container, DeploymentsService deploymentsService, WebsiteService websiteService) : base(container, deploymentsService)
         {
-            /*AddStep<CopyDeploymentFilesStep>();
-            var installBlock = AddBlock("Install Block");
-            installBlock.AddBlock("Databases Block", BlockRunType.Sequential)
-                .AddStep<InitInstallConnectionStringsStep>()
-                .AddStep<AttachSqlhDatabasesStep>();
-            installBlock.AddBlock("Website Block")
-                .AddStep<InitWebsiteStep>()
-                .AddStep<AddSiteToHostFileStep>();
-                */
+            AddStep<CopyDeploymentFilesStep>();
+
+            AddStep<InitWebsiteStep>();
+            
+
+            AddStep<InitInstallConnectionStringsStep>();
+            AddStep<AttachSqlhDatabasesStep>();
             AddStep<AddSiteToHostFileStep>();
+            AddStep<CreateWebsiteAndAppPoolStep>();
+            AddStep((args, ct) => new WakeupSiteStep(websiteService).RunAsync(args, ct));
         }
     }
 }

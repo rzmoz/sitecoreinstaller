@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using DotNet.Basics.IO;
+using DotNet.Basics.Rest;
+using DotNet.Basics.Sys;
 using NLog;
 using SitecoreInstaller.PreflightChecks;
 
@@ -21,6 +24,25 @@ namespace SitecoreInstaller.Website
         public WebsiteService()
         {
             _logger = LogManager.GetLogger(nameof(WebsiteService));
+        }
+
+        public void PingSite(string host)
+        {
+            Task.Run(() =>
+            {
+                try
+                {
+                    _logger.Debug($"pinging {host}");
+                    var webRequest = (HttpWebRequest)WebRequest.Create($"http://{host}/");
+                    webRequest.AllowAutoRedirect = false;
+                    webRequest.Timeout = (int)1.Minutes().TotalMilliseconds;
+                    webRequest.GetResponse();
+                }
+                catch (WebException e)
+                {
+                    _logger.Debug(e.ToString());
+                }
+            });
         }
 
         public void InitDataFolderConfig(DeploymentDir deploymentdir)

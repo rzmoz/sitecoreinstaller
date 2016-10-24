@@ -7,6 +7,7 @@ namespace SitecoreInstaller
         public IncludeDir(DirPath path) : base(path.FullName)
         { }
 
+        //TODO: get prefix from user settings
         public FilePath DataFolderConfig => this.ToFile("zzDataFolder.config");
     }
 }
