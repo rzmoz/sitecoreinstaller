@@ -38,7 +38,7 @@ namespace SitecoreInstaller.Databases
             //update mongo constrs with project names
             foreach (var mongoDbString in updatedEntries.Where(entry => entry.Value.DbType == DbType.Mongo).ToList())
             {
-                var dbName = $"{projectName}_{mongoDbString.Key}";
+                var dbName = $"{projectName}_{mongoDbString.Key.Replace(".", "_")}";
                 updatedEntries[mongoDbString.Key] = new MongoDbConnectionString(mongoDbString.Key, new MongoUrl($"mongodb://{_mongoDbService.InstanceName}/{dbName }"));
             }
 

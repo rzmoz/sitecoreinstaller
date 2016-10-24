@@ -25,6 +25,25 @@ namespace SitecoreInstaller.Databases
         public bool IsWindowsServiceStopped => WindowsServices.Is(WindowsServiceName, WindowsServiceStatus.Stopped);
 
         protected abstract bool ConnectionEstablished(string instanceName);
+        protected abstract IEnumerable<string> GetWindowsServiceNameCandidates();
+        protected abstract IEnumerable<string> GetInstanceNameCandidates();
+
+        protected void WorkOnConnectionStrings<T>(Func<IEnumerable<T>> getEnumerator, Action<T> action, string startingVerb, string endedVerb) where T : DbConnectionString
+        {
+            foreach (var conStr in getEnumerator())
+            {
+                Logger.Debug($"{startingVerb.ToTitleCase()} {conStr.DbType} Database: {conStr.DatabaseName}...");
+                try
+                {
+                    action(conStr);
+                    Logger.Trace($"{conStr.DbType} Database {conStr.DatabaseName} {endedVerb.ToLowerInvariant()}");
+                }
+                catch (Exception e)
+                {
+                    Logger.Error($"{startingVerb.ToTitleCase()} {conStr.DbType} {conStr.DatabaseName} failed: {e}");
+                }
+            }
+        }
 
         public PreflightCheckResult Assert()
         {
@@ -80,9 +99,6 @@ namespace SitecoreInstaller.Databases
                     issues.Add($"Failed to connect to {dbType} Server. Tried {JsonConvert.SerializeObject(GetInstanceNameCandidates())}");
             });
         }
-
-        protected abstract IEnumerable<string> GetWindowsServiceNameCandidates();
-        protected abstract IEnumerable<string> GetInstanceNameCandidates();
 
         public bool StartWindowsService()
         {

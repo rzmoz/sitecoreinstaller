@@ -12,7 +12,7 @@ namespace SitecoreInstaller.Databases
         {
             try
             {
-                var client = new MongoClient(new MongoUrl($"mongodb://{instanceName}/"));
+                var client = GetClient(instanceName);
                 client.ListDatabases(new CancellationTokenSource(1.Seconds()).Token);
                 return true;
             }
@@ -20,6 +20,16 @@ namespace SitecoreInstaller.Databases
             {
                 return false;
             }
+        }
+
+        public void DropCollections(IEnumerable<MongoDbConnectionString> mongoDbConnectionStrings)
+        {
+            var client = GetClient(InstanceName);
+
+            WorkOnConnectionStrings(() => mongoDbConnectionStrings, conStr =>
+            {
+                client.DropDatabase(conStr.DatabaseName);
+            }, "dropping", "dropped");
         }
 
         protected override IEnumerable<string> GetWindowsServiceNameCandidates()
@@ -31,5 +41,7 @@ namespace SitecoreInstaller.Databases
         {
             yield return "localhost:27017";
         }
+
+        private MongoClient GetClient(string instanceName) => new MongoClient(new MongoUrl($"mongodb://{instanceName}/"));
     }
 }

@@ -16,18 +16,19 @@ namespace SitecoreInstaller.Databases
         {
             var connectionString = string.Format(_trustedServerConStrFormat, InstanceName);
             var sqlServer = new Server(new ServerConnection(new SqlConnection(connectionString)));
-
+            
             foreach (var sqlDbFilePair in sqlDatabaseFilePairs)
             {
                 try
                 {
+                    Logger.Debug($"Attaching {sqlDbFilePair.DataFile.FullName}");
                     var files = new StringCollection { sqlDbFilePair.DataFile.FullName, sqlDbFilePair.LogFile.FullName };
                     sqlServer.AttachDatabase(sqlDbFilePair.Name.FullName, files);
-                    Logger.Trace($"{sqlDbFilePair.Name} attached to {InstanceName}");
+                    Logger.Trace($"Atached {sqlDbFilePair.DataFile.FullName}");
                 }
                 catch (Exception e)
                 {
-                    Logger.Error($"{sqlDbFilePair.Name} failed to attach: {e}");
+                    Logger.Error($"Attaching {sqlDbFilePair.DataFile.FullName} failed: {e}");
                 }
             }
         }
@@ -36,20 +37,12 @@ namespace SitecoreInstaller.Databases
         {
             var connectionString = string.Format(_trustedServerConStrFormat, InstanceName);
             var sqlServer = new Server(new ServerConnection(new SqlConnection(connectionString)));
-            foreach (var conStr in sqlDbConnectionStrings)
-            {
-                Logger.Trace($"Sql database {conStr.Name} detaching...");
-                try
-                {
-                    sqlServer.KillAllProcesses(conStr.DatabaseName);
-                    sqlServer.DetachDatabase(conStr.DatabaseName, false);
-                    Logger.Trace($"Sql Database {conStr.Name} detached");
-                }
-                catch (Exception e)
-                {
-                    Logger.Error($"Sql Database {conStr.Name} failed to detach: {e}");
-                }
-            }
+
+            WorkOnConnectionStrings(() => sqlDbConnectionStrings, conStr =>
+              {
+                  sqlServer.KillAllProcesses(conStr.DatabaseName);
+                  sqlServer.DetachDatabase(conStr.DatabaseName, false);
+              }, "detaching", "detached");
         }
 
         protected override bool ConnectionEstablished(string instanceName)

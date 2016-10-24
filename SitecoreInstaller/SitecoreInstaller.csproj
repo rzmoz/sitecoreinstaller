@@ -154,6 +154,7 @@
     <Compile Include="Pipelines\SitecoreInstallerEventArgs.cs" />
     <Compile Include="Pipelines\UnInstall\DeleteDeploymentDirStep.cs" />
     <Compile Include="Pipelines\UnInstall\DetachSqlDatabasesStep.cs" />
+    <Compile Include="Pipelines\UnInstall\DropMongoDatabasesStep.cs" />
     <Compile Include="Pipelines\UnInstall\InitUnInstallConnectionStringsStep.cs" />
     <Compile Include="Pipelines\UnInstall\UnInstallArgs.cs" />
     <Compile Include="Pipelines\UnInstall\UnInstallPipeline.cs" />

@@ -10,7 +10,9 @@ namespace SitecoreInstaller.Pipelines.UnInstall
         {
             AddStep((args, ct) => new InitDeploymentDirStep(deploymentsService).RunAsync(args, ct));
             AddStep<InitUnInstallConnectionStringsStep>();
-            AddStep<DetachSqlDatabasesStep>();
+            AddBlock("Cleanup Databases")
+                .AddStep<DetachSqlDatabasesStep>()
+                .AddStep<DropMongoDatabasesStep>();
             AddStep<DeleteDeploymentDirStep>();
         }
     }
