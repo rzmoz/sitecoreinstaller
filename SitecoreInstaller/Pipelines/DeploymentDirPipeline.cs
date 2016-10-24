@@ -8,7 +8,7 @@ namespace SitecoreInstaller.Pipelines
     {
         public DeploymentDirPipeline(IContainer container, DeploymentsService deploymentsService) : base(container)
         {
-            AddStep((args, ct) => new InitDeploymentDirStep(deploymentsService).RunAsync(args, ct));
+            AddStep(nameof(InitDeploymentDirStep), (args, ct) => new InitDeploymentDirStep(deploymentsService).RunAsync(args, ct));
         }
     }
 }
