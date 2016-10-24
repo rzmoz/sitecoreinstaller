@@ -17,29 +17,24 @@ namespace SitecoreInstaller.RestHost
             //starting host
             var runtime = new RuntimeConfigurator();
 
-            var initResult = runtime.Init(ConfigureLog, builder => builder.RegisterApiControllers(typeof(Program).Assembly));
-
-            if (initResult == false)
+            if (runtime.Init(ConfigureLog, builder => builder.RegisterApiControllers(typeof(Program).Assembly)) == false)
             {
                 runtime.Logger.Fatal($"Runtime failed to inititialize. Aborting...");
                 return 1;
             }
-
-
-            runtime.Logger.Debug($"Host: {runtime.HostName} starting...");
-
+            
             // Start OWIN host 
-            var portNumber = int.Parse(args.Take(1).FirstOrDefault() ?? "7919");
-            string baseAddress = $"http://localhost:{portNumber}/";
-
             IDisposable host = null;
             try
             {
+                runtime.Logger.Debug($"Host: {runtime.HostName} starting...");
+                var portNumber = int.Parse(args.Take(1).FirstOrDefault() ?? "7919");
+                string baseAddress = $"http://localhost:{portNumber}/";
+
                 host = WebApp.Start(baseAddress, appBuilder =>
                 {
                     var webapiInit = new WebApiInit();
                     webapiInit.Init(appBuilder, runtime.Container, runtime.Logger);
-
                 });
                 runtime.Logger.Trace($"WebApi is listening on {baseAddress}");
                 runtime.Logger.Info($"Host: {runtime.HostName} started");

@@ -7,7 +7,6 @@ namespace SitecoreInstaller.RestHost
 {
     public class GlobalExceptionHandler : ExceptionHandler
     {
-
         public override async Task HandleAsync(ExceptionHandlerContext context, CancellationToken cancellationToken)
         {
             var logger = LogManager.GetLogger(nameof(context.Request.RequestUri.AbsoluteUri));

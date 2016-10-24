@@ -8,7 +8,6 @@ using DotNet.Basics.IO;
 using DotNet.Basics.Sys;
 using MongoDB.Driver;
 using NLog;
-using Sitecore.localhost;
 
 namespace SitecoreInstaller.Databases
 {
@@ -43,8 +42,7 @@ namespace SitecoreInstaller.Databases
 
             return updatedEntries.Values;
         }
-
-
+        
         public IEnumerable<DbConnectionString> Create(string projectName, DirPath databasesDir)
         {
             foreach (var dbFile in databasesDir.EnumerateFiles(FileTypes.SqlMdf.GetAllSearchPattern))
