@@ -18,8 +18,7 @@ namespace SitecoreInstaller.Pipelines.Install
         {
             Parallel.Invoke(
                 () => _websiteService.InitDataFolderConfig(args.DeploymentDir),
-                () => _websiteService.InitRuntimeServices(args.DeploymentDir),
-                () => _websiteService.FixReportingDatabaseFileNames(args.DeploymentDir));
+                () => _websiteService.InitRuntimeServices(args.DeploymentDir));
             return Task.CompletedTask;
         }
     }

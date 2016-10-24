@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.BuildLibrary;
 using SitecoreInstaller.Deployments;
+using SitecoreInstaller.Website;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
@@ -11,11 +12,13 @@ namespace SitecoreInstaller.Pipelines.Install
     {
         private readonly DeploymentsService _deploymentsService;
         private readonly LocalBuildLibrary _buildLibrary;
+        private readonly WebsiteService _websiteService;
 
-        public CopyDeploymentFilesStep(DeploymentsService deploymentsService, LocalBuildLibrary buildLibrary)
+        public CopyDeploymentFilesStep(DeploymentsService deploymentsService, LocalBuildLibrary buildLibrary, WebsiteService websiteService)
         {
             _deploymentsService = deploymentsService;
             _buildLibrary = buildLibrary;
+            _websiteService = websiteService;
         }
 
         protected override Task InnerRunAsync(InstallArgs args, CancellationToken ct)
@@ -26,6 +29,7 @@ namespace SitecoreInstaller.Pipelines.Install
             _deploymentsService.CopyLicenseFile(license, args.Name);
             var modules = (from module in args.Modules select _buildLibrary.GetModule(module)).ToList();
             _deploymentsService.CopyModules(modules, args.Name);
+            _websiteService.FixReportingDatabaseFileNames(args.DeploymentDir);
             return Task.CompletedTask;
         }
     }
