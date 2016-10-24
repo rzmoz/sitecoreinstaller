@@ -28,7 +28,7 @@ namespace SitecoreInstaller.RestHost.Controllers
             var argsJson = await Request.Content.ReadAsStringAsync().ConfigureAwait(false);
             try
             {
-                var installArgs = JsonConvert.DeserializeObject<InstallEventArgs>(argsJson);
+                var installArgs = JsonConvert.DeserializeObject<InstallArgs>(argsJson);
                 await _installPipeline.RunAsync(installArgs).ConfigureAwait(false);
                 return Request.CreateResponse(HttpStatusCode.Accepted, installArgs);
             }

@@ -32,22 +32,22 @@ namespace SitecoreInstaller.Databases
             }
         }
 
-        public void DetachDatabases(IEnumerable<SqlDatabaseFilePair> sqlDatabaseFilePairs, DirPath databasesDir)
+        public void DetachDatabases(IEnumerable<SqlDbConnectionString> sqlDbConnectionStrings)
         {
             var connectionString = string.Format(_trustedServerConStrFormat, InstanceName);
             var sqlServer = new Server(new ServerConnection(new SqlConnection(connectionString)));
-
-            foreach (var sqlDbFilePair in sqlDatabaseFilePairs)
+            foreach (var conStr in sqlDbConnectionStrings)
             {
                 try
                 {
-                    var files = new StringCollection { sqlDbFilePair.DataFile.FullName, sqlDbFilePair.LogFile.FullName };
-                    sqlServer.AttachDatabase(sqlDbFilePair.Name.FullName, files);
-                    Logger.Trace($"{sqlDbFilePair.Name} attached to {InstanceName}");
+                    sqlServer.KillAllProcesses(conStr.DatabaseName);
+                    sqlServer.DetachDatabase(conStr.DatabaseName, false);
+                    Logger.Debug($"{conStr.Name} detached from {InstanceName}");
+                    Logger.Trace($"Databases detached");
                 }
                 catch (Exception e)
                 {
-                    Logger.Error($"{sqlDbFilePair.Name} failed to attach: {e}");
+                    Logger.Error($"{conStr.Name} failed to detach: {e}");
                 }
             }
         }

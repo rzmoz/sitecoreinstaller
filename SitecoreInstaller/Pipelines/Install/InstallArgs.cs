@@ -4,10 +4,8 @@ using SitecoreInstaller.Databases;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
-    public class InstallEventArgs : DeploymentSettings
+    public class InstallArgs : SitecoreInstallerEventArgs
     {
-        [JsonIgnore]
-        public DeploymentDir DeploymentDir { get; set; }
         [JsonIgnore]
         public IReadOnlyCollection<DbConnectionString> ConnectionStrings { get; set; }
         [JsonIgnore]

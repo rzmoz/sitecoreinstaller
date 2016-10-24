@@ -7,7 +7,7 @@ using SitecoreInstaller.Deployments;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
-    public class CopyDeploymentFilesStep : PipelineStep<InstallEventArgs>
+    public class CopyDeploymentFilesStep : PipelineStep<InstallArgs>
     {
         private readonly DeploymentsService _deploymentsService;
         private readonly LocalBuildLibrary _buildLibrary;
@@ -18,7 +18,7 @@ namespace SitecoreInstaller.Pipelines.Install
             _buildLibrary = buildLibrary;
         }
 
-        protected override Task InnerRunAsync(InstallEventArgs args, CancellationToken ct)
+        protected override Task InnerRunAsync(InstallArgs args, CancellationToken ct)
         {
             var sitecore = _buildLibrary.GetSitecore(args.Sitecore);
             _deploymentsService.CopySitecore(sitecore, args.Name);

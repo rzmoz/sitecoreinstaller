@@ -1,16 +1,18 @@
 ﻿using Autofac;
 using DotNet.Basics.Tasks.Pipelines;
+using SitecoreInstaller.Deployments;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
-    public class InstallPipeline : Pipeline<InstallEventArgs>
+    public class InstallPipeline : Pipeline<InstallArgs>
     {
-        public InstallPipeline(IContainer container) : base(container)
+        public InstallPipeline(IContainer container, DeploymentsService deploymentsService) : base(container)
         {
-            AddStep<InitDeploymentDirStep>();
+            AddStep((args, ct) => new InitDeploymentDirStep(deploymentsService).RunAsync(args, ct));
             AddStep<CopyDeploymentFilesStep>();
-            AddStep<InitConnectionStringsStep>();
-            AddStep<AttacSqlhDatabasesStep>();
+            AddStep<InitInstallConnectionStringsStep>();
+            AddStep<WriteUpdatedConnectionStringsToConnectionStringsConfigStep>();
+            AddStep<AttachSqlhDatabasesStep>();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace SitecoreInstaller.Deployments
         }
 
         public DirPath Root { get; }
-        public DeploymentDir DeploymentDir(string deploymentName) => new DeploymentDir(Root.Add(deploymentName));
+        public DeploymentDir GetDeploymentDir(string deploymentName) => new DeploymentDir(Root.Add(deploymentName));
 
         public void Init()
         {
@@ -37,7 +37,7 @@ namespace SitecoreInstaller.Deployments
 
         public void CopyRuntimeServices(string deploymentName)
         {
-            var runtimeServicesDir = DeploymentDir(deploymentName).Website.Temp.RuntimeServices;
+            var runtimeServicesDir = GetDeploymentDir(deploymentName).Website.Temp.RuntimeServices;
             runtimeServicesDir.CreateIfNotExists();
             Parallel.Invoke(
                 () => DeploymentsResources.AdminLogin.WriteAllText(runtimeServicesDir.AdminLogin),
@@ -52,7 +52,7 @@ namespace SitecoreInstaller.Deployments
 
         public void CopyModules(IEnumerable<Module> modules, string deploymentName)
         {
-            var deploymentDir = DeploymentDir(deploymentName);
+            var deploymentDir = GetDeploymentDir(deploymentName);
             modules = modules.ToList();
 
             //copy standalone sc modules
@@ -73,7 +73,7 @@ namespace SitecoreInstaller.Deployments
 
         public void CopyLicenseFile(License license, string deploymentName)
         {
-            var deploymentDir = DeploymentDir(deploymentName);
+            var deploymentDir = GetDeploymentDir(deploymentName);
             _logger.Debug($"Copying license file {license.Name} for {deploymentName}...");
             license.Path.ToFile().CopyTo(deploymentDir.Website.App_Data.LicenseXml);
             _logger.Debug($"License file for {deploymentName} copied to {deploymentDir.Website.App_Data.LicenseXml}");
@@ -81,7 +81,7 @@ namespace SitecoreInstaller.Deployments
 
         public void CopySitecore(BuildLibrary.Sitecore sitecore, string deploymentName)
         {
-            var deploymentDir = DeploymentDir(deploymentName);
+            var deploymentDir = GetDeploymentDir(deploymentName);
             _logger.Debug($"Copying {sitecore.Name} for {deploymentName}...");
             Parallel.Invoke(() =>
             {
@@ -110,20 +110,20 @@ namespace SitecoreInstaller.Deployments
             _logger.Trace($"{sitecore.Name} for {deploymentName} copied");
         }
 
-        public void InitDeploymentDir(string deploymentName)
+        public DeploymentDir InitDeploymentDir(string deploymentName)
         {
-            var deploymentDir = DeploymentDir(deploymentName);
+            var deploymentDir = GetDeploymentDir(deploymentName);
             deploymentDir.Databases.CreateIfNotExists();
             deploymentDir.Website.App_Config.CreateIfNotExists();
             deploymentDir.Website.App_Data.CreateIfNotExists();
             deploymentDir.Website.Temp.CreateIfNotExists();
             deploymentDir.GrantAccess("everyone", FileSystemRights.FullControl);
+            return deploymentDir;
         }
 
-        public bool DeleteDeploymentDir(string deploymentName)
+        public bool DeleteDeploymentDir(DeploymentDir deploymentDir)
         {
-            var deploymentDir = DeploymentDir(deploymentName);
-
+            if (deploymentDir == null) throw new ArgumentNullException(nameof(deploymentDir));
             var success = Repeat.Task(() => deploymentDir.DeleteIfExists())
                 .WithOptions(o =>
                 {

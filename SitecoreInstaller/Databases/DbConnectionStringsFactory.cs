@@ -29,11 +29,11 @@ namespace SitecoreInstaller.Databases
             var updatedEntries = new StringKeyDictionary<DbConnectionString>(DictionaryKeyMode.IgnoreKeyCase);
 
             foreach (var dbConnectionString in fromCleanSitecore)
-                updatedEntries[dbConnectionString.Name] = dbConnectionString;
+                updatedEntries[dbConnectionString.Name.ToLowerInvariant()] = dbConnectionString;
 
             //update with constrs from files
             foreach (var dbFilePair in dbFilePairs)
-                updatedEntries[dbFilePair.Name.ConnectionStringName] = new SqlDbTrustedConnectionString(dbFilePair.Name.ConnectionStringName, dbFilePair.Name.FullName, _sqlDbService.InstanceName);
+                updatedEntries[dbFilePair.Name.ConnectionStringName.ToLowerInvariant()] = new SqlDbTrustedConnectionString(dbFilePair.Name.ConnectionStringName, dbFilePair.Name.FullName, _sqlDbService.InstanceName);
 
             //update mongo constrs with project names
             foreach (var mongoDbString in updatedEntries.Where(entry => entry.Value.DbType == DbType.Mongo).ToList())

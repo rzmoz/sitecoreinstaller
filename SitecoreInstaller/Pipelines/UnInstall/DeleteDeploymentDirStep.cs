@@ -16,7 +16,7 @@ namespace SitecoreInstaller.Pipelines.UnInstall
 
         protected override Task InnerRunAsync(UnInstallArgs args, CancellationToken ct)
         {
-            args.WasDeleted = _deploymentsService.DeleteDeploymentDir(args.Name);
+            args.WasDeleted = _deploymentsService.DeleteDeploymentDir(args.DeploymentDir);
             return Task.CompletedTask;
         }
     }

@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Deployments;
 
-namespace SitecoreInstaller.Pipelines.Install
+namespace SitecoreInstaller.Pipelines
 {
-    public class InitDeploymentDirStep : PipelineStep<InstallEventArgs>
+    public class InitDeploymentDirStep : PipelineStep<SitecoreInstallerEventArgs>
     {
         private readonly DeploymentsService _deploymentsService;
 
@@ -14,10 +14,9 @@ namespace SitecoreInstaller.Pipelines.Install
             _deploymentsService = deploymentsService;
         }
 
-        protected override Task InnerRunAsync(InstallEventArgs args, CancellationToken ct)
+        protected override Task InnerRunAsync(SitecoreInstallerEventArgs args, CancellationToken ct)
         {
-            _deploymentsService.InitDeploymentDir(args.Name);
-            args.DeploymentDir = _deploymentsService.DeploymentDir(args.Name);
+            args.DeploymentDir = _deploymentsService.InitDeploymentDir(args.Name);
             return Task.CompletedTask;
         }
     }
