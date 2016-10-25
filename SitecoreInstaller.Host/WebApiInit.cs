@@ -11,7 +11,7 @@ using Newtonsoft.Json.Serialization;
 using NLog;
 using Owin;
 
-namespace SitecoreInstaller.RestHost
+namespace SitecoreInstaller.Host
 {
     public class WebApiInit
     {

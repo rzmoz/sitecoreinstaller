@@ -7,8 +7,8 @@
     <ProjectGuid>{484A47F8-CD04-4F51-A307-7DED0F71F6F9}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SitecoreInstaller.RestHost</RootNamespace>
-    <AssemblyName>SitecoreInstaller.RestHost</AssemblyName>
+    <RootNamespace>SitecoreInstaller.Host</RootNamespace>
+    <AssemblyName>SitecoreInstaller.Host</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Management.Automation.Runspaces;
 using System.Reflection;
 using Autofac.Integration.WebApi;
 using DotNet.Basics.NLog;
@@ -10,7 +9,7 @@ using NLog;
 using NLog.Targets;
 using SitecoreInstaller.Runtime;
 
-namespace SitecoreInstaller.RestHost
+namespace SitecoreInstaller.Host
 {
     class Program
     {

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
 using NLog;
 
-namespace SitecoreInstaller.RestHost
+namespace SitecoreInstaller.Host
 {
     public class GlobalExceptionHandler : ExceptionHandler
     {

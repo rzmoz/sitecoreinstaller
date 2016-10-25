@@ -2,12 +2,11 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using DotNet.Basics.Sys;
 using Newtonsoft.Json;
 using SitecoreInstaller.Pipelines.Install;
 using SitecoreInstaller.Pipelines.UnInstall;
 
-namespace SitecoreInstaller.RestHost.Controllers
+namespace SitecoreInstaller.Host.Controllers
 {
     [RoutePrefix("api/deployments")]
     public class DeploymentsController : ApiController

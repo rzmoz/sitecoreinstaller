@@ -1,0 +1,1 @@
+robocopy "SitecoreInstaller.RestHost\Client" "SitecoreInstaller.RestHost\bin\Debug\Client" /NP
