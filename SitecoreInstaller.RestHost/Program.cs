@@ -60,12 +60,7 @@ namespace SitecoreInstaller.RestHost
             logConf.AddTarget(new ColoredConsoleTarget
             {
                 Layout = "${message}"
-            }.AddLogColor(LogLevel.Debug, ConsoleOutputColor.DarkGray)
-              .AddLogColor(LogLevel.Trace, ConsoleOutputColor.Cyan)
-              .AddLogColor(LogLevel.Info, ConsoleOutputColor.White)
-              .AddLogColor(LogLevel.Warn, ConsoleOutputColor.Yellow)
-              .AddLogColor(LogLevel.Error, ConsoleOutputColor.Red)
-              .AddLogColor(LogLevel.Fatal, ConsoleOutputColor.White, ConsoleOutputColor.DarkRed));
+            }.WithOutputColors());
 
             logConf.AddTarget(new MethodCallTarget
             {
