@@ -4,6 +4,8 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using Autofac;
 using Autofac.Integration.WebApi;
+using Microsoft.Owin.FileSystems;
+using Microsoft.Owin.StaticFiles;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NLog;
@@ -47,6 +49,11 @@ namespace SitecoreInstaller.RestHost
 
             config.EnsureInitialized();
             appBuilder.UseWebApi(config);
+            appBuilder.UseFileServer(new FileServerOptions
+            {
+                FileSystem = new PhysicalFileSystem("Client"),
+                DefaultFilesOptions = { DefaultFileNames = { "index.html" } }
+            });
             logger.Debug("WebApi initialized");
         }
     }

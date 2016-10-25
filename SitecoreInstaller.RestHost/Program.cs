@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Management.Automation.Runspaces;
 using System.Reflection;
 using Autofac.Integration.WebApi;
 using DotNet.Basics.NLog;
+using DotNet.Basics.Sys;
 using Microsoft.Owin.Hosting;
 using NLog;
 using NLog.Targets;
@@ -40,6 +42,7 @@ namespace SitecoreInstaller.RestHost
                 runtime.Logger.Trace($"WebApi is listening on {baseAddress}");
                 runtime.Logger.Info($"Host: {runtime.HostName} started");
                 Console.WriteLine(@"Press key to quit...");
+                CommandPrompt.Run($"start {baseAddress}");
                 Console.ReadKey();
                 return 0;
             }
