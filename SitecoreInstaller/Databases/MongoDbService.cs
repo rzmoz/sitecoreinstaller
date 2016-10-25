@@ -8,6 +8,14 @@ namespace SitecoreInstaller.Databases
 {
     public class MongoDbService : DbService
     {
+        private BasicSettings _basicSettings;
+
+        public MongoDbService(BasicSettings basicSettings)
+        {
+            if (basicSettings == null) throw new ArgumentNullException(nameof(basicSettings));
+            _basicSettings = basicSettings;
+        }
+
         protected override bool ConnectionEstablished(string instanceName)
         {
             try
@@ -34,19 +42,18 @@ namespace SitecoreInstaller.Databases
 
         protected override IEnumerable<string> GetWindowsServiceNameCandidates()
         {
-            yield return "mongoDB";
+            yield return _basicSettings.MongoWindowsServiceName;
         }
 
         protected override IEnumerable<string> GetInstanceNameCandidates()
         {
-            //TODO:Get from user settings
-            yield return "localhost:27017";
+            yield return _basicSettings.MongoHost;
         }
 
         protected override void CustomAssert(List<string> issues)
         {
         }
-        
+
         private MongoClient GetClient(string instanceName) => new MongoClient(new MongoUrl($"mongodb://{instanceName}/"));
     }
 }

@@ -16,7 +16,7 @@ namespace SitecoreInstaller.Pipelines
 
         protected override Task RunImpAsync(SitecoreInstallerEventArgs args, CancellationToken ct)
         {
-            _websiteService.PingSite(args.DeploymentUrl);
+            _websiteService.PingSite(args.Name);
             return Task.CompletedTask;
         }
     }

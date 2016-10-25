@@ -1,7 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using DotNet.Basics.IO;
-using DotNet.Basics.Rest;
 using DotNet.Basics.Sys;
 using NLog;
 using SitecoreInstaller.PreflightChecks;
@@ -19,10 +19,13 @@ namespace SitecoreInstaller.Website
     </sitecore>
 </configuration>";
 
+        private readonly AdvancedSettings _advancedSettings;
         private readonly ILogger _logger;
 
-        public WebsiteService()
+        public WebsiteService(AdvancedSettings advancedSettings)
         {
+            if (advancedSettings == null) throw new ArgumentNullException(nameof(advancedSettings));
+            _advancedSettings = advancedSettings;
             _logger = LogManager.GetLogger(nameof(WebsiteService));
         }
 
@@ -32,6 +35,7 @@ namespace SitecoreInstaller.Website
             {
                 try
                 {
+                    host = host.EnsureSuffix(_advancedSettings.DeploymentUrlSuffix);
                     _logger.Debug($"pinging {host}");
                     var webRequest = (HttpWebRequest)WebRequest.Create($"http://{host}/");
                     webRequest.AllowAutoRedirect = false;

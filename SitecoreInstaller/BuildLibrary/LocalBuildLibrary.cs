@@ -17,7 +17,7 @@ namespace SitecoreInstaller.BuildLibrary
         public LocalBuildLibrary(EnvironmentSettings environmentSettings)
         {
             if (environmentSettings == null) throw new ArgumentNullException(nameof(environmentSettings));
-            Root = environmentSettings.BuildLibraryRootDir.ToDir();
+            Root = environmentSettings.AdvancedSettings.BuildLibraryRootDir.ToDir();
             Sitecores = Root.Add(_sitecoresDirName);
             Licenses = Root.Add(_licensesDirName);
             Modules = Root.Add(_modulesDirName);

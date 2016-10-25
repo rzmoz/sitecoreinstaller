@@ -20,7 +20,7 @@ namespace SitecoreInstaller.Deployments
         public DeploymentsService(EnvironmentSettings environmentSettings)
         {
             if (environmentSettings == null) throw new ArgumentNullException(nameof(environmentSettings));
-            Root = environmentSettings.SitesRootDir.ToDir();
+            Root = environmentSettings.AdvancedSettings.SitesRootDir.ToDir();
             _logger = LogManager.GetLogger(nameof(WebsiteService));
         }
 

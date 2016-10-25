@@ -25,8 +25,8 @@ namespace SitecoreInstaller.Runtime
                 var type = method.DeclaringType;
                 HostName = type?.Namespace ?? "Host";
             }
-            Logger = LogManager.GetLogger(HostName);
 
+            Logger = LogManager.GetLogger(HostName);
         }
 
         public string HostName { get; }
@@ -42,28 +42,14 @@ namespace SitecoreInstaller.Runtime
             initStatus = initStatus && LogAppInitializing();
             initStatus = initStatus && InitContainer(iocRegistrations);
             initStatus = initStatus && InitAppSettings();
-            initStatus = initStatus && RunPreflightChecks();
+
+            var environmentSettiongs = Container.Resolve<EnvironmentSettings>();
+            var genericPreflightchecks = Container.Resolve<IEnumerable<IPreflightCheck>>();
+            initStatus = initStatus && RunPreflightChecks(new IPreflightCheck[] { environmentSettiongs }, genericPreflightchecks.ToArray());
 
             LogAppInitialized(initStatus);
 
             return initStatus;
-        }
-
-        private bool StartHost(Action<IContainer, ILogger> startHostAction)
-        {
-            Logger.Debug($"Host:{HostName} starting...");
-
-            try
-            {
-                startHostAction(Container, Logger);
-                Logger.Info($"Host:{HostName} started");
-                return true;
-            }
-            catch (Exception e)
-            {
-                Logger.Fatal(e);
-                return false;
-            }
         }
 
         private bool InitContainer(Action<IocBuilder> iocRegistrations)
@@ -99,21 +85,27 @@ namespace SitecoreInstaller.Runtime
             });
         }
 
-        private bool RunPreflightChecks()
+        private bool RunPreflightChecks(IPreflightCheck[] initPreflightChecks, params IPreflightCheck[] preflightChecks)
         {
             return InitArea("Preflight checks", (errorMsgs) =>
             {
-                var preflightChecks = Container.Resolve<IEnumerable<IPreflightCheck>>().ToList();
+                foreach (var preflightCheck in initPreflightChecks)
+                    AssertPreflightCheck(preflightCheck, errorMsgs);
                 foreach (var preflightCheck in preflightChecks)
-                {
-                    Logger.Debug($"Preflight check: {preflightCheck.GetType().Name} started..");
-                    var result = preflightCheck.Assert();
-                    if (result.IsReady)
-                        Logger.Debug($"Preflight check: {preflightCheck.GetType().Name} finished");
-                    else
-                        errorMsgs.Add($"Preflight check {preflightCheck.GetType().Name} failed:\r\n{JsonConvert.SerializeObject(result.Issues)}");
-                }
+                    AssertPreflightCheck(preflightCheck, errorMsgs);
+
             }, "Starting", "Finished");
+        }
+
+        private void AssertPreflightCheck(IPreflightCheck preflightCheck, IList<string> errorMsgs)
+        {
+            Logger.Debug($"Preflight check: {preflightCheck.GetType().Name} started..");
+            var result = preflightCheck.Assert();
+            if (result.IsReady)
+                Logger.Debug($"Preflight check: {preflightCheck.GetType().Name} finished");
+            else
+                errorMsgs.Add(
+                    $"Preflight check {preflightCheck.GetType().Name} failed:\r\n{JsonConvert.SerializeObject(result.Issues)}");
         }
 
         private static bool InitLogging(Action<NLogConfigurator> configureLog)

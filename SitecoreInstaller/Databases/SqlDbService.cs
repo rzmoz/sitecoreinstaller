@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data.SqlClient;
-using System.Security;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 
@@ -11,6 +10,14 @@ namespace SitecoreInstaller.Databases
     public class SqlDbService : DbService
     {
         private const string _trustedServerConStrFormat = "Server={0};Trusted_Connection=True;Connection Timeout=5;";
+
+        private readonly BasicSettings _basicSettings;
+
+        public SqlDbService(BasicSettings basicSettings)
+        {
+            if (basicSettings == null) throw new ArgumentNullException(nameof(basicSettings));
+            _basicSettings = basicSettings;
+        }
 
         public void AttacSqlhDatabases(IEnumerable<SqlDatabaseFilePair> sqlDatabaseFilePairs)
         {
@@ -63,14 +70,13 @@ namespace SitecoreInstaller.Databases
 
         protected override IEnumerable<string> GetWindowsServiceNameCandidates()
         {
-            yield return "MSSQLSERVER";
+            yield return _basicSettings.SqlWindowsServiceName;//defaults to "MSSQLSERVER" unless overridden by user
             yield return "SQLEXPRESS";
         }
 
         protected override IEnumerable<string> GetInstanceNameCandidates()
         {
-            //TODO:Get from user settings
-            yield return ".";
+            yield return _basicSettings.SqlInstanceName;//defaults to "." unless overridden by user
             yield return @".\SQLEXPRESS";
         }
 
@@ -90,9 +96,7 @@ namespace SitecoreInstaller.Databases
             else
                 issues.Add($"Setting Sql Server mixed mode failed. Sql database connections will not work");
 
-            //TODO: get from user settings
-            EnsureUserIsSysadmin("sa", "1234", issues);
-
+            EnsureUserIsSysadmin(_basicSettings.SqlLogin, _basicSettings.SqlPassword, issues);
         }
 
         private void EnsureUserIsSysadmin(string username, string password, List<string> issues)

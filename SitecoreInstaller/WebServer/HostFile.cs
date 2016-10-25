@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security;
 using DotNet.Basics.IO;
+using DotNet.Basics.Sys;
 using NLog;
 using SitecoreInstaller.PreflightChecks;
 
@@ -9,6 +10,7 @@ namespace SitecoreInstaller.WebServer
 {
     public class HostFile : IPreflightCheck
     {
+
         private static readonly FilePath _hostFile = Environment.GetEnvironmentVariable("SystemRoot").ToFile(@"System32\drivers\etc\hosts");
 
         private const string _localHostIpAddress = "127.0.0.1";
@@ -16,12 +18,20 @@ namespace SitecoreInstaller.WebServer
 
         private readonly ILogger _logger;
 
-        public HostFile()
+        private readonly AdvancedSettings _advancedSettings;
+
+
+        public HostFile(AdvancedSettings advancedSettings)
         {
+            if (advancedSettings == null) throw new ArgumentNullException(nameof(advancedSettings));
+            _advancedSettings = advancedSettings;
             _logger = LogManager.GetLogger(nameof(HostFile));
         }
 
         public bool Exists => _hostFile.Exists();
+
+        public string FullHostname(string projectName) => projectName.ToLowerInvariant().EnsureSuffix(_advancedSettings.DeploymentUrlSuffix);
+
         public bool HasWritePermissions()
         {
             try
@@ -42,7 +52,7 @@ namespace SitecoreInstaller.WebServer
             }
         }
 
-        public void AddHostName(string hostName)
+        public void AddHostName(string baseHostName)
         {
             if (Assert().IsReady == false)
             {
@@ -50,7 +60,7 @@ namespace SitecoreInstaller.WebServer
                 return;
             }
 
-            var hostFileIisSiteName = hostName.ToLowerInvariant();
+            var hostFileIisSiteName = FullHostname(baseHostName);
             bool addNewline;
 
             //check if host name already exist
@@ -69,7 +79,7 @@ namespace SitecoreInstaller.WebServer
                                 continue;
                             if (LineIsHostFileName(hostFileIisSiteName, line) == false)
                                 continue;
-                            _logger.Warn($"Iis site name already exists in host file: {hostName}. File not updated");
+                            _logger.Warn($"Iis site name already exists in host file: {baseHostName}. File not updated");
                             fileReader.Close();
                             return;
                         }
@@ -110,9 +120,9 @@ namespace SitecoreInstaller.WebServer
             _logger.Trace($"Entry added to hostfile: {hostFileEntry}");
         }
 
-        public void RemoveHostName(string hostName)
+        public void RemoveHostName(string baseHostName)
         {
-            var hostFileIisSiteName = hostName.ToLowerInvariant();
+            var hostFileIisSiteName = FullHostname(baseHostName);
             var tempFile = Path.GetTempFileName();
 
             string deletedEntry = null;
@@ -140,7 +150,7 @@ namespace SitecoreInstaller.WebServer
             File.Delete(tempFile);
 
             if (deletedEntry == null)
-                _logger.Error($"Hostname {hostName} not found in host file!");
+                _logger.Error($"Hostname {baseHostName} not found in host file!");
             else
                 _logger.Trace($"Hostname {deletedEntry} removed from hostfile");
         }

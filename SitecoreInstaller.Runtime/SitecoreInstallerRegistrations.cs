@@ -19,7 +19,11 @@ namespace SitecoreInstaller.Runtime
         public void RegisterIn(IocBuilder builder)
         {
             //environment
+            //don't bother register this as preflight since it MUST be initialized before everything else - so
+            //also, must be registered as single instance to ensure loaded values are persisted
             builder.RegisterType<EnvironmentSettings>().AsSelf().SingleInstance();
+            builder.Register(c => builder.Container.Resolve<EnvironmentSettings>().BasicSettings).AsSelf();
+            builder.Register(c => builder.Container.Resolve<EnvironmentSettings>().AdvancedSettings).AsSelf();
 
             //web server
             builder.RegisterType<HostFile>().As<IPreflightCheck>().AsSelf().SingleInstance();

@@ -9,7 +9,9 @@ namespace SitecoreInstaller.Databases
 {
     public abstract class DbService : IPreflightCheck
     {
-        protected DbService(string instanceName = null, string windowsServiceName = null)
+        protected DbService() : this(null, null) { }
+        protected DbService(string instanceName) : this(instanceName, null) { }
+        protected DbService(string instanceName, string windowsServiceName)
         {
             InstanceName = instanceName;
             WindowsServiceName = windowsServiceName;

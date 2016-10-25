@@ -116,8 +116,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvancedSettings.cs" />
     <Compile Include="AppConfigDir.cs" />
     <Compile Include="AppDataDir.cs" />
+    <Compile Include="BasicSettings.cs" />
     <Compile Include="BuildLibrary\BuildLibraryResource.cs" />
     <Compile Include="BuildLibrary\License.cs" />
     <Compile Include="BuildLibrary\LocalBuildLibrary.cs" />

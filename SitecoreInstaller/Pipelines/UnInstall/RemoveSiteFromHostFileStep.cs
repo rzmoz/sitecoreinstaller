@@ -20,8 +20,8 @@ namespace SitecoreInstaller.Pipelines.UnInstall
 
         protected override Task RunImpAsync(UnInstallArgs args, CancellationToken ct)
         {
-            _hostFile.RemoveHostName(args.DeploymentUrl);
-            
+            _hostFile.RemoveHostName(args.Name);
+
             return Task.CompletedTask;
         }
     }
