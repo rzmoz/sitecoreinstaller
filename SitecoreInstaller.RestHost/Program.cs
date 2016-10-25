@@ -41,8 +41,9 @@ namespace SitecoreInstaller.RestHost
                 });
                 runtime.Logger.Trace($"WebApi is listening on {baseAddress}");
                 runtime.Logger.Info($"Host: {runtime.HostName} started");
-                Console.WriteLine(@"Press key to quit...");
+                runtime.Logger.Info($"Opening client on {baseAddress}");
                 CommandPrompt.Run($"start {baseAddress}");
+                Console.WriteLine(@"Press key to quit...");
                 Console.ReadKey();
                 return 0;
             }
