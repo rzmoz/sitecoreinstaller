@@ -42,7 +42,7 @@
                             <h3>Settings</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a onclick="loadContent('buildlibrary')" href="javascript:void(0);"><i class="fa fa-folder"></i> Build library</a>
+                                    <a onclick="loadContent('buildLibrary')" href="javascript:void(0);"><i class="fa fa-folder"></i> Build library</a>
                                 </li>
                                 <li>
                                     <a onclick="loadContent('settings')" href="javascript:void(0);"><i class="fa fa-gears"></i> Settings</a>
@@ -90,7 +90,7 @@
             <div class="right_col" role="main">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3 id="page_title">page_title</h3>
+                        <h3 id="page_title">loading...</h3>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -121,21 +121,34 @@
         $(document)
             .ready(function () {
                 console.log('SitecoreInstaller Client loading...');
+                $('#page_content').waitMe({ text: "Loading content..." });
                 loadContent('projectsLocal');
             });
 
         function loadContent(name) {
-            $.get('content/' + name + '.html',
+
+            $('#page_content').waitMe({ text: "Loading content..." });
+
+            var modulePath = 'content/' + name + '.html';
+
+            $.get(modulePath,
                 function (html) {
-                    $("#page_content").html(html);
-                    console.log('loading ' + name + '...');
                     var title = eval(name + '.getTitle()');
+                    console.log('loading ' + name + ' from ' + modulePath + '...');
+                    console.log('html:' + html);
+
                     $("#page_title").text(title);
-                    console.log('' + name + ' loaded');
+                    $("#page_content").html(html);
 
                     //call init function in loaded html
-                    documentReady();
+                    documentReady(contentLoaded);
                 });
         }
+
+        function contentLoaded() {
+            $('#page_content').waitMe('hide');
+            console.log('' + name + ' loaded');
+        }
+
     </script>
 </body>
