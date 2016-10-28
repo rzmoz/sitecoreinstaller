@@ -17,7 +17,7 @@
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
-            <div class="col-md-3 left_col">
+            <div class="col-md-3 left_col menu_fixed">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
                         <a href="index.html" class="site_title"><img src="favicon.ico" width="30" alt="logo" /> SitecoreInstaller!</a>
@@ -97,14 +97,6 @@
                 <div id="page_content"></div>
             </div>
             <!-- /page content -->
-            <!-- footer content -->
-            <footer>
-                <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->
         </div>
     </div>
 
@@ -137,11 +129,12 @@
                 function (html) {
                     $("#page_content").html(html);
                     console.log('loading ' + name + '...');
-
                     var title = eval(name + '.getTitle()');
-                    
                     $("#page_title").text(title);
                     console.log('' + name + ' loaded');
+
+                    //call init function in loaded html
+                    documentReady();
                 });
         }
     </script>
