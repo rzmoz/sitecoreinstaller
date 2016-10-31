@@ -31,10 +31,10 @@
                             <h3>Projects</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a onclick="loadContent('projectsLocal')" href="javascript:void(0);"><i class="fa fa-home"></i> Local IIS</a>
+                                    <a href="/?source=projectsLocal"><i class="fa fa-home"></i> Local IIS</a>
                                 </li>
                                 <li>
-                                    <a onclick="loadContent('projectsAzure')" href="javascript:void(0);"><i class="fa fa-windows"></i> Azure</a>
+                                    <a href="/?source=projectsAzure"><i class="fa fa-windows"></i> Azure</a>
                                 </li>
                             </ul>
                         </div>
@@ -42,10 +42,10 @@
                             <h3>Settings</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a onclick="loadContent('buildLibrary')" href="javascript:void(0);"><i class="fa fa-folder"></i> Build library</a>
+                                    <a href="/?source=buildLibrary"><i class="fa fa-folder"></i> Build library</a>
                                 </li>
                                 <li>
-                                    <a onclick="loadContent('settings')" href="javascript:void(0);"><i class="fa fa-gears"></i> Settings</a>
+                                    <a href="/?source=settings"><i class="fa fa-gears"></i> Settings</a>
                                 </li>
                             </ul>
                         </div>
@@ -122,7 +122,11 @@
             .ready(function () {
                 console.log('SitecoreInstaller Client loading...');
                 $('#page_content').waitMe({ text: "Loading content..." });
-                loadContent('projectsLocal');
+
+                var source = getQueryStringAsJson().source;
+                if (source === undefined)
+                    source = 'projectsLocal';
+                loadContent(source);
             });
 
         function loadContent(name) {
@@ -148,6 +152,14 @@
         function contentLoaded() {
             $('#page_content').waitMe('hide');
             console.log('' + name + ' loaded');
+        }
+
+        function getQueryStringAsJson() {
+            var qs = window.location.search.replace('?', '');
+            qs = '{"' + qs.replace(/&/g, '","').replace(/=/g, '":"') + '"}';
+            if (qs === '{""}')
+                return qs;
+            return $.parseJSON(qs);
         }
 
     </script>
