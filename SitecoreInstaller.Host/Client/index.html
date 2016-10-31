@@ -31,10 +31,10 @@
                             <h3>Projects</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a href="/?source=projectsLocal"><i class="fa fa-home"></i> Local IIS</a>
+                                    <a href="/?section=projectsLocal"><i class="fa fa-home"></i> Local IIS</a>
                                 </li>
                                 <li>
-                                    <a href="/?source=projectsAzure"><i class="fa fa-windows"></i> Azure</a>
+                                    <a href="/?section=projectsAzure"><i class="fa fa-windows"></i> Azure</a>
                                 </li>
                             </ul>
                         </div>
@@ -42,10 +42,10 @@
                             <h3>Settings</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a href="/?source=buildLibrary"><i class="fa fa-folder"></i> Build library</a>
+                                    <a href="/?section=buildLibrary"><i class="fa fa-folder"></i> Build library</a>
                                 </li>
                                 <li>
-                                    <a href="/?source=settings"><i class="fa fa-gears"></i> Settings</a>
+                                    <a href="/?section=settings"><i class="fa fa-gears"></i> Settings</a>
                                 </li>
                             </ul>
                         </div>
@@ -123,10 +123,10 @@
                 console.log('SitecoreInstaller Client loading...');
                 $('#page_content').waitMe({ text: "Loading content..." });
 
-                var source = getQueryStringAsJson().source;
-                if (source === undefined)
-                    source = 'projectsLocal';
-                loadContent(source);
+                var section = getQueryStringAsJson().section;
+                if (section === undefined)
+                    section = 'projectsLocal';
+                loadContent(section);
             });
 
         function loadContent(name) {

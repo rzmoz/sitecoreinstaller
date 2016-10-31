@@ -30,8 +30,7 @@ namespace SitecoreInstaller.Host
             try
             {
                 runtime.Logger.Debug($"Host: {runtime.HostName} starting...");
-                var portNumber = int.Parse(args.Take(1).FirstOrDefault() ?? "7919");
-                string baseAddress = $"http://localhost:{portNumber}/";
+                var baseAddress = args.Take(1).FirstOrDefault() ?? "http://localhost:7919";
 
                 host = WebApp.Start(baseAddress, appBuilder =>
                 {
