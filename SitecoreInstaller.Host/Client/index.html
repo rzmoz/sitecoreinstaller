@@ -31,10 +31,10 @@
                             <h3>Projects</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a href="/?section=projectsLocal"><i class="fa fa-home"></i> Local IIS</a>
+                                    <a href="/?section=deploymentsLocal"><i class="fa fa-home"></i> Local IIS</a>
                                 </li>
                                 <li>
-                                    <a href="/?section=projectsAzure"><i class="fa fa-windows"></i> Azure</a>
+                                    <a href="/?section=deploymentsAzure"><i class="fa fa-windows"></i> Azure</a>
                                 </li>
                             </ul>
                         </div>
@@ -129,9 +129,9 @@
     <!-- domain libs -->
     <script src="js/custom.min.js"></script>
 
-    <script src="content/buildlibrary.js"></script>
-    <script src="content/projectsAzure.js"></script>
-    <script src="content/projectsLocal.js"></script>
+    <script src="content/buildLibrary.js"></script>
+    <script src="content/deploymentsAzure.js"></script>
+    <script src="content/deploymentsLocal.js"></script>
     <script src="content/settings.js"></script>
 
     <script>
@@ -142,7 +142,7 @@
 
                 var section = getQueryStringAsJson().section;
                 if (section === undefined)
-                    section = 'projectsLocal';
+                    section = 'deploymentsLocal';
                 loadContent(section);
             });
 
@@ -167,7 +167,7 @@
 
         function contentLoaded() {
             $('#page_content').waitMe('hide');
-            console.log('' + name + ' loaded');
+            console.log(name + ' loaded');
         }
 
         function getQueryStringAsJson() {
