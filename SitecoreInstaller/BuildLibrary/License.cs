@@ -1,4 +1,5 @@
-﻿using DotNet.Basics.IO;
+﻿using System.IO;
+using DotNet.Basics.IO;
 
 namespace SitecoreInstaller.BuildLibrary
 {
@@ -6,6 +7,14 @@ namespace SitecoreInstaller.BuildLibrary
     {
         public License(FilePath path) : base(path)
         {
+        }
+
+        public LicenseInfo GetInfo()
+        {
+            if (Path.Exists() == false)
+                throw new IOException();
+
+            return LicenseInfo.Load(Path.ToFile());
         }
     }
 }

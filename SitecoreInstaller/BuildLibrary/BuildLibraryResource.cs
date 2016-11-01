@@ -1,4 +1,5 @@
 ﻿using DotNet.Basics.IO;
+using Newtonsoft.Json;
 
 namespace SitecoreInstaller.BuildLibrary
 {
@@ -11,6 +12,8 @@ namespace SitecoreInstaller.BuildLibrary
         }
 
         public string Name { get; }
+
+        [JsonIgnore]
         public PathInfo Path { get; }
     }
 }

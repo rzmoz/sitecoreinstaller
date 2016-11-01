@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using DotNet.Basics.IO;
 using SitecoreInstaller.BuildLibrary;
 
 namespace SitecoreInstaller.Host.Controllers
@@ -36,14 +37,14 @@ namespace SitecoreInstaller.Host.Controllers
         [HttpGet]
         public HttpResponseMessage GetLicenses()
         {
-            return GetBuildLibraryResourcesResponse(Request, bl => bl.GetLicenses());
+            return GetBuildLibraryResourcesResponse(Request, bl => bl.GetLicenses().Select(l => LicenseInfo.Load(l.Path.ToFile())));
         }
 
         [Route("licenses/{name}")]
         [HttpGet]
         public HttpResponseMessage GetLicense(string name)
         {
-            return GetBuildLibraryResourceResponse(Request, bl => bl.GetLicense(name));
+            return GetBuildLibraryResourceResponse(Request, bl => LicenseInfo.Load(bl.GetLicense(name).Path.ToFile()));
         }
 
         [Route("modules/{name}")]
@@ -60,17 +61,17 @@ namespace SitecoreInstaller.Host.Controllers
             return GetBuildLibraryResourcesResponse(Request, bl => bl.GetModules());
         }
 
-        private HttpResponseMessage GetBuildLibraryResourceResponse(HttpRequestMessage request, Func<LocalBuildLibrary, BuildLibraryResource> getFunc)
+        private HttpResponseMessage GetBuildLibraryResourceResponse<T>(HttpRequestMessage request, Func<LocalBuildLibrary, T> getFunc)
         {
             var res = getFunc(_buildLibrary);
             if (res == null)
                 return request.CreateResponse(HttpStatusCode.NoContent);
             return request.CreateResponse(HttpStatusCode.OK, res);
         }
-        private HttpResponseMessage GetBuildLibraryResourcesResponse(HttpRequestMessage request, Func<LocalBuildLibrary, IEnumerable<BuildLibraryResource>> getFunc)
+        private HttpResponseMessage GetBuildLibraryResourcesResponse<T>(HttpRequestMessage request, Func<LocalBuildLibrary, IEnumerable<T>> getFunc)
         {
             var resources = getFunc(_buildLibrary);
-            return request.CreateResponse(HttpStatusCode.OK, resources.Select(res => res.Path.Name));
+            return request.CreateResponse(HttpStatusCode.OK, resources);
         }
     }
 }
