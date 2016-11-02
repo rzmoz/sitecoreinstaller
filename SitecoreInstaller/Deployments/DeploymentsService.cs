@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DotNet.Basics.IO;
 using DotNet.Basics.Sys;
 using DotNet.Basics.Tasks.Repeating;
+using Newtonsoft.Json;
 using NLog;
 using SitecoreInstaller.BuildLibrary;
 using SitecoreInstaller.PreflightChecks;
@@ -35,63 +36,83 @@ namespace SitecoreInstaller.Deployments
             _logger.Trace($"{nameof(DeploymentsService)} initialized to: {Root.FullName}");
         }
 
-        public void CopyModules(IEnumerable<Module> modules, string deploymentName)
+
+        public void SaveDeploymentInfo(DeploymentInfo info, DeploymentDir deploymentDir)
         {
-            var deploymentDir = GetDeploymentDir(deploymentName);
+            var infoJson = JsonConvert.SerializeObject(info, new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented
+            });
+            infoJson.WriteAllText(deploymentDir.DeploymentInfo, true);
+            _logger.Debug($"Deployment info for {deploymentDir.Name}:\r\n{infoJson}");
+            _logger.Trace($"Deployment info for {deploymentDir.Name} saved to {deploymentDir.DeploymentInfo}");
+        }
+
+        public DeploymentInfo ReadDeploymentInfo(DeploymentDir deploymentDir)
+        {
+            if (deploymentDir.DeploymentInfo.Exists() == false)
+                return null;
+
+            var json = deploymentDir.DeploymentInfo.ReadAllText();
+            var info = JsonConvert.DeserializeObject<DeploymentInfo>(json);
+            _logger.Debug($"Deployment info for {deploymentDir.Name} succesfully loaded from {deploymentDir.DeploymentInfo}");
+            return info;
+        }
+
+        public void CopyModules(IEnumerable<Module> modules, DeploymentDir deploymentDir)
+        {
             modules = modules.ToList();
 
             //copy standalone sc modules
             Parallel.ForEach(modules.Where(m => m.Path.IsFolder == false), m =>
             {
-                _logger.Debug($"Copying module {m.Name} for {deploymentName}...");
+                _logger.Debug($"Copying module {m.Name} for {deploymentDir.Name}...");
                 m.Path.ToFile().CopyTo(deploymentDir.Website.App_Data.Packages);
-                _logger.Debug($"Module {m.Name} for {deploymentName} copied to {deploymentDir.Website.App_Data.Packages.ToFile(m.Name)}");
+                _logger.Debug($"Module {m.Name} for {deploymentDir.Name} copied to {deploymentDir.Website.App_Data.Packages.ToFile(m.Name)}");
             });
 
             foreach (var m in modules.Where(m => m.Path.IsFolder))
             {
-                _logger.Debug($"Copying module {m.Name} for {deploymentName}...");
+                _logger.Debug($"Copying module {m.Name} for {deploymentDir.Name}...");
                 //TODO: Coply custom module files
-                _logger.Debug($"Module {m.Name} for {deploymentName} copied to {deploymentDir.Website}");
+                _logger.Debug($"Module {m.Name} for {deploymentDir.Name} copied to {deploymentDir.Website}");
             }
         }
 
-        public void CopyLicenseFile(License license, string deploymentName)
+        public void CopyLicenseFile(License license, DeploymentDir deploymentDir)
         {
-            var deploymentDir = GetDeploymentDir(deploymentName);
-            _logger.Debug($"Copying license file {license.Name} for {deploymentName}...");
+            _logger.Debug($"Copying license file {license.Name} for {deploymentDir.Name}...");
             license.Path.ToFile().CopyTo(deploymentDir.Website.App_Data.LicenseXml);
-            _logger.Debug($"License file for {deploymentName} copied to {deploymentDir.Website.App_Data.LicenseXml}");
+            _logger.Debug($"License file for {deploymentDir.Name} copied to {deploymentDir.Website.App_Data.LicenseXml}");
         }
 
-        public void CopySitecore(BuildLibrary.Sitecore sitecore, string deploymentName)
+        public void CopySitecore(BuildLibrary.Sitecore sitecore, DeploymentDir deploymentDir)
         {
-            var deploymentDir = GetDeploymentDir(deploymentName);
-            _logger.Debug($"Copying {sitecore.Name} for {deploymentName}...");
+            _logger.Debug($"Copying {sitecore.Name} for {deploymentDir.Name}...");
             Parallel.Invoke(() =>
             {
                 //copy sitecore
                 var target = deploymentDir.Website;
-                _logger.Debug($"Copying Website for {deploymentName} to {target }");
+                _logger.Debug($"Copying Website for {deploymentDir.Name} to {target }");
                 sitecore.Website.CopyTo(target, includeSubfolders: true);
                 _logger.Trace($"Sitecore copied to {target }");
             }, () =>
              {
                  //copy databases
                  var target = deploymentDir.Databases;
-                 _logger.Debug($"Copying Databases for {deploymentName} to {target }");
+                 _logger.Debug($"Copying Databases for {deploymentDir.Name} to {target }");
                  sitecore.Databases.CopyTo(target, includeSubfolders: true);
                  _logger.Trace($"Databases copied to {target }");
              }, () =>
              {
                  //copy data
                  var target = deploymentDir.Website.App_Data;
-                 _logger.Debug($"Copying Data for {deploymentName} to {target }");
+                 _logger.Debug($"Copying Data for {deploymentDir.Name} to {target }");
                  sitecore.Data.CopyTo(target, includeSubfolders: true);
                  _logger.Trace($"Data copied to {target }");
              });
 
-            _logger.Trace($"{sitecore.Name} for {deploymentName} copied");
+            _logger.Trace($"{sitecore.Name} for {deploymentDir.Name} copied");
         }
 
         public DeploymentDir InitDeploymentDir(string deploymentName)

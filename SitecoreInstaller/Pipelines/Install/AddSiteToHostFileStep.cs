@@ -16,7 +16,7 @@ namespace SitecoreInstaller.Pipelines.Install
 
         protected override Task RunImpAsync(LocalInstallArgs args, CancellationToken ct)
         {
-            _hostFile.AddHostName(args.Name);
+            _hostFile.AddHostName(args.Info.Name);
             return Task.CompletedTask;
         }
     }

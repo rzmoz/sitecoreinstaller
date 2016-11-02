@@ -8,15 +8,26 @@ namespace SitecoreInstaller.Pipelines
     public class InitDeploymentDirStep : PipelineStep<LocalInstallerEventArgs>
     {
         private readonly DeploymentsService _deploymentsService;
+        private readonly AdvancedSettings _advancedSettings;
 
-        public InitDeploymentDirStep(DeploymentsService deploymentsService)
+        public InitDeploymentDirStep(DeploymentsService deploymentsService, AdvancedSettings advancedSettings)
         {
             _deploymentsService = deploymentsService;
+            _advancedSettings = advancedSettings;
         }
-        
+
         protected override Task RunImpAsync(LocalInstallerEventArgs args, CancellationToken ct)
         {
-            args.DeploymentDir = _deploymentsService.InitDeploymentDir(args.Name);
+            //must be initializaed as the first thing!
+            args.DeploymentDir = _deploymentsService.InitDeploymentDir(args.Info.Name);
+
+            //ensure url is set
+            args.Info.Url = _advancedSettings.GetDeploymentUrl(args.Info.Name);
+
+            var loadedInfo = _deploymentsService.ReadDeploymentInfo(args.DeploymentDir);
+            if (loadedInfo != null)
+                args.Info = loadedInfo;
+
             return Task.CompletedTask;
         }
     }

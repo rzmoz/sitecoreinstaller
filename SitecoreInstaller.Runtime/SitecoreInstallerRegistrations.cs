@@ -1,5 +1,4 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using DotNet.Basics.Ioc;
 using DotNet.Basics.Tasks.Pipelines;
 using NLog;
@@ -47,11 +46,16 @@ namespace SitecoreInstaller.Runtime
             //pipelines
             builder.Register(c => new InstallLocalPipeline(builder.Container,
                 builder.Container.Resolve<DeploymentsService>(),
-                builder.Container.Resolve<WebsiteService>())).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
-            builder.Register(c => new UnInstallLocalPipeline(builder.Container, builder.Container.Resolve<DeploymentsService>())).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
+                builder.Container.Resolve<WebsiteService>(),
+                builder.Container.Resolve<AdvancedSettings>()))
+                .OnActivated(e => InitPipeline(e.Instance)).AsSelf();
+            builder.Register(c => new UnInstallLocalPipeline(builder.Container,
+                builder.Container.Resolve<DeploymentsService>(),
+                builder.Container.Resolve<AdvancedSettings>()))
+                .OnActivated(e => InitPipeline(e.Instance)).AsSelf();
         }
 
-        private void InitPipeline<T>(Pipeline<T> pipeline) where T : EventArgs, new()
+        private void InitPipeline<T>(Pipeline<T> pipeline) where T : new()
         {
             pipeline.Started += args =>
             {

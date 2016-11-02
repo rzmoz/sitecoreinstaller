@@ -6,12 +6,11 @@ namespace SitecoreInstaller.Pipelines.Install
 {
     public class InstallLocalPipeline : DeploymentDirPipeline<LocalInstallArgs>
     {
-        public InstallLocalPipeline(IContainer container, DeploymentsService deploymentsService, WebsiteService websiteService) : base(container, deploymentsService)
+        public InstallLocalPipeline(IContainer container, DeploymentsService deploymentsService, WebsiteService websiteService, AdvancedSettings advancedSettings) : base(container, deploymentsService, advancedSettings)
         {
+            AddStep<SaveDeploymentSettingsStep>();
             AddStep<CopyDeploymentFilesStep>();
-
             AddStep<InitWebsiteStep>();
-
             AddStep<InitInstallConnectionStringsStep>();
             AddStep<AttachSqlhDatabasesStep>();
             AddStep<AddSiteToHostFileStep>();

@@ -21,10 +21,10 @@ namespace SitecoreInstaller.Pipelines.Install
         protected override Task RunImpAsync(LocalInstallArgs args, CancellationToken ct)
         {
             var existing = _dbConnectionStringsFactory.Create(args.DeploymentDir.Website.App_Config.ConnectionStringsConfig).ToList();
-            var databaseFilePairs = _dbConnectionStringsFactory.Create(args.Name, args.DeploymentDir.Databases).ToList();
+            var databaseFilePairs = _dbConnectionStringsFactory.Create(args.Info.Name, args.DeploymentDir.Databases).ToList();
 
             var mergedConnectionStrings =
-                _dbConnectionStringsFactory.MergeWithDatabaseFilePairs(args.Name, existing, databaseFilePairs).ToList();
+                _dbConnectionStringsFactory.MergeWithDatabaseFilePairs(args.Info.Name, existing, databaseFilePairs).ToList();
 
             args.ConnectionStrings = mergedConnectionStrings;
             args.SqlDatabaseFiles = databaseFilePairs;

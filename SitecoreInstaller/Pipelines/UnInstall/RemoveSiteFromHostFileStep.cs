@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.WebServer;
@@ -20,7 +16,7 @@ namespace SitecoreInstaller.Pipelines.UnInstall
 
         protected override Task RunImpAsync(UnInstallArgs args, CancellationToken ct)
         {
-            _hostFile.RemoveHostName(args.Name);
+            _hostFile.RemoveHostName(args.Info.Url);
 
             return Task.CompletedTask;
         }

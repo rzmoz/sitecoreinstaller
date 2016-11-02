@@ -20,15 +20,15 @@ namespace SitecoreInstaller.Pipelines.Install
             _buildLibrary = buildLibrary;
             _websiteService = websiteService;
         }
-        
+
         protected override Task RunImpAsync(LocalInstallArgs args, CancellationToken ct)
         {
-            var sitecore = _buildLibrary.GetSitecore(args.Sitecore);
-            _deploymentsService.CopySitecore(sitecore, args.Name);
-            var license = _buildLibrary.GetLicense(args.License);
-            _deploymentsService.CopyLicenseFile(license, args.Name);
-            var modules = (from module in args.Modules select _buildLibrary.GetModule(module)).ToList();
-            _deploymentsService.CopyModules(modules, args.Name);
+            var sitecore = _buildLibrary.GetSitecore(args.Info.Sitecore);
+            _deploymentsService.CopySitecore(sitecore, args.DeploymentDir);
+            var license = _buildLibrary.GetLicense(args.Info.License);
+            _deploymentsService.CopyLicenseFile(license, args.DeploymentDir);
+            var modules = (from module in args.Info.Modules select _buildLibrary.GetModule(module)).ToList();
+            _deploymentsService.CopyModules(modules, args.DeploymentDir);
             _websiteService.FixReportingDatabaseFileNames(args.DeploymentDir);
 
             return Task.CompletedTask;

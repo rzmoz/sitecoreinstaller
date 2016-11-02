@@ -19,34 +19,33 @@ namespace SitecoreInstaller.Website
     </sitecore>
 </configuration>";
 
-        private readonly AdvancedSettings _advancedSettings;
         private readonly ILogger _logger;
 
-        public WebsiteService(AdvancedSettings advancedSettings)
+        public WebsiteService()
         {
-            if (advancedSettings == null) throw new ArgumentNullException(nameof(advancedSettings));
-            _advancedSettings = advancedSettings;
             _logger = LogManager.GetLogger(nameof(WebsiteService));
         }
 
-        public void PingSite(string host)
+
+        public async Task PingSiteAsync(string host)
         {
-            Task.Run(() =>
+            try
             {
-                try
-                {
-                    host = host.EnsureSuffix(_advancedSettings.DeploymentUrlSuffix);
-                    _logger.Debug($"pinging {host}");
-                    var webRequest = (HttpWebRequest)WebRequest.Create($"http://{host}/");
-                    webRequest.AllowAutoRedirect = false;
-                    webRequest.Timeout = (int)1.Minutes().TotalMilliseconds;
-                    webRequest.GetResponse();
-                }
-                catch (WebException e)
-                {
-                    _logger.Debug(e.ToString());
-                }
-            });
+                _logger.Debug($"pinging {host}");
+                var webRequest = (HttpWebRequest)WebRequest.Create($"http://{host}/");
+                webRequest.AllowAutoRedirect = false;
+                webRequest.Timeout = (int)1.Minutes().TotalMilliseconds;
+                await webRequest.GetResponseAsync().ConfigureAwait(false);
+            }
+            catch (WebException e)
+            {
+                _logger.Debug(e.ToString());
+            }
+        }
+
+        public void PingSiteNoWait(string host)
+        {
+            Task.Run(async () => await PingSiteAsync(host).ConfigureAwait(false));
         }
 
         public void InitDataFolderConfig(DeploymentDir deploymentdir)

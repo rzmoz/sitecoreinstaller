@@ -16,8 +16,8 @@ namespace SitecoreInstaller.Pipelines.UnInstall
 
         protected override Task RunImpAsync(UnInstallArgs args, CancellationToken ct)
         {
-            _iisManagementService.StopApplication(args.Name);
-            _iisManagementService.DeleteApplication(args.Name);
+            _iisManagementService.StopApplication(args.Info.Name);
+            _iisManagementService.DeleteApplication(args.Info.Name);
             return Task.CompletedTask;
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace SitecoreInstaller
+﻿using DotNet.Basics.Sys;
+
+namespace SitecoreInstaller
 {
     public class AdvancedSettings
     {
@@ -12,5 +14,6 @@
         public string SitesRootDir { get; set; }
         public string BuildLibraryRootDir { get; set; }
         public string DeploymentUrlSuffix { get; set; }
+        public string GetDeploymentUrl(string name) => name.ToLowerInvariant().EnsureSuffix(DeploymentUrlSuffix);
     }
 }

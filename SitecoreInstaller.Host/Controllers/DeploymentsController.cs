@@ -34,16 +34,17 @@ namespace SitecoreInstaller.Host.Controllers
             var argsJson = await Request.Content.ReadAsStringAsync().ConfigureAwait(false);
             try
             {
-                var installArgs = JsonConvert.DeserializeObject<LocalInstallArgs>(argsJson);
+                var info = JsonConvert.DeserializeObject<DeploymentInfo>(argsJson);
 
-                if (string.IsNullOrWhiteSpace(installArgs.Name) ||
-                    string.IsNullOrWhiteSpace(installArgs.Sitecore) ||
-                    string.IsNullOrWhiteSpace(installArgs.License))
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, installArgs);
+                if (string.IsNullOrWhiteSpace(info.Name) ||
+                    string.IsNullOrWhiteSpace(info.Sitecore) ||
+                    string.IsNullOrWhiteSpace(info.License))
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, info);
 
+                var args = new LocalInstallArgs { Info = info };
+                await _installLocalPipeline.RunAsync(args).ConfigureAwait(false);
 
-                await _installLocalPipeline.RunAsync(installArgs).ConfigureAwait(false);
-                return Request.CreateResponse(HttpStatusCode.Accepted, installArgs);
+                return Request.CreateResponse(HttpStatusCode.Accepted, args);
             }
             catch (JsonReaderException e)
             {
@@ -55,7 +56,8 @@ namespace SitecoreInstaller.Host.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteLocalDeployment(string name)
         {
-            var args = await _unInstallLocalPipeline.RunAsync(new UnInstallArgs { Name = name }).ConfigureAwait(false);
+            var args = new UnInstallArgs { Info = { Name = name } };
+            await _unInstallLocalPipeline.RunAsync(args).ConfigureAwait(false);
             return Request.CreateResponse(args.WasDeleted ? HttpStatusCode.OK : HttpStatusCode.Conflict);
         }
     }

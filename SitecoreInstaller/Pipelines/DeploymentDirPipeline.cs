@@ -6,9 +6,9 @@ namespace SitecoreInstaller.Pipelines
 {
     public class DeploymentDirPipeline<T> : Pipeline<T> where T : LocalInstallerEventArgs, new()
     {
-        public DeploymentDirPipeline(IContainer container, DeploymentsService deploymentsService) : base(container)
+        public DeploymentDirPipeline(IContainer container, DeploymentsService deploymentsService, AdvancedSettings advancedSettings) : base(container)
         {
-            AddStep(nameof(InitDeploymentDirStep), (args, ct) => new InitDeploymentDirStep(deploymentsService).RunAsync(args, ct));
+            AddStep(nameof(InitDeploymentDirStep), (args, ct) => new InitDeploymentDirStep(deploymentsService, advancedSettings).RunAsync(args, ct));
         }
     }
 }
