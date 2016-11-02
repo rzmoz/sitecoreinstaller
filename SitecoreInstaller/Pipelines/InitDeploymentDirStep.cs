@@ -19,12 +19,12 @@ namespace SitecoreInstaller.Pipelines
         protected override Task RunImpAsync(LocalInstallerEventArgs args, CancellationToken ct)
         {
             //must be initializaed as the first thing!
-            args.DeploymentDir = _deploymentsService.InitDeploymentDir(args.Info.Name);
+            args.DeploymentDir = _deploymentsService.GetDeploymentDir(args.Info.Name,initialize: true);
 
             //ensure url is set
             args.Info.Url = _advancedSettings.GetDeploymentUrl(args.Info.Name);
 
-            var loadedInfo = _deploymentsService.ReadDeploymentInfo(args.DeploymentDir);
+            var loadedInfo = _deploymentsService.GetDeploymentInfo(args.DeploymentDir);
             if (loadedInfo != null)
                 args.Info = loadedInfo;
 

@@ -31,10 +31,11 @@ namespace SitecoreInstaller.Website
         {
             try
             {
-                _logger.Debug($"pinging {host}");
-                var webRequest = (HttpWebRequest)WebRequest.Create($"http://{host}/");
+                var fullHost = host.EnsurePrefix("http://").EnsureSuffix("/");
+                _logger.Debug($"pinging {fullHost }");
+                var webRequest = (HttpWebRequest)WebRequest.Create(fullHost);
                 webRequest.AllowAutoRedirect = false;
-                webRequest.Timeout = (int)1.Minutes().TotalMilliseconds;
+                webRequest.Timeout = (int)200.MilliSeconds().TotalMilliseconds;
                 await webRequest.GetResponseAsync().ConfigureAwait(false);
             }
             catch (WebException e)

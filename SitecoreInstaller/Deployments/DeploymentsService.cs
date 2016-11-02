@@ -16,26 +16,18 @@ namespace SitecoreInstaller.Deployments
 {
     public class DeploymentsService : IPreflightCheck
     {
+        private readonly EnvironmentSettings _environmentSettings;
         private readonly ILogger _logger;
 
         public DeploymentsService(EnvironmentSettings environmentSettings)
         {
+            _environmentSettings = environmentSettings;
             if (environmentSettings == null) throw new ArgumentNullException(nameof(environmentSettings));
             Root = environmentSettings.AdvancedSettings.SitesRootDir.ToDir();
             _logger = LogManager.GetLogger(nameof(WebsiteService));
         }
 
         public DirPath Root { get; }
-        public DeploymentDir GetDeploymentDir(string deploymentName) => new DeploymentDir(Root.Add(deploymentName));
-
-        public void Init()
-        {
-            if (Root.Exists())
-                return;
-            Root.CreateIfNotExists();
-            _logger.Trace($"{nameof(DeploymentsService)} initialized to: {Root.FullName}");
-        }
-
 
         public void SaveDeploymentInfo(DeploymentInfo info, DeploymentDir deploymentDir)
         {
@@ -48,7 +40,13 @@ namespace SitecoreInstaller.Deployments
             _logger.Trace($"Deployment info for {deploymentDir.Name} saved to {deploymentDir.DeploymentInfo}");
         }
 
-        public DeploymentInfo ReadDeploymentInfo(DeploymentDir deploymentDir)
+        public IEnumerable<DeploymentInfo> GetDeploymentInfos()
+        {
+            foreach (var dir in Root.EnumerateDirectories())
+                yield return GetDeploymentInfo(GetDeploymentDir(dir.Name, false));
+        }
+
+        public DeploymentInfo GetDeploymentInfo(DeploymentDir deploymentDir)
         {
             if (deploymentDir.DeploymentInfo.Exists() == false)
                 return null;
@@ -115,15 +113,18 @@ namespace SitecoreInstaller.Deployments
             _logger.Trace($"{sitecore.Name} for {deploymentDir.Name} copied");
         }
 
-        public DeploymentDir InitDeploymentDir(string deploymentName)
+        public DeploymentDir GetDeploymentDir(string deploymentName, bool initialize)
         {
-            var deploymentDir = GetDeploymentDir(deploymentName);
-            deploymentDir.Databases.CreateIfNotExists();
-            deploymentDir.Website.App_Config.Include.CreateIfNotExists();
-            deploymentDir.Website.App_Data.Packages.CreateIfNotExists();
-            deploymentDir.Website.Temp.RuntimeServices.CreateIfNotExists();
-            deploymentDir.Website.Bin.CreateIfNotExists();
-            deploymentDir.GrantAccess("everyone", FileSystemRights.FullControl);
+            var deploymentDir = new DeploymentDir(Root.Add(deploymentName));
+            if (initialize)
+            {
+                deploymentDir.Databases.CreateIfNotExists();
+                deploymentDir.Website.App_Config.Include.CreateIfNotExists();
+                deploymentDir.Website.App_Data.Packages.CreateIfNotExists();
+                deploymentDir.Website.Temp.RuntimeServices.CreateIfNotExists();
+                deploymentDir.Website.Bin.CreateIfNotExists();
+                deploymentDir.GrantAccess("everyone", FileSystemRights.FullControl);
+            }
             return deploymentDir;
         }
 
@@ -148,13 +149,15 @@ namespace SitecoreInstaller.Deployments
 
         public PreflightCheckResult Assert()
         {
-            Init();
             return new PreflightCheckResult(issues =>
             {
                 if (Root.Exists())
                     _logger.Trace($"Deployments root dir found at: {Root.FullName}");
                 else
-                    issues.Add($"Deployments root dir not found at: {Root.FullName}");
+                {
+                    Root.CreateIfNotExists();
+                    _logger.Trace($"{nameof(DeploymentsService)} initialized to: {Root.FullName}");
+                }
             });
         }
     }
