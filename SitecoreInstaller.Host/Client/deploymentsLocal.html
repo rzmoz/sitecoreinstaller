@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">License</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <select class="form-control">
+                        <select class="form-control" id="selLicenses">
                             <option value="11">Option one</option>
                             <option value="12">Option two</option>
                             <option value="13">Option three</option>
@@ -62,7 +62,8 @@
 </div>
 
 <script>
-    function documentReady() {
-
+    function documentReady(titleCallback, pageloadedCallback) {
+        titleCallback('Local IIS Deployments');
+        pageloadedCallback();
     }
 </script>

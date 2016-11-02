@@ -51,7 +51,7 @@
                         </div>
 
                     </div>
-                    <!-- /sidebar menu -->                    
+                    <!-- /sidebar menu -->
                 </div>
             </div>
         </div>
@@ -87,8 +87,6 @@
             </div>
         </div>
         <!-- /top navigation -->
-        
-        
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="">
@@ -99,9 +97,9 @@
                 </div>
 
                 <div class="clearfix"></div>
-        
+
                 <div id="page_content"></div>
-                        
+
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -115,7 +113,7 @@
         </footer>
         <!-- /footer content -->
     </div>
-    
+
 
     <!-- core js libs -->
     <script src="js/jquery.min.js"></script>
@@ -123,60 +121,50 @@
 
     <!-- theme libs -->
     <script src="js/waitMe.min.js"></script>
+    <script src="js/moment.min.js"></script>
     <script src="js/fastclick.js"></script>
     <script src="js/nprogress.js"></script>
 
     <!-- domain libs -->
     <script src="js/custom.min.js"></script>
-
-    <script src="content/buildLibrary.js"></script>
-    <script src="content/deploymentsAzure.js"></script>
-    <script src="content/deploymentsLocal.js"></script>
-    <script src="content/settings.js"></script>
+    <script src="js/host.js"></script>
+    <script src="js/format.js"></script>
 
     <script>
+        var currentSection = 'deploymentsLocal';
+
         $(document)
             .ready(function () {
-                console.log('SitecoreInstaller Client loading...');
+                console.log('SitecoreInstaller Client loading');
                 $('#page_content').waitMe({ text: "Loading content..." });
 
-                var section = getQueryStringAsJson().section;
+                var section = host.getQueryStringAsJson().section;
                 if (section === undefined)
-                    section = 'deploymentsLocal';
-                loadContent(section);
+                    section = currentSection;
+                currentSection = section;
+                loadModule(currentSection);
             });
 
-        function loadContent(name) {
+        function loadModule(name) {
+            $('#page_content').waitMe({ text: 'Loading ' + currentSection + '...' });
 
-            $('#page_content').waitMe({ text: "Loading content..." });
+            var modulePath = '/' + name + '.html';
 
-            var modulePath = 'content/' + name + '.html';
+            $.get(modulePath, function (html) {
+                console.log(name + ' loading');
+                $("#page_content").html(html);
 
-            $.get(modulePath,
-                function (html) {
-                    var title = eval(name + '.getTitle()');
-                    console.log('loading ' + name + ' from ' + modulePath + '...');
-
+                //call init function in loaded module
+                documentReady(function (title) {
                     $("#page_title").text(title);
-                    $("#page_content").html(html);
-
-                    //call init function in loaded html
-                    documentReady(contentLoaded);
-                });
+                }, moduleLoaded);
+            });
         }
 
-        function contentLoaded() {
+        function moduleLoaded() {
             $('#page_content').waitMe('hide');
-            console.log(name + ' loaded');
+            console.log(currentSection + ' loaded');
+            console.log('SitecoreInstaller Client loaded');
         }
-
-        function getQueryStringAsJson() {
-            var qs = window.location.search.replace('?', '');
-            qs = '{"' + qs.replace(/&/g, '","').replace(/=/g, '":"') + '"}';
-            if (qs === '{""}')
-                return qs;
-            return $.parseJSON(qs);
-        }
-
     </script>
 </body>

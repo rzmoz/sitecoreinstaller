@@ -1,6 +1,4 @@
 ﻿<h1>Halleluja sdfsdfsdfsdf s!</h1>
-
-
 <div class="col-md-3 col-sm-12 col-xs-12">
     <div>
         <div class="x_title">
@@ -93,7 +91,20 @@
 
 
 <script>
-    function documentReady() {
+    function documentReady(titleCallback, pageloadedCallback) {
+        titleCallback('Build Library');
 
+
+        host.getLicenses(function (json) {
+            console.log('Licenses:' + json);
+        });
+        host.getSitecores(function (json) {
+            console.log('Sitecores:' + json);
+        });
+        host.getModules(function (json) {
+            console.log('Modules:' + json);
+        });
+
+        pageloadedCallback();
     }
 </script>
