@@ -4,9 +4,9 @@ using SitecoreInstaller.Website;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
-    public class InstallPipeline : DeploymentDirPipeline<InstallArgs>
+    public class InstallLocalPipeline : DeploymentDirPipeline<LocalInstallArgs>
     {
-        public InstallPipeline(IContainer container, DeploymentsService deploymentsService, WebsiteService websiteService) : base(container, deploymentsService)
+        public InstallLocalPipeline(IContainer container, DeploymentsService deploymentsService, WebsiteService websiteService) : base(container, deploymentsService)
         {
             AddStep<CopyDeploymentFilesStep>();
 

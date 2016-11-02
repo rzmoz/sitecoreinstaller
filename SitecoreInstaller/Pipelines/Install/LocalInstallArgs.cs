@@ -4,7 +4,7 @@ using SitecoreInstaller.Databases;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
-    public class InstallArgs : SitecoreInstallerEventArgs
+    public class LocalInstallArgs : LocalInstallerEventArgs
     {
         [JsonIgnore]
         public IReadOnlyCollection<DbConnectionString> ConnectionStrings { get; set; }

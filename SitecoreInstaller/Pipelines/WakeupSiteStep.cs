@@ -5,7 +5,7 @@ using SitecoreInstaller.Website;
 
 namespace SitecoreInstaller.Pipelines
 {
-    public class WakeupSiteStep : PipelineStep<SitecoreInstallerEventArgs>
+    public class WakeupSiteStep : PipelineStep<LocalInstallerEventArgs>
     {
         private readonly WebsiteService _websiteService;
 
@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines
             _websiteService = websiteService;
         }
 
-        protected override Task RunImpAsync(SitecoreInstallerEventArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(LocalInstallerEventArgs args, CancellationToken ct)
         {
             _websiteService.PingSite(args.Name);
             return Task.CompletedTask;

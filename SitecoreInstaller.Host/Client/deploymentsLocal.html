@@ -78,7 +78,7 @@
                         text: 'Deploying ' + deploymentName
                     });
 
-                host.putNewDeployment(deploymentName, sitecore, license, '', function (response) {
+                host.putLocalDeployment(deploymentName, sitecore, license, '', function (response) {
                     $('#frm-new-deployment').waitMe('hide');
                 });
 

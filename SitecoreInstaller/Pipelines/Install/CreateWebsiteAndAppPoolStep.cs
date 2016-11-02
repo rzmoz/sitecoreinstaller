@@ -5,7 +5,7 @@ using SitecoreInstaller.WebServer;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
-    public class CreateWebsiteAndAppPoolStep : PipelineStep<InstallArgs>
+    public class CreateWebsiteAndAppPoolStep : PipelineStep<LocalInstallArgs>
     {
         private readonly IisManagementService _iisManagementService;
 
@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines.Install
             _iisManagementService = iisManagementService;
         }
 
-        protected override Task RunImpAsync(InstallArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(LocalInstallArgs args, CancellationToken ct)
         {
             _iisManagementService.CreateApplication(args.Name, args.DeploymentDir);
             return Task.CompletedTask;

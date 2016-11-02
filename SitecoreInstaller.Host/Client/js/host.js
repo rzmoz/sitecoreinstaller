@@ -1,12 +1,12 @@
 ﻿var host = {
-    putNewDeployment: function (name, sitecore, license, modules, responseCallback) {
+    putLocalDeployment: function (name, sitecore, license, modules, responseCallback) {
         var body = {
             name: name,
             sitecore: sitecore,
             license: license,
             modules:[]
         };
-        $.put('/api/deployments', body, responseCallback);
+        $.put('/api/local/deployments', body, responseCallback);
     },
     getQueryStringAsJson: function () {
         var qs = window.location.search.replace('?', '');
@@ -28,7 +28,6 @@
         $.getJSON(uri, callback);
     }
 }
-
 
 jQuery.each(["put", "delete"], function (i, method) {
     jQuery[method] = function (url, data, callback) {

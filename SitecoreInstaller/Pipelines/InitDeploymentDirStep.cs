@@ -5,7 +5,7 @@ using SitecoreInstaller.Deployments;
 
 namespace SitecoreInstaller.Pipelines
 {
-    public class InitDeploymentDirStep : PipelineStep<SitecoreInstallerEventArgs>
+    public class InitDeploymentDirStep : PipelineStep<LocalInstallerEventArgs>
     {
         private readonly DeploymentsService _deploymentsService;
 
@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines
             _deploymentsService = deploymentsService;
         }
         
-        protected override Task RunImpAsync(SitecoreInstallerEventArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(LocalInstallerEventArgs args, CancellationToken ct)
         {
             args.DeploymentDir = _deploymentsService.InitDeploymentDir(args.Name);
             return Task.CompletedTask;

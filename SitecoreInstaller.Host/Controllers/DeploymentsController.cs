@@ -8,26 +8,33 @@ using SitecoreInstaller.Pipelines.UnInstall;
 
 namespace SitecoreInstaller.Host.Controllers
 {
-    [RoutePrefix("api/deployments")]
+    [RoutePrefix("api/local/deployments")]
     public class DeploymentsController : ApiController
     {
-        private readonly InstallPipeline _installPipeline;
-        private readonly UnInstallPipeline _unInstallPipeline;
+        private readonly InstallLocalPipeline _installLocalPipeline;
+        private readonly UnInstallLocalPipeline _unInstallLocalPipeline;
 
-        public DeploymentsController(InstallPipeline installPipeline, UnInstallPipeline unInstallPipeline)
+        public DeploymentsController(InstallLocalPipeline installLocalPipeline, UnInstallLocalPipeline unInstallLocalPipeline)
         {
-            _installPipeline = installPipeline;
-            _unInstallPipeline = unInstallPipeline;
+            _installLocalPipeline = installLocalPipeline;
+            _unInstallLocalPipeline = unInstallLocalPipeline;
         }
 
-        [Route("")]
+        [Route]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetLocalDeployment()
+        {
+            return Request.CreateResponse(HttpStatusCode.BadRequest, "");
+        }
+
+        [Route]
         [HttpPut]
-        public async Task<HttpResponseMessage> NewSitecoreDeployment()
+        public async Task<HttpResponseMessage> NewLocalDeployment()
         {
             var argsJson = await Request.Content.ReadAsStringAsync().ConfigureAwait(false);
             try
             {
-                var installArgs = JsonConvert.DeserializeObject<InstallArgs>(argsJson);
+                var installArgs = JsonConvert.DeserializeObject<LocalInstallArgs>(argsJson);
 
                 if (string.IsNullOrWhiteSpace(installArgs.Name) ||
                     string.IsNullOrWhiteSpace(installArgs.Sitecore) ||
@@ -35,7 +42,7 @@ namespace SitecoreInstaller.Host.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, installArgs);
 
 
-                await _installPipeline.RunAsync(installArgs).ConfigureAwait(false);
+                await _installLocalPipeline.RunAsync(installArgs).ConfigureAwait(false);
                 return Request.CreateResponse(HttpStatusCode.Accepted, installArgs);
             }
             catch (JsonReaderException e)
@@ -46,9 +53,9 @@ namespace SitecoreInstaller.Host.Controllers
 
         [Route("{name}")]
         [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteSitecoreDeployment(string name)
+        public async Task<HttpResponseMessage> DeleteLocalDeployment(string name)
         {
-            var args = await _unInstallPipeline.RunAsync(new UnInstallArgs { Name = name }).ConfigureAwait(false);
+            var args = await _unInstallLocalPipeline.RunAsync(new UnInstallArgs { Name = name }).ConfigureAwait(false);
             return Request.CreateResponse(args.WasDeleted ? HttpStatusCode.OK : HttpStatusCode.Conflict);
         }
     }

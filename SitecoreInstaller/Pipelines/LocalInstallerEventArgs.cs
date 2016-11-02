@@ -2,7 +2,7 @@
 
 namespace SitecoreInstaller.Pipelines
 {
-    public class SitecoreInstallerEventArgs : DeploymentSettings
+    public class LocalInstallerEventArgs : DeploymentSettings
     {
         [JsonIgnore]
         public DeploymentDir DeploymentDir { get; set; }

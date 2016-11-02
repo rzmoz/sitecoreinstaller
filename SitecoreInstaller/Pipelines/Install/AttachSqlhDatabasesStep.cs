@@ -5,7 +5,7 @@ using SitecoreInstaller.Databases;
 
 namespace SitecoreInstaller.Pipelines.Install
 {
-    public class AttachSqlhDatabasesStep : PipelineStep<InstallArgs>
+    public class AttachSqlhDatabasesStep : PipelineStep<LocalInstallArgs>
     {
         private readonly SqlDbService _dbService;
 
@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines.Install
             _dbService = dbService;
         }
 
-        protected override Task RunImpAsync(InstallArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(LocalInstallArgs args, CancellationToken ct)
         {
             _dbService.AttacSqlhDatabases(args.SqlDatabaseFiles);
             return Task.CompletedTask;

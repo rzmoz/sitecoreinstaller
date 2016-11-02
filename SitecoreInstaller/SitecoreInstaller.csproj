@@ -149,10 +149,10 @@
     <Compile Include="Pipelines\InitDeploymentDirStep.cs" />
     <Compile Include="Pipelines\Install\CreateWebsiteAndAppPoolStep.cs" />
     <Compile Include="Pipelines\Install\InitWebsiteStep.cs" />
-    <Compile Include="Pipelines\Install\InstallArgs.cs" />
-    <Compile Include="Pipelines\Install\InstallPipeline.cs" />
+    <Compile Include="Pipelines\Install\LocalInstallArgs.cs" />
+    <Compile Include="Pipelines\Install\InstallLocalPipeline.cs" />
     <Compile Include="Pipelines\Install\InitInstallConnectionStringsStep.cs" />
-    <Compile Include="Pipelines\SitecoreInstallerEventArgs.cs" />
+    <Compile Include="Pipelines\LocalInstallerEventArgs.cs" />
     <Compile Include="Pipelines\UnInstall\DeleteDeploymentDirStep.cs" />
     <Compile Include="Pipelines\UnInstall\DeleteWebsiteAndAppPoolStep.cs" />
     <Compile Include="Pipelines\UnInstall\DetachSqlDatabasesStep.cs" />
@@ -160,7 +160,7 @@
     <Compile Include="Pipelines\UnInstall\InitUnInstallConnectionStringsStep.cs" />
     <Compile Include="Pipelines\UnInstall\RemoveSiteFromHostFileStep.cs" />
     <Compile Include="Pipelines\UnInstall\UnInstallArgs.cs" />
-    <Compile Include="Pipelines\UnInstall\UnInstallPipeline.cs" />
+    <Compile Include="Pipelines\UnInstall\UnInstallLocalPipeline.cs" />
     <Compile Include="Pipelines\WakeupSiteStep.cs" />
     <Compile Include="PreflightChecks\IPreflightCheck.cs" />
     <Compile Include="PreflightChecks\PreflightCheckResult.cs" />

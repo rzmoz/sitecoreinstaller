@@ -4,7 +4,7 @@ using SitecoreInstaller.Databases;
 
 namespace SitecoreInstaller.Pipelines.UnInstall
 {
-    public class UnInstallArgs : SitecoreInstallerEventArgs
+    public class UnInstallArgs : LocalInstallerEventArgs
     {
         public bool WasDeleted { get; set; }
         [JsonIgnore]

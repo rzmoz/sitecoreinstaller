@@ -4,7 +4,7 @@ using SitecoreInstaller.Deployments;
 
 namespace SitecoreInstaller.Pipelines
 {
-    public class DeploymentDirPipeline<T> : Pipeline<T> where T : SitecoreInstallerEventArgs, new()
+    public class DeploymentDirPipeline<T> : Pipeline<T> where T : LocalInstallerEventArgs, new()
     {
         public DeploymentDirPipeline(IContainer container, DeploymentsService deploymentsService) : base(container)
         {
