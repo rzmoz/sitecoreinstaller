@@ -28,6 +28,13 @@ namespace SitecoreInstaller.Host.Controllers
             try
             {
                 var installArgs = JsonConvert.DeserializeObject<InstallArgs>(argsJson);
+
+                if (string.IsNullOrWhiteSpace(installArgs.Name) ||
+                    string.IsNullOrWhiteSpace(installArgs.Sitecore) ||
+                    string.IsNullOrWhiteSpace(installArgs.License))
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, installArgs);
+
+
                 await _installPipeline.RunAsync(installArgs).ConfigureAwait(false);
                 return Request.CreateResponse(HttpStatusCode.Accepted, installArgs);
             }

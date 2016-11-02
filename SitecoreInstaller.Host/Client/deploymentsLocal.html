@@ -25,8 +25,7 @@
         </div>
         <div class="x_content">
             <br />
-            <form class="form-horizontal form-label-left input_mask">
-                
+            <form class="form-horizontal form-label-left input_mask" id="frm-new-deployment">
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new-deployment-name">
                         Name <span class="required">*</span>
@@ -35,27 +34,27 @@
                         <input type="text" id="new-deployment-name" class="form-control" placeholder="ea. my.project" required="required">
                     </div>
                 </div>
-                
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Sitecore</label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <select class="form-control" id="selSitecore"></select>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">License</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <select class="form-control" id="selLicenses">
-                            <option value="11">Option one</option>
-                            <option value="12">Option two</option>
-                            <option value="13">Option three</option>
-                            <option value="14">Option four</option>
-                        </select>
+                        <select class="form-control" id="selLicense"></select>
                     </div>
                 </div>
 
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                        <button type="submit" class="btn btn-primary">Cancel</button>
                         <button type="submit" class="btn btn-success">Deploy</button>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>
@@ -64,6 +63,28 @@
 <script>
     function documentReady(titleCallback, pageloadedCallback) {
         titleCallback('Local IIS Deployments');
+
+        format.addSitecoresToSelect($('#selSitecore'));
+        format.addLicensesToSelect($('#selLicense'));
+
+        $('#frm-new-deployment')
+            .submit(function (event) {
+                var deploymentName = $('#new-deployment-name').val();
+                var sitecore = $('#selSitecore').find(":selected").val();
+                var license = $('#selLicense').find(":selected").val();
+
+                $('#frm-new-deployment')
+                    .waitMe({
+                        text: 'Deploying ' + deploymentName
+                    });
+
+                host.putNewDeployment(deploymentName, sitecore, license, '', function (response) {
+                    $('#frm-new-deployment').waitMe('hide');
+                });
+
+                event.preventDefault();
+            });
+
         pageloadedCallback();
     }
 </script>

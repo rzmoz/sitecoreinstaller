@@ -1,4 +1,13 @@
 ﻿var host = {
+    putNewDeployment: function (name, sitecore, license, modules, responseCallback) {
+        var body = {
+            name: name,
+            sitecore: sitecore,
+            license: license,
+            modules:[]
+        };
+        $.put('/api/deployments', body, responseCallback);
+    },
     getQueryStringAsJson: function () {
         var qs = window.location.search.replace('?', '');
         qs = '{"' + qs.replace(/&/g, '","').replace(/=/g, '":"') + '"}';
@@ -19,3 +28,22 @@
         $.getJSON(uri, callback);
     }
 }
+
+
+jQuery.each(["put", "delete"], function (i, method) {
+    jQuery[method] = function (url, data, callback) {
+
+        console.log('ajax called:' + method);
+        console.log('url:' + url);
+        console.log('data:' + JSON.stringify(data));
+        return jQuery.ajax({
+            url: url,
+            type: method,
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            error: callback,
+            success: callback
+        });
+    };
+});
