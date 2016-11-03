@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Databases;
 
-namespace SitecoreInstaller.Pipelines.UnInstall
+namespace SitecoreInstaller.Pipelines.LocalUnInstall
 {
-    public class DropMongoDatabasesStep : PipelineStep<UnInstallArgs>
+    public class DropMongoDatabasesStep : PipelineStep<UnInstallLocalArgs>
     {
         private readonly MongoDbService _dbService;
 
@@ -15,7 +15,7 @@ namespace SitecoreInstaller.Pipelines.UnInstall
             _dbService = dbService;
         }
 
-        protected override Task RunImpAsync(UnInstallArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(UnInstallLocalArgs args, CancellationToken ct)
         {
             _dbService.DropCollections(args.ConnectionStrings.OfType<MongoDbConnectionString>());
             return Task.CompletedTask;

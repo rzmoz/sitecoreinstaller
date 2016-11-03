@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.WebServer;
 
-namespace SitecoreInstaller.Pipelines.Install
+namespace SitecoreInstaller.Pipelines.LocalInstall
 {
-    public class CreateWebsiteAndAppPoolStep : PipelineStep<LocalInstallArgs>
+    public class CreateWebsiteAndAppPoolStep : PipelineStep<InstallLocalArgs>
     {
         private readonly IisManagementService _iisManagementService;
 
@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines.Install
             _iisManagementService = iisManagementService;
         }
 
-        protected override Task RunImpAsync(LocalInstallArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(InstallLocalArgs args, CancellationToken ct)
         {
             _iisManagementService.CreateApplication(args.Info.Name, args.DeploymentDir);
             return Task.CompletedTask;

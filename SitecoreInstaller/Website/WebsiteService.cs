@@ -2,7 +2,9 @@
 using System.Net;
 using System.Threading.Tasks;
 using DotNet.Basics.IO;
+using DotNet.Basics.Rest;
 using DotNet.Basics.Sys;
+using DotNet.Basics.Tasks.Repeating;
 using NLog;
 using SitecoreInstaller.PreflightChecks;
 
@@ -20,28 +22,33 @@ namespace SitecoreInstaller.Website
 </configuration>";
 
         private readonly ILogger _logger;
+        private IRestClient _restClient;
 
-        public WebsiteService()
+        public WebsiteService(IRestClient restClient)
         {
+            _restClient = restClient;
             _logger = LogManager.GetLogger(nameof(WebsiteService));
         }
 
-
-        public async Task PingSiteAsync(string host)
+        public async Task<bool> WakeUpSiteAsync(string hostName, TimeSpan? timeout = null)
         {
-            try
-            {
-                var fullHost = host.EnsurePrefix("http://").EnsureSuffix("/");
-                _logger.Debug($"pinging {fullHost }");
-                var webRequest = (HttpWebRequest)WebRequest.Create(fullHost);
-                webRequest.AllowAutoRedirect = false;
-                webRequest.Timeout = (int)200.MilliSeconds().TotalMilliseconds;
-                await webRequest.GetResponseAsync().ConfigureAwait(false);
-            }
-            catch (WebException e)
-            {
-                _logger.Debug(e.ToString());
-            }
+            var respondedOk = false;
+            return await Repeat.Task(async () => respondedOk = await PingSiteAsync(hostName).ConfigureAwait(false))
+            .WithOptions(o =>
+                {
+                    o.Timeout = timeout ?? 1.Minutes();
+                    o.RetryDelay = 100.MilliSeconds();
+                })
+            .UntilAsync(() => respondedOk).ConfigureAwait(false);
+        }
+
+        public async Task<bool> PingSiteAsync(string hostName)
+        {
+            if (hostName == null) throw new ArgumentNullException(nameof(hostName));
+
+            var request = new RestRequest(new Uri(hostName.EnsurePrefix("http://")));
+            var response = await _restClient.ExecuteAsync(request).ConfigureAwait(false);
+            return response.StatusCode == HttpStatusCode.OK;
         }
 
         public void PingSiteNoWait(string host)

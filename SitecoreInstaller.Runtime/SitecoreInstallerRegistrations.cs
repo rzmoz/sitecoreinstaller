@@ -1,12 +1,13 @@
 ﻿using Autofac;
 using DotNet.Basics.Ioc;
+using DotNet.Basics.Rest;
 using DotNet.Basics.Tasks.Pipelines;
 using NLog;
 using SitecoreInstaller.BuildLibrary;
 using SitecoreInstaller.Databases;
 using SitecoreInstaller.Deployments;
-using SitecoreInstaller.Pipelines.Install;
-using SitecoreInstaller.Pipelines.UnInstall;
+using SitecoreInstaller.Pipelines.LocalInstall;
+using SitecoreInstaller.Pipelines.LocalUnInstall;
 using SitecoreInstaller.PreflightChecks;
 using SitecoreInstaller.Website;
 using SitecoreInstaller.WebServer;
@@ -17,6 +18,8 @@ namespace SitecoreInstaller.Runtime
     {
         public void RegisterIn(IocBuilder builder)
         {
+            builder.RegisterType<RestClient>().As<IRestClient>();
+
             //environment
             //don't bother register this as preflight since it MUST be initialized before everything else - so
             //also, must be registered as single instance to ensure loaded values are persisted
@@ -41,18 +44,11 @@ namespace SitecoreInstaller.Runtime
             builder.RegisterType<WebsiteService>().As<IPreflightCheck>().AsSelf().SingleInstance();
 
             //deployments 
-            builder.RegisterType<DeploymentsService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<LocalDeploymentsService>().As<IPreflightCheck>().AsSelf().SingleInstance();
 
             //pipelines
-            builder.Register(c => new InstallLocalPipeline(builder.Container,
-                builder.Container.Resolve<DeploymentsService>(),
-                builder.Container.Resolve<WebsiteService>(),
-                builder.Container.Resolve<AdvancedSettings>()))
-                .OnActivated(e => InitPipeline(e.Instance)).AsSelf();
-            builder.Register(c => new UnInstallLocalPipeline(builder.Container,
-                builder.Container.Resolve<DeploymentsService>(),
-                builder.Container.Resolve<AdvancedSettings>()))
-                .OnActivated(e => InitPipeline(e.Instance)).AsSelf();
+            builder.Register(c => new InstallLocalPipeline(builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
+            builder.Register(c => new UnInstallLocalPipeline(builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
         }
 
         private void InitPipeline<T>(Pipeline<T> pipeline) where T : new()

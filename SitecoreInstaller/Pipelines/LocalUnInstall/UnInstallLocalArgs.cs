@@ -2,9 +2,9 @@
 using Newtonsoft.Json;
 using SitecoreInstaller.Databases;
 
-namespace SitecoreInstaller.Pipelines.UnInstall
+namespace SitecoreInstaller.Pipelines.LocalUnInstall
 {
-    public class UnInstallArgs : LocalInstallerEventArgs
+    public class UnInstallLocalArgs : LocalArgs
     {
         public bool WasDeleted { get; set; }
         [JsonIgnore]

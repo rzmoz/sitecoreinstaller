@@ -14,14 +14,12 @@ using SitecoreInstaller.Website;
 
 namespace SitecoreInstaller.Deployments
 {
-    public class DeploymentsService : IPreflightCheck
+    public class LocalDeploymentsService : IPreflightCheck
     {
-        private readonly EnvironmentSettings _environmentSettings;
         private readonly ILogger _logger;
 
-        public DeploymentsService(EnvironmentSettings environmentSettings)
+        public LocalDeploymentsService(EnvironmentSettings environmentSettings)
         {
-            _environmentSettings = environmentSettings;
             if (environmentSettings == null) throw new ArgumentNullException(nameof(environmentSettings));
             Root = environmentSettings.AdvancedSettings.SitesRootDir.ToDir();
             _logger = LogManager.GetLogger(nameof(WebsiteService));
@@ -33,7 +31,8 @@ namespace SitecoreInstaller.Deployments
         {
             var infoJson = JsonConvert.SerializeObject(info, new JsonSerializerSettings
             {
-                Formatting = Formatting.Indented
+                Formatting = Formatting.Indented,
+
             });
             infoJson.WriteAllText(deploymentDir.DeploymentInfo, true);
             _logger.Debug($"Deployment info for {deploymentDir.Name}:\r\n{infoJson}");
@@ -46,15 +45,19 @@ namespace SitecoreInstaller.Deployments
                 yield return GetDeploymentInfo(GetDeploymentDir(dir.Name, false));
         }
 
+        public DeploymentInfo GetDeploymentInfo(string name)
+        {
+            var dir = GetDeploymentDir(name, initialize: false);
+            return GetDeploymentInfo(dir);
+        }
+
         public DeploymentInfo GetDeploymentInfo(DeploymentDir deploymentDir)
         {
             if (deploymentDir.DeploymentInfo.Exists() == false)
                 return null;
 
             var json = deploymentDir.DeploymentInfo.ReadAllText();
-            var info = JsonConvert.DeserializeObject<DeploymentInfo>(json);
-            _logger.Debug($"Deployment info for {deploymentDir.Name} succesfully loaded from {deploymentDir.DeploymentInfo}");
-            return info;
+            return JsonConvert.DeserializeObject<DeploymentInfo>(json);
         }
 
         public void CopyModules(IEnumerable<Module> modules, DeploymentDir deploymentDir)
@@ -156,7 +159,7 @@ namespace SitecoreInstaller.Deployments
                 else
                 {
                     Root.CreateIfNotExists();
-                    _logger.Trace($"{nameof(DeploymentsService)} initialized to: {Root.FullName}");
+                    _logger.Trace($"{nameof(LocalDeploymentsService)} initialized to: {Root.FullName}");
                 }
             });
         }

@@ -5,8 +5,8 @@ using System.Web.Http;
 using DotNet.Basics.IO;
 using Newtonsoft.Json;
 using SitecoreInstaller.Deployments;
-using SitecoreInstaller.Pipelines.Install;
-using SitecoreInstaller.Pipelines.UnInstall;
+using SitecoreInstaller.Pipelines.LocalInstall;
+using SitecoreInstaller.Pipelines.LocalUnInstall;
 
 namespace SitecoreInstaller.Host.Controllers
 {
@@ -15,20 +15,20 @@ namespace SitecoreInstaller.Host.Controllers
     {
         private readonly InstallLocalPipeline _installLocalPipeline;
         private readonly UnInstallLocalPipeline _unInstallLocalPipeline;
-        private readonly DeploymentsService _deploymentsService;
+        private readonly LocalDeploymentsService _localDeploymentsService;
 
-        public DeploymentsController(InstallLocalPipeline installLocalPipeline, UnInstallLocalPipeline unInstallLocalPipeline, DeploymentsService deploymentsService)
+        public DeploymentsController(InstallLocalPipeline installLocalPipeline, UnInstallLocalPipeline unInstallLocalPipeline, LocalDeploymentsService localDeploymentsService)
         {
             _installLocalPipeline = installLocalPipeline;
             _unInstallLocalPipeline = unInstallLocalPipeline;
-            _deploymentsService = deploymentsService;
+            _localDeploymentsService = localDeploymentsService;
         }
 
         [Route]
         [HttpGet]
         public HttpResponseMessage GetLocalDeployments()
         {
-            var infos = _deploymentsService.GetDeploymentInfos();
+            var infos = _localDeploymentsService.GetDeploymentInfos();
             return Request.CreateResponse(HttpStatusCode.OK, infos);
         }
 
@@ -36,11 +36,9 @@ namespace SitecoreInstaller.Host.Controllers
         [HttpGet]
         public HttpResponseMessage GetLocalDeployment(string name)
         {
-            var deploymentDir = _deploymentsService.GetDeploymentDir(name, false);
-            if (deploymentDir.Exists() == false)
-                return Request.CreateResponse(HttpStatusCode.BadRequest, $"Deployment not found: {name}");
-
-            var deploymentInfo = _deploymentsService.GetDeploymentInfo(deploymentDir);
+            var deploymentInfo = _localDeploymentsService.GetDeploymentInfo(name);
+            if (deploymentInfo == null)
+                return Request.CreateResponse(HttpStatusCode.NotAcceptable, $"Deployment not found: {name}");
             return Request.CreateResponse(HttpStatusCode.OK, deploymentInfo);
         }
 
@@ -58,7 +56,7 @@ namespace SitecoreInstaller.Host.Controllers
                     string.IsNullOrWhiteSpace(info.License))
                     return Request.CreateResponse(HttpStatusCode.BadRequest, info);
 
-                var args = new LocalInstallArgs { Info = info };
+                var args = new InstallLocalArgs { Info = info };
                 await _installLocalPipeline.RunAsync(args).ConfigureAwait(false);
 
                 return Request.CreateResponse(HttpStatusCode.Accepted, args);
@@ -73,7 +71,7 @@ namespace SitecoreInstaller.Host.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteLocalDeployment(string name)
         {
-            var args = new UnInstallArgs { Info = { Name = name } };
+            var args = new UnInstallLocalArgs { Info = { Name = name } };
             await _unInstallLocalPipeline.RunAsync(args).ConfigureAwait(false);
             return Request.CreateResponse(args.WasDeleted ? HttpStatusCode.OK : HttpStatusCode.Conflict);
         }

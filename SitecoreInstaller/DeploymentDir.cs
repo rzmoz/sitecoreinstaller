@@ -8,7 +8,7 @@ namespace SitecoreInstaller
         {
         }
 
-        public DirPath Databases => this.Add(nameof(Databases));
+        public DirPath Databases => Add(nameof(Databases));
         public WebsiteDir Website => new WebsiteDir(Add(nameof(Website)));
         public FilePath DeploymentInfo => this.ToFile("DeploymentInfo.json");
     }

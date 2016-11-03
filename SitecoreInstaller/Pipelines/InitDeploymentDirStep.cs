@@ -5,28 +5,30 @@ using SitecoreInstaller.Deployments;
 
 namespace SitecoreInstaller.Pipelines
 {
-    public class InitDeploymentDirStep : PipelineStep<LocalInstallerEventArgs>
+    public class InitDeploymentDirStep<T> : PipelineStep<T> where T : LocalArgs, new()
     {
-        private readonly DeploymentsService _deploymentsService;
+        private readonly LocalDeploymentsService _localDeploymentsService;
         private readonly AdvancedSettings _advancedSettings;
 
-        public InitDeploymentDirStep(DeploymentsService deploymentsService, AdvancedSettings advancedSettings)
+        public InitDeploymentDirStep(LocalDeploymentsService localDeploymentsService, AdvancedSettings advancedSettings)
         {
-            _deploymentsService = deploymentsService;
+            _localDeploymentsService = localDeploymentsService;
             _advancedSettings = advancedSettings;
         }
 
-        protected override Task RunImpAsync(LocalInstallerEventArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(T args, CancellationToken ct)
         {
             //must be initializaed as the first thing!
-            args.DeploymentDir = _deploymentsService.GetDeploymentDir(args.Info.Name,initialize: true);
-
+            args.DeploymentDir = _localDeploymentsService.GetDeploymentDir(args.Info.Name, initialize: true);
             //ensure url is set
             args.Info.Url = _advancedSettings.GetDeploymentUrl(args.Info.Name);
 
-            var loadedInfo = _deploymentsService.GetDeploymentInfo(args.DeploymentDir);
+            var loadedInfo = _localDeploymentsService.GetDeploymentInfo(args.DeploymentDir);
             if (loadedInfo != null)
                 args.Info = loadedInfo;
+
+            args.Info.Status = DeploymentStatus.InProgress;
+            _localDeploymentsService.SaveDeploymentInfo(args.Info, args.DeploymentDir);
 
             return Task.CompletedTask;
         }

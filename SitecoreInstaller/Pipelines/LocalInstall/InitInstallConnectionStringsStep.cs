@@ -5,9 +5,9 @@ using DotNet.Basics.IO;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Databases;
 
-namespace SitecoreInstaller.Pipelines.Install
+namespace SitecoreInstaller.Pipelines.LocalInstall
 {
-    public class InitInstallConnectionStringsStep : PipelineStep<LocalInstallArgs>
+    public class InitInstallConnectionStringsStep : PipelineStep<InstallLocalArgs>
     {
         private readonly DbConnectionStringsFactory _dbConnectionStringsFactory;
         private readonly ConnectionStringsConfigFormatter _connectionStringsConfigFormatter;
@@ -18,7 +18,7 @@ namespace SitecoreInstaller.Pipelines.Install
             _connectionStringsConfigFormatter = connectionStringsConfigFormatter;
         }
         
-        protected override Task RunImpAsync(LocalInstallArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(InstallLocalArgs args, CancellationToken ct)
         {
             var existing = _dbConnectionStringsFactory.Create(args.DeploymentDir.Website.App_Config.ConnectionStringsConfig).ToList();
             var databaseFilePairs = _dbConnectionStringsFactory.Create(args.Info.Name, args.DeploymentDir.Databases).ToList();

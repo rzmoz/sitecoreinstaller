@@ -1,11 +1,10 @@
 ﻿using Autofac;
-using SitecoreInstaller.Deployments;
 
-namespace SitecoreInstaller.Pipelines.UnInstall
+namespace SitecoreInstaller.Pipelines.LocalUnInstall
 {
-    public class UnInstallLocalPipeline : DeploymentDirPipeline<UnInstallArgs>
+    public class UnInstallLocalPipeline : DeploymentDirPipeline<UnInstallLocalArgs>
     {
-        public UnInstallLocalPipeline(IContainer container, DeploymentsService deploymentsService, AdvancedSettings advancedSettings) : base(container, deploymentsService, advancedSettings)
+        public UnInstallLocalPipeline(IContainer container) : base(container)
         {
             AddStep<DeleteWebsiteAndAppPoolStep>();
             AddStep<RemoveSiteFromHostFileStep>();

@@ -2,9 +2,9 @@
 
 namespace SitecoreInstaller.Pipelines
 {
-    public class LocalInstallerEventArgs
+    public class LocalArgs
     {
-        public LocalInstallerEventArgs()
+        public LocalArgs()
         {
             Info = new DeploymentInfo();
         }

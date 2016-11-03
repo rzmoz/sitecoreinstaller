@@ -2,9 +2,9 @@
 using Newtonsoft.Json;
 using SitecoreInstaller.Databases;
 
-namespace SitecoreInstaller.Pipelines.Install
+namespace SitecoreInstaller.Pipelines.LocalInstall
 {
-    public class LocalInstallArgs : LocalInstallerEventArgs
+    public class InstallLocalArgs : LocalArgs
     {
         [JsonIgnore]
         public IReadOnlyCollection<DbConnectionString> ConnectionStrings { get; set; }

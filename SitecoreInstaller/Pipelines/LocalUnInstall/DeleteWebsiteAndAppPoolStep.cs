@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.WebServer;
 
-namespace SitecoreInstaller.Pipelines.UnInstall
+namespace SitecoreInstaller.Pipelines.LocalUnInstall
 {
-    public class DeleteWebsiteAndAppPoolStep : PipelineStep<UnInstallArgs>
+    public class DeleteWebsiteAndAppPoolStep : PipelineStep<UnInstallLocalArgs>
     {
         private readonly IisManagementService _iisManagementService;
 
@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines.UnInstall
             _iisManagementService = iisManagementService;
         }
 
-        protected override Task RunImpAsync(UnInstallArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(UnInstallLocalArgs args, CancellationToken ct)
         {
             _iisManagementService.StopApplication(args.Info.Name);
             _iisManagementService.DeleteApplication(args.Info.Name);

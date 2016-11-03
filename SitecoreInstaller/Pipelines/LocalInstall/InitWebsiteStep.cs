@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Website;
 
-namespace SitecoreInstaller.Pipelines.Install
+namespace SitecoreInstaller.Pipelines.LocalInstall
 {
-    public class InitWebsiteStep : PipelineStep<LocalInstallArgs>
+    public class InitWebsiteStep : PipelineStep<InstallLocalArgs>
     {
         private readonly WebsiteService _websiteService;
 
@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines.Install
             _websiteService = websiteService;
         }
 
-        protected override Task RunImpAsync(LocalInstallArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(InstallLocalArgs args, CancellationToken ct)
         {
             Parallel.Invoke(
                 () => _websiteService.InitDataFolderConfig(args.DeploymentDir),

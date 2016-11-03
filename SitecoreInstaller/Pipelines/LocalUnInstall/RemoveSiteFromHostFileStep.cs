@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.WebServer;
 
-namespace SitecoreInstaller.Pipelines.UnInstall
+namespace SitecoreInstaller.Pipelines.LocalUnInstall
 {
-    public class RemoveSiteFromHostFileStep : PipelineStep<UnInstallArgs>
+    public class RemoveSiteFromHostFileStep : PipelineStep<UnInstallLocalArgs>
     {
         private readonly HostFile _hostFile;
 
@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines.UnInstall
             _hostFile = hostFile;
         }
 
-        protected override Task RunImpAsync(UnInstallArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(UnInstallLocalArgs args, CancellationToken ct)
         {
             _hostFile.RemoveHostName(args.Info.Url);
 
