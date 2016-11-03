@@ -6,7 +6,7 @@
 
             $.each(json,
                 function (key, sitecore) {
-                    var option = '<option value="' + sitecore.name + '">' + sitecore.name + '</option>';
+                    var option = '<option value="' + sitecore + '">' + sitecore + '</option>';
                     $(selectElement).append(option);
                 });
 

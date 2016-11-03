@@ -23,14 +23,14 @@ namespace SitecoreInstaller.Host.Controllers
         [HttpGet]
         public HttpResponseMessage GetSitecores()
         {
-            return GetBuildLibraryResourcesResponse(Request, bl => bl.GetSitecores());
+            return GetBuildLibraryResourcesResponse(Request, bl => bl.GetSitecores().Select(s => s.Name).OrderByDescending(s => s));
         }
 
         [Route("sitecores/{name}")]
         [HttpGet]
         public HttpResponseMessage GetSitecore(string name)
         {
-            return GetBuildLibraryResourceResponse(Request, bl => bl.GetSitecore(name));
+            return GetBuildLibraryResourceResponse(Request, bl => bl.GetSitecore(name).Name);
         }
 
         [Route("licenses")]
@@ -51,14 +51,14 @@ namespace SitecoreInstaller.Host.Controllers
         [HttpGet]
         public HttpResponseMessage GetModule(string name)
         {
-            return GetBuildLibraryResourceResponse(Request, bl => bl.GetModule(name));
+            return GetBuildLibraryResourceResponse(Request, bl => bl.GetModule(name).Name);
         }
 
         [Route("modules")]
         [HttpGet]
         public HttpResponseMessage GetModules()
         {
-            return GetBuildLibraryResourcesResponse(Request, bl => bl.GetModules());
+            return GetBuildLibraryResourcesResponse(Request, bl => bl.GetModules().Select(m => m.Name));
         }
 
         private HttpResponseMessage GetBuildLibraryResourceResponse<T>(HttpRequestMessage request, Func<LocalBuildLibrary, T> getFunc)
