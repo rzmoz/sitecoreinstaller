@@ -14,32 +14,7 @@
         return status;
     },
 
-    getDeploymentInfosToTable: function (dataTableElement) {
-        dataTableElement.on("click", "button.del-deployment", function (e) {
-
-            var depName = this.name;
-
-            $.confirm({
-                title: "Delete " + depName,
-                content: 'Are you sure you want to delete ' + depName + '?',
-                confirm: function () {
-                    alert('deleting:' + depName);
-                    localDeployments.delete(depName);
-                }
-            });
-        });
-
-        localDeployments.getAll(function (json) {
-            $.each(json,
-                function (index, info) {
-                    dataTableElement.children('tbody').append('<tr><td>' + info.name + '</td><td>' + info.sitecore.replace('Sitecore ', '') + '</td><td><button type="button" class="btn btn-danger del-deployment" name="' + info.name + '">Delete</button></td></tr>');
-                });
-
-
-
-            console.log('Deployments loaded:' + JSON.stringify(json));
-        });
-    },
+    
     getConfirm: function (title, text, action) {
         $.confirm({
             title: title,

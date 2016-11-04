@@ -27,8 +27,14 @@ namespace SitecoreInstaller
 
         public DeploymentInfo GetDeploymentInfo()
         {
-            if (DeploymentInfo.Exists() == false)
+            if (this.Exists() == false)
                 return null;
+
+            if (DeploymentInfo.Exists() == false)
+                return new DeploymentInfo
+                {
+                    Name = Name
+                };
 
             var json = DeploymentInfo.ReadAllText();
             return JsonConvert.DeserializeObject<DeploymentInfo>(json);
