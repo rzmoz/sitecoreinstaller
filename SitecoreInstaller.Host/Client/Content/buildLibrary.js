@@ -6,8 +6,6 @@
         doneCallback();
     },
 
-
-
     getLicenses: function (callback) {
         var uri = "/api/buildlibrary/licenses";
         $.getJSON(uri, callback);

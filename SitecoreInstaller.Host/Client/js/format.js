@@ -14,21 +14,8 @@
         return status;
     },
 
-    
-    getConfirm: function (title, text, action) {
-        $.confirm({
-            title: title,
-            content: text,
-            confirm: function () {
-                alert(title);
-            }
-        });
-    },
-    getSitecoresToSelect: function (selectElement) {
-        buildLibrary.getSitecores(function (json) {
-
-            format.formatSelect(selectElement,
-                json,
+    getSitecoreOptions: function (sitecoreJson) {
+        return format.getFormattedOptions(sitecoreJson,
                 function (sitecore) {
                     return sitecore;
                 },
@@ -36,12 +23,9 @@
                     return sitecore;
                 }
             );
-        });
     },
-    getLicensesToSelect: function (selectElement) {
-        buildLibrary.getLicenses(function (json) {
-            format.formatSelect(selectElement,
-                json,
+    getLicenseOptions: function (licenseJson) {
+        return format.getFormattedOptions(licenseJson,
                 function (license) {
                     return license.licensee + ' (' + license.id + ')';
                 },
@@ -49,18 +33,17 @@
                     return license.name;
                 }
             );
-        });
     },
-    formatSelect: function (selectElement, json, getTextCallback, getValueCallback) {
-        //reset select
-        $(selectElement).html('');
-
+    getFormattedOptions: function (json, getTextCallback, getValueCallback) {
+        var options = '';
         $.each(json,
             function (key, element) {
                 var text = getTextCallback(element);
                 var value = getValueCallback(element);
                 var option = '<option value="' + value + '">' + text + '</option>';
-                $(selectElement).append(option);
+                options += option;
+
             });
+        return options;
     }
 }
