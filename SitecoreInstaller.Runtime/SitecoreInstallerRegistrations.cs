@@ -45,6 +45,7 @@ namespace SitecoreInstaller.Runtime
 
             //deployments 
             builder.RegisterType<LocalDeploymentsService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<PipelineScheduler>().AsSelf().SingleInstance();
 
             //pipelines
             builder.Register(c => new InstallLocalPipeline(builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();

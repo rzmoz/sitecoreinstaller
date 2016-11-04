@@ -2,7 +2,7 @@
 
 namespace SitecoreInstaller.Pipelines.LocalUnInstall
 {
-    public class UnInstallLocalPipeline : DeploymentDirPipeline<UnInstallLocalArgs>
+    public class UnInstallLocalPipeline : LocalPipeline<UnInstallLocalArgs>
     {
         public UnInstallLocalPipeline(IContainer container) : base(container)
         {

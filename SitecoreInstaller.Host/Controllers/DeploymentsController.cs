@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using DotNet.Basics.IO;
 using Newtonsoft.Json;
 using SitecoreInstaller.Deployments;
 using SitecoreInstaller.Pipelines.LocalInstall;
@@ -17,11 +16,14 @@ namespace SitecoreInstaller.Host.Controllers
         private readonly UnInstallLocalPipeline _unInstallLocalPipeline;
         private readonly LocalDeploymentsService _localDeploymentsService;
 
-        public DeploymentsController(InstallLocalPipeline installLocalPipeline, UnInstallLocalPipeline unInstallLocalPipeline, LocalDeploymentsService localDeploymentsService)
+        private readonly PipelineScheduler _pipelineScheduler;
+
+        public DeploymentsController(InstallLocalPipeline installLocalPipeline, UnInstallLocalPipeline unInstallLocalPipeline, LocalDeploymentsService localDeploymentsService, PipelineScheduler pipelineScheduler)
         {
             _installLocalPipeline = installLocalPipeline;
             _unInstallLocalPipeline = unInstallLocalPipeline;
             _localDeploymentsService = localDeploymentsService;
+            _pipelineScheduler = pipelineScheduler;
         }
 
         [Route]
@@ -57,9 +59,11 @@ namespace SitecoreInstaller.Host.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, info);
 
                 var args = new InstallLocalArgs { Info = info };
-                await _installLocalPipeline.RunAsync(args).ConfigureAwait(false);
 
-                return Request.CreateResponse(HttpStatusCode.Accepted, args);
+
+                return _pipelineScheduler.TryStart(info.Name, _installLocalPipeline, args) ?
+                Request.CreateResponse(HttpStatusCode.Accepted) :
+                Request.CreateResponse(HttpStatusCode.Conflict, DeploymentStatus.InProgress);
             }
             catch (JsonReaderException e)
             {
@@ -72,8 +76,9 @@ namespace SitecoreInstaller.Host.Controllers
         public async Task<HttpResponseMessage> DeleteLocalDeployment(string name)
         {
             var args = new UnInstallLocalArgs { Info = { Name = name } };
-            await _unInstallLocalPipeline.RunAsync(args).ConfigureAwait(false);
-            return Request.CreateResponse(args.WasDeleted ? HttpStatusCode.OK : HttpStatusCode.Conflict);
+            return _pipelineScheduler.TryStart(name, _unInstallLocalPipeline, args) ?
+                Request.CreateResponse(HttpStatusCode.Accepted) :
+                Request.CreateResponse(HttpStatusCode.Conflict, DeploymentStatus.InProgress);
         }
     }
 }

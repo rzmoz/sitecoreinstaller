@@ -108,6 +108,7 @@
       <HintPath>..\packages\Microsoft.PowerShell.5.ReferenceAssemblies.1.0.0\lib\net4\System.Management.Automation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -140,12 +141,13 @@
     <Compile Include="Databases\UnknownDbConnectionString.cs" />
     <Compile Include="DeploymentInfo.cs" />
     <Compile Include="DeploymentStatus.cs" />
+    <Compile Include="Deployments\PipelineScheduler.cs" />
     <Compile Include="Deployments\LocalDeploymentsService.cs" />
     <Compile Include="EnvironmentSettings.cs" />
     <Compile Include="FileTypes.cs" />
     <Compile Include="IncludeDir.cs" />
-    <Compile Include="Pipelines\DeploymentDirPipeline.cs" />
-    <Compile Include="Pipelines\DeploymentSucceededStep.cs" />
+    <Compile Include="Pipelines\LocalPipeline.cs" />
+    <Compile Include="Pipelines\LocalDeploymentfinishedStep.cs" />
     <Compile Include="Pipelines\LocalInstall\AddSiteToHostFileStep.cs" />
     <Compile Include="Pipelines\LocalInstall\AttachSqlhDatabasesStep.cs" />
     <Compile Include="Pipelines\LocalInstall\CopyDeploymentFilesStep.cs" />

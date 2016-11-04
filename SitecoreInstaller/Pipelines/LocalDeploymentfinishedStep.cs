@@ -5,11 +5,11 @@ using SitecoreInstaller.Deployments;
 
 namespace SitecoreInstaller.Pipelines
 {
-    public class DeploymentSucceededStep<T> : PipelineStep<T> where T : LocalArgs, new()
+    public class LocalDeploymentFinishedStep<T> : PipelineStep<T> where T : LocalArgs, new()
     {
         private readonly LocalDeploymentsService _localDeploymentsService;
 
-        public DeploymentSucceededStep(LocalDeploymentsService localDeploymentsService)
+        public LocalDeploymentFinishedStep(LocalDeploymentsService localDeploymentsService)
         {
             _localDeploymentsService = localDeploymentsService;
         }

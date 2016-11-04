@@ -3,7 +3,7 @@ using SitecoreInstaller.Pipelines.LocalInstall;
 
 namespace SitecoreInstaller.Pipelines.LocalInstall
 {
-    public class InstallLocalPipeline : DeploymentDirPipeline<InstallLocalArgs>
+    public class InstallLocalPipeline : LocalPipeline<InstallLocalArgs>
     {
         public InstallLocalPipeline(IContainer container) : base(container)
         {
@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
             AddStep<AddSiteToHostFileStep>();
             AddStep<CreateWebsiteAndAppPoolStep>();
             AddStep<WakeUpSiteStep>();
-            AddStep<DeploymentSucceededStep<InstallLocalArgs>>();
+            AddStep<LocalDeploymentFinishedStep<InstallLocalArgs>>();
         }
     }
 }
