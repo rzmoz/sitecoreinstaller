@@ -6,14 +6,14 @@ using NLog;
 
 namespace SitecoreInstaller.Deployments
 {
-    public class PipelineScheduler
+    public class DeploymentsScheduler
     {
         private readonly ConcurrentDictionary<string, object> _tasks = new ConcurrentDictionary<string, object>();
         private readonly ILogger _logger;
 
-        public PipelineScheduler()
+        public DeploymentsScheduler()
         {
-            _logger = LogManager.GetLogger(nameof(PipelineScheduler));
+            _logger = LogManager.GetLogger(nameof(DeploymentsScheduler));
         }
 
         public bool IsRunning(string name)
@@ -21,7 +21,7 @@ namespace SitecoreInstaller.Deployments
             return _tasks.ContainsKey(name.ToLowerInvariant());
         }
 
-        public bool TryStart<T>(string name, Pipeline<T> pipeline, T args) where T : new()
+        public bool TryStart<T>(string name, PipelineSection<T> pipeline, T args) where T : new()
         {
             var key = name.ToLowerInvariant();
 

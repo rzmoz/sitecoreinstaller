@@ -16,7 +16,7 @@ namespace SitecoreInstaller.Pipelines
 
         protected override Task RunImpAsync(T args, CancellationToken ct)
         {
-            args.Info.Status = DeploymentStatus.Success;
+            args.Info.Done = true;
             _localDeploymentsService.SaveDeploymentInfo(args.Info, args.DeploymentDir);
 
             return Task.CompletedTask;

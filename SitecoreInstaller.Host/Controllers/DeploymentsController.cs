@@ -1,29 +1,22 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using DotNet.Basics.Sys;
 using Newtonsoft.Json;
 using SitecoreInstaller.Deployments;
-using SitecoreInstaller.Pipelines.LocalInstall;
-using SitecoreInstaller.Pipelines.LocalUnInstall;
 
 namespace SitecoreInstaller.Host.Controllers
 {
     [RoutePrefix("api/local/deployments")]
     public class DeploymentsController : ApiController
     {
-        private readonly InstallLocalPipeline _installLocalPipeline;
-        private readonly UnInstallLocalPipeline _unInstallLocalPipeline;
         private readonly LocalDeploymentsService _localDeploymentsService;
 
-        private readonly PipelineScheduler _pipelineScheduler;
-
-        public DeploymentsController(InstallLocalPipeline installLocalPipeline, UnInstallLocalPipeline unInstallLocalPipeline, LocalDeploymentsService localDeploymentsService, PipelineScheduler pipelineScheduler)
+        public DeploymentsController(LocalDeploymentsService localDeploymentsService)
         {
-            _installLocalPipeline = installLocalPipeline;
-            _unInstallLocalPipeline = unInstallLocalPipeline;
             _localDeploymentsService = localDeploymentsService;
-            _pipelineScheduler = pipelineScheduler;
         }
 
         [Route]
@@ -32,6 +25,14 @@ namespace SitecoreInstaller.Host.Controllers
         {
             var infos = _localDeploymentsService.GetDeploymentInfos();
             return Request.CreateResponse(HttpStatusCode.OK, infos);
+        }
+
+        [Route("{name}/status")]
+        [HttpGet]
+        public HttpResponseMessage GetLocalDeploymentStatus(string name)
+        {
+            var status = _localDeploymentsService.GetStatus(name);
+            return Request.CreateResponse(HttpStatusCode.OK, status.ToName());
         }
 
         [Route("{name}")]
@@ -53,17 +54,13 @@ namespace SitecoreInstaller.Host.Controllers
             {
                 var info = JsonConvert.DeserializeObject<DeploymentInfo>(argsJson);
 
-                if (string.IsNullOrWhiteSpace(info.Name) ||
-                    string.IsNullOrWhiteSpace(info.Sitecore) ||
-                    string.IsNullOrWhiteSpace(info.License))
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, info);
-
-                var args = new InstallLocalArgs { Info = info };
-
-
-                return _pipelineScheduler.TryStart(info.Name, _installLocalPipeline, args) ?
-                Request.CreateResponse(HttpStatusCode.Accepted) :
-                Request.CreateResponse(HttpStatusCode.Conflict, DeploymentStatus.InProgress);
+                return _localDeploymentsService.TryStartNewDeployment(info)
+                    ? Request.CreateResponse(HttpStatusCode.Accepted)
+                    : Request.CreateResponse(HttpStatusCode.Conflict, DeploymentStatus.InProgress);
+            }
+            catch (ArgumentException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e.Message);
             }
             catch (JsonReaderException e)
             {
@@ -73,10 +70,9 @@ namespace SitecoreInstaller.Host.Controllers
 
         [Route("{name}")]
         [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteLocalDeployment(string name)
+        public HttpResponseMessage DeleteLocalDeployment(string name)
         {
-            var args = new UnInstallLocalArgs { Info = { Name = name } };
-            return _pipelineScheduler.TryStart(name, _unInstallLocalPipeline, args) ?
+            return _localDeploymentsService.TryDeleteDeployment(name) ?
                 Request.CreateResponse(HttpStatusCode.Accepted) :
                 Request.CreateResponse(HttpStatusCode.Conflict, DeploymentStatus.InProgress);
         }

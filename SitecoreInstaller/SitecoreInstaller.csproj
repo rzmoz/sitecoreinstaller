@@ -141,7 +141,7 @@
     <Compile Include="Databases\UnknownDbConnectionString.cs" />
     <Compile Include="DeploymentInfo.cs" />
     <Compile Include="DeploymentStatus.cs" />
-    <Compile Include="Deployments\PipelineScheduler.cs" />
+    <Compile Include="Deployments\DeploymentsScheduler.cs" />
     <Compile Include="Deployments\LocalDeploymentsService.cs" />
     <Compile Include="EnvironmentSettings.cs" />
     <Compile Include="FileTypes.cs" />

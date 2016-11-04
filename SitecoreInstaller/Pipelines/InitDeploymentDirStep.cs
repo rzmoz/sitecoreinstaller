@@ -23,11 +23,11 @@ namespace SitecoreInstaller.Pipelines
             //ensure url is set
             args.Info.Url = _advancedSettings.GetDeploymentUrl(args.Info.Name);
 
-            var loadedInfo = _localDeploymentsService.GetDeploymentInfo(args.DeploymentDir);
+            var loadedInfo = args.DeploymentDir.GetDeploymentInfo();
             if (loadedInfo != null)
                 args.Info = loadedInfo;
 
-            args.Info.Status = DeploymentStatus.InProgress;
+            args.Info.Done = false;
             _localDeploymentsService.SaveDeploymentInfo(args.Info, args.DeploymentDir);
 
             return Task.CompletedTask;

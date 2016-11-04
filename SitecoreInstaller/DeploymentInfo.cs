@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-
-namespace SitecoreInstaller
+﻿namespace SitecoreInstaller
 {
     public class DeploymentInfo
     {
@@ -10,8 +7,6 @@ namespace SitecoreInstaller
         public string Sitecore { get; set; }
         public string License { get; set; }
         public string[] Modules { get; set; }
-
-        [JsonConverter(typeof(StringEnumConverter))]
-        public DeploymentStatus Status { get; set; }
+        public bool Done{ get; set; }
     }
 }
