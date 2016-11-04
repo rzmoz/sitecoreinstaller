@@ -1,20 +1,4 @@
-﻿var host = {
-    putLocalDeployment: function (name, sitecore, license, modules, responseCallback) {
-        var body = {
-            name: name,
-            sitecore: sitecore,
-            license: license,
-            modules:[]
-        };
-        $.put('/api/local/deployments', body, responseCallback);
-    },
-    getQueryStringAsJson: function () {
-        var qs = window.location.search.replace('?', '');
-        qs = '{"' + qs.replace(/&/g, '","').replace(/=/g, '":"') + '"}';
-        if (qs === '{""}')
-            return qs;
-        return $.parseJSON(qs);
-    },
+﻿var buildLibrary = {
     getLicenses: function (callback) {
         var uri = "/api/buildlibrary/licenses";
         $.getJSON(uri, callback);
@@ -26,6 +10,36 @@
     getSitecores: function (callback) {
         var uri = "/api/buildlibrary/sitecores";
         $.getJSON(uri, callback);
+    }
+};
+
+var localDeployments = {
+    getAll: function (callback) {
+        var uri = "/api/local/deployments";
+        $.getJSON(uri, callback);
+    },
+    delete: function (name, responseCallback) {
+
+        $.delete('/api/local/deployments/' + name, '', responseCallback);
+    },
+    put: function (name, sitecore, license, modules, responseCallback) {
+        var body = {
+            name: name,
+            sitecore: sitecore,
+            license: license,
+            modules: []
+        };
+        $.put('/api/local/deployments', body, responseCallback);
+    }
+};
+
+var host = {
+    getQueryStringAsJson: function () {
+        var qs = window.location.search.replace('?', '');
+        qs = '{"' + qs.replace(/&/g, '","').replace(/=/g, '":"') + '"}';
+        if (qs === '{""}')
+            return qs;
+        return $.parseJSON(qs);
     }
 }
 

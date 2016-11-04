@@ -91,20 +91,19 @@
 
 
 <script>
-    function documentReady(titleCallback, pageloadedCallback) {
+    function documentReady(titleCallback, pageLoadedCallback) {
         titleCallback('Build Library');
-
-
-        host.getLicenses(function (json) {
+        
+        buildLibrary.getLicenses(function (json) {
             console.log('Licenses:' + json);
         });
-        host.getSitecores(function (json) {
+        buildLibrary.getSitecores(function (json) {
             console.log('Sitecores:' + json);
         });
-        host.getModules(function (json) {
+        buildLibrary.getModules(function (json) {
             console.log('Modules:' + json);
         });
 
-        pageloadedCallback();
+        pageLoadedCallback();
     }
 </script>
