@@ -198,19 +198,19 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="/?section=dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#" onclick="loadModule('localDeployments')"> <i class="fa fa-home fa-fw"></i> IIS Deployments</a>
+                            <a href="/?section=localDeployments"> <i class="fa fa-home fa-fw"></i> IIS Deployments</a>
                         </li>
                         <li>
-                            <a href="#" onclick="loadModule('azureDeployments')"> <i class="fa fa-windows fa-fw"></i> Azure Deployments</a>
+                            <a href="/?section=azureDeployments"> <i class="fa fa-windows fa-fw"></i> Azure Deployments</a>
                         </li>
                         <li>
-                            <a href="#" onclick="loadModule('buildLibrary')"> <i class="fa fa-home fa-fw"></i> Build Library</a>
+                            <a href="/?section=buildLibrary"> <i class="fa fa-home fa-fw"></i> Build Library</a>
                         </li>
                         <li>
-                            <a href="#" onclick="loadModule('siSettings')"> <i class="fa fa-home fa-fw"></i> Settings</a>
+                            <a href="/?section='siSettings"> <i class="fa fa-home fa-fw"></i> Settings</a>
                         </li>
                     </ul>
                 </div>
@@ -250,11 +250,11 @@
 
     <script src="Content/buildLibrary.js"></script>
     <script src="Content/azureDeployments.js"></script>
-    <script src="Content/localDeployments.js"></script>
+    <script src="Content/dashboard.js"></script>
     <script src="Content/siSettings.js"></script>
 
     <script>
-        var currentSection = 'localDeployments';
+        var currentSection = 'dashboard';
 
         $(document)
             .ready(function () {
@@ -276,7 +276,7 @@
 
             $('#page_content').waitMe({ text: 'Loading ' + currentSection + '...' });
 
-            var modulePath = '/Content/' + name + '.html';
+            var modulePath = '/content/' + name + '.html';
             console.log('Html for: ' + title + ' loading...');
 
             $.get(modulePath,
