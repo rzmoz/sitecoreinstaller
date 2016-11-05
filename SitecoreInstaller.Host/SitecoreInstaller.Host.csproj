@@ -190,7 +190,7 @@
     <Content Include="Client\css\jquery-confirm.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\css\meitsMenu.min.css">
+    <Content Include="Client\css\metisMenu.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\css\sb-admin-2.css" />
