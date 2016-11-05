@@ -2,10 +2,8 @@
     iGetTitle: function () {
         return "Settings";
     },
-    iLoad: function (doneCallback) {
-        doneCallback();
+    iLoad: function () {
     },
     iRefresh: function () {
-        
     }
 }

@@ -215,6 +215,9 @@
     <Content Include="Client\js\format.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Client\js\deployments.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Client\js\host.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

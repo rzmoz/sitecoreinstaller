@@ -2,8 +2,8 @@
     iGetTitle: function () {
         return "Build library";
     },
-    iLoad: function (doneCallback) {
-        doneCallback();
+    iLoad: function () {
+
     },
     iRefresh: function () {
         

@@ -2,14 +2,13 @@
     iGetTitle: function () {
         return "Dashboard";
     },
-    iLoad: function (doneCallback) {
+    iLoad: function () {
         var deploymentsTable = $('#table-local-deployments');
-        localDeployments.loadAllInfos(deploymentsTable);
         dashboard.newLocalDeployment_onClick();
-        doneCallback();
+        deployments.loadAllLocalInfo();
     },
     iRefresh: function () {
-        
+        deployments.loadAllLocalInfo();
     },
 
     newLocalDeployment_onClick: function () {

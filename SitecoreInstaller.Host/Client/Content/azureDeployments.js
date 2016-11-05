@@ -2,8 +2,8 @@
     iGetTitle: function () {
         return "Azure Deployments";
     },
-    iLoad: function (doneCallback) {
-        doneCallback();
+    iLoad: function () {
+        
     },
     iRefresh: function () {
         
