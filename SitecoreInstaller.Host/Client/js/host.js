@@ -17,8 +17,9 @@ var localDeployments = {
             $.confirm({
                 title: "Delete " + depName,
                 content: 'Are you sure you want to delete ' + depName + '?',
+                confirmButton: 'Yes',
+                cancelButton: 'No',
                 confirm: function () {
-                    alert('deleting:' + depName);
                     localDeployments.delete(depName);
                 }
             });
@@ -39,7 +40,6 @@ var localDeployments = {
         $.getJSON(uri, callback);
     },
     delete: function (name, responseCallback) {
-
         $.delete('/api/local/deployments/' + name, '', responseCallback);
     },
     put: function (name, sitecore, license, modules, responseCallback) {

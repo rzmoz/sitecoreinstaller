@@ -6,7 +6,6 @@
         var deploymentsTable = $('#table-local-deployments');
         localDeployments.loadAllInfos(deploymentsTable);
         dashboard.newLocalDeployment_onClick();
-
         doneCallback();
     },
     newLocalDeployment_onClick: function () {
