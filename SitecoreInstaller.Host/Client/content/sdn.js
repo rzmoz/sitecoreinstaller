@@ -1,6 +1,6 @@
-﻿var azureDeployments = {
+﻿var sdn = {
     iGetTitle: function () {
-        return "Azure Deployments";
+        return "SDN";
     },
     iLoad: function () {
         
