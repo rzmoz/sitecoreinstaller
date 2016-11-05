@@ -7,7 +7,7 @@
         return "<a href='http://" + url + "/' target='" + target + "'>" + name + "</a>";
     },
     getStatusIcon: function (status) {
-        if (status === "NotFound")
+        if (status === "Unknown")
             return "<div class='bg-danger'>Not found</div>";
         if (status === "Success")
             return "<div class='bg-success'>OK</div>";
@@ -21,7 +21,7 @@
                 dataSet.push([
                     val.name,
                     val.sitecore,
-                    '',
+                    val.task.name + ' ' + val.task.status,
                     "<button type='button' class='btn btn-danger del-local-deployment' name='" + val.name + "'>Delete</button>"
                 ]);
             });

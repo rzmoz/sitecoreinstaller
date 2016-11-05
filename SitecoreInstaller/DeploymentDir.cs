@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNet.Basics.IO;
@@ -13,8 +12,8 @@ namespace SitecoreInstaller
 {
     public class DeploymentDir : DirPath
     {
-
         private readonly ILogger _logger;
+        private readonly JsonSerializerSettings _jsonSettings = new JsonSerializerSettings { Formatting = Formatting.Indented };
 
         public DeploymentDir(DirPath fullPath) : base(fullPath.FullName)
         {
@@ -25,7 +24,7 @@ namespace SitecoreInstaller
         public WebsiteDir Website => new WebsiteDir(Add(nameof(Website)));
         public FilePath DeploymentInfo => this.ToFile("DeploymentInfo.json");
 
-        public DeploymentInfo GetDeploymentInfo()
+        public DeploymentInfo LoadDeploymentInfo()
         {
             if (this.Exists() == false)
                 return null;
@@ -38,6 +37,14 @@ namespace SitecoreInstaller
 
             var json = DeploymentInfo.ReadAllText();
             return JsonConvert.DeserializeObject<DeploymentInfo>(json);
+        }
+
+        public void SaveDeploymentInfo(DeploymentInfo info)
+        {
+            var infoJson = JsonConvert.SerializeObject(info, _jsonSettings);
+            infoJson.WriteAllText(DeploymentInfo, true);
+            _logger.Debug($"Deployment info for {Name}:\r\n{infoJson}");
+            _logger.Trace($"Deployment info for {Name} saved to {DeploymentInfo}");
         }
 
         public async Task<bool> DeleteAsync()

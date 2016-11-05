@@ -2,9 +2,10 @@
 {
     public enum DeploymentStatus
     {
-        NotFound,
+        Notfound,
         InProgress,
         Failed,
-        Success
+        Success,
+        Unknown
     }
 }

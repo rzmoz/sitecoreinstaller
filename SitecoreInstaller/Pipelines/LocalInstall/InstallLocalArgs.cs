@@ -8,6 +8,7 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
     {
         [JsonIgnore]
         public IReadOnlyCollection<DbConnectionString> ConnectionStrings { get; set; }
+
         [JsonIgnore]
         public IReadOnlyCollection<SqlDatabaseFilePair> SqlDatabaseFiles { get; set; }
     }

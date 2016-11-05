@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using NLog;
+using SitecoreInstaller.Pipelines;
 
 namespace SitecoreInstaller.Deployments
 {
@@ -21,7 +22,7 @@ namespace SitecoreInstaller.Deployments
             return _tasks.ContainsKey(name.ToLowerInvariant());
         }
 
-        public bool TryStart<T>(string name, PipelineSection<T> pipeline, T args) where T : new()
+        public bool TryStart<T>(string name, PipelineSection<T> pipeline, T args) where T : LocalArgs, new()
         {
             var key = name.ToLowerInvariant();
 
@@ -37,6 +38,8 @@ namespace SitecoreInstaller.Deployments
                     }
                     catch (Exception e)
                     {
+                        args.Info.Task.Status = DeploymentStatus.Failed;
+                        args.DeploymentDir.SaveDeploymentInfo(args.Info);
                         _logger.Error(e.ToString()); ;
                     }
                     finally

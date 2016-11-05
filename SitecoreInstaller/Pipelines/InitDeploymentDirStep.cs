@@ -25,11 +25,11 @@ namespace SitecoreInstaller.Pipelines
             args.Info.Url = _advancedSettings.GetDeploymentUrl(args.Info.Name);
 
             if (args.DeploymentDir.DeploymentInfo.Exists())
-                args.Info = args.DeploymentDir.GetDeploymentInfo();
-
-            args.Info.Done = false;
-            _localDeploymentsService.SaveDeploymentInfo(args.Info, args.DeploymentDir);
-
+                args.Info = args.DeploymentDir.LoadDeploymentInfo();
+            
+            args.Info.Task.Status = DeploymentStatus.InProgress;
+            
+            args.DeploymentDir.SaveDeploymentInfo(args.Info);
             return Task.CompletedTask;
         }
     }

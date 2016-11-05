@@ -7,6 +7,7 @@ namespace SitecoreInstaller.Pipelines.LocalUnInstall
     public class UnInstallLocalArgs : LocalArgs
     {
         public bool WasDeleted { get; set; }
+
         [JsonIgnore]
         public IReadOnlyCollection<DbConnectionString> ConnectionStrings { get; set; }
     }

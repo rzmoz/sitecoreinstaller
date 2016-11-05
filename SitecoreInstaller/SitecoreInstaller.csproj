@@ -140,6 +140,7 @@
     <Compile Include="Databases\SqlDbService.cs" />
     <Compile Include="Databases\UnknownDbConnectionString.cs" />
     <Compile Include="DeploymentInfo.cs" />
+    <Compile Include="DeploymentTask.cs" />
     <Compile Include="DeploymentStatus.cs" />
     <Compile Include="Deployments\DeploymentsScheduler.cs" />
     <Compile Include="Deployments\LocalDeploymentsService.cs" />
@@ -147,7 +148,7 @@
     <Compile Include="FileTypes.cs" />
     <Compile Include="IncludeDir.cs" />
     <Compile Include="Pipelines\LocalPipeline.cs" />
-    <Compile Include="Pipelines\LocalDeploymentfinishedStep.cs" />
+    <Compile Include="Pipelines\LocalInstall\InstallLocalSuccessStep.cs" />
     <Compile Include="Pipelines\LocalInstall\AddSiteToHostFileStep.cs" />
     <Compile Include="Pipelines\LocalInstall\AttachSqlhDatabasesStep.cs" />
     <Compile Include="Pipelines\LocalInstall\CopyDeploymentFilesStep.cs" />

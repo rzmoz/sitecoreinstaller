@@ -40,51 +40,35 @@ namespace SitecoreInstaller.Deployments
                 string.IsNullOrWhiteSpace(info.License))
                 throw new ArgumentException($"Name, Sitecore and License must be set. Was: {JsonConvert.SerializeObject(info)}");
 
+            info.Task.Name = "Installing";
             var args = new InstallLocalArgs { Info = info };
             return _deploymentsScheduler.TryStart(info.Name, _installLocalPipeline, args);
         }
 
         public bool TryDeleteDeployment(string name)
         {
-            var args = new UnInstallLocalArgs { Info = { Name = name } };
+            var args = new UnInstallLocalArgs { Info = { Name = name, Task = { Name = "UnInstalling" } } };
             return _deploymentsScheduler.TryStart(name, _unInstallLocalPipeline, args);
         }
 
-        public DeploymentStatus GetStatus(string name)
+        public DeploymentInfo GetStatus(string name)
         {
-            if (_deploymentsScheduler.IsRunning(name))
-                return DeploymentStatus.InProgress;
-            var dir = GetDeploymentDir(name);
-            if (dir.Exists() == false)
-                return DeploymentStatus.NotFound;
-
-            var info = dir.GetDeploymentInfo();
-            return info?.Done == true ?
-                DeploymentStatus.Success :
-                DeploymentStatus.Failed;
-        }
-
-        public void SaveDeploymentInfo(DeploymentInfo info, DeploymentDir deploymentDir)
-        {
-            var infoJson = JsonConvert.SerializeObject(info, new JsonSerializerSettings
+            return GetDeploymentDir(name)?.LoadDeploymentInfo() ?? new DeploymentInfo
             {
-                Formatting = Formatting.Indented,
-
-            });
-            infoJson.WriteAllText(deploymentDir.DeploymentInfo, true);
-            _logger.Debug($"Deployment info for {deploymentDir.Name}:\r\n{infoJson}");
-            _logger.Trace($"Deployment info for {deploymentDir.Name} saved to {deploymentDir.DeploymentInfo}");
+                Name = name,
+                Task = { Status = DeploymentStatus.Notfound }
+            };
         }
 
-        public IEnumerable<DeploymentInfo> GetDeploymentInfos()
+        public IEnumerable<DeploymentInfo> LoadDeploymentInfos()
         {
             foreach (var dir in Root.EnumerateDirectories())
-                yield return GetDeploymentInfo(dir.Name);
+                yield return LoadDeploymentInfo(dir.Name);
         }
 
-        public DeploymentInfo GetDeploymentInfo(string name)
+        public DeploymentInfo LoadDeploymentInfo(string name)
         {
-            return GetDeploymentDir(name)?.GetDeploymentInfo();
+            return GetDeploymentDir(name)?.LoadDeploymentInfo();
         }
 
         public DeploymentDir GetDeploymentDir(string deploymentName, bool initialize = false)

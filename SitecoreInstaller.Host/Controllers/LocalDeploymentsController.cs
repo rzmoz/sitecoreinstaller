@@ -23,7 +23,7 @@ namespace SitecoreInstaller.Host.Controllers
         [HttpGet]
         public HttpResponseMessage GetLocalDeployments()
         {
-            var infos = _localDeploymentsService.GetDeploymentInfos();
+            var infos = _localDeploymentsService.LoadDeploymentInfos();
             return Request.CreateResponse(HttpStatusCode.OK, infos);
         }
 
@@ -32,14 +32,14 @@ namespace SitecoreInstaller.Host.Controllers
         public HttpResponseMessage GetLocalDeploymentStatus(string name)
         {
             var status = _localDeploymentsService.GetStatus(name);
-            return Request.CreateResponse(HttpStatusCode.OK, status.ToName());
+            return Request.CreateResponse(HttpStatusCode.OK, status);
         }
 
         [Route("{name}")]
         [HttpGet]
         public HttpResponseMessage GetLocalDeployment(string name)
         {
-            var deploymentInfo = _localDeploymentsService.GetDeploymentInfo(name);
+            var deploymentInfo = _localDeploymentsService.LoadDeploymentInfo(name);
             if (deploymentInfo == null)
                 return Request.CreateResponse(HttpStatusCode.NotAcceptable, $"Deployment not found: {name}");
             return Request.CreateResponse(HttpStatusCode.OK, deploymentInfo);

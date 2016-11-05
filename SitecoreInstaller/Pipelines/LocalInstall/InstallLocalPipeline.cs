@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
             AddStep<AddSiteToHostFileStep>();
             AddStep<CreateWebsiteAndAppPoolStep>();
             AddStep<WakeUpSiteStep>();
-            AddStep<LocalDeploymentFinishedStep<InstallLocalArgs>>();
+            AddStep<InstallLocalSuccessStep<InstallLocalArgs>>();
         }
     }
 }

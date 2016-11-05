@@ -6,7 +6,7 @@ namespace SitecoreInstaller.Pipelines
     {
         public LocalArgs()
         {
-            Info = new DeploymentInfo();
+            Info = new DeploymentInfo { Task = { Status = DeploymentStatus.Unknown } };
         }
 
         public DeploymentInfo Info { get; set; }
