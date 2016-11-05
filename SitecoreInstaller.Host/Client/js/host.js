@@ -29,9 +29,6 @@ var localDeployments = {
                 function (index, info) {
                     dataTableElement.children('tbody').append('<tr><td>' + info.name + '</td><td>' + info.sitecore.replace('Sitecore ', '') + '</td><td><button type="button" class="btn btn-danger del-deployment" name="' + info.name + '">Delete</button></td></tr>');
                 });
-
-
-
             console.log('Deployments loaded:' + JSON.stringify(json));
         });
     },
@@ -64,6 +61,7 @@ jQuery.each(["put", "delete"], function (i, method) {
         console.log('url:' + url);
         console.log('data:' + JSON.stringify(data));
         return jQuery.ajax({
+            async: false,
             url: url,
             type: method,
             contentType: 'application/json; charset=utf-8',

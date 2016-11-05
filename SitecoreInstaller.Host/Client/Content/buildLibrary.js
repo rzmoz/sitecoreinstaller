@@ -6,16 +6,19 @@
         doneCallback();
     },
 
-    getLicenses: function (callback) {
-        var uri = "/api/buildlibrary/licenses";
-        $.getJSON(uri, callback);
-    },
-    getModules: function (callback) {
-        var uri = "/api/buildlibrary/modules";
-        $.getJSON(uri, callback);
-    },
-    getSitecores: function (callback) {
-        var uri = "/api/buildlibrary/sitecores";
-        $.getJSON(uri, callback);
+    licensesUri: "/api/buildlibrary/licenses",
+    modulesUri: "/api/buildlibrary/modules",
+    sitecoresUri: "/api/buildlibrary/sitecores",
+    getJson: function (uri) {
+        var jsonOut;
+        $.ajax({
+            url: uri,
+            async: false,
+            dataType: 'json',
+            success: function (json) {
+                jsonOut = json;
+            }
+        });
+        return jsonOut;
     }
 }

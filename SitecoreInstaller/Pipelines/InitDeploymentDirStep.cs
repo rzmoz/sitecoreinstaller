@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using DotNet.Basics.IO;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Deployments;
 
@@ -23,9 +24,8 @@ namespace SitecoreInstaller.Pipelines
             //ensure url is set
             args.Info.Url = _advancedSettings.GetDeploymentUrl(args.Info.Name);
 
-            var loadedInfo = args.DeploymentDir.GetDeploymentInfo();
-            if (loadedInfo != null)
-                args.Info = loadedInfo;
+            if (args.DeploymentDir.DeploymentInfo.Exists())
+                args.Info = args.DeploymentDir.GetDeploymentInfo();
 
             args.Info.Done = false;
             _localDeploymentsService.SaveDeploymentInfo(args.Info, args.DeploymentDir);
