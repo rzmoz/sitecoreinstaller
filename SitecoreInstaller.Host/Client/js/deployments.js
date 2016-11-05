@@ -1,10 +1,11 @@
 ﻿var deployments = {
     localDeployments: [],
 
-    loadAllLocalInfo:function() {
-        deployments.getAll(function (json) {
+    loadAllInfos:function(callback) {
+        deployments.getAllLocal(function (json) {
             deployments.localDeployments = json;
             console.log('Deployments loaded:' + JSON.stringify(deployments.localDeployments));
+            callback();
         });
     },
     /*
@@ -30,14 +31,14 @@
     },*/
 
 
-    getAll: function (callback) {
+    getAllLocal: function (callback) {
         var uri = "/api/local/deployments";
         $.getJSON(uri, callback);
     },
-    delete: function (name, responseCallback) {
+    deleteLocal: function (name, responseCallback) {
         $.delete('/api/local/deployments/' + name, '', responseCallback);
     },
-    put: function (name, sitecore, license, modules, responseCallback) {
+    putLocal: function (name, sitecore, license, modules, responseCallback) {
         var body = {
             name: name,
             sitecore: sitecore,

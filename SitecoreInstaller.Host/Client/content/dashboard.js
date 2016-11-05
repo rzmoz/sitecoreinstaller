@@ -3,14 +3,18 @@
         return "Dashboard";
     },
     iLoad: function () {
-        var deploymentsTable = $('#table-local-deployments');
         dashboard.newLocalDeployment_onClick();
-        deployments.loadAllLocalInfo();
+        dashboard.iRefresh();
     },
     iRefresh: function () {
-        deployments.loadAllLocalInfo();
+        deployments.loadAllInfos(function() {
+            dashboard.refreshDeploymentCounts();
+        });
     },
+    refreshDeploymentCounts:function() {
+        $('#count-local-deployments').html(deployments.localDeployments.length);
 
+    },
     newLocalDeployment_onClick: function () {
         $('#new-local-deployment')
             .on('click',
@@ -50,7 +54,7 @@
                             }
 
                             //start new local deployment
-                            localDeployments.put(name, sitecore, license, '', function (response) {
+                            deployments.putLocal(name, sitecore, license, '', function (response) {
                             });
                             return true;
                         }
