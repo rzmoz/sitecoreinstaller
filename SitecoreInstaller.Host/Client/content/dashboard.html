@@ -122,30 +122,3 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-
-<script>
-    function documentReady() {
-
-
-        format.getSitecoresToSelect($('#selSitecore'));
-        format.getLicensesToSelect($('#selLicense'));
-
-
-        $('#frm-new-deployment')
-            .submit(function (event) {
-                var deploymentName = $('#new-deployment-name').val();
-                var sitecore = $('#selSitecore').find(":selected").val();
-                var license = $('#selLicense').find(":selected").val();
-
-                $('#frm-new-deployment')
-                    .waitMe({ text: 'Deploying ' + deploymentName });
-
-                localDeployments.put(deploymentName, sitecore, license, '', function (response) {
-
-                    $('#frm-new-deployment').waitMe('hide');
-                });
-
-                event.preventDefault();
-            });
-    }
-</script>

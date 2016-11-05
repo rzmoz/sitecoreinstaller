@@ -10,11 +10,11 @@ using SitecoreInstaller.Deployments;
 namespace SitecoreInstaller.Host.Controllers
 {
     [RoutePrefix("api/local/deployments")]
-    public class DeploymentsController : ApiController
+    public class LocalDeploymentsController : ApiController
     {
         private readonly LocalDeploymentsService _localDeploymentsService;
 
-        public DeploymentsController(LocalDeploymentsService localDeploymentsService)
+        public LocalDeploymentsController(LocalDeploymentsService localDeploymentsService)
         {
             _localDeploymentsService = localDeploymentsService;
         }

@@ -111,7 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BuildLibraryController.cs" />
-    <Compile Include="Controllers\DeploymentsController.cs" />
+    <Compile Include="Controllers\LocalDeploymentsController.cs" />
     <Compile Include="GlobalExceptionHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
