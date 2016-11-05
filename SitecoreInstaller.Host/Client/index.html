@@ -298,7 +298,6 @@
                     var refreshEval = name + '.iRefresh()';
                     eval(refreshEval);
                     refreshTimer = window.setInterval(function () {
-                        console.log(title + ' ping');
                         eval(refreshEval);
                     }, 2000);
                 });

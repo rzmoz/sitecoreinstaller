@@ -1,36 +1,15 @@
 ﻿var deployments = {
     localDeployments: [],
+    azureDeployments: [],
 
     loadAllInfos:function(callback) {
         deployments.getAllLocal(function (json) {
             deployments.localDeployments = json;
             //console.log('Deployments loaded:' + JSON.stringify(deployments.localDeployments));
-            callback();
+            callback(deployments.localDeployments, deployments.azureDeployments);
         });
     },
-    /*
-
-
-    loadAllInfos: function (dataTableElement) {
-        dataTableElement.on("click", "button.del-deployment", function (e) {
-
-            var depName = this.name;
-
-            $.confirm({
-                title: "Delete " + depName,
-                content: 'Are you sure you want to delete ' + depName + '?',
-                confirmButton: 'Yes',
-                cancelButton: 'No',
-                confirm: function () {
-                    localDeployments.delete(depName);
-                }
-            });
-        });
-
-        
-    },*/
-
-
+    
     getAllLocal: function (callback) {
         var uri = "/api/local/deployments";
         $.getJSON(uri, callback);

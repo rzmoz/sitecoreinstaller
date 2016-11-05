@@ -14,6 +14,20 @@
         return status;
     },
 
+    getDeploymentsDataSet: function (localDeployments) {
+        var dataSet = [];
+        $.each(localDeployments,
+            function (ind, val) {
+                dataSet.push([
+                    val.name,
+                    val.sitecore,
+                    '',
+                    "<button type='button' class='btn btn-danger del-local-deployment' name='" + val.name + "'>Delete</button>"
+                ]);
+            });
+        return dataSet;
+    },
+
     getSitecoreOptions: function (sitecoreJson) {
         return format.getFormattedOptions(sitecoreJson,
                 function (sitecore) {

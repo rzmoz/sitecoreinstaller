@@ -4,24 +4,43 @@
     },
     iLoad: function () {
         dashboard.newLocalDeployment_onClick();
+        //init deployments table
+        $('#table-deployments')
+            .DataTable({
+                paging: false
+        });
         dashboard.iRefresh(function () {
-            dashboard.initDeploymentsTable();
         });
     },
     iRefresh: function (callback) {
-        deployments.loadAllInfos(function () {
+        deployments.loadAllInfos(function (localDeployments) {
             dashboard.refreshDeploymentCounts();
+
+            var dataSet = format.getDeploymentsDataSet(localDeployments);
+            var dataTable = $('#table-deployments').DataTable();
+            dataTable.clear();
+            dataTable.rows.add(dataSet).draw();
+
+            dataTable.off("click", "button.del-local-deployment");
+            dataTable.on("click", "button.del-local-deployment", function (e) {
+                var depName = this.name;
+
+                $.confirm({
+                    title: "Delete " + depName,
+                    content: 'Are you sure you want to delete ' + depName + '?',
+                    confirmButton: 'Yes',
+                    cancelButton: 'No',
+                    confirm: function () {
+                        deployments.deleteLocal(depName);
+                    }
+                });
+            });
+
             if (callback !== undefined) {
                 callback();
             }
         });
         buildLibrary.loadAll(function () { });
-    },
-
-
-    initDeploymentsTable: function () {
-        $('#table-deployments').DataTable({
-        });
     },
 
     refreshDeploymentCounts: function () {
