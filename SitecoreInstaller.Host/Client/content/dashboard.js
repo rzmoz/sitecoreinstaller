@@ -4,14 +4,27 @@
     },
     iLoad: function () {
         dashboard.newLocalDeployment_onClick();
-        dashboard.iRefresh();
-    },
-    iRefresh: function () {
-        deployments.loadAllInfos(function() {
-            dashboard.refreshDeploymentCounts();
+        dashboard.iRefresh(function () {
+            dashboard.initDeploymentsTable();
         });
     },
-    refreshDeploymentCounts:function() {
+    iRefresh: function (callback) {
+        deployments.loadAllInfos(function () {
+            dashboard.refreshDeploymentCounts();
+            if (callback !== undefined) {
+                callback();
+            }
+        });
+        buildLibrary.loadAll(function () { });
+    },
+
+
+    initDeploymentsTable: function () {
+        $('#table-deployments').DataTable({
+        });
+    },
+
+    refreshDeploymentCounts: function () {
         $('#count-local-deployments').html(deployments.localDeployments.length);
 
     },
@@ -27,13 +40,11 @@
                         contentLoaded: function (data, status, xhr) {
                             var $html = $(data);
 
-                            var licJson = buildLibrary.getJson(buildLibrary.licensesUri);
-                            console.log('license json:' + JSON.stringify(licJson));
+                            var licJson = buildLibrary.licenseJson;
                             var licOptions = format.getLicenseOptions(licJson);
                             $html.find('#selLicense').html(licOptions);
 
-                            var scJson = buildLibrary.getJson(buildLibrary.sitecoresUri);
-                            console.log('sitecore json:' + JSON.stringify(scJson));
+                            var scJson = buildLibrary.sitecoreJson;
                             var scOptions = format.getSitecoreOptions(scJson);
                             $html.find('#selSitecore').html(scOptions);
 
@@ -44,9 +55,6 @@
                             var name = $('#new-deployment-name').val();
                             var sitecore = $('#selSitecore').find(":selected").val();
                             var license = $('#selLicense').find(":selected").val();
-                            console.log('name:' + name);
-                            console.log('sitecore:' + sitecore);
-                            console.log('license:' + license);
 
                             if (name === undefined || name === '') {
                                 $.alert('Please enter name of deployment');

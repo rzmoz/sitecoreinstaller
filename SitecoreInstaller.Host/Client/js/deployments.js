@@ -4,7 +4,7 @@
     loadAllInfos:function(callback) {
         deployments.getAllLocal(function (json) {
             deployments.localDeployments = json;
-            console.log('Deployments loaded:' + JSON.stringify(deployments.localDeployments));
+            //console.log('Deployments loaded:' + JSON.stringify(deployments.localDeployments));
             callback();
         });
     },
