@@ -210,13 +210,13 @@
                             <a href="/?section=buildLibrary"> <i class="fa fa-home fa-fw"></i> Build Library</a>
                         </li>
                         <li>
-                            <a href="/?section='siSettings"> <i class="fa fa-home fa-fw"></i> Settings</a>
+                            <a href="/?section=siSettings"> <i class="fa fa-home fa-fw"></i> Settings</a>
                         </li>
                     </ul>
                 </div>
-                
+
             </div>
-            
+
         </nav>
 
         <!-- Page Content -->
@@ -255,6 +255,7 @@
 
     <script>
         var currentSection = 'dashboard';
+        var refreshTimer;
 
         $(document)
             .ready(function () {
@@ -279,12 +280,23 @@
             var modulePath = '/content/' + name + '.html';
             console.log('Html for: ' + title + ' loading...');
 
+            if (refreshTimer === undefined) {
+                window.clearInterval(refreshTimer);
+            }
+
             $.get(modulePath,
                 function (html) {
                     $('#page-content').html(html);
                     console.log('Html for: ' + title + ' loaded');
                     //call init function in loaded module
                     eval(name + '.iLoad(' + function () { moduleLoaded(title); } + ')');
+
+                    var refreshEval = name + '.iRefresh()';
+                    eval(refreshEval);
+                    refreshTimer = window.setInterval(function () {
+                        console.log(title + ' ping');
+                        eval(refreshEval);
+                    }, 1000);
                 });
         }
 

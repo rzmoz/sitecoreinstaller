@@ -8,6 +8,10 @@
         dashboard.newLocalDeployment_onClick();
         doneCallback();
     },
+    iRefresh: function () {
+        
+    },
+
     newLocalDeployment_onClick: function () {
         $('#new-local-deployment')
             .on('click',

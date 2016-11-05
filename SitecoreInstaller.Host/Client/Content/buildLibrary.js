@@ -5,7 +5,9 @@
     iLoad: function (doneCallback) {
         doneCallback();
     },
-
+    iRefresh: function () {
+        
+    },
     licensesUri: "/api/buildlibrary/licenses",
     modulesUri: "/api/buildlibrary/modules",
     sitecoresUri: "/api/buildlibrary/sitecores",

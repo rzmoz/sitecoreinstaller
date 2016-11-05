@@ -4,5 +4,8 @@
     },
     iLoad: function (doneCallback) {
         doneCallback();
+    },
+    iRefresh: function () {
+        
     }
 }
