@@ -14,7 +14,7 @@
         return status;
     },
 
-    getDeploymentsDataSet: function (localDeployments) {
+    getLocalDeploymentsDataSet: function (localDeployments) {
         var dataSet = [];
         $.each(localDeployments,
             function (ind, val) {
@@ -22,6 +22,8 @@
                     val.name,
                     val.sitecore,
                     val.task.name + ' ' + val.task.status,
+                    "<a href='http://" + val.url + "/' target='_blank'>Frontend</a>",
+                    "<a href='http://" + val.url + "/sitecore' target='_blank'>Client</a>",
                     "<button type='button' class='btn btn-danger del-local-deployment' name='" + val.name + "'>Delete</button>"
                 ]);
             });

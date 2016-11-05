@@ -8,7 +8,7 @@
         $('#table-deployments')
             .DataTable({
                 paging: false
-        });
+            });
         dashboard.iRefresh(function () {
         });
     },
@@ -16,7 +16,7 @@
         deployments.loadAllInfos(function (localDeployments) {
             dashboard.refreshDeploymentCounts();
 
-            var dataSet = format.getDeploymentsDataSet(localDeployments);
+            var dataSet = format.getLocalDeploymentsDataSet(localDeployments);
             var dataTable = $('#table-deployments').DataTable();
             dataTable.clear();
             dataTable.rows.add(dataSet).draw();
@@ -24,7 +24,6 @@
             dataTable.off("click", "button.del-local-deployment");
             dataTable.on("click", "button.del-local-deployment", function (e) {
                 var depName = this.name;
-
                 $.confirm({
                     title: "Delete " + depName,
                     content: 'Are you sure you want to delete ' + depName + '?',
