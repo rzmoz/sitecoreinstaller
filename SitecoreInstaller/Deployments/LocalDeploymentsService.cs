@@ -40,14 +40,14 @@ namespace SitecoreInstaller.Deployments
                 string.IsNullOrWhiteSpace(info.License))
                 throw new ArgumentException($"Name, Sitecore and License must be set. Was: {JsonConvert.SerializeObject(info)}");
 
-            info.Task.Name = "Installing";
-            var args = new InstallLocalArgs { Info = info };
+
+            var args = new InstallLocalArgs { CurrentTaskName = "Installing", Info = info };
             return _deploymentsScheduler.TryStart(info.Name, _installLocalPipeline, args);
         }
 
         public bool TryDeleteDeployment(string name)
         {
-            var args = new UnInstallLocalArgs { Info = { Name = name, Task = { Name = "Deleting" } } };
+            var args = new UnInstallLocalArgs { CurrentTaskName = "Deleting", Info = { Name = name } };
             return _deploymentsScheduler.TryStart(name, _unInstallLocalPipeline, args);
         }
 

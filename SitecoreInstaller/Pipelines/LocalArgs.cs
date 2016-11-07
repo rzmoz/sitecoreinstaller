@@ -9,6 +9,8 @@ namespace SitecoreInstaller.Pipelines
             Info = new DeploymentInfo { Task = { Status = DeploymentStatus.Unknown } };
         }
 
+        public string CurrentTaskName { get; set; }
+
         public DeploymentInfo Info { get; set; }
 
         [JsonIgnore]

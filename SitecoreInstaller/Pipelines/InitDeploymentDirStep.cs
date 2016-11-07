@@ -26,9 +26,10 @@ namespace SitecoreInstaller.Pipelines
 
             if (args.DeploymentDir.DeploymentInfo.Exists())
                 args.Info = args.DeploymentDir.LoadDeploymentInfo();
-            
+
+            args.Info.Task.Name = args.CurrentTaskName;
             args.Info.Task.Status = DeploymentStatus.InProgress;
-            
+
             args.DeploymentDir.SaveDeploymentInfo(args.Info);
             return Task.CompletedTask;
         }
