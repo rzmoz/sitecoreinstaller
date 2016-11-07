@@ -26,15 +26,7 @@ namespace SitecoreInstaller.Host.Controllers
             var infos = _localDeploymentsService.LoadDeploymentInfos();
             return Request.CreateResponse(HttpStatusCode.OK, infos);
         }
-
-        [Route("{name}/status")]
-        [HttpGet]
-        public HttpResponseMessage GetLocalDeploymentStatus(string name)
-        {
-            var status = _localDeploymentsService.GetStatus(name);
-            return Request.CreateResponse(HttpStatusCode.OK, status);
-        }
-
+        
         [Route("{name}")]
         [HttpGet]
         public HttpResponseMessage GetLocalDeployment(string name)

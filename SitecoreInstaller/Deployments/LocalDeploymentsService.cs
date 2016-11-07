@@ -47,17 +47,8 @@ namespace SitecoreInstaller.Deployments
 
         public bool TryDeleteDeployment(string name)
         {
-            var args = new UnInstallLocalArgs { Info = { Name = name, Task = { Name = "UnInstalling" } } };
+            var args = new UnInstallLocalArgs { Info = { Name = name, Task = { Name = "Deleting" } } };
             return _deploymentsScheduler.TryStart(name, _unInstallLocalPipeline, args);
-        }
-
-        public DeploymentInfo GetStatus(string name)
-        {
-            return GetDeploymentDir(name)?.LoadDeploymentInfo() ?? new DeploymentInfo
-            {
-                Name = name,
-                Task = { Status = DeploymentStatus.Notfound }
-            };
         }
 
         public IEnumerable<DeploymentInfo> LoadDeploymentInfos()
@@ -68,7 +59,16 @@ namespace SitecoreInstaller.Deployments
 
         public DeploymentInfo LoadDeploymentInfo(string name)
         {
-            return GetDeploymentDir(name)?.LoadDeploymentInfo();
+            var dDir = GetDeploymentDir(name);
+            var di = dDir?.LoadDeploymentInfo();
+            if (di == null)
+                return null;
+
+            if (_deploymentsScheduler.IsRunning(di.Name) || di.Task.Status != DeploymentStatus.InProgress)
+                return di;
+            di.Task.Status = DeploymentStatus.Failed;
+            dDir.SaveDeploymentInfo(di);
+            return di;
         }
 
         public DeploymentDir GetDeploymentDir(string deploymentName, bool initialize = false)
