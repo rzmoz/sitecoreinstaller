@@ -9,7 +9,12 @@
             callback(deployments.localDeployments, deployments.azureDeployments);
         });
     },
-    
+    isInProgress:function(status) {
+        if (status === undefined) {
+            return false;
+        }
+        return status === "InProgress";
+    },
     getAllLocal: function (callback) {
         var uri = "/api/local/deployments";
         $.getJSON(uri, callback);

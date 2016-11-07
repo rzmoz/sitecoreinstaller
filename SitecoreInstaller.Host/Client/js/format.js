@@ -1,24 +1,33 @@
 ﻿var format = {
     deployments: {
         getStatusIcon: function (status, statusText) {
-            var statusClass = 'fa-exclamation-triangle';
-            if (status === "InProgress")
+            var statusClass;
+            if (deployments.isInProgress(status))
                 statusClass = 'fa-circle-o-notch fa-spin';
             else if (status === "Success")
                 statusClass = 'fa-check-square-o';
+            else {
+                statusClass = 'fa-exclamation-triangle';
+            }
             return statusText + ': <i class="fa fa-1x fa-fw ' + statusClass + '"></i>';
         },
-        getLocalDataTableSet : function (localDeployments) {
+        getLocalDataTableSet: function (localDeployments) {
             var dataSet = [];
             $.each(localDeployments,
                 function (ind, val) {
+
+                    var inProgress = '';
+                    if (deployments.isInProgress(val.task.status)) {
+                        inProgress = ' disabled';
+                    }
+
                     dataSet.push([
                         val.name,
                         val.sitecore,
                         format.deployments.getStatusIcon(val.task.status, val.task.name),
                         "<a href='http://" + val.url + "/' target='_blank'>Frontend</a>",
                         "<a href='http://" + val.url + "/sitecore' target='_blank'>Client</a>",
-                        "<button type='button' class='btn btn-block btn-danger del-local-deployment' name='" + val.name + "'>Delete</button>"
+                        "<button type='button' class='btn btn-block btn-danger del-local-deployment " + inProgress + "' name='" + val.name + "'>Delete</button>"
                     ]);
                 });
             return dataSet;
@@ -58,5 +67,5 @@
             return options;
         }
     }
-    
+
 }
