@@ -25,8 +25,8 @@
                         val.name,
                         val.sitecore,
                         format.deployments.getStatusIcon(val.task.status, val.task.name),
-                        "<a href='http://" + val.url + "/' target='_blank'>Frontend</a>",
-                        "<a href='http://" + val.url + "/sitecore' target='_blank'>Client</a>",
+                        '<a href="http://' + val.url + '/" target="_blank">Open Frontend <i class="fa fa-external-link"></i></a>',
+                        '<a href="http://' + val.url + '/sitecore" target="_blank">Open Sitecore <i class="fa fa-external-link-square"></i></a>',
                         "<button type='button' class='btn btn-block btn-danger del-local-deployment " + inProgress + "' name='" + val.name + "'>Delete</button>"
                     ]);
                 });
