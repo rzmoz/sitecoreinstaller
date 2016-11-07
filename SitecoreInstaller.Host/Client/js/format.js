@@ -6,12 +6,18 @@
             target = '_blank';
         return "<a href='http://" + url + "/' target='" + target + "'>" + name + "</a>";
     },
-    getStatusIcon: function (status) {
-        if (status === "Unknown")
-            return "<div class='bg-danger'>Not found</div>";
-        if (status === "Success")
-            return "<div class='bg-success'>OK</div>";
-        return status;
+    getStatusIcon: function (status, statusText) {
+        var statusClass = 'fa-exclamation-triangle';
+        if (status === "InProgress")
+            statusClass = 'fa-circle-o-notch fa-spin';
+        else if (status === "Success")
+            statusClass = 'fa-check-square-o';
+
+        var statusIcon = statusText + ': <i class="fa fa-1x fa-fw ' + statusClass + '"></i>';
+
+        var statusBox = '<div class="alert alert-info">' + statusIcon + '</div>';
+
+        return statusIcon;
     },
 
     getLocalDeploymentsDataSet: function (localDeployments) {
@@ -21,14 +27,15 @@
                 dataSet.push([
                     val.name,
                     val.sitecore,
-                    val.task.name + ' ' + val.task.status,
+                    format.getStatusIcon(val.task.status, val.task.name),
                     "<a href='http://" + val.url + "/' target='_blank'>Frontend</a>",
                     "<a href='http://" + val.url + "/sitecore' target='_blank'>Client</a>",
-                    "<button type='button' class='btn btn-danger del-local-deployment' name='" + val.name + "'>Delete</button>"
+                    "<button type='button' class='btn btn-block btn-danger del-local-deployment' name='" + val.name + "'>Delete</button>"
                 ]);
             });
         return dataSet;
     },
+
 
     getSitecoreOptions: function (sitecoreJson) {
         return format.getFormattedOptions(sitecoreJson,
