@@ -16,7 +16,7 @@
         deployments.loadAllInfos(function (localDeployments) {
             dashboard.refreshDeploymentCounts();
 
-            var dataSet = format.getLocalDeploymentsDataSet(localDeployments);
+            var dataSet = format.deployments.getLocalDataTableSet(localDeployments);
             var dataTable = $('#table-deployments').DataTable();
             dataTable.clear();
             dataTable.rows.add(dataSet).draw();
@@ -59,11 +59,11 @@
                             var $html = $(data);
 
                             var licJson = buildLibrary.licenseJson;
-                            var licOptions = format.getLicenseOptions(licJson);
+                            var licOptions = format.selects.getLicenseOptions(licJson);
                             $html.find('#selLicense').html(licOptions);
 
                             var scJson = buildLibrary.sitecoreJson;
-                            var scOptions = format.getSitecoreOptions(scJson);
+                            var scOptions = format.selects.getSitecoreOptions(scJson);
                             $html.find('#selSitecore').html(scOptions);
 
                             this.setContent($html);
