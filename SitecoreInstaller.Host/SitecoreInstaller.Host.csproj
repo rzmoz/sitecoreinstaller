@@ -196,9 +196,6 @@
     <Content Include="Client\css\jquery-confirm.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\css\jquery.dataTables.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Client\css\metisMenu.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
