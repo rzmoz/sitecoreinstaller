@@ -9,7 +9,7 @@ namespace SitecoreInstaller.Deployments
 {
     public class DeploymentsScheduler
     {
-        private readonly ConcurrentDictionary<string, object> _tasks = new ConcurrentDictionary<string, object>();
+        private static readonly ConcurrentDictionary<string, object> _tasks = new ConcurrentDictionary<string, object>();
         private readonly ILogger _logger;
 
         public DeploymentsScheduler()

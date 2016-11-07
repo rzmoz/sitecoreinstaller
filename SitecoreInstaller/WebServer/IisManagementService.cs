@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using DotNet.Basics.Collections;
-using DotNet.Basics.IO;
 using Microsoft.Web.Administration;
 using NLog;
 using SitecoreInstaller.PreflightChecks;
@@ -19,9 +18,9 @@ namespace SitecoreInstaller.WebServer
             _logger = LogManager.GetLogger(nameof(IisManagementService));
         }
 
-        public void CreateApplication(string name, DeploymentDir deploymentDir)
+        public void CreateApplication(string name, string url, DeploymentDir deploymentDir)
         {
-            var settings = _iisApplicationSettingsFactory.Create(name, deploymentDir);
+            var settings = _iisApplicationSettingsFactory.Create(name, url, deploymentDir);
             _logger.Trace($"Creating Iis Application: {settings.Name}...");
             using (var iisManager = new IisManager(settings))
             {
@@ -49,7 +48,7 @@ namespace SitecoreInstaller.WebServer
                     _logger.Debug($"App pool deleted: {settings.AppPoolSettings.Name}");
                 });
             }
-            
+
             _logger.Trace($"Iis Application deleted: {settings.Name}");
         }
 
@@ -134,9 +133,10 @@ namespace SitecoreInstaller.WebServer
             var site = iisManager.Sites.Add(sitesettings.Name, sitesettings.BindingProtocol, sitesettings.BindingInformation, sitesettings.SiteRoot.FullName);
             site.ApplicationDefaults.ApplicationPoolName = appPoolSettings.Name;
             site.LogFile.Directory = sitesettings.IisLogFilesDir.FullName;
-
+            
             _logger.Debug($"Site home directory set to '{sitesettings.SiteRoot.FullName}'");
             _logger.Debug($"Site log dir set to '{sitesettings.IisLogFilesDir.FullName}'");
+            _logger.Debug($"Site bindings set to  '{sitesettings.BindingInformation}'");
             _logger.Debug($"Site App Pool set to '{site.ApplicationDefaults.ApplicationPoolName}'");
             _logger.Debug($"Iis Site created: {sitesettings.Name}");
         }

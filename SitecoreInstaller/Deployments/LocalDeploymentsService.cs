@@ -64,10 +64,11 @@ namespace SitecoreInstaller.Deployments
             if (di == null)
                 return null;
 
-            if (_deploymentsScheduler.IsRunning(di.Name) || di.Task.Status != DeploymentStatus.InProgress)
-                return di;
-            di.Task.Status = DeploymentStatus.Failed;
-            dDir.SaveDeploymentInfo(di);
+            if (_deploymentsScheduler.IsRunning(di.Name) == false && di.Task.Status == DeploymentStatus.InProgress)
+            {
+                di.Task.Status = DeploymentStatus.Failed;
+                dDir.SaveDeploymentInfo(di);
+            }
             return di;
         }
 

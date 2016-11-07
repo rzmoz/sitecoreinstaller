@@ -16,7 +16,7 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
 
         protected override Task RunImpAsync(InstallLocalArgs args, CancellationToken ct)
         {
-            _iisManagementService.CreateApplication(args.Info.Name, args.DeploymentDir);
+            _iisManagementService.CreateApplication(args.Info.Name, args.Info.Url, args.DeploymentDir);
             return Task.CompletedTask;
         }
     }

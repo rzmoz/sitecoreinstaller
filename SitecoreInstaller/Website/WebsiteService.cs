@@ -22,7 +22,7 @@ namespace SitecoreInstaller.Website
 </configuration>";
 
         private readonly ILogger _logger;
-        private IRestClient _restClient;
+        private readonly IRestClient _restClient;
 
         public WebsiteService(IRestClient restClient)
         {

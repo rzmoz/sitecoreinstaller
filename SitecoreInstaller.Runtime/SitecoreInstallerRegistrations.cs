@@ -34,8 +34,9 @@ namespace SitecoreInstaller.Runtime
 
             //databases
             builder.RegisterType<ConnectionStringsConfigFormatter>().AsSelf();
-            builder.RegisterType<SqlDbService>().As<IPreflightCheck>().AsSelf();
-            builder.RegisterType<MongoDbService>().As<IPreflightCheck>().AsSelf();
+            //must be single instance to ensure init vaules are persisted
+            builder.RegisterType<SqlDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<MongoDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
 
             //build lib
             builder.RegisterType<LocalBuildLibrary>().As<IPreflightCheck>().AsSelf();
