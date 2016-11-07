@@ -28,23 +28,23 @@ namespace SitecoreInstaller.Runtime
             builder.Register(c => builder.Container.Resolve<EnvironmentSettings>().AdvancedSettings).AsSelf();
 
             //web server
-            builder.RegisterType<HostFile>().As<IPreflightCheck>().AsSelf().SingleInstance();
-            builder.RegisterType<IisManagementService>().As<IPreflightCheck>().AsSelf().SingleInstance();
-            builder.RegisterType<IisApplicationSettingsFactory>().AsSelf().SingleInstance();
+            builder.RegisterType<HostFile>().As<IPreflightCheck>().AsSelf();
+            builder.RegisterType<IisManagementService>().As<IPreflightCheck>().AsSelf();
+            builder.RegisterType<IisApplicationSettingsFactory>().AsSelf();
 
             //databases
-            builder.RegisterType<ConnectionStringsConfigFormatter>().AsSelf().SingleInstance();
-            builder.RegisterType<SqlDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
-            builder.RegisterType<MongoDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<ConnectionStringsConfigFormatter>().AsSelf();
+            builder.RegisterType<SqlDbService>().As<IPreflightCheck>().AsSelf();
+            builder.RegisterType<MongoDbService>().As<IPreflightCheck>().AsSelf();
 
             //build lib
-            builder.RegisterType<LocalBuildLibrary>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<LocalBuildLibrary>().As<IPreflightCheck>().AsSelf();
 
             //web site
-            builder.RegisterType<WebsiteService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<WebsiteService>().As<IPreflightCheck>().AsSelf();
 
             //deployments 
-            builder.RegisterType<LocalDeploymentsService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<LocalDeploymentsService>().As<IPreflightCheck>().AsSelf();
 
             //pipelines
             builder.Register(c => new InstallLocalPipeline(builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();

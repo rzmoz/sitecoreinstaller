@@ -8,7 +8,7 @@ namespace SitecoreInstaller.Databases
 {
     public class MongoDbService : DbService
     {
-        private BasicSettings _basicSettings;
+        private readonly BasicSettings _basicSettings;
 
         public MongoDbService(BasicSettings basicSettings)
         {
@@ -24,20 +24,33 @@ namespace SitecoreInstaller.Databases
                 client.ListDatabases(new CancellationTokenSource(1.Seconds()).Token);
                 return true;
             }
-            catch (OperationCanceledException)
+            catch (MongoConfigurationException e)
             {
+                Logger.Warn(e.ToString);
+                return false;
+            }
+            catch (OperationCanceledException e)
+            {
+                Logger.Warn(e.ToString);
                 return false;
             }
         }
 
         public void DropCollections(IEnumerable<MongoDbConnectionString> mongoDbConnectionStrings)
         {
-            var client = GetClient(InstanceName);
-
-            WorkOnConnectionStrings(() => mongoDbConnectionStrings, conStr =>
+            try
             {
-                client.DropDatabase(conStr.DatabaseName);
-            }, "dropping", "dropped");
+                var client = GetClient(InstanceName);
+
+                WorkOnConnectionStrings(() => mongoDbConnectionStrings, conStr =>
+                {
+                    client.DropDatabase(conStr.DatabaseName);
+                }, "dropping", "dropped");
+            }
+            catch (MongoConfigurationException e)
+            {
+                Logger.Warn(e.ToString);
+            }
         }
 
         protected override IEnumerable<string> GetWindowsServiceNameCandidates()
