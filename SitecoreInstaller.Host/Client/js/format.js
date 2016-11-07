@@ -26,8 +26,8 @@
                         val.sitecore,
                         format.deployments.getStatusIcon(val.task.status, val.task.name),
                         '<a href="http://' + val.url + '/" class="btn btn-block btn-default ' + inProgress + '"  target="_blank">Open Frontend <i class="fa fa-external-link"></i></a>',
-                        '<a href="http://' + val.url + '/sitecore" class="btn btn-block btn-default' + inProgress + '" target="_blank">Open Client <i class="fa fa-external-link-square"></i></a>',
-                        "<button type='button' class='btn btn-block btn-danger del-local-deployment " + inProgress + "' name='" + val.name + "'>Delete <i class='fa fa-exclamation-triangle'></i></button>"
+                        '<a href="http://' + val.url + '/sitecore" class="btn btn-block btn-default ' + inProgress + '" target="_blank">Open Client <i class="fa fa-external-link-square"></i></a>',
+                        '<a href="#" class="btn btn-block btn-danger ' + inProgress + '" onclick="javascript:dashboard.deleteLocalDeployment_onClick(\''+val.name+'\');return false;" target="_blank">Delete <i class="fa fa-exclamation-triangle"></i></a>'
                     ]);
                 });
             return dataSet;

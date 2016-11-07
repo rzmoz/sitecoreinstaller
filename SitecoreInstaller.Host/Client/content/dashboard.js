@@ -21,20 +21,6 @@
             dataTable.clear();
             dataTable.rows.add(dataSet).draw();
 
-            dataTable.off("click", "button.del-local-deployment");
-            dataTable.on("click", "button.del-local-deployment", function (e) {
-                var depName = this.name;
-                $.confirm({
-                    title: "Deleting " + depName + "!",
-                    content: 'Are you sure you want to delete ' + depName + '?',
-                    confirmButton: 'Yes',
-                    cancelButton: 'No',
-                    confirm: function () {
-                        deployments.deleteLocal(depName);
-                    }
-                });
-            });
-
             if (callback !== undefined) {
                 callback();
             }
@@ -44,6 +30,18 @@
 
     refreshDeploymentCounts: function () {
         $('#count-local-deployments').html(deployments.localDeployments.length);
+
+    },
+    deleteLocalDeployment_onClick: function (depName) {
+        $.confirm({
+            title: "Deleting " + depName + "!",
+            content: 'Are you sure you want to delete ' + depName + '?',
+            confirmButton: 'Yes',
+            cancelButton: 'No',
+            confirm: function () {
+                deployments.deleteLocal(depName);
+            }
+        });
 
     },
     newLocalDeployment_onClick: function () {
