@@ -25,7 +25,7 @@
             dataTable.on("click", "button.del-local-deployment", function (e) {
                 var depName = this.name;
                 $.confirm({
-                    title: "Delete " + depName,
+                    title: "Deleting " + depName + "!",
                     content: 'Are you sure you want to delete ' + depName + '?',
                     confirmButton: 'Yes',
                     cancelButton: 'No',
