@@ -7,7 +7,10 @@
         //init deployments table
         $('#table-deployments')
             .DataTable({
-                paging: false
+                paging: false,
+                "columnDefs": [
+       { "className": "dt-center", "targets": "_all" }
+                ]
             });
         dashboard.iRefresh(function () {
         });
