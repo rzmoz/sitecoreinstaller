@@ -166,6 +166,9 @@
     <Content Include="Client\content\sdn.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Client\css\sitecoreinstaller.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Client\js\buildLibrary.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
