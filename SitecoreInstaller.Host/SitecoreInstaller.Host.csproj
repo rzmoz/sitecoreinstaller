@@ -175,7 +175,7 @@
     <Content Include="Client\content\armTemplates.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\content\dashboard.js">
+    <Content Include="Client\content\deployments.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\content\newLocalDeploymentForm.html">
@@ -242,7 +242,7 @@
     <Content Include="Client\js\format.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\js\deployments.js">
+    <Content Include="Client\js\localDeployments.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\js\host.js">
@@ -272,7 +272,7 @@
     <Content Include="Client\content\siSettings.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\content\dashboard.html">
+    <Content Include="Client\content\deployments.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

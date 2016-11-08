@@ -3,7 +3,7 @@
         getStatusIcon: function (status, statusText) {
             var statusClass;
 
-            if (deployments.isInProgress(status))
+            if (localDeployments.isInProgress(status))
                 statusClass = 'fa-circle-o-notch fa-spin';
             else if (status === "Success") {
                 statusClass = 'fa-check-square-o';
@@ -14,13 +14,13 @@
 
             return statusText + ': <i class="fa fa-1x fa-fw ' + statusClass + '"></i>';
         },
-        getLocalDataTableSet: function (localDeployments) {
+        getLocalDataTableSet: function (deps) {
             var dataSet = [];
-            $.each(localDeployments,
+            $.each(deps,
                 function (ind, val) {
 
                     var inProgress = '';
-                    if (deployments.isInProgress(val.task.status)) {
+                    if (localDeployments.isInProgress(val.task.status)) {
                         inProgress = ' disabled';
                     }
 
@@ -28,9 +28,9 @@
                         val.name,
                         val.sitecore,
                         format.deployments.getStatusIcon(val.task.status, val.task.name),
-                        '<a href="http://' + val.url + '/" class="btn btn-block btn-default ' + inProgress + '"  target="_blank">Open Frontend <i class="fa fa-external-link"></i></a>',
-                        '<a href="http://' + val.url + '/sitecore" class="btn btn-block btn-default ' + inProgress + '" target="_blank">Open Client <i class="fa fa-external-link-square"></i></a>',
-                        '<a href="#" class="btn btn-block btn-danger ' + inProgress + '" onclick="javascript:dashboard.deleteLocalDeployment_onClick(\'' + val.name + '\');return false;" target="_blank">Delete</a>'
+                        '<a href="http://' + val.url + '/" class="btn btn-default ' + inProgress + '"  target="_blank"><i class="fa fa-external-link"></i></a>',
+                        '<a href="http://' + val.url + '/sitecore" class="btn btn-default ' + inProgress + '" target="_blank"><i class="fa fa-external-link-square"></i></a>',
+                        '<a href="#" class="btn btn-danger ' + inProgress + '" onclick="javascript:dashboard.deleteLocalDeployment_onClick(\'' + val.name + '\');return false;" target="_blank"><i class="fa fa-trash-o"></i></a>'
                     ]);
                 });
             return dataSet;

@@ -1,12 +1,9 @@
-﻿var deployments = {
-    localDeployments: [],
-    azureDeployments: [],
-
+﻿var localDeployments = {
+    deployments: [],
     loadAllInfos:function(callback) {
-        deployments.getAllLocal(function (json) {
-            deployments.localDeployments = json;
-            //console.log('Deployments loaded:' + JSON.stringify(deployments.localDeployments));
-            callback(deployments.localDeployments, deployments.azureDeployments);
+        localDeployments.getAll(function (json) {
+            localDeployments.deployments = json;
+            callback(localDeployments.deployments);
         });
     },
     isInProgress:function(status) {
@@ -15,14 +12,14 @@
         }
         return status === "InProgress";
     },
-    getAllLocal: function (callback) {
+    getAll: function (callback) {
         var uri = "/api/local/deployments";
         $.getJSON(uri, callback);
     },
-    deleteLocal: function (name, responseCallback) {
+    delete: function (name, responseCallback) {
         $.delete('/api/local/deployments/' + name, '', responseCallback);
     },
-    putLocal: function (name, sitecore, license, modules, responseCallback) {
+    put: function (name, sitecore, license, modules, responseCallback) {
         var body = {
             name: name,
             sitecore: sitecore,

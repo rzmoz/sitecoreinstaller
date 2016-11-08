@@ -1,23 +1,22 @@
-﻿var dashboard = {
+﻿var deployments = {
     iGetTitle: function () {
-        return "Dashboard";
+        return "Deployments";
     },
     iLoad: function () {
-        dashboard.newLocalDeployment_onClick();
+        deployments.newLocalDeployment_onClick();
         //init deployments table
         $('#table-deployments')
             .DataTable({
                 paging: false,
-                "columnDefs": [
-       { "className": "dt-center", "targets": "_all" }
-                ]
+                "columnDefs": [{ "className": "dt-center", "targets": "_all" }]
             });
-        dashboard.iRefresh(function () {
+
+        deployments.iRefresh(function () {
         });
     },
     iRefresh: function (callback) {
-        deployments.loadAllInfos(function (localDeployments) {
-            dashboard.refreshDeploymentCounts();
+        localDeployments.loadAllInfos(function (localDeployments) {
+            deployments.refreshDeploymentCounts();
 
             var dataSet = format.deployments.getLocalDataTableSet(localDeployments);
             var dataTable = $('#table-deployments').DataTable();
@@ -32,7 +31,7 @@
     },
 
     refreshDeploymentCounts: function () {
-        $('#count-local-deployments').html(deployments.localDeployments.length);
+        $('#count-local-deployments').html(localDeployments.deployments.length);
 
     },
     deleteLocalDeployment_onClick: function (depName) {
@@ -42,7 +41,7 @@
             confirmButton: 'Yes',
             cancelButton: 'No',
             confirm: function () {
-                deployments.deleteLocal(depName);
+                localDeployments.delete(depName);
             }
         });
 
@@ -81,7 +80,7 @@
                             }
 
                             //start new local deployment
-                            deployments.putLocal(name, sitecore, license, '', function (response) {
+                            localDeployments.put(name, sitecore, license, '', function (response) {
                             });
                             return true;
                         }
