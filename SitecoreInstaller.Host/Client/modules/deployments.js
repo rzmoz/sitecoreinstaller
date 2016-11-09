@@ -3,7 +3,7 @@
 
         var currentDeployments = [];
         var list = this;
-
+        var triggers = [];
         host.triggerAndAutoRefresh(function () {
             var updatedDeployments = deployments.localDeployments;
 
@@ -13,8 +13,11 @@
                 var shouldBeDeleted = updatedDeployments.find(ud => deploymentsFormat.getDepPanelId(ud) === curDepId) === undefined;
 
                 if (shouldBeDeleted) {
-                    console.log(curDepId + ' removed');
+                    var triggerIndex = triggers.map(t=>t.name).indexOf(curDep.name);
+                    var triggerId = triggers[triggerIndex].id;
+                    window.clearInterval(triggerId);
                     $('#' + curDepId).remove();
+                    console.log(curDepId + ' removed');
                 }
             });
 
@@ -24,30 +27,35 @@
                 var shouldBeAdded = currentDeployments.find(cd=> deploymentsFormat.getDepPanelId(cd) === upDepId) === undefined;
                 if (shouldBeAdded) {
                     var existingPanels = list.children('div.dep-info-panel');
+                    var panelHtml = deploymentsFormat.getDepPanelHtml(index, upDep, list);
 
                     var lastId = existingPanels.last().attr('id');
 
                     //if list is empty or if new dep is last in list
                     if (existingPanels.length === 0 || lastId.localeCompare(upDepId) < 0) {
-                        list.append(deploymentsFormat.getDepPanel(index, upDep, list));
+                        list.append(panelHtml);
                         console.log(upDepId + ' was appended');
                     } else {
                         $.each(existingPanels,
-                                function (ind, pnl) {
-                                    var pnlId = $(pnl).attr('id');
-                                    if (upDepId.localeCompare(pnlId) > 0)
-                                        return true;
-                                    console.log('adding ' + upDep + ' before ' + pnlId);
-                                    $(pnl).before(deploymentsFormat.getDepPanel(index, upDep, list));
-                                    return false;
-
-                                });
+                            function (ind, pnl) {
+                                var pnlId = $(pnl).attr('id');
+                                if (upDepId.localeCompare(pnlId) > 0)
+                                    return true;
+                                console.log('adding ' + upDep + ' before ' + pnlId);
+                                $(pnl).before(panelHtml);
+                                return false;
+                            });
                     }
+                    triggers.push({
+                        name: upDep.name,
+                        id: host.triggerAndAutoRefresh(function () {
+                            deployments.getLocal(upDep.name,
+                            (info) => deploymentsFormat.refreshInfoPanel(info));
+                        })
+                    });
                 }
             });
-
             currentDeployments = updatedDeployments;
-
         }, 2000);
         return this;
     };
@@ -64,14 +72,20 @@
 }(jQuery));
 
 var deployments = {
+    baseUrl: '/api/local/deployments/',
+
+
     localDeployments: [],
     init: function (callback) {
         deployments.getAllLocal(callback);
         host.triggerAndAutoRefresh(deployments.getAllLocal);
     },
+    getLocal: function (name, callback) {
+        $.getJSON(deployments.baseUrl + name + '/status', callback);
+    },
     getAllLocal: function (callback) {
-        var uri = "/api/local/deployments";
-        $.getJSON(uri,
+
+        $.getJSON(deployments.baseUrl,
             function (json) {
                 deployments.localDeployments = json;
                 if (callback !== undefined)
@@ -79,7 +93,7 @@ var deployments = {
             });
     },
     deleteLocal: function (name, responseCallback) {
-        $.delete('/api/local/deployments/' + name, '', responseCallback);
+        $.delete(deployments.baseUrl + name, '', responseCallback);
     },
     putLocal: function (name, sitecore, license, modules, responseCallback) {
         var body = {
@@ -88,6 +102,6 @@ var deployments = {
             license: license,
             modules: []
         };
-        $.put('/api/local/deployments', body, responseCallback);
+        $.put(deployments.baseUrl, body, responseCallback);
     }
 }

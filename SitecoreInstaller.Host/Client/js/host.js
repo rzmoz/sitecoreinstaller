@@ -1,4 +1,53 @@
-﻿var host = {
+﻿(function ($) {
+    $.fn.setDisabled = function (disabledPredicate) {
+        if (disabledPredicate())
+            this.addClass('disabled');
+        else
+            this.removeClass('disabled');
+        return this;
+    };
+}(jQuery));
+
+
+(function ($) {
+    $.fn.loadSectionTitle = function (sectionName) {
+        var title = eval(sectionName + '.iGetTitle()');
+        this.html(title);
+        return this;
+    };
+}(jQuery));
+
+(function ($) {
+    $.fn.loadSectionContent = function (sectionName, callback) {
+        var $this = this;
+        $.get(host.getSectionPath(sectionName, 'html'),
+                    function (html) {
+                        $this.html(html);
+                        if (callback !== undefined)
+                            callback();
+                    });
+        return this;
+    };
+}(jQuery));
+
+(function ($) {
+    $.fn.loadModuleContent = function (moduleName,callback) {
+        var $this = this;
+        $.get(host.getModulesPath(moduleName, 'html'),
+                    function (html) {
+                        $this.append(html);
+                        if (callback !== undefined)
+                            callback();
+                    });
+        return this;
+    };
+}(jQuery));
+
+
+
+
+
+var host = {
     triggerAndAutoRefresh: function (func, interval) {
         if (func === undefined || func === null)
             return null;
@@ -28,6 +77,9 @@
     },
     getSectionPath: function (name, type) {
         return '/sections/' + name + '.' + type;
+    },
+    getModulesPath: function (name, type) {
+        return '/modules/' + name + '.' + type;
     },
     loadModule: function (name) {
         $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', host.getSectionPath(name, 'css')));

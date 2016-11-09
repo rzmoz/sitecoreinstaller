@@ -2,7 +2,8 @@
     iGetTitle: function () {
         return "SDN";
     },
-    init: function () {
-        
+    init: function (callback) {
+        if (callback !== undefined)
+            callback();
     }
 }

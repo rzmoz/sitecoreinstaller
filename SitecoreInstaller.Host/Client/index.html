@@ -15,12 +15,8 @@
     <link rel="stylesheet" href="css/font-awesome.min.css" />
 
     <!-- host libs styling -->
-    <link rel="stylesheet" href="css/jquery-confirm.min.css" />
     <link rel="stylesheet" href="css/metisMenu.min.css" />
     <link rel="stylesheet" href="css/sb-admin-2.css" />
-
-    <!-- domain modules styling-->
-    <link rel="stylesheet" href="modules/deployments.css" />
 
     <style type="text/css">
         .page-content {
@@ -57,10 +53,12 @@
 
         </nav>
 
+
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid page-content" id="page-content">
             </div>
+            <div id="modules-content"></div>
         </div>
     </div>
 
@@ -72,7 +70,6 @@
 
     <!-- host libs -->
     <script src="js/metisMenu.min.js"></script>
-    <script src="js/jquery-confirm.min.js"></script>
     <script src="js/sb-admin-2.js"></script>
     <script src="js/host.js"></script>
 
@@ -93,20 +90,16 @@
             .ready(function () {
                 console.log('SitecoreInstaller Client loading');
 
-                //init modules
-
+                var section = getActiveSection();
                 deploymentsFormat.init(function () {
-                    var section = getActiveSection();
-                    host.loadSection(section, setSectionContent);
+                    $('#page-header').loadSectionTitle(section);
+                    $('#page-content').loadSectionContent(section, function () {
+                        $('#modules-content').loadModuleContent('deployments', function () {
+                            eval(section + '.init(()=>console.log("SitecoreInstaller Client loaded"))');
+                        });
+                    });
                 });
             });
-        function setSectionContent(name, html) {
-            var title = eval(name + '.iGetTitle()');
-            $('#page-header').html(title);
-            $('#page-content').html(html);
-            eval(name + '.init()');
-            console.log('SitecoreInstaller Client loaded');
-        }
 
         function getActiveSection() {
             var currentSection = 'dashboard';

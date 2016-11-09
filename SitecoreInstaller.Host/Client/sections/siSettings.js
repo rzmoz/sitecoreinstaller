@@ -2,6 +2,8 @@
     iGetTitle: function () {
         return "Settings";
     },
-    init: function () {
+    init: function (callback) {
+        if (callback !== undefined)
+            callback();
     }
 }

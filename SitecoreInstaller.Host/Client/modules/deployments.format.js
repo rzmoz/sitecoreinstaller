@@ -1,90 +1,33 @@
 ﻿(function ($) {
-    $.fn.newLocalDeployment_onClick = function (options) {
-        this.on('click',
-                function () {
-                    $.confirm({
-                        confirmButton: 'Deploy',
-                        cancelButton: 'Cancel',
-                        title: 'New Local Deployment',
-                        content: 'url:/modules/newLocalDeploymentForm.html',
-                        contentLoaded: function (data, status, xhr) {
-                            var $html = $(data);
+    $.fn.initNewLocalDeploymentDialog = function () {
+        var newLocalDepModal = $('#newLocalDeploymentModal');
+        host.triggerAndAutoRefresh(function () {
+            newLocalDepModal.find('#selLicense').licenseOptions();
+            newLocalDepModal.find('#selSitecore').sitecoreOptions();
+        });
 
-                            var licJson = buildLibrary.licenseJson;
-                            var licOptions = deploymentsFormat.selects.getLicenseOptions(licJson);
-                            $html.find('#selLicense').html(licOptions);
+        this.unbind();
+        this.on('click', function () {
+            newLocalDepModal.modal();
+        });
+        $('#new-local-deployment-form')
+            .submit(function (e) {
 
-                            var scJson = buildLibrary.sitecoreJson;
-                            var scOptions = deploymentsFormat.selects.getSitecoreOptions(scJson);
-                            $html.find('#selSitecore').html(scOptions);
+                var name = $('#new-deployment-name').val();
+                var sitecore = $('#selSitecore').find(":selected").val();
+                var license = $('#selLicense').find(":selected").val();
+                deployments.putLocal(name, sitecore, license, '');
+                newLocalDepModal.modal('toggle');
+                e.preventDefault();
+            });
 
-                            this.setContent($html);
-                        },
-                        confirm: function () {
-                            var name = $('#new-deployment-name').val();
-                            var sitecore = $('#selSitecore').find(":selected").val();
-                            var license = $('#selLicense').find(":selected").val();
 
-                            if (name === undefined || name === '') {
-                                $.alert('Please enter name of deployment');
-                                return false;
-                            }
-                            if (sitecore === undefined || sitecore === '') {
-                                $.alert('Please Sitecore version');
-                                return false;
-                            }
-                            if (license === undefined || license === '') {
-                                $.alert('Please select license');
-                                return false;
-                            }
-
-                            //start new local deployment
-                            deployments.putLocal(name, sitecore, license, '', function (response) { });
-                            return true;
-                        }
-                    });
-                });
         return this;
     };
 }(jQuery));
 
 
 var deploymentsFormat = {
-    selects: {
-        getSitecoreOptions: function (sitecoreJson) {
-            return deploymentsFormat.selects.getFormattedOptions(sitecoreJson,
-                    function (sitecore) {
-                        return sitecore;
-                    },
-                    function (sitecore) {
-                        return sitecore;
-                    }
-                );
-        },
-        getLicenseOptions: function (licenseJson) {
-            return deploymentsFormat.selects.getFormattedOptions(licenseJson,
-                    function (license) {
-                        return license.licensee + ' (' + license.id + ')';
-                    },
-                    function (license) {
-                        return license.name;
-                    }
-                );
-        },
-        getFormattedOptions: function (json, getTextCallback, getValueCallback) {
-            var options = '';
-            $.each(json,
-                function (key, element) {
-                    var text = getTextCallback(element);
-                    var value = getValueCallback(element);
-                    var option = '<option value="' + value + '">' + text + '</option>';
-                    options += option;
-
-                });
-            return options;
-        }
-    },
-
     infoPanelHtml: '',
     init: function (callback) {
         var uri = "/modules/deploymentsInfoPanel.html";
@@ -107,27 +50,33 @@ var deploymentsFormat = {
     getDepPanelId: function (dep) {
         return 'dep-info-pnl-' + dep.name;
     },
-    getDepPanel: function (index, info, dataParent) {
+    refreshInfoPanel: function (info) {
+        var panel = $('#' + deploymentsFormat.getDepPanelId(info));
+        panel.find('.btn-delete-deployment').setDisabled(() => { return info.task.status === "InProgress"; });
+        panel.find('.info-status-icon').replaceWith(deploymentsFormat.getStatusIconHtml(info.task.status));
+
+    },
+    getDepPanelHtml: function (index, info, dataParent) {
+        if (info === null || info === undefined)
+            return '';
         return deploymentsFormat.infoPanelHtml
             .replace('[[panel-id]]', deploymentsFormat.getDepPanelId(info))
             .replace('[[data-parent]]', dataParent.attr('id'))
-            .replace(/\[\[collapse-id\]\]/g, index)
+            .replace(/\[\[collapse-id\]\]/g, 'collapse-' + index)
             .replace(/\[\[info-name\]\]/g, info.name)
             .replace(/\[\[info-sitecore\]\]/g, info.sitecore)
-            .replace(/\[\[info-status\]\]/g, deploymentsFormat.getStatusIcon(info.task.status, info.task.name));
+            .replace(/\[\[info-status\]\]/g, deploymentsFormat.getStatusIconHtml(info.task.status));
     },
 
-    getStatusIcon: function (status, statusText) {
+    getStatusIconHtml: function (status) {
         var statusClass;
         if (status === "InProgress")
             statusClass = 'fa-circle-o-notch fa-spin';
         else if (status === "Success") {
             statusClass = 'fa-check-square-o';
-            statusText = statusText.replace('ing', '');
         }
         else
             statusClass = 'fa-exclamation-triangle';
-        return '<i class="fa fa-1x fa-fw ' + statusClass + '"></i>';
-        return statusText + ': ';
+        return '<i class="fa fa-1x fa-fw info-status-icon ' + statusClass + '"></i>';
     }
 }

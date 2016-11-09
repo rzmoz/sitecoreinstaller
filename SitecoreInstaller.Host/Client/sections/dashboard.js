@@ -2,13 +2,14 @@
     iGetTitle: function () {
         return "Dashboard";
     },
-    init: function () {
+    init: function (callback) {
         buildLibrary.init(function () {
             deployments.init(function () {
                 $('#count-local-deployments').localDeploymentsCount();
                 $('#deployments-list').deploymentsList();
-
-                $('#new-local-deployment').newLocalDeployment_onClick();
+                $('#new-local-deployment').initNewLocalDeploymentDialog();
+                if (callback !== undefined)
+                    callback();
             });
         });
     }

@@ -1,16 +1,16 @@
 ﻿<div id="[[panel-id]]" class="panel panel-primary dep-info-panel">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <a style="text-decoration: none;" data-toggle="collapse" data-parent="#[[data-parent]]" href="#collapse-[[collapse-id]]" aria-expanded="false" class="collapsed">
-                <i class="glyphicon glyphicon-chevron-down"></i>
+            <a style="text-decoration: none;" data-toggle="collapse" data-parent="#[[data-parent]]" href="#[[collapse-id]]" aria-expanded="false" class="collapsed">
+                <i class="glyphicon glyphicon-chevron-down"></i> [[info-name]]
             </a>
-            [[info-name]] [[info-status]]
+            [[info-status]]
         </h4>
     </div>
-    <div id="collapse-[[collapse-id]]" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+    <div id="[[collapse-id]]" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
         <div class="panel-body">
             [[info-sitecore]]
-            <a class="btn btn-danger [[info-action-disable]]" onclick="javascript: deploymentsFormat.delete_onClick('[[info-name]]'); return false;"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-danger btn-delete-deployment" title="Delete [[info-name]]" onclick="javascript: deploymentsFormat.delete_onClick('[[info-name]]'); return false;"><i class="fa fa-trash-o"></i></a>
         </div>
     </div>
 </div>
