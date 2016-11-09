@@ -1,6 +1,31 @@
 ﻿(function ($) {
-    $.fn.initDeploymentsList = function () {
-        deploymentsList.refresh(this);
+    $.fn.initDeploymentsList = function (options) {
+        var settings = $.extend({
+            group: true
+        }, options);
+
+        if (settings.group)
+            this.addClass('panel-group');
+        else
+            this.removeClass('panel-group');
+
+        var $this = this;
+
+        this.load(host.getModulesPath('deploymentsInfoPanel', 'html'), function () {
+            deployments_HtmlModule.init();
+            deploymentsInfoPanel_HtmlModule.initDeploymentList($this);
+        });
+        return this;
+    };
+}(jQuery));
+
+(function ($) {
+    $.fn.initNewLocalDeploymentDialog = function () {
+        var newLocalDepModal = $('#newLocalDeploymentModal');
+        this.unbind();
+        this.on('click', function () {
+            newLocalDepModal.modal();
+        });
         return this;
     };
 }(jQuery));
@@ -16,6 +41,7 @@
 }(jQuery));
 
 var deployments = {
+    dataDeploymentNameKey: 'data-deployment-name',
     baseUrl: '/api/local/deployments/',
     localDeployments: [],
     init: function (callback) {
@@ -26,7 +52,6 @@ var deployments = {
         $.getJSON(deployments.baseUrl + name + '/status', callback);
     },
     getAllLocal: function (callback) {
-
         $.getJSON(deployments.baseUrl,
             function (json) {
                 deployments.localDeployments = json;

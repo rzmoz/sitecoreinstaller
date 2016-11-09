@@ -82,8 +82,6 @@
 
     <!-- domain modules -->
     <script src="modules/deployments.js"></script>
-    <script src="modules/deployments.list.js"></script>
-    <script src="modules/deployments.format.js"></script>
     <script src="modules/buildLibrary.js"></script>
 
     <script>
@@ -92,12 +90,10 @@
                 console.log('SitecoreInstaller Client loading');
 
                 var section = getActiveSection();
-                deploymentsFormat.init(function () {
-                    $('#page-header').loadSectionTitle(section);
-                    $('#page-content').loadSectionContent(section, function () {
-                        $('#modules-content').loadModuleContent('deployments', function () {
-                            eval(section + '.init(()=>console.log("SitecoreInstaller Client loaded"))');
-                        });
+                $('#page-header').loadSectionTitle(section);
+                $('#page-content').loadSectionContent(section, function () {
+                    $('#modules-content').loadModuleContent('deployments', function () {
+                        eval(section + '.init(()=>console.log("SitecoreInstaller Client loaded"))');
                     });
                 });
             });

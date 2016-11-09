@@ -21,22 +21,18 @@
                                    placeholder="ea. my.project" required="required">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Sitecore</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <select class="form-control" id="selSitecore"></select>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">License</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <select class="form-control" id="selLicense"></select>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-success" value="Deploy" />
@@ -47,27 +43,69 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    //jquery ready
-    $(function () {
-        var newLocalDepModal = $('#newLocalDeploymentModal');
-        host.triggerAndAutoRefresh(function () {
-            newLocalDepModal.find('#selLicense').licenseOptions();
-            newLocalDepModal.find('#selSitecore').sitecoreOptions();
-        });
+<!-- delete local deployment modal dialog -->
+<div id="deleteLocalDeploymentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete <span class="deployment-name"></span></h4>
+            </div>
+            <form class="form-horizontal form-label-left input_mask" id="delete-local-deployment-form">
+                <div class="modal-body">
+                    Are you sure you want to delete <span class="deployment-name"></span>?
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-        newLocalDepModal.on('shown.bs.modal', function () {
-            $('#new-local-deployment-name').focus();
-        });
-        $('#new-local-deployment-form')
-            .submit(function (e) {
-                var name = $('#new-local-deployment-name').val();
-                var sitecore = $('#selSitecore').find(":selected").val();
-                var license = $('#selLicense').find(":selected").val();
-                deployments.putLocal(name, sitecore, license, '');
-                newLocalDepModal.modal('toggle');
-                $('#new-deployment-name').val('');
-                e.preventDefault();
+<script type="text/javascript">
+
+    var deployments_HtmlModule = {
+        init: function () {
+            deployments_HtmlModule.initDeleteModal();
+            deployments_HtmlModule.initNewModal();
+        },
+        initDeleteModal: function () {
+            $('#delete-local-deployment-form')
+                  .submit(function (e) {
+                      var deleteModal = $('#deleteLocalDeploymentModal');
+                      var name = deleteModal.attr(deployments.dataDeploymentNameKey);
+
+                      deployments.deleteLocal(name, function () {
+                          deleteModal.modal('toggle');
+                          deleteModal.attr(deployments.dataDeploymentNameKey, '');
+                      });
+                      
+                      e.preventDefault();
+                  });
+        },
+        initNewModal: function () {
+            var newLocalDepModal = $('#newLocalDeploymentModal');
+            host.triggerAndAutoRefresh(function () {
+                newLocalDepModal.find('#selLicense').licenseOptions();
+                newLocalDepModal.find('#selSitecore').sitecoreOptions();
             });
-    });
- </script>
+
+            newLocalDepModal.on('shown.bs.modal', function () {
+                $('#new-local-deployment-name').focus();
+            });
+            $('#new-local-deployment-form')
+                .submit(function (e) {
+                    var name = $('#new-local-deployment-name').val();
+                    var sitecore = $('#selSitecore').find(":selected").val();
+                    var license = $('#selLicense').find(":selected").val();
+                    deployments.putLocal(name, sitecore, license, '');
+                    newLocalDepModal.modal('toggle');
+                    $('#new-deployment-name').val('');
+                    e.preventDefault();
+                });
+        }
+    }
+</script>
