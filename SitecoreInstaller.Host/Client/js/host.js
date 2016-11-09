@@ -1,15 +1,4 @@
 ﻿(function ($) {
-    $.fn.setDisabled = function (disabledPredicate) {
-        if (disabledPredicate())
-            this.addClass('disabled');
-        else
-            this.removeClass('disabled');
-        return this;
-    };
-}(jQuery));
-
-
-(function ($) {
     $.fn.loadSectionTitle = function (sectionName) {
         var title = eval(sectionName + '.iGetTitle()');
         this.html(title);
@@ -37,16 +26,18 @@
     };
 }(jQuery));
 
-
-
-
-
 var host = {
+    toggleDisabled: function (element, disabledPredicate) {
+        if (disabledPredicate())
+            element.addClass('disabled');
+        else
+            element.removeClass('disabled');
+    },
     triggerAndAutoRefresh: function (func, interval) {
         if (func === undefined || func === null)
             return null;
         if (interval === undefined || interval === null)
-            interval = 1000;
+            interval = 5000;
         func();
         return window.setInterval(function () {
             func();
