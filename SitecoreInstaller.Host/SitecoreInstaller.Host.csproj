@@ -163,6 +163,9 @@
     <Content Include="Client\modules\deployments.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Client\modules\deployments.list.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Client\modules\deploymentsInfoPanel.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
