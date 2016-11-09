@@ -19,19 +19,13 @@
 
 (function ($) {
     $.fn.loadSectionContent = function (sectionName, callback) {
-        var $this = this;
-        $.get(host.getSectionPath(sectionName, 'html'),
-                    function (html) {
-                        $this.html(html);
-                        if (callback !== undefined)
-                            callback();
-                    });
+        this.load(host.getSectionPath(sectionName, 'html'), callback);
         return this;
     };
 }(jQuery));
 
 (function ($) {
-    $.fn.loadModuleContent = function (moduleName,callback) {
+    $.fn.loadModuleContent = function (moduleName, callback) {
         var $this = this;
         $.get(host.getModulesPath(moduleName, 'html'),
                     function (html) {
