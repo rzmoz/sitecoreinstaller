@@ -10,18 +10,19 @@
         this.on('click', function () {
             newLocalDepModal.modal();
         });
+        newLocalDepModal.on('shown.bs.modal', function () {
+            $('#new-local-deployment-name').focus();
+        });
         $('#new-local-deployment-form')
             .submit(function (e) {
-
-                var name = $('#new-deployment-name').val();
+                var name = $('#new-local-deployment-name').val();
                 var sitecore = $('#selSitecore').find(":selected").val();
                 var license = $('#selLicense').find(":selected").val();
                 deployments.putLocal(name, sitecore, license, '');
                 newLocalDepModal.modal('toggle');
+                $('#new-deployment-name').val('');
                 e.preventDefault();
             });
-
-
         return this;
     };
 }(jQuery));
