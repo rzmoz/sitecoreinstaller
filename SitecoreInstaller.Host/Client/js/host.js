@@ -5,6 +5,22 @@
         if (qs === '{""}')
             return qs;
         return $.parseJSON(qs);
+    },
+    loadSection: function (name, loadedCallback) {
+        console.log(name + ' section loading...');
+        $.get(host.getSectionPath(name, 'html'),
+            function (html) {
+                console.log(name + ' html loaded');
+                console.log(name + ' section loaded');
+                loadedCallback(name, html);
+            });
+
+    },
+    getSectionPath: function (name, type) {
+        return '/sections/' + name + '.' + type;
+    },
+    loadModule: function (name) {
+        $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', host.getSectionPath(name, 'css')));
     }
 }
 

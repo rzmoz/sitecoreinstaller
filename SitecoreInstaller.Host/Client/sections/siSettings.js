@@ -2,7 +2,7 @@
     iGetTitle: function () {
         return "Settings";
     },
-    iLoad: function () {
+    init: function () {
     },
     iRefresh: function () {
     }

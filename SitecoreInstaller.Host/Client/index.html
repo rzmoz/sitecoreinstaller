@@ -9,38 +9,37 @@
 
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
+    <!-- core libs styling -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
 
-    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
-
+    <!-- host libs styling -->
     <link rel="stylesheet" href="css/jquery-confirm.min.css" />
     <link rel="stylesheet" href="css/metisMenu.min.css" />
-    <link rel="stylesheet" href="css/waitMe.min.css" />
-
     <link rel="stylesheet" href="css/sb-admin-2.css" />
-    <link rel="stylesheet" href="css/sitecoreinstaller.css" />
+
+    <!-- domain modules styling-->
+    <link rel="stylesheet" href="modules/deployments.css" />
+
+    <style type="text/css">
+        .page-content {
+            padding: 20px 0;
+        }
+    </style>
 </head>
 <body>
     <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <div class="navbar-brand">SitecoreInstaller &gt; <span id="page-header"></span></div>
             </div>
-
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/?section=deployments"><i class="fa fa-dashboard fa-fw"></i> Deployments</a>
+                            <a href="/?section=dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="/?section=armTemplates"> <i class="fa fa-windows fa-fw"></i> ARM Templates</a>
@@ -71,78 +70,50 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- theme libs -->
+    <!-- host libs -->
     <script src="js/metisMenu.min.js"></script>
     <script src="js/jquery-confirm.min.js"></script>
-    <script src="js/waitMe.min.js"></script>
     <script src="js/sb-admin-2.js"></script>
-
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="js/dataTables.bootstrap.min.js"></script>
-
-    <!-- domain libs -->
-    <script src="js/localDeployments.js"></script>
     <script src="js/host.js"></script>
-    <script src="js/format.js"></script>
-    <script src="js/buildLibrary.js"></script>
 
-    <script src="Content/sdn.js"></script>
-    <script src="Content/armTemplates.js"></script>
-    <script src="Content/deployments.js"></script>
-    <script src="Content/siSettings.js"></script>
+    <!-- sections -->
+    <script src="sections/armTemplates.js"></script>
+    <script src="sections/dashboard.js"></script>
+    <script src="sections/sdn.js"></script>
+    <script src="sections/siSettings.js"></script>
+
+    <!-- domain modules -->
+    <script src="modules/deployments.js"></script>
 
     <script>
-        var currentSection = 'deployments';
-        var refreshTimer;
-
         $(document)
             .ready(function () {
                 console.log('SitecoreInstaller Client loading');
 
-                $('#page_content').waitMe({ text: "Loading content..." });
-
-                var section = host.getQueryStringAsJson().section;
-                if (section === undefined) {
-                    $('#side-menu li a').first().addClass('active');
-                    section = currentSection;
-                }
-                currentSection = section;
-                loadModule(currentSection);
+                //init modules
+                
+                    deploymentsFormat.init(function () {
+                        var section = getActiveSection();
+                        host.loadSection(section, setSectionContent);
+                    });
             });
-
-        function loadModule(name) {
+        function setSectionContent(name, html) {
             var title = eval(name + '.iGetTitle()');
-            console.log('Module: ' + name + ' loading...');
             $('#page-header').html(title);
-
-            $('#page_content').waitMe({ text: 'Loading ' + currentSection + '...' });
-
-            var modulePath = '/content/' + name + '.html';
-            console.log('Html for: ' + title + ' loading...');
-
-            if (refreshTimer === undefined) {
-                window.clearInterval(refreshTimer);
-            }
-
-            $.get(modulePath,
-                function (html) {
-                    $('#page-content').html(html);
-                    console.log('Html for: ' + title + ' loaded');
-                    //call init function in loaded module
-                    eval(name + '.iLoad(' + function () { moduleLoaded(title); } + ')');
-
-                    var refreshEval = name + '.iRefresh()';
-                    eval(refreshEval);
-                    refreshTimer = window.setInterval(function () {
-                        eval(refreshEval);
-                    }, 2000);
-                });
+            $('#page-content').html(html);
+            eval(name + '.init()');
+            console.log('SitecoreInstaller Client loaded');
         }
 
-        function moduleLoaded(title) {
-            $('#page_content').waitMe('hide');
-            console.log('Module: ' + title + ' loaded');
-            console.log('SitecoreInstaller Client loaded');
+        function getActiveSection() {
+            var currentSection = 'dashboard';
+
+            var section = host.getQueryStringAsJson().section;
+            if (section === undefined) {
+                $('#side-menu li a').first().addClass('active');
+                section = currentSection;
+            }
+            return section;
         }
     </script>
 </body>

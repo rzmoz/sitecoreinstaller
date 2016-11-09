@@ -1,32 +1,25 @@
-﻿var deployments = {
+﻿var dashboard = {
     iGetTitle: function () {
-        return "Deployments";
+        return "Dashboard";
     },
-    iLoad: function () {
+    init: function () {
+        deployments.refresh(function(localDeployments) {
+            $('#deployments-list')
+                .deploymentsList({
+                    deployments: localDeployments
+                });
+        });
+
+
+        /*
         deployments.newLocalDeployment_onClick();
-        //init deployments table
-        $('#table-deployments')
-            .DataTable({
-                paging: false,
-                "columnDefs": [{ "className": "dt-center", "targets": "_all" }]
-            });
+
+    
 
         deployments.iRefresh(function () {
-        });
+        });*/
     },
     iRefresh: function (callback) {
-        localDeployments.loadAllInfos(function (localDeployments) {
-            deployments.refreshDeploymentCounts();
-
-            var dataSet = format.deployments.getLocalDataTableSet(localDeployments);
-            var dataTable = $('#table-deployments').DataTable();
-            dataTable.clear();
-            dataTable.rows.add(dataSet).draw();
-
-            if (callback !== undefined) {
-                callback();
-            }
-        });
         buildLibrary.loadAll(function () { });
     },
 

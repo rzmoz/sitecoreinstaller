@@ -18,7 +18,14 @@
             var dataSet = [];
             $.each(deps,
                 function (ind, val) {
+                    var panel = '<div class="panel panel-primary"><div class="panel-heading"><h3 class="panel-title">' +
+                        val.name +
+                        '</h3><span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span></div><div class="panel-body" style="display: block;">' +
+                        val.sitecore +
+                        '</div></div>';
 
+                    dataSet.push([panel]);
+                    /*
                     var inProgress = '';
                     if (localDeployments.isInProgress(val.task.status)) {
                         inProgress = ' disabled';
@@ -31,7 +38,7 @@
                         '<a href="http://' + val.url + '/" class="btn btn-default ' + inProgress + '"  target="_blank"><i class="fa fa-external-link"></i></a>',
                         '<a href="http://' + val.url + '/sitecore" class="btn btn-default ' + inProgress + '" target="_blank"><i class="fa fa-external-link-square"></i></a>',
                         '<a href="#" class="btn btn-danger ' + inProgress + '" onclick="javascript:dashboard.deleteLocalDeployment_onClick(\'' + val.name + '\');return false;" target="_blank"><i class="fa fa-trash-o"></i></a>'
-                    ]);
+                    ]);*/
                 });
             return dataSet;
         }

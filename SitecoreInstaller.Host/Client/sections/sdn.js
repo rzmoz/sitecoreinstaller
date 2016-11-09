@@ -1,9 +1,8 @@
-﻿var armTemplates = {
+﻿var sdn = {
     iGetTitle: function () {
-        return "ARM Templates";
+        return "SDN";
     },
-    iLoad: function () {
-        
+    init: function () {
         
     },
     iRefresh: function () {
