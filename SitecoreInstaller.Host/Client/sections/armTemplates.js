@@ -3,10 +3,5 @@
         return "ARM Templates";
     },
     init: function () {
-        
-        
-    },
-    iRefresh: function () {
-        
     }
 }

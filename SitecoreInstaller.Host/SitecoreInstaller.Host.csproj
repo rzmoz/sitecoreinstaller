@@ -172,7 +172,7 @@
     <Content Include="Client\modules\deployments.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\js\buildLibrary.js">
+    <Content Include="Client\modules\buildLibrary.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\sections\armTemplates.js">
@@ -218,7 +218,7 @@
     <Content Include="Client\js\bootstrap.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\js\format.js">
+    <Content Include="Client\modules\deployments.format.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\modules\deployments.js">

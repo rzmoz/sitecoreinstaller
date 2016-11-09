@@ -1,4 +1,14 @@
 ﻿var host = {
+    triggerAndAutoRefresh: function (func, interval) {
+        if (func === undefined || func === null)
+            return null;
+        if (interval === undefined || interval === null)
+            interval = 1000;
+        func();
+        return window.setInterval(function () {
+            func();
+        }, interval);
+    },
     getQueryStringAsJson: function () {
         var qs = window.location.search.replace('?', '');
         qs = '{"' + qs.replace(/&/g, '","').replace(/=/g, '":"') + '"}';

@@ -4,8 +4,5 @@
     },
     init: function () {
         
-    },
-    iRefresh: function () {
-        
     }
 }

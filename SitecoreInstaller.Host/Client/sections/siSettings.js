@@ -3,7 +3,5 @@
         return "Settings";
     },
     init: function () {
-    },
-    iRefresh: function () {
     }
 }

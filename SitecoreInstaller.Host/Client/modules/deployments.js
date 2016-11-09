@@ -1,73 +1,87 @@
 ﻿(function ($) {
-    $.fn.deploymentsList = function (options) {
-        var settings = $.extend({
-            deployments: []
-        }, options);
+    $.fn.deploymentsList = function () {
+
+        var currentDeployments = [];
         var list = this;
-        $.each(settings.deployments, function (index, dep) { list.append(deploymentsFormat.getInfoPanels(index,dep,list)); });
+
+        host.triggerAndAutoRefresh(function () {
+            var updatedDeployments = deployments.localDeployments;
+
+            $.each(currentDeployments, function (index, curDep) {
+                var curDepId = deploymentsFormat.getDepPanelId(curDep);
+
+                var shouldBeDeleted = updatedDeployments.find(ud => deploymentsFormat.getDepPanelId(ud) === curDepId) === undefined;
+
+                if (shouldBeDeleted) {
+                    console.log(curDepId + ' removed');
+                    $('#' + curDepId).remove();
+                }
+            });
+
+            //add new
+            $.each(updatedDeployments, function (index, upDep) {
+                var upDepId = deploymentsFormat.getDepPanelId(upDep);
+                var shouldBeAdded = currentDeployments.find(cd=> deploymentsFormat.getDepPanelId(cd) === upDepId) === undefined;
+                if (shouldBeAdded) {
+                    var existingPanels = list.children('div.dep-info-panel');
+
+                    var lastId = existingPanels.last().attr('id');
+
+                    //if list is empty or if new dep is last in list
+                    if (existingPanels.length === 0 || lastId.localeCompare(upDepId) < 0) {
+                        list.append(deploymentsFormat.getDepPanel(index, upDep, list));
+                        console.log(upDepId + ' was appended');
+                    } else {
+                        $.each(existingPanels,
+                                function (ind, pnl) {
+                                    var pnlId = $(pnl).attr('id');
+                                    if (upDepId.localeCompare(pnlId) > 0)
+                                        return true;
+                                    console.log('adding ' + upDep + ' before ' + pnlId);
+                                    $(pnl).before(deploymentsFormat.getDepPanel(index, upDep, list));
+                                    return false;
+
+                                });
+                    }
+                }
+            });
+
+            currentDeployments = updatedDeployments;
+
+        }, 2000);
         return this;
     };
-
 }(jQuery));
 
-var deploymentsFormat = {
-    infoPanelHtml: '',
-    init: function (callback) {
-        var uri = "/modules/deploymentsInfoPanel.html";
-        $.get(uri, function (html) {
-            deploymentsFormat.infoPanelHtml = html;
-            callback();
-        });
-    },
-    delete_onClick: function (depName) {
-        $.confirm({
-            title: "Deleting " + depName + "!",
-            content: 'Are you sure you want to delete ' + depName + '?',
-            confirmButton: 'Yes',
-            cancelButton: 'No',
-            confirm: function () {
-                deployments.deleteLocal(depName);
-            }
-        });
-
-    },
-    getInfoPanels: function (index, info, dataParent) {
-        return deploymentsFormat.infoPanelHtml
-            .replace(/\[\[data-parent\]\]/g, dataParent.attr('id'))
-            .replace(/\[\[collapse-id\]\]/g, index)
-            .replace(/\[\[info-name\]\]/g, info.name)
-            .replace(/\[\[info-sitecore\]\]/g, info.sitecore)
-            .replace(/\[\[info-status\]\]/g, deploymentsFormat.getStatusIcon(info.task.status, info.task.name));
-    },
-
-    getStatusIcon: function (status, statusText) {
-        var statusClass;
-        if (status === "InProgress")
-            statusClass = 'fa-circle-o-notch fa-spin';
-        else if (status === "Success") {
-            statusClass = 'fa-check-square-o';
-            statusText = statusText.replace('ing', '');
-        }
-        else
-            statusClass = 'fa-exclamation-triangle';
-        return '<i class="fa fa-1x fa-fw ' + statusClass + '"></i>';
-        return statusText + ': ';
-    }
-}
+(function ($) {
+    $.fn.localDeploymentsCount = function (interval) {
+        var $this = this;
+        host.triggerAndAutoRefresh(function () {
+            $this.html(deployments.localDeployments.length);
+        }, interval);
+        return this;
+    };
+}(jQuery));
 
 var deployments = {
     localDeployments: [],
-    refresh: function (callback) {
+    init: function (callback) {
+        deployments.getAllLocal(callback);
+        host.triggerAndAutoRefresh(deployments.getAllLocal);
+    },
+    getAllLocal: function (callback) {
         var uri = "/api/local/deployments";
-        $.getJSON(uri, function (json) {
-            deployments.localDeployments = json;
-            callback(deployments.localDeployments);
-        });
+        $.getJSON(uri,
+            function (json) {
+                deployments.localDeployments = json;
+                if (callback !== undefined)
+                    callback();
+            });
     },
     deleteLocal: function (name, responseCallback) {
         $.delete('/api/local/deployments/' + name, '', responseCallback);
     },
-    put: function (name, sitecore, license, modules, responseCallback) {
+    putLocal: function (name, sitecore, license, modules, responseCallback) {
         var body = {
             name: name,
             sitecore: sitecore,
