@@ -4,11 +4,12 @@
             deployments: []
         }, options);
         var list = this;
-        $.each(settings.deployments, function (index, dep) { list.append(deploymentsFormat.getInfoPanels(dep)); });
+        $.each(settings.deployments, function (index, dep) { list.append(deploymentsFormat.getInfoPanels(index,dep,list)); });
         return this;
     };
 
 }(jQuery));
+
 var deploymentsFormat = {
     infoPanelHtml: '',
     init: function (callback) {
@@ -18,27 +19,39 @@ var deploymentsFormat = {
             callback();
         });
     },
-    getInfoPanels: function (info) {
-        var id = 'depInfo-' + info.name;
-        var title = info.name;
-        var content = info.sitecore;
-        return deploymentsFormat.infoPanelHtml
-            .replace('[[panel-id]]', id)
-            .replace('[[panel-title]]', title)
-            .replace('[[panel-body]]', content);
+    delete_onClick: function (depName) {
+        $.confirm({
+            title: "Deleting " + depName + "!",
+            content: 'Are you sure you want to delete ' + depName + '?',
+            confirmButton: 'Yes',
+            cancelButton: 'No',
+            confirm: function () {
+                deployments.deleteLocal(depName);
+            }
+        });
+
     },
-    infoPanelCollapseClick: function (element) {
-        
-        var $this = $(element);
-        if (!$this.hasClass('panel-collapsed')) {
-            $this.parents('.panel').find('.panel-body').slideUp();
-            $this.addClass('panel-collapsed');
-            $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
-        } else {
-            $this.parents('.panel').find('.panel-body').slideDown();
-            $this.removeClass('panel-collapsed');
-            $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+    getInfoPanels: function (index, info, dataParent) {
+        return deploymentsFormat.infoPanelHtml
+            .replace(/\[\[data-parent\]\]/g, dataParent.attr('id'))
+            .replace(/\[\[collapse-id\]\]/g, index)
+            .replace(/\[\[info-name\]\]/g, info.name)
+            .replace(/\[\[info-sitecore\]\]/g, info.sitecore)
+            .replace(/\[\[info-status\]\]/g, deploymentsFormat.getStatusIcon(info.task.status, info.task.name));
+    },
+
+    getStatusIcon: function (status, statusText) {
+        var statusClass;
+        if (status === "InProgress")
+            statusClass = 'fa-circle-o-notch fa-spin';
+        else if (status === "Success") {
+            statusClass = 'fa-check-square-o';
+            statusText = statusText.replace('ing', '');
         }
+        else
+            statusClass = 'fa-exclamation-triangle';
+        return '<i class="fa fa-1x fa-fw ' + statusClass + '"></i>';
+        return statusText + ': ';
     }
 }
 
@@ -51,13 +64,7 @@ var deployments = {
             callback(deployments.localDeployments);
         });
     },
-    isInProgress: function (status) {
-        if (status === undefined) {
-            return false;
-        }
-        return status === "InProgress";
-    },
-    delete: function (name, responseCallback) {
+    deleteLocal: function (name, responseCallback) {
         $.delete('/api/local/deployments/' + name, '', responseCallback);
     },
     put: function (name, sitecore, license, modules, responseCallback) {

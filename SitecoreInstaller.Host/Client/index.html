@@ -75,6 +75,7 @@
     <script src="js/jquery-confirm.min.js"></script>
     <script src="js/sb-admin-2.js"></script>
     <script src="js/host.js"></script>
+    <script src="js/format.js"></script>
 
     <!-- sections -->
     <script src="sections/armTemplates.js"></script>
@@ -91,11 +92,11 @@
                 console.log('SitecoreInstaller Client loading');
 
                 //init modules
-                
-                    deploymentsFormat.init(function () {
-                        var section = getActiveSection();
-                        host.loadSection(section, setSectionContent);
-                    });
+
+                deploymentsFormat.init(function () {
+                    var section = getActiveSection();
+                    host.loadSection(section, setSectionContent);
+                });
             });
         function setSectionContent(name, html) {
             var title = eval(name + '.iGetTitle()');

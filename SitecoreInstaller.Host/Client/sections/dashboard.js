@@ -27,18 +27,7 @@
         $('#count-local-deployments').html(localDeployments.deployments.length);
 
     },
-    deleteLocalDeployment_onClick: function (depName) {
-        $.confirm({
-            title: "Deleting " + depName + "!",
-            content: 'Are you sure you want to delete ' + depName + '?',
-            confirmButton: 'Yes',
-            cancelButton: 'No',
-            confirm: function () {
-                localDeployments.delete(depName);
-            }
-        });
-
-    },
+    
     newLocalDeployment_onClick: function () {
         $('#new-local-deployment')
             .on('click',

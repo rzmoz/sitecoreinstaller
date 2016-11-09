@@ -1,19 +1,6 @@
 ﻿var format = {
     deployments: {
-        getStatusIcon: function (status, statusText) {
-            var statusClass;
-
-            if (localDeployments.isInProgress(status))
-                statusClass = 'fa-circle-o-notch fa-spin';
-            else if (status === "Success") {
-                statusClass = 'fa-check-square-o';
-                statusText = statusText.replace('ing', '');
-            }
-            else
-                statusClass = 'fa-exclamation-triangle';
-
-            return statusText + ': <i class="fa fa-1x fa-fw ' + statusClass + '"></i>';
-        },
+        
         getLocalDataTableSet: function (deps) {
             var dataSet = [];
             $.each(deps,
