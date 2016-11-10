@@ -50,7 +50,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Delete <span class="deployment-name"></span></h4>
+                <h4 class="modal-title"><i class="fa fa-1x fa-fw info-status-icon fa-exclamation-triangle"></i> Delete <span class="deployment-name"></span></h4>
             </div>
             <form class="form-horizontal form-label-left input_mask" id="delete-local-deployment-form">
                 <div class="modal-body">
@@ -71,6 +71,12 @@
         init: function () {
             deployments_HtmlModule.initDeleteModal();
             deployments_HtmlModule.initNewModal();
+        },
+        localDeploymentDelete_onclick: function (name) {
+            var deleteModal = $('#deleteLocalDeploymentModal');
+            deleteModal.attr(deployments.dataDeploymentNameKey, name);
+            $('#deleteLocalDeploymentModal .deployment-name').text(name);
+            deleteModal.modal('toggle');
         },
         initDeleteModal: function () {
             $('#delete-local-deployment-form')
