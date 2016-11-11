@@ -48,7 +48,7 @@
                     var shouldBeAdded = $('#' + targetId).length === 0;
                     if (shouldBeAdded) {
                         var existingPanels = list.children('div.dep-info-panel');
-                        var newPanel = deploymentsInfoPanel_HtmlModule.getNewDepPanel(index, upDep, list);
+                        var newPanel = deploymentsInfoPanel_HtmlModule.getNewDepPanel(upDep, list);
                         var lastId = existingPanels.last().attr('id');
 
                         //if list is empty or if new dep is last in list
@@ -80,14 +80,14 @@
                 panel.find('.info-status-icon').replaceWith(statusHtml);
             });
         },
-        getNewDepPanel: function (index, info, dataParent) {
+        getNewDepPanel: function (info, dataParent) {
             if (info === null || info === undefined)
                 return '';
             var panelId = deploymentsInfoPanel_HtmlModule.getDepPanelId(info);
             var html = $(deploymentsInfoPanel_HtmlModule.depPanelTemplateHtml
                 .replace('[[panel-id]]', panelId)
                 .replace('[[data-parent]]', dataParent.attr('id'))
-                .replace(/\[\[collapse-id\]\]/g, 'collapse-' + index)
+                .replace(/\[\[collapse-id\]\]/g, 'collapse-' + new Date().getTime())
                 .replace(/\[\[info-name\]\]/g, info.name)
                 .replace(/\[\[info-sitecore\]\]/g, info.sitecore)
                 .replace(/\[\[info-status\]\]/g, deploymentsInfoPanel_HtmlModule.getStatusIconHtml(info.task.status)));

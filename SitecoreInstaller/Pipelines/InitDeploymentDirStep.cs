@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using DotNet.Basics.IO;
+using DotNet.Basics.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Deployments;
 
@@ -17,7 +18,7 @@ namespace SitecoreInstaller.Pipelines
             _advancedSettings = advancedSettings;
         }
 
-        protected override Task RunImpAsync(T args, CancellationToken ct)
+        protected override Task RunImpAsync(T args, TaskIssueList issues, CancellationToken ct)
         {
             //must be initializaed as the first thing!
             args.DeploymentDir = _localDeploymentsService.GetDeploymentDir(args.Info.Name, initialize: true);

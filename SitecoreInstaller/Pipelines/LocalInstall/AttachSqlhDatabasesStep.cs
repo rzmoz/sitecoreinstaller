@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using DotNet.Basics.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Databases;
 
@@ -14,7 +15,7 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
             _dbService = dbService;
         }
 
-        protected override Task RunImpAsync(InstallLocalArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(InstallLocalArgs args, TaskIssueList issues, CancellationToken ct)
         {
             _dbService.AttacSqlhDatabases(args.SqlDatabaseFiles);
             return Task.CompletedTask;

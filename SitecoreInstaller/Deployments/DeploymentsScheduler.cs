@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Threading;
 using System.Threading.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using NLog;
@@ -22,7 +23,7 @@ namespace SitecoreInstaller.Deployments
             return _tasks.ContainsKey(name.ToLowerInvariant());
         }
 
-        public bool TryStart<T>(string name, PipelineSection<T> pipeline, T args) where T : LocalArgs, new()
+        public bool TryStart<T>(string name, Pipeline<T> pipeline, T args) where T : LocalArgs, new()
         {
             var key = name.ToLowerInvariant();
 
@@ -34,7 +35,7 @@ namespace SitecoreInstaller.Deployments
                 {
                     try
                     {
-                        await pipeline.RunAsync(args).ConfigureAwait(false);
+                        var result = await pipeline.RunAsync(args, CancellationToken.None).ConfigureAwait(false);
                     }
                     catch (Exception e)
                     {

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DotNet.Basics.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Databases;
 
@@ -15,7 +16,7 @@ namespace SitecoreInstaller.Pipelines.LocalUnInstall
             _dbConnectionStringsFactory = dbConnectionStringsFactory;
         }
         
-        protected override Task RunImpAsync(UnInstallLocalArgs args, CancellationToken ct)
+        protected override Task RunImpAsync(UnInstallLocalArgs args, TaskIssueList issues, CancellationToken ct)
         {
             args.ConnectionStrings = _dbConnectionStringsFactory.Create(args.DeploymentDir.Website.App_Config.ConnectionStringsConfig).ToList();
 

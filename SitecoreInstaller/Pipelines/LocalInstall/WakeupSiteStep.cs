@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using DotNet.Basics.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Website;
 
@@ -14,7 +15,7 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
             _websiteService = websiteService;
         }
 
-        protected override async Task RunImpAsync(InstallLocalArgs args, CancellationToken ct)
+        protected override async Task RunImpAsync(InstallLocalArgs args, TaskIssueList issues, CancellationToken ct)
         {
             await _websiteService.WakeUpSiteAsync(args.Info.Url).ConfigureAwait(false);
         }
