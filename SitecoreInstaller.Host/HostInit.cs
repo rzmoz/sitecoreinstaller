@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NLog;
 using Owin;
+using SitecoreInstaller.Host.Hubs;
 
 namespace SitecoreInstaller.Host
 {
