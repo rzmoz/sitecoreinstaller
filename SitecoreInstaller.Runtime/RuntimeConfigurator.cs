@@ -122,16 +122,7 @@ namespace SitecoreInstaller.Runtime
 
         private bool LogAppInitializing()
         {
-            Logger.Trace("------------------------------------------------------------------------------------------------------");
-            Logger.Trace(@"
-              ____  _ _                          ___           _        _ _           
-             / ___|(_) |_ ___  ___ ___  _ __ ___|_ _|_ __  ___| |_ __ _| | | ___ _ __ 
-             \___ \| | __/ _ \/ __/ _ \| '__/ _ \| || '_ \/ __| __/ _` | | |/ _ \ '__|
-              ___) | | ||  __/ (_| (_) | | |  __/| || | | \__ \ || (_| | | |  __/ |   
-             |____/|_|\__\___|\___\___/|_|  \___|___|_| |_|___/\__\__,_|_|_|\___|_|
-
-");
-            Logger.Trace("------------------------------------------------------------------------------------------------------");
+            Logger.Trace(AsciiArts.Logo);
             Logger.Debug($"Runtime initializing...");
             Logger.Trace($"UTC Time: {DateTime.UtcNow}");
             Logger.Trace($"Host Version: {FileVersionInfo.GetVersionInfo(typeof(RuntimeConfigurator).Assembly.Location).FileVersion}");

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using Autofac.Integration.SignalR;
 using Autofac.Integration.WebApi;
 using DotNet.Basics.NLog;
 using DotNet.Basics.Sys;
@@ -18,9 +19,16 @@ namespace SitecoreInstaller.Host
             //starting host
             var runtime = new RuntimeConfigurator();
 
-            if (runtime.Init(ConfigureLog, builder => builder.RegisterApiControllers(typeof(Program).Assembly)) == false)
+            var initialized = runtime.Init(ConfigureLog, iocBuilder =>
             {
-                runtime.Logger.Fatal($"Runtime failed to inititialize. Aborting...");
+                iocBuilder.RegisterApiControllers(typeof(Program).Assembly);
+                iocBuilder.RegisterHubs(typeof(Program).Assembly);
+            });
+
+            if (initialized == false)
+            {
+                runtime.Logger.Fatal(@"    Runtime failed to inititialize. Aborting...    ");
+                runtime.Logger.Fatal(AsciiArts.FailFace);
                 Console.ReadKey();
                 return 1;
             }
@@ -32,15 +40,26 @@ namespace SitecoreInstaller.Host
                 runtime.Logger.Debug($"Host: {runtime.HostName} starting...");
                 var baseAddress = args.Take(1).FirstOrDefault() ?? "http://localhost:7919";
 
-                host = WebApp.Start(baseAddress, appBuilder =>
+                host = WebApp.Start(baseAddress, app =>
                 {
                     var webapiInit = new WebApiInit();
-                    webapiInit.Init(appBuilder, runtime.Container, runtime.Logger);
+                    webapiInit.Init(app, runtime.Container, runtime.Logger);
                 });
-                runtime.Logger.Trace($"WebApi is listening on {baseAddress}");
+
                 runtime.Logger.Info($"Host: {runtime.HostName} started");
-                runtime.Logger.Info($"Opening client on {baseAddress}");
-                CommandPrompt.Run($"start {baseAddress}");
+                runtime.Logger.Trace($"Host is listening on {baseAddress}");
+
+
+                //if web client should be started
+                if (args.Any(a => a.EndsWith("noclient", StringComparison.InvariantCultureIgnoreCase)))
+                    runtime.Logger.Info($"NoClient switch enabled. Open this url in browser to open client manually: {baseAddress}"); 
+                else
+                {
+                    runtime.Logger.Info($"Opening client on {baseAddress}");
+                    CommandPrompt.Run($"start {baseAddress}");
+                }
+
+
                 Console.WriteLine(@"Press key to quit...");
                 Console.ReadKey();
                 return 0;
