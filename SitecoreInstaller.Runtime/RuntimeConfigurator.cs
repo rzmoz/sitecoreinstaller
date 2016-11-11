@@ -58,7 +58,7 @@ namespace SitecoreInstaller.Runtime
             {
                 try
                 {
-                    var builder = new IocBuilder();
+                    var builder = new IocBuilder(false);
                     builder.Register(new SitecoreInstallerRegistrations());
                     iocRegistrations?.Invoke(builder);
                     Container = builder.Container;

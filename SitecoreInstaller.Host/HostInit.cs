@@ -12,14 +12,15 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NLog;
 using Owin;
+using SitecoreInstaller.Host.Hubs;
 
 namespace SitecoreInstaller.Host
 {
-    public class WebApiInit
+    public class HostInit
     {
         public void Init(IAppBuilder app, IContainer container, ILogger logger)
         {
-            logger.Debug("Initalizing WebApi...");
+            logger.Debug("Initalizing Host...");
 
             // Configure Web API for self-host. 
             var config = new HttpConfiguration();
@@ -53,10 +54,14 @@ namespace SitecoreInstaller.Host
             logger.Debug("WebApi initialized");
 
             //SignalR
-            GlobalHost.DependencyResolver = new AutofacDependencyResolver(container);
-            app.MapSignalR();
+            app.MapSignalR(new HubConfiguration
+            {
+                EnableDetailedErrors = true,
+                Resolver = new AutofacDependencyResolver(container)
+            });
             logger.Debug("SignalR initialized");
-            //
+            
+            //file server
             app.UseFileServer(new FileServerOptions
             {
                 FileSystem = new PhysicalFileSystem("Client"),

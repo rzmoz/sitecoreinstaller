@@ -18,79 +18,76 @@
 </div>
 
 <script type="text/javascript">
-    var deploymentsInfoPanel_HtmlModule = {
+    var deploymentsInfoPanel_htmlModule = {
         depPanelTemplateHtml: $('#dep-info-panel-template').html(),
-        
+
         getDepPanelId: function (dep) {
             return 'dep-info-pnl-' + dep.name;
         },
-        initDeploymentList: function (list) {
+        initDeploymentList: function (list, updatedDeployments) {
             console.log('Initializing deployments list');
 
-            host.triggerAndAutoRefresh(function () {
-                var updatedDeployments = deployments.localDeployments;
 
-                var existingPanels = list.children('div.dep-info-panel');
+            var existingPanels = list.children('div.dep-info-panel');
 
-                $.each(existingPanels, function (index, existPnl) {
-                    var pnlId = $(existPnl).attr('id');
-                    var shouldBeDeleted = updatedDeployments.find(ud => deploymentsInfoPanel_HtmlModule.getDepPanelId(ud) === pnlId) === undefined;
-                    if (shouldBeDeleted)
-                        $('#' + pnlId).remove();
-                    else
-                        deploymentsInfoPanel_HtmlModule.updateInfoPanel($(existPnl));
-                });
+            $.each(existingPanels, function (index, existPnl) {
+                var pnlId = $(existPnl).attr('id');
+                var shouldBeDeleted = updatedDeployments.find(ud => deploymentsInfoPanel_htmlModule.getDepPanelId(ud) === pnlId) === undefined;
+                if (shouldBeDeleted)
+                    $('#' + pnlId).remove();
+                else
+                    deploymentsInfoPanel_htmlModule.updateInfoPanel($(existPnl));
+            });
 
-                //add new
-                $.each(updatedDeployments, function (index, upDep) {
-                    var targetId = deploymentsInfoPanel_HtmlModule.getDepPanelId(upDep);
+            //add new
+            $.each(updatedDeployments, function (index, upDep) {
+                var targetId = deploymentsInfoPanel_htmlModule.getDepPanelId(upDep);
 
-                    var shouldBeAdded = $('#' + targetId).length === 0;
-                    if (shouldBeAdded) {
-                        var existingPanels = list.children('div.dep-info-panel');
-                        var newPanel = deploymentsInfoPanel_HtmlModule.getNewDepPanel(upDep, list);
-                        var lastId = existingPanels.last().attr('id');
+                var shouldBeAdded = $('#' + targetId).length === 0;
+                if (shouldBeAdded) {
+                    var existingPanels = list.children('div.dep-info-panel');
+                    var newPanel = deploymentsInfoPanel_htmlModule.getNewDepPanel(upDep, list);
+                    var lastId = existingPanels.last().attr('id');
 
-                        //if list is empty or if new dep is last in list
-                        if (existingPanels.length === 0 || lastId.localeCompare(targetId) < 0) {
-                            list.append(newPanel);
-                        } else {
-                            $.each(existingPanels,
-                                function (ind, pnl) {
-                                    var pnlId = $(pnl).attr('id');
-                                    if (targetId.localeCompare(pnlId) > 0)
-                                        return true;
-                                    $(pnl).before(newPanel);
-                                    return false;
-                                });
-                        }
+                    //if list is empty or if new dep is last in list
+                    if (existingPanels.length === 0 || lastId.localeCompare(targetId) < 0) {
+                        list.append(newPanel);
+                    } else {
+                        $.each(existingPanels,
+                            function (ind, pnl) {
+                                var pnlId = $(pnl).attr('id');
+                                if (targetId.localeCompare(pnlId) > 0)
+                                    return true;
+                                $(pnl).before(newPanel);
+                                return false;
+                            });
                     }
-                });
-            }, 2000);
+                }
+            });
         },
         getDepPanel: function (name) {
-            return deploymentsInfoPanel_HtmlModule.list
-                .find('#' + deploymentsInfoPanel_HtmlModule.getDepPanelId({ name: name }));
+            return deploymentsInfoPanel_htmlModule.list
+                .find('#' + deploymentsInfoPanel_htmlModule.getDepPanelId({ name: name }));
         },
         updateInfoPanel: function (panel) {
             var depName = panel.attr(deployments.dataDeploymentNameKey);
             deployments.getLocal(depName, function (info) {
-                host.toggleDisabled(panel.find('.btn-delete-deployment'), () => { return info.task.status === "InProgress"; });
-                var statusHtml = deploymentsInfoPanel_HtmlModule.getStatusIconHtml(info.task.status);
+                host.toggleDisabled(panel.find('.btn-deploymentsInfoPanel_htmlModule -deployment'), () => { return info.task.status === "InProgress"; });
+                var statusHtml = deploymentsInfoPanel_htmlModule.getStatusIconHtml(info.task.status);
                 panel.find('.info-status-icon').replaceWith(statusHtml);
             });
         },
         getNewDepPanel: function (info, dataParent) {
             if (info === null || info === undefined)
                 return '';
-            var panelId = deploymentsInfoPanel_HtmlModule.getDepPanelId(info);
-            var html = $(deploymentsInfoPanel_HtmlModule.depPanelTemplateHtml
+            var panelId = deploymentsInfoPanel_htmlModule.getDepPanelId(info);
+            var html = $(deploymentsInfoPanel_htmlModule.depPanelTemplateHtml
                 .replace('[[panel-id]]', panelId)
                 .replace('[[data-parent]]', dataParent.attr('id'))
                 .replace(/\[\[collapse-id\]\]/g, 'collapse-' + new Date().getTime())
                 .replace(/\[\[info-name\]\]/g, info.name)
                 .replace(/\[\[info-sitecore\]\]/g, info.sitecore)
-                .replace(/\[\[info-status\]\]/g, deploymentsInfoPanel_HtmlModule.getStatusIconHtml(info.task.status)));
+                .replace(/\[\[info-status\]\]/g, deploymentsInfoPanel_htmlModule.getStatusIconHtml(info.task.status)));
 
             html.first().attr(deployments.dataDeploymentNameKey, info.name);
             return html;

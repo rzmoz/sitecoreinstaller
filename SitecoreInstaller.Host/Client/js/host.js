@@ -15,13 +15,12 @@
 
 (function ($) {
     $.fn.loadModuleContent = function (moduleName, callback) {
-        var $this = this;
-        $.get(host.getModulesPath(moduleName, 'html'),
-                    function (html) {
-                        $this.append(html);
-                        if (callback !== undefined)
-                            callback();
-                    });
+        this.load(host.getModulesPath(moduleName, 'html'),
+            function () {
+                eval(moduleName + '_htmlModule.init()');
+                if (callback !== undefined)
+                    callback();
+            });
         return this;
     };
 }(jQuery));
@@ -32,16 +31,6 @@ var host = {
             element.addClass('disabled');
         else
             element.removeClass('disabled');
-    },
-    triggerAndAutoRefresh: function (func, interval) {
-        if (func === undefined || func === null)
-            return null;
-        if (interval === undefined || interval === null)
-            interval = 5000;
-        func();
-        return window.setInterval(function () {
-            func();
-        }, interval);
     },
     getQueryStringAsJson: function () {
         var qs = window.location.search.replace('?', '');

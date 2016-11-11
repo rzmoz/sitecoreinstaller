@@ -52,7 +52,7 @@ namespace SitecoreInstaller.Runtime
             builder.Register(c => new UnInstallLocalPipeline(builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
         }
 
-        private void InitPipeline<T>(Pipeline<T> pipeline) where T : class,new()
+        private void InitPipeline<T>(Pipeline<T> pipeline) where T : class, new()
         {
             pipeline.Started += args =>
             {
