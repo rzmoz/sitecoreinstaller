@@ -61,9 +61,10 @@
 
     <!-- Le javascript
         ================================================== -->
-    <!-- core js libs -->
+    <!-- core js libs | ORDER MATTERS! -->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.signalR.min.js"></script>
+    <script src="/signalr/hubs"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <!-- host libs -->
@@ -86,13 +87,50 @@
             .ready(function () {
                 console.log('SitecoreInstaller Client loading');
 
+                $.connection.hub.logging = true;
+
+                var helloHub = $.connection.helloHub;
+
+                helloHub.client.hello = function (ticks) {
+                    $('#page-wrapper').append('<code>Hello world: ' + ticks + '</code><br/>');
+                };
+
+                $.connection.hub.start().done(function () {
+                    helloHub.server.init();
+                });
+
+                /*
+
+
                 var section = getActiveSection();
                 $('#page-header').loadSectionTitle(section);
                 $('#page-content').loadSectionContent(section, function () {
-                    $('#modules-content').loadModuleContent('deployments', function () {
-                        eval(section + '.init(()=>console.log("SitecoreInstaller Client loaded"))');
-                    });
+                    eval(section + '_htmlSection.init($("#modules-content"))');
+                    console.log("SitecoreInstaller Client loaded");
                 });
+
+                hubs.ticks.client.ticks = function (ticks) {
+                    console.log('ticks:' + ticks);
+                    $('#page-wrapper').append('<code>[' + ticks + ']</code>');
+                };
+
+                /*
+                    localDeployments.client.getAllInfo = function (json) {
+
+
+                    var deployments = JSON.parse(json);
+
+                    $('#count-local-deployments').html(deployments.length);
+                    $('#deployments-list')
+                        .initDeploymentsList({
+                            deployments: deployments
+                        });
+                };
+
+                $.connection.hub.start()
+                    .done(function () {
+                        hubs.localDeployments.server.getAllInfo();
+                    });*/
             });
 
         function getActiveSection() {

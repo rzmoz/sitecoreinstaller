@@ -33,46 +33,40 @@ namespace SitecoreInstaller.Host
                 return 1;
             }
 
-            // Start OWIN host 
-            IDisposable host = null;
             try
             {
                 runtime.Logger.Debug($"Host: {runtime.HostName} starting...");
                 var baseAddress = args.Take(1).FirstOrDefault() ?? "http://localhost:7919";
 
-                host = WebApp.Start(baseAddress, app =>
+                // Start OWIN host 
+                using (WebApp.Start(baseAddress, app =>
                 {
-                    var webapiInit = new WebApiInit();
+                    var webapiInit = new HostInit();
                     webapiInit.Init(app, runtime.Container, runtime.Logger);
-                });
-
-                runtime.Logger.Info($"Host: {runtime.HostName} started");
-                runtime.Logger.Trace($"Host is listening on {baseAddress}");
-
-
-                //if web client should be started
-                if (args.Any(a => a.EndsWith("noclient", StringComparison.InvariantCultureIgnoreCase)))
-                    runtime.Logger.Info($"NoClient switch enabled. Open this url in browser to open client manually: {baseAddress}"); 
-                else
+                }))
                 {
-                    runtime.Logger.Info($"Opening client on {baseAddress}");
-                    CommandPrompt.Run($"start {baseAddress}");
+                    runtime.Logger.Info($"Host: {runtime.HostName} started");
+                    runtime.Logger.Trace($"Host is listening on {baseAddress}");
+
+                    //if web client should be started
+                    if (args.Any(a => a.EndsWith("noclient", StringComparison.InvariantCultureIgnoreCase)))
+                        runtime.Logger.Info($"NoClient switch enabled. Open this url in browser to open client manually: {baseAddress}");
+                    else
+                    {
+                        runtime.Logger.Info($"Opening client on {baseAddress}");
+                        CommandPrompt.Run($"start {baseAddress}");
+                    }
+
+                    Console.WriteLine(@"Press key to quit...");
+                    Console.ReadKey();
+                    return 0;
                 }
-
-
-                Console.WriteLine(@"Press key to quit...");
-                Console.ReadKey();
-                return 0;
             }
             catch (TargetInvocationException e)
             {
                 runtime.Logger.Fatal($"Failed to start host: {runtime.HostName}. Aborting: {e}");
                 Console.ReadKey();
                 return 1;
-            }
-            finally
-            {
-                host?.Dispose();
             }
         }
 

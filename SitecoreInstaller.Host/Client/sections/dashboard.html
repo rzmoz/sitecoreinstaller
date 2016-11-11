@@ -95,3 +95,14 @@
         <div id="deployments-list" class="deployments-list"></div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var dashboard_htmlSection = {
+        init: function (modulesContent) {
+            $(modulesContent).loadModuleContent('deployments');
+            $('#new-local-deployment').initNewLocalDeploymentDialog();
+            buildLibrary.init();
+            deployments.init();
+        }
+    }
+</script>

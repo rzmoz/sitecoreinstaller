@@ -21,24 +21,18 @@ var buildLibrary = {
     licenseJson: [],
     moduleJson: [],
 
-    init: function (callback) {
+    init: function () {
         $.getJSON(buildLibrary.sitecoresUri, function (scJson) {
-            $.getJSON(buildLibrary.licensesUri, function (licJson) {
-                $.getJSON(buildLibrary.modulesUri, function (modJson) {
-                    buildLibrary.sitecoreJson = scJson;
-                    buildLibrary.licenseJson = licJson;
-                    buildLibrary.moduleJson = modJson;
-
-                    console.log('Build Library loaded' +
-                        '\r\nSitecores:' + JSON.stringify(buildLibrary.sitecoreJson) +
-                        '\r\nLicenses:' + JSON.stringify(buildLibrary.licenseJson) +
-                        '\r\nModules:' + JSON.stringify(buildLibrary.moduleJson));
-
-                    if (callback !== undefined) {
-                        callback();
-                    }
-                });
-            });
+            buildLibrary.sitecoreJson = scJson;
+            console.log('Sitecores loaded:' + JSON.stringify(buildLibrary.sitecoreJson));
+        });
+        $.getJSON(buildLibrary.licensesUri, function (licJson) {
+            buildLibrary.licenseJson = licJson;
+            console.log('Licenses loaded:' + JSON.stringify(buildLibrary.licenseJson));
+        });
+        $.getJSON(buildLibrary.modulesUri, function (modJson) {
+            buildLibrary.moduleJson = modJson;
+            console.log('Modules loaded:' + JSON.stringify(buildLibrary.moduleJson));
         });
     },
 

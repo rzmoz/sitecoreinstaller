@@ -132,10 +132,16 @@
   <ItemGroup>
     <Compile Include="Controllers\BuildLibraryController.cs" />
     <Compile Include="Controllers\LocalDeploymentsController.cs" />
+    <Compile Include="EventDto.cs" />
+    <Compile Include="EventQueue.cs" />
+    <Compile Include="EventWorker.cs" />
     <Compile Include="GlobalExceptionHandler.cs" />
+    <Compile Include="Hubs\BuildLibraryHub.cs" />
+    <Compile Include="Hubs\HelloHub.cs" />
+    <Compile Include="Hubs\LocalDeploymentsHub.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebApiInit.cs" />
+    <Compile Include="HostInit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -67,10 +67,28 @@
 
 <script type="text/javascript">
 
-    var deployments_HtmlModule = {
+    var deployments_htmlModule = {
         init: function () {
-            deployments_HtmlModule.initDeleteModal();
-            deployments_HtmlModule.initNewModal();
+            deployments_htmlModule.initDeleteModal();
+            deployments_htmlModule.initNewModal();
+
+            /*
+            hubs.localDeployments.client.getAllInfo = function (json) {
+                console.log('dep info received:' + json);
+
+                var deployments = JSON.parse(json);
+
+                $('#count-local-deployments').html(deployments.length);
+                $('#deployments-list')
+                    .initDeploymentsList({
+                        deployments: deployments
+                    });
+            };
+
+            $.connection.hub.start()
+                .done(function () {
+                    hubs.localDeployments.server.getAllInfo();
+                });*/
         },
         localDeploymentDelete_onclick: function (name) {
             var deleteModal = $('#deleteLocalDeploymentModal');
@@ -88,16 +106,16 @@
                           deleteModal.modal('toggle');
                           deleteModal.attr(deployments.dataDeploymentNameKey, '');
                       });
-                      
+
                       e.preventDefault();
                   });
         },
         initNewModal: function () {
             var newLocalDepModal = $('#newLocalDeploymentModal');
-            host.triggerAndAutoRefresh(function () {
-                newLocalDepModal.find('#selLicense').licenseOptions();
-                newLocalDepModal.find('#selSitecore').sitecoreOptions();
-            });
+
+            newLocalDepModal.find('#selLicense').licenseOptions();
+            newLocalDepModal.find('#selSitecore').sitecoreOptions();
+
 
             newLocalDepModal.on('shown.bs.modal', function () {
                 $('#new-local-deployment-name').focus();
