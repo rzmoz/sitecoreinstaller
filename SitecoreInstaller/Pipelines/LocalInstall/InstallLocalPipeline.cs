@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using SitecoreInstaller.Pipelines.LocalInstall;
 
 namespace SitecoreInstaller.Pipelines.LocalInstall
 {

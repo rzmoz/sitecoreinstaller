@@ -1,77 +1,18 @@
-﻿(function ($) {
-    $.fn.sitecoreOptions = function () {
-        var scJson = buildLibrary.sitecoreJson;
-        var optionsHtml = buildLibrary.format.sitecoreOptions(scJson);
-        this.html(optionsHtml);
-        return this;
-    };
-}(jQuery));
-(function ($) {
-    $.fn.licenseOptions = function () {
-        var licJson = buildLibrary.licenseJson;
-        var optionsHtml = buildLibrary.format.licenseOptions(licJson);
-        this.html(optionsHtml);
-        return this;
-    };
-}(jQuery));
-
-
-var buildLibrary = {
-    sitecoreJson: [],
-    licenseJson: [],
-    moduleJson: [],
-
+﻿var buildLibrary = {
+    sitecores: [],
+    licenses: [],
+    modules: [],
     init: function () {
-        $.getJSON(buildLibrary.sitecoresUri, function (scJson) {
-            buildLibrary.sitecoreJson = scJson;
-            console.log('Sitecores loaded:' + JSON.stringify(buildLibrary.sitecoreJson));
-        });
-        $.getJSON(buildLibrary.licensesUri, function (licJson) {
-            buildLibrary.licenseJson = licJson;
-            console.log('Licenses loaded:' + JSON.stringify(buildLibrary.licenseJson));
-        });
-        $.getJSON(buildLibrary.modulesUri, function (modJson) {
-            buildLibrary.moduleJson = modJson;
-            console.log('Modules loaded:' + JSON.stringify(buildLibrary.moduleJson));
-        });
-    },
-
-    licensesUri: "/api/buildlibrary/licenses",
-    modulesUri: "/api/buildlibrary/modules",
-    sitecoresUri: "/api/buildlibrary/sitecores",
-
-    format: {
-        sitecoreOptions: function (sitecoreJson) {
-            return buildLibrary.format.getFormattedOptions(sitecoreJson,
-                    function (sitecore) {
-                        return sitecore;
-                    },
-                    function (sitecore) {
-                        return sitecore;
-                    }
-                );
-        },
-        licenseOptions: function (licenseJson) {
-            return buildLibrary.format.getFormattedOptions(licenseJson,
-                    function (license) {
-                        return license.licensee + ' (' + license.id + ')';
-                    },
-                    function (license) {
-                        return license.name;
-                    }
-                );
-        },
-        getFormattedOptions: function (json, getTextCallback, getValueCallback) {
-            var options = '';
-            $.each(json,
-                function (key, element) {
-                    var text = getTextCallback(element);
-                    var value = getValueCallback(element);
-                    var option = '<option value="' + value + '">' + text + '</option>';
-                    options += option;
-
-                });
-            return options;
+        console.log('Initializing Buildlibrary ');
+        host.siHub.client.updateSitecores = function (scJson) {
+            buildLibrary.sitecores = scJson;
         }
-    },
+        host.siHub.client.updateLicenses = function (licJson) {
+            buildLibrary.licenses = licJson;
+        }
+        host.siHub.client.updateModules = function (modJson) {
+            buildLibrary.modules = modJson;
+        }
+        console.log('Buildlibrary initialized');
+    }
 }

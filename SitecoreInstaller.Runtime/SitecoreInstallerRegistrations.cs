@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System.Linq;
+using Autofac;
 using DotNet.Basics.Ioc;
 using DotNet.Basics.Rest;
 using DotNet.Basics.Tasks.Pipelines;
@@ -6,6 +7,7 @@ using NLog;
 using SitecoreInstaller.BuildLibrary;
 using SitecoreInstaller.Databases;
 using SitecoreInstaller.Deployments;
+using SitecoreInstaller.Pipelines;
 using SitecoreInstaller.Pipelines.LocalInstall;
 using SitecoreInstaller.Pipelines.LocalUnInstall;
 using SitecoreInstaller.PreflightChecks;
@@ -21,8 +23,8 @@ namespace SitecoreInstaller.Runtime
             builder.RegisterType<RestClient>().As<IRestClient>();
 
             //environment
-            //don't bother register this as preflight since it MUST be initialized before everything else - so
-            //also, must be registered as single instance to ensure loaded values are persisted
+            //don't register this as preflight since it MUST be initialized before everything else
+            //also, MUST be registered as single instance to ensure loaded values are persisted
             builder.RegisterType<EnvironmentSettings>().AsSelf().SingleInstance();
             builder.Register(c => builder.Container.Resolve<EnvironmentSettings>().BasicSettings).AsSelf();
             builder.Register(c => builder.Container.Resolve<EnvironmentSettings>().AdvancedSettings).AsSelf();
@@ -34,7 +36,7 @@ namespace SitecoreInstaller.Runtime
 
             //databases
             builder.RegisterType<ConnectionStringsConfigFormatter>().AsSelf();
-            //must be single instance to ensure init vaules are persisted
+            //MUST be single instance to ensure vaules are persisted
             builder.RegisterType<SqlDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
             builder.RegisterType<MongoDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
 
@@ -48,6 +50,7 @@ namespace SitecoreInstaller.Runtime
             builder.RegisterType<LocalDeploymentsService>().As<IPreflightCheck>().AsSelf();
 
             //pipelines
+            builder.RegisterGeneric(typeof(InitDeploymentDirStep<>)).AsSelf();
             builder.Register(c => new InstallLocalPipeline(builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
             builder.Register(c => new UnInstallLocalPipeline(builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
         }
@@ -62,16 +65,22 @@ namespace SitecoreInstaller.Runtime
             pipeline.Ended += args =>
             {
                 var logger = LogManager.GetLogger(args.Name);
-                var msg = $"{args.Name} ended";
-                if (args.Exception == null)
-                    msg += " successfully";
-                else
-                    msg += " with errors";
+                var msg = $"{args.Name}";
 
                 if (args.WasCancelled)
-                    msg += " and was cancelled";
+                    msg += " was cancelled. ";
 
-                logger.Trace(msg);
+                if (args.Issues.Any())
+                {
+                    msg += " Issues:";
+                    foreach (var issue in args.Issues)
+                        msg +=$"\r\n{issue}";
+                }
+
+                if (args.Exception == null)
+                    logger.Trace(msg);
+                else
+                    logger.Error(msg + "\r\n" + args.Exception.ToString());
             };
         }
     }

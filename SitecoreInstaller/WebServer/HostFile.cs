@@ -2,7 +2,7 @@
 using System.IO;
 using System.Security;
 using DotNet.Basics.IO;
-using NLog;
+using DotNet.Basics.NLog;
 using SitecoreInstaller.PreflightChecks;
 
 namespace SitecoreInstaller.WebServer
@@ -14,13 +14,6 @@ namespace SitecoreInstaller.WebServer
 
         private const string _localHostIpAddress = "127.0.0.1";
         private const string _hostFileEntryFormat = _localHostIpAddress + " {0}";
-
-        private readonly ILogger _logger;
-        
-        public HostFile()
-        {
-            _logger = LogManager.GetLogger(nameof(HostFile));
-        }
 
         public bool Exists => _hostFile.Exists();
 
@@ -48,7 +41,7 @@ namespace SitecoreInstaller.WebServer
         {
             if (Assert().IsReady == false)
             {
-                _logger.Fatal($"Host file ready for update. Your website will not be available in your local IIS");
+                this.NLog().Fatal($"Host file ready for update. Your website will not be available in your local IIS");
                 return;
             }
             
@@ -70,7 +63,7 @@ namespace SitecoreInstaller.WebServer
                                 continue;
                             if (LineIsHostFileName(hostname, line) == false)
                                 continue;
-                            _logger.Warn($"Iis site name already exists in host file: {hostname}. File not updated");
+                            this.NLog().Warn($"Iis site name already exists in host file: {hostname}. File not updated");
                             fileReader.Close();
                             return;
                         }
@@ -108,7 +101,7 @@ namespace SitecoreInstaller.WebServer
             var hostFileEntry = string.Format(_hostFileEntryFormat, hostname);
             WriteLineToHostfile(hostFileEntry);
 
-            _logger.Trace($"Entry added to hostfile: {hostFileEntry}");
+            this.NLog().Trace($"Entry added to hostfile: {hostFileEntry}");
         }
 
         public void RemoveHostName(string hostname)
@@ -131,7 +124,7 @@ namespace SitecoreInstaller.WebServer
                         else
                         {
                             deletedEntry = line;
-                            _logger.Debug($"Entry for deletion detected : {line}");
+                            this.NLog().Debug($"Entry for deletion detected : {line}");
                         }
                     }
                 }
@@ -141,9 +134,9 @@ namespace SitecoreInstaller.WebServer
             File.Delete(tempFile);
 
             if (deletedEntry == null)
-                _logger.Error($"Hostname {hostname} not found in host file!");
+                this.NLog().Error($"Hostname {hostname} not found in host file!");
             else
-                _logger.Trace($"Hostname {deletedEntry} removed from hostfile");
+                this.NLog().Trace($"Hostname {deletedEntry} removed from hostfile");
         }
 
         private void WriteLineToHostfile(string line)
@@ -152,7 +145,7 @@ namespace SitecoreInstaller.WebServer
             {
                 fileWriter.WriteLine(line);
                 fileWriter.Close();
-                _logger.Debug($"'{line}' written to host file");
+                this.NLog().Debug($"'{line}' written to host file");
             }
         }
 
@@ -179,7 +172,7 @@ namespace SitecoreInstaller.WebServer
             return new PreflightCheckResult(issues =>
             {
                 if (Exists)
-                    _logger.Trace($"Hostfile found at: {_hostFile.FullName}");
+                    this.NLog().Trace($"Hostfile found at: {_hostFile.FullName}");
                 else
                     issues.Add($"Host file not found at: {_hostFile.FullName}");
 

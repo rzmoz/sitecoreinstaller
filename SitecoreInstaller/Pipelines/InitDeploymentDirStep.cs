@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using DotNet.Basics.IO;
 using DotNet.Basics.Tasks;
 using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Deployments;

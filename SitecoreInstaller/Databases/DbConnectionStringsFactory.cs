@@ -21,7 +21,6 @@ namespace SitecoreInstaller.Databases
         {
             _mongoDbService = mongoDbService;
             _sqlDbService = sqlDbService;
-            _logger = LogManager.GetLogger(nameof(DbConnectionStringsFactory));
         }
 
         public IEnumerable<DbConnectionString> MergeWithDatabaseFilePairs(string projectName, IEnumerable<DbConnectionString> fromCleanSitecore,
@@ -34,8 +33,8 @@ namespace SitecoreInstaller.Databases
 
             //update with constrs from files
             foreach (var dbFilePair in dbFilePairs)
-                updatedEntries[dbFilePair.Name.ConnectionStringName.ToLowerInvariant()] = 
-                    new SqlDbConnectionString(dbFilePair.Name.ConnectionStringName,new SqlConnectionStringBuilder
+                updatedEntries[dbFilePair.Name.ConnectionStringName.ToLowerInvariant()] =
+                    new SqlDbConnectionString(dbFilePair.Name.ConnectionStringName, new SqlConnectionStringBuilder
                     {
                         ConnectTimeout = (int)5.Seconds().TotalMilliseconds,
                         InitialCatalog = dbFilePair.Name.FullName,
@@ -48,7 +47,8 @@ namespace SitecoreInstaller.Databases
             foreach (var mongoDbString in updatedEntries.Where(entry => entry.Value.DbType == DbType.Mongo).ToList())
             {
                 var dbName = $"{projectName}_{mongoDbString.Key.Replace(".", "_")}";
-                updatedEntries[mongoDbString.Key] = new MongoDbConnectionString(mongoDbString.Key, new MongoUrl($"mongodb://{_mongoDbService.InstanceName}/{dbName }"));
+                updatedEntries[mongoDbString.Key] = new MongoDbConnectionString(mongoDbString.Key,
+                    new MongoUrl($"mongodb://{_mongoDbService.InstanceName}/{dbName }"));
             }
 
             return updatedEntries.Values;

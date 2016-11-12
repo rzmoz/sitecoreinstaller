@@ -1,23 +1,8 @@
 ﻿(function ($) {
-    $.fn.loadSectionTitle = function (sectionName) {
-        var title = eval(sectionName + '.iGetTitle()');
-        this.html(title);
-        return this;
-    };
-}(jQuery));
-
-(function ($) {
-    $.fn.loadSectionContent = function (sectionName, callback) {
-        this.load(host.getSectionPath(sectionName, 'html'), callback);
-        return this;
-    };
-}(jQuery));
-
-(function ($) {
-    $.fn.loadModuleContent = function (moduleName, callback) {
-        this.load(host.getModulesPath(moduleName, 'html'),
+    $.fn.loadSection = function (sectionName, callback) {
+        this.load(host.getSectionPath(sectionName, 'html'),
             function () {
-                eval(moduleName + '_htmlModule.init()');
+                eval(sectionName + '.init(()=>allSystemsReady())');
                 if (callback !== undefined)
                     callback();
             });
@@ -25,8 +10,44 @@
     };
 }(jQuery));
 
+//https://davidwalsh.name/pubsub-javascript
+var serviceBus = (function () {
+    var topics = {};
+    var hOP = topics.hasOwnProperty;
+
+    return {
+        subscribe: function (topic, listener) {
+            if (!hOP.call(topics, topic))
+                topics[topic] = [];
+
+            var index = topics[topic].push(listener) - 1;
+
+            return { remove: function () { delete topics[topic][index]; } };
+        },
+        publish: function (topic, info) {
+            if (!hOP.call(topics, topic))
+                return;
+
+            topics[topic].forEach(function (item) {
+                item(info != undefined ? info : {});
+            });
+        }
+    };
+})();
+
 var host = {
     siHub: $.connection.siHub,
+    loadModule: function (name, callback) {
+        $('#modules-content').load(host.getModulesPath(name, 'html'),
+              function () {
+                  var fullModuleName = name + '_htmlModule';
+                  console.log('Initializing ' + fullModuleName);
+                  eval(fullModuleName + '.init()');
+                  console.log(fullModuleName + ' initialized');
+                  if (callback !== undefined)
+                      callback();
+              });
+    },
     toggleDisabled: function (element, disabledPredicate) {
         if (disabledPredicate())
             element.addClass('disabled');
@@ -55,9 +76,6 @@ var host = {
     },
     getModulesPath: function (name, type) {
         return '/modules/' + name + '.' + type;
-    },
-    loadModule: function (name) {
-        $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', host.getSectionPath(name, 'css')));
     }
 }
 

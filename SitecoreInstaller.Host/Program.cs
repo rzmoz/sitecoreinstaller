@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using Autofac;
 using Autofac.Integration.SignalR;
 using Autofac.Integration.WebApi;
 using DotNet.Basics.NLog;
 using DotNet.Basics.Sys;
+using DotNet.Basics.Tasks.Pipelines;
 using Microsoft.Owin.Hosting;
+using Newtonsoft.Json;
 using NLog;
 using NLog.Targets;
+using SitecoreInstaller.Pipelines;
 using SitecoreInstaller.Runtime;
 
 namespace SitecoreInstaller.Host
@@ -23,37 +27,41 @@ namespace SitecoreInstaller.Host
             {
                 iocBuilder.RegisterApiControllers(typeof(Program).Assembly);
                 iocBuilder.RegisterHubs(typeof(Program).Assembly);
+                iocBuilder.RegisterPipelineSteps(typeof(LocalArgs).Assembly);
+
+                var serializer = JsonSerializer.Create(new JsonSerializerSettings { ContractResolver = new SignalRContractResolver() });
+                iocBuilder.RegisterInstance(serializer).As<JsonSerializer>();
             });
 
             if (initialized == false)
             {
-                runtime.Logger.Fatal(@"    Runtime failed to inititialize. Aborting...    ");
-                runtime.Logger.Fatal(AsciiArts.FailFace);
+                runtime.NLog().Fatal(@"    Runtime failed to inititialize. Aborting...    ");
+                runtime.NLog().Fatal(AsciiArts.FailFace);
                 Console.ReadKey();
                 return 1;
             }
 
             try
             {
-                runtime.Logger.Debug($"Host: {runtime.HostName} starting...");
+                runtime.NLog().Debug($"Host: {runtime.HostName} starting...");
                 var baseAddress = args.Take(1).FirstOrDefault() ?? "http://localhost:7919";
 
                 // Start OWIN host 
                 using (WebApp.Start(baseAddress, app =>
                 {
                     var webapiInit = new HostInit();
-                    webapiInit.Init(app, runtime.Container, runtime.Logger);
+                    webapiInit.Init(app, runtime.Container);
                 }))
                 {
-                    runtime.Logger.Info($"Host: {runtime.HostName} started");
-                    runtime.Logger.Trace($"Host is listening on {baseAddress}");
+                    runtime.NLog().Info($"Host: {runtime.HostName} started");
+                    runtime.NLog().Trace($"Host is listening on {baseAddress}");
 
                     //if web client should be started
                     if (args.Any(a => a.EndsWith("noclient", StringComparison.InvariantCultureIgnoreCase)))
-                        runtime.Logger.Info($"NoClient switch enabled. Open this url in browser to open client manually: {baseAddress}");
+                        runtime.NLog().Info($"NoClient switch enabled. Open this url in browser to open client manually: {baseAddress}");
                     else
                     {
-                        runtime.Logger.Info($"Opening client on {baseAddress}");
+                        runtime.NLog().Info($"Opening client on {baseAddress}");
                         CommandPrompt.Run($"start {baseAddress}");
                     }
 
@@ -64,7 +72,8 @@ namespace SitecoreInstaller.Host
             }
             catch (TargetInvocationException e)
             {
-                runtime.Logger.Fatal($"Failed to start host: {runtime.HostName}. Aborting: {e}");
+                runtime.NLog().Fatal($"Failed to start host: {runtime.HostName}. Aborting: {e}");
+                runtime.NLog().Fatal(AsciiArts.FailFace);
                 Console.ReadKey();
                 return 1;
             }

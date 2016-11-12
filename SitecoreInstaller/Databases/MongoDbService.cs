@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using DotNet.Basics.NLog;
 using DotNet.Basics.Sys;
 using MongoDB.Driver;
 
@@ -26,12 +27,12 @@ namespace SitecoreInstaller.Databases
             }
             catch (MongoConfigurationException e)
             {
-                Logger.Warn(e.ToString);
+                this.NLog().Warn(e.ToString);
                 return false;
             }
             catch (OperationCanceledException e)
             {
-                Logger.Warn(e.ToString);
+                this.NLog().Warn(e.ToString);
                 return false;
             }
         }
@@ -49,7 +50,7 @@ namespace SitecoreInstaller.Databases
             }
             catch (MongoConfigurationException e)
             {
-                Logger.Warn(e.ToString);
+                this.NLog().Warn(e.ToString);
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using DotNet.Basics.Collections;
+using DotNet.Basics.NLog;
 using Microsoft.Web.Administration;
 using NLog;
 using SitecoreInstaller.PreflightChecks;
@@ -9,47 +10,45 @@ namespace SitecoreInstaller.WebServer
 {
     public class IisManagementService : IPreflightCheck
     {
-        private readonly ILogger _logger;
         private readonly IisApplicationSettingsFactory _iisApplicationSettingsFactory;
 
         public IisManagementService(IisApplicationSettingsFactory iisApplicationSettingsFactory)
         {
             _iisApplicationSettingsFactory = iisApplicationSettingsFactory;
-            _logger = LogManager.GetLogger(nameof(IisManagementService));
         }
 
         public void CreateApplication(string name, string url, DeploymentDir deploymentDir)
         {
             var settings = _iisApplicationSettingsFactory.Create(name, url, deploymentDir);
-            _logger.Trace($"Creating Iis Application: {settings.Name}...");
+            this.NLog().Trace($"Creating Iis Application: {settings.Name}...");
             using (var iisManager = new IisManager(settings))
             {
                 CreateAppPool(iisManager.ServerManager, settings.AppPoolSettings);
                 CreateSite(iisManager.ServerManager, settings.SiteSettings, settings.AppPoolSettings);
             }
             settings.SiteSettings.SiteRoot.CreateIfNotExists();
-            _logger.Debug($"{nameof(settings.SiteSettings.SiteRoot)} created: {settings.SiteSettings.SiteRoot.FullName}");
+            this.NLog().Debug($"{nameof(settings.SiteSettings.SiteRoot)} created: {settings.SiteSettings.SiteRoot.FullName}");
             settings.SiteSettings.IisLogFilesDir.CreateIfNotExists();
-            _logger.Trace($"Iis Application created: {settings.Name}");
+            this.NLog().Trace($"Iis Application created: {settings.Name}");
         }
 
         public void DeleteApplication(string name)
         {
             var settings = _iisApplicationSettingsFactory.Create(name);
-            _logger.Trace($"Deleting Iis Application: {settings.Name}...");
+            this.NLog().Trace($"Deleting Iis Application: {settings.Name}...");
             using (var iisManager = new IisManager(settings))
             {
                 iisManager.Site(site => site?.Delete());
-                _logger.Debug($"Website deleted: {settings.SiteSettings.Name}");
+                this.NLog().Debug($"Website deleted: {settings.SiteSettings.Name}");
                 iisManager.AppPool(appPool =>
                 {
                     appPool?.WorkerProcesses.ParallelForEach(wp => Process.GetProcessById(wp.ProcessId).Kill());
                     appPool?.Delete();
-                    _logger.Debug($"App pool deleted: {settings.AppPoolSettings.Name}");
+                    this.NLog().Debug($"App pool deleted: {settings.AppPoolSettings.Name}");
                 });
             }
 
-            _logger.Trace($"Iis Application deleted: {settings.Name}");
+            this.NLog().Trace($"Iis Application deleted: {settings.Name}");
         }
 
         public void RecycleApplication(string name)
@@ -67,11 +66,11 @@ namespace SitecoreInstaller.WebServer
             using (var iisManager = new IisManager(settings))
             {
                 iisManager.AppPool(appPool => appPool?.Start());
-                _logger.Debug($"Iis App Pool started: {settings.AppPoolSettings.Name}");
+                this.NLog().Debug($"Iis App Pool started: {settings.AppPoolSettings.Name}");
                 iisManager.Site(site => site?.Start());
-                _logger.Debug($"Iis Site started: {settings.SiteSettings.Name}");
+                this.NLog().Debug($"Iis Site started: {settings.SiteSettings.Name}");
             }
-            _logger.Trace($"Iis Application started: {settings.Name}");
+            this.NLog().Trace($"Iis Application started: {settings.Name}");
         }
 
         public void StopApplication(string name)
@@ -80,11 +79,11 @@ namespace SitecoreInstaller.WebServer
             using (var iisManager = new IisManager(settings))
             {
                 iisManager.Site(site => site?.Stop());
-                _logger.Debug($"Iis Site stopped: {settings.SiteSettings.Name}");
+                this.NLog().Debug($"Iis Site stopped: {settings.SiteSettings.Name}");
                 iisManager.AppPool(appPool => appPool?.Stop());
-                _logger.Debug($"Iis App Pool stopped: {settings.AppPoolSettings.Name}");
+                this.NLog().Debug($"Iis App Pool stopped: {settings.AppPoolSettings.Name}");
             }
-            _logger.Debug($"Iis Application stopped: {settings.Name}");
+            this.NLog().Debug($"Iis Application stopped: {settings.Name}");
         }
 
         public bool BindingExists(string bindingCandidate)
@@ -118,7 +117,7 @@ namespace SitecoreInstaller.WebServer
                     {
                         //verify connection
                         mng.ServerManager.CommitChanges();
-                        _logger.Trace($"Connection to Iis Management Services established");
+                        this.NLog().Trace($"Connection to Iis Management Services established");
                     }
                 }
                 catch (Exception e)
@@ -133,12 +132,12 @@ namespace SitecoreInstaller.WebServer
             var site = iisManager.Sites.Add(sitesettings.Name, sitesettings.BindingProtocol, sitesettings.BindingInformation, sitesettings.SiteRoot.FullName);
             site.ApplicationDefaults.ApplicationPoolName = appPoolSettings.Name;
             site.LogFile.Directory = sitesettings.IisLogFilesDir.FullName;
-            
-            _logger.Debug($"Site home directory set to '{sitesettings.SiteRoot.FullName}'");
-            _logger.Debug($"Site log dir set to '{sitesettings.IisLogFilesDir.FullName}'");
-            _logger.Debug($"Site bindings set to  '{sitesettings.BindingInformation}'");
-            _logger.Debug($"Site App Pool set to '{site.ApplicationDefaults.ApplicationPoolName}'");
-            _logger.Debug($"Iis Site created: {sitesettings.Name}");
+
+            this.NLog().Debug($"Site home directory set to '{sitesettings.SiteRoot.FullName}'");
+            this.NLog().Debug($"Site log dir set to '{sitesettings.IisLogFilesDir.FullName}'");
+            this.NLog().Debug($"Site bindings set to  '{sitesettings.BindingInformation}'");
+            this.NLog().Debug($"Site App Pool set to '{site.ApplicationDefaults.ApplicationPoolName}'");
+            this.NLog().Debug($"Iis Site created: {sitesettings.Name}");
         }
 
         private void CreateAppPool(ServerManager iisManager, AppPoolSettings settings)
@@ -150,10 +149,10 @@ namespace SitecoreInstaller.WebServer
             appPool.ProcessModel.PingingEnabled = settings.PingEnabled;
             appPool.ProcessModel.IdentityType = settings.ProcessModelIdentityType;
 
-            _logger.Debug("App pool runtime version set to {0}", appPool.ManagedRuntimeVersion);
-            _logger.Debug("App pool pipeline mode set to {0}", appPool.ManagedPipelineMode);
-            _logger.Debug("App pool identity set to {0}", appPool.ProcessModel.IdentityType);
-            _logger.Debug($"App pool created: {settings.Name}");
+            this.NLog().Debug("App pool runtime version set to {0}", appPool.ManagedRuntimeVersion);
+            this.NLog().Debug("App pool pipeline mode set to {0}", appPool.ManagedPipelineMode);
+            this.NLog().Debug("App pool identity set to {0}", appPool.ProcessModel.IdentityType);
+            this.NLog().Debug($"App pool created: {settings.Name}");
         }
     }
 }

@@ -2,7 +2,9 @@
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
+using DotNet.Basics.NLog;
 using DotNet.Basics.Tasks.Pipelines;
+using Newtonsoft.Json;
 using NLog;
 using SitecoreInstaller.Pipelines;
 
@@ -11,12 +13,6 @@ namespace SitecoreInstaller.Deployments
     public class DeploymentsScheduler
     {
         private static readonly ConcurrentDictionary<string, object> _tasks = new ConcurrentDictionary<string, object>();
-        private readonly ILogger _logger;
-
-        public DeploymentsScheduler()
-        {
-            _logger = LogManager.GetLogger(nameof(DeploymentsScheduler));
-        }
 
         public bool IsRunning(string name)
         {
@@ -36,12 +32,14 @@ namespace SitecoreInstaller.Deployments
                     try
                     {
                         var result = await pipeline.RunAsync(args, CancellationToken.None).ConfigureAwait(false);
+                        if (result.NoIssues == false)
+                            this.NLog().Warn(JsonConvert.SerializeObject(result.Issues));
                     }
                     catch (Exception e)
                     {
                         args.Info.Task.Status = DeploymentStatus.Failed;
                         args.DeploymentDir.SaveDeploymentInfo(args.Info);
-                        _logger.Error(e.ToString()); ;
+                        this.NLog().Error(e.ToString()); ;
                     }
                     finally
                     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DotNet.Basics.IO;
-using NLog;
+using DotNet.Basics.NLog;
 using SitecoreInstaller.PreflightChecks;
 
 namespace SitecoreInstaller.BuildLibrary
@@ -12,7 +12,6 @@ namespace SitecoreInstaller.BuildLibrary
         private const string _sitecoresDirName = "Sitecores";
         private const string _licensesDirName = "Licenses";
         private const string _modulesDirName = "Modules";
-        private readonly ILogger _logger;
 
         public LocalBuildLibrary(EnvironmentSettings environmentSettings)
         {
@@ -21,7 +20,6 @@ namespace SitecoreInstaller.BuildLibrary
             Sitecores = Root.Add(_sitecoresDirName);
             Licenses = Root.Add(_licensesDirName);
             Modules = Root.Add(_modulesDirName);
-            _logger = LogManager.GetLogger(nameof(LocalBuildLibrary));
         }
 
         public DirPath Root { get; }
@@ -37,7 +35,7 @@ namespace SitecoreInstaller.BuildLibrary
             Sitecores.CreateIfNotExists();
             Licenses.CreateIfNotExists();
             Modules.CreateIfNotExists();
-            _logger.Trace($"{nameof(LocalBuildLibrary)} initialized to: {Root.FullName}");
+            this.NLog().Trace($"{nameof(LocalBuildLibrary)} initialized to: {Root.FullName}");
         }
 
         public IEnumerable<Sitecore> GetSitecores()
@@ -76,7 +74,7 @@ namespace SitecoreInstaller.BuildLibrary
             return new PreflightCheckResult(issues =>
             {
                 if (Root.Exists())
-                    _logger.Trace($"{nameof(LocalBuildLibrary)} found at: {Root.FullName}");
+                    this.NLog().Trace($"{nameof(LocalBuildLibrary)} found at: {Root.FullName}");
                 else
                     issues.Add($"{nameof(LocalBuildLibrary)} not found at: {Root.FullName}");
             });

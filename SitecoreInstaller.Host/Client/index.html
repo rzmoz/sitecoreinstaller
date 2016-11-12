@@ -53,8 +53,7 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container-fluid page-content" id="page-content">
-            </div>
+            <div class="container-fluid page-content" id="page-content"></div>
             <div id="modules-content"></div>
         </div>
     </div>
@@ -72,12 +71,6 @@
     <script src="js/sb-admin-2.js"></script>
     <script src="js/host.js"></script>
 
-    <!-- sections -->
-    <script src="sections/armTemplates.js"></script>
-    <script src="sections/dashboard.js"></script>
-    <script src="sections/sdn.js"></script>
-    <script src="sections/siSettings.js"></script>
-
     <!-- domain modules -->
     <script src="modules/deployments.js"></script>
     <script src="modules/buildLibrary.js"></script>
@@ -85,52 +78,27 @@
     <script>
         $(document)
             .ready(function () {
-                console.log('SitecoreInstaller Client loading');
+                console.log("(¯`·._.·(¯`·._.· Loading SitecoreInstaller Client ·._.·´¯)·._.·´¯)");
 
-                $.connection.hub.logging = true;
+                //$.connection.hub.logging = true;
+                buildLibrary.init();
 
-                host.siHub.client.hello = function (ticks) {
-                    $('#page-wrapper').append('<code>Hello world: ' + ticks + '</code><br/>');
-                };
-
-                
-
-                
-
-
-                var section = getActiveSection();
-                $('#page-header').loadSectionTitle(section);
-                $('#page-content').loadSectionContent(section, function () {
-                    eval(section + '_htmlSection.init($("#modules-content"))');
-
-                    $.connection.hub.start().done(function () {
-                        host.siHub.server.init();
-                        console.log("SitecoreInstaller Client loaded");
-                    });
+                var sectionName = getActiveSectionName();
+                $('#page-content').loadSection(sectionName, function () {
+                    var title = eval(sectionName + '.iGetTitle()');
+                    $('#page-header').html(title);
                 });
-
-                
-
-                /*
-                    localDeployments.client.getAllInfo = function (json) {
-
-
-                    var deployments = JSON.parse(json);
-
-                    $('#count-local-deployments').html(deployments.length);
-                    $('#deployments-list')
-                        .initDeploymentsList({
-                            deployments: deployments
-                        });
-                };
-
-                $.connection.hub.start()
-                    .done(function () {
-                        hubs.localDeployments.server.getAllInfo();
-                    });*/
             });
-
-        function getActiveSection() {
+        function allSystemsReady() {
+            console.log("Starting SignalR hub");
+            $.connection.hub.start().done(function () {
+                console.log("SignalR hub started");
+                host.siHub.server.init();
+                console.log("(¯`·._.·(¯`·._.· SitecoreInstaller Client loaded ·._.·´¯)·._.·´¯)");
+                
+            });
+        }
+        function getActiveSectionName() {
             var currentSection = 'dashboard';
 
             var section = host.getQueryStringAsJson().section;

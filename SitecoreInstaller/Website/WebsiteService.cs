@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using DotNet.Basics.IO;
+using DotNet.Basics.NLog;
 using DotNet.Basics.Rest;
 using DotNet.Basics.Sys;
 using DotNet.Basics.Tasks.Repeating;
@@ -21,13 +22,11 @@ namespace SitecoreInstaller.Website
     </sitecore>
 </configuration>";
 
-        private readonly ILogger _logger;
         private readonly IRestClient _restClient;
 
         public WebsiteService(IRestClient restClient)
         {
             _restClient = restClient;
-            _logger = LogManager.GetLogger(nameof(WebsiteService));
         }
 
         public async Task<bool> WakeUpSiteAsync(string hostName, TimeSpan? timeout = null)
@@ -61,7 +60,7 @@ namespace SitecoreInstaller.Website
             var dataFolder = deploymentdir.Website.App_Data.FullName;
             var dataFolderConfig = string.Format(_dataFolderConfigFormat, dataFolder);
             dataFolderConfig.WriteAllText(deploymentdir.Website.App_Config.Include.DataFolderConfig, overwrite: true);
-            _logger.Trace($"Datafolder set to: {dataFolder}");
+            this.NLog().Trace($"Datafolder set to: {dataFolder}");
         }
 
         public void FixReportingDatabaseFileNames(DeploymentDir deploymentDir)
@@ -70,7 +69,7 @@ namespace SitecoreInstaller.Website
 
             foreach (var analyticsFile in analyticsFiles)
             {
-                _logger.Trace($"Fixing reporting database filename for: {analyticsFile.FullName}");
+                this.NLog().Trace($"Fixing reporting database filename for: {analyticsFile.FullName}");
                 analyticsFile.MoveTo(analyticsFile.Directory.ToFile("Sitecore.Reporting" + analyticsFile.Extension));
             }
         }
@@ -86,7 +85,7 @@ namespace SitecoreInstaller.Website
                 () => WebsiteResources.PostInstallService.WriteAllText(runtimeServicesDir.PostInstallService),
                 () => WebsiteResources.PublishSite.WriteAllText(runtimeServicesDir.PublishSite));
 
-            _logger.Trace($"Runtime services installed to {runtimeServicesDir }");
+            this.NLog().Trace($"Runtime services installed to {runtimeServicesDir }");
         }
 
         public PreflightCheckResult Assert()

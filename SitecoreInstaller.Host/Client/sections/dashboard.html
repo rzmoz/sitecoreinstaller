@@ -29,7 +29,7 @@
                         <i class="fa fa-server fa-4x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge" id="count-local-deployments">0</div>
+                        <div class="huge" id="local-deployment-count">0</div>
                         <div>Local Deployments</div>
                     </div>
                 </div>
@@ -97,12 +97,23 @@
 </div>
 
 <script type="text/javascript">
-    var dashboard_htmlSection = {
-        init: function (modulesContent) {
-            $(modulesContent).loadModuleContent('deployments');
-            $('#new-local-deployment').initNewLocalDeploymentDialog();
-            buildLibrary.init();
-            deployments.init();
+    var dashboard = {
+        iGetTitle: function () {
+            return "Dashboard";
+        },
+        updateTicks: function (ticks) {
+            $('#page-wrapper').append('<code>Ticks: ' + ticks + '</code><br/>');
+        },
+        updateLocalDeploymentsCount: function (count) {
+            $('#local-deployment-count').html(count);
+        },
+        init: function (callback) {
+            serviceBus.subscribe('deployments/local/count', dashboard.updateLocalDeploymentsCount);
+            //;
+            host.loadModule('deployments', function () {
+                $('#new-local-deployment').initNewLocalDeploymentDialog();
+                $('#deployments-list').initDeploymentsList(callback);
+            });
         }
     }
 </script>

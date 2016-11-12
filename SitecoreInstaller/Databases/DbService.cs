@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DotNet.Basics.NLog;
 using DotNet.Basics.Sys;
 using Newtonsoft.Json;
 using NLog;
@@ -15,10 +16,7 @@ namespace SitecoreInstaller.Databases
         {
             InstanceName = instanceName;
             WindowsServiceName = windowsServiceName;
-            Logger = LogManager.GetLogger(GetType().Namespace);
         }
-
-        protected ILogger Logger { get; }
 
         public string InstanceName { get; protected set; }
         public string WindowsServiceName { get; protected set; }
@@ -35,15 +33,15 @@ namespace SitecoreInstaller.Databases
         {
             foreach (var conStr in getEnumerator())
             {
-                Logger.Debug($"{startingVerb.ToTitleCase()} {conStr.DbType} Database: {conStr.DatabaseName}...");
+                this.NLog().Debug($"{startingVerb.ToTitleCase()} {conStr.DbType} Database: {conStr.DatabaseName}...");
                 try
                 {
                     action(conStr);
-                    Logger.Trace($"{conStr.DbType} Database {conStr.DatabaseName} {endedVerb.ToLowerInvariant()}");
+                    this.NLog().Trace($"{conStr.DbType} Database {conStr.DatabaseName} {endedVerb.ToLowerInvariant()}");
                 }
                 catch (Exception e)
                 {
-                    Logger.Error($"{startingVerb.ToTitleCase()} {conStr.DbType} {conStr.DatabaseName} failed: {e}");
+                    this.NLog().Error($"{startingVerb.ToTitleCase()} {conStr.DbType} {conStr.DatabaseName} failed: {e}");
                 }
             }
         }
@@ -74,7 +72,7 @@ namespace SitecoreInstaller.Databases
                 //if windows service is found but not running and couldn't be started
                 if (IsWindowsServiceRunning == false)
                 {
-                    Logger.Debug($"Starting {dbType} Database Windows Service: {WindowsServiceName}...");
+                    this.NLog().Debug($"Starting {dbType} Database Windows Service: {WindowsServiceName}...");
                     if (StartWindowsService() == false && IsWindowsServiceRunning == false)
                     {
                         issues.Add($"Failed to start Database Windows Service: {WindowsServiceName}");
@@ -83,7 +81,7 @@ namespace SitecoreInstaller.Databases
                 }
 
                 if (IsWindowsServiceRunning)
-                    Logger.Trace($"{dbType } Server Windows Service is running: {WindowsServiceName}");
+                    this.NLog().Trace($"{dbType } Server Windows Service is running: {WindowsServiceName}");
 
                 if (InstanceName != null)
                     return;
@@ -98,7 +96,7 @@ namespace SitecoreInstaller.Databases
                 }
                 if (InstanceName != null && ConnectionEstablished(InstanceName))
                 {
-                    Logger.Trace($"{dbType} Server connection is established: {InstanceName}");
+                    this.NLog().Trace($"{dbType} Server connection is established: {InstanceName}");
                     CustomAssert(issues);
                 }
                 else
@@ -117,7 +115,7 @@ namespace SitecoreInstaller.Databases
             }
             catch (Exception e)
             {
-                Logger.Warn(e);
+                this.NLog().Warn(e);
                 return false;
             }
         }
@@ -133,7 +131,7 @@ namespace SitecoreInstaller.Databases
             }
             catch (Exception e)
             {
-                Logger.Warn(e);
+                this.NLog().Warn(e);
                 return false;
             }
         }

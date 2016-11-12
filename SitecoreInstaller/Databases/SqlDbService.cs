@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data.SqlClient;
+using DotNet.Basics.NLog;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 
@@ -28,14 +29,14 @@ namespace SitecoreInstaller.Databases
             {
                 try
                 {
-                    Logger.Debug($"Attaching {sqlDbFilePair.DataFile.FullName}");
+                    this.NLog().Debug($"Attaching {sqlDbFilePair.DataFile.FullName}");
                     var files = new StringCollection { sqlDbFilePair.DataFile.FullName, sqlDbFilePair.LogFile.FullName };
                     sqlServer.AttachDatabase(sqlDbFilePair.Name.FullName, files);
-                    Logger.Trace($"Atached {sqlDbFilePair.DataFile.FullName}");
+                    this.NLog().Trace($"Atached {sqlDbFilePair.DataFile.FullName}");
                 }
                 catch (Exception e)
                 {
-                    Logger.Error($"Attaching {sqlDbFilePair.DataFile.FullName} failed: {e}");
+                    this.NLog().Error($"Attaching {sqlDbFilePair.DataFile.FullName} failed: {e}");
                 }
             }
         }
@@ -86,13 +87,13 @@ namespace SitecoreInstaller.Databases
             var sqlServer = GetTrustedServer(InstanceName);
             if (sqlServer.Settings.LoginMode != ServerLoginMode.Mixed)
             {
-                Logger.Debug($"Setting Mixed mode loging for Sql Service {WindowsServiceName}");
+                this.NLog().Debug($"Setting Mixed mode loging for Sql Service {WindowsServiceName}");
                 sqlServer.Settings.LoginMode = ServerLoginMode.Mixed;
                 sqlServer.Alter();
                 RestartWindowsService();
             }
             if (sqlServer.Settings.LoginMode == ServerLoginMode.Mixed)
-                Logger.Trace($"Sql Server Mixed mode is set on {WindowsServiceName}");
+                this.NLog().Trace($"Sql Server Mixed mode is set on {WindowsServiceName}");
             else
                 issues.Add($"Setting Sql Server mixed mode failed. Sql database connections will not work");
 
@@ -109,7 +110,7 @@ namespace SitecoreInstaller.Databases
                 var existingUser = sqlServer.Logins[username];
                 if (existingUser == null)
                 {
-                    Logger.Debug($"Adding {username} Sql User to {role} role");
+                    this.NLog().Debug($"Adding {username} Sql User to {role} role");
                     var login = new Login(sqlServer, password)
                     {
                         PasswordExpirationEnabled = false,
@@ -119,15 +120,15 @@ namespace SitecoreInstaller.Databases
 
                     login.Create(password);
                     login.AddToRole(role);
-                    Logger.Trace($"{username} Sql User to {role} role added");
+                    this.NLog().Trace($"{username} Sql User to {role} role added");
                 }
                 else
                 {
-                    Logger.Debug($"Updating password for {username} Sql User");
+                    this.NLog().Debug($"Updating password for {username} Sql User");
                     existingUser.ChangePassword(password);
                     if (username != "sa")//special service principal is already sysadmin
                         existingUser.AddToRole(role);
-                    Logger.Trace($"Password updated for {username} Sql User");
+                    this.NLog().Trace($"Password updated for {username} Sql User");
                 }
             }
             catch (Exception e)

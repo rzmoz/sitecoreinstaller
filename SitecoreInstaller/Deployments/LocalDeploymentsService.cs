@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using System.Security.AccessControl;
 using DotNet.Basics.IO;
+using DotNet.Basics.NLog;
 using Newtonsoft.Json;
 using NLog;
 using SitecoreInstaller.Pipelines.LocalInstall;
 using SitecoreInstaller.Pipelines.LocalUnInstall;
 using SitecoreInstaller.PreflightChecks;
-using SitecoreInstaller.Website;
 
 namespace SitecoreInstaller.Deployments
 {
     public class LocalDeploymentsService : IPreflightCheck
     {
-        private readonly ILogger _logger;
-
         private readonly DeploymentsScheduler _deploymentsScheduler;
         private readonly InstallLocalPipeline _installLocalPipeline;
         private readonly UnInstallLocalPipeline _unInstallLocalPipeline;
@@ -27,7 +25,6 @@ namespace SitecoreInstaller.Deployments
             _deploymentsScheduler = new DeploymentsScheduler();
             _installLocalPipeline = installLocalPipeline;
             _unInstallLocalPipeline = unInstallLocalPipeline;
-            _logger = LogManager.GetLogger(nameof(WebsiteService));
             Root = environmentSettings.AdvancedSettings.SitesRootDir.ToDir();
         }
 
@@ -92,11 +89,11 @@ namespace SitecoreInstaller.Deployments
             return new PreflightCheckResult(issues =>
             {
                 if (Root.Exists())
-                    _logger.Trace($"Deployments root dir found at: {Root.FullName}");
+                    this.NLog().Trace($"Deployments root dir found at: {Root.FullName}");
                 else
                 {
                     Root.CreateIfNotExists();
-                    _logger.Trace($"{nameof(LocalDeploymentsService)} initialized to: {Root.FullName}");
+                    this.NLog().Trace($"{nameof(LocalDeploymentsService)} initialized to: {Root.FullName}");
                 }
             });
         }

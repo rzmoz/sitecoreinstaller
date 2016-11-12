@@ -11,7 +11,7 @@
         <div id="[[collapse-id]]" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
             <div class="panel-body">
                 [[info-sitecore]]
-                <a class="btn btn-danger btn-delete-deployment" title="Delete [[info-name]]" onclick="deployments_HtmlModule.localDeploymentDelete_onclick('[[info-name]]'); return false;"><i class="fa fa-trash-o"></i></a>
+                <a class="btn btn-danger btn-delete-deployment" title="Delete [[info-name]]" onclick="deployments_htmlModule.localDeploymentDelete_onclick('[[info-name]]'); return false;"><i class="fa fa-trash-o"></i></a>
             </div>
         </div>
     </div>
@@ -20,13 +20,17 @@
 <script type="text/javascript">
     var deploymentsInfoPanel_htmlModule = {
         depPanelTemplateHtml: $('#dep-info-panel-template').html(),
-
+        listElement: undefined,
         getDepPanelId: function (dep) {
             return 'dep-info-pnl-' + dep.name;
         },
-        initDeploymentList: function (list, updatedDeployments) {
-            console.log('Initializing deployments list');
+        init: function (listElement) {
+            host.siHub.client.updateDeployments = deploymentsInfoPanel_htmlModule.updateDeployments;
+            deploymentsInfoPanel_htmlModule.listElement = listElement;
+        },
 
+        updateDeployments: function (updatedDeployments) {
+            var list = deploymentsInfoPanel_htmlModule.listElement;
 
             var existingPanels = list.children('div.dep-info-panel');
 
@@ -65,6 +69,7 @@
                 }
             });
         },
+
         getDepPanel: function (name) {
             return deploymentsInfoPanel_htmlModule.list
                 .find('#' + deploymentsInfoPanel_htmlModule.getDepPanelId({ name: name }));
@@ -72,7 +77,7 @@
         updateInfoPanel: function (panel) {
             var depName = panel.attr(deployments.dataDeploymentNameKey);
             deployments.getLocal(depName, function (info) {
-                host.toggleDisabled(panel.find('.btn-deploymentsInfoPanel_htmlModule -deployment'), () => { return info.task.status === "InProgress"; });
+                host.toggleDisabled(panel.find('.btn-deploymentsInfoPanel_htmlModule-deployment'), () => { return info.task.status === "InProgress"; });
                 var statusHtml = deploymentsInfoPanel_htmlModule.getStatusIconHtml(info.task.status);
                 panel.find('.info-status-icon').replaceWith(statusHtml);
             });

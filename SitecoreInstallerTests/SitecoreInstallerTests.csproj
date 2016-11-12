@@ -35,7 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DotNet.Basics, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.5.5.0\lib\net45\DotNet.Basics.dll</HintPath>
+      <HintPath>..\packages\DotNet.Basics.5.5.2\lib\net45\DotNet.Basics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FluentAssertions, Version=4.17.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
