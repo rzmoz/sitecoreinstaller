@@ -89,30 +89,27 @@
 
                 $.connection.hub.logging = true;
 
-                var helloHub = $.connection.helloHub;
-
-                helloHub.client.hello = function (ticks) {
+                host.siHub.client.hello = function (ticks) {
                     $('#page-wrapper').append('<code>Hello world: ' + ticks + '</code><br/>');
                 };
 
-                $.connection.hub.start().done(function () {
-                    helloHub.server.init();
-                });
+                
 
-                /*
+                
 
 
                 var section = getActiveSection();
                 $('#page-header').loadSectionTitle(section);
                 $('#page-content').loadSectionContent(section, function () {
                     eval(section + '_htmlSection.init($("#modules-content"))');
-                    console.log("SitecoreInstaller Client loaded");
+
+                    $.connection.hub.start().done(function () {
+                        host.siHub.server.init();
+                        console.log("SitecoreInstaller Client loaded");
+                    });
                 });
 
-                hubs.ticks.client.ticks = function (ticks) {
-                    console.log('ticks:' + ticks);
-                    $('#page-wrapper').append('<code>[' + ticks + ']</code>');
-                };
+                
 
                 /*
                     localDeployments.client.getAllInfo = function (json) {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using DotNet.Basics.Sys;
 using NLog;
@@ -9,13 +8,13 @@ namespace SitecoreInstaller.Host
 {
     public static class EventQueue
     {
-        private static readonly IDictionary<string, EventWorker> _workers;
+        private static readonly ConcurrentDictionary<string, EventWorker> _workers;
         private static readonly ConcurrentQueue<EventDto> _queue;
         private static readonly ILogger _logger;
 
         static EventQueue()
         {
-            _workers = new Dictionary<string, EventWorker>();
+            _workers = new ConcurrentDictionary<string, EventWorker>();
             _queue = new ConcurrentQueue<EventDto>();
             _logger = LogManager.GetLogger(nameof(EventQueue));
         }
@@ -26,6 +25,7 @@ namespace SitecoreInstaller.Host
             {
                 while (true)
                 {
+                    //TODO: Replace with real system events
                     Push(new EventDto("sdfs", "sdsdf", DateTime.UtcNow.Ticks));
 
                     try
@@ -53,12 +53,13 @@ namespace SitecoreInstaller.Host
 
         public static void Attach(EventWorker worker)
         {
-            _workers.Add(worker.Name.ToLowerInvariant(), worker);
+            _workers.TryAdd(worker.Name.ToLowerInvariant(), worker);
         }
 
         public static void Detach(string name)
         {
-            _workers.Remove(name.ToLowerInvariant());
+            EventWorker worker;
+            _workers.TryRemove(name.ToLowerInvariant(), out worker);
         }
 
         public static void Push(EventDto dto)

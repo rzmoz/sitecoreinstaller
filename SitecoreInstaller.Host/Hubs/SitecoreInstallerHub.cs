@@ -2,14 +2,16 @@
 using System.Threading.Tasks;
 using DotNet.Basics.Sys;
 using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace SitecoreInstaller.Host.Hubs
 {
-    public class HelloHub : Hub
+    [HubName("siHub")]
+    public class SitecoreInstallerHub : Hub
     {
         public void Init()
         {
-            EventQueue.Attach(new EventWorker("HelloHub", dto =>
+            EventQueue.Attach(new EventWorker("SiHub", dto =>
             {
                 Clients.All.hello(dto.Data);
             }));

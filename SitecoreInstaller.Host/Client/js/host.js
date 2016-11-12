@@ -26,6 +26,7 @@
 }(jQuery));
 
 var host = {
+    siHub: $.connection.siHub,
     toggleDisabled: function (element, disabledPredicate) {
         if (disabledPredicate())
             element.addClass('disabled');
