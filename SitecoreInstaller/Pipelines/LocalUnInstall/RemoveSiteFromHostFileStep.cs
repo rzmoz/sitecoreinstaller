@@ -5,7 +5,7 @@ using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.WebServer;
 
 namespace SitecoreInstaller.Pipelines.LocalUnInstall
-{/*
+{
     public class RemoveSiteFromHostFileStep : PipelineStep<UnInstallLocalArgs>
     {
         private readonly HostFile _hostFile;
@@ -21,5 +21,5 @@ namespace SitecoreInstaller.Pipelines.LocalUnInstall
 
             return Task.CompletedTask;
         }
-    }*/
+    }
 }

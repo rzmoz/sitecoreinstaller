@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Security.AccessControl;
 using DotNet.Basics.IO;
 using DotNet.Basics.NLog;
+using DotNet.Basics.Tasks;
 using Newtonsoft.Json;
 using SitecoreInstaller.Pipelines.LocalInstall;
 using SitecoreInstaller.Pipelines.LocalUnInstall;
-using SitecoreInstaller.PreflightChecks;
 
 namespace SitecoreInstaller.Deployments
 {
@@ -83,9 +83,9 @@ namespace SitecoreInstaller.Deployments
             return deploymentDir;
         }
 
-        public PreflightCheckResult Assert()
+        public TaskResult Assert()
         {
-            return new PreflightCheckResult(issues =>
+            return new TaskResult(issues =>
             {
                 if (Root.Exists())
                     this.NLog().Trace($"Deployments root dir found at: {Root.FullName}");

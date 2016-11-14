@@ -34,8 +34,8 @@
       <HintPath>..\packages\Autofac.4.2.0\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DotNet.Basics, Version=5.5.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.5.5.5\lib\net45\DotNet.Basics.dll</HintPath>
+    <Reference Include="DotNet.Basics, Version=5.5.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNet.Basics.5.5.6\lib\net45\DotNet.Basics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DotNet.Basics.NLog, Version=4.3.11.2, Culture=neutral, processorArchitecture=MSIL">
@@ -168,8 +168,7 @@
     <Compile Include="Pipelines\LocalUnInstall\UnInstallLocalArgs.cs" />
     <Compile Include="Pipelines\LocalUnInstall\UnInstallLocalPipeline.cs" />
     <Compile Include="Pipelines\LocalInstall\WakeupSiteStep.cs" />
-    <Compile Include="PreflightChecks\IPreflightCheck.cs" />
-    <Compile Include="PreflightChecks\PreflightCheckResult.cs" />
+    <Compile Include="IPreflightCheck.cs" />
     <Compile Include="DeploymentDir.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuntimeServicesDir.cs" />

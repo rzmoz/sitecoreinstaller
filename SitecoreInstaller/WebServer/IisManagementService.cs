@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using DotNet.Basics.Collections;
 using DotNet.Basics.NLog;
+using DotNet.Basics.Tasks;
 using Microsoft.Web.Administration;
 using NLog;
-using SitecoreInstaller.PreflightChecks;
 
 namespace SitecoreInstaller.WebServer
 {
@@ -107,9 +107,9 @@ namespace SitecoreInstaller.WebServer
             return false;
         }
 
-        public PreflightCheckResult Assert()
+        public TaskResult Assert()
         {
-            return new PreflightCheckResult(issues =>
+            return new TaskResult(issues =>
             {
                 try
                 {

@@ -5,10 +5,10 @@ using System.Linq;
 using Autofac;
 using DotNet.Basics;
 using DotNet.Basics.AppSettings;
+using DotNet.Basics.Collections;
 using DotNet.Basics.Ioc;
 using DotNet.Basics.NLog;
 using Newtonsoft.Json;
-using SitecoreInstaller.PreflightChecks;
 
 namespace SitecoreInstaller.Runtime
 {
@@ -97,7 +97,7 @@ namespace SitecoreInstaller.Runtime
         {
             this.NLog().Debug($"Preflight check: {preflightCheck.GetType().Name} started..");
             var result = preflightCheck.Assert();
-            if (result.IsReady)
+            if (result.Issues.None())
                 this.NLog().Debug($"Preflight check: {preflightCheck.GetType().Name} finished");
             else
                 errorMsgs.Add(

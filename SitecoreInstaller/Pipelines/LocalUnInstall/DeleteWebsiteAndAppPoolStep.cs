@@ -5,7 +5,7 @@ using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.WebServer;
 
 namespace SitecoreInstaller.Pipelines.LocalUnInstall
-{/*
+{
     public class DeleteWebsiteAndAppPoolStep : PipelineStep<UnInstallLocalArgs>
     {
         private readonly IisManagementService _iisManagementService;
@@ -21,5 +21,5 @@ namespace SitecoreInstaller.Pipelines.LocalUnInstall
             _iisManagementService.DeleteApplication(args.Info.Name);
             return Task.CompletedTask;
         }
-    }*/
+    }
 }

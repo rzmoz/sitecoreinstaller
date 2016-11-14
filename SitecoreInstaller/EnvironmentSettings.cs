@@ -1,8 +1,8 @@
 ﻿using System;
 using DotNet.Basics.IO;
 using DotNet.Basics.NLog;
+using DotNet.Basics.Tasks;
 using Newtonsoft.Json;
-using SitecoreInstaller.PreflightChecks;
 
 namespace SitecoreInstaller
 {
@@ -20,9 +20,9 @@ namespace SitecoreInstaller
         public BasicSettings BasicSettings { get; set; }
         public AdvancedSettings AdvancedSettings { get; set; }
 
-        public PreflightCheckResult Assert()
+        public TaskResult Assert()
         {
-            return new PreflightCheckResult(issues =>
+            return new TaskResult(issues =>
             {
 
                 if (_settingsFileLocation.Exists())

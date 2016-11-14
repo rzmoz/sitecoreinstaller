@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNet.Basics.IO;
 using DotNet.Basics.NLog;
-using SitecoreInstaller.PreflightChecks;
+using DotNet.Basics.Tasks;
 
 namespace SitecoreInstaller.BuildLibrary
 {
@@ -68,10 +68,10 @@ namespace SitecoreInstaller.BuildLibrary
             return (Module)Get(() => new Module(Modules.FullName.ToPath(name)));
         }
 
-        public PreflightCheckResult Assert()
+        public TaskResult Assert()
         {
             Init();
-            return new PreflightCheckResult(issues =>
+            return new TaskResult(issues =>
             {
                 if (Root.Exists())
                     this.NLog().Trace($"{nameof(LocalBuildLibrary)} found at: {Root.FullName}");

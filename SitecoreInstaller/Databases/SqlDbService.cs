@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data.SqlClient;
 using DotNet.Basics.NLog;
+using DotNet.Basics.Tasks;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 
@@ -81,7 +82,7 @@ namespace SitecoreInstaller.Databases
             yield return @".\SQLEXPRESS";
         }
 
-        protected override void CustomAssert(List<string> issues)
+        protected override void CustomAssert(TaskIssueList issues)
         {
             //ensure mixed login Mode
             var sqlServer = GetTrustedServer(InstanceName);
@@ -100,7 +101,7 @@ namespace SitecoreInstaller.Databases
             EnsureUserIsSysadmin(_basicSettings.SqlLogin, _basicSettings.SqlPassword, issues);
         }
 
-        private void EnsureUserIsSysadmin(string username, string password, List<string> issues)
+        private void EnsureUserIsSysadmin(string username, string password, TaskIssueList issues)
         {
             var role = "sysadmin";
             try

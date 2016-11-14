@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using DotNet.Basics.NLog;
 using DotNet.Basics.Sys;
+using DotNet.Basics.Tasks;
 using MongoDB.Driver;
 
 namespace SitecoreInstaller.Databases
@@ -64,7 +65,7 @@ namespace SitecoreInstaller.Databases
             yield return _basicSettings.MongoHost;
         }
 
-        protected override void CustomAssert(List<string> issues)
+        protected override void CustomAssert(TaskIssueList issues)
         {
         }
 

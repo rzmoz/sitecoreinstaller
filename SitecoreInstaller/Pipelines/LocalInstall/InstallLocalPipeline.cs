@@ -6,7 +6,7 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
     public class InstallLocalPipeline : LocalPipeline<InstallLocalArgs>
     {
         public InstallLocalPipeline(Func<IContainer> getContainer) : base(getContainer)
-        {/*
+        {
             AddStep<CopyDeploymentFilesStep>();
             AddStep<InitWebsiteStep>();
             AddStep<InitInstallConnectionStringsStep>();
@@ -14,7 +14,7 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
             AddStep<AddSiteToHostFileStep>();
             AddStep<CreateWebsiteAndAppPoolStep>();
             AddStep<WakeUpSiteStep>();
-            AddStep<InstallLocalSuccessStep<InstallLocalArgs>>();*/
+            AddStep<InstallLocalSuccessStep<InstallLocalArgs>>();
         }
     }
 }

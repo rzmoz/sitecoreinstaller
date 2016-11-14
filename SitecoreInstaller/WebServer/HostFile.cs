@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Security;
 using DotNet.Basics.IO;
 using DotNet.Basics.NLog;
-using SitecoreInstaller.PreflightChecks;
+using DotNet.Basics.Tasks;
 
 namespace SitecoreInstaller.WebServer
 {
@@ -39,12 +40,12 @@ namespace SitecoreInstaller.WebServer
 
         public void AddHostName(string hostname)
         {
-            if (Assert().IsReady == false)
+            if (Assert().Issues.Any())
             {
                 this.NLog().Fatal($"Host file ready for update. Your website will not be available in your local IIS");
                 return;
             }
-            
+
             bool addNewline;
 
             //check if host name already exist
@@ -106,7 +107,7 @@ namespace SitecoreInstaller.WebServer
 
         public void RemoveHostName(string hostname)
         {
-            
+
             var tempFile = Path.GetTempFileName();
 
             string deletedEntry = null;
@@ -167,9 +168,9 @@ namespace SitecoreInstaller.WebServer
             return line.Equals(hostFileIisSiteName.Trim());
         }
 
-        public PreflightCheckResult Assert()
+        public TaskResult Assert()
         {
-            return new PreflightCheckResult(issues =>
+            return new TaskResult(issues =>
             {
                 if (Exists)
                     this.NLog().Trace($"Hostfile found at: {_hostFile.FullName}");

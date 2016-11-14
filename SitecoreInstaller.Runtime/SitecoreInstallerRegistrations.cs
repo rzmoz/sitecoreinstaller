@@ -9,7 +9,6 @@ using SitecoreInstaller.Databases;
 using SitecoreInstaller.Deployments;
 using SitecoreInstaller.Pipelines.LocalInstall;
 using SitecoreInstaller.Pipelines.LocalUnInstall;
-using SitecoreInstaller.PreflightChecks;
 using SitecoreInstaller.Website;
 using SitecoreInstaller.WebServer;
 
@@ -49,8 +48,8 @@ namespace SitecoreInstaller.Runtime
             builder.RegisterType<LocalDeploymentsService>().AsSelf().As<IPreflightCheck>();
 
             //pipelines
-            builder.Register(c => new InstallLocalPipeline(() => builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
-            builder.Register(c => new UnInstallLocalPipeline(() => builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
+            builder.Register(c => new InstallLocalPipeline(() => builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf().As<IPreflightCheck>();
+            builder.Register(c => new UnInstallLocalPipeline(() => builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf().As<IPreflightCheck>();
         }
 
         private void InitPipeline<T>(Pipeline<T> pipeline) where T : class, new()
@@ -65,9 +64,6 @@ namespace SitecoreInstaller.Runtime
                 var logger = LogManager.GetLogger(args.Name);
                 var msg = $"{args.Name}";
 
-                if (args.WasCancelled)
-                    msg += " was cancelled. ";
-
                 if (args.Issues.Any())
                 {
                     msg += " Issues:";
@@ -75,10 +71,10 @@ namespace SitecoreInstaller.Runtime
                         msg += $"\r\n{issue}";
                 }
 
-                if (args.Exception == null)
-                    logger.Trace(msg);
+                if (args.Exceptions.Any())
+                    logger.Error(msg);
                 else
-                    logger.Error(msg + "\r\n" + args.Exception.ToString());
+                    logger.Trace(msg);
             };
         }
     }

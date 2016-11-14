@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using DotNet.Basics.NLog;
 using DotNet.Basics.Sys;
+using DotNet.Basics.Tasks;
 using Newtonsoft.Json;
 using NLog;
-using SitecoreInstaller.PreflightChecks;
 
 namespace SitecoreInstaller.Databases
 {
@@ -27,7 +27,7 @@ namespace SitecoreInstaller.Databases
         protected abstract bool ConnectionEstablished(string instanceName);
         protected abstract IEnumerable<string> GetWindowsServiceNameCandidates();
         protected abstract IEnumerable<string> GetInstanceNameCandidates();
-        protected abstract void CustomAssert(List<string> issues);
+        protected abstract void CustomAssert(TaskIssueList issues);
 
         protected void WorkOnConnectionStrings<T>(Func<IEnumerable<T>> getEnumerator, Action<T> action, string startingVerb, string endedVerb) where T : DbConnectionString
         {
@@ -46,11 +46,11 @@ namespace SitecoreInstaller.Databases
             }
         }
 
-        public PreflightCheckResult Assert()
+        public TaskResult Assert()
         {
             var dbType = GetType().Name.Replace(nameof(DbService), "");
 
-            return new PreflightCheckResult(issues =>
+            return new TaskResult(issues =>
             {
                 if (WindowsServiceName == null)
                 {

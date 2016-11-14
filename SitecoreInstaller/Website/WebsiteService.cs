@@ -5,9 +5,9 @@ using DotNet.Basics.IO;
 using DotNet.Basics.NLog;
 using DotNet.Basics.Rest;
 using DotNet.Basics.Sys;
+using DotNet.Basics.Tasks;
 using DotNet.Basics.Tasks.Repeating;
 using NLog;
-using SitecoreInstaller.PreflightChecks;
 
 namespace SitecoreInstaller.Website
 {
@@ -88,9 +88,9 @@ namespace SitecoreInstaller.Website
             this.NLog().Trace($"Runtime services installed to {runtimeServicesDir }");
         }
 
-        public PreflightCheckResult Assert()
+        public TaskResult Assert()
         {
-            return new PreflightCheckResult();
+            return new TaskResult();
         }
     }
 }

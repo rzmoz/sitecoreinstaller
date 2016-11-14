@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DotNet.Basics.NLog;
@@ -32,7 +33,7 @@ namespace SitecoreInstaller.Deployments
                     try
                     {
                         var result = await pipeline.RunAsync(args, CancellationToken.None).ConfigureAwait(false);
-                        if (result.NoIssues == false)
+                        if (result.Issues.Any())
                             this.NLog().Warn(JsonConvert.SerializeObject(result.Issues));
                     }
                     catch (Exception e)
