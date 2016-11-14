@@ -28,7 +28,7 @@ namespace SitecoreInstaller.Host
                 iocBuilder.RegisterApiControllers(typeof(Program).Assembly);
                 iocBuilder.RegisterHubs(typeof(Program).Assembly);
                 iocBuilder.RegisterPipelineSteps(typeof(LocalArgs).Assembly);
-
+                
                 var serializer = JsonSerializer.Create(new JsonSerializerSettings { ContractResolver = new SignalRContractResolver() });
                 iocBuilder.RegisterInstance(serializer).As<JsonSerializer>();
             });

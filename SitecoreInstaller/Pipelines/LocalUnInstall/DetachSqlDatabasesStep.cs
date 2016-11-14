@@ -6,7 +6,7 @@ using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Databases;
 
 namespace SitecoreInstaller.Pipelines.LocalUnInstall
-{
+{/*
     public class DetachSqlDatabasesStep : PipelineStep<UnInstallLocalArgs>
     {
         private readonly SqlDbService _dbService;
@@ -21,5 +21,5 @@ namespace SitecoreInstaller.Pipelines.LocalUnInstall
             _dbService.DetachDatabases(args.ConnectionStrings.OfType<SqlDbConnectionString>());
             return Task.CompletedTask;
         }
-    }
+    }*/
 }

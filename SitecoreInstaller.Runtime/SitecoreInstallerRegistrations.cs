@@ -7,7 +7,6 @@ using NLog;
 using SitecoreInstaller.BuildLibrary;
 using SitecoreInstaller.Databases;
 using SitecoreInstaller.Deployments;
-using SitecoreInstaller.Pipelines;
 using SitecoreInstaller.Pipelines.LocalInstall;
 using SitecoreInstaller.Pipelines.LocalUnInstall;
 using SitecoreInstaller.PreflightChecks;
@@ -30,29 +29,28 @@ namespace SitecoreInstaller.Runtime
             builder.Register(c => builder.Container.Resolve<EnvironmentSettings>().AdvancedSettings).AsSelf();
 
             //web server
-            builder.RegisterType<HostFile>().As<IPreflightCheck>().AsSelf();
-            builder.RegisterType<IisManagementService>().As<IPreflightCheck>().AsSelf();
+            builder.RegisterType<HostFile>().AsSelf().As<IPreflightCheck>();
+            builder.RegisterType<IisManagementService>().AsSelf().As<IPreflightCheck>();
             builder.RegisterType<IisApplicationSettingsFactory>().AsSelf();
 
             //databases
             builder.RegisterType<ConnectionStringsConfigFormatter>().AsSelf();
             //MUST be single instance to ensure vaules are persisted
-            builder.RegisterType<SqlDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
-            builder.RegisterType<MongoDbService>().As<IPreflightCheck>().AsSelf().SingleInstance();
+            builder.RegisterType<SqlDbService>().AsSelf().As<IPreflightCheck>().SingleInstance();
+            builder.RegisterType<MongoDbService>().AsSelf().As<IPreflightCheck>().SingleInstance();
 
             //build lib
-            builder.RegisterType<LocalBuildLibrary>().As<IPreflightCheck>().AsSelf();
+            builder.RegisterType<LocalBuildLibrary>().AsSelf().As<IPreflightCheck>();
 
             //web site
-            builder.RegisterType<WebsiteService>().As<IPreflightCheck>().AsSelf();
+            builder.RegisterType<WebsiteService>().AsSelf().As<IPreflightCheck>();
 
             //deployments 
-            builder.RegisterType<LocalDeploymentsService>().As<IPreflightCheck>().AsSelf();
+            builder.RegisterType<LocalDeploymentsService>().AsSelf().As<IPreflightCheck>();
 
             //pipelines
-            builder.RegisterGeneric(typeof(InitDeploymentDirStep<>)).AsSelf();
-            builder.Register(c => new InstallLocalPipeline(builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
-            builder.Register(c => new UnInstallLocalPipeline(builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
+            builder.Register(c => new InstallLocalPipeline(() => builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
+            builder.Register(c => new UnInstallLocalPipeline(() => builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf();
         }
 
         private void InitPipeline<T>(Pipeline<T> pipeline) where T : class, new()
@@ -74,7 +72,7 @@ namespace SitecoreInstaller.Runtime
                 {
                     msg += " Issues:";
                     foreach (var issue in args.Issues)
-                        msg +=$"\r\n{issue}";
+                        msg += $"\r\n{issue}";
                 }
 
                 if (args.Exception == null)

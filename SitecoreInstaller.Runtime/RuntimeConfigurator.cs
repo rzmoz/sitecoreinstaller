@@ -28,8 +28,7 @@ namespace SitecoreInstaller.Runtime
 
         public string HostName { get; }
 
-        public bool Init(Action<NLogConfigurator> configureLog,
-            Action<IocBuilder> iocRegistrations = null)
+        public bool Init(Action<NLogConfigurator> configureLog, Action<IocBuilder> iocRegistrations = null)
         {
             //ensure all low level dotnet.basics events are logged
             DebugOut.Out += this.NLog().Debug;
@@ -58,7 +57,7 @@ namespace SitecoreInstaller.Runtime
                     iocRegistrations?.Invoke(builder);
                     Container = builder.Container;
                     foreach (var registration in Container.ComponentRegistry.Registrations)
-                        this.NLog().Debug($"{JsonConvert.SerializeObject(registration.Services.Select(s=>s.Description)) }");
+                        this.NLog().Debug($"{JsonConvert.SerializeObject(registration.Services.Select(s => s.Description)) }");
                 }
                 catch (Exception e)
                 {

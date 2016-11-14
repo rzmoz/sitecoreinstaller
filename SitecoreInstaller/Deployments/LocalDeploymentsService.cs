@@ -4,7 +4,6 @@ using System.Security.AccessControl;
 using DotNet.Basics.IO;
 using DotNet.Basics.NLog;
 using Newtonsoft.Json;
-using NLog;
 using SitecoreInstaller.Pipelines.LocalInstall;
 using SitecoreInstaller.Pipelines.LocalUnInstall;
 using SitecoreInstaller.PreflightChecks;

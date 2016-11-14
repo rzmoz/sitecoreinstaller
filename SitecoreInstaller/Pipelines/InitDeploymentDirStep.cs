@@ -10,7 +10,7 @@ namespace SitecoreInstaller.Pipelines
     {
         private readonly LocalDeploymentsService _localDeploymentsService;
         private readonly AdvancedSettings _advancedSettings;
-
+        
         public InitDeploymentDirStep(LocalDeploymentsService localDeploymentsService, AdvancedSettings advancedSettings)
         {
             _localDeploymentsService = localDeploymentsService;

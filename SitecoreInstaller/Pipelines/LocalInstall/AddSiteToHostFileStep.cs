@@ -6,6 +6,7 @@ using SitecoreInstaller.WebServer;
 
 namespace SitecoreInstaller.Pipelines.LocalInstall
 {
+    /*
     public class AddSiteToHostFileStep : PipelineStep<InstallLocalArgs>
     {
         private readonly HostFile _hostFile;
@@ -20,5 +21,5 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
             _hostFile.AddHostName(args.Info.Url);
             return Task.CompletedTask;
         }
-    }
+    }*/
 }

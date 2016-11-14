@@ -6,7 +6,7 @@ using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Databases;
 
 namespace SitecoreInstaller.Pipelines.LocalUnInstall
-{
+{/*
     public class InitUnInstallConnectionStringsStep : PipelineStep<UnInstallLocalArgs>
     {
         private readonly DbConnectionStringsFactory _dbConnectionStringsFactory;
@@ -22,5 +22,5 @@ namespace SitecoreInstaller.Pipelines.LocalUnInstall
 
             return Task.CompletedTask;
         }
-    }
+    }*/
 }

@@ -5,7 +5,7 @@ using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Website;
 
 namespace SitecoreInstaller.Pipelines.LocalInstall
-{
+{/*
     public class InitWebsiteStep : PipelineStep<InstallLocalArgs>
     {
         private readonly WebsiteService _websiteService;
@@ -22,5 +22,5 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
                 () => _websiteService.InitRuntimeServices(args.DeploymentDir));
             return Task.CompletedTask;
         }
-    }
+    }*/
 }

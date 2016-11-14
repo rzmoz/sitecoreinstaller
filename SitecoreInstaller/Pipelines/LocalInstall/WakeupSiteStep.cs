@@ -5,7 +5,7 @@ using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Website;
 
 namespace SitecoreInstaller.Pipelines.LocalInstall
-{
+{/*
     public class WakeUpSiteStep : PipelineStep<InstallLocalArgs>
     {
         private readonly WebsiteService _websiteService;
@@ -19,5 +19,5 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
         {
             await _websiteService.WakeUpSiteAsync(args.Info.Url).ConfigureAwait(false);
         }
-    }
+    }*/
 }

@@ -7,7 +7,7 @@ using DotNet.Basics.Tasks.Pipelines;
 using SitecoreInstaller.Databases;
 
 namespace SitecoreInstaller.Pipelines.LocalInstall
-{
+{/*
     public class InitInstallConnectionStringsStep : PipelineStep<InstallLocalArgs>
     {
         private readonly DbConnectionStringsFactory _dbConnectionStringsFactory;
@@ -36,5 +36,5 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
 
             return Task.CompletedTask;
         }
-    }
+    }*/
 }

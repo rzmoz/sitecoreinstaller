@@ -7,7 +7,7 @@ using SitecoreInstaller.BuildLibrary;
 using SitecoreInstaller.Website;
 
 namespace SitecoreInstaller.Pipelines.LocalInstall
-{
+{/*
     public class CopyDeploymentFilesStep : PipelineStep<InstallLocalArgs>
     {
         private readonly LocalBuildLibrary _buildLibrary;
@@ -31,5 +31,5 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
 
             return Task.CompletedTask;
         }
-    }
+    }*/
 }
