@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Autofac;
 using DotNet.Basics.Ioc;
+using DotNet.Basics.NLog;
 using DotNet.Basics.Rest;
 using DotNet.Basics.Tasks.Pipelines;
 using NLog;
@@ -50,31 +51,31 @@ namespace SitecoreInstaller.Runtime
             //pipelines
             builder.Register(c => new InstallLocalPipeline(() => builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf().As<IPreflightCheck>();
             builder.Register(c => new UnInstallLocalPipeline(() => builder.Container)).OnActivated(e => InitPipeline(e.Instance)).AsSelf().As<IPreflightCheck>();
+
+            builder.RegisterType<DbConnectionStringsFactory>();
         }
 
         private void InitPipeline<T>(Pipeline<T> pipeline) where T : class, new()
         {
+            var logger = pipeline.NLog();
+
             pipeline.Started += args =>
             {
-                var logger = LogManager.GetLogger(args.Name);
                 logger.Trace($"{args.Name} started..");
             };
             pipeline.Ended += args =>
             {
-                var logger = LogManager.GetLogger(args.Name);
-                var msg = $"{args.Name}";
-
                 if (args.Issues.Any())
                 {
-                    msg += " Issues:";
+                    logger.Error($"{args.Name} Issues:");
                     foreach (var issue in args.Issues)
-                        msg += $"\r\n{issue}";
-                }
+                    {
+                        logger.Error($"\r\n{issue.Message}\r\n\r\n");
+                        if (issue.Exception != null)
+                            logger.Debug($"{issue.Exception}\r\n\r\n");
+                    }
 
-                if (args.Exceptions.Any())
-                    logger.Error(msg);
-                else
-                    logger.Trace(msg);
+                }
             };
         }
     }

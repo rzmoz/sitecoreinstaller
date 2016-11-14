@@ -5,7 +5,7 @@ using DotNet.Basics.Tasks.Pipelines;
 
 namespace SitecoreInstaller.Pipelines
 {
-    public class LocalPipeline<T> : Pipeline<T>,IPreflightCheck where T : LocalArgs, new()
+    public class LocalPipeline<T> : Pipeline<T>, IPreflightCheck where T : LocalArgs, new()
     {
         public LocalPipeline(Func<IContainer> getContainer) : base(getContainer)
         {
@@ -14,8 +14,11 @@ namespace SitecoreInstaller.Pipelines
 
         public TaskResult Assert()
         {
-            //this asserts that the pipeline can be instantiated.
-            return new TaskResult();
+            return new TaskResult(Name, issues =>
+            {
+                var lazyLoadResult = AssertLazyLoadSteps();
+                issues.AddRange(lazyLoadResult.Issues);
+            });
         }
     }
 }

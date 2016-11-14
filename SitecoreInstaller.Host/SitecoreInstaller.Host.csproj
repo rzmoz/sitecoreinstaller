@@ -48,8 +48,8 @@
       <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DotNet.Basics, Version=5.5.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.5.5.6\lib\net45\DotNet.Basics.dll</HintPath>
+    <Reference Include="DotNet.Basics, Version=5.5.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNet.Basics.5.5.8\lib\net45\DotNet.Basics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DotNet.Basics.NLog, Version=4.3.11.2, Culture=neutral, processorArchitecture=MSIL">
