@@ -21,28 +21,31 @@
 
 <script type="text/javascript">
     
-    $(function () {
-        serviceBus.subscribe('click/delete/deployments/local',
-            function (name) {
-                var deleteModal = $('#deleteLocalDeploymentModal');
-                deleteModal.attr(deployments.dataDeploymentNameKey, name);
-                $('#deleteLocalDeploymentModal .deployment-name').text(name);
-                deleteModal.modal('toggle');
+    var deployments_deleteLocalDeploymentDialog= {
+        init:function() {
+            console.log(('* Initializing deployments_deleteLocalDeploymentDialog'));
+            serviceBus.subscribe('click/delete/deployments/local',
+                function (name) {
+                    console.log('deleting:' + name);
+                    var deleteModal = $('#deleteLocalDeploymentModal');
+                    deleteModal.attr(deployments.dataDeploymentNameKey, name);
+                    $('#deleteLocalDeploymentModal .deployment-name').text(name);
+                    deleteModal.modal();
+                });
 
-            });
+            $('#delete-local-deployment-form')
+                .submit(function (e) {
+                    var deleteModal = $('#deleteLocalDeploymentModal');
+                    var name = deleteModal.attr(deployments.dataDeploymentNameKey);
 
-        $('#delete-local-deployment-form')
-            .submit(function (e) {
-                var deleteModal = $('#deleteLocalDeploymentModal');
-                var name = deleteModal.attr(deployments.dataDeploymentNameKey);
-                
-                serviceBus.publish('delete/deployments/local', name);
+                    serviceBus.publish('delete/deployments/local', name);
 
-                deleteModal.attr(deployments.dataDeploymentNameKey, '');
-                deleteModal.modal('toggle');
+                    deleteModal.attr(deployments.dataDeploymentNameKey, '');
+                    deleteModal.modal('toggle');
 
-                e.preventDefault();
-            });
-    });
+                    e.preventDefault();
+                });
 
+            console.log(('* deployments_deleteLocalDeploymentDialog initialized'));
+        }}
 </script>

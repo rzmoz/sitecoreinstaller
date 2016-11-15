@@ -79,11 +79,10 @@
         $(document)
             .ready(function () {
                 console.log("(¯`·._.·(¯`·._.· Loading SitecoreInstaller Client ·._.·´¯)·._.·´¯)");
-
-                //$.connection.hub.logging = true;
+                
                 buildLibrary.init();
                 deployments.init();
-
+                
                 var sectionName = getActiveSectionName();
                 $('#page-content').loadSection(sectionName, function () {
                     var title = eval(sectionName + '.iGetTitle()');

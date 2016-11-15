@@ -42,20 +42,31 @@
 </div>
 
 <script type="text/javascript">
-    $(function() {
-        $('#newLocalDeploymentModal').on('shown.bs.modal', () => $('#new-local-deployment-name').focus());
-
-        $('#new-local-deployment-form')
-            .submit(function (e) {
-                serviceBus.publish('put/deployments/local',
-                {
-                    name: $('#new-local-deployment-name').val(),
-                    sitecore: $('#selSitecore').find(":selected").val(),
-                    license: $('#selLicense').find(":selected").val()
+    var deployments_putLocalDeploymentDialog = {
+        init: function () {
+            console.log(('* Initializing deployments_putLocalDeploymentDialog'));
+            serviceBus.subscribe('click/put/deployments/local',
+                function () {
+                    deployments.refreshNewDepSelections();
+                    $('#new-local-deployment-name').val('');
+                    $('#newLocalDeploymentModal').modal();
                 });
-                $('#newLocalDeploymentModal').modal('toggle');
-                e.preventDefault();
-            });
-    });
 
+            $('#newLocalDeploymentModal').on('shown.bs.modal', () => $('#new-local-deployment-name').focus());
+
+            $('#new-local-deployment-form')
+                .submit(function (e) {
+                    serviceBus.publish('put/deployments/local',
+                    {
+                        name: $('#new-local-deployment-name').val(),
+                        sitecore: $('#selSitecore').find(":selected").val(),
+                        license: $('#selLicense').find(":selected").val()
+                    });
+                    $('#newLocalDeploymentModal').modal('toggle');
+                    e.preventDefault();
+                });
+
+            console.log(('* deployments_putLocalDeploymentDialog initialized'));
+        }
+    }
 </script>

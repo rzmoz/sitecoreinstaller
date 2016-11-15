@@ -1,4 +1,12 @@
 ﻿(function ($) {
+    $.fn.loadModule = function (name, callback) {
+        var $this = this;
+        eval(name + '.load($this,callback)');
+        return this;
+    };
+}(jQuery));
+
+(function ($) {
     $.fn.loadSection = function (sectionName, callback) {
         this.load(host.getSectionPath(sectionName, 'html'),
             function () {
@@ -10,6 +18,19 @@
     };
 }(jQuery));
 
+
+(function ($) {
+    $.fn.subscribeRaw = function (topic) {
+        var $this = this;
+        serviceBus.subscribe(topic,
+            function (info) {
+                $this.html(JSON.stringify(info));
+            });
+        return this;
+    };
+}(jQuery));
+
+
 //https://davidwalsh.name/pubsub-javascript
 var serviceBus = (function () {
     var topics = {};
@@ -20,15 +41,14 @@ var serviceBus = (function () {
             if (!hOP.call(topics, topic))
                 topics[topic] = [];
 
-            var index = topics[topic].push(listener) - 1;
-            console.log('service bus listener subscribing to ' + topic);
-            return { remove: function () { delete topics[topic][index]; } };
+            topics[topic].push(listener);
+            console.log('@@ service bus listener subscribing to ' + topic);
         },
         publish: function (topic, info) {
             if (!hOP.call(topics, topic))
                 return;
 
-            console.log('service bus message to ' + topic + ':' + JSON.stringify(info));
+            console.log('@@ service bus message to ' + topic + ':' + JSON.stringify(info));
 
             topics[topic].forEach(function (item) {
                 item(info != undefined ? info : {});
@@ -39,15 +59,6 @@ var serviceBus = (function () {
 
 var host = {
     siHub: $.connection.siHub,
-    loadModule: function (name, callback) {
-        $('#modules-content').load(host.getModulesPath(name, 'html'), callback);
-    },
-    toggleDisabled: function (element, disabledPredicate) {
-        if (disabledPredicate())
-            element.addClass('disabled');
-        else
-            element.removeClass('disabled');
-    },
     getQueryStringAsJson: function () {
         var qs = window.location.search.replace('?', '');
         qs = '{"' + qs.replace(/&/g, '","').replace(/=/g, '":"') + '"}';

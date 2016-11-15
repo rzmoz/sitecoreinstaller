@@ -37,7 +37,6 @@ namespace SitecoreInstaller.Host.Hubs
                     Clients.All.updateLicenses(_localBuildLibrary.GetLicenses().Select(l => LicenseInfo.Load(l.Path.ToFile())));
                     Clients.All.updateModules(_localBuildLibrary.GetModules());
                     await Task.Delay(3.Seconds()).ConfigureAwait(false);
-                    Thread.Sleep(1000);
                 }
             });
         }

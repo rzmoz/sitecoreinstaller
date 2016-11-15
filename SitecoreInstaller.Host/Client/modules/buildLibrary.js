@@ -4,6 +4,7 @@
     modules: [],
     init: function () {
         console.log('Initializing Buildlibrary ');
+
         host.siHub.client.updateSitecores = function (scJson) {
             buildLibrary.sitecores = scJson;
         }

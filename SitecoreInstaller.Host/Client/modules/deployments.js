@@ -1,44 +1,41 @@
-﻿(function ($) {
-    $.fn.initDeploymentsList = function (callback) {
-        var $this = this;
-
-        this.load(host.getModulesPath('deployments_infoPanel', 'html'), function () {
-            deploymentsInfoPanel_htmlModule.init($this);
-            if (callback !== undefined)
-                callback();
-        });
-        return this;
-    };
-}(jQuery));
-
-(function ($) {
-    $.fn.initNewLocalDeploymentDialog = function () {
-        this.unbind();
-        this.on('click', function () {
-            deployments.refreshNewDepSelections();
-            $('#new-local-deployment-name').val('');
-            $('#newLocalDeploymentModal').modal();
-        });
-        return this;
-    };
-}(jQuery));
-
-var deployments = {
+﻿var deployments = {
     dataDeploymentNameKey: 'data-deployment-name',
     baseUrl: '/api/local/deployments/',
 
+    load: function (parent, callback) {
+        var phInfo = $('<div/>');
+        phInfo.load(host.getModulesPath('deployments_infoPanel', 'html'), function () {
+            phInfo.appendTo($(parent));
+        });
+
+        var phDelete = $('<div/>');
+        phDelete.load(host.getModulesPath('deployments_deleteLocalDeploymentDialog', 'html'), function () {
+            phDelete.appendTo($(parent));
+        });
+
+        var phPut = $('<div/>');
+        parent.load(host.getModulesPath('deployments_putLocalDeploymentDialog', 'html'), function () {
+            phPut.appendTo($(parent));
+        });
+
+        callback();
+    },
+
     init: function () {
-        serviceBus.subscribe('delete/deployments/local',
-                  function (name) {
-                      deployments.deleteLocal(name, () => { });
-                  });
-        serviceBus.subscribe('put/deployments/local',
-            function (args) {
-                deployments.putLocal(args.name, args.sitecore, args.license, '', () => { });
-            });
         host.siHub.client.updateLocalDeploymentsCount = function (count) {
             serviceBus.publish('get/deployments/local/count', count);
         }
+        /*
+        serviceBus.subscribe('delete/deployments/local', function (name) {
+            deployments.deleteLocal(name, () => { });
+        });
+        serviceBus.subscribe('put/deployments/local', function (args) {
+            deployments.putLocal(args.name, args.sitecore, args.license, '', () => { });
+        });
+        
+        host.siHub.client.updateDeployments = function (deployments) {
+            serviceBus.publish('get/deployments/local', deployments);
+        }*/
     },
 
     refreshNewDepSelections: function () {

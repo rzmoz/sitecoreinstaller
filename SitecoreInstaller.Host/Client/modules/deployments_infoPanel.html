@@ -1,4 +1,6 @@
-﻿<div id="dep-info-panel-template" style="display:none">
+﻿<div class="deployments-list"></div>
+
+<div id="dep-info-panel-template" style="display:none">
     <div id="[[panel-id]]" class="panel panel-primary dep-info-panel">
         <div class="panel-heading">
             <h4 class="panel-title">
@@ -18,21 +20,24 @@
 </div>
 
 <script type="text/javascript">
+    var deployments_infoPanel= {
+        init:function() {
+            console.log(('* Initializing deployments_infoPanel'));
+            serviceBus.subscribe('get/deployments/local', deploymentsInfoPanel_htmlModule.updateDeployments);
+            console.log(('* deployments_infoPanel initialized'));
+        }
+    }
     var deploymentsInfoPanel_htmlModule = {
         depPanelTemplateHtml: $('#dep-info-panel-template').html(),
-        listElement: undefined,
+        listElement: $('.deployments-list'),
         getDepPanelId: function (dep) {
             return 'dep-info-pnl-' + dep.name;
-        },
-        init: function (listElement) {
-            host.siHub.client.updateDeployments = deploymentsInfoPanel_htmlModule.updateDeployments;
-            deploymentsInfoPanel_htmlModule.listElement = listElement;
         },
         localDeploymentDelete_onclick: function (name) {
             serviceBus.publish('click/delete/deployments/local', name);
         },
-        
         updateDeployments: function (updatedDeployments) {
+            
             var list = deploymentsInfoPanel_htmlModule.listElement;
 
             var existingPanels = list.children('div.dep-info-panel');
@@ -84,11 +89,16 @@
             });
         },
         setPanelStatus: function (panel, status) {
-            host.toggleDisabled(panel.find('.btn-deploymentsInfoPanel_htmlModule-deployment'), () => { return status === "InProgress"; });
+            deploymentsInfoPanel_htmlModule.toggleDisabled($(panel).find('.btn-deploymentsInfoPanel_htmlModule-deployment'), () => { return status === "InProgress"; });
             var statusHtml = deploymentsInfoPanel_htmlModule.getStatusIconHtml(status);
             panel.find('.info-status-icon').replaceWith(statusHtml);
         },
-
+        toggleDisabled: function (element, disabledPredicate) {
+            if (disabledPredicate())
+                element.addClass('disabled');
+            else
+                element.removeClass('disabled');
+        },
         getNewDepPanel: function (info, dataParent) {
             if (info === null || info === undefined)
                 return '';
