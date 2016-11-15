@@ -21,12 +21,14 @@ var serviceBus = (function () {
                 topics[topic] = [];
 
             var index = topics[topic].push(listener) - 1;
-
+            console.log('service bus listener subscribing to ' + topic);
             return { remove: function () { delete topics[topic][index]; } };
         },
         publish: function (topic, info) {
             if (!hOP.call(topics, topic))
                 return;
+
+            console.log('service bus message to ' + topic + ':' + JSON.stringify(info));
 
             topics[topic].forEach(function (item) {
                 item(info != undefined ? info : {});
@@ -38,15 +40,7 @@ var serviceBus = (function () {
 var host = {
     siHub: $.connection.siHub,
     loadModule: function (name, callback) {
-        $('#modules-content').load(host.getModulesPath(name, 'html'),
-              function () {
-                  var fullModuleName = name + '_htmlModule';
-                  console.log('Initializing ' + fullModuleName);
-                  eval(fullModuleName + '.init()');
-                  console.log(fullModuleName + ' initialized');
-                  if (callback !== undefined)
-                      callback();
-              });
+        $('#modules-content').load(host.getModulesPath(name, 'html'), callback);
     },
     toggleDisabled: function (element, disabledPredicate) {
         if (disabledPredicate())

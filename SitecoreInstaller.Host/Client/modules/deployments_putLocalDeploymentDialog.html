@@ -1,0 +1,61 @@
+﻿<div id="newLocalDeploymentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Local Deployment</h4>
+            </div>
+            <form class="form-horizontal form-label-left input_mask" id="new-local-deployment-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="new-local-deployment-name">
+                            Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input type="text" id="new-local-deployment-name"
+                                   class="form-control"
+                                   pattern="[a-zA-Z0-9-]+"
+                                   title="Alphanumeric and dashes (-) only"
+                                   placeholder="ea. my.project" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sitecore</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <select class="form-control" id="selSitecore"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">License</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <select class="form-control" id="selLicense"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-success" value="Deploy" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('#newLocalDeploymentModal').on('shown.bs.modal', () => $('#new-local-deployment-name').focus());
+
+        $('#new-local-deployment-form')
+            .submit(function (e) {
+                serviceBus.publish('put/deployments/local',
+                {
+                    name: $('#new-local-deployment-name').val(),
+                    sitecore: $('#selSitecore').find(":selected").val(),
+                    license: $('#selLicense').find(":selected").val()
+                });
+                $('#newLocalDeploymentModal').modal('toggle');
+                e.preventDefault();
+            });
+    });
+
+</script>

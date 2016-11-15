@@ -101,19 +101,16 @@
         iGetTitle: function () {
             return "Dashboard";
         },
-        updateTicks: function (ticks) {
-            $('#page-wrapper').append('<code>Ticks: ' + ticks + '</code><br/>');
-        },
         updateLocalDeploymentsCount: function (count) {
             $('#local-deployment-count').html(count);
         },
         init: function (callback) {
-            serviceBus.subscribe('deployments/local/count', dashboard.updateLocalDeploymentsCount);
-            //;
-            host.loadModule('deployments', function () {
+            serviceBus.subscribe('get/deployments/local/count', dashboard.updateLocalDeploymentsCount);
+            host.loadModule('deployments_putLocalDeploymentDialog', function () {
                 $('#new-local-deployment').initNewLocalDeploymentDialog();
                 $('#deployments-list').initDeploymentsList(callback);
             });
+            host.loadModule('deployments_deleteLocalDeploymentDialog');
         }
     }
 </script>

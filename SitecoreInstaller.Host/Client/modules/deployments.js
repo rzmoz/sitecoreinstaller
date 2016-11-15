@@ -2,7 +2,7 @@
     $.fn.initDeploymentsList = function (callback) {
         var $this = this;
 
-        this.load(host.getModulesPath('deploymentsInfoPanel', 'html'), function () {
+        this.load(host.getModulesPath('deployments_infoPanel', 'html'), function () {
             deploymentsInfoPanel_htmlModule.init($this);
             if (callback !== undefined)
                 callback();
@@ -26,6 +26,20 @@
 var deployments = {
     dataDeploymentNameKey: 'data-deployment-name',
     baseUrl: '/api/local/deployments/',
+
+    init: function () {
+        serviceBus.subscribe('delete/deployments/local',
+                  function (name) {
+                      deployments.deleteLocal(name, () => { });
+                  });
+        serviceBus.subscribe('put/deployments/local',
+            function (args) {
+                deployments.putLocal(args.name, args.sitecore, args.license, '', () => { });
+            });
+        host.siHub.client.updateLocalDeploymentsCount = function (count) {
+            serviceBus.publish('get/deployments/local/count', count);
+        }
+    },
 
     refreshNewDepSelections: function () {
         $('#selLicense').html('');

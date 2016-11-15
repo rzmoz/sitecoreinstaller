@@ -53,7 +53,7 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container-fluid page-content" id="page-content"></div>
+            <div id="page-content" class="container-fluid page-content" ></div>
             <div id="modules-content"></div>
         </div>
     </div>
@@ -82,6 +82,7 @@
 
                 //$.connection.hub.logging = true;
                 buildLibrary.init();
+                deployments.init();
 
                 var sectionName = getActiveSectionName();
                 $('#page-content').loadSection(sectionName, function () {
@@ -95,7 +96,7 @@
                 console.log("SignalR hub started");
                 host.siHub.server.init();
                 console.log("(¯`·._.·(¯`·._.· SitecoreInstaller Client loaded ·._.·´¯)·._.·´¯)");
-                
+
             });
         }
         function getActiveSectionName() {

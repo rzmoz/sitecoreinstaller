@@ -191,10 +191,13 @@
     <Content Include="Client\js\jquery.signalR.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\modules\deployments.html">
+    <Content Include="Client\modules\deployments_deleteLocalDeploymentDialog.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\modules\deploymentsInfoPanel.html">
+    <Content Include="Client\modules\deployments_putLocalDeploymentDialog.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\modules\deployments_infoPanel.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\sections\sdn.html">
