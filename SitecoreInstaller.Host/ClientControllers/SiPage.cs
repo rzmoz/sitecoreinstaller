@@ -1,7 +1,4 @@
-﻿using System;
-using DotNet.Basics.Sys;
-
-namespace SitecoreInstaller.Host.ClientControllers
+﻿namespace SitecoreInstaller.Host.ClientControllers
 {
     public class SiPage
     {
@@ -14,15 +11,6 @@ namespace SitecoreInstaller.Host.ClientControllers
             Title = name.Replace("-", " "); ;
         }
 
-        public SiPage Apply(SiPage page, Action<SiPage> init = null)
-        {
-            var mergedHtml = Html.Replace("@@[[page-content]]@@", page.Html, StringComparison.OrdinalIgnoreCase);
-            mergedHtml = mergedHtml.Replace("@@[[page-title]]@@", page.Title, StringComparison.InvariantCultureIgnoreCase);
-            mergedHtml = mergedHtml.Replace("@@[[page-script]]@@", page.Script, StringComparison.InvariantCultureIgnoreCase);
-            var newPage = new SiPage(page.Name, mergedHtml, page.Script, page.Is404);
-            init?.Invoke(newPage);
-            return newPage;
-        }
         public string Title { get; }
         public string Name { get; }
         public string Html { get; }

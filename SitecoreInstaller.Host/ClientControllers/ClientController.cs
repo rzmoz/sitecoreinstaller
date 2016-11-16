@@ -1,20 +1,13 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
-using DotNet.Basics.IO;
 
 namespace SitecoreInstaller.Host.ClientControllers
 {
     public class ClientController : ApiController
     {
-        private readonly PageFactory _pageFactory;
-
-        public ClientController()
-        {
-            _pageFactory = new PageFactory(@".\client".ToDir("pages"));
-        }
 
         [HttpGet]
         [Route]
@@ -31,7 +24,10 @@ namespace SitecoreInstaller.Host.ClientControllers
         [Route("{name}")]
         public HttpResponseMessage Pages(string name)
         {
-            var page = _pageFactory.Get(name);
+            var builder = new SiPageBuilder();
+            builder.Apply(name);
+
+            var page = builder.Build();
 
             return new HttpResponseMessage
             {

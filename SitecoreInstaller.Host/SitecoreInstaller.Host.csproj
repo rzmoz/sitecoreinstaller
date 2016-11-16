@@ -134,7 +134,7 @@
     <Compile Include="ClientControllers\ClientController.cs" />
     <Compile Include="ApiControllers\LocalDeploymentsController.cs" />
     <Compile Include="ClientControllers\SiPage.cs" />
-    <Compile Include="ClientControllers\PageFactory.cs" />
+    <Compile Include="ClientControllers\SiPageBuilder.cs" />
     <Compile Include="EventDto.cs" />
     <Compile Include="EventQueue.cs" />
     <Compile Include="EventWorker.cs" />
