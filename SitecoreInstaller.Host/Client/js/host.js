@@ -1,25 +1,4 @@
 ﻿(function ($) {
-    $.fn.loadModule = function (name, callback) {
-        var $this = this;
-        eval(name + '.load($this,callback)');
-        return this;
-    };
-}(jQuery));
-
-(function ($) {
-    $.fn.loadSection = function (sectionName, callback) {
-        this.load(host.getSectionPath(sectionName, 'html'),
-            function () {
-                eval(sectionName + '.init(()=>allSystemsReady())');
-                if (callback !== undefined)
-                    callback();
-            });
-        return this;
-    };
-}(jQuery));
-
-
-(function ($) {
     $.fn.subscribeRaw = function (topic) {
         var $this = this;
         serviceBus.subscribe(topic,
@@ -56,34 +35,6 @@ var serviceBus = (function () {
         }
     };
 })();
-
-var host = {
-    siHub: $.connection.siHub,
-    getQueryStringAsJson: function () {
-        var qs = window.location.search.replace('?', '');
-        qs = '{"' + qs.replace(/&/g, '","').replace(/=/g, '":"') + '"}';
-        if (qs === '{""}')
-            return qs;
-        return $.parseJSON(qs);
-    },
-    loadSection: function (name, loadedCallback) {
-        console.log(name + ' section loading...');
-        $.get(host.getSectionPath(name, 'html'),
-            function (html) {
-                console.log(name + ' html loaded');
-                console.log(name + ' section loaded');
-                loadedCallback(name, html);
-            });
-
-    },
-    getSectionPath: function (name, type) {
-        return '/sections/' + name + '.' + type;
-    },
-    getModulesPath: function (name, type) {
-        return '/modules/' + name + '.' + type;
-    }
-}
-
 
 jQuery.each(["put", "delete"], function (i, method) {
     jQuery[method] = function (url, data, callback) {

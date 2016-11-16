@@ -7,7 +7,7 @@ using System.Web.Http;
 using DotNet.Basics.IO;
 using SitecoreInstaller.BuildLibrary;
 
-namespace SitecoreInstaller.Host.Controllers
+namespace SitecoreInstaller.Host.ApiControllers
 {
     [RoutePrefix("api/buildlibrary")]
     public class BuildLibraryController : ApiController

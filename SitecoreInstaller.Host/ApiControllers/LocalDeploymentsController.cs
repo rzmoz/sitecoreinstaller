@@ -3,11 +3,10 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using DotNet.Basics.Sys;
 using Newtonsoft.Json;
 using SitecoreInstaller.Deployments;
 
-namespace SitecoreInstaller.Host.Controllers
+namespace SitecoreInstaller.Host.ApiControllers
 {
     [RoutePrefix("api/local/deployments")]
     public class LocalDeploymentsController : ApiController

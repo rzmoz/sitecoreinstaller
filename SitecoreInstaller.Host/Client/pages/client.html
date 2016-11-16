@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title id="title">SitecoreInstaller</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+    <!-- core libs styling -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+
+    <!-- host libs styling -->
+    <link rel="stylesheet" href="/css/metisMenu.min.css" />
+    <link rel="stylesheet" href="/css/sb-admin-2.css" />
+
+    <style type="text/css">
+        .page-content {
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <div class="navbar-brand">SitecoreInstaller &gt; @@[[page-title]]@@</div>
+            </div>
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="/Dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/ARM-Templates"> <i class="fa fa-windows fa-fw"></i> ARM Templates</a>
+                        </li>
+                        <li>
+                            <a href="/SDN"> <i class="fa fa-home fa-fw"></i> SDN</a>
+                        </li>
+                        <li>
+                            <a href="/Settings"> <i class="fa fa-home fa-fw"></i> Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div id="page-content" class="container-fluid page-content">
+                @@[[page-content]]@@
+            </div>
+        </div>
+    </div>
+
+    <!-- Le javascript
+        ================================================== -->
+    <!-- core js libs | ORDER MATTERS! -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.signalR.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- host libs -->
+    <script src="/js/metisMenu.min.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
+    <script src="/js/host.js"></script>
+
+    <!-- domain modules -->
+    <script src="/modules/deployments.js"></script>
+    <script src="/modules/buildLibrary.js"></script>
+
+    <script>
+        $(document)
+            .ready(function () {
+                console.log("(¯`·._.·(¯`·._.· Loading SitecoreInstaller Client ·._.·´¯)·._.·´¯)");
+                buildLibrary.init();
+                deployments.init();
+                /*
+                console.log("Starting SignalR hub");
+                $.connection.hub.start().done(function () {
+                    console.log("SignalR hub started");
+                    host.siHub.server.init();
+                    });
+                    */
+                console.log("(¯`·._.·(¯`·._.· SitecoreInstaller Client loaded ·._.·´¯)·._.·´¯)");
+            });
+
+        @@[[page-script]]@@
+    </script>
+</body>

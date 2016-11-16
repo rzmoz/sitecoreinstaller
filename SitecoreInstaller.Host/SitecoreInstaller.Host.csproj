@@ -48,8 +48,8 @@
       <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DotNet.Basics, Version=5.5.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.5.5.8\lib\net45\DotNet.Basics.dll</HintPath>
+    <Reference Include="DotNet.Basics, Version=5.5.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNet.Basics.5.5.9\lib\net45\DotNet.Basics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DotNet.Basics.NLog, Version=4.3.11.2, Culture=neutral, processorArchitecture=MSIL">
@@ -130,8 +130,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\BuildLibraryController.cs" />
-    <Compile Include="Controllers\LocalDeploymentsController.cs" />
+    <Compile Include="ApiControllers\BuildLibraryController.cs" />
+    <Compile Include="ClientControllers\ClientController.cs" />
+    <Compile Include="ApiControllers\LocalDeploymentsController.cs" />
+    <Compile Include="ClientControllers\SiPage.cs" />
+    <Compile Include="ClientControllers\PageFactory.cs" />
     <Compile Include="EventDto.cs" />
     <Compile Include="EventQueue.cs" />
     <Compile Include="EventWorker.cs" />
@@ -185,6 +188,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client\images\notfound.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Client\js\jquery.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -200,7 +206,10 @@
     <Content Include="Client\modules\deployments_infoPanel.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\sections\sdn.html">
+    <Content Include="Client\pages\404.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\pages\sdn.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\modules\buildLibrary.js">
@@ -218,8 +227,10 @@
     <Content Include="Client\css\metisMenu.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\css\sb-admin-2.css" />
-    <Content Include="Client\favicon.ico">
+    <Content Include="Client\css\sb-admin-2.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\images\favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\fonts\fontawesome-webfont.svg">
@@ -228,7 +239,7 @@
     <Content Include="Client\fonts\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\index.html">
+    <Content Include="Client\pages\client.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\js\bootstrap.min.js">
@@ -246,17 +257,16 @@
     <Content Include="Client\js\sb-admin-2.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\sections\armTemplates.html">
+    <Content Include="Client\pages\arm-templates.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\sections\siSettings.html">
+    <Content Include="Client\pages\settings.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\sections\dashboard.html">
+    <Content Include="Client\pages\dashboard.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>rmdir $(TargetDir)/client /s /q</PreBuildEvent>

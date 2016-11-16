@@ -4,7 +4,6 @@ using DotNet.Basics.Ioc;
 using DotNet.Basics.NLog;
 using DotNet.Basics.Rest;
 using DotNet.Basics.Tasks.Pipelines;
-using NLog;
 using SitecoreInstaller.BuildLibrary;
 using SitecoreInstaller.Databases;
 using SitecoreInstaller.Deployments;
@@ -65,16 +64,19 @@ namespace SitecoreInstaller.Runtime
             };
             pipeline.Ended += args =>
             {
+                var msg = $"{args.Name} ended";
+                if (args.Issues.Any())
+                    msg += " with issues:";
+
+                logger.Trace(msg);
                 if (args.Issues.Any())
                 {
-                    logger.Error($"{args.Name} Issues:");
                     foreach (var issue in args.Issues)
                     {
                         logger.Error($"\r\n{issue.Message}\r\n\r\n");
                         if (issue.Exception != null)
                             logger.Debug($"{issue.Exception}\r\n\r\n");
                     }
-
                 }
             };
         }
