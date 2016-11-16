@@ -8,7 +8,6 @@ namespace SitecoreInstaller.Host.ClientControllers
 {
     public class ClientController : ApiController
     {
-
         [HttpGet]
         [Route]
         public HttpResponseMessage Index()
@@ -25,9 +24,7 @@ namespace SitecoreInstaller.Host.ClientControllers
         public HttpResponseMessage Pages(string name)
         {
             var builder = new SiPageBuilder();
-            builder.Apply(name);
-
-            var page = builder.Build();
+            var page = builder.Build(name);
 
             return new HttpResponseMessage
             {

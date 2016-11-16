@@ -94,6 +94,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO" />
     <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.PowerShell.5.ReferenceAssemblies.1.0.0\lib\net4\System.Management.Automation.dll</HintPath>
       <Private>True</Private>
@@ -121,12 +122,13 @@
     <Compile Include="ApiControllers\BuildLibraryController.cs" />
     <Compile Include="ClientControllers\ClientController.cs" />
     <Compile Include="ApiControllers\LocalDeploymentsController.cs" />
-    <Compile Include="Render\SiPage.cs" />
-    <Compile Include="Render\SiPageBuilder.cs" />
+    <Compile Include="PageDecorator.cs" />
     <Compile Include="GlobalExceptionHandler.cs" />
+    <Compile Include="SiPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HostInit.cs" />
+    <Compile Include="SiPageBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
