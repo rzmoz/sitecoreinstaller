@@ -3,10 +3,8 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using Autofac;
-using Autofac.Integration.SignalR;
 using Autofac.Integration.WebApi;
 using DotNet.Basics.NLog;
-using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
 using Newtonsoft.Json;
@@ -51,14 +49,6 @@ namespace SitecoreInstaller.Host
             config.EnsureInitialized();
             app.UseWebApi(config);
             this.NLog().Debug("WebApi initialized");
-
-            //SignalR
-            app.MapSignalR(new HubConfiguration
-            {
-                EnableDetailedErrors = true,
-                Resolver = new AutofacDependencyResolver(container)
-            });
-            this.NLog().Debug("SignalR initialized");
             
             //file server
             app.UseFileServer(new FileServerOptions
@@ -67,9 +57,6 @@ namespace SitecoreInstaller.Host
                 DefaultFilesOptions = { DefaultFileNames = { "index.html" } }
             });
             this.NLog().Debug("File Server initialized");
-
-            EventQueue.Init();
-            this.NLog().Debug("Event queue initialized");
         }
     }
 }

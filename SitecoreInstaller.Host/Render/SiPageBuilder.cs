@@ -2,6 +2,7 @@
 using System.IO;
 using DotNet.Basics.IO;
 using DotNet.Basics.Sys;
+using SitecoreInstaller.Host.Render;
 
 namespace SitecoreInstaller.Host.ClientControllers
 {

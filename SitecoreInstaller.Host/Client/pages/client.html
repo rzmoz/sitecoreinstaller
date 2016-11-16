@@ -63,8 +63,6 @@
         ================================================== -->
     <!-- core js libs | ORDER MATTERS! -->
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/jquery.signalR.min.js"></script>
-    <script src="/signalr/hubs"></script>
     <script src="/js/bootstrap.min.js"></script>
 
     <!-- host libs -->
@@ -77,21 +75,6 @@
     <script src="/modules/buildLibrary.js"></script>
 
     <script>
-        $(document)
-            .ready(function () {
-                console.log("(¯`·._.·(¯`·._.· Loading SitecoreInstaller Client ·._.·´¯)·._.·´¯)");
-                buildLibrary.init();
-                deployments.init();
-                /*
-                console.log("Starting SignalR hub");
-                $.connection.hub.start().done(function () {
-                    console.log("SignalR hub started");
-                    host.siHub.server.init();
-                    });
-                    */
-                console.log("(¯`·._.·(¯`·._.· SitecoreInstaller Client loaded ·._.·´¯)·._.·´¯)");
-            });
-
         @@[[page-script]]@@
     </script>
 </body>

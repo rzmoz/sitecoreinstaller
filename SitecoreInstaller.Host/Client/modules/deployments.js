@@ -21,23 +21,6 @@
         callback();
     },
 
-    init: function () {
-        host.siHub.client.updateLocalDeploymentsCount = function (count) {
-            serviceBus.publish('get/deployments/local/count', count);
-        }
-        /*
-        serviceBus.subscribe('delete/deployments/local', function (name) {
-            deployments.deleteLocal(name, () => { });
-        });
-        serviceBus.subscribe('put/deployments/local', function (args) {
-            deployments.putLocal(args.name, args.sitecore, args.license, '', () => { });
-        });
-        
-        host.siHub.client.updateDeployments = function (deployments) {
-            serviceBus.publish('get/deployments/local', deployments);
-        }*/
-    },
-
     refreshNewDepSelections: function () {
         $('#selLicense').html('');
         var licenses = buildLibrary.licenses;

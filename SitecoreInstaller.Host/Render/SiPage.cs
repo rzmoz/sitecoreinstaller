@@ -1,4 +1,4 @@
-﻿namespace SitecoreInstaller.Host.ClientControllers
+﻿namespace SitecoreInstaller.Host.Render
 {
     public class SiPage
     {

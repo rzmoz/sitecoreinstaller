@@ -40,10 +40,6 @@
       <HintPath>..\packages\Autofac.4.2.0\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Autofac.Integration.SignalR, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.SignalR.3.0.2\lib\net40\Autofac.Integration.SignalR.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
@@ -54,14 +50,6 @@
     </Reference>
     <Reference Include="DotNet.Basics.NLog, Version=4.3.11.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNet.Basics.NLog.4.3.11.2\lib\net45\DotNet.Basics.NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -133,17 +121,12 @@
     <Compile Include="ApiControllers\BuildLibraryController.cs" />
     <Compile Include="ClientControllers\ClientController.cs" />
     <Compile Include="ApiControllers\LocalDeploymentsController.cs" />
-    <Compile Include="ClientControllers\SiPage.cs" />
-    <Compile Include="ClientControllers\SiPageBuilder.cs" />
-    <Compile Include="EventDto.cs" />
-    <Compile Include="EventQueue.cs" />
-    <Compile Include="EventWorker.cs" />
+    <Compile Include="Render\SiPage.cs" />
+    <Compile Include="Render\SiPageBuilder.cs" />
     <Compile Include="GlobalExceptionHandler.cs" />
-    <Compile Include="Hubs\SitecoreInstallerHub.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HostInit.cs" />
-    <Compile Include="SignalRContractResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -194,9 +177,6 @@
     <Content Include="Client\js\jquery.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\js\jquery.signalR.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Client\modules\deployments_deleteLocalDeploymentDialog.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -210,9 +190,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\pages\sdn.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Client\modules\buildLibrary.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\css\bootstrap-theme.min.css">

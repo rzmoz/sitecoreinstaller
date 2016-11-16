@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using Autofac;
-using Autofac.Integration.SignalR;
 using Autofac.Integration.WebApi;
 using DotNet.Basics.NLog;
 using DotNet.Basics.Sys;
@@ -26,11 +25,7 @@ namespace SitecoreInstaller.Host
             var initialized = runtime.Init(ConfigureLog, iocBuilder =>
             {
                 iocBuilder.RegisterApiControllers(typeof(Program).Assembly);
-                iocBuilder.RegisterHubs(typeof(Program).Assembly);
                 iocBuilder.RegisterPipelineSteps<LocalArgs>();
-                
-                var serializer = JsonSerializer.Create(new JsonSerializerSettings { ContractResolver = new SignalRContractResolver() });
-                iocBuilder.RegisterInstance(serializer).As<JsonSerializer>();
             });
 
             if (initialized == false)
