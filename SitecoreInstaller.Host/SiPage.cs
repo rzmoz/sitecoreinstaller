@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using DotNet.Basics.Collections;
 
 namespace SitecoreInstaller.Host
 {
@@ -27,6 +28,12 @@ namespace SitecoreInstaller.Host
                 var sectionContent = m.Groups.Cast<Group>().Skip(2).First().Value;
                 return new { sectionName, sectionContent };
             }).ToDictionary(s => s.sectionName, s => s.sectionContent);
+
+            //ensure ignore case in section names
+            foreach (var placeholder in Placeholders)
+                Html = Html.Replace($"@@{placeholder}@@", $"@@{placeholder.ToLowerInvariant()}@@");
+            Placeholders = Placeholders.Select(p => p.ToLowerInvariant()).ToList();
+            Sections = Sections.ToDictionary(s => s.Key.ToLowerInvariant(), s => s.Value);
         }
 
         public string Name { get; }
