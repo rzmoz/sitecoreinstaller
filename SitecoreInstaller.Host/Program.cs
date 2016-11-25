@@ -10,6 +10,7 @@ using Microsoft.Owin.Hosting;
 using Newtonsoft.Json;
 using NLog;
 using NLog.Targets;
+using Owin;
 using SitecoreInstaller.Pipelines;
 using SitecoreInstaller.Runtime;
 
@@ -44,8 +45,8 @@ namespace SitecoreInstaller.Host
                 // Start OWIN host 
                 using (WebApp.Start(baseAddress, app =>
                 {
-                    var webapiInit = new HostInit();
-                    webapiInit.Init(app, runtime.Container);
+                    app.InitWebApi(runtime.Container);
+                    app.InitFileServer();
                 }))
                 {
                     runtime.NLog().Info($"Host: {runtime.HostName} started");

@@ -13,13 +13,12 @@ using Owin;
 
 namespace SitecoreInstaller.Host
 {
-    public class HostInit
+    public static class HostInit
     {
-        public void Init(IAppBuilder app, IContainer container)
+        public static void InitWebApi(this IAppBuilder app, IContainer container)
         {
-            this.NLog().Debug("Initalizing Host...");
-
             // Configure Web API for self-host. 
+            app.NLog().Debug("Initalizing WebApi...");
             var config = new HttpConfiguration();
 
             config.MapHttpAttributeRoutes();
@@ -27,8 +26,8 @@ namespace SitecoreInstaller.Host
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
 
-            this.NLog().Trace($"{nameof(config.IncludeErrorDetailPolicy)}: {config.IncludeErrorDetailPolicy }");
-            this.NLog().Trace($"{nameof(config.DependencyResolver)}: {config.DependencyResolver.GetType().FullName}");
+            app.NLog().Trace($"{nameof(config.IncludeErrorDetailPolicy)}: {config.IncludeErrorDetailPolicy }");
+            app.NLog().Trace($"{nameof(config.DependencyResolver)}: {config.DependencyResolver.GetType().FullName}");
 
             // Json settings
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
@@ -48,15 +47,19 @@ namespace SitecoreInstaller.Host
 
             config.EnsureInitialized();
             app.UseWebApi(config);
-            this.NLog().Debug("WebApi initialized");
-            
+            app.NLog().Debug("WebApi initialized");
+        }
+        public static void InitFileServer(this IAppBuilder app)
+        {
+            app.NLog().Debug("Initializing File Server...");
+
             //file server
             app.UseFileServer(new FileServerOptions
             {
                 FileSystem = new PhysicalFileSystem("Client"),
                 DefaultFilesOptions = { DefaultFileNames = { "index.html" } }
             });
-            this.NLog().Debug("File Server initialized");
+            app.NLog().Debug("File Server initialized");
         }
     }
 }
