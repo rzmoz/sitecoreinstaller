@@ -7,10 +7,13 @@ namespace SitecoreInstaller.Host
 {
     public class SiPage
     {
+
+        private static readonly char[] _modulesSplit = new[] { ';' };
+
         private static string _placeholdersPattern = @"@@([a-zA-A\-]+)@@";
         private static readonly Regex _placeholdersRegex = new Regex(_placeholdersPattern, RegexOptions.Compiled | RegexOptions.Singleline);
 
-        private static string _modulesPattern = @"@modules([ a-zA-Z0-9\-]+)\[\[(.*?)\]\]";
+        private static string _modulesPattern = @"@modules\[\[(.*?)\]\]";
         private static readonly Regex _modulesRegex = new Regex(_modulesPattern, RegexOptions.Compiled | RegexOptions.Singleline);
 
         private static string _sectionsPattern = @"@section([ a-zA-Z0-9\-]+)\[\[(.*?)\]\]";
@@ -20,14 +23,19 @@ namespace SitecoreInstaller.Host
         {
             Html = html ?? string.Empty;
 
-            var rawModules  = _modulesRegex.Matches(Html).Cast<Match>().Select(m => m.Groups.Cast<Group>().Skip(1).First().Value).ToList();
-
-
             Modules = new List<string>();
-                
-                
-                
-                
+            var moduleMatch = _modulesRegex.Match(Html);
+            if (moduleMatch.Success)
+            {
+                var rawModules = moduleMatch.Groups.Cast<Group>().Skip(1).First().Value;
+                rawModules = rawModules.Replace("\r", "").Replace("\n", "").Trim();
+                Modules =
+                    rawModules.Split(_modulesSplit, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(m => m.Trim())
+                        .ToList();
+
+            }
+
             Placeholders = _placeholdersRegex.Matches(Html).Cast<Match>().Select(m => m.Groups.Cast<Group>().Skip(1).First().Value).ToList();
             Sections = _sectionsRegex.Matches(Html).Cast<Match>().Select(m =>
             {

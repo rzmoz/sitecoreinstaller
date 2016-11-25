@@ -70,6 +70,7 @@ namespace SitecoreInstaller.Host
         {
             try
             {
+                this.NLog().Debug($"Loading SiPage: {name}");
                 var html = _renderRootDir.ToFile($"{name}.html").ReadAllText();
                 return new SiPage(html);
             }
