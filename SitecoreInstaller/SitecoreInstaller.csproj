@@ -121,10 +121,11 @@
     <Compile Include="AppConfigDir.cs" />
     <Compile Include="AppDataDir.cs" />
     <Compile Include="BasicSettings.cs" />
+    <Compile Include="BuildLibrary\BuildLibraryInfo.cs" />
     <Compile Include="BuildLibrary\BuildLibraryResource.cs" />
     <Compile Include="BuildLibrary\License.cs" />
     <Compile Include="BuildLibrary\LicenseInfo.cs" />
-    <Compile Include="BuildLibrary\LocalBuildLibrary.cs" />
+    <Compile Include="BuildLibrary\DiskBuildLibrary.cs" />
     <Compile Include="BuildLibrary\Module.cs" />
     <Compile Include="BuildLibrary\Sitecore.cs" />
     <Compile Include="Databases\ConnectionStringsConfigFormatter.cs" />

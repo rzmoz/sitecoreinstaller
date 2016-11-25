@@ -35,16 +35,16 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/Dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="/dashboard"><i class="fa fa-dashboard fa-fw fa-2x"></i><br />Dashboard</a>
                         </li>
                         <li>
-                            <a href="/ARM-Templates"> <i class="fa fa-windows fa-fw"></i> ARM Templates</a>
+                            <a href="/arm-templates"> <i class="fa fa-windows fa-fw fa-2x"></i><br />ARM Templates</a>
                         </li>
                         <li>
-                            <a href="/SDN"> <i class="fa fa-home fa-fw"></i> SDN</a>
+                            <a href="/buildlibrary"> <i class="fa fa-cloud-download fa-fw fa-2x"></i><br />Build Library</a>
                         </li>
                         <li>
-                            <a href="/Settings"> <i class="fa fa-home fa-fw"></i> Settings</a>
+                            <a href="/settings"> <i class="fa fa-sliders fa-fw fa-2x"></i><br />Settings</a>
                         </li>
                     </ul>
                 </div>
@@ -60,7 +60,7 @@
     </div>
 
     <!-- Le javascript
-        ================================================== -->
+            ================================================== -->
     <!-- core js libs | ORDER MATTERS! -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -72,7 +72,14 @@
 
     <!-- domain modules -->
     <script src="/modules/deployments.js"></script>
-    <script src="/modules/buildLibrary.js"></script>
-    
+    <script src="/modules/buildlibrary.js"></script>
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+                buildlibrary.init();
+
+            });
+    </script>
     @@page-script@@
 </body>

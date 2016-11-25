@@ -10,10 +10,10 @@ namespace SitecoreInstaller.Pipelines.LocalInstall
 {
     public class CopyDeploymentFilesStep : PipelineStep<InstallLocalArgs>
     {
-        private readonly LocalBuildLibrary _buildLibrary;
+        private readonly DiskBuildLibrary _buildLibrary;
         private readonly WebsiteService _websiteService;
 
-        public CopyDeploymentFilesStep(LocalBuildLibrary buildLibrary, WebsiteService websiteService)
+        public CopyDeploymentFilesStep(DiskBuildLibrary buildLibrary, WebsiteService websiteService)
         {
             _buildLibrary = buildLibrary;
             _websiteService = websiteService;

@@ -7,19 +7,15 @@ using DotNet.Basics.Tasks;
 
 namespace SitecoreInstaller.BuildLibrary
 {
-    public class LocalBuildLibrary : IPreflightCheck
+    public class DiskBuildLibrary : IPreflightCheck
     {
-        private const string _sitecoresDirName = "Sitecores";
-        private const string _licensesDirName = "Licenses";
-        private const string _modulesDirName = "Modules";
-
-        public LocalBuildLibrary(EnvironmentSettings environmentSettings)
+        public DiskBuildLibrary(EnvironmentSettings environmentSettings)
         {
             if (environmentSettings == null) throw new ArgumentNullException(nameof(environmentSettings));
             Root = environmentSettings.AdvancedSettings.BuildLibraryRootDir.ToDir();
-            Sitecores = Root.Add(_sitecoresDirName);
-            Licenses = Root.Add(_licensesDirName);
-            Modules = Root.Add(_modulesDirName);
+            Sitecores = Root.Add(nameof(BuildLibraryInfo.Sitecores));
+            Licenses = Root.Add(nameof(BuildLibraryInfo.Licenses));
+            Modules = Root.Add(nameof(BuildLibraryInfo.Modules));
         }
 
         public DirPath Root { get; }
@@ -35,7 +31,17 @@ namespace SitecoreInstaller.BuildLibrary
             Sitecores.CreateIfNotExists();
             Licenses.CreateIfNotExists();
             Modules.CreateIfNotExists();
-            this.NLog().Trace($"{nameof(LocalBuildLibrary)} initialized to: {Root.FullName}");
+            this.NLog().Trace($"{nameof(DiskBuildLibrary)} initialized to: {Root.FullName}");
+        }
+
+        public BuildLibraryInfo GetAll()
+        {
+            return new BuildLibraryInfo
+            {
+                Sitecores = GetSitecores().OrderByDescending(s => s.Name).ToArray(),
+                Licenses = GetLicenses().Select(l => l.GetInfo()).OrderByDescending(s => s.Expiration).ToArray(),
+                Modules = GetModules().ToArray(),
+            };
         }
 
         public IEnumerable<Sitecore> GetSitecores()
@@ -74,9 +80,9 @@ namespace SitecoreInstaller.BuildLibrary
             return new TaskResult(issues =>
             {
                 if (Root.Exists())
-                    this.NLog().Trace($"{nameof(LocalBuildLibrary)} found at: {Root.FullName}");
+                    this.NLog().Trace($"{nameof(DiskBuildLibrary)} found at: {Root.FullName}");
                 else
-                    issues.Add($"{nameof(LocalBuildLibrary)} not found at: {Root.FullName}");
+                    issues.Add($"{nameof(DiskBuildLibrary)} not found at: {Root.FullName}");
             });
         }
 

@@ -3,14 +3,13 @@ using System.Linq;
 using System.Reflection;
 using Autofac;
 using Autofac.Integration.WebApi;
+using DotNet.Basics.IO;
 using DotNet.Basics.NLog;
 using DotNet.Basics.Sys;
 using DotNet.Basics.Tasks.Pipelines;
 using Microsoft.Owin.Hosting;
-using Newtonsoft.Json;
 using NLog;
 using NLog.Targets;
-using Owin;
 using SitecoreInstaller.Pipelines;
 using SitecoreInstaller.Runtime;
 
@@ -25,6 +24,7 @@ namespace SitecoreInstaller.Host
 
             var initialized = runtime.Init(ConfigureLog, iocBuilder =>
             {
+                iocBuilder.Register(c => new SiPageRenderer(@".\client".ToDir(), "layout", "404")).AsSelf().As<IPreflightCheck>().SingleInstance();
                 iocBuilder.RegisterApiControllers(typeof(Program).Assembly);
                 iocBuilder.RegisterPipelineSteps<LocalArgs>();
             });
@@ -61,9 +61,11 @@ namespace SitecoreInstaller.Host
                         CommandPrompt.Run($"start {baseAddress}");
                     }
 
-                    Console.WriteLine(@"Press key to quit...");
-                    Console.ReadKey();
-                    return 0;
+                    Console.WriteLine(@"Press CTRL+C to quit...");
+                    while (true)
+                    {
+                        //listen
+                    }
                 }
             }
             catch (TargetInvocationException e)

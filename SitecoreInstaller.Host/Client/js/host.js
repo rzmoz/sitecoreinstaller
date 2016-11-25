@@ -9,6 +9,17 @@
     };
 }(jQuery));
 
+var server = {
+    poll: function (func, timeout) {
+        func();
+        if (timeout === undefined)
+            timeout = 5000;//miliseconds
+        setTimeout(function () {
+            server.poll(func, timeout);
+        }, timeout);
+    }
+}
+
 
 //https://davidwalsh.name/pubsub-javascript
 var serviceBus = (function () {

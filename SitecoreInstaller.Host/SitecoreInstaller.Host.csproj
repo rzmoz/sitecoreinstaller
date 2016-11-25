@@ -151,11 +151,11 @@
     <Compile Include="ClientControllers\ClientController.cs" />
     <Compile Include="ApiControllers\LocalDeploymentsController.cs" />
     <Compile Include="GlobalExceptionHandler.cs" />
-    <Compile Include="SiPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HostInit.cs" />
-    <Compile Include="SiPageBuilder.cs" />
+    <Compile Include="SiPage.cs" />
+    <Compile Include="SiPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -206,19 +206,22 @@
     <Content Include="Client\js\jquery.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\modules\deployments_deleteLocalDeploymentDialog.html">
+    <Content Include="Client\modules\buildlibrary.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\modules\deployments_putLocalDeploymentDialog.html">
+    <Content Include="Client\views\deployments\deleteLocalDialog.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\modules\deployments_infoPanel.html">
+    <Content Include="Client\views\deployments\putLocalDialog.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\pages\404.html">
+    <Content Include="Client\views\deployments\deployments_infoPanel.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\pages\sdn.html">
+    <Content Include="Client\404.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\views\buildlibrary.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\css\bootstrap-theme.min.css">
@@ -263,16 +266,17 @@
     <Content Include="Client\js\sb-admin-2.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\pages\arm-templates.html">
+    <Content Include="Client\views\arm-templates.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\pages\settings.html">
+    <Content Include="Client\views\settings.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\pages\dashboard.html">
+    <Content Include="Client\views\dashboard.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>rmdir $(TargetDir)\client /s /q</PreBuildEvent>

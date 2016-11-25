@@ -12,12 +12,20 @@ namespace SitecoreInstaller.Host.ApiControllers
     [RoutePrefix("api/buildlibrary")]
     public class BuildLibraryController : ApiController
     {
-        private readonly LocalBuildLibrary _buildLibrary;
+        private readonly DiskBuildLibrary _buildLibrary;
 
-        public BuildLibraryController(LocalBuildLibrary buildLibrary)
+        public BuildLibraryController(DiskBuildLibrary buildLibrary)
         {
             _buildLibrary = buildLibrary;
         }
+
+        [Route]
+        [HttpGet]
+        public HttpResponseMessage GetAll()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, _buildLibrary.GetAll());
+        }
+
 
         [Route("sitecores")]
         [HttpGet]
@@ -61,14 +69,14 @@ namespace SitecoreInstaller.Host.ApiControllers
             return GetBuildLibraryResourcesResponse(Request, bl => bl.GetModules().Select(m => m.Name));
         }
 
-        private HttpResponseMessage GetBuildLibraryResourceResponse<T>(HttpRequestMessage request, Func<LocalBuildLibrary, T> getFunc)
+        private HttpResponseMessage GetBuildLibraryResourceResponse<T>(HttpRequestMessage request, Func<DiskBuildLibrary, T> getFunc)
         {
             var res = getFunc(_buildLibrary);
             if (res == null)
                 return request.CreateResponse(HttpStatusCode.NoContent);
             return request.CreateResponse(HttpStatusCode.OK, res);
         }
-        private HttpResponseMessage GetBuildLibraryResourcesResponse<T>(HttpRequestMessage request, Func<LocalBuildLibrary, IEnumerable<T>> getFunc)
+        private HttpResponseMessage GetBuildLibraryResourcesResponse<T>(HttpRequestMessage request, Func<DiskBuildLibrary, IEnumerable<T>> getFunc)
         {
             var resources = getFunc(_buildLibrary);
             return request.CreateResponse(HttpStatusCode.OK, resources);

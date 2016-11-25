@@ -39,7 +39,7 @@ namespace SitecoreInstaller.Runtime
             builder.RegisterType<MongoDbService>().AsSelf().As<IPreflightCheck>().SingleInstance();
 
             //build lib
-            builder.RegisterType<LocalBuildLibrary>().AsSelf().As<IPreflightCheck>();
+            builder.RegisterType<DiskBuildLibrary>().AsSelf().As<IPreflightCheck>();
 
             //web site
             builder.RegisterType<WebsiteService>().AsSelf().As<IPreflightCheck>();
