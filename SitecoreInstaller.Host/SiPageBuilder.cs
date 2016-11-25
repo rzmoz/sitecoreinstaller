@@ -1,36 +1,38 @@
 ﻿using System;
 using System.IO;
 using DotNet.Basics.IO;
-using DotNet.Basics.Sys;
 
 namespace SitecoreInstaller.Host
 {
     public class SiPageBuilder
     {
-        private static DirPath PagesRootDir => @".\client\pages".ToDir();
-        private static readonly Lazy<string> _clientHtml = new Lazy<string>(() => PagesRootDir.ToFile("client.html").ReadAllText());
-        private static readonly Lazy<string> _404Html = new Lazy<string>(() => PagesRootDir.ToFile("404.html").ReadAllText());
+        private static readonly DirPath _clientRootDir = @".\client".ToDir();
+        private static readonly DirPath _pagesRootDir = _clientRootDir.ToDir("pages");
+        private static readonly Lazy<SiPage> _clientLayout = new Lazy<SiPage>(() =>
+        {
+            var html = _clientRootDir.ToFile("layout.html").ReadAllText();
+            return new SiPage("Layout", html, null, false);
+        });
+        private static readonly Lazy<SiPage> _404Page = new Lazy<SiPage>(() => Load("404"));
 
         public SiPage Build(string name)
         {
             var page = Load(name);
-            var mergedHtml = _clientHtml.Value.Replace("@@[[page-content]]@@", page.Html, StringComparison.OrdinalIgnoreCase);
-            mergedHtml = mergedHtml.Replace("@@[[page-title]]@@", page.Title, StringComparison.InvariantCultureIgnoreCase);
-            mergedHtml = mergedHtml.Replace("@@[[page-script]]@@", page.Script, StringComparison.InvariantCultureIgnoreCase);
-            return new SiPage(page.Name, mergedHtml, page.Script, page.Is404);
+            var renderedHtml = _clientLayout.Value.Render(page);
+            return new SiPage(page.Name, renderedHtml, page.Script, page.Is404);
         }
 
-        private SiPage Load(string name)
+        private static SiPage Load(string name)
         {
             try
             {
-                var html = PagesRootDir.ToFile($"{name}.html").ReadAllText();
-                var script = PagesRootDir.ToFile($"{name}.js").ReadAllText(false) ?? string.Empty;
+                var html = _pagesRootDir.ToFile($"{name}.html").ReadAllText();
+                var script = _pagesRootDir.ToFile($"{name}.js").ReadAllText(false) ?? string.Empty;
                 return new SiPage(name, html, script, false);
             }
             catch (FileNotFoundException)
             {
-                return new SiPage(name, _404Html.Value, null, true);
+                return _404Page.Value;
             }
         }
     }

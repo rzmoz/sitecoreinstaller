@@ -1,4 +1,7 @@
-﻿<div class="row">
+﻿@section page-title[[Dashboard]]
+@section page-content[[
+
+<div class="row">
     <div class="col-sm-6 col-md-3">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -92,9 +95,13 @@
 
 <div class="row">
     <div class="col-lg-12" id="dashboard-content">
+        @@hello-world@@
     </div>
 </div>
 
+]]
+
+@section page-script [[
 <script type="text/javascript">
     var dashboard = {
         iGetTitle: function () {
@@ -112,3 +119,4 @@
         }
     }
 </script>
+]]

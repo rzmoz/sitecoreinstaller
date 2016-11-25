@@ -29,7 +29,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <div class="navbar-brand">SitecoreInstaller &gt; @@[[page-title]]@@</div>
+                <div class="navbar-brand">SitecoreInstaller &gt; @@page-title@@</div>
             </div>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -54,7 +54,7 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div id="page-content" class="container-fluid page-content">
-                @@[[page-content]]@@
+                @@page-content@@
             </div>
         </div>
     </div>
@@ -73,8 +73,6 @@
     <!-- domain modules -->
     <script src="/modules/deployments.js"></script>
     <script src="/modules/buildLibrary.js"></script>
-
-    <script>
-        @@[[page-script]]@@
-    </script>
+    
+    @@page-script@@
 </body>

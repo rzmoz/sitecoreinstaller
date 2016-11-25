@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
-using NLog;
+using DotNet.Basics.NLog;
 
 namespace SitecoreInstaller.Host
 {
@@ -9,15 +9,13 @@ namespace SitecoreInstaller.Host
     {
         public override async Task HandleAsync(ExceptionHandlerContext context, CancellationToken cancellationToken)
         {
-            var logger = LogManager.GetLogger(nameof(context.Request.RequestUri.AbsoluteUri));
-            logger.Error(context.ExceptionContext.Exception, context.ExceptionContext.Exception.ToString());
+            this.NLog().Error(context.ExceptionContext.Exception, context.ExceptionContext.Exception.ToString());
             await base.HandleAsync(context, cancellationToken).ConfigureAwait(false);
         }
 
         public override void Handle(ExceptionHandlerContext context)
         {
-            var logger = LogManager.GetLogger(nameof(context.Request.RequestUri.AbsoluteUri));
-            logger.Error(context.ExceptionContext.Exception, context.ExceptionContext.Exception.ToString());
+            this.NLog().Error(context.ExceptionContext.Exception, context.ExceptionContext.Exception.ToString());
             base.Handle(context);
         }
 
