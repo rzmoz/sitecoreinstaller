@@ -39,10 +39,10 @@
       <HintPath>..\packages\Autofac.WebApi2.4.1.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="DotNet.Basics, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.9.0.0-rc.4\lib\net47\DotNet.Basics.dll</HintPath>
+      <HintPath>..\packages\DotNet.Basics.9.0.0-rc.5\lib\net47\DotNet.Basics.dll</HintPath>
     </Reference>
     <Reference Include="DotNet.Basics.Autofac, Version=4.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNet.Basics.Autofac.4.6.2-rc.2\lib\net47\DotNet.Basics.Autofac.dll</HintPath>
+      <HintPath>..\packages\DotNet.Basics.Autofac.4.6.2-rc.3\lib\net47\DotNet.Basics.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="DotNet.Basics.NLog, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNet.Basics.NLog.5.0.0-rc.1\lib\net47\DotNet.Basics.NLog.dll</HintPath>
@@ -53,8 +53,8 @@
     <Reference Include="Microsoft.Owin.FileSystems, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.FileSystems.3.1.0\lib\net45\Microsoft.Owin.FileSystems.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.2.0.2\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.3.1.0\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Hosting, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Hosting.3.1.0\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
@@ -101,8 +101,9 @@
     <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    <Reference Include="System.Security.Cryptography.X509Certificates">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.1\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
@@ -163,12 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiControllers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SitecoreInstaller.Kernel\SitecoreInstaller.Kernel.csproj">
-      <Project>{adf02a9f-5525-476c-99d6-95fc2da7866a}</Project>
-      <Name>SitecoreInstaller.Kernel</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\css\bootstrap.min.css">
@@ -294,6 +289,16 @@
     <None Include="wwwroot\layout.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SitecoreInstaller.App\SitecoreInstaller.App.csproj">
+      <Project>{273CE5F7-641A-44C9-A4B6-554D9B57A096}</Project>
+      <Name>SitecoreInstaller.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SitecoreInstaller.Domain\SitecoreInstaller.Domain.csproj">
+      <Project>{4CAF706A-CCA9-4AF1-9B73-3BF12628DA7B}</Project>
+      <Name>SitecoreInstaller.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

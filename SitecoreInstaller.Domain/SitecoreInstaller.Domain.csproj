@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNet.Basics" Version="9.0.0-rc.3" />
-    <PackageReference Include="DotNet.Basics.Autofac" Version="4.6.2-rc.2" />
+    <PackageReference Include="DotNet.Basics" Version="9.0.0-rc.5" />
+    <PackageReference Include="DotNet.Basics.Autofac" Version="4.6.2-rc.3" />
     <PackageReference Include="DotNet.Basics.NLog" Version="5.0.0-rc.1" />
     <PackageReference Include="DotNet.Basics.Pipelines" Version="9.0.0-rc.3" />
     <PackageReference Include="DotNet.Basics.SevenZip" Version="16.4.0-rc.3" />

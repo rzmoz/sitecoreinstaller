@@ -8,7 +8,7 @@ using DotNet.Basics.IO;
 using DotNet.Basics.NLog;
 using Microsoft.Owin.Hosting;
 using NLog;
-using SitecoreInstaller.Kernel.Cli;
+using SitecoreInstaller.App;
 
 namespace SitecoreInstaller.Host
 {
@@ -18,15 +18,20 @@ namespace SitecoreInstaller.Host
         {
             //init host
             var hostInit = new HostInit();
-            hostInit.InitLogging();
-            hostInit.LogAppInitializing();
+            var appInit = new ApplicationInitializer();
 
-            hostInit.InitRegistrations(iocBuilder =>
+            hostInit.InitLogging();
+            hostInit.LogHostBoot();
+
+            appInit.InitRegistrations(iocBuilder =>
             {
                 iocBuilder.Register(c => new SiPageRenderer(@".\wwwroot".ToDir(), "layout", "404")).AsSelf().SingleInstance();
                 iocBuilder.RegisterApiControllers(typeof(Program).Assembly);
             });
-            
+
+            appInit.InitApplication();
+            appInit.RunPreflightChecks();
+
             try
             {
                 hostInit.NLog().Debug($"Host: {hostInit.HostName} starting...");
@@ -35,7 +40,7 @@ namespace SitecoreInstaller.Host
                 // Start OWIN host 
                 using (WebApp.Start(baseAddress, app =>
                 {
-                    hostInit.InitWebApi(app, hostInit.Container);
+                    hostInit.InitWebApi(app, appInit.Container);
                     hostInit.InitFileServer(app);
                 }))
                 {

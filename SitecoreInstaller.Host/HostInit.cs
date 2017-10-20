@@ -19,7 +19,7 @@ using Newtonsoft.Json.Serialization;
 using NLog.Targets;
 using NLog;
 using Owin;
-using SitecoreInstaller.Kernel.Cli;
+using SitecoreInstaller.App;
 
 namespace SitecoreInstaller.Host
 {
@@ -33,9 +33,8 @@ namespace SitecoreInstaller.Host
         }
 
         public string HostName { get; }
-        public IContainer Container { get; private set; }
-
-        public bool LogAppInitializing()
+        
+        public bool LogHostBoot()
         {
             this.NLog().Trace(AsciiArts.Logo);
             this.NLog().Debug($"Runtime initializing...");
@@ -44,42 +43,6 @@ namespace SitecoreInstaller.Host
             this.NLog().Trace($"Running as: {System.Security.Principal.WindowsIdentity.GetCurrent().Name}");
 
             return true;
-        }
-
-        public void InitRegistrations(Action<AutofacBuilder> iocRegistrations = null)
-        {
-            InitArea("IocContainer", errorMsgs =>
-            {
-                try
-                {
-                    var builder = new AutofacBuilder(false);
-                    iocRegistrations?.Invoke(builder);
-                    Container = builder.Container;
-                    foreach (var registration in Container.ComponentRegistry.Registrations)
-                        this.NLog().Debug($"{JsonConvert.SerializeObject(registration.Services.Select(s => s.Description)) }");
-                }
-                catch (Exception e)
-                {
-                    errorMsgs.Add(e.ToString());
-                }
-            });
-        }
-
-        private void InitArea(string areaName, Action<IList<string>> initFunc, string startingVerb = "initializing", string endedVerb = "Initialized")
-        {
-            this.NLog().Debug($"{areaName} {startingVerb}...");
-            var errorMessages = new List<string>();
-            initFunc(errorMessages);
-            var success = errorMessages.Count == 0;
-            if (success)
-                this.NLog().Debug($"{areaName} {endedVerb}");
-            else
-            {
-                foreach (var errorMessage in errorMessages)
-                    this.NLog().Error(errorMessage);
-
-                this.NLog().Fatal($"{startingVerb} of {areaName} failed. Application will not run properly. Aborting...");
-            }
         }
 
         public bool InitLogging()

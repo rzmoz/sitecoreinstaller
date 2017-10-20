@@ -1,4 +1,4 @@
-﻿namespace SitecoreInstaller.Kernel.Cli
+﻿namespace SitecoreInstaller.App
 {
     public class AsciiArts
     {

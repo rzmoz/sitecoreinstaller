@@ -85,7 +85,7 @@ namespace SitecoreInstaller.Host
                 //assert view dir exists
                 try
                 {
-                    _renderRootDir.Exists(throwIoExceptionIfNotExists: true);
+                    _renderRootDir.Exists(IfNotExists.ThrowIoException);
                 }
                 catch (Exception e)
                 {
