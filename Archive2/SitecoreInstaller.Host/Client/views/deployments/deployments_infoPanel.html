@@ -1,0 +1,129 @@
+﻿<div class="deployments-list"></div>
+
+<div id="dep-info-panel-template" style="display:none">
+    <div id="[[panel-id]]" class="panel panel-primary dep-info-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a style="text-decoration: none;" data-toggle="collapse" data-parent="#[[data-parent]]" href="#[[collapse-id]]" aria-expanded="false" class="collapsed">
+                    <i class="glyphicon glyphicon-chevron-down"></i> [[info-name]]
+                </a>
+                [[info-status]]
+            </h4>
+        </div>
+        <div id="[[collapse-id]]" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+            <div class="panel-body">
+                [[info-sitecore]]
+                <a class="btn btn-danger btn-delete-deployment" title="Delete [[info-name]]" onclick="deploymentsInfoPanel_htmlModule.localDeploymentDelete_onclick('[[info-name]]'); return false;"><i class="fa fa-trash-o"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var deployments_infoPanel= {
+        init:function() {
+            console.log(('* Initializing deployments_infoPanel'));
+            serviceBus.subscribe('get/deployments/local', deploymentsInfoPanel_htmlModule.updateDeployments);
+            console.log(('* deployments_infoPanel initialized'));
+        }
+    }
+    var deploymentsInfoPanel_htmlModule = {
+        depPanelTemplateHtml: $('#dep-info-panel-template').html(),
+        listElement: $('.deployments-list'),
+        getDepPanelId: function (dep) {
+            return 'dep-info-pnl-' + dep.name;
+        },
+        localDeploymentDelete_onclick: function (name) {
+            serviceBus.publish('click/delete/deployments/local', name);
+        },
+        updateDeployments: function (updatedDeployments) {
+            
+            var list = deploymentsInfoPanel_htmlModule.listElement;
+
+            var existingPanels = list.children('div.dep-info-panel');
+
+            $.each(existingPanels, function (index, existPnl) {
+                var pnlId = $(existPnl).attr('id');
+                var shouldBeDeleted = updatedDeployments.find(ud => deploymentsInfoPanel_htmlModule.getDepPanelId(ud) === pnlId) === undefined;
+                if (shouldBeDeleted)
+                    $('#' + pnlId).remove();
+                else
+                    deploymentsInfoPanel_htmlModule.updateInfoPanel($(existPnl));
+            });
+
+            //add new
+            $.each(updatedDeployments, function (index, upDep) {
+                var targetId = deploymentsInfoPanel_htmlModule.getDepPanelId(upDep);
+
+                var shouldBeAdded = $('#' + targetId).length === 0;
+                if (shouldBeAdded) {
+                    var existingPanels = list.children('div.dep-info-panel');
+                    var newPanel = deploymentsInfoPanel_htmlModule.getNewDepPanel(upDep, list);
+                    var lastId = existingPanels.last().attr('id');
+
+                    //if list is empty or if new dep is last in list
+                    if (existingPanels.length === 0 || lastId.localeCompare(targetId) < 0) {
+                        list.append(newPanel);
+                    } else {
+                        $.each(existingPanels,
+                            function (ind, pnl) {
+                                var pnlId = $(pnl).attr('id');
+                                if (targetId.localeCompare(pnlId) > 0)
+                                    return true;
+                                $(pnl).before(newPanel);
+                                return false;
+                            });
+                    }
+                }
+            });
+        },
+
+        getDepPanel: function (name) {
+            return deploymentsInfoPanel_htmlModule.listElement
+                .find('#' + deploymentsInfoPanel_htmlModule.getDepPanelId({ name: name }));
+        },
+        updateInfoPanel: function (panel) {
+            var depName = panel.attr(deployments.dataDeploymentNameKey);
+            deployments.getLocal(depName, function (info) {
+                deploymentsInfoPanel_htmlModule.setPanelStatus(panel, info.task.status);
+            });
+        },
+        setPanelStatus: function (panel, status) {
+            deploymentsInfoPanel_htmlModule.toggleDisabled($(panel).find('.btn-deploymentsInfoPanel_htmlModule-deployment'), () => { return status === "InProgress"; });
+            var statusHtml = deploymentsInfoPanel_htmlModule.getStatusIconHtml(status);
+            panel.find('.info-status-icon').replaceWith(statusHtml);
+        },
+        toggleDisabled: function (element, disabledPredicate) {
+            if (disabledPredicate())
+                element.addClass('disabled');
+            else
+                element.removeClass('disabled');
+        },
+        getNewDepPanel: function (info, dataParent) {
+            if (info === null || info === undefined)
+                return '';
+            var panelId = deploymentsInfoPanel_htmlModule.getDepPanelId(info);
+            var html = $(deploymentsInfoPanel_htmlModule.depPanelTemplateHtml
+                .replace('[[panel-id]]', panelId)
+                .replace('[[data-parent]]', dataParent.attr('id'))
+                .replace(/\[\[collapse-id\]\]/g, 'collapse-' + new Date().getTime())
+                .replace(/\[\[info-name\]\]/g, info.name)
+                .replace(/\[\[info-sitecore\]\]/g, info.sitecore)
+                .replace(/\[\[info-status\]\]/g, deploymentsInfoPanel_htmlModule.getStatusIconHtml(info.task.status)));
+
+            html.first().attr(deployments.dataDeploymentNameKey, info.name);
+            return html;
+        },
+        getStatusIconHtml: function (status) {
+            var statusClass;
+            if (status === "InProgress")
+                statusClass = 'fa-circle-o-notch fa-spin';
+            else if (status === "Success") {
+                statusClass = 'fa-check-square-o';
+            }
+            else
+                statusClass = 'fa-exclamation-triangle';
+            return '<i class="fa fa-1x fa-fw info-status-icon ' + statusClass + '"></i>';
+        }
+    }
+</script>

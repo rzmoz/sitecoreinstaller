@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title id="title">SitecoreInstaller</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+    <!-- core libs styling -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+
+    <!-- host libs styling -->
+    <link rel="stylesheet" href="/css/metisMenu.min.css" />
+    <link rel="stylesheet" href="/css/sb-admin-2.css" />
+
+    <style type="text/css">
+        .page-content {
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <div class="navbar-brand">SitecoreInstaller &gt; @@page-title@@</div>
+            </div>
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="/dashboard"><i class="fa fa-dashboard fa-fw fa-2x"></i><br />Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/arm-templates"> <i class="fa fa-windows fa-fw fa-2x"></i><br />ARM Templates</a>
+                        </li>
+                        <li>
+                            <a href="/buildlibrary"> <i class="fa fa-cloud-download fa-fw fa-2x"></i><br />Build Library</a>
+                        </li>
+                        <li>
+                            <a href="/settings"> <i class="fa fa-sliders fa-fw fa-2x"></i><br />Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div id="page-content" class="container-fluid page-content">
+                @@page-content@@
+            </div>
+        </div>
+    </div>
+
+    <!-- Le javascript
+            ================================================== -->
+    <!-- core js libs | ORDER MATTERS! -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- host libs -->
+    <script src="/js/metisMenu.min.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
+    <script src="/js/host.js"></script>
+
+    <!-- domain modules -->
+    <script src="/modules/deployments.js"></script>
+    <script src="/modules/buildlibrary.js"></script>
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+                buildlibrary.init();
+
+            });
+    </script>
+    @@page-script@@
+</body>

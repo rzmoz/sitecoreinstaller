@@ -1,0 +1,200 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "deployment.environment.prefix": {
+      "type": "string"
+    },
+    "deployment.project.name": {
+      "type": "string"
+    },
+    "deployment.cluster.name": {
+      "type": "string"
+    },
+    "sqlAzure.login": {
+      "type": "string",
+      "defaultValue": "cdb790f0816147f"
+    },
+    "sqlAzure.password": {
+      "type": "string",
+      "defaultValue": "QQ[;%#Tey=ja7h3H3"
+    },
+    "bacpacs.version": {
+      "type": "string",
+      "defaultValue": "8.2.160729"
+    },
+    "bacpacs.storageaccount.name": {
+      "type": "string",
+      "defaultValue": "scbacpacsnesa"
+    },
+    "bacpacs.sas.token": {
+      "type": "string",
+      "defaultValue": "sv=2015-04-05&ss=b&srt=o&sp=r&se=2100-01-01T12:00:00Z&st=2000-01-01T12:00:00Z&spr=https&sig=AV0tgoM2%2FHLpIBsMri0cyLWpqJE%2BESMb83cgnJ0FIfg%3D"
+    }
+  },
+  "variables": {
+    "location": "[resourceGroup().location]",
+    "deployment.id": "[toLower(concat(trim(parameters('deployment.environment.prefix')),'-',trim(parameters('deployment.project.name')),'-',trim(parameters('deployment.cluster.name'))))]",
+    "deployment.id.withlocation": "[concat(variables('deployment.id'),replace(toLower(resourceGroup().location),' ',''))]",
+
+    "serverFarm.name": "[concat(variables('deployment.id.withlocation'),'-sf')]",
+    "serverFarm.sku": "Standard",
+    "serverFarm.workerSize": "1",
+    "webApp.name": "[concat(variables('deployment.id'),'-wa')]",
+
+    "sqlAzure.name": "[concat(variables('deployment.id.withlocation'),'-sql')]",
+    "sqlAzure.login": "[trim(parameters('sqlAzure.login'))",
+    "sqlAzure.password": "[trim(parameters('sqlAzure.password'))",
+
+    "sqlAzure.collation": "SQL_Latin1_General_CP1_CI_AS",
+    "sqlAzure.edition": "Standard",
+    "sqlAzure.maxSizeBytes": "1073741824",
+    "sqlAzure.requestedServiceObjectiveName": "Basic",
+
+    "db.uri.container.name": "[replace(parameters('bacpacs.version'),'.','')]",
+    "db.uri.base": "[concat('https://',parameters('bacpacs.storageaccount.name'),'.blob.core.windows.net/',variables('db.uri.container.name'))]",
+
+    "db.core.name": "[concat(variables('deployment.id'),'-core-db')]",
+    "db.core.uri": "[concat(variables('db.uri.base'),'/sitecore.core.bacpac')]",
+    "db.master.name": "[concat(variables('deployment.id'),'-master-db')]",
+    "db.master.uri": "[concat(variables('db.uri.base'),'/sitecore.master.bacpac')]",
+    "db.web.name": "[concat(variables('deployment.id'),'-web-db')]",
+    "db.web.uri": "[concat(variables('db.uri.base'),'/sitecore.web.bacpac')]",
+    "db.reporting.name": "[concat(variables('deployment.id'),'-rep-db')]",
+    "db.reporting.uri": "[concat(variables('db.uri.base'),'/sitecore.reporting.bacpac')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "name": "[variables('serverFarm.name')]",
+      "location": "[variables('location')]",
+      "apiVersion": "2014-06-01",
+      "properties": {
+        "name": "[variables('serverFarm.name')]",
+        "sku": "[variables('serverFarm.sku')]",
+        "workerSize": "[variables('serverFarm.workerSize')]",
+        "numberOfWorkers": 1
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "name": "[variables('webApp.name')]",
+      "apiVersion": "2015-08-01",
+      "location": "[variables('location')]",
+      "properties": {
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverFarm.name'))]",
+        "name": "[variables('webApp.name')]",
+        "siteConfig": {
+          "use32BitWorkerProcess": false,
+          "alwaysOn": true,
+          "phpVersion": "",
+          "defaultDocuments": [ "default.aspx" ]
+        }
+      },
+      "dependsOn": [ "[resourceId('Microsoft.Web/serverfarms', variables('serverFarm.name'))]" ]
+    },
+    {
+      "type": "Microsoft.Sql/servers",
+      "kind": "v12.0",
+      "name": "[variables('sqlAzure.name')]",
+      "apiVersion": "2014-04-01-preview",
+      "location": "[variables('location')]",
+      "properties": {
+        "administratorLogin": "[parameters('sqlAzure.login')]",
+        "administratorLoginPassword": "[parameters('sqlAzure.password')]",
+        "version": "12.0"
+      },
+      "resources": [
+        {
+          "name": "AllowAllWindowsAzureIps",
+          "type": "firewallrules",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('sqlAzure.name'))]"
+          ],
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "0.0.0.0"
+          }
+        },
+        {
+          "name": "[variables('db.core.name')]",
+          "type": "Microsoft.Sql/servers/databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('sqlAzure.name'))]"
+          ],
+          "properties": {
+            "storageKeyType": "SharedAccessKey",
+            "storageKey": "[parameters('bacpacs.sas.token')]",
+            "storageUri": "[variables('db.core.uri')]",
+            "administratorLogin": "[variables('sqlAzure.login')]",
+            "administratorLoginPassword": "[variables('sqlAzure.password')]",
+            "operationMode": "Import"
+          }
+        },
+        {
+          "name": "[variables('db.master.name')]",
+          "type": "Microsoft.Sql/servers/databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('sqlAzure.name'))]"
+          ],
+          "properties": {
+            "storageKeyType": "SharedAccessKey",
+            "storageKey": "[parameters('bacpacs.sas.token')]",
+            "storageUri": "[variables('db.master.uri')]",
+            "administratorLogin": "[variables('sqlAzure.login')]",
+            "administratorLoginPassword": "[variables('sqlAzure.password')]",
+            "operationMode": "Import"
+          }
+        },
+        {
+          "name": "[variables('db.web.name')]",
+          "type": "Microsoft.Sql/servers/databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('sqlAzure.name'))]"
+          ],
+          "properties": {
+            "storageKeyType": "SharedAccessKey",
+            "storageKey": "[parameters('bacpacs.sas.token')]",
+            "storageUri": "[variables('db.web.uri')]",
+            "administratorLogin": "[variables('sqlAzure.login')]",
+            "administratorLoginPassword": "[variables('sqlAzure.password')]",
+            "operationMode": "Import"
+          }
+        },
+        {
+          "name": "[variables('db.reporting.name')]",
+          "type": "Microsoft.Sql/servers/databases",
+          "location": "[variables('location')]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('sqlAzure.name'))]"
+          ],
+          "properties": {
+            "storageKeyType": "SharedAccessKey",
+            "storageKey": "[parameters('bacpacs.sas.token')]",
+            "storageUri": "[variables('db.reporting.uri')]",
+            "administratorLogin": "[variables('sqlAzure.login')]",
+            "administratorLoginPassword": "[variables('sqlAzure.password')]",
+            "operationMode": "Import"
+          }
+        }
+      ],
+      "dependsOn": []
+    }
+    
+  ],
+  "outputs": {
+    "webApp.url": {
+      "type": "string",
+      "value": "[concat('https://', reference(resourceId('Microsoft.Web/sites', variables('webApp.name'))).hostNames[0])]"
+    }
+  }
+}
