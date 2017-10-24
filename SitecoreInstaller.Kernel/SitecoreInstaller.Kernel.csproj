@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>SitecoreInstaller</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNet.Basics" Version="9.0.0-rc.5" />
+    <PackageReference Include="DotNet.Basics.Extensions.Autofac" Version="4.6.2-beta.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+    <PackageReference Include="ServiceStack.Text" Version="4.5.14" />
+  </ItemGroup>
+
+</Project>
