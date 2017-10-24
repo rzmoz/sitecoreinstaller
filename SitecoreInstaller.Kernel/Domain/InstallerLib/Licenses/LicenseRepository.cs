@@ -2,7 +2,7 @@
 using System.Linq;
 using DotNet.Basics.IO;
 
-namespace SitecoreInstaller.Domain.Resources.Licenses
+namespace SitecoreInstaller.Domain.InstallerLib.Licenses
 {
     public class LicenseRepository : DirPath, IInitializable
     {

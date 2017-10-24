@@ -1,11 +1,12 @@
 ﻿using System;
 using DotNet.Basics.IO;
 
-namespace SitecoreInstaller.Domain.Resources
+namespace SitecoreInstaller.Domain.InstallerLib
 {
-    public class SitecoreInstallerConfig
+    public class InstallerLibConfig
+
     {
-        public SitecoreInstallerConfig()
+        public InstallerLibConfig()
         {
             DataDirRoot = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).ToDir();
         }

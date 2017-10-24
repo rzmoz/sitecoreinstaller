@@ -2,9 +2,9 @@
 using System.Linq;
 using DotNet.Basics.IO;
 
-namespace SitecoreInstaller.Domain.Resources.Sitecores
+namespace SitecoreInstaller.Domain.InstallerLib.Sitecores
 {
-    public class Sitecore9Repository : DirPath,IInitializable
+    public class Sitecore9Repository : DirPath, IInitializable
     {
         public Sitecore9Repository(DirPath parent)
             : base(parent.Add("Sitecore9s").RawPath)
@@ -24,7 +24,7 @@ namespace SitecoreInstaller.Domain.Resources.Sitecores
 
         public void Init()
         {
-            CreateIfNotExists();CreateIfNotExists();
+            CreateIfNotExists();
         }
     }
 }

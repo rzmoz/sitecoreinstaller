@@ -1,15 +1,15 @@
 ﻿using Autofac;
 using DotNet.Basics.Extensions.Autofac;
 using SitecoreInstaller.Domain;
-using SitecoreInstaller.Domain.Resources;
+using SitecoreInstaller.Domain.InstallerLib;
 
 namespace SitecoreInstaller.App
 {
     public class SitecoreInstallerRegistrations : IAutofacRegistrations
     {
-        public void RegisterIn(AutofacBuilder builder)
+        public void RegisterIn(ContainerBuilder builder)
         {
-            builder.RegisterType<SitecoreInstallerConfig>().AsSelf();
+            builder.RegisterType<InstallerLibConfig>().SingleInstance().AsSelf();
             builder.RegisterType<SitecoreInstallerRepository>().AsSelf().As<IInitializable>();
         }
     }

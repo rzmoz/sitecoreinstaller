@@ -1,15 +1,15 @@
 ﻿using DotNet.Basics.IO;
 using SitecoreInstaller.Domain;
-using SitecoreInstaller.Domain.Resources;
-using SitecoreInstaller.Domain.Resources.Licenses;
-using SitecoreInstaller.Domain.Resources.Sitecores;
+using SitecoreInstaller.Domain.InstallerLib;
+using SitecoreInstaller.Domain.InstallerLib.Licenses;
+using SitecoreInstaller.Domain.InstallerLib.Sitecores;
 
 namespace SitecoreInstaller.App
 {
     public class SitecoreInstallerRepository : DirPath, IInitializable
     {
-        public SitecoreInstallerRepository(SitecoreInstallerConfig sitecoeInstallerConfig)
-            : base(sitecoeInstallerConfig.DataDirRoot.Add("SitecoreInstaller").RawPath)
+        public SitecoreInstallerRepository(InstallerLibConfig sitecoeInstallerLibConfig)
+            : base(sitecoeInstallerLibConfig.DataDirRoot.Add("SitecoreInstaller").RawPath)
         {
             Sitecore9s = new Sitecore9Repository(this);
             Licenses = new LicenseRepository(this);

@@ -1,8 +1,8 @@
 ﻿using DotNet.Basics.IO;
 
-namespace SitecoreInstaller.Domain.Resources.Sitecores
+namespace SitecoreInstaller.Domain.InstallerLib.Sitecores
 {
-    public class Sitecore9 : InstallerResource<DirPath>
+    public class Sitecore9 : InstallerResource
     {
         public Sitecore9(DirPath path) : base(path)
         {

@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using Microsoft.AspNetCore;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using NLog.Extensions.Logging;
@@ -28,13 +28,9 @@ namespace SitecoreInstaller.Host
                 })
                 .ConfigureLogging((context, logging) =>
                 {
-
-
-
                     logging.AddNLog();
                 })
                 .UseUrls(cliArgs["server.urls"] ?? "http://0.0.0.0:13375")
-                .ConfigureServices((context, options) => {/**/})
                 .UseStartup<Startup>()
                 .Build();
 
