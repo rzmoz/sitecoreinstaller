@@ -1,4 +1,4 @@
-﻿using DotNet.Basics.IO;
+﻿using DotNet.Basics.Sys;
 using SitecoreInstaller.Domain;
 using SitecoreInstaller.Domain.InstallerLib;
 using SitecoreInstaller.Domain.InstallerLib.Licenses;
@@ -20,7 +20,6 @@ namespace SitecoreInstaller.App
 
         public void Init()
         {
-            CreateIfNotExists();
             Sitecore9s.Init();
             Licenses.Init();
         }

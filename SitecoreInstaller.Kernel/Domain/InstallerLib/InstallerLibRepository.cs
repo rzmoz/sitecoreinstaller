@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using DotNet.Basics.IO;
+﻿using System;
+using System.Collections.Generic;
+using DotNet.Basics.Sys;
 
 namespace SitecoreInstaller.Domain.InstallerLib
 {
@@ -13,9 +14,7 @@ namespace SitecoreInstaller.Domain.InstallerLib
 
         public IEnumerable<T> GetAll()
         {
-            return EnumeratePaths();
+            throw new NotImplementedException();
         }
-
-        
     }
 }

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using DotNet.Basics.IO;
+using DotNet.Basics.Sys;
 
 namespace SitecoreInstaller.Domain.InstallerLib.Licenses
 {
@@ -33,10 +33,14 @@ namespace SitecoreInstaller.Domain.InstallerLib.Licenses
 
         public static LicenseInfo Load(FilePath licensefile)
         {
+            throw new NotImplementedException();
+            /*
             if (licensefile.Exists() == false)
                 throw new IOException($"{licensefile} not found");
             var xml = XDocument.Parse(licensefile.ReadAllText());
             return new LicenseInfo(licensefile.Name, xml);
+
+    */
         }
 
         public string Name { get; }

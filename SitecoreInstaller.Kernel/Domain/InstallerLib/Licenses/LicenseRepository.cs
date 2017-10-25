@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using DotNet.Basics.IO;
+using DotNet.Basics.Sys;
 
 namespace SitecoreInstaller.Domain.InstallerLib.Licenses
 {
@@ -13,18 +14,21 @@ namespace SitecoreInstaller.Domain.InstallerLib.Licenses
 
         public IEnumerable<License> GetAll()
         {
-            return EnumerateFiles().Select(d => new License(d.ToFile()));
+            throw new NotImplementedException();
+            //return EnumerateFiles().Select(d => new License(d.ToFile()));
         }
 
         public License Get(string name)
         {
+            throw new NotImplementedException();
             var license = new License(this.ToFile(name));
-            return license.Path.Exists() ? license : null;
+            //return license.Path.Exists() ? license : null;
         }
 
         public void Init()
         {
-            CreateIfNotExists();
+            throw new NotImplementedException();
+            //CreateIfNotExists();
         }
     }
 }

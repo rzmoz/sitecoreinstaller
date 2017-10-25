@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DotNet.Basics.IO;
+﻿using System;
+using System.Collections.Generic;
+using DotNet.Basics.Sys;
 
 namespace SitecoreInstaller.Domain.InstallerLib.Sitecores
 {
@@ -13,18 +13,17 @@ namespace SitecoreInstaller.Domain.InstallerLib.Sitecores
 
         public IEnumerable<Sitecore9> GetAll()
         {
-            return EnumerateDirectories().Select(d => new Sitecore9(d.ToDir()));
+            throw new NotImplementedException();
         }
 
         public Sitecore9 Get(string name)
         {
-            var sc9 = new Sitecore9(this.Add(name));
-            return sc9.Path.Exists() ? sc9 : null;
+            throw new NotImplementedException();
         }
 
         public void Init()
         {
-            CreateIfNotExists();
+            throw new NotImplementedException();
         }
     }
 }
