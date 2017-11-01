@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using DotNet.Basics.Sys;
 
-namespace SitecoreInstaller.Domain.InstallerLib
+namespace SitecoreInstaller.Domain.Library
 {
-    public interface IInstallerResource
+    public interface ILibraryResource
     {
         string Name { get; }
         PathInfo Path { get; }

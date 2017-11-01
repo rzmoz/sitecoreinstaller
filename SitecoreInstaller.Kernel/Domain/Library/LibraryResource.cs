@@ -1,8 +1,8 @@
 ﻿using DotNet.Basics.Sys;
 
-namespace SitecoreInstaller.Domain.InstallerLib
+namespace SitecoreInstaller.Domain.Library
 {
-    public abstract class InstallerResource : IInstallerResource
+    public abstract class LibraryResource : ILibraryResource
     {
         public string Name => Path.Name;
         public PathInfo Path { get; set; }

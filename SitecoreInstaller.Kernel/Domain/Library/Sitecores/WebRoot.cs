@@ -1,6 +1,6 @@
 ﻿using DotNet.Basics.Sys;
 
-namespace SitecoreInstaller.Domain.InstallerLib.Sitecores
+namespace SitecoreInstaller.Domain.Library.Sitecores
 {
     public class WebRoot : DirPath
     {

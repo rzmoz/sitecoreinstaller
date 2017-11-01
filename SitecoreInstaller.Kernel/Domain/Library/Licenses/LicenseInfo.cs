@@ -4,7 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using DotNet.Basics.Sys;
 
-namespace SitecoreInstaller.Domain.InstallerLib.Licenses
+namespace SitecoreInstaller.Domain.Library.Licenses
 {
     public class LicenseInfo
     {

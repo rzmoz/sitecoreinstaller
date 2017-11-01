@@ -2,9 +2,9 @@
 using System.IO;
 using DotNet.Basics.Sys;
 
-namespace SitecoreInstaller.Domain.InstallerLib.Licenses
+namespace SitecoreInstaller.Domain.Library.Licenses
 {
-    public class License : InstallerResource
+    public class License : LibraryResource
     {
         public License(FilePath path)
         {

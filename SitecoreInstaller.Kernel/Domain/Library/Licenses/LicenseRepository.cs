@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNet.Basics.Sys;
 
-namespace SitecoreInstaller.Domain.InstallerLib.Licenses
+namespace SitecoreInstaller.Domain.Library.Licenses
 {
     public class LicenseRepository : DirPath, IInitializable
     {
