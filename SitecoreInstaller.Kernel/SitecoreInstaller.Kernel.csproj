@@ -9,7 +9,7 @@
     <PackageReference Include="DotNet.Basics" Version="9.1.0-beta.3" />
     <PackageReference Include="DotNet.Basics.Extensions.Autofac" Version="4.6.2-beta.3" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
-    <PackageReference Include="ServiceStack.Text" Version="4.5.14" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
 
   <ItemGroup>

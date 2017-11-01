@@ -5,7 +5,7 @@ using Autofac;
 using DotNet.Basics.Extensions.Autofac;
 using DotNet.Basics.Collections;
 using Microsoft.Extensions.Logging;
-using ServiceStack.Text;
+using Newtonsoft.Json;
 using SitecoreInstaller.Domain;
 
 namespace SitecoreInstaller.App
@@ -40,7 +40,7 @@ namespace SitecoreInstaller.App
             if (result.Issues.None())
                 _log?.LogDebug($"Preflight check: {preflightCheck.GetType().Name} finished");
             else
-                errorMsgs.Add($"Preflight check {preflightCheck.GetType().Name} failed:\r\n{result.Issues.Dump()}");
+                errorMsgs.Add($"Preflight check {preflightCheck.GetType().Name} failed:\r\n{JsonConvert.SerializeObject(result.Issues)}");
         }
 
         public void InitApplication()
@@ -61,7 +61,7 @@ namespace SitecoreInstaller.App
                     iocRegistrations?.Invoke(builder);
                     Container = builder.Container;
                     foreach (var registration in Container.ComponentRegistry.Registrations)
-                        _log?.LogDebug($"{registration.Services.Select(s => s.Description).Dump() }");
+                        _log?.LogDebug($"{JsonConvert.SerializeObject(registration.Services.Select(s => s.Description)) }");
                 }
                 catch (Exception e)
                 {
