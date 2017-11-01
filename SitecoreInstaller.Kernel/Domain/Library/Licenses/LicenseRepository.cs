@@ -11,20 +11,7 @@ namespace SitecoreInstaller.Domain.Library.Licenses
             : base(parent.Add("Licenses").RawPath)
         {
         }
-
-        public IEnumerable<License> GetAll()
-        {
-            throw new NotImplementedException();
-            //return EnumerateFiles().Select(d => new License(d.ToFile()));
-        }
-
-        public License Get(string name)
-        {
-            throw new NotImplementedException();
-            var license = new License(this.ToFile(name));
-            //return license.Path.Exists() ? license : null;
-        }
-
+        
         public void Init()
         {
             throw new NotImplementedException();

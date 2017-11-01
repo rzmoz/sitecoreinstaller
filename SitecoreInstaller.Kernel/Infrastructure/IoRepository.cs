@@ -4,10 +4,11 @@ using System.Linq;
 using DotNet.Basics.IO;
 using DotNet.Basics.Sys;
 using SitecoreInstaller.Domain;
+using SitecoreInstaller.Domain.Library    ;
 
 namespace SitecoreInstaller.Infrastructure
 {
-    public class IoRepository : IRepository<IResource>
+    public class IoRepository : ILibraryRepository<ILibraryResource>
     {
         private readonly DirPath _root;
 
@@ -26,12 +27,12 @@ namespace SitecoreInstaller.Infrastructure
             throw new System.NotImplementedException();
         }
         
-        public IEnumerable<IResource> GetAll()
+        public IEnumerable<ILibraryResource> GetAll()
         {
             return _root.EnumeratePaths().Select(d => new IoResource(d));
         }
 
-        public IResource Get(string name)
+        public ILibraryResource Get(string name)
         {
             return new IoResource(_root.RawPath.ToPath(name));//auto resolve if dir
         }

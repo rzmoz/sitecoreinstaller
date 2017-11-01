@@ -25,20 +25,12 @@ namespace SitecoreInstaller.Host
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseExceptionHandler("/Error");
-
+            //app.UseExceptionHandler("/Error");
             app.UseStaticFiles();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "default", template: "{controller=Lobby}/{action=Index}/{id?}");
-            });
-
-            app.Use((context, next) =>
-            {
-                context.Response.Headers.Remove("Server");
-                return next();
-            });
+            });            
         }
     }
 }

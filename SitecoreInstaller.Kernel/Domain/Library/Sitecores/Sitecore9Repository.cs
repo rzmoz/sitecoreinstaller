@@ -11,16 +11,7 @@ namespace SitecoreInstaller.Domain.Library.Sitecores
         {
         }
 
-        public IEnumerable<Sitecore9> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Sitecore9 Get(string name)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public void Init()
         {
             throw new NotImplementedException();

@@ -1,9 +1,9 @@
 ﻿using DotNet.Basics.Sys;
-using SitecoreInstaller.Domain;
+using SitecoreInstaller.Domain.Library;
 
 namespace SitecoreInstaller.Infrastructure
 {
-    public class IoResource : IResource
+    public class IoResource : ILibraryResource
     {
         public IoResource(PathInfo path)
         {

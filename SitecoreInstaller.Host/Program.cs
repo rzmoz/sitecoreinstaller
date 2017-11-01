@@ -1,8 +1,8 @@
 ﻿using System.IO;
-using Autofac.Extensions.DependencyInjection;
+using NLog.Targets;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using NLog.Extensions.Logging;
+using DotNet.Basics.Extensions.NLog;
 
 namespace SitecoreInstaller.Host
 {
@@ -15,7 +15,9 @@ namespace SitecoreInstaller.Host
                 .Build();
             
             var host = new WebHostBuilder()
-                .UseKestrel()
+                .UseKestrel(o=> {
+                    o.AddServerHeader = false;
+                })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureAppConfiguration((context, config) =>
                 {
@@ -23,12 +25,15 @@ namespace SitecoreInstaller.Host
                     if (args != null)
                         config.AddCommandLine(args);
                     config.AddEnvironmentVariables();
-                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
                     config.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", optional: true);
                 })
                 .ConfigureLogging((context, logging) =>
                 {
-                    logging.AddNLog();
+                    logging.AddNLog(conf =>
+                    {
+                        conf.AddTarget(new ColoredConsoleTarget().WithOutputColors());
+                    });
                 })
                 .UseUrls(cliArgs["server.urls"] ?? "http://0.0.0.0:13375")
                 .UseStartup<Startup>()
