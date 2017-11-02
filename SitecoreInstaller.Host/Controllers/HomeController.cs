@@ -9,17 +9,28 @@ namespace SitecoreInstaller.Host.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Charts()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Forms()
         {
-            ViewData["Message"] = "Your contact page.";
+            return View();
+        }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult Tables()
+        {
             return View();
         }
     }
