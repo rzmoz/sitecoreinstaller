@@ -1,16 +1,15 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using DotNet.Basics.Sys;
 
-namespace SitecoreInstaller.Domain.Library.Licenses
+namespace SitecoreInstaller.Domain.Library
 {
-    public class LicenseInfo
+    public class LicenseFileEgress
     {
         public const string ModuleName = "SiteCore.License";
 
-        public LicenseInfo(string name, XDocument licenseContent)
+        public LicenseFileEgress(string name, XDocument licenseContent)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             if (licenseContent == null) throw new ArgumentNullException(nameof(licenseContent));
@@ -26,19 +25,19 @@ namespace SitecoreInstaller.Domain.Library.Licenses
             Expiration = licenseNode.Descendants("expiration").FirstOrDefault().Value;
         }
 
-        public static LicenseInfo Parse(string name, string licenseXml)
+        public static LicenseFileEgress Parse(string name, string licenseXml)
         {
-            return new LicenseInfo(name, XDocument.Parse(licenseXml));
+            return new LicenseFileEgress(name, XDocument.Parse(licenseXml));
         }
 
-        public static LicenseInfo Load(FilePath licensefile)
+        public static LicenseFileEgress Load(FilePath licensefile)
         {
             throw new NotImplementedException();
             /*
             if (licensefile.Exists() == false)
                 throw new IOException($"{licensefile} not found");
             var xml = XDocument.Parse(licensefile.ReadAllText());
-            return new LicenseInfo(licensefile.Name, xml);
+            return new LicenseFileEgress(licensefile.Name, xml);
 
     */
         }

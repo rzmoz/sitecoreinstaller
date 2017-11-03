@@ -2,6 +2,7 @@
 using DotNet.Basics.Extensions.Autofac;
 using SitecoreInstaller.Domain.Library;
 using SitecoreInstaller.Domain;
+using SitecoreInstaller.Infrastructure.Library;
 
 namespace SitecoreInstaller.App
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using DotNet.Basics.Sys;
 
-namespace SitecoreInstaller.Domain.Library
+namespace SitecoreInstaller.Infrastructure.Library
 {
     public class LibraryConfig
 

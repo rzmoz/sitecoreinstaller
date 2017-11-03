@@ -1,17 +1,15 @@
-﻿using System.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SitecoreInstaller.Domain.Library
 {
-    public interface ILibraryRepository<T> where T : ILibraryResource
+    public interface ILibraryRepository
     {
-        //command
-        bool Delete(string name);
-        bool Insert(string name, Stream resource, bool throwExceptionIfNotExists = false);
+        bool Insert(IIngressAsset ingress, bool throwExceptionIfExists = false);
 
-        //query
-        IEnumerable<T> GetAll();
-        T Get(string name);
-        bool Exists(string name);
+        IEnumerable<IEgressAsset> GetAll();
+        IEgressAsset Get(string name);
+
+        bool Exists(IEgressAsset asset);
+        bool Delete(IEgressAsset asset);
     }
 }
