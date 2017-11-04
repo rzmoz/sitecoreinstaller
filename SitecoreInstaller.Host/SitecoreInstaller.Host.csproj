@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\**" />
+    <Compile Remove="wwwroot\lib\**" />
+    <Content Remove="Models\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <None Remove="Models\**" />
+    <None Remove="wwwroot\lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\css\custom.css" />
     <Content Remove="wwwroot\css\font.css" />
     <Content Remove="wwwroot\css\style.blue.css" />
@@ -116,9 +127,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Properties\" />
-    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
   <ItemGroup>
