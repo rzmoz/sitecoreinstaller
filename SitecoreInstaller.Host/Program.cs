@@ -1,6 +1,8 @@
 ﻿using System;
-using Microsoft.Extensions.Logging.Console;
+using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+using SitecoreInstaller.Kernel;
 
 namespace SitecoreInstaller.Host
 {
@@ -10,10 +12,10 @@ namespace SitecoreInstaller.Host
         {
             var hostInit = new HostInit(() =>
             {
-                return new ConsoleLogger(nameof(HostInit), (s, level) => true, false);
+                return new ConsoleLogger(typeof(HostInit).FullName, (s, level) => true, false);
             });
 
-            hostInit.Logger.LogWarning("Test");
+            hostInit.Logger.LogInformation(AsciiArts.Logo);
 
             Console.ReadKey();
             return 0;

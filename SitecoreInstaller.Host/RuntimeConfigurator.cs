@@ -1,28 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using Autofac;
-using Newtonsoft.Json;
-using SitecoreInstaller.Kernel;
-
-namespace SitecoreInstaller.Host
+﻿namespace SitecoreInstaller.Host
 {
     public class RuntimeConfigurator
     {
-        public RuntimeConfigurator(string hostName = null)
-        {
-            HostName = hostName;
-            if (HostName == null)
-            {
-                var frame = new StackFrame(1);
-                var method = frame.GetMethod();
-                var type = method.DeclaringType;
-                HostName = type?.Namespace ?? "Host";
-            }
-        }
-
-        public string HostName { get; }
         /*
         public bool Init(Action<NLogConfigurator> configureLog, Action<IocBuilder> iocRegistrations = null)
         {

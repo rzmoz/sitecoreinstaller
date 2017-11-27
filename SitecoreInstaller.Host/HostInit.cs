@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using DotNet.Basics.Tasks.Pipelines;
 using Microsoft.Extensions.Logging;
 using Microsoft.Owin.FileSystems;
