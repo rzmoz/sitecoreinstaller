@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using Autofac;
@@ -31,12 +32,19 @@ namespace SitecoreInstaller.Host
         public void ConfigureServices(Action<ContainerBuilder> initServices)
         {
             var containerBuilder = new ContainerBuilder();
+            containerBuilder.Register(c => Logger).As<ILogger>().SingleInstance();
 
             initServices(containerBuilder);
 
             Container = containerBuilder.Build();
+
+            var registrations = new StringBuilder();
+            registrations.AppendLine($"Container registrations:\r\n");
+            foreach (var registration in Container.ComponentRegistry.Registrations)
+                registrations.AppendLine($"{JsonConvert.SerializeObject(registration.Services.Select(s => s.Description))}");
+            Logger.LogDebug(registrations.ToString());
         }
-        
+
         public void UseFileServer(IAppBuilder app)
         {
             Logger.LogDebug("Initializing File Server...");

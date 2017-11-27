@@ -6,7 +6,6 @@ using Autofac.Integration.WebApi;
 using DotNet.Basics.Cli;
 using DotNet.Basics.IO;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 using Microsoft.Owin.Hosting;
 using SitecoreInstaller.Host.ClientControllers;
 using SitecoreInstaller.Kernel;
@@ -17,10 +16,7 @@ namespace SitecoreInstaller.Host
     {
         static int Main(string[] args)
         {
-            var hostInit = new HostInit(() =>
-            {
-                return new ConsoleLogger(typeof(HostInit).FullName, (s, level) => true, false);
-            });
+            var hostInit = new HostInit(() => new ColoredConsoleLogger());
 
             hostInit.Logger.LogInformation(AsciiArts.Logo);
 
@@ -55,7 +51,7 @@ namespace SitecoreInstaller.Host
                         CommandPrompt.Run($"start {baseAddress}");
                     }
 
-                    Console.WriteLine(@"Press CTRL+C to quit...");
+                    Console.WriteLine(@"Press any key to quit...");
                     Console.ReadKey();
                     return 0;
                 }
@@ -68,24 +64,5 @@ namespace SitecoreInstaller.Host
                 return 1;
             }
         }
-        /*
-        private static void ConfigureLog(NLogConfigurator logConf)
-        {
-            logConf.AddTarget(new ColoredConsoleTarget
-            {
-                Layout = "${message}"
-            }.WithOutputColors());
-
-            logConf.AddTarget(new MethodCallTarget
-            {
-                MethodName = $"{typeof(Program).FullName}, {typeof(Program).Assembly.FullName}"
-            }, "*", LogLevel.Fatal);
-        }
-
-        public static void LogMethod(string level, string message)
-        {
-            if (level == LogLevel.Fatal.ToString())
-                throw new ApplicationException($"Fatal encouterend: {message}. Aborting...");
-        }*/
     }
 }
