@@ -1,11 +1,10 @@
-﻿using DotNet.Basics.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Autofac;
 
 namespace SitecoreInstaller.Host
 {
-    public class SiRegistrations : IRegistrations
+    public class SiRegistrations
     {
-        public void RegisterIn(IServiceCollection services)
+        public void RegisterIn(ContainerBuilder buidler)
         {
             
         }

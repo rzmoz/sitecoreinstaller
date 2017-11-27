@@ -1,8 +1,16 @@
 ﻿using System;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+using Autofac;
+using Autofac.Integration.WebApi;
 using DotNet.Basics.Tasks.Pipelines;
 using Microsoft.Extensions.Logging;
 using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Owin;
 
 namespace SitecoreInstaller.Host
@@ -18,19 +26,65 @@ namespace SitecoreInstaller.Host
         }
 
         public ILogger Logger { get; }
+        public IContainer Container { get; private set; }
 
-        public void InitFileServer(IAppBuilder app)
+        public void ConfigureServices(Action<ContainerBuilder> initServices)
         {
-            //app.NLog().Debug("Initializing File Server...");
+            var containerBuilder = new ContainerBuilder();
 
+            initServices(containerBuilder);
+
+            Container = containerBuilder.Build();
+        }
+        
+        public void UseFileServer(IAppBuilder app)
+        {
+            Logger.LogDebug("Initializing File Server...");
             //file server
             app.UseFileServer(new FileServerOptions
             {
                 FileSystem = new PhysicalFileSystem("Client"),
                 DefaultFilesOptions = { DefaultFileNames = { "index.html" } }
             });
-            //app.NLog().Debug("File Server initialized");
+            Logger.LogDebug("File Server initialized");
         }
+
+
+        public void UseWebApi(IAppBuilder app)
+        {
+            // Configure Web API for self-host. 
+            Logger.LogDebug("Initalizing WebApi...");
+            var config = new HttpConfiguration();
+
+            config.MapHttpAttributeRoutes();
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(Container);
+            config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
+
+            Logger.LogTrace($"{nameof(config.IncludeErrorDetailPolicy)}: {config.IncludeErrorDetailPolicy }");
+            Logger.LogTrace($"{nameof(config.DependencyResolver)}: {config.DependencyResolver.GetType().FullName}");
+
+            // Json settings
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                Formatting = Formatting.None,
+                NullValueHandling = NullValueHandling.Include,
+                TypeNameHandling = TypeNameHandling.None
+            };
+            config.Formatters.JsonFormatter.SerializerSettings = JsonConvert.DefaultSettings();
+            config.Formatters.JsonFormatter.SerializerSettings.Formatting = Formatting.Indented;
+
+            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/plain"));
+
+            config.EnsureInitialized();
+            app.UseWebApi(config);
+            Logger.LogDebug("WebApi initialized");
+        }
+
         public void InitPipeline<T>(Pipeline<T> pipeline) where T : class, new()
         {
             /*var logger = pipeline.NLog();

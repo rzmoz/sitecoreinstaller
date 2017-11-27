@@ -1,7 +1,14 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using Autofac;
+using Autofac.Integration.WebApi;
+using DotNet.Basics.Cli;
+using DotNet.Basics.IO;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
+using Microsoft.Owin.Hosting;
+using SitecoreInstaller.Host.ClientControllers;
 using SitecoreInstaller.Kernel;
 
 namespace SitecoreInstaller.Host
@@ -17,67 +24,49 @@ namespace SitecoreInstaller.Host
 
             hostInit.Logger.LogInformation(AsciiArts.Logo);
 
-            Console.ReadKey();
-            return 0;
-
-            /*
-            //starting host
-            var runtime = new RuntimeConfigurator();
-
-            var initialized = runtime.Init(ConfigureLog, iocBuilder =>
+            hostInit.ConfigureServices(builder =>
             {
-                iocBuilder.Register(c => new SiPageRenderer(@".\client".ToDir(), "layout", "404")).AsSelf().As<IPreflightCheck>().SingleInstance();
-                iocBuilder.RegisterApiControllers(typeof(Program).Assembly);
-                iocBuilder.RegisterPipelineSteps<LocalArgs>();
+                builder.Register(c => new SiPageRenderer(@".\client".ToDir(), "layout", "404")).AsSelf().SingleInstance();
+                builder.RegisterApiControllers(typeof(ClientController).Assembly);
+                new SiRegistrations().RegisterIn(builder);
             });
-
-            if (initialized == false)
-            {
-                runtime.NLog().Fatal(@"    Runtime failed to inititialize. Aborting...    ");
-                runtime.NLog().Fatal(AsciiArts.FailFace);
-                Console.ReadKey();
-                return 1;
-            }
 
             try
             {
-                runtime.NLog().Debug($"Host: {runtime.HostName} starting...");
+                hostInit.Logger.LogDebug($"Host  starting...");
                 var baseAddress = args.Take(1).FirstOrDefault() ?? "http://localhost:7919";
 
                 // Start OWIN host 
                 using (WebApp.Start(baseAddress, app =>
                 {
-                    app.InitWebApi(runtime.Container);
-                    app.InitFileServer();
+                    hostInit.UseFileServer(app);
+                    hostInit.UseWebApi(app);
                 }))
                 {
-                    runtime.NLog().Info($"Host: {runtime.HostName} started");
-                    runtime.NLog().Trace($"Host is listening on {baseAddress}");
+                    hostInit.Logger.LogDebug($"Host started");
+                    hostInit.Logger.LogTrace($"Host is listening on {baseAddress}");
 
                     //if web client should be started
                     if (args.Any(a => a.EndsWith("noclient", StringComparison.InvariantCultureIgnoreCase)))
-                        runtime.NLog().Info($"NoClient switch enabled. Open this url in browser to open client manually: {baseAddress}");
+                        hostInit.Logger.LogInformation($"NoClient switch enabled. Open this url in browser to open client manually: {baseAddress}");
                     else
                     {
-                        runtime.NLog().Info($"Opening client on {baseAddress}");
+                        hostInit.Logger.LogInformation($"Opening client on {baseAddress}");
                         CommandPrompt.Run($"start {baseAddress}");
                     }
 
                     Console.WriteLine(@"Press CTRL+C to quit...");
-                    while (true)
-                    {
-                        //listen
-                    }
+                    Console.ReadKey();
+                    return 0;
                 }
             }
             catch (TargetInvocationException e)
             {
-                runtime.NLog().Fatal($"Failed to start host: {runtime.HostName}. Aborting: {e}");
-                runtime.NLog().Fatal(AsciiArts.FailFace);
+                hostInit.Logger.LogCritical($"Failed to start host. Aborting: {e}");
+                hostInit.Logger.LogCritical(AsciiArts.FailFace);
                 Console.ReadKey();
                 return 1;
-            }*/
-
+            }
         }
         /*
         private static void ConfigureLog(NLogConfigurator logConf)
