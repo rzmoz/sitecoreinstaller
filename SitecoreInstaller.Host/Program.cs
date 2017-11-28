@@ -31,9 +31,8 @@ namespace SitecoreInstaller.Host
 
             try
             {
-
-                var baseAddress = args.Take(1).FirstOrDefault() ?? "http://localhost:7919";
-
+                var baseAddress = args.Take(1).FirstOrDefault() ?? "http://localhost:13371";
+                
                 // Start OWIN host 
                 using (WebApp.Start(baseAddress, app =>
                 {
@@ -41,18 +40,18 @@ namespace SitecoreInstaller.Host
                     hostInit.UseWebApi(app);
                 }))
                 {
-                    hostInit.Logger.LogDebug($"Host started");
-                    hostInit.Logger.LogTrace($"Host is listening on {baseAddress}");
+                    hostInit.Logger.LogInformation($"Starting host on {baseAddress}");
 
                     //if web client should be started
                     if (args.Any(a => a.EndsWith("noclient", StringComparison.InvariantCultureIgnoreCase)))
-                        hostInit.Logger.LogInformation($"NoClient switch enabled. Open this url in browser to open client manually: {baseAddress}");
+                        hostInit.Logger.LogWarning($"NoClient switch enabled. Open this url in browser to open client manually: {baseAddress}");
                     else
                     {
-                        hostInit.Logger.LogInformation($"Opening client on {baseAddress}");
+                        hostInit.Logger.LogDebug($"Opening client...");
                         CommandPrompt.Run($"start {baseAddress}");
                     }
 
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine(@"Press any key to quit...");
                     Console.ReadKey();
                     return 0;

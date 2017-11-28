@@ -40,10 +40,8 @@ namespace SitecoreInstaller.Host
             Container = containerBuilder.Build();
 
             Logger.LogDebug("Container registrations:");
-            var registrations = new StringBuilder();
             foreach (var registration in Container.ComponentRegistry.Registrations)
-                registrations.AppendLine($"{JsonConvert.SerializeObject(registration.Services.Select(s => s.Description))}");
-            Logger.LogTrace(registrations.ToString());
+                Logger.LogTrace($"{JsonConvert.SerializeObject(registration.Services.Select(s => s.Description))}");
         }
 
         public void UseFileServer(IAppBuilder app)
