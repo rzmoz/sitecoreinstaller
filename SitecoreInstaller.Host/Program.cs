@@ -20,6 +20,8 @@ namespace SitecoreInstaller.Host
 
             hostInit.Logger.LogInformation(AsciiArts.Logo);
 
+            hostInit.Logger.LogInformation($"Initializing {typeof(Program).Namespace}...");
+
             hostInit.ConfigureServices(builder =>
             {
                 builder.Register(c => new SiPageRenderer(@".\client".ToDir(), "layout", "404")).AsSelf().SingleInstance();
@@ -29,7 +31,7 @@ namespace SitecoreInstaller.Host
 
             try
             {
-                hostInit.Logger.LogDebug($"Host  starting...");
+
                 var baseAddress = args.Take(1).FirstOrDefault() ?? "http://localhost:7919";
 
                 // Start OWIN host 

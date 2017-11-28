@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using Autofac;
 using Autofac.Integration.WebApi;
+using DotNet.Basics.Collections;
 using DotNet.Basics.Tasks.Pipelines;
 using Microsoft.Extensions.Logging;
 using Microsoft.Owin.FileSystems;
@@ -38,30 +39,31 @@ namespace SitecoreInstaller.Host
 
             Container = containerBuilder.Build();
 
+            Logger.LogDebug("Container registrations:");
             var registrations = new StringBuilder();
-            registrations.AppendLine($"Container registrations:\r\n");
             foreach (var registration in Container.ComponentRegistry.Registrations)
                 registrations.AppendLine($"{JsonConvert.SerializeObject(registration.Services.Select(s => s.Description))}");
-            Logger.LogDebug(registrations.ToString());
+            Logger.LogTrace(registrations.ToString());
         }
 
         public void UseFileServer(IAppBuilder app)
         {
-            Logger.LogDebug("Initializing File Server...");
+            Logger.LogInformation($"Initializing File Server");
+
+            var fileSystem = new PhysicalFileSystem("Client");
             //file server
             app.UseFileServer(new FileServerOptions
             {
-                FileSystem = new PhysicalFileSystem("Client"),
+                FileSystem = fileSystem,
                 DefaultFilesOptions = { DefaultFileNames = { "index.html" } }
             });
-            Logger.LogDebug("File Server initialized");
+            Logger.LogDebug($"File Server initialized in: {fileSystem.Root}");
         }
-
 
         public void UseWebApi(IAppBuilder app)
         {
             // Configure Web API for self-host. 
-            Logger.LogDebug("Initalizing WebApi...");
+            Logger.LogInformation("Initalizing WebApi");
             var config = new HttpConfiguration();
 
             config.MapHttpAttributeRoutes();
@@ -87,6 +89,9 @@ namespace SitecoreInstaller.Host
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/plain"));
+
+            Logger.LogDebug($"Supported Media Types:");
+            config.Formatters.JsonFormatter.SupportedMediaTypes.ForEach(smt => Logger.LogTrace(smt.MediaType));
 
             config.EnsureInitialized();
             app.UseWebApi(config);
