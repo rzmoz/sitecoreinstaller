@@ -22,7 +22,7 @@ namespace SitecoreInstaller.Host.ClientControllers
         {
             return new HttpResponseMessage
             {
-                Headers = { Location = new Uri(Request.RequestUri.GetLeftPart(UriPartial.Authority) + "/dashboard") },
+                Headers = { Location = new Uri(Request.RequestUri.GetLeftPart(UriPartial.Authority) + "/index") },
                 StatusCode = HttpStatusCode.MovedPermanently
             };
         }
