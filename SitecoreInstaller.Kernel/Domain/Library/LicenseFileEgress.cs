@@ -1,50 +1,46 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using DotNet.Basics.IO;
 using DotNet.Basics.Sys;
 
 namespace SitecoreInstaller.Domain.Library
 {
-    public class LicenseFileEgress : IEgressAsset
+    public class LicenseFileEgress : EgressAsset
     {
         public const string ModuleName = "SiteCore.License";
+        private const string _extension = ".xml";
 
-        public LicenseFileEgress(string name, XDocument licenseContent)
+        public LicenseFileEgress(string name) : base(name, ContainerNames.Licenses, PathType.File)
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            if (licenseContent == null) throw new ArgumentNullException(nameof(licenseContent));
-            var moduleNode = licenseContent.Root.Descendants().FirstOrDefault(x => x.Name.LocalName == "Object" && x.Attribute("Id").Value == ModuleName);
+        }
+
+        public override bool Load(DirPath containerDir)
+        {
+            var source = containerDir.ToFile(Name.EnsureSuffix(_extension));
+            if (source.Exists() == false)
+                throw new FileNotFoundException(source.FullName());
+
+            var xml = XDocument.Parse(source.ReadAllText());
+
+            var moduleNode = xml.Root?.Descendants().FirstOrDefault(x => x.Name.LocalName == "Object" && x.Attribute("Id")?.Value == ModuleName);
             if (moduleNode == null)
                 throw new ArgumentException($"License module: {ModuleName} not found in license info");
 
             var licenseNode = moduleNode.Descendants("license").FirstOrDefault();
             if (licenseNode == null)
                 throw new ArgumentException($"License node not found in license module: {moduleNode.ToString(SaveOptions.DisableFormatting)}");
-            Id = licenseNode.Descendants("id").FirstOrDefault().Value;
-            Licensee = licenseNode.Descendants("licensee").FirstOrDefault().Value;
-            Expiration = licenseNode.Descendants("expiration").FirstOrDefault().Value;
+            Id = licenseNode.Descendants("id").FirstOrDefault()?.Value;
+            Licensee = licenseNode.Descendants("licensee").FirstOrDefault()?.Value;
+            Expiration = licenseNode.Descendants("expiration").FirstOrDefault()?.Value;
+
+            //all are set meaning we found the license and the content is valid
+            return Id != null && Licensee != null && Expiration != null;
         }
 
-        public static LicenseFileEgress Parse(string name, string licenseXml)
-        {
-            return new LicenseFileEgress(name, XDocument.Parse(licenseXml));
-        }
-
-        public static LicenseFileEgress Load(FilePath licensefile)
-        {
-            throw new NotImplementedException();
-            /*
-            if (licensefile.Exists() == false)
-                throw new IOException($"{licensefile} not found");
-            var xml = XDocument.Parse(licensefile.ReadAllText());
-            return new LicenseFileEgress(licensefile.Name, xml);
-
-    */
-        }
-
-        public string Name { get; }
-        public string Id { get; }
-        public string Licensee { get; }
-        public string Expiration { get; }
+        public string Id { get; private set; }
+        public string Licensee { get; private set; }
+        public string Expiration { get; private set; }
     }
 }
