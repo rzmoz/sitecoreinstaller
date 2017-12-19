@@ -1,4 +1,4 @@
-﻿namespace SitecoreInstaller.Kernel.Domain.Library
+﻿namespace SitecoreInstaller.Domain.Library
 {
     public interface IEgressAsset : ILibraryAsset
     {

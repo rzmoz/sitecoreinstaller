@@ -4,12 +4,12 @@ namespace SitecoreInstaller.Domain.Library
 {
     public interface ILibraryRepository
     {
-        bool Insert(IIngressAsset ingress, bool throwExceptionIfExists = false);
+        bool Insert(IIngressAsset ingress, bool overwriteIfExists = false);
 
         IEnumerable<IEgressAsset> GetAll();
         IEgressAsset Get(string name);
 
-        bool Exists(IEgressAsset asset);
-        bool Delete(IEgressAsset asset);
+        bool Exists(string name);
+        bool Delete(string name);
     }
 }

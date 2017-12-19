@@ -1,69 +1,18 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using Autofac;
-using Autofac.Integration.WebApi;
-using DotNet.Basics.Cli;
-using DotNet.Basics.IO;
-using Microsoft.Extensions.Logging;
-using Microsoft.Owin.Hosting;
-using SitecoreInstaller.Host.ClientControllers;
-using SitecoreInstaller.Kernel;
+﻿using Microsoft.AspNetCore.Hosting;
 
 namespace SitecoreInstaller.Host
 {
-    class Program
+    public class Program
     {
-        static int Main(string[] args)
+        public static void Main(string[] args)
         {
-            var hostInit = new HostInit(() => new ColoredConsoleLogger());
+            var host = new WebHostBuilder()
+                .UseKestrel(o => o.AddServerHeader = false)
+                .UseUrls("http://0.0.0.0:13371")
+                .UseStartup<Startup>()
+                .Build();
 
-            hostInit.Logger.LogInformation(AsciiArts.Logo);
-
-            hostInit.Logger.LogInformation($"Initializing {typeof(Program).Namespace}...");
-
-            hostInit.ConfigureServices(builder =>
-            {
-                builder.Register(c => new SiPageRenderer(@".\client".ToDir(), "layout", "404")).AsSelf().SingleInstance();
-                builder.RegisterApiControllers(typeof(ClientController).Assembly);
-                new SiRegistrations().RegisterIn(builder);
-            });
-
-            try
-            {
-                var baseAddress = args.Take(1).FirstOrDefault() ?? "http://localhost:13371";
-                
-                // Start OWIN host 
-                using (WebApp.Start(baseAddress, app =>
-                {
-                    hostInit.UseFileServer(app);
-                    hostInit.UseWebApi(app);
-                }))
-                {
-                    hostInit.Logger.LogInformation($"Starting host on {baseAddress}");
-
-                    //if web client should be started
-                    if (args.Any(a => a.EndsWith("noclient", StringComparison.InvariantCultureIgnoreCase)))
-                        hostInit.Logger.LogWarning($"NoClient switch enabled. Open this url in browser to open client manually: {baseAddress}");
-                    else
-                    {
-                        hostInit.Logger.LogDebug($"Opening client...");
-                        CommandPrompt.Run($"start {baseAddress}");
-                    }
-
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine(@"Press any key to quit...");
-                    Console.ReadKey();
-                    return 0;
-                }
-            }
-            catch (TargetInvocationException e)
-            {
-                hostInit.Logger.LogCritical($"Failed to start host. Aborting: {e}");
-                hostInit.Logger.LogCritical(AsciiArts.FailFace);
-                Console.ReadKey();
-                return 1;
-            }
+            host.Run();
         }
     }
 }
