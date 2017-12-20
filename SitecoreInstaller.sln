@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Host", "SitecoreInstaller.Host\SitecoreInstaller.Host.csproj", "{484A47F8-CD04-4F51-A307-7DED0F71F6F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SitecoreInstaller.Host", "SitecoreInstaller.Host\SitecoreInstaller.Host.csproj", "{484A47F8-CD04-4F51-A307-7DED0F71F6F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreInstaller.Kernel", "SitecoreInstaller.Kernel\SitecoreInstaller.Kernel.csproj", "{98D01578-A24A-467F-8EF1-B575E0E96B66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SitecoreInstaller.Kernel", "SitecoreInstaller.Kernel\SitecoreInstaller.Kernel.csproj", "{98D01578-A24A-467F-8EF1-B575E0E96B66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

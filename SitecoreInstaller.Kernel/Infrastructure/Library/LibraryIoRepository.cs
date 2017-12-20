@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DotNet.Basics.IO;
 using DotNet.Basics.Sys;
+using DotNet.Basics.Tasks;
 using Microsoft.Extensions.Logging;
 using SitecoreInstaller.Domain;
 using SitecoreInstaller.Domain.Library;
@@ -12,9 +14,9 @@ namespace SitecoreInstaller.Infrastructure.Library
         private readonly DirPath _root;
         private readonly ILogger _logger;
 
-        protected LibraryIoRepository(DirPath root, ILogger logger)
+        protected LibraryIoRepository(string rootDir, ILogger<LibraryIoRepository> logger)
         {
-            _root = root;
+            _root = rootDir.ToDir();
             _logger = logger;
         }
 
@@ -53,10 +55,11 @@ namespace SitecoreInstaller.Infrastructure.Library
             return target.DeleteIfExists();
         }
 
-        public void Init()
+        public Task<TaskResult> InitAsync()
         {
             _root.CreateIfNotExists();
             _logger.LogDebug($"Library repository initialized to: {_root}");
+            return Task.FromResult(new TaskResult());
         }
     }
 }

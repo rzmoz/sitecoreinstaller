@@ -1,7 +1,10 @@
-﻿namespace SitecoreInstaller.Domain
+﻿using System.Threading.Tasks;
+using DotNet.Basics.Tasks;
+
+namespace SitecoreInstaller.Domain
 {
     public interface IInitializable
     {
-        void Init();
+        Task<TaskResult> InitAsync();
     }
 }

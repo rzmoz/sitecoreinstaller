@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using DotNet.Basics.Extensions.Autofac;
 using SitecoreInstaller.Domain;
+using SitecoreInstaller.Domain.Library;
+using SitecoreInstaller.Infrastructure.Library;
 
 namespace SitecoreInstaller.App
 {
@@ -8,7 +10,7 @@ namespace SitecoreInstaller.App
     {
         public void RegisterIn(ContainerBuilder builder)
         {
-            builder.RegisterType<SitecoreInstallerRepository>().AsSelf().As<IInitializable>();
+            builder.RegisterType<LibraryIoRepository>().SingleInstance().AsSelf().As<ILibraryRepository>().As<IInitializable>();
         }
     }
 }

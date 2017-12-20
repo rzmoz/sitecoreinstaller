@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Autofac;
 using DotNet.Basics.Extensions.Autofac;
-using DotNet.Basics.Collections;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SitecoreInstaller.Domain;
@@ -21,33 +21,18 @@ namespace SitecoreInstaller.App
 
         public IContainer Container { get; private set; }
 
-        public bool RunPreflightChecks()
-        {
-            var preflightChecks = Container.Resolve<IEnumerable<IPreflightCheck>>();
-
-            return InitArea("Preflight checks", (errorMsgs) =>
-            {
-                foreach (var preflightCheck in preflightChecks)
-                    AssertPreflightCheck(preflightCheck, errorMsgs);
-
-            }, "Starting", "Finished");
-        }
-
-        private void AssertPreflightCheck(IPreflightCheck preflightCheck, IList<string> errorMsgs)
-        {
-            _log?.LogDebug($"Preflight check: {preflightCheck.GetType().Name} started..");
-            var result = preflightCheck.Assert();
-            if (result.Issues.None())
-                _log?.LogDebug($"Preflight check: {preflightCheck.GetType().Name} finished");
-            else
-                errorMsgs.Add($"Preflight check {preflightCheck.GetType().Name} failed:\r\n{JsonConvert.SerializeObject(result.Issues)}");
-        }
-
-        public void InitApplication()
+        public async Task InitApplication()
         {
             var applicationInitializers = Container.Resolve<IEnumerable<IInitializable>>();
+
             foreach (var applicationInitializer in applicationInitializers)
-                applicationInitializer.Init();
+            {
+                var result = await applicationInitializer.InitAsync().ConfigureAwait(false);
+                foreach (var ssuee in result.Issues)
+                {
+                    _log.LogCritical(ssuee.Exception, ssuee.Message);
+                }
+            }
         }
 
         public bool InitRegistrations(Action<AutofacBuilder> iocRegistrations = null)
