@@ -1,16 +1,14 @@
-﻿using Autofac;
-using DotNet.Basics.Extensions.Autofac;
-using SitecoreInstaller.Domain;
-using SitecoreInstaller.Domain.Library;
+﻿using DotNet.Basics.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using SitecoreInstaller.Infrastructure.Library;
 
 namespace SitecoreInstaller.App
 {
-    public class SitecoreInstallerRegistrations : IAutofacRegistrations
+    public class SitecoreInstallerRegistrations : IRegistrations
     {
-        public void RegisterIn(ContainerBuilder builder)
+        public void RegisterIn(IServiceCollection services)
         {
-            builder.RegisterType<LibraryIoRepository>().SingleInstance().AsSelf().As<ILibraryRepository>().As<IInitializable>();
+            services.AddSingleton<LibraryIoRepository>();
         }
     }
 }
