@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
-using DotNet.Basics.Extensions.Autofac;
+using DotNet.Basics.Autofac;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SitecoreInstaller.Domain;
@@ -42,7 +42,7 @@ namespace SitecoreInstaller.App
                 try
                 {
                     var builder = new AutofacBuilder(false);
-                    builder.Register(new SitecoreInstallerRegistrations());
+                    builder.AddRegistrations(new SitecoreInstallerRegistrations());
                     iocRegistrations?.Invoke(builder);
                     Container = builder.Container;
                     foreach (var registration in Container.ComponentRegistry.Registrations)
