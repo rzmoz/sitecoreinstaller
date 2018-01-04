@@ -10,6 +10,13 @@ namespace SitecoreInstaller.Cli
         {
             var appSettings = new ApplicationSettings();
             Console.WriteLine(appSettings.LibraryRootDir);
+
+            var applicationInitializer = new ApplicationInitializer(null);
+            applicationInitializer.InitRegistrations(appSettings, builder =>
+            {
+                
+            });
+
             return Task.FromResult(0);
         }
     }
