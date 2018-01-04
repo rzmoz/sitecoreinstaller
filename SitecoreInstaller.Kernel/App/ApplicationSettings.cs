@@ -7,7 +7,7 @@ namespace SitecoreInstaller.App
     {
         public ApplicationSettings()
         {
-            LibraryRootDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), ".si");
+            LibraryRootDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ".si");
         }
 
         public string LibraryRootDir { get; set; }

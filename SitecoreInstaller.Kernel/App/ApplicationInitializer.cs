@@ -21,28 +21,14 @@ namespace SitecoreInstaller.App
 
         public IContainer Container { get; private set; }
 
-        public async Task InitApplication()
-        {
-            var applicationInitializers = Container.Resolve<IEnumerable<IInitializable>>();
-
-            foreach (var applicationInitializer in applicationInitializers)
-            {
-                var result = await applicationInitializer.InitAsync().ConfigureAwait(false);
-                foreach (var ssuee in result.Issues)
-                {
-                    _log.LogCritical(ssuee.Exception, ssuee.Message);
-                }
-            }
-        }
-
-        public bool InitRegistrations(Action<AutofacBuilder> iocRegistrations = null)
+        public bool InitRegistrations(ApplicationSettings applicationSettings, Action<AutofacBuilder> iocRegistrations = null)
         {
             return InitArea("IocContainer", errorMsgs =>
             {
                 try
                 {
                     var builder = new AutofacBuilder(false);
-                    builder.AddRegistrations(new SitecoreInstallerRegistrations());
+                    builder.AddRegistrations(new SitecoreInstallerRegistrations(applicationSettings));
                     iocRegistrations?.Invoke(builder);
                     Container = builder.Container;
                     foreach (var registration in Container.ComponentRegistry.Registrations)
@@ -53,6 +39,20 @@ namespace SitecoreInstaller.App
                     errorMsgs.Add(e.ToString());
                 }
             });
+        }
+
+        public async Task InitApplication()
+        {
+            var applicationInitializers = Container.Resolve<IEnumerable<IPreflightCheck>>();
+
+            foreach (var applicationInitializer in applicationInitializers)
+            {
+                var result = await applicationInitializer.AssertAsync().ConfigureAwait(false);
+                foreach (var issue in result.Issues)
+                {
+                    _log.LogCritical(issue.Exception, issue.Message);
+                }
+            }
         }
 
         private bool InitArea(string areaName, Action<IList<string>> initFunc, string startingVerb = "initializing", string endedVerb = "Initialized")

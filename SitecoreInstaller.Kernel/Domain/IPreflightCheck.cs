@@ -3,8 +3,8 @@ using DotNet.Basics.Tasks;
 
 namespace SitecoreInstaller.Domain
 {
-    public interface IInitializable
+    public interface IPreflightCheck
     {
-        Task<TaskResult> InitAsync();
+        Task<TaskResult> AssertAsync();
     }
 }

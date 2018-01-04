@@ -9,7 +9,7 @@ using SitecoreInstaller.Domain.Library;
 
 namespace SitecoreInstaller.Infrastructure.Library
 {
-    public abstract class LibraryIoRepository : ILibraryRepository, IInitializable
+    public abstract class LibraryIoRepository : ILibraryRepository, IPreflightCheck
     {
         private readonly DirPath _root;
         private readonly ILogger _logger;
@@ -55,7 +55,7 @@ namespace SitecoreInstaller.Infrastructure.Library
             return target.DeleteIfExists();
         }
 
-        public Task<TaskResult> InitAsync()
+        public Task<TaskResult> AssertAsync()
         {
             _root.CreateIfNotExists();
             _logger.LogDebug($"Library repository initialized to: {_root}");

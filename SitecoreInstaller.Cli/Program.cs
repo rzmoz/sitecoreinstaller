@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using SitecoreInstaller.App;
 
 namespace SitecoreInstaller.Cli
 {
@@ -7,7 +8,8 @@ namespace SitecoreInstaller.Cli
     {
         public static Task<int> Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var appSettings = new ApplicationSettings();
+            Console.WriteLine(appSettings.LibraryRootDir);
             return Task.FromResult(0);
         }
     }
