@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using DotNet.Standard.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SitecoreInstaller.App;
@@ -9,15 +11,49 @@ namespace SitecoreInstaller.Host
 {
     public class Program
     {
-        public static async Task<int> Main(string[] args)
+        private const string _cliHelpTemplate = "-?|-h|--help";
+
+        public static int Main(string[] args)
         {
-            if (args.Length > 0)
-                return await RunWebHost(args).ConfigureAwait(false);
-            else
-                return await RunCli(args).ConfigureAwait(false);
+            var app = new CommandLineApplication(false)
+            {
+                Name = "SitecoreInstaller",
+                FullName = "SitecoreInstaller",
+                Description = "SitecoreInstaller for fast and easy installation of Sitecore"
+            };
+            app.HelpOption(_cliHelpTemplate);
+            app.VersionOption("-v|--version", GetVersions().ShortVersion, GetVersions().LongVersion);
+
+            app.Command("ui", conf =>
+            {
+                conf.Description = "Run SitecoreInstaller with full UI";
+                conf.HelpOption(_cliHelpTemplate);
+                conf.OnExecute(async () => await RunWebHostAsync().ConfigureAwait(false));
+            });
+
+            app.Command("console", conf =>
+            {
+                conf.Description = "Run SitecoreInstaller with cli";
+                conf.HelpOption(_cliHelpTemplate);
+                conf.OnExecute(async () => await RunConsoleAsync().ConfigureAwait(false));
+            });
+
+            app.OnExecute(() =>
+            {
+                app.ShowHelp();
+                return 0;
+            });
+
+            return app.Execute(args);
         }
 
-        public static async Task<int> RunWebHost(string[] args)
+        private static (string ShortVersion, string LongVersion) GetVersions()
+        {
+            var fileVersionInfo = FileVersionInfo.GetVersionInfo(typeof(Program).Assembly.Location);
+            return (fileVersionInfo.FileVersion, fileVersionInfo.ProductVersion);
+        }
+
+        public static async Task<int> RunWebHostAsync()
         {
             var host = new WebHostBuilder()
                 .UseKestrel(o => o.AddServerHeader = false)
@@ -29,7 +65,7 @@ namespace SitecoreInstaller.Host
             return 0;
         }
 
-        public static async Task<int> RunCli(string[] args)
+        public static async Task<int> RunConsoleAsync()
         {
             var app = new AppBuilder(services =>
             {

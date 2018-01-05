@@ -19,6 +19,7 @@
   <ItemGroup>
     <PackageReference Include="DotNet.Standard.Extensions.Logging" Version="2.0.0-beta.3" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Extensions.CommandLineUtils" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Views\Home\Charts.cshtml">
