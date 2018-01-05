@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DotNet.Standard.Extensions.Logging;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NLog.Targets;
 
 namespace SitecoreInstaller.Host
 {
@@ -18,6 +20,10 @@ namespace SitecoreInstaller.Host
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddNLogging(conf =>
+                {
+                    conf.AddTarget(new ColoredConsoleTarget().WithOutputColors());
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

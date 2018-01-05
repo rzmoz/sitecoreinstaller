@@ -1,23 +1,27 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using DotNet.Standard.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using SitecoreInstaller.App;
 
 namespace SitecoreInstaller.Cli
 {
     class Program
     {
-        public static Task<int> Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
-            var appSettings = new ApplicationSettings();
-            Console.WriteLine(appSettings.LibraryRootDir);
+            var app = new ApplicationBuilder(services =>
+                {
+                    services.AddNLogging();
+                });
 
-            var applicationInitializer = new ApplicationInitializer(null);
-            applicationInitializer.InitRegistrations(appSettings, builder =>
+            return await app.Start((provider, logger) =>
             {
-                
-            });
+                var anonymousLogger = provider.GetService<ILogger>();
+                anonymousLogger.LogDebug("Test");
 
-            return Task.FromResult(0);
+                logger.LogInformation(AsciiArts.Logo);
+            }).ConfigureAwait(false);
         }
     }
 }
