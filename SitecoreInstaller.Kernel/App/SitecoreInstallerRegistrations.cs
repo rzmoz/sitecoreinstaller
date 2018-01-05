@@ -1,6 +1,6 @@
 ﻿using System;
 using Autofac;
-using DotNet.Basics.Autofac;
+using DotNet.Standard.Extensions.DependencyInjection;
 using SitecoreInstaller.Domain.Library;
 using SitecoreInstaller.Infrastructure.Library;
 

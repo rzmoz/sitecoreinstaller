@@ -1,5 +1,5 @@
-﻿using DotNet.Basics.IO;
-using DotNet.Basics.Sys;
+﻿using DotNet.Standard.IO;
+using DotNet.Standard.Sys;
 
 namespace SitecoreInstaller.Domain.Library
 {

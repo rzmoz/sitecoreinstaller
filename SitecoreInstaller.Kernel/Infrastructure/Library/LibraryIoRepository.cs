@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using DotNet.Basics.IO;
-using DotNet.Basics.Sys;
-using DotNet.Basics.Tasks;
+using DotNet.Standard.IO;
+using DotNet.Standard.Sys;
+using DotNet.Standard.Tasks;
 using Microsoft.Extensions.Logging;
 using SitecoreInstaller.Domain;
 using SitecoreInstaller.Domain.Library;

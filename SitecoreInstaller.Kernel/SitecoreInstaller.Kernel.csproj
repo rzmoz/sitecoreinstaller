@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNet.Basics" Version="9.5.0-beta.2" />
-    <PackageReference Include="DotNet.Basics.Autofac" Version="4.6.2.1-rc.4" />
+    <PackageReference Include="DotNet.Standard" Version="2.0.0-beta.1" />
+    <PackageReference Include="DotNet.Standard.Extensions.DependencyInjection" Version="2.0.0-beta.1" />
+    <PackageReference Include="DotNet.Standard.Extensions.Logging" Version="2.0.0-beta.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
 
