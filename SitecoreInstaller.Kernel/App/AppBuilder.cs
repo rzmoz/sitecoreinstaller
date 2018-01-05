@@ -11,11 +11,11 @@ using SitecoreInstaller.Domain;
 
 namespace SitecoreInstaller.App
 {
-    public class ApplicationBuilder
+    public class AppBuilder
     {
         private readonly AutofacBuilder _iocBuilder;
 
-        public ApplicationBuilder(Action<IServiceCollection> configureLogging, Action<AutofacBuilder> iocRegistrations = null, ApplicationSettings applicationSettings = null)
+        public AppBuilder(Action<IServiceCollection> configureLogging, Action<AutofacBuilder> iocRegistrations = null, ApplicationSettings applicationSettings = null)
         {
             _iocBuilder = new AutofacBuilder();
             _iocBuilder.AddByServiceCollection(services => configureLogging?.Invoke(services));
@@ -24,7 +24,7 @@ namespace SitecoreInstaller.App
             Logger.LogDebug($"Application Inititialization complete");
         }
 
-        public async Task<int> Start(Action<IServiceProvider, ILogger> run = null)
+        public async Task<int> RunAsync(Action<IServiceProvider, ILogger> run = null)
         {
             var preflightsResult = await RunPreflightChecksAsync().ConfigureAwait(false);
             if (preflightsResult.Issues.Any())
@@ -64,6 +64,6 @@ namespace SitecoreInstaller.App
             return taskResult;
         }
 
-        private ILogger Logger => _iocBuilder.ServiceProvider.GetService<ILogger<ApplicationBuilder>>();
+        private ILogger Logger => _iocBuilder.ServiceProvider.GetService<ILogger<AppBuilder>>();
     }
 }
