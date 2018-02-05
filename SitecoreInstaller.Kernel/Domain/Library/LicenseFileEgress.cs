@@ -2,8 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using DotNet.Standard.IO;
-using DotNet.Standard.Sys;
+using DotNet.Basics.IO;
+using DotNet.Basics.Sys;
 
 namespace SitecoreInstaller.Domain.Library
 {

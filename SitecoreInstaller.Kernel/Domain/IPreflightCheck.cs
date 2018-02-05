@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using DotNet.Standard.Tasks;
+using DotNet.Basics.Tasks;
 
 namespace SitecoreInstaller.Domain
 {

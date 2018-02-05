@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using DotNet.Standard.Collections;
-using DotNet.Standard.Extensions.DependencyInjection;
-using DotNet.Standard.Tasks;
+using DotNet.Basics.Autofac;
+using DotNet.Basics.Collections;
+using DotNet.Basics.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Internal;

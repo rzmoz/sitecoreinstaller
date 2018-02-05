@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using DotNet.Standard.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SitecoreInstaller.App;
+using DotNet.Basics.NLog;
 
 namespace SitecoreInstaller.Host
 {
