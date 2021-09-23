@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SitecoreInstaller.Host", "SitecoreInstaller.Host\SitecoreInstaller.Host.csproj", "{484A47F8-CD04-4F51-A307-7DED0F71F6F9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SitecoreInstaller.Kernel", "SitecoreInstaller.Kernel\SitecoreInstaller.Kernel.csproj", "{98D01578-A24A-467F-8EF1-B575E0E96B66}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{484A47F8-CD04-4F51-A307-7DED0F71F6F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{484A47F8-CD04-4F51-A307-7DED0F71F6F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{484A47F8-CD04-4F51-A307-7DED0F71F6F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{484A47F8-CD04-4F51-A307-7DED0F71F6F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98D01578-A24A-467F-8EF1-B575E0E96B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{98D01578-A24A-467F-8EF1-B575E0E96B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98D01578-A24A-467F-8EF1-B575E0E96B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
